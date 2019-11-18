@@ -28,7 +28,7 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 3.2.1'
+ruby '~> 3.0'
 
 gem 'ox'
 gem 'actionpack-xml_parser', '~> 2.0.0'
@@ -45,7 +45,7 @@ gem 'rdoc', '>= 2.4.2'
 gem 'doorkeeper', '~> 5.5.0'
 # Maintain our own omniauth due to relative URL root issues
 # see upstream PR: https://github.com/omniauth/omniauth/pull/903
-gem 'omniauth', git: 'https://github.com/opf/omniauth', ref: 'fe862f986b2e846e291784d2caa3d90a658c67f0'
+gem 'omniauth', git: 'https://github.com/opf/omniauth', branch: :master
 gem 'request_store', '~> 1.5.0'
 
 gem 'warden', '~> 1.2'
@@ -179,13 +179,14 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sprockets', '~> 3.7.2' # lock sprockets below 4.0
 gem 'sprockets-rails', '~> 3.4.2'
 
-gem 'puma', '~> 6.1'
+gem 'puma', '~> 6.0.2'
+gem 'sd_notify'
 gem 'puma-plugin-statsd', '~> 2.0'
 gem 'rack-timeout', '~> 0.6.3', require: "rack/timeout/base"
 
 gem 'nokogiri', '~> 1.14.3'
 
-gem 'carrierwave', '~> 1.3.1'
+gem 'carrierwave', '= 1.3.2'
 gem 'carrierwave_direct', '~> 2.1.0'
 gem 'fog-aws'
 
@@ -296,7 +297,7 @@ group :development, :test do
   gem 'pry-rescue', '~> 1.5.2'
 
   # ruby linting
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 1.50.2', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
@@ -305,6 +306,15 @@ group :development, :test do
 
   # Brakeman scanner
   gem 'brakeman', '~> 5.4.0'
+
+  # Deploy
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-puma', '~> 6.0.0.beta.1'
+  gem 'capistrano3-delayed-job'
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
 end
 
 gem 'bootsnap', '~> 1.16.0', require: false

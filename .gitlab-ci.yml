@@ -1,0 +1,30 @@
+---
+default:
+  image: circleci/ruby:3.0.3-node-browsers
+  before_script:
+    - bundle config mirror.https://rubygems.org https://gems.ruby-china.com
+    - bundle config set path 'vendor'  # Install dependencies into ./vendor/ruby
+
+variables:
+  CACHE_FALLBACK_KEY: "$CI_COMMIT_REF_SLUG"
+
+stages:
+  - deploy
+
+deploy_production:
+  cache:
+    - key:
+        files:
+          - Gemfile.lock
+      paths:
+        - vendor/ruby
+  stage: deploy
+  script:
+    - bundle install -j $(nproc)
+    - mkdir ~/.ssh
+    - mv "$SSH_ID_RSA" ~/.ssh/id_rsa
+    - mv "$SSH_CONFIG_FILE" ~/.ssh/config
+    - bundle exec cap staging deploy
+  environment:
+    name: staging
+    url: https://ppm.thape.com.cn
