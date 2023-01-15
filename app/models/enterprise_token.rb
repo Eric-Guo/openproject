@@ -38,7 +38,7 @@ class EnterpriseToken < ApplicationRecord
     end
 
     def allows_to?(action)
-      Authorization::EnterpriseService.new(current).call(action).result
+      true
     end
 
     def active?
@@ -46,7 +46,7 @@ class EnterpriseToken < ApplicationRecord
     end
 
     def show_banners?
-      OpenProject::Configuration.ee_manager_visible? && !active?
+      false
     end
 
     def set_current_token
@@ -84,7 +84,7 @@ class EnterpriseToken < ApplicationRecord
   end
 
   def allows_to?(action)
-    Authorization::EnterpriseService.new(self).call(action).result
+    true
   end
 
   def unset_current_token
