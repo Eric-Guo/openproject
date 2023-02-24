@@ -51,6 +51,7 @@ import {
 import { BackRoutingService } from 'core-app/features/work-packages/components/back-routing/back-routing.service';
 import { MY_ACCOUNT_LAZY_ROUTES } from 'core-app/features/user-preferences/user-preferences.lazy-routes';
 import { IAN_LAZY_ROUTES } from 'core-app/features/in-app-notifications/in-app-notifications.lazy-routes';
+import { IAI_LAZY_ROUTES } from 'core-app/features/in-app-inbox/in-app-inbox.lazy-routes';
 import { StateObject } from '@uirouter/core/lib/state/stateObject';
 import {
   mobileGuardActivated,
@@ -146,6 +147,7 @@ export const OPENPROJECT_ROUTES:Ng2StateDeclaration[] = [
   },
   ...MY_ACCOUNT_LAZY_ROUTES,
   ...IAN_LAZY_ROUTES,
+  ...IAI_LAZY_ROUTES,
   ...TEAM_PLANNER_LAZY_ROUTES,
   ...CALENDAR_LAZY_ROUTES,
 ];

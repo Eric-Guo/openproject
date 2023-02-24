@@ -29,52 +29,51 @@
 import { Ng2StateDeclaration } from '@uirouter/angular';
 import { makeSplitViewRoutes } from 'core-app/features/work-packages/routing/split-view-routes.template';
 import { WorkPackageSplitViewComponent } from 'core-app/features/work-packages/routing/wp-split-view/wp-split-view.component';
-import { InAppNotificationCenterComponent } from 'core-app/features/in-app-notifications/center/in-app-notification-center.component';
-import { InAppNotificationCenterPageComponent } from 'core-app/features/in-app-notifications/center/in-app-notification-center-page.component';
+import { InAppInboxCenterComponent } from 'core-app/features/in-app-inbox/center/in-app-inbox-center.component';
+import { InAppInboxCenterPageComponent } from 'core-app/features/in-app-inbox/center/in-app-inbox-center-page.component';
 import { WorkPackagesBaseComponent } from 'core-app/features/work-packages/routing/wp-base/wp--base.component';
-import { InAppNotificationsDateAlertsUpsaleComponent } from 'core-app/features/in-app-notifications/date-alerts-upsale/ian-date-alerts-upsale.component';
+import { InAppInboxDateAlertsUpsaleComponent } from 'core-app/features/in-app-inbox/date-alerts-upsale/iai-date-alerts-upsale.component';
 
-export interface INotificationPageQueryParameters {
+export interface IInboxPageQueryParameters {
   filter?:string;
   name?:string;
-  filters?:string;
-  [key:string]:any;
+  projectId?:string;
 }
 
-export const IAN_ROUTES:Ng2StateDeclaration[] = [
+export const IAI_ROUTES:Ng2StateDeclaration[] = [
   {
-    name: 'notifications',
-    parent: 'root',
-    url: '/notifications?{filter:string}&{name:string}',
+    name: 'inbox',
+    parent: 'optional_project',
+    url: '/inboxes?{filter:string}&{name:string}',
     data: {
       bodyClasses: 'router--work-packages-base',
     },
-    redirectTo: 'notifications.center.show',
+    redirectTo: 'inbox.center.show',
     views: {
       '!$default': { component: WorkPackagesBaseComponent },
     },
   },
   {
     url: '/date_alerts',
-    name: 'notifications.date_alerts_upsale',
-    component: InAppNotificationsDateAlertsUpsaleComponent,
+    name: 'inbox.date_alerts_upsale',
+    component: InAppInboxDateAlertsUpsaleComponent,
   },
   {
-    name: 'notifications.center',
-    component: InAppNotificationCenterPageComponent,
-    redirectTo: 'notifications.center.show',
+    name: 'inbox.center',
+    component: InAppInboxCenterPageComponent,
+    redirectTo: 'inbox.center.show',
   },
   {
-    name: 'notifications.center.show',
+    name: 'inbox.center.show',
     data: {
-      baseRoute: 'notifications.center.show',
+      baseRoute: 'inbox.center.show',
     },
     views: {
-      'content-left': { component: InAppNotificationCenterComponent },
+      'content-left': { component: InAppInboxCenterComponent },
     },
   },
   ...makeSplitViewRoutes(
-    'notifications.center.show',
+    'inbox.center.show',
     undefined,
     WorkPackageSplitViewComponent,
   ),

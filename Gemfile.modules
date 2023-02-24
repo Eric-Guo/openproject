@@ -49,4 +49,6 @@ group :opf_plugins do
   gem 'openproject-storages',                  path: 'modules/storages'
 
   gem 'openproject-bim',                       path: 'modules/bim'
+
+  gem 'openproject-inbox',                     path: 'modules/inbox'
 end

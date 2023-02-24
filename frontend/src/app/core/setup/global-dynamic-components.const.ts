@@ -200,6 +200,10 @@ import {
   ianMenuSelector,
 } from 'core-app/features/in-app-notifications/center/menu/menu.component';
 import {
+  IaiMenuComponent,
+  iaiMenuSelector,
+} from 'core-app/features/in-app-inbox/center/menu/menu.component';
+import {
   opTeamPlannerSidemenuSelector,
   TeamPlannerSidemenuComponent,
 } from 'core-app/features/team-planner/team-planner/sidemenu/team-planner-sidemenu.component';
@@ -277,6 +281,7 @@ export const globalDynamicComponents:OptionalBootstrapDefinition[] = [
   { selector: backupSelector, cls: BackupComponent },
   { selector: opInAppNotificationBellSelector, cls: InAppNotificationBellComponent },
   { selector: ianMenuSelector, cls: IanMenuComponent },
+  { selector: iaiMenuSelector, cls: IaiMenuComponent },
 
   { selector: opModalOverlaySelector, cls: OpModalOverlayComponent },
   { selector: spotDropModalPortalComponentSelector, cls: SpotDropModalPortalComponent },

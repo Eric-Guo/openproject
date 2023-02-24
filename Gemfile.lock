@@ -101,6 +101,11 @@ PATH
     grids (1.0.0)
 
 PATH
+  remote: modules/inbox
+  specs:
+    openproject-inbox (1.0.0)
+
+PATH
   remote: modules/job_status
   specs:
     openproject-job_status (1.0.0)
@@ -1096,6 +1101,7 @@ DEPENDENCIES
   openproject-calendar!
   openproject-documents!
   openproject-github_integration!
+  openproject-inbox!
   openproject-job_status!
   openproject-ldap_groups!
   openproject-meeting!

@@ -107,6 +107,7 @@ import { LinkedPluginsModule } from 'core-app/features/plugins/linked-plugins.mo
 import {
   OpenProjectInAppNotificationsModule,
 } from 'core-app/features/in-app-notifications/in-app-notifications.module';
+import { OpenProjectInAppInboxModule } from 'core-app/features/in-app-inbox/in-app-inbox.module';
 import { OpenProjectBackupService } from './core/backup/op-backup.service';
 import { OpenProjectStateModule } from 'core-app/core/state/openproject-state.module';
 import {
@@ -221,6 +222,9 @@ export function initializeServices(injector:Injector) {
 
     // Notifications
     OpenProjectInAppNotificationsModule,
+
+    // Inbox
+    OpenProjectInAppInboxModule,
 
     // Loading
     OpenprojectContentLoaderModule,
