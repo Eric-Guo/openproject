@@ -153,7 +153,7 @@ export class IaiCenterService extends UntilDestroyedMixin {
         ),
         ...(
           hasProject
-            ? ([['project_id', '=', [state.filters.projectId]]] as ApiV3ListFilter[])
+            ? ([['project', '=', [state.filters.projectId]]] as ApiV3ListFilter[])
             : []
         ),
       ],

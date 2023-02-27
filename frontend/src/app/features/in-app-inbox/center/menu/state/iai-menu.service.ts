@@ -28,6 +28,7 @@ import {
 } from 'rxjs/operators';
 import { collectionKey } from 'core-app/core/state/collection-store';
 import { combineLatest } from 'rxjs';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 
 @Injectable()
 @EffectHandler
@@ -70,6 +71,7 @@ export class IaiMenuService {
     readonly projectsResourceService:ProjectsResourceService,
     readonly actions$:ActionsService,
     readonly apiV3Service:ApiV3Service,
+    readonly currentProject:CurrentProjectService,
   ) {
   }
 
@@ -90,7 +92,14 @@ export class IaiMenuService {
   }
 
   public reload():void {
-    this.ianResourceService.fetchCollection(IAI_MENU_PROJECT_FILTERS)
+    const projectFilters:ApiV3ListParameters = {
+      ...IAI_MENU_PROJECT_FILTERS,
+      filters: [...(IAI_MENU_PROJECT_FILTERS.filters || [])],
+    };
+    if (this.currentProject.id) {
+      projectFilters.filters?.push(['project', '=', [this.currentProject.id.toString()]]);
+    }
+    this.ianResourceService.fetchCollection(projectFilters)
       .subscribe((data) => {
         const projectsFilter:ApiV3ListParameters = {
           pageSize: 100,
@@ -111,7 +120,14 @@ export class IaiMenuService {
           this.projectsResourceService.fetchCollection(projectsFilter).subscribe();
         }
       });
-    this.ianResourceService.fetchCollection(IAI_MENU_REASON_FILTERS)
+    const reasonFilters:ApiV3ListParameters = {
+      ...IAI_MENU_REASON_FILTERS,
+      filters: [...(IAI_MENU_REASON_FILTERS.filters || [])],
+    };
+    if (this.currentProject.id) {
+      reasonFilters.filters?.push(['project', '=', [this.currentProject.id.toString()]]);
+    }
+    this.ianResourceService.fetchCollection(reasonFilters)
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       .subscribe((data) => this.store.update({ notificationsByReason: data.groups }));
   }
