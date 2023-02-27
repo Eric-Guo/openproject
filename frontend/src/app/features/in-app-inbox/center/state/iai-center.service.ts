@@ -64,7 +64,7 @@ import {
   ApiV3ListParameters,
 } from 'core-app/core/apiv3/paths/apiv3-list-resource.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 @EffectHandler
 export class IaiCenterService extends UntilDestroyedMixin {
   readonly id = 'iai-center';

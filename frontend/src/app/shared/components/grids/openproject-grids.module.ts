@@ -60,6 +60,7 @@ import { WidgetProjectDetailsComponent } from 'core-app/shared/components/grids/
 import { WidgetProjectDetailsMenuComponent } from 'core-app/shared/components/grids/widgets/project-details/project-details-menu.component';
 import { WidgetTimeEntriesProjectComponent } from 'core-app/shared/components/grids/widgets/time-entries/project/time-entries-project.component';
 import { WidgetSubprojectsComponent } from 'core-app/shared/components/grids/widgets/subprojects/subprojects.component';
+import { WidgetInboxComponent } from 'core-app/shared/components/grids/widgets/inbox/inbox.component';
 import { OpenprojectAttachmentsModule } from 'core-app/shared/components/attachments/openproject-attachments.module';
 import { WidgetMembersComponent } from 'core-app/shared/components/grids/widgets/members/members.component';
 import { WidgetProjectStatusComponent } from 'core-app/shared/components/grids/widgets/project-status/project-status.component';
@@ -67,11 +68,16 @@ import { OpenprojectTimeEntriesModule } from 'core-app/shared/components/time_en
 import { WidgetTimeEntriesCurrentUserMenuComponent } from 'core-app/shared/components/grids/widgets/time-entries/current-user/time-entries-current-user-menu.component';
 import { ApiV3FilterBuilder } from 'core-app/shared/helpers/api-v3/api-v3-filter-builder';
 import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/time-entries/current-user/configuration-modal/configuration.modal';
+import { OpenProjectInAppInboxModule } from 'core-app/features/in-app-inbox/in-app-inbox.module';
+import { IaiCenterService } from 'core-app/features/in-app-inbox/center/state/iai-center.service';
+import { IaiBellService } from 'core-app/features/in-app-inbox/bell/state/iai-bell.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     FormsModule,
     DragDropModule,
+    CommonModule,
 
     OpSharedModule,
     OpenprojectModalModule,
@@ -81,6 +87,8 @@ import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/tim
     OpenprojectTimeEntriesModule,
 
     OpenprojectAttachmentsModule,
+
+    OpenProjectInAppInboxModule,
 
     DynamicModule.withComponents([
       WidgetCustomTextComponent,
@@ -96,7 +104,9 @@ import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/tim
       WidgetProjectStatusComponent,
       WidgetSubprojectsComponent,
       WidgetTimeEntriesCurrentUserComponent,
-      WidgetTimeEntriesProjectComponent]),
+      WidgetTimeEntriesProjectComponent,
+      WidgetInboxComponent,
+    ]),
 
     // Support for inline editig fields
     OpenprojectFieldsModule,
@@ -105,6 +115,8 @@ import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/tim
   providers: [
     GridWidgetsService,
     GridInitializationService,
+    IaiCenterService,
+    IaiBellService,
   ],
   declarations: [
     GridComponent,
@@ -125,6 +137,7 @@ import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/tim
     WidgetSubprojectsComponent,
     WidgetTimeEntriesCurrentUserComponent,
     WidgetTimeEntriesProjectComponent,
+    WidgetInboxComponent,
 
     // Widget menus
     WidgetProjectDetailsMenuComponent,
@@ -342,6 +355,14 @@ export function registerWidgets(injector:Injector) {
         title: i18n.t('js.grid.widgets.subprojects.title'),
         properties: {
           name: i18n.t('js.grid.widgets.subprojects.title'),
+        },
+      },
+      {
+        identifier: 'inbox',
+        component: WidgetInboxComponent,
+        title: i18n.t('js.grid.widgets.inbox.title'),
+        properties: {
+          name: i18n.t('js.grid.widgets.inbox.title'),
         },
       },
     ];

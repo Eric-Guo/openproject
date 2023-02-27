@@ -64,3 +64,5 @@ en:
         work_packages_overview:
           title: 'Work packages overview'
           placeholder: 'Click to edit ...'
+        inbox:
+          title: 'Inbox'

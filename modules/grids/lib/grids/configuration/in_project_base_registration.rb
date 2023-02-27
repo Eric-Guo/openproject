@@ -12,7 +12,8 @@ module Grids::Configuration
             'members',
             'news',
             'documents',
-            'custom_text'
+            'custom_text',
+            'inbox'
 
     remove_query_lambda = -> {
       ::Query.find_by(id: options[:queryId])&.destroy
@@ -75,6 +76,12 @@ module Grids::Configuration
     widget_strategy 'documents' do
       allowed ->(user, project) {
         user.allowed_to?(:view_documents, project)
+      }
+    end
+
+    widget_strategy 'inbox' do
+      allowed ->(user, project) {
+        user.allowed_to?(:view_inbox, project)
       }
     end
 

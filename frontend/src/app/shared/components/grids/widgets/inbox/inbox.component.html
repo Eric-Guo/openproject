@@ -1,0 +1,58 @@
+<widget-header
+    [name]="widgetName"
+    [editable]="isEditable">
+
+  <widget-menu
+      slot="menu"
+      [resource]="resource">
+  </widget-menu>
+</widget-header>
+
+<div class="grid--widget-content">
+  <div class="op-ian-center">
+    <div class="op-ian-center--content" style="position: relative;">
+      <ng-container *ngIf="(loading$ | async) === false; else loading">
+        <ng-container *ngIf="(hasNotifications$ | async); else noResults">
+          <cdk-virtual-scroll-viewport
+              itemSize="100"
+              class="op-ian-center--viewport"
+          >
+            <op-in-app-inbox-entry
+                *cdkVirtualFor="let records of notifications$ | async; trackBy: trackNotificationGroups; templateCacheSize: 0"
+                class="op-ian-item"
+                [class.op-ian-item_expanded]="records[0].expanded"
+                [class.op-ian-item_read]="records[0].readIAN === true"
+                [class.op-ian-item_selected]="(stateChanged$ | async) === records[0]._links.resource.href"
+                [notification]="records[0]"
+                [aggregatedNotifications]="records"
+                attr.data-qa-selector="op-ian-notification-item-{{records[0].id}}"
+                [attr.data-qa-ian-read]="records[0].readIAN === true || undefined"
+                [attr.data-qa-ian-selected]="(stateChanged$ | async) === records[0]._links.resource.href"
+            ></op-in-app-inbox-entry>
+          </cdk-virtual-scroll-viewport>
+        </ng-container>
+        <ng-template #noResults>
+          <div class="op-ian-center--loading-indicator">
+            <img [src]="image.no_notification" class="op-ian-center-loading-image" style="max-height: 60px; min-height: 60px;"/>
+            <p class="op-ian-center-loading-text" style="font-size: 16px; margin-bottom: 0;">
+              <span [textContent]="noNotificationText(hasNotifications, (totalCount$ | async))"></span>
+            </p>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-template #loading>
+        <img [src]="image.loading" 
+            class="op-ian-center--loading-indicator op-ian-center-loading-image"
+            data-qa-selector="op-ian-center--loading-indicator"/>
+      </ng-template>
+    </div>
+    <div class="op-ian-center--footer">
+      <p
+        class="op-ian-center--max-warning"
+        *ngIf="hasMoreThanPageSize$ | async"
+        [textContent]="totalCountWarning$ | async"
+      >
+      </p>
+    </div>
+  </div>
+</div>
