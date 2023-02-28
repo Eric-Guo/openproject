@@ -28,6 +28,7 @@
                 attr.data-qa-selector="op-ian-notification-item-{{records[0].id}}"
                 [attr.data-qa-ian-read]="records[0].readIAN === true || undefined"
                 [attr.data-qa-ian-selected]="(stateChanged$ | async) === records[0]._links.resource.href"
+                [showDetailsOver]="toInbox"
             ></op-in-app-inbox-entry>
           </cdk-virtual-scroll-viewport>
         </ng-container>

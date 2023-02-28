@@ -27,6 +27,8 @@
 //++
 
 import { Injector, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DynamicModule } from 'ng-dynamic-component';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { OpSharedModule } from 'core-app/shared/shared.module';
@@ -71,13 +73,13 @@ import { TimeEntriesCurrentUserConfigurationModalComponent } from './widgets/tim
 import { OpenProjectInAppInboxModule } from 'core-app/features/in-app-inbox/in-app-inbox.module';
 import { IaiCenterService } from 'core-app/features/in-app-inbox/center/state/iai-center.service';
 import { IaiBellService } from 'core-app/features/in-app-inbox/bell/state/iai-bell.service';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     FormsModule,
     DragDropModule,
     CommonModule,
+    ScrollingModule,
 
     OpSharedModule,
     OpenprojectModalModule,

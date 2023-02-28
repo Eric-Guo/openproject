@@ -150,4 +150,10 @@ export class WidgetInboxComponent extends AbstractWidgetComponent implements OnI
   public get isEditable() {
     return false;
   }
+
+  toInbox = (wp_id:number|string|null) => {
+    const identifier = this.currentProject?.identifier || this.currentProject?.id;
+    if (!identifier) return;
+    window.location.href = `/projects/${identifier}/inboxes`;
+  };
 }

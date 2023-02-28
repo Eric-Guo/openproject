@@ -57,6 +57,9 @@ import { InAppInboxDateAlertsUpsaleComponent } from 'core-app/features/in-app-in
   providers: [
     IaiBellService,
   ],
+  exports: [
+    InAppInboxEntryComponent,
+  ],
 })
 export class OpenProjectInAppInboxModule {
 }

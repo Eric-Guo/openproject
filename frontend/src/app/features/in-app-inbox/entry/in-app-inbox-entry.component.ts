@@ -39,6 +39,8 @@ export class InAppInboxEntryComponent implements OnInit {
 
   @Input() aggregatedNotifications:INotification[];
 
+  @Input() showDetailsOver?:(id:number|string|null) => void;
+
   workPackage$:Observable<WorkPackageResource>|null = null;
 
   showDateAlert$:Observable<boolean> = this
@@ -110,8 +112,12 @@ export class InAppInboxEntryComponent implements OnInit {
         withLatestFrom(this.showDateAlert$),
       )
       .subscribe(([wp, openDetailsTab]) => {
-        const tab = openDetailsTab ? 'overview' : 'activity';
-        this.storeService.openSplitScreen(wp.id, tab);
+        if (this.showDetailsOver) {
+          this.showDetailsOver(wp.id);
+        } else {
+          const tab = openDetailsTab ? 'overview' : 'activity';
+          this.storeService.openSplitScreen(wp.id, tab);
+        }
       });
   }
 
