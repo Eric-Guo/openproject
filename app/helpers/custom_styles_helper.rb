@@ -213,12 +213,8 @@ module CustomStylesHelper
   end
 
   def default_logo_urls
-    desktop_light = asset_path(I18n.locale == :ru ? "logo-white-bg-ua.png" : "logo_openproject_white_big.png")
-    desktop_light_high_contrast = if OpenProject::Configuration.bim?
-                                    asset_path("bim/logo_openproject_bim_big_coloured.png")
-                                  else
-                                    asset_path(I18n.locale == :ru ? "logo-black-bg-ua.png" : "logo_openproject.png")
-                                  end
+    desktop_light = asset_path(I18n.locale == :ru ? "logo-white-bg-ua.png" : "logo_plm.png")
+    desktop_light_high_contrast = asset_path(I18n.locale == :ru ? "logo-black-bg-ua.png" : "logo_plm.png")
     mobile_white = asset_path("icon_logo_white.svg")
 
     {
@@ -261,7 +257,7 @@ module CustomStylesHelper
   end
 
   def locale_aware_theme_logo(custom_style)
-    return if custom_style.theme_logo.blank?
+    return if custom_style.theme_logo.blank? || !Rails.env.production?
 
     logo = custom_style.theme_logo
     logo = "logo-black-bg-ua.png" if I18n.locale == :ru && logo == "logo_openproject.png"
