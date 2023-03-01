@@ -35,18 +35,16 @@ See COPYRIGHT and LICENSE files for more details.
   logo_url = if is_ru
                asset_path("logo-white-bg-ua.png")
              else
-               asset_path("logo_openproject_white_big.png")
+               asset_path("logo_plm.png")
              end
 
   high_contrast_logo_url = if is_ru
                              asset_path("logo-black-bg-ua.png")
                            else
-                             asset_path("logo_openproject.png")
+                             asset_path("logo_plm.png")
                            end
   logo_icon_url = asset_path("icon_logo.svg")
   logo_icon_white_url = asset_path("icon_logo_white.svg")
-
-  high_contrast_bim_logo_url = asset_path("bim/logo_openproject_bim_big_coloured.png")
 
   if cs
     has_logo = cs.logo.present?
@@ -56,7 +54,7 @@ See COPYRIGHT and LICENSE files for more details.
       logo_url = high_contrast_logo_url = custom_style_logo_path(digest: cs.digest, filename: cs.logo_identifier)
     elsif has_logo_mobile
       logo_url = high_contrast_logo_url = custom_style_logo_mobile_path(digest: cs.digest, filename: cs.logo_mobile_identifier)
-    elsif cs.theme_logo.present?
+    elsif cs.theme_logo.present? && Rails.env.production?
       logo_url = asset_path(cs.theme_logo)
     end
 
@@ -89,6 +87,6 @@ See COPYRIGHT and LICENSE files for more details.
   }
 
   .op-logo--link_high_contrast {
-    background-image: url(<%= OpenProject::Configuration.bim? ? high_contrast_bim_logo_url : high_contrast_logo_url %>);
+    background-image: url(<%= high_contrast_logo_url %>);
   }
 </style>
