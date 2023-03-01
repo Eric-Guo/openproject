@@ -40,10 +40,8 @@ See COPYRIGHT and LICENSE files for more details.
   high_contrast_logo_url = if isRu
     asset_path("logo-black-bg-ua.png")
   else
-    asset_path("logo_openproject.png")
+    asset_path("logo_plm.png")
   end
-
-  high_contrast_bim_logo_url = asset_path("bim/logo_openproject_bim_big_coloured.png")
 
   if apply_custom_styles?
     if CustomStyle.current.logo.present?
@@ -63,6 +61,6 @@ See COPYRIGHT and LICENSE files for more details.
   }
 
   .op-logo--link_high_contrast {
-    background-image: url(<%= OpenProject::Configuration.bim? ? high_contrast_bim_logo_url : high_contrast_logo_url %>);
+    background-image: url(<%= high_contrast_logo_url %>);
   }
 </style>
