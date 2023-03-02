@@ -33,7 +33,7 @@ import { CurrentProjectService } from 'core-app/core/current-project/current-pro
 @Injectable()
 @EffectHandler
 export class IaiMenuService {
-  readonly id = 'ian-center';
+  readonly id = 'iai-center';
 
   readonly store = new IaiMenuStore();
 
