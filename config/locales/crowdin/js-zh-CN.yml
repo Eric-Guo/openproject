@@ -397,6 +397,8 @@ zh-CN:
     label_previous: "上一个"
     label_per_page: "每页："
     label_please_wait: "请稍等"
+    label_project: "项目"
+    label_project_list: "项目列表"
     label_project_plural: "项目"
     label_visibility_settings: "可见性设置"
     label_quote_comment: "引用这个评论"
