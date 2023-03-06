@@ -441,7 +441,7 @@ zh-CN:
     label_warning: "警告"
     label_work_package: "工作包"
     label_work_package_parent: "父工作包"
-    label_work_package_plural: "工作包"
+    label_work_package_plural: "进度表"
     label_watch: "关注"
     label_watch_work_package: "关注工作包"
     label_watcher_added_successfully: "已成功添加的关注者 ！"
