@@ -1,6 +1,7 @@
 <div *ngIf="handler"
      class="inline-edit--active-field inplace-edit {{ handler.fieldName }}"
-     [ngClass]="{'-error': handler.isErrorenous }">
+     [ngClass]="{'-error': handler.isErrorenous }"
+     (click)="$event.stopPropagation()">
   <form (submit)="handler.handleUserSubmit()"
         role="form"
         tabindex="-1">
