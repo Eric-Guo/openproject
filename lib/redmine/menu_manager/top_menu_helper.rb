@@ -67,10 +67,7 @@ module Redmine::MenuManager::TopMenuHelper
   end
 
   def top_menu_right_menu_items
-    [render_module_top_menu_node,
-     render_notification_top_menu_node,
-     render_help_top_menu_node,
-     render_user_top_menu_node]
+    [render_user_top_menu_node]
   end
 
   private
