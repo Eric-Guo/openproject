@@ -1,0 +1,6 @@
+#English strings go here
+zh-CN:
+  label_calendar_plural: "日历"
+  permission_view_calendar: "查看日历"
+  permission_manage_calendars: "管理日历"
+  project_module_calendar_view: "日历"
