@@ -522,6 +522,17 @@ zh-CN:
         watched: '已关注'
         assigned: '已分配'
         responsible: '负责'
+      date_alerts:
+        milestone_date: 'Milestone date'
+        overdue: '逾期'
+        overdue_since: 'since %{difference_in_days}'
+        property_today: 'is today'
+        property_is: 'is in %{difference_in_days}'
+        property_was: 'was %{difference_in_days} ago'
+        property_is_deleted: 'is deleted'
+        upsale:
+          title: 'Date alerts'
+          description: 'With date alerts, you will be notified of upcoming start or finish dates so that you never miss or forget an important deadline.'
       facets:
         unread: '未读'
         all: '全部'
