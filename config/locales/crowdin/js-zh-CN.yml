@@ -461,6 +461,7 @@ zh-CN:
     label_columns: "列"
     label_attachments: 文件
     label_drop_files: 将文件拖至此处
+    label_drop_or_click_files: "拖拽文件到这里或者点击添加附件"
     label_drop_files_hint: 或单击以添加文件
     label_drop_folders_hint: 您不能将文件夹作为附件上载。请选择单个文件。
     label_add_attachments: "添加附件"
@@ -1005,6 +1006,7 @@ zh-CN:
         relations: 关系
         watchers: 关注人
         attachments: 附件
+        files: 文件
       time_relative:
         days: "天"
         weeks: "周"
