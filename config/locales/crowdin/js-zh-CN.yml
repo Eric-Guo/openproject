@@ -409,6 +409,7 @@ zh-CN:
     label_report: "报告"
     label_repository_plural: "代码库"
     label_save_as: "另存为"
+    label_select_project: "选择一个项目"
     label_select_watcher: "选择一位关注者..."
     label_selected_filter_list: "所选的筛选器"
     label_show_attributes: "显示所有属性"
