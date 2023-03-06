@@ -20,7 +20,7 @@ export class EditCellHandler extends ClickOrEnterHandler implements TableEventHa
   // Keep a reference to all
 
   public get EVENT() {
-    return 'dblclick.table.cell, keydown.table.cell';
+    return 'click.table.cell, keydown.table.cell';
   }
 
   public get SELECTOR() {

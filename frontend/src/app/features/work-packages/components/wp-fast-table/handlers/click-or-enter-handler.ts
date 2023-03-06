@@ -6,7 +6,7 @@ import { WorkPackageTable } from '../wp-fast-table';
  * Execute the callback if the given JQuery Event is either an ENTER key or a click
  */
 export function onClickOrEnter(evt:JQuery.TriggeredEvent, callback:() => void) {
-  if (evt.type === 'dblclick' || (evt.type === 'keydown' && evt.which === KeyCodes.ENTER)) {
+  if (evt.type === 'click' || (evt.type === 'keydown' && evt.which === KeyCodes.ENTER)) {
     callback();
     return false;
   }

@@ -70,10 +70,6 @@ export class DisplayFieldRenderer<T extends HalResource = HalResource> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const fieldSchema = schema.ofProperty(attributeName) as IFieldSchema;
 
-    span.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
     // If the resource does not have that field, return an empty
     // span (e.g., for the table).
     if (!fieldSchema) {

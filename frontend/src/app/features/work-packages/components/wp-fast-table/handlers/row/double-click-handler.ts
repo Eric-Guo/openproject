@@ -26,7 +26,7 @@ export class RowDoubleClickHandler implements TableEventHandler {
   }
 
   public get EVENT() {
-    return 'click.table.row';
+    return 'dblclick.table.row';
   }
 
   public get SELECTOR() {
