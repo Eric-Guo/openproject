@@ -589,6 +589,7 @@ zh-CN:
       default: '-'
       subject: '在此处输入标题'
       selection: '请选择'
+      description: '描述：点击进入编辑...'
       relation_description: '点击为此关系添加描述'
     project:
       required_outside_context: >
