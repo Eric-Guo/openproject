@@ -887,6 +887,7 @@ zh-CN:
         description: "描述"
         date: "日期"
         dueDate: "完成日期"
+        duration: "工期"
         estimatedTime: "估计的时间"
         spentTime: "已耗时间"
         category: "类别"
