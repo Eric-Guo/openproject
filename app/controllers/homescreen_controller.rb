@@ -29,6 +29,10 @@
 class HomescreenController < ApplicationController
   skip_before_action :check_if_login_required, only: [:robots]
 
+  before_action do
+    redirect_to projects_path
+  end
+
   layout 'no_menu'
 
   def index
