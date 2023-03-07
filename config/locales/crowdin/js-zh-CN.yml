@@ -1045,7 +1045,9 @@ zh-CN:
         text: '是否确定想要执行此操作？'
       destroy_work_package:
         title: "确认删除%{label}"
+        single_text: "您确认想删除工作包："
         text: "是否确实要删除以下%{label}？"
+        bulk_text: "您确认想删除以下 %{label} 吗?"
         has_children: "工作包有 %{childUnits}:"
         confirm_deletion_children: "我确认所列工作包的全部子工作包都将递归移除。"
         deletes_children: "所有子工作包及其子级也将递归删除。"
