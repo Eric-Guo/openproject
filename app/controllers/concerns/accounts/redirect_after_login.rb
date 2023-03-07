@@ -48,7 +48,7 @@ module Accounts::RedirectAfterLogin
     if url = OpenProject::Configuration.after_login_default_redirect_url
       redirect_to url
     else
-      redirect_back_or_default my_page_path
+      redirect_back_or_default root_path
     end
   end
 

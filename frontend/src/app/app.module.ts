@@ -64,7 +64,6 @@ import {
 } from 'core-app/shared/components/work-package-graphs/openproject-work-package-graphs.module';
 import { PreviewTriggerService } from 'core-app/core/setup/globals/global-listeners/preview-trigger.service';
 import { OpenprojectOverviewModule } from 'core-app/features/overview/openproject-overview.module';
-import { OpenprojectMyPageModule } from 'core-app/features/my-page/openproject-my-page.module';
 import { OpenprojectProjectsModule } from 'core-app/features/projects/openproject-projects.module';
 import { KeyboardShortcutService } from 'core-app/shared/directives/a11y/keyboard-shortcut.service';
 import {
@@ -183,9 +182,6 @@ export function initializeServices(injector:Injector) {
 
     // Overview
     OpenprojectOverviewModule,
-
-    // MyPage
-    OpenprojectMyPageModule,
 
     // Global Search
     OpenprojectGlobalSearchModule,

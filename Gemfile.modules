@@ -39,7 +39,6 @@ group :opf_plugins do
   gem 'openproject-job_status',                path: 'modules/job_status'
 
   gem 'grids',                                 path: 'modules/grids'
-  gem 'my_page',                               path: 'modules/my_page'
   gem 'dashboards',                            path: 'modules/dashboards'
   gem 'openproject-boards',                    path: 'modules/boards'
   gem 'overviews',                             path: 'modules/overviews'
