@@ -515,7 +515,7 @@ zh-CN:
         subproject: "子项目"
         time_entries: "记录时间"
         type: "类型"
-        watcher: "关注者"
+        watcher: "参与者"
       'doorkeeper/application':
         uid: "客户端 ID"
         secret: "客户端密钥"
@@ -898,7 +898,7 @@ zh-CN:
   button_add: "添加"
   button_add_comment: "添加评论"
   button_add_member: 添加成员
-  button_add_watcher: "添加关注者"
+  button_add_watcher: "添加参与者"
   button_annotate: "批注"
   button_apply: "应用"
   button_archive: "存档"
@@ -920,7 +920,7 @@ zh-CN:
   button_create_and_continue: "创建并继续"
   button_delete: "删除"
   button_decline: "拒绝"
-  button_delete_watcher: "删除关注者 %{name}"
+  button_delete_watcher: "删除参与者 %{name}"
   button_download: "下载"
   button_duplicate: "复制"
   button_edit: "编辑"
@@ -951,12 +951,12 @@ zh-CN:
   button_unarchive: "取消归档"
   button_uncheck_all: "全部不选"
   button_unlock: "解锁​​​​"
-  button_unwatch: "取消关注"
+  button_unwatch: "取消参与"
   button_update: "更新"
   button_upgrade: "升级"
   button_upload: "上传"
   button_view: "查看"
-  button_watch: "关注"
+  button_watch: "参与"
   button_manage_menu_entry: "配置菜单项"
   button_add_menu_entry: "添加菜单项"
   button_configure_menu_entry: "配置菜单项"
@@ -1324,7 +1324,7 @@ zh-CN:
         subscribed: "您订阅了 %{work_package}"
         mentioned: "您在 %{work_package} 中被提及"
         responsible: "您已对 %{work_package} 负责"
-        watched: "您正在关注 %{work_package}"
+        watched: "您正在参与 %{work_package}"
     update_info_mail:
       body: >
         我们十分高兴地宣布 OpenProject 12.0 现已发布。这一主要版本有望显著改善您使用 OpenProject 的方式。
@@ -1809,7 +1809,7 @@ zh-CN:
   label_user_mail_option_all: "对于我所有项目的任何事件"
   label_user_mail_option_none: "没有事件"
   label_user_mail_option_only_assigned: "仅为指派给我的内容"
-  label_user_mail_option_only_my_events: "仅为我关注或参与的内容"
+  label_user_mail_option_only_my_events: "仅为我参与或参与的内容"
   label_user_mail_option_only_owner: "仅为我是所有者的内容"
   label_user_mail_option_selected: "只对于所选项目的任何事件......"
   label_user_new: "新用户"
@@ -1827,7 +1827,7 @@ zh-CN:
   label_view_all_revisions: "查看所有修订版本"
   label_view_diff: "查看差异"
   label_view_revisions: "查看修订版本"
-  label_watched_work_packages: "受关注的工作包"
+  label_watched_work_packages: "已参与的工作包"
   label_what_is_this: "这是什么?"
   label_week: "周"
   label_wiki_content_added: "添加 Wiki 页面"
@@ -1933,12 +1933,14 @@ zh-CN:
       more_to_see:
         other: '还有 %{count} 个包含通知的工作包。'
       reason:
-        watched: '已关注'
+        watched: '已参与'
         assigned: '已分配'
         responsible: '负责'
         mentioned: '被提及'
         subscribed: '所有'
         prefix: '接收原因为以下通知设置：%{reason}'
+        date_alert_start_date: '日期预警'
+        date_alert_due_date: '日期预警'
       see_all: '查看全部'
       updated_at: '由 %{user} 于 %{timestamp} 更新'
   mail_body_account_activation_request: "一个新的用户 (%{value}) 注册。该帐户正在等待您的批准："
@@ -2100,14 +2102,14 @@ zh-CN:
   permission_manage_user: "创建和编辑项目"
   permission_manage_placeholder_user: "创建、编辑和删除占位符用户"
   permission_add_subprojects: "创建子项目"
-  permission_add_work_package_watchers: "添加关注人"
+  permission_add_work_package_watchers: "添加参与人"
   permission_assign_versions: "分配版本"
   permission_browse_repository: "只读访问存储库 (浏览和签出)"
   permission_change_wiki_parent_page: "更改父 wiki 页面"
   permission_comment_news: "评论新闻"
   permission_commit_access: "读/写访问存储库 (提交)"
   permission_copy_projects: "复制项目"
-  permission_delete_work_package_watchers: "删除关注人"
+  permission_delete_work_package_watchers: "删除参与人"
   permission_delete_work_packages: "删除工作包"
   permission_delete_messages: "删除消息"
   permission_delete_own_messages: "删除自己的消息"
@@ -2152,7 +2154,7 @@ zh-CN:
   permission_view_calendar: "查看日历"
   permission_view_changesets: "查看OpenProject 资源库修订"
   permission_view_commit_author_statistics: "查看提交作者统计信息"
-  permission_view_work_package_watchers: "查看关注人列表"
+  permission_view_work_package_watchers: "查看参与人列表"
   permission_view_work_packages: "查看工作包"
   permission_view_messages: "查看消息"
   permission_view_members: "查看成员"
@@ -2512,8 +2514,8 @@ zh-CN:
   text_work_package_category_destroy_question: "一些工作包 (%{count}) 被分配到这个类别。你想做什么？"
   text_work_package_category_reassign_to: "重新分配工作包到此类别"
   text_work_package_updated: "工作包 %{id} 已经被 %{author} 更新。"
-  text_work_package_watcher_added: "%{watcher_changer} 已将您添加为工作包 %{id} 的一个关注者。"
-  text_work_package_watcher_removed: "%{watcher_changer} 已将您从工作包 %{id} 的关注者中移除。"
+  text_work_package_watcher_added: "%{watcher_changer} 已将您添加为工作包 %{id} 的一个参与者。"
+  text_work_package_watcher_removed: "%{watcher_changer} 已将您从工作包 %{id} 的参与者中移除。"
   text_work_packages_destroy_confirmation: "确实要删除所选的工作包吗?"
   text_work_packages_ref_in_commit_messages: "引用和修复工作包中提交消息"
   text_journal_added: "%{label} %{value} 已添加"
