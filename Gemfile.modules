@@ -50,4 +50,5 @@ group :opf_plugins do
   gem 'openproject-bim',                       path: 'modules/bim'
 
   gem 'openproject-inbox',                     path: 'modules/inbox'
+  gem 'openproject-th_user_auth',              path: 'modules/th_user_auth'
 end

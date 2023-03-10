@@ -165,6 +165,11 @@ PATH
     openproject-team_planner (1.0.0)
 
 PATH
+  remote: modules/th_user_auth
+  specs:
+    openproject-th_user_auth (1.0.0)
+
+PATH
   remote: modules/two_factor_authentication
   specs:
     openproject-two_factor_authentication (1.0.0)
@@ -1104,6 +1109,7 @@ DEPENDENCIES
   openproject-reporting!
   openproject-storages!
   openproject-team_planner!
+  openproject-th_user_auth!
   openproject-token (~> 3.0.1)
   openproject-two_factor_authentication!
   openproject-webhooks!
