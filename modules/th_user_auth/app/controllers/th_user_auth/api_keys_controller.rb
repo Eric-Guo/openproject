@@ -33,10 +33,10 @@ module ::ThUserAuth
 
       raise ActiveRecord::RecordNotFound unless user.present?
 
-      api_token = user.api_token || Token::API.create!(user:)
+      token_plain_text = user.api_token && user.api_token.plain_text || Token::API.create!(user:).plain_text
 
       render json: {
-        api_key: api_token.value
+        api_key: token_plain_text.value
       }
     end
   end

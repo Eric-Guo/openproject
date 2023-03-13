@@ -28,5 +28,17 @@
 
 module Token
   class API < HashedToken
+    after_save :save_plain_value, if: Proc.new { |token| token.plain_value.present? }
+
+    def plain_text
+      @token_plain_text ||= TokenPlainText.find_by(token_id: id)
+    end
+
+    protected
+    def save_plain_value
+      @token_plain_text = TokenPlainText.find_by(token_id: id) || TokenPlainText.new(token_id: id)
+      @token_plain_text.value = plain_value
+      @token_plain_text.save
+    end
   end
 end

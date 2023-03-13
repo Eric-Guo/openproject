@@ -1,0 +1,2 @@
+class TokenPlainText < ApplicationRecord
+end
