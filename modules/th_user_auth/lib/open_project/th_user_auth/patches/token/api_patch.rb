@@ -26,7 +26,22 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Token
-  class API < HashedToken
+module OpenProject::ThUserAuth::Patches::Token::APIPatch
+  def self.included(base) # :nodoc:
+    base.send(:include, InstanceMethods)
+
+    base.class_eval do
+      has_one :plain_text, class_name: "TokenPlainText", foreign_key: "token_id"
+      after_save :save_plain_value, if: Proc.new { |token| token.plain_value.present? }
+    end
+  end
+
+  module InstanceMethods
+    protected
+    def save_plain_value
+      self.plain_text ||= TokenPlainText.new(token_id: id)
+      self.plain_text.value = plain_value
+      self.plain_text.save
+    end
   end
 end

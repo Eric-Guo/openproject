@@ -12,5 +12,6 @@ module OpenProject::ThUserAuth
              :author_url => 'https://openproject.org',
              :requires_openproject => '>= 6.0.0'
 
+    patches %i[Token::API]
   end
 end

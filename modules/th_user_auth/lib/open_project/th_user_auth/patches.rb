@@ -26,7 +26,5 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Token
-  class API < HashedToken
-  end
+module OpenProject::ThUserAuth::Patches
 end
