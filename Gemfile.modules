@@ -51,4 +51,5 @@ group :opf_plugins do
 
   gem 'openproject-inbox',                     path: 'modules/inbox'
   gem 'openproject-th_user_auth',              path: 'modules/th_user_auth'
+  gem 'openproject-th_members',                path: 'modules/th_members'
 end

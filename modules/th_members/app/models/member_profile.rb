@@ -1,0 +1,2 @@
+class MemberProfile < ApplicationRecord
+end
