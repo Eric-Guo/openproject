@@ -170,6 +170,11 @@ PATH
     openproject-th_members (1.0.0)
 
 PATH
+  remote: modules/th_projects
+  specs:
+    openproject-th_projects (1.0.0)
+
+PATH
   remote: modules/th_user_auth
   specs:
     openproject-th_user_auth (1.0.0)
@@ -1115,6 +1120,7 @@ DEPENDENCIES
   openproject-storages!
   openproject-team_planner!
   openproject-th_members!
+  openproject-th_projects!
   openproject-th_user_auth!
   openproject-token (~> 3.0.1)
   openproject-two_factor_authentication!
