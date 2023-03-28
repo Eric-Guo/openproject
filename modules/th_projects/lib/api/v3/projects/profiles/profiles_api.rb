@@ -34,7 +34,7 @@ module API
           resource :profile do
             get do
               API::V3::Projects::Profiles::ProfileRepresenter
-                .new(@project.profile, current_user:, embed_links: true)
+                .new(@project.profile || ProjectProfile.new, current_user:, embed_links: true)
             end
           end
         end

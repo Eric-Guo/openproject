@@ -4,9 +4,15 @@ module API
       module Profiles
         class ProfileRepresenter < ::API::Decorators::Single
           link :self do
-            {
-              href: api_v3_paths.project_profile(represented.project.id)
-            }
+            if represented.project_id && represented.project_id != 0
+              {
+                href: api_v3_paths.project_profile(represented.project_id)
+              }
+            else
+              {
+                href: nil
+              }
+            end
           end
 
           property :id
