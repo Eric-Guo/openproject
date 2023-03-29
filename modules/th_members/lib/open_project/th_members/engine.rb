@@ -21,7 +21,15 @@ module OpenProject::ThMembers
       end
     end
 
-    patches %i[Member]
+    patches %i[Member API::V3::Memberships::MembershipRepresenter]
+
+    add_api_path :membership_profile do |id|
+      "#{membership(id)}/profile"
+    end
+
+    add_api_endpoint 'API::V3::Memberships::MembershipsAPI', :id do
+      mount ::API::V3::Memberships::Profiles::ProfilesAPI
+    end
 
     config.to_prepare do
       OpenProject::ThMembers::Patches::MembersPatch.mixin!

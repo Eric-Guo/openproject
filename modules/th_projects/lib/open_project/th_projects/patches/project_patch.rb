@@ -11,6 +11,13 @@ module OpenProject::ThProjects
         after_save :set_profile
 
         attr_accessor :project_type_id, :project_code, :project_name, :project_doc_link
+
+        after_initialize do |project|
+          @project_type_id = project.profile&.type_id
+          @project_code = project.profile&.code
+          @project_name = project.profile&.name
+          @project_doc_link = project.profile&.doc_link
+        end
       end
     end
 

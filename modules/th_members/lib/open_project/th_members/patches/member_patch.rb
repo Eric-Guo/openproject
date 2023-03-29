@@ -11,6 +11,12 @@ module OpenProject::ThMembers
         after_save :set_profile
 
         attr_accessor :company, :position, :remark
+
+        after_initialize do |member|
+          @company = member.profile&.company
+          @position = member.profile&.position
+          @remark = member.profile&.remark
+        end
       end
     end
 

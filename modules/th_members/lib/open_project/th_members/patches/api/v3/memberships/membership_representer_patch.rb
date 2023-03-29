@@ -1,20 +1,19 @@
-module OpenProject::ThProjects
-  module Patches::API::V3::Projects::ProjectRepresenterPatch
+module OpenProject::ThMembers
+  module Patches::API::V3::Memberships::MembershipRepresenterPatch
     def self.included(base) # :nodoc:
       base.send(:include, InstanceMethods)
 
       base.class_eval do
 
-        property :project_type_id
-        property :project_code
-        property :project_name
-        property :project_doc_link
+        property :company
+        property :position
+        property :remark
 
         resource :profile,
                  getter: ->(*) {
                    next unless represented.profile
 
-                   ::API::V3::Projects::Profiles::ProfileRepresenter
+                   ::API::V3::Memberships::Profiles::ProfileRepresenter
                      .create(represented.profile, current_user:, embed_links:)
                  },
                  link: ->(*) {
