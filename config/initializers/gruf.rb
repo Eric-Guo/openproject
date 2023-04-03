@@ -13,7 +13,12 @@ end
 
 OpenProject::Application.configure do
   config.after_initialize do
-    Spring.after_fork do
+    if Rails.env.development?
+      Spring.after_fork do
+        $gruf_op_client = ::Gruf::Client.new(service: OpService)
+      end
+    end
+    if Rails.env.production?
       $gruf_op_client = ::Gruf::Client.new(service: OpService)
     end
   end
