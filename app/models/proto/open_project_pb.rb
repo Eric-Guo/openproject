@@ -2,8 +2,13 @@
 # source: open_project.proto
 
 require 'google/protobuf'
-
 require 'google/protobuf/empty_pb'
+
+# it's required bydelayed_job
+module Proto
+  module OpenProjectPb
+  end
+end
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("open_project.proto", :syntax => :proto3) do

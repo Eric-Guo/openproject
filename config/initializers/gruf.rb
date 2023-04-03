@@ -1,9 +1,5 @@
 require 'gruf'
 
-proto_dir = File.join(Rails.root, 'lib', 'proto')
-$LOAD_PATH.unshift(proto_dir)
-require 'app/proto/open_project_services_pb'
-
 Gruf.configure do |c|
   c.interceptors.use(::Gruf::Interceptors::Instrumentation::RequestLogging::Interceptor, formatter: :logstash)
   c.error_serializer = Gruf::Serializers::Errors::Json
@@ -15,11 +11,11 @@ OpenProject::Application.configure do
   config.after_initialize do
     if Rails.env.development?
       Spring.after_fork do
-        $gruf_op_client = ::Gruf::Client.new(service: OpService)
+        $gruf_op_client = ::Gruf::Client.new(service: Proto::OpService)
       end
     end
     if Rails.env.production?
-      $gruf_op_client = ::Gruf::Client.new(service: OpService)
+      $gruf_op_client = ::Gruf::Client.new(service: Proto::OpService)
     end
   end
 end
