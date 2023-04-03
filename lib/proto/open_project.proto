@@ -1,0 +1,48 @@
+syntax = "proto3";
+option go_package = "../opService";
+import "google/protobuf/empty.proto";
+
+message TemplateDataItem {
+  string value = 1;
+  string color = 2;
+}
+
+// templateID:模板ID
+// data first:标题
+//      keynote1:值
+//      keynote2:值
+//      keynote3:值
+//      ...
+//      remark:备注
+// toMail 用户邮箱
+// toUserID op用户ID
+message MessageRequest {
+  string templateID = 1;
+  map<string, TemplateDataItem> data = 2; 
+  string url = 3;
+  string toLogin = 5;
+  int64 toUserID = 4;
+}
+
+// code:0 返回正确
+//      > 0 错误
+// message 错误消息
+message Result {
+  int64 code = 1;
+  string message = 2;
+}
+
+message Template {
+  string title = 1;
+  string templateID = 2;
+  string body = 3;
+  string trade = 4;
+}
+
+message GetTemplateResp {
+  repeated Template templates = 1;
+}
+service OpService {
+  rpc SendMessage(MessageRequest) returns(Result);
+  rpc GetTemplates(google.protobuf.Empty) returns(GetTemplateResp);
+}

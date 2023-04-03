@@ -53,4 +53,5 @@ group :opf_plugins do
   gem 'openproject-th_user_auth',              path: 'modules/th_user_auth'
   gem 'openproject-th_members',                path: 'modules/th_members'
   gem 'openproject-th_projects',               path: 'modules/th_projects'
+  gem 'openproject-th_notifications',          path: 'modules/th_notifications'
 end
