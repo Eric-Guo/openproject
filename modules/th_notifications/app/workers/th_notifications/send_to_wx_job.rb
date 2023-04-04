@@ -35,10 +35,10 @@ class ThNotifications::SendToWxJob < ApplicationJob
     work_package = notification.resource
     project = work_package.project
 
-    $gruf_op_client.call(:SendMessage, {
+    Proto::OpService::Service.current_client.call(:SendMessage, {
       templateID: ENV['WX_TEMPLATE_ID'],
       data: {
-        first: { value: "您好，你收到了一个新的任务动态" },
+        first: { value: "您好，您收到了一个新的任务动态" },
         keyword1: { value: project.name },
         keyword2: { value: work_package.subject },
         keyword3: { value: work_package.start_date&.strftime('%Y-%m-%d') || '' },

@@ -16,6 +16,10 @@ module Proto
 
       rpc :SendMessage, ::MessageRequest, ::Result
       rpc :GetTemplates, ::Google::Protobuf::Empty, ::GetTemplateResp
+
+      def self.current_client
+        @@current_client ||= ::Gruf::Client.new(service: Proto::OpService)
+      end
     end
 
     Stub = Service.rpc_stub_class
