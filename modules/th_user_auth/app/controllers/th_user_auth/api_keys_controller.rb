@@ -29,7 +29,11 @@
 module ::ThUserAuth
   class APIKeysController < ApplicationController
     def show
-      user = User.find_by_mail(params[:mail])
+      mail = params[:mail].presence&.strip
+
+      raise ActiveRecord::RecordNotFound unless mail.present?
+
+      user = User.find_by_login(params[:mail]) || User.find_by_mail(params[:mail])
 
       raise ActiveRecord::RecordNotFound unless user.present?
 
