@@ -12,7 +12,7 @@ module Proto
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'Proto::OpService'
+      self.service_name = 'OpService'
 
       rpc :SendMessage, ::MessageRequest, ::Result
       rpc :GetTemplates, ::Google::Protobuf::Empty, ::GetTemplateResp
