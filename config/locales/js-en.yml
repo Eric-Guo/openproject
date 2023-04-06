@@ -600,6 +600,9 @@ en:
         processed: 'processed'
         prioritized: 'prioritized'
         dateAlert: 'Date alert'
+        date_alert_start_date: 'Date alert start date'
+        date_alert_due_date: 'Date alert due date'
+        subscribed: 'subscribed'
       date_alerts:
         milestone_date: 'Milestone date'
         overdue: 'Overdue'
