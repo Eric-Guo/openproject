@@ -35,17 +35,33 @@ class ThNotifications::SendToWxJob < ApplicationJob
     work_package = notification.resource
     project = work_package.project
 
-    Proto::OpService::Service.current_client.call(:SendMessage, {
-      templateID: ENV['WX_TEMPLATE_ID'],
-      data: {
-        first: { value: "您好，您收到了一个新的任务动态" },
+    I18n.locale = user.language
+    data = {}
+    case ENV['WX_TEMPLATE_ID']
+    when 'n2wkRHVypiIDrxrRlxctKnzdaZG7PHdbqojRqRsRm6o'
+      data = {
+        first: { value: '您好，您收到了一个任务动态！' },
         keyword1: { value: project.name },
         keyword2: { value: work_package.subject },
         keyword3: { value: work_package.start_date&.strftime('%Y-%m-%d') || '' },
-        remark: { value: '如已知晓，请忽略。' },
-      },
-      url: ENV['WX_WORK_PACKAGE_DETAIL'].gsub(/:id(?=(\W|$))/, work_package.id.to_s),
-      toUserID: user.id,
-    })
+        remark: { value: '请点击本消息查看详细信息' },
+      }
+    when 'JlQs66nWj_kyHsfvraJxhDoUlXGc3ECusJBu_-BmBX0'
+      data = {
+        first: { value: [project.name, I18n.t("js.notifications.reasons.#{notification.reason}")].join(' - ') },
+        keyword1: { value: work_package.id.to_s },
+        keyword2: { value: work_package.subject },
+        keyword3: { value: work_package.status&.name || '' },
+        remark: { value: '请点击本消息查看详细信息' },
+      }
+    end
+    if data.present?
+      Proto::OpService::Service.current_client.call(:SendMessage, {
+        templateID: ENV['WX_TEMPLATE_ID'],
+        data:,
+        url: ENV['WX_WORK_PACKAGE_DETAIL'].gsub(/:id(?=(\W|$))/, work_package.id.to_s),
+        toUserID: user.id,
+      })
+    end
   end
 end
