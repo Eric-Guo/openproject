@@ -17,6 +17,8 @@ module OpenProject::ThMembers
           @position = member.profile&.position
           @remark = member.profile&.remark
         end
+
+        after_save :set_notification_settings
       end
     end
 
@@ -27,6 +29,71 @@ module OpenProject::ThMembers
         profile.position = position if position.present?
         profile.remark = remark if remark.present?
         profile.save! if profile.changed?
+      end
+
+      def set_notification_settings
+        role_ids = roles.pluck(:id)
+
+        ns = NotificationSetting.where(project_id:).where(user_id:).take || NotificationSetting.new(project_id:, user_id:)
+
+        # 我关注的
+        ns.watched = true
+        # 被@提及的
+        ns.mentioned = true
+        # 工作包 - 所有新评论
+        ns.work_package_commented = false
+        # 工作包 - 新工作包
+        ns.work_package_created = false
+        # 工作包 - 所有状态变更
+        ns.work_package_processed = false
+        # 工作包 - 所有优先级变更
+        ns.work_package_prioritized = false
+        # 工作包 - 所有日期变更
+        ns.work_package_scheduled = false
+        # 新闻 - 添加
+        ns.news_added = false
+        # 新闻 - 评论
+        ns.news_commented = false
+        # 文档 - 文档
+        ns.document_added = false
+        # 论坛 - 消息
+        ns.forum_messages = false
+        # wiki - 添加
+        ns.wiki_page_added = false
+        # wiki - 更新
+        ns.wiki_page_updated = false
+        # 成员 - 添加
+        ns.membership_added = false
+        # 成员 - 修改
+        ns.membership_updated = false
+        # 开始日期, 1: same day, 1: 1 day before, 3: 3 day before, 7: a week before
+        ns.start_date = nil
+        # 完成日期, 值同上
+        ns.due_date = nil
+        # 超时, 0: every day, 3: every 3 days, 7: every week
+        ns.overdue = nil
+        # 指定人
+        ns.assignee = false
+        # 负责人
+        ns.responsible = false
+
+        if role_ids.include?(3)
+          ns.assignee = true
+          ns.responsible = true
+          ns.start_date = 1
+          ns.due_date = 1
+          ns.overdue = 7
+          ns.work_package_created = true
+          ns.work_package_processed = true
+          ns.work_package_scheduled = true
+        elsif role_ids.include?(4)
+          ns.assignee = true
+          ns.responsible = true
+          ns.start_date = 1
+          ns.due_date = 1
+          ns.overdue = 7
+        end
+        ns.save!
       end
     end
   end
