@@ -54,6 +54,14 @@ class ThNotifications::SendToWxJob < ApplicationJob
         keyword3: { value: work_package.status&.name || '' },
         remark: { value: '请点击本消息查看详细信息' },
       }
+    when 'Sf47EGjbvBe8mZoFi4J54pThnU5MPWwPTwLiZM2MVXo'
+      data = {
+        first: { value: [project.name, I18n.t("js.notifications.reasons.#{notification.reason}")].join(' - ') },
+        keyword1: { value: work_package.subject },
+        keyword2: { value: work_package.id.to_s },
+        keyword3: { value: notification.created_at&.strftime('%Y-%m-%d %H:%M:%S') || '' },
+        remark: { value: '请点击本消息查看详细信息' },
+      }
     end
     if data.present?
       Proto::OpService::Service.current_client.call(:SendMessage, {
