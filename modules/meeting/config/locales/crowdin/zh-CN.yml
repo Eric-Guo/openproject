@@ -37,6 +37,9 @@ zh-CN:
     models:
       meeting_agenda: "议程"
       meeting_minutes: "会议记录"
+  activity:
+    filter:
+      meeting: "会议"
   description_attended: "已出席"
   description_invite: "已邀请"
   events:

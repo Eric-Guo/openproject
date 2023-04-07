@@ -39,6 +39,9 @@ zh-CN:
     models:
       budget: "预算"
       material_budget_item: "单位"
+  activity:
+    filter:
+      budget: "预算"
   attributes:
     budget: "预算"
   button_add_budget_item: "添加计划成本"

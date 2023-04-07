@@ -810,6 +810,15 @@ zh-CN:
   activity:
     created: "创建: %{title}"
     updated: "更新: %{title}"
+    filter:
+      changeset: "变更"
+      message: "论坛"
+      news: "新闻"
+      project_attribute: "项目属性"
+      subproject: "包含子项目"
+      time_entry: "花费时间"
+      wiki_edit: "Wiki"
+      work_package: "工作包"
   #common attributes of all models
   attributes:
     active: "激活"
