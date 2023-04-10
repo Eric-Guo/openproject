@@ -47,5 +47,5 @@ export class OpIconComponent {
 
   @Input('icon-title') iconTitle = '';
 
-  @Input('icon-styles') iconStyles = '';
+  @Input('icon-styles') iconStyles = {};
 }
