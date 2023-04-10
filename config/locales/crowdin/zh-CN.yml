@@ -2115,7 +2115,7 @@ zh-CN:
   permission_add_work_packages: "添加工作包"
   permission_add_messages: "发布消息"
   permission_add_project: "创建项目"
-  permission_manage_user: "创建和编辑项目"
+  permission_manage_user: "创建和编辑用户"
   permission_manage_placeholder_user: "创建、编辑和删除占位符用户"
   permission_add_subprojects: "创建子项目"
   permission_add_work_package_watchers: "添加参与人"
