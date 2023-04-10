@@ -4,6 +4,7 @@ OpenProject::Application.routes.draw do
               controller: 'inbox/inboxes',
               only: %i[index],
               as: :inboxes do
+      get '*details', to: 'inbox/inboxes#index'
     end
   end
 end
