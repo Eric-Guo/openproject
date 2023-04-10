@@ -441,9 +441,12 @@ zh-CN:
         code: '状态'
         explanation: '状态描述'
         codes:
+          not_started: '未开始'
           on_track: '按计划进行'
           at_risk: '有风险'
           off_track: '偏离计划'
+          finished: '已完成'
+          discontinued: '已终止'
       query:
         column_names: "列"
         relations_to_type_column: "与%{type} 的关系"
