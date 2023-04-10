@@ -33,6 +33,7 @@ import { Component, Input } from '@angular/core';
   host: { class: 'op-icon--wrapper' },
   template: `
       <i [ngClass]="iconClasses"
+         [ngStyle]="iconStyles"
          [attr.title]="iconTitle || undefined"
          aria-hidden="true"></i>
       <span
@@ -45,4 +46,6 @@ export class OpIconComponent {
   @Input('icon-classes') iconClasses:string;
 
   @Input('icon-title') iconTitle = '';
+
+  @Input('icon-styles') iconStyles = '';
 }

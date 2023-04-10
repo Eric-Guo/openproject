@@ -54,7 +54,8 @@
         <i
           *ngIf="!notification.readIAN"
           data-qa-selector="mark-as-read-button"
-          class="op-ian-item--button icon-mark-read"
+          class="op-ian-item--button icon-checkmark-circle"
+          style="color: rgba(0, 0, 0, .32);"
           [title]="text.mark_as_read"
           (click)="markAsRead($event, aggregatedNotifications)"
           tabindex="0"
@@ -115,7 +116,7 @@
 
       <span class="op-ian-item--reason-count"></span>
       <div class="op-ian-item--buttons">
-        <i class="op-ian-item--button icon-mark-read">
+        <i class="op-ian-item--button icon-checkmark-circle" style="color: rgba(0, 0, 0, .32);">
         </i>
       </div>
     </div>
