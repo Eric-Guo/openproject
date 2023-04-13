@@ -470,18 +470,18 @@ module ApplicationHelper
   end
 
   def logo_url
-    logo_url = asset_path("logo_openproject_white_big.png")
+    url = asset_path("logo_openproject_white_big.png")
     if apply_custom_styles?
       if CustomStyle.current.logo.present?
-        logo_url = custom_style_logo_path(digest: CustomStyle.current.digest, filename: CustomStyle.current.logo_identifier)
+        url = ApplicationController.helpers.custom_style_logo_path(digest: CustomStyle.current.digest, filename: CustomStyle.current.logo_identifier)
       elsif CustomStyle.current.theme_logo.present?
-        logo_url = asset_path(CustomStyle.current.theme_logo)
+        url = ApplicationController.helpers.asset_path(CustomStyle.current.theme_logo)
       end
     end
-    if logo_url.start_with?('http')
-      logo_url
+    if url.start_with?('http')
+      url
     else
-      Pathname.new(root_url).join(logo_url.delete_prefix('/')).to_s
+      Pathname.new(ApplicationController.helpers.root_url).join(url.delete_prefix('/')).to_s
     end
   end
 end
