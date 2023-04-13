@@ -41,8 +41,8 @@ class Submenu
   def menu_items
     [
       menu_group(header: I18n.t("js.label_starred_queries"), children: starred_queries),
-      menu_group(header: I18n.t("js.label_default_queries"), children: default_queries),
       menu_group(header: I18n.t("js.label_global_queries"), children: global_queries),
+      menu_group(header: I18n.t("js.label_default_queries"), children: default_queries),
       menu_group(header: I18n.t("js.label_custom_queries"), children: custom_queries)
     ]
   end
