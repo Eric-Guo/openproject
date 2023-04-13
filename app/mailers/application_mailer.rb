@@ -35,7 +35,8 @@ class ApplicationMailer < ActionMailer::Base
          :work_packages, # for css classes
          :custom_fields, # for show_value
          :mail_formatting, # for format_mail_html / format_mail_text
-         :mail_layout # for layouting
+         :mail_layout, # for layouting
+         :mp
 
   include OpenProject::LocaleHelper
 
