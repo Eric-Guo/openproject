@@ -933,7 +933,7 @@ zh-CN:
         created_by_me: "由我创建"
         assigned_to_me: "分配给我"
         recently_created: "最近创建"
-        all_open: "全部打开"
+        all_open: "默认视图"
         summary: "摘要"
       jump_marks:
         pagination: "跳转到表格分页"

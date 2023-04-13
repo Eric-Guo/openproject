@@ -1377,7 +1377,7 @@ zh-CN:
   label_all: "所有"
   label_all_time: "所有的时间"
   label_all_words: "所有的词"
-  label_all_open_wps: "全部打开"
+  label_all_open_wps: "默认视图"
   label_always_visible: "总是显示"
   label_announcement: "公告"
   label_api_access_key: "API 访问键"
