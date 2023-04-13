@@ -40,6 +40,7 @@ module ApplicationHelper
   include IconsHelper
   include AdditionalUrlHelpers
   include OpenProject::PageHierarchyHelper
+  include CustomStylesHelper
 
   # Return true if user is authorized for controller/action, otherwise false
   def authorize_for(controller, action, project: @project)
