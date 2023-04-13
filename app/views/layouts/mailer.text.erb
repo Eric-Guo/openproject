@@ -27,9 +27,15 @@ See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
 
-<%= Setting.localized_emails_header %>
-<%= call_hook(:view_layouts_mailer_plain_before_content, self.assigns) %>
-<%= yield %>
-<%= call_hook(:view_layouts_mailer_plain_after_content, self.assigns) %>
---
-<%= Setting.localized_emails_footer %>
+<%= content_for(:title) if content_for?(:title) %>
+
+---------------------------------------------------------------
+
+<% yield %>
+
+---------------------------------------------------------------
+
+PPM项目过程管理网址：
+<%= root_url %>
+PPM公众号：
+天华PPM
