@@ -80,18 +80,13 @@ module OpenProject::ThMembers
         if role_ids.include?(3)
           ns.assignee = true
           ns.responsible = true
-          ns.start_date = 1
-          ns.due_date = 1
-          ns.overdue = 7
+          ns.overdue = 3
           ns.work_package_created = true
           ns.work_package_processed = true
           ns.work_package_scheduled = true
         elsif role_ids.include?(4)
           ns.assignee = true
           ns.responsible = true
-          ns.start_date = 1
-          ns.due_date = 1
-          ns.overdue = 7
         end
         ns.save!
       end
