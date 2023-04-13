@@ -467,4 +467,20 @@ module ApplicationHelper
     s += raw '<br /><em>' + rules + '</em>' unless rules.empty?
     s
   end
+
+  def logo_url
+    logo_url = asset_path("logo_openproject_white_big.png")
+    if apply_custom_styles?
+      if CustomStyle.current.logo.present?
+        logo_url = custom_style_logo_path(digest: CustomStyle.current.digest, filename: CustomStyle.current.logo_identifier)
+      elsif CustomStyle.current.theme_logo.present?
+        logo_url = asset_path(CustomStyle.current.theme_logo)
+      end
+    end
+    if logo_url.start_with?('http')
+      logo_url
+    else
+      Pathname.new(root_url).join(logo_url.delete_prefix('/')).to_s
+    end
+  end
 end

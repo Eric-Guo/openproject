@@ -26,6 +26,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
-
-<p><%= t(:notice_account_activated) %></p>
-<p><%= t(:label_login) %>: <%= link_to signin_url, signin_url %></p>
+<div style="font-size: 20px; color: rgba(33, 40, 60, 1);">
+  尊敬的用户您好:  欢迎加入 PPM 项目过程管理团队网页版
+</div>
+<div style="font-size: 20px; color: rgba(33, 40, 60, 1);">
+  请点击此链接激活您的帐户：
+</div>
+<a href="<%= signin_url %>" style="font-size: 16px; color: rgba(46, 165, 204, 1);">
+  <%= signin_url %>
+</a>
+<div style="font-size: 20px; color: rgba(33, 40, 60, 1);">
+  如果您有任何其他问题，请联系您的管理员。
+</div>
