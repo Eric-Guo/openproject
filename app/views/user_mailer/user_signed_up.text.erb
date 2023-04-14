@@ -26,18 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
-<%= t(:mail_body_register_user, name: @user.name) %>
+<% content_for(:title) do %>
+  <%= t(:mail_body_register_header_title) %>
+<% end %>
 
-<%= t(:mail_body_register, app_title: Setting.app_title) %>
+请点击此链接激活您的帐户：
 <%= @activation_url %>
-
-<%= strip_tags t(:mail_body_register_links_html,
-      webinar_link: OpenProject::Static::Links.links[:webinar_videos][:href],
-      youtube_link: OpenProject::Configuration.youtube_channel,
-      get_started_link: OpenProject::Static::Links.links[:get_started_videos][:href],
-      documentation_link: OpenProject::Static::Links.links[:openproject_docs][:href]
-    )
-%>
-
-<%= t(:mail_body_register_ending) %>
-<%= t(:mail_body_register_closing) %>
+如果您有任何其他问题，请联系您的管理员。
