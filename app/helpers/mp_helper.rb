@@ -1,14 +1,11 @@
 # 微信公众号助手函数
 module MpHelper
-  # 获取微信公众号二维码路径
-  # size: large、middle、small
-  def mp_qrcode_path(size = 'middle')
-    ENV["MP_QRCODE_#{size.upcase}_PATH"] || ENV["MP_QRCODE_PATH"]
-  end
-
-  # 获取微信公众号二维码完整url
-  # size: large、middle、small
-  def mp_qrcode_url(size = 'middle')
-    (ENV["MP_QRCODE_#{size.upcase}_URL"] || ENV["MP_QRCODE_URL"]) || (mp_qrcode_path && Pathname.new(ApplicationController.helpers.root_url).join(mp_qrcode_path(size).delete_prefix('/')).to_s)
+  # 微信公众号二维码
+  def mp_qrcode_base64
+    path = ENV["MP_QRCODE_ABS_PATH"]
+    return '' unless path.present? && File.exist?(path)
+    data = File.open(path).read
+    encode = Base64.encode64(data)
+    "data:#{MIME::Types.type_for(path).first.content_type};base64,#{encode.gsub(/\n/, '')}"
   end
 end
