@@ -26,30 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
-<h2 class="emailTitle"><%= t(:mail_body_register_header_title) %> </h2>
-<br />
+<% content_for(:title) do %>
+  <%= t(:mail_body_register_header_title) %>
+<% end %>
 
-<p><%= t(:mail_body_register_user, name: @user.name) %>
-   <br />
-   <%= t(:mail_body_register, app_title: Setting.app_title) %>
-   <br />
-   <%= link_to @activation_url, @activation_url %>
-</p>
-
-<br />
-<p>
-   <%= t(:mail_body_register_links_html,
-               webinar_link: link_to('Webinar Link', OpenProject::Static::Links.links[:webinar_videos][:href]),
-               youtube_link: link_to('Youtube Link', OpenProject::Configuration.youtube_channel),
-               get_started_link: link_to('Get Started Videos Link', OpenProject::Static::Links.links[:get_started_videos][:href]),
-               documentation_link: link_to('Documentation Link', OpenProject::Static::Links.links[:openproject_docs][:href])
-               )
-   %>
-</p>
-
-<p>
-   <br />
-   <%= t(:mail_body_register_ending) %>
-   <br />
-   <%= t(:mail_body_register_closing) %>
-</p>
+<div style="font-size: 20px; color: rgba(33, 40, 60, 1); margin-top: 44p;">
+  请点击此链接激活您的帐户：
+</div>
+<a href="<%= @activation_url %>" style="font-size: 16px; color: rgba(46, 165, 204, 1); margin-top: 24px;">
+  <%= @activation_url %>
+</a>
+<div style="font-size: 20px; color: rgba(33, 40, 60, 1); margin-top: 44px;">
+  如果您有任何其他问题，请联系您的管理员。
+</div>
