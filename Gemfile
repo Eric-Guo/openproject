@@ -317,6 +317,8 @@ group :development, :test do
   gem "bcrypt_pbkdf"
 end
 
+gem 'bootsnap', '~> 1.16.0', require: false
+
 # API gems
 gem 'grape', '~> 1.7.0'
 gem 'grape_logging', '~> 1.8.4'

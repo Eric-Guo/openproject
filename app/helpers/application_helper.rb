@@ -40,7 +40,6 @@ module ApplicationHelper
   include IconsHelper
   include AdditionalUrlHelpers
   include OpenProject::PageHierarchyHelper
-  include CustomStylesHelper
 
   # Return true if user is authorized for controller/action, otherwise false
   def authorize_for(controller, action, project: @project)
@@ -469,19 +468,11 @@ module ApplicationHelper
     s
   end
 
-  def logo_url
-    url = asset_path("logo_openproject_white_big.png")
-    if apply_custom_styles?
-      if CustomStyle.current.logo.present?
-        url = ApplicationController.helpers.custom_style_logo_path(digest: CustomStyle.current.digest, filename: CustomStyle.current.logo_identifier)
-      elsif CustomStyle.current.theme_logo.present?
-        url = ApplicationController.helpers.asset_path(CustomStyle.current.theme_logo)
-      end
-    end
-    if url.start_with?('http')
-      url
-    else
-      Pathname.new(ApplicationController.helpers.root_url).join(url.delete_prefix('/')).to_s
-    end
+  def logo_base64
+    path = ENV['LOGO_ABS_PATH']
+    return '' unless path.present? && File.exist?(path)
+    data = File.open(path).read
+    encode = Base64.encode64(data)
+    "data:#{MIME::Types.type_for(path).first.content_type};base64,#{encode.gsub(/\n/, '')}"
   end
 end
