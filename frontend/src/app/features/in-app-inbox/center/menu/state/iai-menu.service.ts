@@ -26,7 +26,6 @@ import {
   map,
   switchMap,
 } from 'rxjs/operators';
-import { collectionKey } from 'core-app/core/state/collection-store';
 import { combineLatest } from 'rxjs';
 import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 
@@ -44,10 +43,7 @@ export class IaiMenuService {
   projectsForNotifications$ = this
     .projectsFilter$
     .pipe(
-      switchMap((filterParams) => {
-        const key = collectionKey(filterParams);
-        return this.projectsResourceService.collection(key);
-      }),
+      switchMap((filterParams) => this.projectsResourceService.collection(filterParams)),
     );
 
   notificationsByProject$ = combineLatest([
