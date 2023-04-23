@@ -578,6 +578,18 @@ zh-CN:
         change_notification_settings: '要查看和更改您的通知设置，请<a target="_blank" href="%{url}">点击此处</a>'
         title: "通知设置"
         notify_me: "通知我"
+        reminders:
+          no_notification: 没有通知
+          timeframes:
+            normal:
+              PT0S: 当天
+              P1D: 1天前
+              P3D: 3天前
+              P7D: 1周前
+            overdue:
+              P1D: 每天
+              P3D: 每3天
+              P7D: 每周
         reasons:
           mentioned:
             title: '我@被提及'
@@ -586,6 +598,8 @@ zh-CN:
             title: '分配给我或负责'
             description: '针对我具有指定人或负责人身份的工作包接收所有活动通知'
           watched: '参与项更新'
+          assignee: '指定'
+          responsible: '负责'
           work_package_commented: '所有新评论'
           work_package_created: '新工作包'
           work_package_processed: '所有状态变更'
@@ -598,6 +612,11 @@ zh-CN:
           delayed:
             title: '还在以下情况下通知我'
             description: '针对所有项目中的工作包的以下活动接收通知：'
+          date_alerts:
+            title: '日期预警'
+            description: '当你参与的打开的工作包的重要日期临近时(指定人、责任人或参与者)自动通知。'
+            teaser_text: '有了日期提醒，你会收到即将到来的开始或结束日期的通知，这样你就不会错过或忘记一个重要的截止日期。'
+          overdue: '当逾期时'
         project_specific:
           title: '项目特定通知设置'
           description: '这些项目特定设置会覆盖上方的默认设置'
