@@ -5,31 +5,17 @@ module OpenProject::ThProjects
 
       base.class_eval do
 
-        property :project_type_id
-        property :project_code
-        property :project_name
-        property :project_doc_link
+        link :profile do
+          next unless represented.profile.present?
+          {
+            href: api_v3_paths.project_profile(represented.profile.id),
+            name: represented.profile.name,
+            code: represented.profile.code,
+            docLink: represented.profile.doc_link,
+            typeId: represented.profile.type_id,
+          }
+        end
 
-        resource :profile,
-                 getter: ->(*) {
-                   next unless represented.profile
-
-                   ::API::V3::Projects::Profiles::ProfileRepresenter
-                     .create(represented.profile, current_user:, embed_links:)
-                 },
-                 link: ->(*) {
-                   if represented.profile
-                     {
-                       href: api_v3_paths.project_profile(represented.id),
-                     }.compact
-                   else
-                     {
-                       href: nil
-                     }
-                   end
-                 },
-                 setter: ->(fragment:, represented:, **) {
-                 }
       end
     end
 

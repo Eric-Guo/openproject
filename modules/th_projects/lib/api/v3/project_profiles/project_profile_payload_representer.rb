@@ -28,16 +28,11 @@
 
 module API
   module V3
-    module Projects
-      module Profiles
-        class ProfilesAPI < ::API::OpenProjectAPI
-          resource :profile do
-            get do
-              API::V3::Projects::Profiles::ProfileRepresenter
-                .new(@project.profile || ProjectProfile.new, current_user:, embed_links: true)
-            end
-          end
-        end
+    module ProjectProfiles
+      class ProjectProfilePayloadRepresenter < ProjectProfileRepresenter
+        include ::API::Utilities::PayloadRepresenter
+
+        cached_representer disabled: true
       end
     end
   end

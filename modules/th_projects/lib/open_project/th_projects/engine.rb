@@ -23,12 +23,16 @@ module OpenProject::ThProjects
 
     patches %i[Project API::V3::Projects::ProjectRepresenter]
 
-    add_api_path :project_profile do |id|
-      "#{project(id)}/profile"
+    add_api_path :project_profiles do
+      "#{root}/project_profiles"
     end
 
-    add_api_endpoint 'API::V3::Projects::ProjectsAPI', :id do
-      mount ::API::V3::Projects::Profiles::ProfilesAPI
+    add_api_path :project_profile do |id|
+      "#{root}/project_profiles/#{id}"
+    end
+
+    add_api_endpoint 'API::V3::Root' do
+      mount ::API::V3::ProjectProfiles::ProjectProfilesAPI
     end
   end
 end
