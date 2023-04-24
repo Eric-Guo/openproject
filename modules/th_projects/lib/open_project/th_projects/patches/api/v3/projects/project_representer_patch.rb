@@ -5,7 +5,7 @@ module OpenProject::ThProjects
 
       base.class_eval do
 
-        link :profile do
+        link :profile, uncacheable: true do
           next unless represented.profile.present?
           {
             href: api_v3_paths.project_profile(represented.profile.id),
