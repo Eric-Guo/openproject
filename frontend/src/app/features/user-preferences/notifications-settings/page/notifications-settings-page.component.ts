@@ -15,6 +15,7 @@ import { populateInputsFromDataset } from 'core-app/shared/components/dataset-in
 export const myNotificationsPageComponentSelector = 'op-notifications-page';
 
 interface IToastSettingsValue {
+  watched:boolean;
   assignee:boolean;
   responsible:boolean;
   shared:boolean;
@@ -58,6 +59,7 @@ export class NotificationsSettingsPageComponent extends UntilDestroyedMixin impl
   public eeAvailable = false;
 
   public form = new UntypedFormGroup({
+    watched: new UntypedFormControl(false),
     assignee: new UntypedFormControl(false),
     responsible: new UntypedFormControl(false),
     shared: new UntypedFormControl(false),
@@ -168,6 +170,7 @@ export class NotificationsSettingsPageComponent extends UntilDestroyedMixin impl
           return;
         }
 
+        this.form.get('watched')?.setValue(settings.watched);
         this.form.get('assignee')?.setValue(settings.assignee);
         this.form.get('responsible')?.setValue(settings.responsible);
         this.form.get('shared')?.setValue(settings.shared);
@@ -202,6 +205,7 @@ export class NotificationsSettingsPageComponent extends UntilDestroyedMixin impl
           )
           .forEach((setting) => projectSettings.push(new UntypedFormGroup({
             project: new UntypedFormControl(setting._links.project),
+            watched: new UntypedFormControl(setting.watched),
             assignee: new UntypedFormControl(setting.assignee),
             responsible: new UntypedFormControl(setting.responsible),
             shared: new UntypedFormControl(setting.shared),
@@ -229,7 +233,7 @@ export class NotificationsSettingsPageComponent extends UntilDestroyedMixin impl
     const globalPrefs:INotificationSetting = {
       ...globalNotification,
       _links: { project: { href: null } },
-      watched: true,
+      watched: notificationSettings.watched,
       mentioned: true,
       assignee: notificationSettings.assignee,
       responsible: notificationSettings.responsible,
@@ -246,7 +250,7 @@ export class NotificationsSettingsPageComponent extends UntilDestroyedMixin impl
 
     const projectPrefs:INotificationSetting[] = notificationSettings.projectSettings.map((settings) => ({
       _links: { project: { href: settings.project.href } },
-      watched: true,
+      watched: settings.watched,
       mentioned: true,
       assignee: settings.assignee,
       responsible: settings.responsible,
