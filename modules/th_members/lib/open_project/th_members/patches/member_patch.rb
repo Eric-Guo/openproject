@@ -8,29 +8,11 @@ module OpenProject::ThMembers
 
         accepts_nested_attributes_for :profile
 
-        after_save :set_profile
-
-        attr_accessor :company, :position, :remark
-
-        after_initialize do |member|
-          @company = member.profile&.company
-          @position = member.profile&.position
-          @remark = member.profile&.remark
-        end
-
         after_save :set_notification_settings
       end
     end
 
     module InstanceMethods
-      def set_profile
-        profile = self.profile || MemberProfile.new(member_id: self.id)
-        profile.company = company if company.present?
-        profile.position = position if position.present?
-        profile.remark = remark if remark.present?
-        profile.save! if profile.changed?
-      end
-
       def set_notification_settings
         role_ids = roles.pluck(:id)
 
