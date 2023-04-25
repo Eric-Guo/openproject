@@ -39,7 +39,14 @@
       <tr>
         <th class="op-table--cell op-table--cell_soft-heading">{{ text.watched_header }}</th>
         <ng-container *ngFor="let item of settings.controls">
-          <td class="op-table--cell"><input type="checkbox" disabled checked /></td>
+          <td class="op-table--cell" [formGroup]="item">
+            <input
+              type="checkbox"
+              formControlName="watched"
+              data-qa-project-notification-type="watched"
+              [attr.data-qa-project]="item.controls.project.value.title"
+            />
+          </td>
         </ng-container>
       </tr>
       <tr>
