@@ -5,10 +5,6 @@ module OpenProject::ThMembers
 
       base.class_eval do
 
-        property :company
-        property :position
-        property :remark
-
         resource :profile,
                  getter: ->(*) {
                    next unless represented.profile
@@ -19,7 +15,7 @@ module OpenProject::ThMembers
                  link: ->(*) {
                    if represented.profile
                      {
-                       href: api_v3_paths.project_profile(represented.id),
+                       href: api_v3_paths.membership_profile(represented.id),
                      }.compact
                    else
                      {
