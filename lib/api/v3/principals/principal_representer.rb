@@ -60,10 +60,6 @@ module API
                  render_nil: true
 
         property :name,
-                 getter: ->(*) {
-                   Rails.logger.debug "PrincipalRepresenter#name"
-                   current_user_is_anonymous? ? '' : name
-                 },
                  render_nil: true
 
         date_time_property :created_at,
@@ -71,10 +67,6 @@ module API
 
         date_time_property :updated_at,
                            cache_if: -> { current_user_is_admin_or_self }
-
-        def current_user_is_anonymous?
-          current_user.blank? || current_user.anonymous?
-        end
 
         def current_user_is_admin_or_self
           current_user_is_admin? || current_user_is_self?
