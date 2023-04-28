@@ -96,6 +96,25 @@ module API
                               { project: :enabled_modules },
                               { member_roles: :role }]
 
+        property :profile,
+                  writable: true,
+                  getter: ->(*) {
+                    next unless project.module_enabled?('th_members') && profile.present?
+                    ::API::Decorators::MembershipProfile.new(profile)
+                  },
+                  setter: ->(fragment:, represented:, **args) {
+                    represented.profile_attributes ||= API::ParserStruct.new
+                    ['company', 'position', 'remark'].each do |key|
+                      if fragment.key?(key)
+                        represented.profile_attributes[key] = fragment[key]
+                      end
+                    end
+                  }
+
+        self.to_eager_load = %i[principal
+                                project
+                                roles]
+
         def _type
           "Membership"
         end
