@@ -92,6 +92,21 @@ module API
         date_time_property :created_at
         date_time_property :updated_at
 
+        property :profile,
+                  writable: true,
+                  getter: ->(*) {
+                    next unless project.module_enabled?('th_members') && profile.present?
+                    ::API::Decorators::MembershipProfile.new(profile)
+                  },
+                  setter: ->(fragment:, represented:, **args) {
+                    represented.profile_attributes ||= API::ParserStruct.new
+                    ['company', 'position', 'remark'].each do |key|
+                      if fragment.key?(key)
+                        represented.profile_attributes[key] = fragment[key]
+                      end
+                    end
+                  }
+
         self.to_eager_load = %i[principal
                                 project
                                 roles]

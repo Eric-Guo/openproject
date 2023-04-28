@@ -33,6 +33,8 @@ module Members
     def set_attributes(params)
       assign_roles(params)
 
+      set_profile_attributes(params)
+
       super
     end
 
@@ -62,6 +64,20 @@ module Members
     def build_roles(role_ids)
       role_ids.each do |role_id|
         model.member_roles.build(role_id:)
+      end
+    end
+
+    def set_profile_attributes(params)
+      unless model.project.module_enabled?('th_members')
+        params.delete(:profile_attributes)
+      end
+
+      return unless params[:profile_attributes].present?
+
+      if model.profile.present?
+        params[:profile_attributes][:id] = model.profile.id
+      else
+        params[:profile_attributes][:member_id] = model.id
       end
     end
   end

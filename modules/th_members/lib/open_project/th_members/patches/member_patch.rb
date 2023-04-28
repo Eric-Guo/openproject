@@ -14,9 +14,11 @@ module OpenProject::ThMembers
 
     module InstanceMethods
       def set_notification_settings
-        role_ids = roles.pluck(:id)
-
         ns = NotificationSetting.where(project_id:).where(user_id:).take || NotificationSetting.new(project_id:, user_id:)
+
+        return unless ns.new_record?
+
+        role_ids = roles.pluck(:id)
 
         # 我关注的
         ns.watched = true
