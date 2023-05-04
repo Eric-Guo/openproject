@@ -33,7 +33,10 @@ module Projects
     private
 
     def set_attributes(params)
-      super(set_attributes_params(params)).tap do
+      filtered_params = set_attributes_params(params)
+      set_profile_attributes(filtered_params)
+
+      super(filtered_params).tap do
         set_status_code(params[:status_code]) if status_code_provided?(params)
       end
     end
@@ -144,6 +147,19 @@ module Projects
         set_custom_field_ids_to_validate(model.available_custom_fields.for_all.required.pluck(:id))
       else
         super
+      end
+    end
+
+    def set_profile_attributes(params)
+      unless model.present? && model.respond_to?(:profile) && params[:profile_attributes].present?
+        params.delete(:profile_attributes)
+        return
+      end
+
+      if model.profile.present?
+        params[:profile_attributes][:id] = model.profile.id
+      else
+        params[:profile_attributes][:project_id] = model.id
       end
     end
   end
