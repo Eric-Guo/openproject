@@ -218,6 +218,21 @@ module API
 
         formattable_property :status_explanation
 
+        property :profile,
+                  writable: true,
+                  getter: ->(*) {
+                    next unless project.module_enabled?('th_projects') && profile.present?
+                    ::API::Decorators::ProjectProfile.new(profile)
+                  },
+                  setter: ->(fragment:, represented:, **args) {
+                    represented.profile_attributes ||= API::ParserStruct.new
+                    ['type_id', 'name', 'code', 'doc_link'].each do |key|
+                      if fragment.key?(key)
+                        represented.profile_attributes[key] = fragment[key]
+                      end
+                    end
+                  }
+
         def _type
           'Project'
         end

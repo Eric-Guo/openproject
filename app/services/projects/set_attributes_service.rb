@@ -33,6 +33,8 @@ module Projects
     def set_attributes(params)
       ret = super(params.except(:status_code))
 
+      set_profile_attributes(params)
+
       set_status_code(params[:status_code]) if status_code_provided?(params)
 
       ret
@@ -91,6 +93,20 @@ module Projects
 
     def first_not_set_code
       (Project.status_codes.keys - [model.status_code]).first
+    end
+
+    def set_profile_attributes(params)
+      unless model.present? && model.module_enabled?('th_projects')
+        params.delete(:profile_attributes)
+      end
+
+      return unless params[:profile_attributes].present?
+
+      if model.profile.present?
+        params[:profile_attributes][:id] = model.profile.id
+      else
+        params[:profile_attributes][:project_id] = model.id
+      end
     end
   end
 end

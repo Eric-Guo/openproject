@@ -5,6 +5,8 @@ module OpenProject::ThProjects
 
       base.class_eval do
         has_one :profile, class_name: "ProjectProfile", foreign_key: "project_id"
+
+        accepts_nested_attributes_for :profile
       end
     end
 
