@@ -221,7 +221,7 @@ module API
         property :profile,
                   writable: true,
                   getter: ->(*) {
-                    next unless project.module_enabled?('th_projects') && profile.present?
+                    next unless module_enabled?('th_projects') && profile.present?
                     ::API::Decorators::ProjectProfile.new(profile)
                   },
                   setter: ->(fragment:, represented:, **args) {
