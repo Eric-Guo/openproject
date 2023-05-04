@@ -231,6 +231,21 @@ module API
         formattable_property :status_explanation,
                              cache_if: current_user_view_allowed_lambda
 
+        property :profile,
+                 writable: true,
+                 uncacheable: true,
+                 getter: ->(*) {
+                   next unless module_enabled?('th_projects') && profile.present?
+                   ::API::Decorators::ProjectProfile.new(profile)
+                 },
+                 setter: ->(fragment:, represented:, **_args) {
+                   represented.profile_attributes ||= API::ParserStruct.new
+                   %w[type_id name code doc_link th_budget_status].each do |key|
+                     pk = key.camelize(:lower)
+                     represented.profile_attributes[key] = fragment[pk] if fragment.key?(pk)
+                   end
+                 }
+
         def _type
           "Project"
         end
