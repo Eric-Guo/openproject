@@ -118,10 +118,10 @@ export class CKEditorSetupService {
     await import(/* webpackPrefetch: true; webpackChunkName: "ckeditor" */ 'core-vendor/ckeditor/ckeditor');
 
     try {
-      await import(
-        /* webpackPrefetch: true; webpackChunkName: "ckeditor-translation" */ `../../../../../../vendor/ckeditor/translations/${I18n.locale}.js`
-      ) as unknown;
       this.loadedLocale = I18n.locale.toLowerCase();
+      await import(
+        /* webpackPrefetch: true; webpackChunkName: "ckeditor-translation" */ `../../../../../../vendor/ckeditor/translations/${this.loadedLocale}.js`
+      ) as unknown;
     } catch (e:unknown) {
       console.warn(`Failed to load translation for CKEditor: ${e as string}`);
     }
