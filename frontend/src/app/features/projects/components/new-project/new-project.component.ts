@@ -124,6 +124,11 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
       name: this.text.advancedSettingsLabel,
       fieldsFilter: (field) => !this.isMeta(field.templateOptions?.property)
         && !this.isPrimaryAttribute(field.templateOptions),
+      settings: {
+        templateOptions: {
+          collapsibleFieldGroupsCollapsed: false,
+        },
+      },
     },
     {
       name: this.text.copySettingsLabel,
