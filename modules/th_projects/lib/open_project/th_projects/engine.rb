@@ -21,7 +21,7 @@ module OpenProject::ThProjects
       end
     end
 
-    patches %i[Project]
+    patches %i[Project Projects::BaseContract API::V3::Projects::Schemas::ProjectSchemaRepresenter]
 
     add_api_path :project_profiles do
       "#{root}/project_profiles"

@@ -34,10 +34,17 @@ en:
 
   activerecord:
     attributes:
-      member_profile:
-        code: "project code"
+      project_profile:
+        type_id: "TH project type"
+        name: "TH project name"
+        code: "TH project code"
+        doc_link: "TH project document link"
+        type_id_list:
+          1: "Design and Construction General Contracting Project - Overall Project"
+          2: "Design and Construction General Contracting Project - Subcontracting Project"
+          3: "Regular Project"
     errors:
       models:
-        member_profile:
+        project_profile:
           attributes:
             has_existed: "has existed"

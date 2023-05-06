@@ -34,10 +34,17 @@ zh-CN:
 
   activerecord:
     attributes:
-      member_profile:
-        code: "项目编号"
+      project_profile:
+        type_id: "天华项目类型"
+        name: "天华项目名称"
+        code: "天华项目编号"
+        doc_link: "天华项目文档链接"
+        type_id_list:
+          1: "设计总包项目 - 总项目"
+          2: "设计总包项目 - 分包项目"
+          3: "普通项目"
     errors:
       models:
-        member_profile:
+        project_profile:
           attributes:
             has_existed: "已经存在"

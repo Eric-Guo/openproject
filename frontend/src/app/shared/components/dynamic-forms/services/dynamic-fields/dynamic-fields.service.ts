@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { HalLink } from 'core-app/features/hal/hal-link/hal-link';
@@ -130,6 +130,66 @@ export class DynamicFieldsService {
       },
       useForFields: [
         'ProjectStatus',
+      ],
+    },
+    {
+      config: {
+        key: 'profile',
+        type: 'formly-group',
+        fieldGroup: [
+          {
+            key: 'profile.typeId',
+            type: 'selectInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              searchable: false,
+              label: '天华项目类型',
+              options: new Observable((observer:Observer<{ id:number; name:string; }[]>) => {
+                observer.next([
+                  { id: 1, name: '设计总包项目 - 总项目' },
+                  { id: 2, name: '设计总包项目 - 分包项目' },
+                  { id: 3, name: '普通项目' },
+                ]);
+              }),
+              bindLabel: 'name',
+              bindValue: 'id',
+            },
+          },
+          {
+            key: 'profile.name',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目名称',
+              type: 'text',
+            },
+          },
+          {
+            key: 'profile.code',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目编号',
+              type: 'text',
+            },
+          },
+          {
+            key: 'profile.docLink',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目文档',
+              type: 'text',
+            },
+          },
+        ],
+      },
+      useForFields: [
+        'ProjectProfile',
       ],
     },
   ];
