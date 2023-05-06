@@ -96,11 +96,10 @@ module Projects
     end
 
     def set_profile_attributes(params)
-      unless model.present? && model.module_enabled?('th_projects')
+      unless model.present? && model.module_enabled?('th_projects') && params[:profile_attributes].present?
         params.delete(:profile_attributes)
+        return
       end
-
-      return unless params[:profile_attributes].present?
 
       if model.profile.present?
         params[:profile_attributes][:id] = model.profile.id

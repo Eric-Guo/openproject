@@ -47,4 +47,5 @@ zh-CN:
       models:
         project_profile:
           attributes:
-            has_existed: "已经存在"
+            code:
+              has_existed: "已经存在"

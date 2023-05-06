@@ -47,4 +47,5 @@ en:
       models:
         project_profile:
           attributes:
-            has_existed: "has existed"
+            code:
+              has_existed: "has existed"

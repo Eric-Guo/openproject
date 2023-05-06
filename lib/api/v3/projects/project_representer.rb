@@ -220,6 +220,7 @@ module API
 
         property :profile,
                   writable: true,
+                  uncacheable: true,
                   getter: ->(*) {
                     next unless module_enabled?('th_projects') && profile.present?
                     ::API::Decorators::ProjectProfile.new(profile)
@@ -227,8 +228,9 @@ module API
                   setter: ->(fragment:, represented:, **args) {
                     represented.profile_attributes ||= API::ParserStruct.new
                     ['type_id', 'name', 'code', 'doc_link'].each do |key|
-                      if fragment.key?(key)
-                        represented.profile_attributes[key] = fragment[key]
+                      pk = key.camelize(:lower)
+                      if fragment.key?(pk)
+                        represented.profile_attributes[key] = fragment[pk]
                       end
                     end
                   }
