@@ -141,6 +141,69 @@ export class DynamicFieldsService {
         'ProjectStatus',
       ],
     },
+    {
+      config: {
+        key: 'profile',
+        type: 'formly-group',
+        fieldGroup: [
+          {
+            key: 'profile.typeId',
+            type: 'selectInput',
+            defaultValue: 3, // Set default value to 'regular'
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              searchable: false,
+              label: 'PLM 空间类型',
+              required: true,
+              description: 'PLM 空间类型必填',
+              options: of([
+                  { value: 1, name: this.I18n.t('js.th_projects.project_profile.type_list.team') },
+                  { value: 2, name: this.I18n.t('js.th_projects.project_profile.type_list.overall') },
+                  { value: 3, name: this.I18n.t('js.th_projects.project_profile.type_list.regular') },
+                ]),
+                bindLabel: 'name',
+                bindValue: 'value',
+            },
+          },
+          {
+            key: 'profile.name',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目名称',
+              type: 'text',
+            },
+          },
+          {
+            key: 'profile.code',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目编号',
+              required: true,
+              description: '项目编号必填',
+              type: 'text',
+            },
+          },
+          {
+            key: 'profile.docLink',
+            type: 'textInput',
+            wrappers: ['op-dynamic-field-wrapper'],
+            className: 'op-form--field',
+            templateOptions: {
+              label: '天华项目文档',
+              type: 'text',
+            },
+          },
+        ],
+      },
+      useForFields: [
+        'ProjectProfile',
+      ],
+    },
   ];
 
   constructor(
