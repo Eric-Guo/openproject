@@ -534,7 +534,8 @@ GEM
       webrick
     google-apis-gmail_v1 (0.27.0)
       google-apis-core (>= 0.11.0, < 2.a)
-    google-protobuf (3.22.3)
+    google-protobuf (3.22.3-arm64-darwin)
+    google-protobuf (3.22.3-x86_64-linux)
     googleapis-common-protos-types (1.6.0)
       google-protobuf (~> 3.14)
     googleauth (1.5.2)
@@ -556,6 +557,9 @@ GEM
       rack
     gravatar_image_tag (1.2.0)
     grpc (1.54.0)
+      google-protobuf (~> 3.21)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.54.0-x86_64-linux)
       google-protobuf (~> 3.21)
       googleapis-common-protos-types (~> 1.0)
     grpc-tools (1.54.0)
@@ -680,6 +684,8 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.9)
     nokogiri (1.14.3-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     oj (3.14.3)
     okcomputer (1.18.4)
@@ -1035,6 +1041,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   actionpack-xml_parser (~> 2.0.0)
