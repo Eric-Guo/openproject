@@ -92,6 +92,11 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
         && !(field.templateOptions?.required
         && !field.templateOptions.hasDefault
         && field.templateOptions.payloadValue == null),
+      settings: {
+        templateOptions: {
+          collapsibleFieldGroupsCollapsed: false,
+        },
+      },
     },
     {
       name: this.text.copySettingsLabel,
