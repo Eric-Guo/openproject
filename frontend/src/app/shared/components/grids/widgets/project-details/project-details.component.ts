@@ -116,6 +116,7 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
   }
 
   private setProfileFields(project:ProjectResource) {
+    if (this.profileFields.length > 0) return;
     if (project.profile) {
       const typeList = this.i18n.t('js.th_projects.project_profile.type_list');
       this.profileFields.push({ key: 'typeId', label: '天华项目类型', value: typeList[project.profile.typeId] });
