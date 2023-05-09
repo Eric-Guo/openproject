@@ -1,0 +1,9 @@
+# Chinese strings go here
+zh-CN:
+  js:
+    th_projects:
+      project_profile:
+        type_list:
+          1: "设计总包项目 - 总项目"
+          2: "设计总包项目 - 分包项目"
+          3: "普通项目"

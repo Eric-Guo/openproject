@@ -57,6 +57,8 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
 
   public customFields:{ key:string, label:string }[] = [];
 
+  public profileFields:{ key:string, label:string, value:string }[] = [];
+
   public project$:Observable<ProjectResource>;
 
   constructor(protected readonly i18n:I18nService,
@@ -75,6 +77,9 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
         .projects
         .id(this.currentProject.id)
         .requireAndStream();
+      this.project$.subscribe((project) => {
+        this.setProfileFields(project);
+      });
     }
   }
 
@@ -108,5 +113,15 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
     });
 
     this.cdRef.detectChanges();
+  }
+
+  private setProfileFields(project:ProjectResource) {
+    if (project.profile) {
+      const typeList = this.i18n.t('js.th_projects.project_profile.type_list');
+      this.profileFields.push({ key: 'typeId', label: '天华项目类型', value: typeList[project.profile.typeId] });
+      this.profileFields.push({ key: 'name', label: '天华项目名称', value: project.profile.name });
+      this.profileFields.push({ key: 'code', label: '天华项目编号', value: project.profile.code });
+      this.profileFields.push({ key: 'docLink', label: '天华项目文档', value: project.profile.docLink });
+    }
   }
 }

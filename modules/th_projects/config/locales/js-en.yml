@@ -1,0 +1,9 @@
+# English strings go here
+en:
+  js:
+    th_projects:
+      project_profile:
+        type_list:
+            1: "Design and Construction General Contracting Project - Overall Project"
+            2: "Design and Construction General Contracting Project - Subcontracting Project"
+            3: "Regular Project"

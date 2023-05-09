@@ -39,7 +39,7 @@ en:
         name: "TH project name"
         code: "TH project code"
         doc_link: "TH project document link"
-        type_id_list:
+        type_list:
           1: "Design and Construction General Contracting Project - Overall Project"
           2: "Design and Construction General Contracting Project - Subcontracting Project"
           3: "Regular Project"

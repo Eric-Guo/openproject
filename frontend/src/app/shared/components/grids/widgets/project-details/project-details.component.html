@@ -12,6 +12,16 @@
   <edit-form *ngIf="(project$ | async) as project"
              [resource]="project">
     <div class="attributes-map">
+      <ng-container *ngFor="let cf of profileFields">
+        <div class="attributes-map--key" [attr.title]="cf.label">
+          {{ cf.label }}
+        </div>
+        <div class="attributes-map--value">
+          <span class="inline-edit--display-field customField16 -editable">
+            {{ cf.value }}
+          </span>
+        </div>
+      </ng-container>
       <ng-container *ngFor="let cf of customFields">
         <div class="attributes-map--key" [attr.title]="cf.label">
           {{ cf.label }}
