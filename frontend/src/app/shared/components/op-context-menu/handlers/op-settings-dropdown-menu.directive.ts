@@ -309,6 +309,17 @@ export class OpSettingsMenuDirective extends OpActionMenuItems implements AfterV
         },
       },
       {
+        // Export query
+        disabled: false,
+        linkText: 'Excel批量导入',
+        icon: 'icon-download',
+        onClick: () => {
+          const link = 'https://ta2n4jodemn.feishu.cn/wiki/RzjswgN2Fiz4DekwPpmcQbsRn8f';
+          window.open(link, '_blank');
+          return true;
+        },
+      },
+      {
         divider: true,
         hidden: !(this.query.results.customFields && this.form.configureForm),
       },
