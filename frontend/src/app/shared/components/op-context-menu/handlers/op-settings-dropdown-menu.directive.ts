@@ -286,6 +286,17 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger {
         },
       },
       {
+        // Export query
+        disabled: false,
+        linkText: 'Excel同步工具下载',
+        icon: 'icon-download',
+        onClick: () => {
+          const link = 'https://edoc.thape.com.cn:8022/index.html#doc/enterprise/10969797';
+          window.open(link, '_blank');
+          return true;
+        },
+      },
+      {
         // Sharing modal
         disabled: this.authorisationService.cannot('query', 'unstar') && this.authorisationService.cannot('query', 'star'),
         linkText: this.I18n.t('js.toolbar.settings.visibility_settings'),
