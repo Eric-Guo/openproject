@@ -37,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OpSharedModule } from 'core-app/shared/shared.module';
 import { CopyProjectComponent } from 'core-app/features/projects/components/copy-project/copy-project.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectTimelineComponent } from './components/project-timeline/project-timeline.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
     ProjectsComponent,
     NewProjectComponent,
     CopyProjectComponent,
+    ProjectTimelineComponent,
   ],
 })
 export class OpenprojectProjectsModule {

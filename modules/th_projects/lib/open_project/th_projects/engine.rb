@@ -15,10 +15,18 @@ module OpenProject::ThProjects
       project_module :th_projects do
         permission :view_th_projects,
                     {
-                      'th_projects/project_profiles': %i[update]
+                      'th_projects/project_profiles': %i[update],
+                      'th_projects/project_timelines': %i[show],
                     },
                     require: :project
       end
+
+      menu :project_menu,
+        :project_timeline,
+        { controller: '/th_projects/project_timelines', action: 'show' },
+        caption: :label_project_timeline_plural,
+        icon: 'icon2 icon-time',
+        before: :settings
     end
 
     patches %i[Project Projects::BaseContract API::V3::Projects::Schemas::ProjectSchemaRepresenter]

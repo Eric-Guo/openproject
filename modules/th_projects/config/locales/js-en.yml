@@ -1,6 +1,7 @@
 # English strings go here
 en:
   js:
+    label_project_timeline_plural: "Timeline"
     th_projects:
       project_profile:
         type_list:
