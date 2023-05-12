@@ -24,12 +24,20 @@ export class ProjectTimelineComponent implements AfterViewInit, OnInit {
 
   public title:string|null = null;
 
+  loadingUrl = 'https://ith-workspace.thape.com.cn/ppm/loading';
+
+  errorUrl = 'https://ith-workspace.thape.com.cn/ppm/error';
+
+  detailUrl = 'https://ith-workspace.thape.com.cn/ppm/projects/:code/timeline';
+
   constructor(
     readonly apiV3Service:ApiV3Service,
     readonly currentProject:CurrentProjectService,
     readonly sanitizer:DomSanitizer,
     readonly i18n:I18nService,
-  ) {}
+  ) {
+    this.setLoadingUrl('正在获取项目信息...');
+  }
 
   ngOnInit() {
     this.title = this.i18n.t('js.label_project_timeline_plural');
@@ -37,10 +45,11 @@ export class ProjectTimelineComponent implements AfterViewInit, OnInit {
       this.apiV3Service.projects.id(this.currentProject.id).get().subscribe(
         (data) => {
           this.project = data;
-          this.setUrl();
+          this.setDetailUrl();
         },
         () => {
           this.project = null;
+          this.setErrorUrl('错误提示', '项目信息获取失败');
         },
       );
     }
@@ -64,12 +73,22 @@ export class ProjectTimelineComponent implements AfterViewInit, OnInit {
     }
   }
 
-  setUrl() {
+  setLoadingUrl(tip = '') {
+    const urlSearch = new URLSearchParams({ tip });
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(`${this.loadingUrl}?${urlSearch.toString()}`);
+  }
+
+  setErrorUrl(title = '', message = '') {
+    const urlSearch = new URLSearchParams({ title, message });
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(`${this.errorUrl}?${urlSearch.toString()}`);
+  }
+
+  setDetailUrl() {
     if (this.project && this.project.profile && this.project.profile.code) {
-      const link = `https://ith-workspace.thape.com.cn/ppm/projects/${this.project.profile.code}/timeline`;
+      const link = this.detailUrl.replace(':code', this.project.profile.code);;
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(link);
     } else {
-      this.url = null;
+      this.setErrorUrl('错误提示', '该项目的天华项目编号未填写，请到 项目设置->信息 中填写');
     }
   }
 }
