@@ -16,6 +16,13 @@ module OpenProject::ThProjects
         permission :view_th_projects,
                     {
                       'th_projects/project_profiles': %i[update],
+                    },
+                    require: :project
+      end
+
+      project_module :th_project_timelines do
+        permission :view_th_project_timelines,
+                    {
                       'th_projects/project_timelines': %i[show],
                     },
                     require: :project
