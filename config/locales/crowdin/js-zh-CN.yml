@@ -518,7 +518,7 @@ zh-CN:
           timeline: '您可以在此<b>编辑您的项目计划</b>、创建新的工作包（例如任务、里程碑、阶段等）以及<b>添加依赖项</b>。所有团队成员都可以随时查看和更新最新计划。'
     notifications:
       title: "通知"
-      no_unread: "没有未读通知"
+      no_unread: "没有未完成待办"
       reasons:
         mentioned: '被提及'
         watched: '已参与'
@@ -545,7 +545,7 @@ zh-CN:
           title: 'Date alerts'
           description: 'With date alerts, you will be notified of upcoming start or finish dates so that you never miss or forget an important deadline.'
       facets:
-        unread: '未读'
+        unread: '未完成'
         all: '全部'
       center:
         and_more_users:
@@ -553,8 +553,8 @@ zh-CN:
         no_results:
           at_all: '存在与您有关的活动时会在此显示新通知'
           with_current_filter: '目前此视图中没有通知'
-        mark_all_read: '全部标记为已读'
-        mark_as_read: '标记为已读'
+        mark_all_read: '全部标记为已完成'
+        mark_as_read: '标记为已完成'
         text_update_date: "%{date}，"
         total_count_warning: "正在显示 %{newest_count} 条最新通知。还有 %{more_count} 条未显示。"
         empty_state:
@@ -567,7 +567,7 @@ zh-CN:
       menu:
         accountable: '负责'
         assigned: '已分配'
-        by_project: '按项目筛选未读通知'
+        by_project: '按项目筛选未完成通知'
         by_reason: '参与'
         inbox: '收件箱'
         mentioned: '@被提及'
@@ -655,10 +655,10 @@ zh-CN:
         daily:
           add_time: '添加时间'
           enable: '启用每日电子邮件提醒'
-          explanation: '只有存在未读通知时，您才会在指定的时间收到这些提醒。%{no_time_zone}'
+          explanation: '只有存在未完成待办时，您才会在指定的时间收到这些提醒。%{no_time_zone}'
           no_time_zone: '除非您为帐户配置时区，否则将以 UTC 显示时间。'
           time_label: '时间 %{counter}：'
-          title: '向我发送针对未读通知的每日电子邮件提醒'
+          title: '向我发送针对未完成待办的每日电子邮件提醒'
         workdays:
           title: '接收这几天的邮件提醒'
         immediate:

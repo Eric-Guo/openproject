@@ -1930,8 +1930,8 @@ zh-CN:
     digests:
       including_mention_singular: '包括一项提及'
       including_mention_plural: '包括 %{number_mentioned} 项提及'
-      unread_notification_singular: '1 条未读通知'
-      unread_notification_plural: '%{number_unread} 条未读通知'
+      unread_notification_singular: '1 条未完成待办'
+      unread_notification_plural: '%{number_unread} 条未完成待办'
       you_have: '您有'
     logo_alt_text: '徽标'
     mention:
