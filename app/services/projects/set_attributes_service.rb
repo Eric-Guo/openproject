@@ -31,9 +31,9 @@ module Projects
     private
 
     def set_attributes(params)
-      ret = super(params.except(:status_code))
-
       set_profile_attributes(params)
+
+      ret = super(params.except(:status_code))
 
       set_status_code(params[:status_code]) if status_code_provided?(params)
 
