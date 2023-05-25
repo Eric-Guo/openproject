@@ -437,6 +437,15 @@ zh-CN:
         versions: "版本"
         work_packages: "工作包"
         templated: '模板项目'
+        status_code: '状态'
+        status_explanation: '状态描述'
+        status_codes:
+          not_started: '未开始'
+          on_track: '按计划进行'
+          at_risk: '有风险'
+          off_track: '偏离计划'
+          finished: '已完成'
+          discontinued: '已终止'
       projects/status:
         code: '状态'
         explanation: '状态描述'

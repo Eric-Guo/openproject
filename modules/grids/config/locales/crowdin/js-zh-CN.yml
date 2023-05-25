@@ -31,10 +31,13 @@ zh-CN:
           no_results: '没有为项目定义自定义字段。'
         project_status:
           title: '项目状态'
+          not_started: '未开始'
           on_track: '按计划进行'
           off_track: '偏离计划'
           at_risk: '有风险'
           not_set: '未设置'
+          finished: '已完成'
+          discontinued: '已终止'
         subprojects:
           title: '子项目'
           no_results: '无子项目。'
