@@ -133,7 +133,7 @@ export class WorkPackageTimelineHeaderController implements OnInit {
       cell.style.height = '22px';
     });
 
-    this.renderTimeSlices(vp, 'day', 25, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
+    this.renderTimeSlices(vp, 'day', 32, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
       cell.innerHTML = start.format('D');
       cell.classList.add('wp-timeline--header-middle-element');
     });
@@ -151,7 +151,7 @@ export class WorkPackageTimelineHeaderController implements OnInit {
       cell.style.height = '30px';
     });
 
-    this.renderTimeSlices(vp, 'week', 25, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
+    this.renderTimeSlices(vp, 'week', 32, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
       cell.innerHTML = start.format('ww');
       cell.classList.add('wp-timeline--header-middle-element');
     });
@@ -170,7 +170,7 @@ export class WorkPackageTimelineHeaderController implements OnInit {
       cell.style.height = '30px';
     });
 
-    this.renderTimeSlices(vp, 'month', 25, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
+    this.renderTimeSlices(vp, 'month', 32, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
       cell.innerHTML = start.format('MMM');
       cell.classList.add('wp-timeline--header-middle-element');
     });
@@ -189,7 +189,7 @@ export class WorkPackageTimelineHeaderController implements OnInit {
       cell.style.height = '30px';
     });
 
-    this.renderTimeSlices(vp, 'month', 25, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
+    this.renderTimeSlices(vp, 'month', 32, vp.dateDisplayStart, vp.dateDisplayEnd, (start, cell) => {
       cell.innerHTML = start.format('M');
       cell.classList.add('wp-timeline--header-middle-element');
     });
