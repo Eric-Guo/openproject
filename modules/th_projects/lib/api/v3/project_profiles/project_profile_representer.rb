@@ -7,25 +7,7 @@ module API
         include ::API::Caching::CachedRepresenter
         include API::Decorators::FormattableProperty
 
-        cached_representer key_parts: %i(project),
-                           disabled: false
-
         self_link
-
-        link :self do
-          {
-            href: api_v3_paths.project_profile(represented.id)
-          }
-        end
-
-        link :project do
-          if represented.project.present?
-            {
-              href: api_v3_paths.project(represented.project.id),
-              title: represented.project.name,
-            }
-          end
-        end
 
         property :id
 
@@ -33,11 +15,21 @@ module API
 
         property :name
 
-        property :doc_link
-
         property :type_id
 
-        property :project_id
+        property :project_id,
+                  uncacheable: true,
+                  getter: ->(*) {
+                    next unless project.present?
+                    project.id
+                  }
+
+        property :project_name,
+                  uncacheable: true,
+                  getter: ->(*) {
+                    next unless project.present?
+                    project.name
+                  }
 
         def _type
           'ProjectProfile'
