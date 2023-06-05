@@ -8,7 +8,7 @@ module API
           end
           route_param :code do
             after_validation do
-              @project_profile = ProjectProfile.find_by(code: params[:code]) || ProjectProfile.new
+              @project_profile = ProjectProfile.joins(:project).find_by(code: params[:code]) || ProjectProfile.new
             end
 
             get &::API::V3::Utilities::Endpoints::Show.new(model: ProjectProfile).mount
