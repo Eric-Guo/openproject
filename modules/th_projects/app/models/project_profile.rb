@@ -8,10 +8,12 @@ class ProjectProfile < ApplicationRecord
   def uniqueness_of_code_and_type_id
     return if type_id == 0 || code.blank?
 
+    only_profile = ProjectProfile.joins(:project)
+
     only_profile = if type_id == 0
-      ProjectProfile.where.not(type_id: 0)
+      only_profile.where.not(type_id: 0)
     else
-      ProjectProfile.where(type_id:)
+      only_profile.where(type_id:)
     end
 
     only_profile = only_profile.where(code:)
