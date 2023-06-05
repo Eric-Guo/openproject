@@ -188,9 +188,12 @@ module Authentication
         # Update the user, but do not change the admin flag
         # as this call is not validated.
         # we do this separately in +update_admin_flag+
+        attributes = user_attributes.except(:admin)
+        attributes = attributes.except(:firstname) if user.firstname.present?
+        attributes = attributes.except(:lastname) if user.lastname.present?
         ::Users::UpdateService
           .new(user: User.system, model: user)
-          .call(user_attributes.except(:admin))
+          .call(attributes)
       end
     end
 
