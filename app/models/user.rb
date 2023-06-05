@@ -34,6 +34,7 @@ class User < Principal
   USER_FORMATS_STRUCTURE = {
     firstname_lastname: %i[firstname lastname],
     firstname: [:firstname],
+    lastname: [:lastname],
     lastname_firstname: %i[lastname firstname],
     lastname_n_firstname: %i[lastname firstname],
     lastname_coma_firstname: %i[lastname firstname],
@@ -280,6 +281,8 @@ class User < Principal
     case formatter || Setting.user_format
     when :firstname
       [:firstname]
+    when :lastname
+      [:lastname]
     when :username
       [:login]
     else
@@ -297,6 +300,7 @@ class User < Principal
     when :lastname_n_firstname then "#{lastname}#{firstname}"
     when :lastname_coma_firstname then "#{lastname}, #{firstname}"
     when :firstname then firstname
+    when :lastname then lastname
     when :username then login
 
     else

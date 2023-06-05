@@ -81,6 +81,8 @@ module Reactable
         "concat_ws(' ', users.firstname, users.lastname)"
       when :firstname
         "users.firstname"
+      when :lastname
+        "users.lastname"
       when :lastname_firstname
         "concat_ws(' ', users.lastname, users.firstname)"
       when :lastname_coma_firstname
