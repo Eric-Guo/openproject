@@ -420,8 +420,8 @@ zh-TW:
         help_text: '說明文字'
       auth_source:
         account: "帳號"
-        attr_firstname: "名"
-        attr_lastname: "姓"
+        attr_firstname: "昵称"
+        attr_lastname: "姓名"
         attr_login: "使用者名稱屬性。"
         attr_mail: "Email"
         base_dn: "Base DN"
@@ -963,7 +963,7 @@ zh-TW:
     due_date: "完成日期"
     estimated_hours: "預估時間"
     estimated_time: "預估時間"
-    firstname: "名字"
+    firstname: "昵称"
     group: "群組"
     groups: "群組"
     id: "ID"
@@ -972,7 +972,7 @@ zh-TW:
     public: "公開"
     #kept for backwards compatibility
     issue: "工作項目"
-    lastname: "姓："
+    lastname: "姓名："
     login: "使用者名稱"
     mail: "電子郵件"
     name: "名稱"

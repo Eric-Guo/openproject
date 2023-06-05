@@ -197,8 +197,8 @@ zh-CN:
               我同意<a target="_blank" href="%{link_terms}">服务条款</a>和<a target="_blank" href="%{link_privacy}">隐私政策</a>。
             invalid_email: "电子邮件地址无效"
             label_company: "公司"
-            label_first_name: "名字"
-            label_last_name: "姓氏"
+            label_first_name: "昵称"
+            label_last_name: "姓名"
             label_domain: "域"
             label_subscriber: "订阅者"
             label_maximum_users: "最大活动用户数"

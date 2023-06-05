@@ -202,8 +202,8 @@ zh-TW:
               I agree with the <a target="_blank" href="%{link_terms}">terms of service</a> and the <a target="_blank" href="%{link_privacy}">privacy policy</a>.
             invalid_email: "無效的電子郵件"
             label_company: "公司"
-            label_first_name: "名字"
-            label_last_name: "姓："
+            label_first_name: "昵称"
+            label_last_name: "姓名："
             label_domain: "網域"
             label_subscriber: "訂閱者"
             label_maximum_users: "最大活動使用者數"

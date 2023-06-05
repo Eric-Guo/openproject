@@ -1042,7 +1042,7 @@ en:
     due_date: "Finish date"
     estimated_hours: "Estimated time"
     estimated_time: "Estimated time"
-    firstname: "First name"
+    firstname: "Nick name"
     group: "Group"
     groups: "Groups"
     id: "ID"
@@ -1051,7 +1051,7 @@ en:
     public: "Public"
     # kept for backwards compatibility
     issue: "Work package"
-    lastname: "Last name"
+    lastname: "Name"
     login: "Username"
     mail: "Email"
     name: "Name"

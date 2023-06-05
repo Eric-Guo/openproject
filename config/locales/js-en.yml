@@ -227,8 +227,8 @@ en:
               and the <a target="_blank" href="%{link_privacy}">privacy policy</a>.
             invalid_email: "Invalid email address"
             label_company: "Company"
-            label_first_name: "First name"
-            label_last_name: "Last name"
+            label_first_name: "Nick name"
+            label_last_name: "Name"
             label_domain: "Domain"
             label_subscriber: "Subscriber"
             label_maximum_users: "Maximum active users"
