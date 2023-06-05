@@ -81,6 +81,8 @@ module EmojiReactions
           "concat_ws(' ', users.firstname, users.lastname)"
         when :firstname
           "users.firstname"
+        when :lastname
+          "users.lastname"
         when :lastname_firstname
           "concat_ws(' ', users.lastname, users.firstname)"
         when :lastname_comma_firstname

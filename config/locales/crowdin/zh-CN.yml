@@ -362,12 +362,12 @@ zh-CN:
         department: 部门
         failed_login_count: 尝试登录失败
         first_login: 首次登录
-        first_name: 名字
+        first_name: 昵称
         force_password_change: 下次登录时强制更改密码
         identity_url: 身份网址
         language: 语言
         last_login_on: 上次登录
-        last_name: 姓氏
+        last_name: 姓名
         ldap_auth_source: LDAP 连接
         new_password: 新密码
         password_confirmation: 确认
