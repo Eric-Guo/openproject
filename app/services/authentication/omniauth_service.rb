@@ -184,9 +184,12 @@ module Authentication
           .result
       else
         # Update the user, but never change the admin flag
+        attributes = user_attributes.except(:admin)
+        attributes = attributes.except(:firstname) if user.firstname.present?
+        attributes = attributes.except(:lastname) if user.lastname.present?
         ::Users::UpdateService
           .new(user: User.system, model: user)
-          .call(user_attributes.except(:admin))
+          .call(attributes)
       end
     end
 
