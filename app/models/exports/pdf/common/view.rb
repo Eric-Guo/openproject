@@ -33,6 +33,8 @@ class Exports::PDF::Common::View
   include Redmine::I18n
 
   CUSTOM_FONT_NAME = "CustomFont"
+  DEFAULT_FONT_NAME = "NotoSans"
+  LEGACY_DEFAULT_FONT_NAME = "NotoSansSC"
   FONT_SPEC = {
     latin: [
       { name: "NotoSans", path: "noto" }
@@ -55,7 +57,10 @@ class Exports::PDF::Common::View
   end
 
   def self.default_font
-    valid_custom_font? ? CUSTOM_FONT_NAME : FONT_SPEC[:latin].first[:name]
+    return CUSTOM_FONT_NAME if valid_custom_font?
+    return LEGACY_DEFAULT_FONT_NAME if valid_legacy_default_font?
+
+    DEFAULT_FONT_NAME
   end
 
   def self.valid_custom_font?
@@ -70,6 +75,36 @@ class Exports::PDF::Common::View
   rescue StandardError => e
     Rails.logger.error "Failed to apply custom PDF font to export: #{e.message}:\n#{e.backtrace.join("\n")}"
     false
+  end
+
+  def self.valid_legacy_default_font?
+    legacy_default_font_files.values.all?(&:exist?)
+  end
+
+  def self.legacy_default_font_files
+    font_path = if RUBY_PLATFORM.include?("darwin")
+                  Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
+                else
+                  Rails.public_path.join("fonts/noto")
+                end
+
+    {
+      normal: resolve_font_file(font_path, "#{LEGACY_DEFAULT_FONT_NAME}-Regular.ttf",
+                                "#{LEGACY_DEFAULT_FONT_NAME}-VariableFont_wght.ttf"),
+      italic: resolve_font_file(font_path, "#{LEGACY_DEFAULT_FONT_NAME}-Light.ttf",
+                                "#{LEGACY_DEFAULT_FONT_NAME}-Regular.ttf",
+                                "#{LEGACY_DEFAULT_FONT_NAME}-VariableFont_wght.ttf"),
+      bold: resolve_font_file(font_path, "#{LEGACY_DEFAULT_FONT_NAME}-SemiBold.ttf",
+                              "#{LEGACY_DEFAULT_FONT_NAME}-Bold.ttf",
+                              "#{LEGACY_DEFAULT_FONT_NAME}-VariableFont_wght.ttf"),
+      bold_italic: resolve_font_file(font_path, "#{LEGACY_DEFAULT_FONT_NAME}-Bold.ttf",
+                                     "#{LEGACY_DEFAULT_FONT_NAME}-SemiBold.ttf",
+                                     "#{LEGACY_DEFAULT_FONT_NAME}-VariableFont_wght.ttf")
+    }
+  end
+
+  def self.resolve_font_file(font_path, *candidates)
+    candidates.map { |candidate| font_path.join(candidate) }.find(&:exist?) || font_path.join(candidates.first)
   end
 
   def self.valid_custom_font_cut?(cut)
@@ -112,6 +147,7 @@ class Exports::PDF::Common::View
 
   def register_fonts!(document)
     register_custom_font!(document) if Exports::PDF::Common::View.valid_custom_font?
+    register_legacy_default_font!(document) if Exports::PDF::Common::View.valid_legacy_default_font?
     register_font_group!(:latin, :register_full_font!, document)
     register_font_group!(:fonts, :register_base_font!, document)
     register_font_group!(:mono, :register_full_font!, document)
@@ -154,6 +190,12 @@ class Exports::PDF::Common::View
 
   def register_custom_font!(document)
     register_font_family!(CUSTOM_FONT_NAME, custom_font_files, document)
+  end
+
+  def register_legacy_default_font!(document)
+    document.font_families[LEGACY_DEFAULT_FONT_NAME] = self.class.legacy_default_font_files.transform_values do |file|
+      { file: file, font: file.basename(".ttf").to_s }
+    end
   end
 
   def register_base_font!(family, font_path, document)
