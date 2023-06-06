@@ -57,20 +57,6 @@
             )
           )
         end
-        modal_body.with_row(mt: 3) do
-          render(
-            Primer::Alpha::Select.new(
-              name: "hyphenation_language",
-              label: I18n.t("pdf_generator.dialog.hyphenation_language.label"),
-              input_width: :large
-            )
-          ) do |component|
-            selected = hyphenation_default[:value]
-            hyphenation_options.each do |entry|
-              component.option(label: entry[:label], value: entry[:value], selected: selected == entry[:value])
-            end
-          end
-        end
         modal_body.with_row(
           mt: 3,
           classes: templates_default&.id == "attributes" ? nil : "d-none",
