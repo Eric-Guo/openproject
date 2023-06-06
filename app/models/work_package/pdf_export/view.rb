@@ -49,7 +49,7 @@ class WorkPackage::PDFExport::View
     @document ||= Prawn::Document.new(options.merge(info:)).tap do |document|
       register_fonts! document
 
-      document.set_font document.font("NotoSans")
+      document.set_font document.font("NotoSansSC")
       document.fallback_fonts = fallback_fonts
     end
   end
@@ -59,7 +59,7 @@ class WorkPackage::PDFExport::View
   end
 
   def register_fonts!(document)
-    register_font!("NotoSans", noto_font_base_path, document)
+    register_font!("NotoSansSC", noto_font_base_path, document)
     register_font!("SpaceMono", spacemono_font_base_path, document)
   end
 
@@ -70,16 +70,16 @@ class WorkPackage::PDFExport::View
         font: "#{family}-Regular"
       },
       italic: {
-        file: font_path.join("#{family}-Italic.ttf" ""),
-        font: "#{family}-Italic"
+        file: font_path.join("#{family}-Light.ttf" ""),
+        font: "#{family}-Light"
       },
       bold: {
-        file: font_path.join("#{family}-Bold.ttf"),
-        font: "#{family}-Bold"
+        file: font_path.join("#{family}-SemiBold.ttf"),
+        font: "#{family}-SemiBold"
       },
       bold_italic: {
-        file: font_path.join("#{family}-BoldItalic.ttf"),
-        font: "#{family}-BoldItalic"
+        file: font_path.join("#{family}-Bold.ttf"),
+        font: "#{family}-Bold"
       }
     }
   end
@@ -106,10 +106,18 @@ class WorkPackage::PDFExport::View
   private
 
   def noto_font_base_path
-    Rails.public_path.join("fonts/noto")
+    if RUBY_PLATFORM.include?('darwin')
+      Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
+    else
+      Rails.public_path.join("fonts/noto")
+    end
   end
 
   def spacemono_font_base_path
-    Rails.public_path.join("fonts/spacemono")
+    if RUBY_PLATFORM.include?('darwin')
+      Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
+    else
+      Rails.public_path.join("fonts/spacemono")
+    end
   end
 end
