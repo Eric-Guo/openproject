@@ -68,7 +68,7 @@ class WorkPackage::PDFExport::Common::View
     @document ||= Prawn::Document.new(options.merge(info:)).tap do |document|
       register_fonts! document
 
-      document.set_font document.font("NotoSans")
+      document.set_font document.font("NotoSansSC")
       document.fallback_fonts = fallback_fonts
     end
   end
@@ -84,6 +84,7 @@ class WorkPackage::PDFExport::Common::View
   end
 
   def register_fonts!(document) # rubocop:disable Metrics/AbcSize
+    register_font_legacy!("NotoSansSC", noto_font_base_path, document)
     FONT_SPEC[:latin].each do |font|
       register_full_font!(font[:name], font_base_path.join(font[:path]), document)
     end
@@ -137,6 +138,28 @@ class WorkPackage::PDFExport::Common::View
     }
   end
 
+  # Legacy method for NotoSansSC support (preserving existing behavior)
+  def register_font_legacy!(family, font_path, document)
+    document.font_families[family] = {
+      normal: {
+        file: font_path.join("#{family}-Regular.ttf"),
+        font: "#{family}-Regular"
+      },
+      italic: {
+        file: font_path.join("#{family}-Light.ttf"),
+        font: "#{family}-Light"
+      },
+      bold: {
+        file: font_path.join("#{family}-SemiBold.ttf"),
+        font: "#{family}-SemiBold"
+      },
+      bold_italic: {
+        file: font_path.join("#{family}-Bold.ttf"),
+        font: "#{family}-Bold"
+      }
+    }
+  end
+
   def title=(title)
     info[:Title] = title
   end
@@ -159,6 +182,19 @@ class WorkPackage::PDFExport::Common::View
   private
 
   def font_base_path
-    Rails.public_path.join("fonts")
+    if RUBY_PLATFORM.include?("darwin")
+      Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
+    else
+      Rails.public_path.join("fonts")
+    end
+  end
+
+  # Preserved macOS font path support for NotoSansSC
+  def noto_font_base_path
+    if RUBY_PLATFORM.include?("darwin")
+      Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
+    else
+      Rails.public_path.join("fonts/noto")
+    end
   end
 end
