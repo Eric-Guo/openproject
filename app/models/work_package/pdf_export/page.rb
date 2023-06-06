@@ -69,8 +69,7 @@ module WorkPackage::PDFExport::Page
   end
 
   def logo_image
-    image_file = custom_logo_image
-    image_file = Rails.root.join("app/assets/images/logo_openproject.png") if image_file.nil?
+    image_file = Rails.root.join("app/assets/images/logo_plm.png")
     image_obj, image_info = pdf.build_image_object(image_file)
     [image_obj, image_info]
   end
