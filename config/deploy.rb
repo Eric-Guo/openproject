@@ -24,7 +24,7 @@ set :pty, false
 append :linked_files, *%w[config/configuration.yml config/database.yml config/secrets.yml config/master.key .env config/puma.rb]
 
 # Default value for linked_dirs is []
-append :linked_dirs, *%w[files log storage node_modules frontend/node_modules tmp/pids tmp/cache tmp/sockets public/uploads public/system public/packs]
+append :linked_dirs, *%w[files log storage node_modules frontend/node_modules tmp/pids tmp/cache tmp/sockets public/uploads public/system public/packs public/fonts/msyh]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

@@ -55,7 +55,7 @@ class WorkPackage::PDFExport::View
   end
 
   def fallback_fonts
-    [noto_font_base_path.join('NotoSansSymbols2-Regular.ttf')]
+    [msyh_font_base_path.join('msyh.ttf')]
   end
 
   def register_fonts!(document)
@@ -102,5 +102,9 @@ class WorkPackage::PDFExport::View
 
   def noto_font_base_path
     Rails.public_path.join('fonts/noto')
+  end
+
+  def msyh_font_base_path
+    Rails.public_path.join('fonts/msyh')
   end
 end
