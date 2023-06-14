@@ -312,7 +312,7 @@ GEM
     awesome_nested_set (3.5.0)
       activerecord (>= 4.0.0, < 7.1)
     aws-eventstream (1.2.0)
-    aws-partitions (1.777.0)
+    aws-partitions (1.779.0)
     aws-sdk-core (3.174.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -321,7 +321,7 @@ GEM
     aws-sdk-kms (1.66.0)
       aws-sdk-core (~> 3, >= 3.174.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.123.1)
+    aws-sdk-s3 (1.124.0)
       aws-sdk-core (~> 3, >= 3.174.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
@@ -404,7 +404,7 @@ GEM
       rexml
     crass (1.0.6)
     daemons (1.4.1)
-    dalli (3.2.4)
+    dalli (3.2.5)
     date (3.3.3)
     date_validator (0.12.0)
       activemodel (>= 3)
@@ -534,8 +534,8 @@ GEM
       webrick
     google-apis-gmail_v1 (0.28.0)
       google-apis-core (>= 0.11.0, < 2.a)
-    google-protobuf (3.23.2-arm64-darwin)
-    google-protobuf (3.23.2-x86_64-linux)
+    google-protobuf (3.23.3-arm64-darwin)
+    google-protobuf (3.23.3-x86_64-linux)
     googleapis-common-protos-types (1.6.0)
       google-protobuf (~> 3.14)
     googleauth (1.5.2)
@@ -620,7 +620,7 @@ GEM
       open4 (~> 1.0)
     launchy (2.5.2)
       addressable (~> 2.8)
-    lefthook (1.4.1)
+    lefthook (1.4.2)
     letter_opener (1.8.1)
       launchy (>= 2.2, < 3)
     listen (3.8.0)
@@ -669,7 +669,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
-    net-imap (0.3.4)
+    net-imap (0.3.6)
       date
       net-protocol
     net-ldap (0.18.0)
@@ -1012,7 +1012,7 @@ GEM
     validate_url (1.0.15)
       activemodel (>= 3.0.0)
       public_suffix
-    view_component (3.1.0)
+    view_component (3.2.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -1244,4 +1244,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.13
+   2.4.14
