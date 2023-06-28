@@ -192,7 +192,7 @@ See COPYRIGHT and LICENSE files for more details.
   </section>
 
   <%# Fill in the computed css variables in the inputs as their defaults %>
-  <%= nonced_javascript_tag do %>
+  <%= javascript_tag do %>
     var computedStyle = getComputedStyle(document.documentElement);
 
     document

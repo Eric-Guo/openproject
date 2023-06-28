@@ -142,7 +142,7 @@ See COPYRIGHT and LICENSE files for more details.
 </div>
 <%# Properly decides main menu expanded state and width before its drawn. Fixes flickering side menu
         where menu is first expanded, then being collapsed in angular. %>
-<%= nonced_javascript_tag do %>
+<%= javascript_tag do %>
   // execute these lines to prevent flickering when page loads:
 
   (function($) {

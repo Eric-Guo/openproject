@@ -129,7 +129,7 @@ See COPYRIGHT and LICENSE files for more details.
     </div>
   </div>
 <%# Moved from assets since this is the only remaining confirmation JS from the old costs code %>
-<%= nonced_javascript_tag  do %>
+<%= javascript_tag  do %>
   function submitForm(event, el) {
     submitFormWithConfirmation(event, el, true);
   }

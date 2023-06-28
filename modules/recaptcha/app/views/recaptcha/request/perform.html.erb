@@ -12,7 +12,7 @@
         site_key: recaptcha_settings['website_key']
       ) %>
 
-      <%= nonced_javascript_tag do %>
+      <%= javascript_tag do %>
         function submitRecaptchaForm(val) {
           var input = document.getElementById('<%= input_name %>');
 
@@ -35,7 +35,7 @@
                        site_key: recaptcha_settings['website_key'] %>
 
       <p><%= t('recaptcha.button_please_wait') %></p>
-      <%= nonced_javascript_tag do %>
+      <%= javascript_tag do %>
         function submitRecaptchaForm(id, val) {
           document.getElementById(id).value = val;
           document.getElementById('submit_captcha').submit();

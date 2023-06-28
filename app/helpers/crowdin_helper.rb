@@ -21,7 +21,7 @@ module CrowdinHelper
       style_src: %w(cdn.crowdin.com)
     )
 
-    concat(nonced_javascript_tag do
+    concat(javascript_tag do
       "var _jipt = []; _jipt.push(['project', 'openproject']);".html_safe
     end)
     concat javascript_include_tag 'https://cdn.crowdin.com/jipt/jipt.js'

@@ -27,7 +27,7 @@ See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
 
-<%= nonced_javascript_tag do %>
+<%= javascript_tag do %>
   jQuery(function ($) {
     var Burndown = {
       datasets: <%= dataseries(burndown).to_json.html_safe %> ,
