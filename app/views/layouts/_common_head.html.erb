@@ -31,7 +31,7 @@
 <%= render 'common/favicons' %>
 
 <%# Allow gon output when necessary %>
-<%= include_gon(nonce: content_security_policy_script_nonce) %>
+<%= include_gon %>
 
 <%# Include CLI assets (development) or prod build assets %>
 <%= include_frontend_assets %>

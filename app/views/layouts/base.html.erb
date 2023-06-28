@@ -38,6 +38,7 @@ See COPYRIGHT and LICENSE files for more details.
   <!-- page specific tags -->
   <%= content_for(:header_tags) if content_for?(:header_tags) %>
   <meta name="current_menu_item" content="<%= current_menu_item %>"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L890BNFDND"></script>
 </head>
 <body
   class="<%= body_css_classes %> __overflowing_element_container __overflowing_body"
@@ -171,5 +172,12 @@ See COPYRIGHT and LICENSE files for more details.
 <% end %>
 <div class="op-wide-autocomplete-wrapper"></div>
 <%= call_hook :view_layouts_base_body_bottom %>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L890BNFDND');
+</script>
 </body>
 </html>

@@ -19,6 +19,7 @@ Rails.application.config.after_initialize do
     assets_src = ["'self'"]
     asset_host = OpenProject::Configuration.rails_asset_host
     assets_src << asset_host if asset_host.present?
+    assets_src += %w('unsafe-eval' www.googletagmanager.com 'unsafe-inline')
 
     # Valid for iframes
     frame_src = %w['self' https://player.vimeo.com]
@@ -77,8 +78,7 @@ Rails.application.config.after_initialize do
       img_src: %w(* data: blob:),
       # Allow scripts from self
       script_src:,
-      # Allow unsafe-inline styles
-      style_src: assets_src + %w('unsafe-inline'),
+      style_src: assets_src,
       # Allow object-src from Release API
       object_src: [OpenProject::Configuration[:security_badge_url]],
 

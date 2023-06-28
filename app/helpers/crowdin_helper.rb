@@ -8,7 +8,7 @@ module CrowdinHelper
     # allow cdn.crowdin.com for users without in context translations.
     controller.append_content_security_policy_directives(
       # initial script and setup API calls
-      script_src: %w(cdn.crowdin.com crowdin.com),
+      script_src: %w(cdn.crowdin.com crowdin.com www.googletagmanager.com),
       # Form action to crowdin, github etc.
       form_action: %w[https://crowdin.com
                       https://accounts.google.com
