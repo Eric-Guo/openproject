@@ -84,6 +84,18 @@ class My::AccountForm < ApplicationForm
   def disabled_caption(attribute)
     return nil if @contract.writable?(attribute)
 
-    I18n.t("user.text_change_disabled_for_provider_login")
+    return externally_managed_attribute_caption if %i[firstname lastname mail].include?(attribute)
+
+    nil
+  end
+
+  private
+
+  def externally_managed_attribute_caption
+    if @user.identity_url.present?
+      I18n.t("user.text_change_disabled_for_provider_login")
+    elsif @user.ldap_auth_source_id.present?
+      I18n.t("user.text_change_disabled_for_ldap_login")
+    end
   end
 end
