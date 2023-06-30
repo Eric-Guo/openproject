@@ -268,19 +268,23 @@ RSpec.describe "my", :js do
         visit my_account_path
       end
 
-      it "does not allow change of name and email but other fields can be changed" do
+      it "allows changing names but keeps email readonly" do
         expect(page).to have_field("user[mail]", readonly: true)
-        expect(page).to have_field("user[firstname]", readonly: true)
-        expect(page).to have_field("user[lastname]", readonly: true)
+        expect(page).to have_no_field("user[firstname]", readonly: true)
+        expect(page).to have_no_field("user[lastname]", readonly: true)
 
-        expect(page).to have_text(I18n.t("user.text_change_disabled_for_provider_login"), count: 3)
+        expect(page).to have_text(I18n.t("user.text_change_disabled_for_ldap_login"), count: 1)
 
+        fill_in "First name", with: "Robert"
+        fill_in "Last name", with: "Builder"
         fill_in "Hobbies", with: "Ruby, DCS"
         click_on "Update profile"
 
         expect(page).to have_content I18n.t(:notice_account_updated)
 
         user.reload
+        expect(user.firstname).to eql "Robert"
+        expect(user.lastname).to eql "Builder"
         expect(user.custom_values.find_by(custom_field_id: string_cf).value).to eql "Ruby, DCS"
       end
     end
