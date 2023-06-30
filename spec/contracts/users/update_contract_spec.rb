@@ -341,10 +341,17 @@ RSpec.describe Users::UpdateContract do
         before do
           user.firstname = "Changed firstname"
           user.lastname = "Changed lastname"
-          user.mail = "changed@example.com"
         end
 
-        it_behaves_like "contract is invalid", firstname: :error_readonly, lastname: :error_readonly, mail: :error_readonly
+        it_behaves_like "contract is valid"
+
+        context "when the email is changed as well" do
+          before do
+            user.mail = "changed@example.com"
+          end
+
+          it_behaves_like "contract is invalid", mail: :error_readonly
+        end
       end
 
       context "when updated user authenticates through external provider and basic attributes are changed" do
@@ -353,10 +360,17 @@ RSpec.describe Users::UpdateContract do
 
           user.firstname = "Changed firstname"
           user.lastname = "Changed lastname"
-          user.mail = "changed@example.com"
         end
 
-        it_behaves_like "contract is invalid", firstname: :error_readonly, lastname: :error_readonly, mail: :error_readonly
+        it_behaves_like "contract is valid"
+
+        context "when the email is changed as well" do
+          before do
+            user.mail = "changed@example.com"
+          end
+
+          it_behaves_like "contract is invalid", mail: :error_readonly
+        end
       end
     end
   end
