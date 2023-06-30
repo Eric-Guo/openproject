@@ -36,8 +36,8 @@ module Users
               writable: ->(*) {
                 can_create_or_manage_users? && !editing_self?
               }
-    attribute :firstname, writable: ->(*) { can_create_or_manage_users? || can_change_self? }
-    attribute :lastname, writable: ->(*) { can_create_or_manage_users? || can_change_self? }
+    attribute :firstname, writable: ->(*) { can_create_or_manage_users? || editing_self? }
+    attribute :lastname, writable: ->(*) { can_create_or_manage_users? || editing_self? }
     attribute :mail,
               # We restrict email changes to admins (not :manage_user role), to prevent privilege escalation
               # Escalation path: change email of user with desired permissions to own email -> reset password -> login as user
