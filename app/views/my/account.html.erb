@@ -48,18 +48,11 @@ See COPYRIGHT and LICENSE files for more details.
         <%= @user.login %>
       </div>
     </div>
-    <% login_via_provider = !!@user.identity_url %>
     <div class="form--field -required">
-      <%= f.text_field :firstname, required: true, container_class: '-middle', disabled: login_via_provider %>
-      <% if login_via_provider %>
-        <span class="form--field-instructions"><%= t('user.text_change_disabled_for_provider_login') %></span>
-      <% end %>
+      <%= f.text_field :firstname, required: true, container_class: '-middle' %>
     </div>
     <div class="form--field -required">
-      <%= f.text_field :lastname, required: true, container_class: '-middle', disabled: login_via_provider %>
-      <% if login_via_provider %>
-        <span class="form--field-instructions"><%= t('user.text_change_disabled_for_provider_login') %></span>
-      <% end %>
+      <%= f.text_field :lastname, required: true, container_class: '-middle' %>
     </div>
     <div class="form--field -required"><%= f.text_field :mail, required: true, container_class: '-middle' %></div>
 
