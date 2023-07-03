@@ -177,7 +177,11 @@ See COPYRIGHT and LICENSE files for more details.
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-PXR7ZKRF48');
+  gtag('config', 'G-PXR7ZKRF48', {
+    'user_properties': {
+      'ppm_user_id': '<%= current_user&.id -%>'
+    }
+  });
 </script>
 </body>
 </html>
