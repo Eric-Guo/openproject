@@ -157,6 +157,20 @@ module API
                  render_nil: true,
                  cache_if: -> { current_user_can_manage? }
 
+        property :status_name,
+                 getter: ->(*) { I18n.t(represented.status, scope: :user) },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: -> { current_user_can_manage? }
+
+        property :groups,
+                 getter: ->(*) {
+                  represented.groups.map(&:name)
+                 },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: -> { current_user_can_manage? }
+
         property :identity_url,
                  exec_context: :decorator,
                  as: 'identityUrl',

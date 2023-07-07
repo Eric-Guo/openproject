@@ -1,0 +1,123 @@
+<tr class="member user">
+  <td class="name">
+    <op-principal
+      [principal]="member.principal"
+      size="mini"
+      [hideName]="false"
+    ></op-principal>
+  </td>
+  <td class="email">
+    <a *ngIf="email" [href]="mailTo">{{ email }}</a>
+    <i
+      *ngIf="isInvited"
+      class="icon icon-mail1"
+      [title]="invitedTip"
+    ></i>
+  </td>
+  <td class="roles">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditRoles">
+      <label *ngFor="let role of roles">
+        <input
+          type="checkbox"
+          [value]="role.id"
+          [checked]="formData.roles.includes(role.id)"
+          (change)="handleRoleChange($event, role.id)"
+        />
+        {{ role.name }}
+      </label>
+    </ng-template>
+    <ng-template #toEditRoles>
+      {{ memberRoles }}
+    </ng-template>
+  </td>
+  <td class="groups">
+    {{ groups }}
+  </td>
+  <td class="status">
+    {{ statusName }}
+  </td >
+  <td class="company">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditCompany">
+      <input
+        style="width: 100%;"
+        [(ngModel)]="formData.company"
+      />
+    </ng-template>
+    <ng-template #toEditCompany>
+      {{ company }}
+    </ng-template>
+  </td>
+  <td class="department">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditDepartment">
+      <input
+        style="width: 100%;"
+        [(ngModel)]="formData.department"
+      />
+    </ng-template>
+    <ng-template #toEditDepartment>
+      {{ department }}
+    </ng-template>
+  </td>
+  <td class="position">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditPosition">
+      <input
+        style="width: 100%;"
+        [(ngModel)]="formData.position"
+      />
+    </ng-template>
+    <ng-template #toEditPosition>
+      {{ position }}
+    </ng-template>
+  </td>
+  <td class="remark">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditRemark">
+      <textarea
+        style="width: 100%; resize: none;"
+        rows="5"
+        [(ngModel)]="formData.remark"
+      ></textarea>
+    </ng-template>
+    <ng-template #toEditRemark>
+      {{ remark }}
+    </ng-template>
+  </td>
+  <td class="buttons">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEdit">
+      <span
+        class="toggle-membership-button"
+        title="确认"
+        style="cursor: pointer;"
+        (click)="handleConfirm($event)"
+      >
+        <i class="icon icon-checkmark" aria-hidden="true"></i>
+      </span>
+      <span
+        class="toggle-membership-button"
+        title="取消"
+        style="cursor: pointer;"
+        (click)="handleCancel($event)"
+      >
+        <i class="icon icon-close" aria-hidden="true"></i>
+      </span>
+    </ng-template>
+    <ng-template #toEdit>
+      <span
+        *ngIf="canUpdate"
+        class="toggle-membership-button"
+        title="编辑"
+        style="cursor: pointer;"
+        (click)="handleEdit($event)"
+      >
+        <i class="icon icon-edit" aria-hidden="true"></i>
+      </span>
+      <span
+        *ngIf="canDelete"
+        title="移除"
+        style="cursor: pointer;"
+        (click)="removeMember($event)"
+      >
+        <i class="icon icon-delete" aria-hidden="true"></i>
+      </span>
+    </ng-template>
+  </td>
+</tr>

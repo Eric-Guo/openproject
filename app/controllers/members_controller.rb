@@ -40,15 +40,17 @@ class MembersController < ApplicationController
   include CellsHelper
 
   def index
-    set_index_data!
+    render html: '',
+           layout: 'angular/angular',
+           locals: {
+             page_title: [I18n.t(:label_member_plural)]
+           }
   end
 
   def create
     service_call = create_members
 
     if service_call.success?
-      display_success(members_added_notice(service_call.all_results))
-
       redirect_to project_members_path(project_id: @project, status: 'all')
     else
       display_error(service_call)

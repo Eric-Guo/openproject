@@ -9,6 +9,10 @@ module API
                exec_context: :decorator,
                getter: ->(*) { represented.company },
                render_nil: true
+      property :department,
+               exec_context: :decorator,
+               getter: ->(*) { represented.department },
+               render_nil: true
       property :position,
                exec_context: :decorator,
                getter: ->(*) { represented.position },

@@ -43,6 +43,10 @@ export class UserResource extends HalResource {
 
   public status:string;
 
+  public statusName:string;
+
+  public groups:string[];
+
   // Links
   public lock:HalResource;
 

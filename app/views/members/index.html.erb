@@ -55,8 +55,6 @@ See COPYRIGHT and LICENSE files for more details.
   </li>
 <% end %>
 
-<%= error_messages_for 'member' %>
-
 <div>
   <% if @roles.any? %>
     <%= render partial: "members/member_form",
@@ -69,9 +67,4 @@ See COPYRIGHT and LICENSE files for more details.
   <% end %>
 </div>
 
-<div>
-  <%= rails_cell Members::UserFilterCell, params, **@members_filter_options %>
-  <%= rails_cell Members::TableCell, @members, **@members_table_options %>
-</div>
-
-
+<openproject-base></openproject-base>

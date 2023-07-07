@@ -3,6 +3,7 @@ import { ProjectsComponent } from 'core-app/features/projects/components/project
 import { NewProjectComponent } from 'core-app/features/projects/components/new-project/new-project.component';
 import { CopyProjectComponent } from 'core-app/features/projects/components/copy-project/copy-project.component';
 import { ProjectTimelineComponent } from 'core-app/features/projects/components/project-timeline/project-timeline.component';
+import { ProjectMembersComponent } from 'core-app/features/projects/components/members/project-members.component';
 
 export const PROJECTS_ROUTES:Ng2StateDeclaration[] = [
   {
@@ -27,6 +28,12 @@ export const PROJECTS_ROUTES:Ng2StateDeclaration[] = [
     parent: 'optional_project',
     url: '/project_timeline',
     component: ProjectTimelineComponent,
+  },
+  {
+    name: 'project_members',
+    parent: 'optional_project',
+    url: '/members',
+    component: ProjectMembersComponent,
   },
 ];
 

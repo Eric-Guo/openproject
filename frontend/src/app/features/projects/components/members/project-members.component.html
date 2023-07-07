@@ -1,0 +1,325 @@
+<div class="toolbar-container">
+  <div class="toolbar">
+    <div class="title-container">
+      <h2>成员</h2>
+    </div>
+    <ul class="toolbar-items">
+      <li
+        *ngIf="allowAddMember"
+        class="toolbar-item"
+      >
+        <button
+          aria-label="添加成员"
+          title="添加成员"
+          class="button -alt-highlight"
+          [disabled]="currentAction === 'add'"
+          (click)="openAction('add')"
+        >
+          <i class="button--icon icon-add" aria-hidden="true"></i>
+          <span class="button--text">成员</span>
+        </button>
+      </li>
+      <li class="toolbar-item">
+        <button
+          title="筛选器"
+          class="toggle-member-filter-link button"
+          [class.-active]="currentAction === 'filter'"
+          (click)="currentAction === 'filter' ? closeAction() : openAction('filter')"
+        >
+          <i class="button--icon icon-filter" aria-hidden="true"></i>
+        </button>
+      </li>
+      <li class="toolbar-item" *ngIf="allowAddMember">
+        <input
+          #importInput
+          type="file"
+          style="display: none;"
+          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          (change)="handleImportInputChange($event)"
+        />
+        <button
+          class="button last work-packages-settings-button toolbar-icon"
+          title="More actions"
+          membershipSettingsContextMenu
+          [importHandle]="handleImport"
+          [exportHandle]="handleExport"
+        >
+          <op-icon icon-classes="button--icon icon-show-more"></op-icon>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div [ngStyle]="{ 'display': currentAction === 'add' ? '' : 'none' }">
+  <form
+    id="members_add_form"
+    class="form -vertical -bordered -medium-compressed"
+    style="display: block;"
+    #addForm
+    (ngSubmit)="handleAddSubmit()"
+  >
+    <a
+      title="关闭表单"
+      class="hide-member-form-button form--close icon-context icon-close"
+      (click)="closeAction()"
+    ></a>
+    <div class="grid-block">
+      <div class="grid-content medium-5 small-12 collapse -flex">
+        <div class="form--field">
+          <label class="form--label" title="添加现有用户或组 或通过电子邮件邀请新用户" for="member_user_ids">
+            添加现有用户或组 或通过电子邮件邀请新用户
+          </label>
+          <op-members-autocompleter
+            name="member[user_ids][]"
+            [url]="autoCompleterUrl"
+            appendTo="body"
+            [multiple]="true"
+            [value]="addFormData.users"
+            (valueChange)="handleAddFormDataChange('users', $event)"
+          >
+          </op-members-autocompleter>
+        </div>
+      </div>
+      <div class="grid-content medium-8 small-12 -flex -with-button">
+        <div class="form--field">
+          <label class="form--label" title="将角色分配给新成员" for="member_role_ids">
+            <span>将角色分配给新成员</span>
+            <attribute-help-text
+              attribute="members"
+              attribute-scope="Project"
+            ></attribute-help-text>
+          </label>
+          <div class="form--field-container">
+            <div class="form--select-container -auto">
+              <select
+                name="member[role_ids][]"
+                id="member_role_ids"
+                no_label="true"
+                title="将角色分配给新成员"
+                tabindex="0"
+                class="form--select"
+                [value]="addFormData.roleIds"
+                (change)="handleAddFormDataChange('roleIds', $event)"
+              >
+                <option
+                  *ngFor="let role of roles"
+                  [value]="role.id"
+                >
+                  {{ role.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="member-add-submit-button--container">
+          <button
+            name="button"
+            type="submit"
+            class="button -highlight -with-icon icon-checkmark"
+            id="add-member--submit-button"
+          >添加</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div [ngStyle]="{ 'display': currentAction === 'filter' ? '' : 'none' }">
+  <form
+    #filterForm="ngForm"
+    (ngSubmit)="handleFilterSubmit(filterForm)"
+    (reset)="handleFilterReset()"
+  >
+    <fieldset class="simple-filters--container">
+      <legend>筛选器</legend>
+      <a
+        title="关闭表单"
+        class="toggle-member-filter-link simple-filters--close icon-context icon-close"
+        (click)="closeAction()"
+      ></a>
+      <ul class="simple-filters--filters">
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="company">公司:</label>
+          <select
+            name="company"
+            class="simple-filters--filter-value"
+            id="company"
+            [(ngModel)]="filterFormData.company"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of companies"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="department">部门:</label>
+          <select
+            name="department"
+            class="simple-filters--filter-value"
+            id="department"
+            [(ngModel)]="filterFormData.department"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of departments"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="role_id">角色:</label>
+          <select
+            name="role_id"
+            class="simple-filters--filter-value"
+            id="role_id"
+            [(ngModel)]="filterFormData.role_id"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let role of roles"
+              [value]="role.id"
+            >
+              {{ role.name }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="name">名称:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="simple-filters--filter-value"
+            [(ngModel)]="filterFormData.name"
+          >
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="email">邮箱:</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="simple-filters--filter-value"
+            [(ngModel)]="filterFormData.email"
+          >
+        </li>
+        <li class="simple-filters--controls">
+          <input type="submit" value="应用" class="button -highlight -small">
+          <button type="reset" class="button -small -with-icon icon-undo">清除</button>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+</div>
+
+<div class="generic-table--container loading-indicator--location" data-indicator-name="members-module">
+  <div class="generic-table--results-container">
+    <table class="generic-table">
+      <thead>
+        <tr>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  名称
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  电子邮件
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  角色
+                </span>
+              </div>
+            </div>
+          </th> 
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  组
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  状态
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  公司
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  部门
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  职位
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  备注
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--empty-header"></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-member [ngForOf]="currentMembers">
+          <op-project-members-row
+            [member]="member"
+            [roles]="roles"
+            [users]="users"
+            [reloadMembers]="getMembers"
+          ></op-project-members-row>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>

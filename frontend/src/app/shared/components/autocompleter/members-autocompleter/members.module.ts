@@ -36,7 +36,7 @@ import { OpSharedModule } from 'core-app/shared/shared.module';
     OpSharedModule,
     NgSelectModule,
   ],
-  exports: [],
+  exports: [MembersAutocompleterComponent],
   declarations: [
     MembersAutocompleterComponent,
   ],

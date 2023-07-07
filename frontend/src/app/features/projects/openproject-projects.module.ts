@@ -38,26 +38,37 @@ import { OpSharedModule } from 'core-app/shared/shared.module';
 import { CopyProjectComponent } from 'core-app/features/projects/components/copy-project/copy-project.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectTimelineComponent } from './components/project-timeline/project-timeline.component';
+import { OpenprojectPrincipalRenderingModule } from 'core-app/shared/components/principal/principal-rendering.module';
+import { ProjectMembersComponent } from './components/members/project-members.component';
+import { ProjectMembersRowComponent } from './components/members/project-members-row.component';
+import { MembershipSettingsMenuDirective } from 'core-app/shared/components/op-context-menu/handlers/membership-settings-dropdown-menu.directive';
+import { OpenprojectMembersModule } from 'core-app/shared/components/autocompleter/members-autocompleter/members.module';
 
 @NgModule({
   imports: [
     // Commons
     OpSharedModule,
     ReactiveFormsModule,
-
     OpenprojectHalModule,
     OpenprojectFieldsModule,
     UIRouterModule.forChild({
       states: PROJECTS_ROUTES,
       config: uiRouterProjectsConfiguration,
     }),
+    OpenprojectPrincipalRenderingModule,
     DynamicFormsModule,
+    OpenprojectMembersModule,
   ],
   declarations: [
     ProjectsComponent,
     NewProjectComponent,
     CopyProjectComponent,
     ProjectTimelineComponent,
+    ProjectMembersComponent,
+    ProjectMembersRowComponent,
+
+    // Context Menu
+    MembershipSettingsMenuDirective,
   ],
 })
 export class OpenprojectProjectsModule {

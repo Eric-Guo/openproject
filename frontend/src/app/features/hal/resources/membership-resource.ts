@@ -45,6 +45,20 @@ export interface MembershipResourceEmbedded {
 }
 
 export class MembershipResource extends HalResource {
+  public email:string;
+
+  public status:string;
+
+  public statusName:string;
+
+  public groups:string[];
+
+  public profile?:{
+    company:string;
+    position:string;
+    department:string;
+    remark:string;
+  };
 }
 
 export interface MembershipResource extends MembershipResourceLinks, MembershipResourceEmbedded {}

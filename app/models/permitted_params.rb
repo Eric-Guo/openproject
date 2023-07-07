@@ -491,7 +491,8 @@ class PermittedParams
           ] }
         ],
         member: [
-          role_ids: []
+          { role_ids: [] },
+          { profile_attributes: %i(company department position remark) }
         ],
         new_work_package: [
           :assigned_to_id,

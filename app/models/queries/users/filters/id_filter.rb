@@ -26,18 +26,8 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Queries::Users
-  ::Queries::Register.register(UserQuery) do
-    filter Filters::NameFilter
-    filter Filters::AnyNameAttributeFilter
-    filter Filters::GroupFilter
-    filter Filters::StatusFilter
-    filter Filters::LoginFilter
-    filter Filters::BlockedFilter
-    filter Filters::IdFilter
-
-    order Orders::DefaultOrder
-    order Orders::NameOrder
-    order Orders::GroupOrder
+class Queries::Users::Filters::IdFilter < Queries::Users::Filters::UserFilter
+  def type
+    :integer
   end
 end

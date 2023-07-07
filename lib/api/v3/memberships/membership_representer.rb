@@ -59,7 +59,46 @@ module API
           }
         end
 
+        link :delete do
+          next unless current_user_allowed_to(:manage_members, context: represented.project)
+
+          {
+            href: api_v3_paths.membership(represented.id),
+            method: :delete
+          }
+        end
+
         property :id
+
+        property :email,
+                getter: ->(*) { represented.principal&.mail },
+                exec_context: :decorator,
+                render_nil: true,
+                cache_if: false
+
+        property :status,
+                getter: ->(*) { represented.principal&.status },
+                exec_context: :decorator,
+                render_nil: true,
+                cache_if: false
+
+        property :status_name,
+                getter: ->(*) {
+                  next unless represented.principal&.status
+                  I18n.t(represented.principal.status, scope: :user)
+                },
+                exec_context: :decorator,
+                render_nil: true,
+                cache_if: false
+
+        property :groups,
+                getter: ->(*) {
+                  next unless represented.principal && represented.principal.type == 'User' && represented.principal&.groups
+                  represented.principal.groups.map(&:name)
+                },
+                exec_context: :decorator,
+                render_nil: true,
+                cache_if: false
 
         associated_resource :project
 
@@ -100,7 +139,7 @@ module API
                   },
                   setter: ->(fragment:, represented:, **args) {
                     represented.profile_attributes ||= API::ParserStruct.new
-                    ['company', 'position', 'remark'].each do |key|
+                    ['company', 'department', 'position', 'remark'].each do |key|
                       if fragment.key?(key)
                         represented.profile_attributes[key] = fragment[key]
                       end
