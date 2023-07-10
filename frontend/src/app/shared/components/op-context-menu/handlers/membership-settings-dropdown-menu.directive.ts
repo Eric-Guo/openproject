@@ -67,7 +67,7 @@ export class MembershipSettingsMenuDirective extends OpContextMenuTrigger {
     this.items = [
       {
         disabled: false,
-        linkText: '导入',
+        linkText: ' 导入',
         hidden: false,
         icon: 'icon-import',
         onClick: () => {
