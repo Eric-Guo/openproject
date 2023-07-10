@@ -225,7 +225,7 @@ class MembersController < ApplicationController
 
   def invite_new_users(user_ids)
     user_ids.map do |id|
-      if id.to_i == 0 && id.present? # we've got an email - invite that user
+      if id =~ mail_regex # we've got an email - invite that user
         # Only users with the manage_member permission can add users.
         if (current_user.allowed_to_globally?(:manage_user) || authorize_for('members', 'create')) && enterprise_allow_new_users?
           # The invitation can pretty much only fail due to the user already
