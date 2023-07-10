@@ -17,6 +17,10 @@ module API
                exec_context: :decorator,
                getter: ->(*) { represented.position },
                render_nil: true
+      property :mobile,
+               exec_context: :decorator,
+               getter: ->(*) { represented.mobile },
+               render_nil: true
       property :remark,
                exec_context: :decorator,
                getter: ->(*) { represented.remark },

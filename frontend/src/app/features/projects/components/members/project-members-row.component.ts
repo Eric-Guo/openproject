@@ -30,6 +30,7 @@ export class ProjectMembersRowComponent {
     company: '',
     department: '',
     position: '',
+    mobile: '',
     remark: '',
   };
 
@@ -45,6 +46,7 @@ export class ProjectMembersRowComponent {
     this.formData.company = this.member.profile?.company || '';
     this.formData.department = this.member.profile?.department || '';
     this.formData.position = this.member.profile?.position || '';
+    this.formData.mobile = this.member.profile?.mobile || '';
     this.formData.remark = this.member.profile?.remark || '';
   }
 
@@ -78,6 +80,7 @@ export class ProjectMembersRowComponent {
         company: this.formData.company,
         department: this.formData.department,
         position: this.formData.position,
+        mobile: this.formData.mobile,
         remark: this.formData.remark,
       };
       const roles = this.roles.filter((item) => this.formData.roles.includes(item.id as string));
@@ -140,10 +143,6 @@ export class ProjectMembersRowComponent {
     return this.member.statusName;
   }
 
-  get groups() {
-    return this.member.groups?.join(', ');
-  }
-
   get isInvited() {
     return this.status === 'invited';
   }
@@ -158,6 +157,10 @@ export class ProjectMembersRowComponent {
 
   get position() {
     return this.member.profile?.position;
+  }
+
+  get mobile() {
+    return this.member.profile?.mobile;
   }
 
   get remark() {

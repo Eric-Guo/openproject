@@ -23,11 +23,11 @@ type TableRow = {
   name:string;
   email:string;
   roles:string;
-  groups:string;
   statusName:string;
   company:string;
   department:string;
   position:string;
+  mobile:string;
   remark:string;
 };
 
@@ -38,6 +38,7 @@ type ImportDatum = {
   company:string;
   department:string;
   position:string;
+  mobile:string;
   remark:string;
 };
 
@@ -179,11 +180,11 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       { header: '名称', key: 'name', width: 10 },
       { header: '电子邮件**', key: 'email', width: 30 },
       { header: '角色*', key: 'roles', width: 20 },
-      { header: '组', key: 'groups', width: 20 },
       { header: '状态', key: 'statusName', width: 20 },
       { header: '公司*', key: 'company', width: 20 },
       { header: '部门*', key: 'department', width: 20 },
       { header: '职位*', key: 'position', width: 20 },
+      { header: '手机号*', key: 'mobile', width: 20 },
       { header: '备注*', key: 'remark', width: 20 },
     ];
     ws.addRow({ name: '带两个*号项：表示必填项；带一个*号项：表示选填项；无*号项：表示不填项' });
@@ -201,7 +202,6 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
         name: member.name,
         email: member.email,
         roles: member.roles.map((item) => item.name).join(','),
-        groups: member.groups?.join(',') || '',
         statusName: member.statusName,
         company: member.profile?.company || '',
         department: member.profile?.department || '',
@@ -274,11 +274,11 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
             name: row.getCell(1).text,
             email: row.getCell(2).text,
             roles: row.getCell(3).text,
-            groups: row.getCell(4).text,
-            statusName: row.getCell(5).text,
-            company: row.getCell(6).text,
-            department: row.getCell(7).text,
-            position: row.getCell(8).text,
+            statusName: row.getCell(4).text,
+            company: row.getCell(5).text,
+            department: row.getCell(6).text,
+            position: row.getCell(7).text,
+            mobile: row.getCell(8).text,
             remark: row.getCell(9).text,
           };
           if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(rowData.email)) return;
@@ -324,6 +324,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       company: formData.company,
       department: formData.department,
       position: formData.position,
+      mobile: formData.mobile,
       remark: formData.remark,
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -348,6 +349,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
           company: row.company,
           department: row.department,
           position: row.position,
+          mobile: row.mobile,
           remark: row.remark,
         };
         const member = this.members.find((item) => item.email === datum.email);

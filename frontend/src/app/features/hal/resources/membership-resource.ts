@@ -57,6 +57,7 @@ export class MembershipResource extends HalResource {
     company:string;
     position:string;
     department:string;
+    mobile:string;
     remark:string;
   };
 }

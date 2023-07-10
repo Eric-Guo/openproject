@@ -30,9 +30,6 @@
       {{ memberRoles }}
     </ng-template>
   </td>
-  <td class="groups">
-    {{ groups }}
-  </td>
   <td class="status">
     {{ statusName }}
   </td >
@@ -67,6 +64,17 @@
     </ng-template>
     <ng-template #toEditPosition>
       {{ position }}
+    </ng-template>
+  </td>
+  <td class="mobile">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditMobile">
+      <input
+        style="width: 100%;"
+        [(ngModel)]="formData.mobile"
+      />
+    </ng-template>
+    <ng-template #toEditMobile>
+      {{ mobile }}
     </ng-template>
   </td>
   <td class="remark">
