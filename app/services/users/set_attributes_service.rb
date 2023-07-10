@@ -82,7 +82,7 @@ module Users
     def placeholder_name(email)
       first, last = email.split('@').map { |name| trim_name(name) }
 
-      [first, "@#{last}"]
+      ["@#{last}", first]
     end
 
     def trim_name(name)
