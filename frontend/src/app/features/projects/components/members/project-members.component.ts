@@ -8,6 +8,8 @@ import {
 import { NgForm } from '@angular/forms';
 import * as ExcelJs from 'exceljs';
 import { saveAs } from 'file-saver';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs';
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
@@ -17,7 +19,6 @@ import { ProjectResource } from 'core-app/features/hal/resources/project-resourc
 import { RoleResource } from 'core-app/features/hal/resources/role-resource';
 import { ApiV3FilterBuilder } from 'core-app/shared/helpers/api-v3/api-v3-filter-builder';
 import { ToastService } from 'core-app/shared/components/toaster/toast.service';
-import { HttpClient } from '@angular/common/http';
 
 type TableRow = {
   name:string;
@@ -312,8 +313,14 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     formData.append('member[profile_attributes][position]', datum.position);
     formData.append('member[profile_attributes][remark]', datum.remark);
     formData.append('button', '');
-    await new Promise((resolve) => {
-      this.httpClient.post(url, formData).subscribe((res) => {
+    await new Promise((resolve, reject) => {
+      this.httpClient.post(url, formData).pipe(
+        catchError((error) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          reject(error.error);
+          throw error;
+        }),
+      ).subscribe((res) => {
         resolve(res);
       });
     });
@@ -412,8 +419,14 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       formData.append('utf8', '✓');
       formData.append(csrfParamMeta.content, csrfTokenMeta.content);
       formData.append('button', '');
-      await new Promise((resolve) => {
-        this.httpClient.post(url, formData).subscribe((res) => {
+      await new Promise((resolve, reject) => {
+        this.httpClient.post(url, formData).pipe(
+          catchError((error) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            reject(error.error);
+            throw error;
+          }),
+        ).subscribe((res) => {
           resolve(res);
         });
       });

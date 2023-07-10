@@ -50,15 +50,29 @@ class MembersController < ApplicationController
   def create
     service_call = create_members
 
-    if service_call.success?
-      redirect_to project_members_path(project_id: @project, status: 'all')
+    if request.xhr?
+      if service_call.success?
+        render json: {
+          message: members_added_notice(service_call.all_results)
+        }
+      else
+        render status: 400, json: {
+          message: service_call.errors.full_messages.compact.join(', '),
+        }
+      end
     else
-      display_error(service_call)
+      if service_call.success?
+        display_success(members_added_notice(service_call.all_results))
 
-      set_index_data!
+        redirect_to project_members_path(project_id: @project, status: 'all')
+      else
+        display_error(service_call)
 
-      respond_to do |format|
-        format.html { render 'index' }
+        set_index_data!
+
+        respond_to do |format|
+          format.html { render 'index' }
+        end
       end
     end
   end
@@ -68,15 +82,27 @@ class MembersController < ApplicationController
                      .new(user: current_user, model: @member)
                      .call(permitted_params.member)
 
-    if service_call.success?
-      display_success(I18n.t(:notice_successful_update))
+    if request.xhr?
+      if service_call.success?
+        render json: {
+          message: I18n.t(:notice_successful_update)
+        }
+      else
+        render status: 400, json: {
+          message: service_call.errors.full_messages.compact.join(', '),
+        }
+      end
     else
-      display_error(service_call)
-    end
+      if service_call.success?
+        display_success(I18n.t(:notice_successful_update))
+      else
+        display_error(service_call)
+      end
 
-    redirect_to project_members_path(project_id: @project,
-                                     page: params[:page],
-                                     per_page: params[:per_page])
+      redirect_to project_members_path(project_id: @project,
+                                       page: params[:page],
+                                       per_page: params[:per_page])
+    end
   end
 
   def destroy
@@ -84,11 +110,23 @@ class MembersController < ApplicationController
       .new(user: current_user, model: @member)
       .call
 
-    if service_call.success?
-      display_success(I18n.t(:notice_member_removed, user: @member.principal.name))
-    end
+    if request.xhr?
+      if service_call.success?
+        render json: {
+          message: I18n.t(:notice_member_removed, user: @member.principal.name)
+        }
+      else
+        render status: 400, json: {
+          message: service_call.errors.full_messages.compact.join(', '),
+        }
+      end
+    else
+      if service_call.success?
+        display_success(I18n.t(:notice_member_removed, user: @member.principal.name))
+      end
 
-    redirect_to project_members_path(project_id: @project)
+      redirect_to project_members_path(project_id: @project)
+    end
   end
 
   def autocomplete_for_member
