@@ -180,7 +180,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     ws.columns = [
       { header: '名称', key: 'name', width: 10 },
       { header: '电子邮件**', key: 'email', width: 30 },
-      { header: '角色*', key: 'roles', width: 20 },
+      { header: '角色**', key: 'roles', width: 20 },
       { header: '状态', key: 'statusName', width: 20 },
       { header: '公司*', key: 'company', width: 20 },
       { header: '部门*', key: 'department', width: 20 },
@@ -188,7 +188,8 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       { header: '手机号*', key: 'mobile', width: 20 },
       { header: '备注*', key: 'remark', width: 20 },
     ];
-    ws.addRow({ name: '带两个*号项：表示必填项；带一个*号项：表示选填项；无*号项：表示不填项' });
+    const roleNames = this.roles.map((item) => item.name);
+    ws.addRow({ name: `带两个*号项：表示必填项；带一个*号项：表示选填项；无*号项：表示不填项；角色值：${roleNames.join('、')}` });
     ws.mergeCells(2, 1, 2, ws.columns.length);
     ws.getCell('A2').alignment = {
       vertical: 'middle',
