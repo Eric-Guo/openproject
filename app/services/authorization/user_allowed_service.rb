@@ -105,6 +105,11 @@ class Authorization::UserAllowedService
     return false unless authorizable_user?
     # Admin users are always authorized
     return true if granted_to_admin?(action)
+    # 天华人员允许创建项目
+    if user.login.end_with?('@thape.com.cn') || user.mail&.end_with?('@thape.com.cn')
+      return true if action.is_a?(Hash) && (action['controller'] == 'projects' && action['action'] == 'new')
+      return true if (action.is_a?(Symbol) || action.is_a?(String)) && action.to_sym == :add_project
+    end
 
     has_authorized_role?(action)
   end
