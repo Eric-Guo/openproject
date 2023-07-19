@@ -52,7 +52,12 @@ module Queries
                            raise ArgumentError
                          end
 
-          "#{Project.table_name}.id #{sql_operator} (#{capability_select.to_sql})"
+          sql = "#{Project.table_name}.id #{sql_operator} (#{capability_select.to_sql})"
+          if values.include?('projects/copy') && values.length == 1
+            "#{sql} OR #{Project.table_name}.public = TRUE"
+          else
+            sql
+          end
         end
       end
     end
