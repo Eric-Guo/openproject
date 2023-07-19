@@ -88,7 +88,7 @@ class Authorization::UserAllowedService
     # unless the permission is explicitly flagged not to be granted to admins.
     return true if granted_to_admin?(action)
     # 允许用户读取公开的项目数据
-    return true if action.to_sym == :copy_projects && project.public?
+    return true if action.respond_to?(:to_sym) && action.to_sym == :copy_projects && project.public?
 
     has_authorized_role?(action, project)
   end
@@ -130,7 +130,7 @@ class Authorization::UserAllowedService
   end
 
   def has_authorized_role?(action, project = nil)
-    return true if project.present? && action.to_sym == :copy_projects && project.public?
+    return true if action.respond_to?(:to_sym) && project.present? && action.to_sym == :copy_projects && project.public?
 
     project_role_cache
       .fetch(project)
