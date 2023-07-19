@@ -109,8 +109,8 @@ class Authorization::UserAllowedService
     return true if granted_to_admin?(action)
     # 天华人员允许创建项目
     if user.login.end_with?('@thape.com.cn') || user.mail&.end_with?('@thape.com.cn')
-      return true if action.is_a?(Hash) && (action['controller'] == 'projects' && action['action'] == 'new')
-      return true if (action.is_a?(Symbol) || action.is_a?(String)) && action.to_sym == :add_project
+      return true if action.respond_to?(:to_sym) && action.to_sym == :add_project
+      return true if action.is_a?(Hash) && action[:controller]&.to_sym == :projects && action[:action]&.to_sym == :new
     end
 
     has_authorized_role?(action)
