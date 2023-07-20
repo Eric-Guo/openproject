@@ -67,7 +67,7 @@ class ThNotifications::SendToWxJob < ApplicationJob
       Proto::OpService::Service.current_client.call(:SendMessage, {
         templateID: ENV['WX_TEMPLATE_ID'],
         data:,
-        url: ENV['WX_WORK_PACKAGE_DETAIL'].gsub(/:id(?=(\W|$))/, work_package.id.to_s),
+        url: "#{ENV['WX_WORK_PACKAGE_DETAIL'].gsub(/:id(?=(\W|$))/, work_package.id.to_s)}?from=wx_template_message",
         toUserID: user.id,
       })
     end
