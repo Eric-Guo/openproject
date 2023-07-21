@@ -37,6 +37,7 @@ import { configureErrorReporter } from 'core-app/core/errors/configure-reporter'
 import { initializeGlobalListeners } from 'core-app/core/setup/globals/global-listeners';
 import { getMetaElement } from 'core-app/core/setup/globals/global-helpers';
 import 'core-elements/block-note-element';
+import TA from 'th-analytics';
 
 import 'core-app/core/setup/init-vendors';
 import 'core-app/core/setup/init-globals';
@@ -44,12 +45,16 @@ import './stimulus/setup';
 import './turbo/setup';
 import { platformBrowser } from '@angular/platform-browser';
 
+if (window.TA_CONFIG) {
+  TA.initialize(window.TA_CONFIG);
+}
+
 // Ensure we set the correct dynamic frontend path
 // based on the RAILS_RELATIVE_URL_ROOT setting
 const ASSET_BASE_PATH = '/assets/frontend/';
 
 // Sets the relative base path
-window.appBasePath = getMetaElement('app_base_path')?.content || '';
+window.appBasePath = getMetaElement('app_base_path')?.content ?? '';
 
 // Get the asset host, if any
 const initializer = getMetaElement('openproject_initializer');
