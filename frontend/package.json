@@ -169,6 +169,7 @@
     "screenfull": "^6.0.2",
     "stimulus-use": "^0.52.2",
     "tablesorter": "^2.31.3",
+    "th-analytics": "git+https://git.thape.com.cn/plugins/th-analytics.git",
     "tiny-invariant": "^1.3.3",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2",

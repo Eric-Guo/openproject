@@ -39,6 +39,7 @@ import {
   mobileGuardActivated,
   redirectToMobileAlternative,
 } from 'core-app/shared/helpers/routing/mobile-guard.helper';
+import TA from 'th-analytics';
 
 export const OPENPROJECT_ROUTES:Ng2StateDeclaration[] = [
   {
@@ -118,6 +119,17 @@ export function updateMenuItem(menuItemClass:string|undefined, action:'add'|'rem
 export function uiRouterConfiguration(uiRouter:UIRouter, injector:Injector, module:StatesModule) {
   // Allow optional trailing slashes
   uiRouter.urlService.config.strictMode(false);
+
+  uiRouter.transitionService.onSuccess({}, (transition:Transition) => {
+    const toState = transition.to();
+
+    TA.send({
+      hitType: 'page_view',
+      customFields: {
+        toStateName: toState.name ?? '',
+      },
+    });
+  });
 
   // Register custom URL params type
   // to ensure query props are correctly set
