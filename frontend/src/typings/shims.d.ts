@@ -16,6 +16,7 @@ import { OpenProject } from 'core-app/core/setup/globals/openproject';
 import * as TLodash from 'lodash';
 import { Screenfull } from 'screenfull';
 import { ErrorReporterBase } from 'core-app/core/errors/error-reporter-base';
+import { AnalyticsConfig } from 'th-analytics/dist/Analytics';
 import { I18n } from 'i18n-js';
 
 declare module 'observable-array';
@@ -41,6 +42,7 @@ declare global {
     onboardingTourInstance:any;
     screenfull:Screenfull;
     MiniProfiler?:{ pageTransition:() => void };
+    TA_CONFIG?:AnalyticsConfig;
   }
 
   interface JQuery {
