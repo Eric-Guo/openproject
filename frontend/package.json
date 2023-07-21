@@ -151,6 +151,7 @@
     "screenfull": "^4.2.1",
     "stimulus-use": "^0.52.2",
     "tablesorter": "^2.31.3",
+    "th-analytics": "git+https://git.thape.com.cn/plugins/th-analytics.git",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2",
     "turbo_power": "^0.6.2",
