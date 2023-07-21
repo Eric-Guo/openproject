@@ -51,7 +51,7 @@ Rails.application.config.after_initialize do
     assets_src << asset_host if asset_host.present?
 
     # Valid for iframes
-    frame_src = %w['self' https://player.vimeo.com https://www.youtube.com]
+    frame_src = %w['self' https://player.vimeo.com https://www.youtube.com https://ith-workspace.thape.com.cn]
     frame_src << OpenProject::Configuration[:security_badge_url]
 
     # Default src
@@ -77,6 +77,10 @@ Rails.application.config.after_initialize do
 
     if OpenProject::Configuration.appsignal_frontend_key
       connect_src += ["https://appsignal-endpoint.net"]
+    end
+
+    if ENV["CSP_CONNECT_SRC"].present?
+      connect_src << ENV["CSP_CONNECT_SRC"]
     end
 
     # Add proxy configuration for Angular CLI to csp

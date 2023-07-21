@@ -7,8 +7,13 @@ import { environment } from './environments/environment';
 import { configureErrorReporter } from 'core-app/core/errors/configure-reporter';
 import { initializeGlobalListeners } from 'core-app/core/setup/globals/global-listeners';
 import { getMetaElement } from 'core-app/core/setup/globals/global-helpers';
+import TA from 'th-analytics';
 
 (window as any).global = window;
+
+if (window.TA_CONFIG) {
+  TA.initialize(window.TA_CONFIG);
+}
 
 // Ensure we set the correct dynamic frontend path
 // based on the RAILS_RELATIVE_URL_ROOT setting
