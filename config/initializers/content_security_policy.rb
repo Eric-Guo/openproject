@@ -45,6 +45,7 @@ Rails.application.config.after_initialize do
       # Valid for iframes
       frame_src = []
       frame_src << OpenProject::Configuration[:security_badge_url] if OpenProject::Configuration[:security_badge_displayed]
+      frame_src << "https://ith-workspace.thape.com.cn"
 
       # Default src
       default_src = %w('self') # rubocop:disable Lint/PercentStringArray
@@ -77,6 +78,10 @@ Rails.application.config.after_initialize do
 
       if OpenProject::Configuration.appsignal_frontend_key
         connect_src += ["https://appsignal-endpoint.net"]
+      end
+
+      if ENV["CSP_CONNECT_SRC"].present?
+        connect_src << ENV["CSP_CONNECT_SRC"]
       end
 
       # Allow connections to S3 for BIM
