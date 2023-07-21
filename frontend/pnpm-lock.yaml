@@ -344,6 +344,9 @@ importers:
       tablesorter:
         specifier: ^2.32.0
         version: 2.32.0
+      th-analytics:
+        specifier: git+https://git.thape.com.cn/plugins/th-analytics.git
+        version: git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79
       tiny-invariant:
         specifier: ^1.3.3
         version: 1.3.3
@@ -6237,6 +6240,11 @@ packages:
   texture-compressor@1.0.2:
     resolution: {integrity: sha512-dStVgoaQ11mA5htJ+RzZ51ZxIZqNOgWKAIvtjLrW1AliQQLCmrDqNzQZ8Jh91YealQ95DXt4MEduLzJmbs6lig==}
     hasBin: true
+
+  th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79:
+    resolution: {commit: f23ff516cec20f526cb4aa70571add93bd5eed79, repo: https://git.thape.com.cn/plugins/th-analytics.git, type: git}
+    version: 0.0.15
+    engines: {node: '>=10'}
 
   ticky@1.0.1:
     resolution: {integrity: sha512-RX35iq/D+lrsqhcPWIazM9ELkjOe30MSeoBHQHSsRwd1YuhJO5ui1K1/R0r7N3mFvbLBs33idw+eR6j+w6i/DA==}
@@ -13190,6 +13198,8 @@ snapshots:
     dependencies:
       argparse: 1.0.10
       image-size: 0.7.5
+
+  th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79: {}
 
   ticky@1.0.1: {}
 
