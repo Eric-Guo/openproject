@@ -59,6 +59,7 @@ import {
 } from 'core-app/shared/helpers/routing/mobile-guard.helper';
 import { TEAM_PLANNER_LAZY_ROUTES } from 'core-app/features/team-planner/team-planner/team-planner.lazy-routes';
 import { CALENDAR_LAZY_ROUTES } from 'core-app/features/calendar/calendar.lazy-routes';
+import TA from 'th-analytics';
 
 export const OPENPROJECT_ROUTES:Ng2StateDeclaration[] = [
   {
@@ -196,6 +197,18 @@ export function updateMenuItem(menuItemClass:string|undefined, action:'add'|'rem
 export function uiRouterConfiguration(uiRouter:UIRouter, injector:Injector, module:StatesModule) {
   // Allow optional trailing slashes
   uiRouter.urlService.config.strictMode(false);
+
+  uiRouter.transitionService.onSuccess({}, (transition:Transition) => {
+    // 在这里处理路由变化成功事件
+    const toState = transition.to();
+
+    TA.send({
+      hitType: 'page_view',
+      customFields: {
+        toStateName: toState.name || '',
+      },
+    });
+  });
 
   // Register custom URL params type
   // to ensure query props are correctly set

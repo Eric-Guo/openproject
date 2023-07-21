@@ -23,6 +23,7 @@ import { GlobalI18n } from 'core-app/core/i18n/i18n.service';
 import { Dragula } from 'dragula';
 import { Screenfull } from 'screenfull';
 import { ErrorReporterBase } from 'core-app/core/errors/error-reporter-base';
+import { AnalyticsConfig } from 'th-analytics/dist/Analytics';
 
 declare module 'observable-array';
 declare module 'dom-autoscroller';
@@ -45,6 +46,7 @@ declare global {
     onboardingTourInstance:any;
     screenfull:Screenfull;
     MiniProfiler?:{ pageTransition:() => void };
+    TA_CONFIG?:AnalyticsConfig;
   }
 
   interface JQuery {

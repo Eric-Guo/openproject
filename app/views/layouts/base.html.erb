@@ -32,6 +32,13 @@ See COPYRIGHT and LICENSE files for more details.
       xml:lang="<%= I18n.locale.to_s %>"
       class="<%= 'in_modal' unless show_decoration %>">
 <head>
+  <script>
+    window.TA_CONFIG = {
+      appId: '8987609876',
+      userIdentifier: '<%= current_user&.login || '' -%>',
+      debug: true,
+    };
+  </script>
   <%= render partial: 'layouts/common_head' %>
   <!-- project specific tags -->
   <%= call_hook :view_layouts_base_html_head %>

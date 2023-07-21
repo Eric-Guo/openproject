@@ -165,6 +165,7 @@
     "stimulus-use": "^0.52.0",
     "swagger-ui": "^4.16.1",
     "tablesorter": "^2.31.3",
+    "th-analytics": "git+https://git.thape.com.cn/plugins/th-analytics.git",
     "ts-action": "^11.0.0",
     "ts-action-operators": "^9.1.2",
     "typedjson": "^1.5.1",
