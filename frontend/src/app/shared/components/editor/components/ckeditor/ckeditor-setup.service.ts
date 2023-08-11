@@ -7,6 +7,7 @@ import {
 } from 'core-app/shared/components/editor/components/ckeditor/ckeditor.types';
 import { Constructor } from '@angular/cdk/schematics';
 import { ConfigurationService } from 'core-app/core/config/configuration.service';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 
 export type ICKEditorType = 'full'|'constrained';
 export type ICKEditorMacroType = 'none'|'resource'|'full'|boolean|string[];
@@ -23,6 +24,7 @@ declare global {
 export class CKEditorSetupService {
   readonly PathHelper = inject(PathHelperService);
   readonly configurationService = inject(ConfigurationService);
+  readonly currentProject = inject(CurrentProjectService);
 
   /** The language CKEditor was able to load, falls back to 'en' */
   private loadedLocale = 'en';
@@ -192,6 +194,8 @@ export class CKEditorSetupService {
 
     return {
       context,
+      ddsFolderId: this.currentProject.ddsFolderId || '',
+      ddsButtonName: '添加',
       helpURL: this.PathHelper.textFormattingHelp(),
       pluginContext: window.OpenProject.pluginContext.value,
     };
