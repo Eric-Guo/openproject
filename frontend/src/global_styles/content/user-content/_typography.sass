@@ -80,3 +80,28 @@
     &:hover
       color: #aaa
       text-decoration: none
+
+.op-macro-dds-file-box
+  margin: 4px 0
+  padding: 10px
+  border: 1px dashed rgba(138, 146, 227, 1)
+
+  p
+    font-size: 12px
+    font-size: 14px
+    margin-bottom: 0
+
+  p:first-child
+    color: rgba(0, 0, 0, 1)
+
+  &[data-is-folder='true']
+    p:first-child::before
+      content: '[文件夹] '
+
+  &[data-is-folder='false']
+    p:first-child::before
+      content: '[文件] '
+
+  p:nth-child(2)
+    margin-top: 4px
+    color: rgba(49, 60, 169, 1)

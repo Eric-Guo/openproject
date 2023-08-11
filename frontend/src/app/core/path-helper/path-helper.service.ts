@@ -259,4 +259,27 @@ export class PathHelperService {
   public textFormattingHelp() {
     return `${this.staticBase}/help/text_formatting`;
   }
+
+  public ddsPath(params:{
+    project_id?:number;
+    event_name?:string;
+    debug?:boolean;
+    uid?:string;
+    callback?:string;
+  } = {}) {
+    const url = new URL('/dds', window.location.origin);
+
+    const searchParams = new URLSearchParams();
+    if (params) {
+      Object.keys(params).forEach((key:keyof typeof params) => {
+        const value = params[key]?.toString();
+        if (value) searchParams.set(key, value);
+      });
+    }
+
+    const search = searchParams.toString();
+    if (search) url.search = `?${search}`;
+
+    return url.toString();
+  }
 }
