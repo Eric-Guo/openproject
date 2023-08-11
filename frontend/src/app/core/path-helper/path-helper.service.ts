@@ -391,4 +391,27 @@ export class PathHelperService {
   public myTimeTrackingRefresh(date:string, viewMode:string, mode:string) {
     return `${this.staticBase}/my/time-tracking/refresh?date=${date}&view_mode=${viewMode}&mode=${mode}`;
   }
+
+  public ddsPath(params:{
+    project_id?:number;
+    event_name?:string;
+    debug?:boolean;
+    uid?:string;
+    callback?:string;
+  } = {}) {
+    const url = new URL('/dds', window.location.origin);
+
+    const searchParams = new URLSearchParams();
+    if (params) {
+      Object.keys(params).forEach((key:keyof typeof params) => {
+        const value = params[key]?.toString();
+        if (value) searchParams.set(key, value);
+      });
+    }
+
+    const search = searchParams.toString();
+    if (search) url.search = `?${search}`;
+
+    return url.toString();
+  }
 }
