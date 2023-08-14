@@ -38,7 +38,7 @@ module OpenProject::Inbox
            :inbox_view,
            { controller: '/inbox/inboxes', action: 'index' },
            caption: :label_inbox_plural,
-           icon: 'icon2 icon-inbox',
+           icon: 'bell',
            before: :activity
 
       menu :project_menu,

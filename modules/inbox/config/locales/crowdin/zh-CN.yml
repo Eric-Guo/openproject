@@ -1,6 +1,6 @@
 #English strings go here
 zh-CN:
-  label_inbox_plural: "待办"
-  permission_view_inbox: "查看待办"
-  permission_manage_inboxes: "管理待办"
-  project_module_inbox_view: "待办"
+  label_inbox_plural: "通知"
+  permission_view_inbox: "查看通知"
+  permission_manage_inboxes: "管理通知"
+  project_module_inbox_view: "通知"
