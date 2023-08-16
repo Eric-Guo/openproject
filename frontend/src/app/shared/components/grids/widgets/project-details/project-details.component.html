@@ -17,9 +17,20 @@
           {{ cf.label }}
         </div>
         <div class="attributes-map--value">
-          <span class="inline-edit--display-field customField16 -editable">
-            {{ cf.value }}
-          </span>
+          <a
+            *ngIf="cf.isLink; else spanBlock"
+            [href]="cf.value"
+            target="_blank"
+            rel="noreferrer"
+            style="cursor: pointer;"
+          >
+            <ng-container *ngTemplateOutlet="spanBlock"></ng-container>
+          </a>
+          <ng-template #spanBlock>
+            <span class="inline-edit--display-field" style="line-height: normal;">
+              {{ cf.value }}
+            </span>
+          </ng-template>
         </div>
       </ng-container>
       <ng-container *ngFor="let cf of customFields">

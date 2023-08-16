@@ -57,7 +57,7 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
 
   public customFields:{ key:string, label:string }[] = [];
 
-  public profileFields:{ key:string, label:string, value:string }[] = [];
+  public profileFields:{ key:string, label:string, value:string, isLink?:boolean }[] = [];
 
   public project$:Observable<ProjectResource>;
 
@@ -122,7 +122,7 @@ export class WidgetProjectDetailsComponent extends AbstractWidgetComponent imple
       this.profileFields.push({ key: 'typeId', label: '天华项目类型', value: typeList[project.profile.typeId] });
       this.profileFields.push({ key: 'name', label: '天华项目名称', value: project.profile.name });
       this.profileFields.push({ key: 'code', label: '天华项目编号', value: project.profile.code });
-      this.profileFields.push({ key: 'docLink', label: '天华项目文档', value: project.profile.docLink });
+      this.profileFields.push({ key: 'docLink', label: '天华项目文档', value: project.profile.docLink, isLink: /^https?:\/\/.+/.test(project.profile.docLink) });
     }
   }
 }
