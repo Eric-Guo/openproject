@@ -144,6 +144,7 @@ export class CKEditorSetupService {
     return {
       context,
       ddsFolderId: this.currentProject.ddsFolderId || '',
+      ddsButtonName: '添加',
       helpURL: this.PathHelper.textFormattingHelp(),
       pluginContext: window.OpenProject.pluginContext.value,
     };
