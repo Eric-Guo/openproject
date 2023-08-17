@@ -10,7 +10,13 @@
   <meta name="current_project"
         data-project-name="<%= h @project.name %>"
         data-project-id="<%= @project.id %>"
-        data-project-identifier="<%= @project.identifier %>"/>
+        data-project-identifier="<%= @project.identifier %>"
+      <% if @project.module_enabled?('th_projects') %>
+        data-project-th-code="<%= @project&.profile&.code %>"
+        data-project-th-name="<%= @project&.profile&.name %>"
+        data-project-th-doc-link="<%= @project&.profile&.doc_link %>"
+      <% end %>
+  />
 <% end %>
 <% unless User.current.anonymous? %>
   <meta name="current_user"

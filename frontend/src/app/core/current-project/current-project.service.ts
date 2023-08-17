@@ -32,7 +32,7 @@ import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 
 @Injectable({ providedIn: 'root' })
 export class CurrentProjectService {
-  private current:{ id:string, identifier:string, name:string };
+  private current:{ id:string, identifier:string, name:string, thCode?:string, thName?:string, thDocLink?:string };
 
   constructor(
     private PathHelper:PathHelperService,
@@ -73,9 +73,29 @@ export class CurrentProjectService {
     return this.getCurrent('identifier');
   }
 
-  private getCurrent(key:'id'|'identifier'|'name') {
+  public get thCode():string|null {
+    return this.getCurrent('thCode');
+  }
+
+  public get thName():string|null {
+    return this.getCurrent('thName');
+  }
+
+  public get thDocLink():string|null {
+    return this.getCurrent('thDocLink');
+  }
+
+  public get ddsFolderId():number|null {
+    const reg = /^https?:\/\/edoc\.thape\.com\.cn:8022\/index\.html#doc\/enterprise\/(\d+)/;
+
+    if (!this.thDocLink || !reg.test(this.thDocLink)) return null;
+    const match = this.thDocLink.match(reg);
+    return Number(match![1]);
+  }
+
+  private getCurrent(key:keyof typeof this.current) {
     if (this.current && this.current[key]) {
-      return this.current[key].toString();
+      return this.current[key]!.toString();
     }
 
     return null;
@@ -91,6 +111,9 @@ export class CurrentProjectService {
         id: element.dataset.projectId!,
         name: element.dataset.projectName!,
         identifier: element.dataset.projectIdentifier!,
+        thCode: element.dataset.projectThCode,
+        thName: element.dataset.projectThName,
+        thDocLink: element.dataset.projectThDocLink,
       };
     }
   }

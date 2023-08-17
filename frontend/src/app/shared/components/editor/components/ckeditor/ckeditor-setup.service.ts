@@ -6,6 +6,7 @@ import {
   ICKEditorWatchdog,
 } from 'core-app/shared/components/editor/components/ckeditor/ckeditor.types';
 import { Constructor } from '@angular/cdk/schematics';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 
 export type ICKEditorType = 'full'|'constrained';
 export type ICKEditorMacroType = 'none'|'resource'|'full'|boolean|string[];
@@ -26,8 +27,10 @@ export class CKEditorSetupService {
   /** Prefetch ckeditor when browser is idle */
   private prefetch:Promise<unknown>;
 
-  constructor(private PathHelper:PathHelperService) {
-  }
+  constructor(
+    private PathHelper:PathHelperService,
+    protected currentProject:CurrentProjectService,
+  ) { }
 
   public initialize() {
     this.prefetch = this.load();
@@ -140,6 +143,7 @@ export class CKEditorSetupService {
 
     return {
       context,
+      ddsFolderId: this.currentProject.ddsFolderId || '',
       helpURL: this.PathHelper.textFormattingHelp(),
       pluginContext: window.OpenProject.pluginContext.value,
     };
