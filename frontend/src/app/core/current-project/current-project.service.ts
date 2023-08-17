@@ -35,6 +35,9 @@ export class CurrentProjectService {
   private currentId:string|null = null;
   private currentName:string|null = null;
   private currentIdentifier:string|null = null;
+  private currentThCode:string|null = null;
+  private currentThName:string|null = null;
+  private currentThDocLink:string|null = null;
 
   constructor(
     private PathHelper:PathHelperService,
@@ -75,6 +78,26 @@ export class CurrentProjectService {
     return this.currentIdentifier;
   }
 
+  public get thCode():string|null {
+    return this.currentThCode;
+  }
+
+  public get thName():string|null {
+    return this.currentThName;
+  }
+
+  public get thDocLink():string|null {
+    return this.currentThDocLink;
+  }
+
+  public get ddsFolderId():number|null {
+    const reg = /^https?:\/\/edoc\.thape\.com\.cn:8022\/index\.html#doc\/enterprise\/(\d+)/;
+
+    if (!this.thDocLink || !reg.test(this.thDocLink)) return null;
+    const match = this.thDocLink.match(reg);
+    return Number(match![1]);
+  }
+
   /**
    * Detect the current project from its meta tag.
    */
@@ -84,10 +107,16 @@ export class CurrentProjectService {
       this.currentId = element.dataset.projectId as string;
       this.currentName = element.dataset.projectName as string;
       this.currentIdentifier = element.dataset.projectIdentifier as string;
+      this.currentThCode = element.dataset.projectThCode as string;
+      this.currentThName = element.dataset.projectThName as string;
+      this.currentThDocLink = element.dataset.projectThDocLink as string;
     } else {
       this.currentId = null;
       this.currentName = null;
       this.currentIdentifier = null;
+      this.currentThCode = null;
+      this.currentThName = null;
+      this.currentThDocLink = null;
     }
   }
 }
