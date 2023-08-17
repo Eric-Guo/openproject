@@ -545,7 +545,7 @@ zh-CN:
           title: 'Date alerts'
           description: 'With date alerts, you will be notified of upcoming start or finish dates so that you never miss or forget an important deadline.'
       facets:
-        unread: '未完成'
+        unread: '未读'
         all: '全部'
       center:
         and_more_users:
@@ -567,7 +567,7 @@ zh-CN:
       menu:
         accountable: '负责'
         assigned: '已分配'
-        by_project: '按项目筛选未完成通知'
+        by_project: '按项目筛选未读通知'
         by_reason: '参与'
         inbox: '收件箱'
         mentioned: '@被提及'
