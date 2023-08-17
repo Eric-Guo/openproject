@@ -39,6 +39,9 @@ export class CurrentProjectService {
   private currentId:string|null = null;
   private currentName:string|null = null;
   private currentIdentifier:string|null = null;
+  private currentThCode:string|null = null;
+  private currentThName:string|null = null;
+  private currentThDocLink:string|null = null;
 
   constructor() {
     this.detect();
@@ -76,6 +79,18 @@ export class CurrentProjectService {
     return this.currentIdentifier;
   }
 
+  public get thCode():string|null {
+    return this.currentThCode;
+  }
+
+  public get thName():string|null {
+    return this.currentThName;
+  }
+
+  public get thDocLink():string|null {
+    return this.currentThDocLink;
+  }
+
   /**
    * Detect the current project from its meta tag.
    */
@@ -85,10 +100,16 @@ export class CurrentProjectService {
       this.currentId = element.dataset.projectId!;
       this.currentName = element.dataset.projectName!;
       this.currentIdentifier = element.dataset.projectIdentifier!;
+      this.currentThCode = element.dataset.projectThCode as string;
+      this.currentThName = element.dataset.projectThName as string;
+      this.currentThDocLink = element.dataset.projectThDocLink as string;
     } else {
       this.currentId = null;
       this.currentName = null;
       this.currentIdentifier = null;
+      this.currentThCode = null;
+      this.currentThName = null;
+      this.currentThDocLink = null;
     }
   }
 }
