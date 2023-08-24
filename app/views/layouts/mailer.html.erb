@@ -60,14 +60,14 @@
     <div class="line"></div>
     <%= call_hook(:view_layouts_mailer_html_after_content, assigns) %>
     <div class="footer">
-      <div>PPM项目过程管理网址：</div>
+      <div><%= Setting.app_title %> 网址：</div>
       <div style="margin-top: 12px;">
         <a href="<%= root_url %>"><%= root_url %></a>
       </div>
       <div style="margin-top: 15px;">
-        <div style="text-align: center;">PPM公众号：</div>
+        <div style="text-align: center;"><%= Setting.app_title %> 公众号：</div>
         <div class="qrcode">
-          <img style="width: 129px;" src="<%= mp_qrcode_base64 %>" alt="天华PPM" >
+          <img style="width: 129px;" src="<%= mp_qrcode_base64 %>" alt="天华<%= Setting.app_title %>" >
         </div>
       </div>
     </div>
