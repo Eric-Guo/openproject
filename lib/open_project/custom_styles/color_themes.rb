@@ -96,7 +96,7 @@ module OpenProject::CustomStyles
           'main-menu-selected-font-color' => "#E0EFF6",
           'main-menu-border-color' => "#001873"
         },
-        logo: 'logo_ppm_dark.png'
+        logo: 'logo_plm_dark.png'
       },
       {
         theme: 'Thape Light',
@@ -118,7 +118,7 @@ module OpenProject::CustomStyles
           'main-menu-selected-font-color' => "#041E91",
           'main-menu-border-color' => "#F0F3FE"
         },
-        logo: 'logo_ppm.png'
+        logo: 'logo_plm.png'
       },
       {
         theme: 'OpenProject Dark',
