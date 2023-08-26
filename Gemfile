@@ -273,7 +273,7 @@ group :development do
   gem 'livingstyleguide', '~> 2.1.0'
   gem 'sassc-rails'
 
-  gem 'colored2'
+  gem 'colored2', '< 4'
 end
 
 group :development, :test do
