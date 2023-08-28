@@ -1125,6 +1125,7 @@ DEPENDENCIES
   i18n-js (~> 3.9.0)
   json_schemer (~> 0.2.18)
   json_spec (~> 1.1.4)
+  jwt
   ladle
   launchy (~> 2.5.0)
   lefthook

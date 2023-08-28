@@ -140,7 +140,8 @@ class ApplicationController < ActionController::Base
                 :stop_if_feeds_disabled,
                 :set_cache_buster,
                 :action_hooks,
-                :reload_mailer_settings!
+                :reload_mailer_settings!,
+                :wechat_auto_login
 
   include Redmine::Search::Controller
   include Redmine::MenuManager::MenuController
@@ -174,6 +175,21 @@ class ApplicationController < ActionController::Base
 
   def reload_mailer_settings!
     Setting.reload_mailer_settings!
+  end
+
+  # 微信浏览器自动登录
+  def wechat_auto_login
+    return unless browser.wechat?
+    return if User.current && User.current.type.to_s == 'User'
+    return if ENV['WECHAT_AUTH_ITH_URL'].blank?
+
+    uri = Addressable::URI.parse(ENV['WECHAT_AUTH_ITH_URL'])
+
+    query = uri.query_values || {}
+
+    uri.query_values = query.merge(redirect_uri: URI.encode_www_form_component(request.url))
+
+    redirect_to uri.to_s
   end
 
   # Checks if the session cookie is missing.

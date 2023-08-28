@@ -360,3 +360,5 @@ gemfiles.each do |file|
 end
 
 gem 'gruf'
+
+gem 'jwt'
