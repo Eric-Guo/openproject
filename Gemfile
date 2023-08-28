@@ -438,6 +438,8 @@ gem "activerecord-nulldb-adapter", "~> 1.2.2"
 # We e.g. employ this to safeguard the creation of journals.
 gem "with_advisory_lock", "~> 7.5.0"
 
+gem "jwt"
+
 # Load Gemfile.modules explicitly to allow dependabot to work
 eval_gemfile "./Gemfile.modules"
 

@@ -1349,4 +1349,5 @@ Rails.application.routes.draw do
   if Rails.env.development? || OpenProject::Configuration.good_job_engine_basic_auth.present?
     mount GoodJob::Engine => "good_job"
   end
+  get '/wechat/auth/callback', to: 'auth_wechat#index', as: :wechat_auth_callback
 end
