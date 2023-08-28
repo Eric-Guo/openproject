@@ -1600,6 +1600,7 @@ DEPENDENCIES
   ice_nine
   json_schemer (~> 2.4.0)
   json_spec (~> 1.1.4)
+  jwt
   ladle
   launchy (~> 3.1.0)
   lefthook

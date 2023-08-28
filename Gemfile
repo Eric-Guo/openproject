@@ -419,6 +419,8 @@ platforms :mri, :mingw, :x64_mingw do
   gem "with_advisory_lock", "~> 5.3.0"
 end
 
+gem "jwt"
+
 # Load Gemfile.modules explicitly to allow dependabot to work
 eval_gemfile "./Gemfile.modules"
 
