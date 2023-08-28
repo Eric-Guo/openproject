@@ -786,4 +786,5 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
     mount GoodJob::Engine => "good_job"
   end
+  get '/wechat/auth/callback', to: 'auth_wechat#index', as: :wechat_auth_callback
 end
