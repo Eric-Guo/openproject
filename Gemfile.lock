@@ -770,7 +770,7 @@ GEM
       multi_json
     puma (6.0.2)
       nio4r (~> 2.0)
-    puma-plugin-statsd (2.4.0)
+    puma-plugin-statsd (2.5.0)
       puma (>= 5.0, < 7)
     raabro (1.4.0)
     racc (1.7.1)
@@ -1033,7 +1033,7 @@ GEM
       activesupport
       faraday (~> 2.0)
       faraday-follow_redirects
-    webmock (3.18.1)
+    webmock (3.19.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
