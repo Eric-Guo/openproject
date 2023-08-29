@@ -1,4 +1,6 @@
 class AuthWechatController < ApplicationController
+  skip_before_action :wechat_auto_login
+
   def index
     redirect_uri = params[:redirect_uri].presence || root_path
     token = params[:token]

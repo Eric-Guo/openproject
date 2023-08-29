@@ -583,5 +583,5 @@ OpenProject::Application.routes.draw do
   # Routes for design related documentation and examples pages
   get '/design/styleguide' => redirect('/assets/styleguide.html')
 
-  get '/wechat/auth/callback', to: 'auth_wechat#index'
+  get '/wechat/auth/callback', to: 'auth_wechat#index', as: :wechat_auth_callback
 end
