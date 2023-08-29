@@ -263,7 +263,7 @@ zh-CN:
   prioritiies:
     edit:
       priority_color_text: |
-        单击可以分配或更改此优先级的颜色。
+        单击可以分配或更改此背景色的颜色。
         颜色可用于突出显示表中的工作包。
   reportings:
     index:
@@ -519,7 +519,7 @@ zh-CN:
         parent: "父"
         parent_issue: "父"
         parent_work_package: "父"
-        priority: "优先级"
+        priority: "背景色"
         progress: "进度 (%)"
         schedule_manually: "手动计划"
         spent_hours: "已耗时间"
@@ -872,7 +872,7 @@ zh-CN:
     mail: "电子邮件"
     name: "名称"
     password: "密码"
-    priority: "优先级"
+    priority: "背景色"
     project: "项目"
     responsible: "负责"
     role: "角色"
@@ -1192,7 +1192,7 @@ zh-CN:
       project_filters:
         description_html: "对自定义字段进行筛选和排序是企业版功能。"
   enumeration_activities: "时间跟踪活动"
-  enumeration_work_package_priorities: "工作包优先级"
+  enumeration_work_package_priorities: "工作包背景色"
   enumeration_reported_project_statuses: "报告的项目状态"
   error_auth_source_sso_failed: "用户 \"%{value}\" 的单次登录 (SSO) 失败"
   error_can_not_archive_project: "此项目无法存档：%{errors}"
@@ -2481,7 +2481,7 @@ zh-CN:
         none: "无突出显示"
         status: "整行按状态"
         type: "整行按类型"
-        priority: "整行按优先级"
+        priority: "整行按背景色"
   text_formatting:
     markdown: 'Markdown'
     plain: '纯文本'

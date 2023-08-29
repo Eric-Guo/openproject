@@ -251,7 +251,7 @@ zh-CN:
       embedded_table_loading: "无法加载嵌入式视图：%{message}"
     enumeration_activities: "活动 （时间跟踪）"
     enumeration_doc_categories: "文档类别"
-    enumeration_work_package_priorities: "工作包优先级"
+    enumeration_work_package_priorities: "工作包背景色"
     filter:
       description:
         text_open_filter: "使用 ALT 和方向键打开筛选器。"
@@ -511,7 +511,7 @@ zh-CN:
         wp:
           toggler: "现在我们来看一下<b>工作包</b>部分，工作包提供了更详细的工作视图。"
           list: '此<b>工作</b>包概览提供了包含项目中所有工作的列表，例如任务、里程碑、阶段等。<br>可以直接从此视图创建和编辑工作包。要访问特定工作包的详细信息，只需双击该行即可。'
-          full_view: '<b>工作包详细信息</b>视图中提供了与给定工作包有关的所有相关信息，例如其描述、状态、优先级、活动、依赖项和评论。'
+          full_view: '<b>工作包详细信息</b>视图中提供了与给定工作包有关的所有相关信息，例如其描述、状态、背景色、活动、依赖项和评论。'
           back_button: '使用左上角的返回箭头可退出并返回到工作包列表。'
           create_button: '<b>+ 创建</b>按钮将为您的项目添加一个新工作包。'
           timeline_button: '您可以激活<b>甘特图</b>视图来为项目创建时间轴。'
@@ -529,7 +529,7 @@ zh-CN:
         scheduled: '日期变更'
         commented: '新评论'
         processed: '状态变更'
-        prioritized: '优先级变更'
+        prioritized: '背景色变更'
         date_alert_start_date: '开始时间'
         date_alert_due_date: '完成时间'
         subscribed: '所有'
@@ -603,7 +603,7 @@ zh-CN:
           work_package_commented: '所有新评论'
           work_package_created: '新工作包'
           work_package_processed: '所有状态变更'
-          work_package_prioritized: '所有优先级变更'
+          work_package_prioritized: '所有背景色变更'
           work_package_scheduled: '所有日期变更'
         global:
           immediately:
@@ -935,7 +935,7 @@ zh-CN:
         spentTime: "已耗时间"
         category: "类别"
         percentageDone: "完成百分比"
-        priority: "优先级"
+        priority: "背景色"
         projectName: "项目"
         responsible: "责任人"
         startDate: "开始日期"
@@ -1017,7 +1017,7 @@ zh-CN:
           inline_all: '全部属性'
           entire_row_by: '整行'
           status: '状态'
-          priority: '优先级'
+          priority: '背景色'
           type: '类型'
         sorting_mode:
           description: '选择对您的工作包排序的模式：'
