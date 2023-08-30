@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../openproject-th_plugin"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.idea": true,
+			"**/log": true,
+			"**/node_modules": true,
+			"**/tmp": true
+		}
+	}
+}
