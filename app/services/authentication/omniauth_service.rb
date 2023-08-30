@@ -225,7 +225,7 @@ module Authentication
         login: info[:email],
         mail: info[:email],
         firstname: info[:first_name] || info[:name],
-        lastname: info[:last_name] || info[:chinese_name],
+        lastname: info[:last_name],
         identity_url: identity_url_from_omniauth
       }
 
