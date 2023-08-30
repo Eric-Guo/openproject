@@ -1,4 +1,12 @@
 GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
+  revision: 0f394ea92bebaf58bf7b3136a45be7d11d578fd4
+  branch: th_plugins
+  specs:
+    openproject-th_plugin (7.1.0)
+      rails (~> 7.0)
+
+GIT
   remote: https://github.com/opf/omniauth
   revision: fe862f986b2e846e291784d2caa3d90a658c67f0
   branch: master
@@ -1167,6 +1175,7 @@ DEPENDENCIES
   openproject-team_planner!
   openproject-th_members!
   openproject-th_notifications!
+  openproject-th_plugin!
   openproject-th_projects!
   openproject-th_user_auth!
   openproject-token (~> 3.0.1)

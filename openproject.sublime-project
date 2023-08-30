@@ -8,6 +8,10 @@
                                   "app/assets/fonts", "app/assets/videos","frontend/.angular","frontend/src/locales","frontend/src/vendor/ckeditor"],
       "file_exclude_patterns": ["*.sublime-workspace",".byebug_history",".DS_Store","config/master.key",
                                 "config/credentials.yml.enc", ".openproject-token.pub"]
+    },
+    {
+      "path": "../openproject-th_plugin",
+      "folder_exclude_patterns": ["bin"]
     }
   ],
   "settings":
