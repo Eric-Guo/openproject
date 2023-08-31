@@ -47,7 +47,10 @@ class AttributeHelpTexts::ShowDialogComponent < ApplicationComponent
 
   private
 
-  def allowed_to_edit? = current_user.allowed_globally?(:edit_attribute_help_texts)
+  def allowed_to_edit?
+    current_user.allowed_globally?(:edit_attribute_help_texts) &&
+      attribute_help_text.attachments_addable?(current_user)
+  end
 
   def edit_button_href = url_helpers.edit_attribute_help_text_path(attribute_help_text)
 
