@@ -39,7 +39,7 @@
       </button>
       <a
         class="help-text--edit-button button spot-action-bar--action"
-        *ngIf="helpText.editText"
+        *ngIf="canEdit"
         [attr.href]="helpTextLink"
         [attr.title]="text.edit"
       >
