@@ -68,6 +68,10 @@ export class AttributeHelpTextModalComponent extends OpModalComponent implements
       .then(() => this.cdRef.detectChanges());
   }
 
+  public get canEdit() {
+    return !!this.helpText.addAttachment && !!this.helpText.editText;
+  }
+
   public get helpTextLink() {
     if (this.helpText.editText) {
       return this.helpText.editText.$link.href;
