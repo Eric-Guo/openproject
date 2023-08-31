@@ -1,6 +1,6 @@
 # English strings go here
 en:
-  label_inbox_plural: "Todos"
-  permission_view_inbox: "View todos"
-  permission_manage_inboxes: "Manage todos"
-  project_module_inbox_view: "Todo"
+  label_inbox_plural: "Notifications"
+  permission_view_inbox: "View notifications"
+  permission_manage_inboxes: "Manage notifications"
+  project_module_inbox_view: "Notification"

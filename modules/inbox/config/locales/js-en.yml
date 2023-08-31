@@ -2,7 +2,7 @@
 en:
   js:
     inbox:
-      create_new: 'Create new todo'
-      title: 'Todo'
+      create_new: 'Create new notification'
+      title: 'Notification'
       too_many: 'There are %{count} work packages in total, but only %{max} can be shown.'
-      unsaved_title: 'Unnamed todo'
+      unsaved_title: 'Unnamed notification'
