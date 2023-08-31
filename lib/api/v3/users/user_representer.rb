@@ -186,6 +186,34 @@ module API
                  setter: ->(fragment:, represented:, **) { represented.language = fragment },
                  cache_if: -> { current_user_can_manage? }
 
+        property :company,
+                 exec_context: :decorator,
+                 render_nil: false,
+                 getter: ->(*) { represented.company },
+                 setter: ->(fragment:, represented:, **) { represented.company = fragment },
+                 cache_if: -> { current_user_is_admin? }
+
+        property :department,
+                 exec_context: :decorator,
+                 render_nil: false,
+                 getter: ->(*) { represented.department },
+                 setter: ->(fragment:, represented:, **) { represented.department = fragment },
+                 cache_if: -> { current_user_is_admin? }
+
+        property :title,
+                 exec_context: :decorator,
+                 render_nil: false,
+                 getter: ->(*) { represented.title },
+                 setter: ->(fragment:, represented:, **) { represented.title = fragment },
+                 cache_if: -> { current_user_is_admin? }
+
+        property :mobile,
+                 exec_context: :decorator,
+                 render_nil: false,
+                 getter: ->(*) { represented.mobile },
+                 setter: ->(fragment:, represented:, **) { represented.mobile = fragment },
+                 cache_if: -> { current_user_is_admin? }
+
         # Write-only properties
 
         property :password,
