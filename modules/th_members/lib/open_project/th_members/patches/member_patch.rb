@@ -69,6 +69,7 @@ module OpenProject::ThMembers
           ns.work_package_processed = true
           ns.work_package_scheduled = true
         elsif role_ids.include?(4)
+          ns.watched = false
           ns.assignee = true
           ns.responsible = true
         end
