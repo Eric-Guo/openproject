@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 6e3fccb38cd7d83e45c1955a481f852c2496487f
+  revision: 3f78d0998482bfb0d9b2276d43f012c969a5b1a1
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
