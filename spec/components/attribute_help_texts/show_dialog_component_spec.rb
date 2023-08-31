@@ -45,6 +45,10 @@ RSpec.describe AttributeHelpTexts::ShowDialogComponent, type: :component do
 
   let(:current_user) { build_stubbed(:user) }
 
+  before do
+    allow(attribute_help_text).to receive(:attribute_field_name).and_return("Status")
+  end
+
   subject do
     render_inline(described_class.new(attribute_help_text:, current_user:))
     page
@@ -122,9 +126,25 @@ RSpec.describe AttributeHelpTexts::ShowDialogComponent, type: :component do
     context "when the user has edit permissions" do
       let(:current_user) { build_stubbed(:admin) }
 
+      before do
+        allow(attribute_help_text).to receive(:attachments_addable?).with(current_user).and_return(true)
+      end
+
       it "renders an Edit button with icon" do
         expect(subject).to have_link "Edit", href: edit_attribute_help_text_path(attribute_help_text)
         expect(subject).to have_octicon :pencil
+      end
+    end
+
+    context "when the user has edit permissions but cannot add attachments" do
+      let(:current_user) { build_stubbed(:admin) }
+
+      before do
+        allow(attribute_help_text).to receive(:attachments_addable?).with(current_user).and_return(false)
+      end
+
+      it "does not render an Edit button" do
+        expect(subject).to have_no_link "Edit"
       end
     end
   end
