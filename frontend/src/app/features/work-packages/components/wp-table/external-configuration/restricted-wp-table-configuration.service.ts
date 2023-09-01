@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { ConfigurationService } from 'core-app/core/config/configuration.service';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { TabInterface } from 'core-app/features/work-packages/components/wp-table/configuration-modal/tab-portal-outlet';
 import { WpTableConfigurationService } from 'core-app/features/work-packages/components/wp-table/configuration-modal/wp-table-configuration.service';
@@ -8,8 +9,9 @@ import { OpQueryConfigurationLocalsToken } from 'core-app/features/work-packages
 @Injectable()
 export class RestrictedWpTableConfigurationService extends WpTableConfigurationService {
   constructor(@Inject(OpQueryConfigurationLocalsToken) readonly locals:QueryConfigurationLocals,
-    readonly I18n:I18nService) {
-    super(I18n);
+    readonly I18n:I18nService,
+    readonly configuration:ConfigurationService) {
+    super(I18n, configuration);
   }
 
   public get tabs():TabInterface[] {

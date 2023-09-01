@@ -13,6 +13,7 @@ import {
 import { TabDefinition } from 'core-app/shared/components/tabs/tab.interface';
 
 export interface TabInterface extends TabDefinition {
+  hide?:() => boolean;
   componentClass:{ new(...args:any[]):TabComponent };
 }
 

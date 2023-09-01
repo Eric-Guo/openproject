@@ -8,6 +8,7 @@ import { WpTableConfigurationSortByTabComponent } from 'core-app/features/work-p
 import { WpTableConfigurationTimelinesTabComponent } from 'core-app/features/work-packages/components/wp-table/configuration-modal/tabs/timelines-tab.component';
 import { WpTableConfigurationHighlightingTabComponent } from 'core-app/features/work-packages/components/wp-table/configuration-modal/tabs/highlighting-tab.component';
 import { OpBaselineComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline/baseline.component';
+import { ConfigurationService } from 'core-app/core/config/configuration.service';
 
 @Injectable()
 export class WpTableConfigurationService {
@@ -30,6 +31,7 @@ export class WpTableConfigurationService {
     {
       id: 'baseline',
       name: this.I18n.t('js.baseline.toggle_title'),
+      hide: () => !this.configuration.activeFeatureFlags.includes('showChanges'),
       componentClass: OpBaselineComponent,
     },
     {
@@ -49,10 +51,10 @@ export class WpTableConfigurationService {
     },
   ];
 
-  constructor(readonly I18n:I18nService) {
+  constructor(readonly I18n:I18nService, readonly configuration:ConfigurationService) {
   }
 
   public get tabs() {
-    return this._tabs;
+    return this._tabs.filter((item) => !item.hide || !item.hide());
   }
 }

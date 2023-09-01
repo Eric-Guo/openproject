@@ -67,7 +67,7 @@ export class WpTableConfigurationModalComponent extends OpModalComponent impleme
 
   // Try to load an optional provided configuration service, and fall back to the default one
   private wpTableConfigurationService:WpTableConfigurationService =
-  this.injector.get(WpTableConfigurationService, new WpTableConfigurationService(this.I18n));
+  this.injector.get(WpTableConfigurationService, new WpTableConfigurationService(this.I18n, this.ConfigurationService));
 
   constructor(@Inject(OpModalLocalsToken) public locals:OpModalLocalsMap,
     @Optional() @Inject(WpTableConfigurationModalPrependToken) public prependModalComponent:ComponentType<any>|null,
