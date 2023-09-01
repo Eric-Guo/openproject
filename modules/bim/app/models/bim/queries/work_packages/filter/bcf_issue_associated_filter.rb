@@ -67,7 +67,7 @@ module ::Bim::Queries::WorkPackages::Filter
     end
 
     def available?
-      OpenProject::Configuration.bim?
+      OpenProject::Configuration.bim? && project&.module_enabled?("bim")
     end
 
     private
