@@ -207,13 +207,6 @@ module API
                  setter: ->(fragment:, represented:, **) { represented.title = fragment },
                  cache_if: -> { current_user_is_admin? }
 
-        property :mobile,
-                 exec_context: :decorator,
-                 render_nil: false,
-                 getter: ->(*) { represented.mobile },
-                 setter: ->(fragment:, represented:, **) { represented.mobile = fragment },
-                 cache_if: -> { current_user_is_admin? }
-
         # Write-only properties
 
         property :password,
@@ -222,6 +215,11 @@ module API
                  setter: ->(fragment:, represented:, **) {
                    represented.password = represented.password_confirmation = fragment
                  }
+
+        property :mobile,
+                 getter: ->(*) {},
+                 render_nil: false,
+                 setter: ->(fragment:, represented:, **) { represented.mobile = fragment }
 
         ##
         # Used while parsing JSON to initialize `auth_source_id` through the given link.
