@@ -1879,7 +1879,7 @@ zh-CN:
   label_work_package_hierarchy: "工作包的层次结构"
   label_work_package_new: "新工作包"
   label_work_package_edit: "编辑工作包 %{name}"
-  label_work_package_plural: "进度表"
+  label_work_package_plural: "所有工作"
   label_work_package_status: "工作包状态"
   label_work_package_status_new: "新状态"
   label_work_package_status_plural: "工作包状态"
