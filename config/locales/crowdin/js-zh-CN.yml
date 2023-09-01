@@ -25,6 +25,9 @@ zh-CN:
       hide: "隐藏"
       loading: "加载中..."
     attachments:
+      delete: "删除附件"
+      delete_confirmation: |
+        你确定要删除这个文件么? 这个操作是不可逆的.
       draggable_hint: |
         将图片或附件拖到编辑区内即可添加。鼠标在关闭的编辑区上停留将打开这个编辑区。
     autocomplete_select:
