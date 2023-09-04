@@ -330,6 +330,9 @@ Rails.application.routes.draw do
         get "/export_dialog" => "work_packages#export_dialog"
       end
 
+      # 默认视图
+      get '/default_view' => 'work_packages#default_view', on: :collection, as: 'default_view'
+
       # states managed by client-side routing on work_package#index
       get "(/*state)" => "work_packages#index", on: :collection, as: ""
       get "/create_new" => "work_packages#index", on: :collection, as: "new_split"
