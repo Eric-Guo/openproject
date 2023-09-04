@@ -532,6 +532,7 @@ Rails.application.routes.draw do
         get "/report" => "work_packages/reports#report"
         get "menu" => "work_packages/menus#show"
         get "/export_dialog" => "work_packages#export_dialog"
+        get "/default_view" => "work_packages#default_view"
       end
 
       get "/copy" => "work_packages#copy", on: :member, as: "copy"
