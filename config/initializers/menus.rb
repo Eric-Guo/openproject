@@ -583,7 +583,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             icon: "milestone"
 
   menu.push :work_packages,
-            { controller: "/work_packages", action: "index" },
+            { controller: "/work_packages", action: "default_view" },
             caption: :label_work_package_plural,
             if: Proc.new { |p| p.module_enabled?("work_package_tracking") },
             icon: "op-view-list",
