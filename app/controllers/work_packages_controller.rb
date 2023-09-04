@@ -36,7 +36,7 @@ class WorkPackagesController < ApplicationController
   before_action :authorize_on_work_package,
                 :project, only: :show
   before_action :find_optional_project,
-                :protect_from_unauthorized_export, only: :index
+                :protect_from_unauthorized_export, only: [:index, :default_view]
 
   before_action :load_and_validate_query, only: :index, unless: -> { request.format.html? }
   before_action :load_work_packages, only: :index, if: -> { request.format.atom? }
@@ -57,6 +57,17 @@ class WorkPackagesController < ApplicationController
         atom_list
       end
     end
+  end
+
+  def default_view
+    hash = {}
+
+    if @project.present?
+      query = Query.joins(:views).where(public: true, project_id: @project.id).where(views: { type: 'work_packages_table' }).order(id: :desc).first
+      hash[:query_id] = query.id if query.present?
+    end
+
+    redirect_to project_work_packages_path(@project.identifier, hash)
   end
 
   def show
