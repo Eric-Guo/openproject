@@ -40,11 +40,11 @@ class WorkPackagesController < ApplicationController
   before_action :authorize_on_work_package,
                 :project, only: %i[show generate_pdf_dialog generate_pdf]
   before_action :check_allowed_export,
-                :protect_from_unauthorized_export, only: %i[index export_dialog]
+                :protect_from_unauthorized_export, only: %i[index default_view export_dialog]
+  before_action :load_and_authorize_in_optional_project, only: %i[index default_view new show copy export_dialog]
 
-  before_action :load_and_authorize_in_optional_project, only: %i[index new show copy export_dialog]
   before_action :authorize, only: %i[show_conflict_flash_message share_upsell]
-  authorization_checked! :index, :show, :new, :copy, :export_dialog, :generate_pdf_dialog, :generate_pdf
+  authorization_checked! :index, :default_view, :show, :new, :copy, :export_dialog, :generate_pdf_dialog, :generate_pdf
 
   before_action :load_and_validate_query, only: %i[index copy], unless: -> { request.format.html? }
 
@@ -67,6 +67,17 @@ class WorkPackagesController < ApplicationController
         atom_list
       end
     end
+  end
+
+  def default_view
+    hash = {}
+
+    if @project.present?
+      query = Query.joins(:views).where(public: true, project_id: @project.id).where(views: { type: 'work_packages_table' }).order(id: :desc).first
+      hash[:query_id] = query.id if query.present?
+    end
+
+    redirect_to project_work_packages_path(@project.identifier, hash)
   end
 
   def show
