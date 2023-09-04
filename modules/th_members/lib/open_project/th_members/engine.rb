@@ -21,7 +21,7 @@ module OpenProject::ThMembers
       end
     end
 
-    patches %i[Member]
+    patches %i[Member User]
 
     config.to_prepare do
       OpenProject::ThMembers::Patches::MembersPatch.mixin!
