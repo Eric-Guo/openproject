@@ -26,8 +26,16 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
-
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+  inject,
+} from '@angular/core';
 import {
   PartitionedQuerySpacePageComponent,
   ToolbarButtonComponentDefinition,
@@ -160,6 +168,13 @@ export class IFCViewerPageComponent
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   private removeSubscription:Function;
+
+  constructor(
+    injector:Injector,
+    cdr:ChangeDetectorRef,
+  ) {
+    super(injector, cdr);
+  }
 
   ngOnInit():void {
     super.ngOnInit();
