@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { IDynamicFieldGroupConfig, IOPFormlyFieldSettings } from 'core-app/shared/components/dynamic-forms/typings';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
@@ -23,7 +23,7 @@ export interface ProjectTemplateOption {
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.sass'],
 })
-export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
+export class NewProjectComponent extends UntilDestroyedMixin implements OnInit, AfterViewInit {
   formUrl:string|null;
 
   resourcePath:string;
@@ -57,7 +57,7 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
     .projects
     .filtered(
       this.copyableTemplateFilter,
-      { pageSize: '-1' },
+      { pageSize: '-1', sortBy: JSON.stringify([['id', 'asc']]) },
     )
     .get()
     .pipe(
@@ -110,6 +110,16 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    this.templateOptions$.subscribe((items) => {
+      if (!items || items.length === 0) return;
+      setTimeout(() => {
+        this.templateForm.setValue({ template: items[0] });
+        this.onTemplateSelected({ href: items[0].href });
+      }, 300);
+    });
+  }
+
   onSubmitted(response:HalSource) {
     if (response._type === 'JobStatus') {
       this.jobStatusModalService.show(response.jobId as string);
@@ -124,6 +134,12 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit {
       name: this.dynamicForm.model.name,
       _meta: {
         ...(this.initialPayload?._meta as Record<string, unknown>),
+        copyMembers: false,
+        copyVersions: false,
+        copyWiki: false,
+        copyWikiPageAttachments: false,
+        copyForums: false,
+        copyStorages: false,
         sendNotifications: false,
       },
     };
