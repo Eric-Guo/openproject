@@ -26,8 +26,15 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import { ChangeDetectionStrategy, Component, Injector, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   PartitionedQuerySpacePageComponent,
   ToolbarButtonComponentDefinition,
@@ -161,9 +168,10 @@ export class IFCViewerPageComponent
     readonly ifcData:IfcModelsDataService,
     readonly bcfView:BcfViewService,
     readonly injector:Injector,
+    readonly cdr:ChangeDetectorRef,
     readonly viewerBridgeService:ViewerBridgeService,
   ) {
-    super(injector);
+    super(injector, cdr);
   }
 
   ngOnInit():void {
