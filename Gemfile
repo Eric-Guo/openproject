@@ -362,3 +362,5 @@ end
 gem 'gruf'
 
 gem 'jwt'
+
+gem 'chinese_pinyin'

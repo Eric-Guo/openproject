@@ -63,7 +63,9 @@ class WorkPackagesController < ApplicationController
     hash = {}
 
     if @project.present?
-      query = Query.joins(:views).where(public: true, project_id: @project.id).where(views: { type: 'work_packages_table' }).order(id: :desc).first
+      queries = Query.joins(:views).where(public: true, project_id: @project.id).where(views: { type: 'work_packages_table' }).all
+      queries = queries.sort { |a, b| a.pinyin_name <=> b.pinyin_name }
+      query = queries[0]
       hash[:query_id] = query.id if query.present?
     end
 

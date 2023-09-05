@@ -398,6 +398,10 @@ class Query < ApplicationRecord
     subproject_filter
   end
 
+  def pinyin_name
+    @pinyin_name ||= Pinyin.t(name)
+  end
+
   private
 
   ##

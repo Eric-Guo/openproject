@@ -399,6 +399,7 @@ GEM
     cells-rails (0.1.5)
       actionpack (>= 5.0)
       cells (>= 4.1.6, < 5.0.0)
+    chinese_pinyin (1.1.0)
     closure_tree (7.4.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
@@ -1095,6 +1096,7 @@ DEPENDENCIES
   carrierwave_direct (~> 2.1.0)
   cells-erb (~> 0.1.0)
   cells-rails (~> 0.1.4)
+  chinese_pinyin
   closure_tree (~> 7.4.0)
   colored2 (< 4)
   commonmarker (~> 0.23.9)
