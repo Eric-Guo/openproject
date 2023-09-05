@@ -116,7 +116,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
   getRoles() {
     const filters = new ApiV3FilterBuilder();
     filters.add('unit', '=', ['project']);
-    this.apiV3Service.roles.filtered(filters).get().subscribe((res) => {
+    this.apiV3Service.roles.filtered(filters, { sortBy: JSON.stringify([['position', 'desc']]) }).get().subscribe((res) => {
       this.roles = res.elements;
     });
   }

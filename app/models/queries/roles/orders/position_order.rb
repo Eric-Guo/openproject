@@ -26,11 +26,10 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Queries::Roles
-  ::Queries::Register.register(RoleQuery) do
-    filter Filters::GrantableFilter
-    filter Filters::UnitFilter
+class Queries::Roles::Orders::PositionOrder < Queries::Orders::Base
+  self.model = Role
 
-    order Orders::PositionOrder
+  def self.key
+    :position
   end
 end
