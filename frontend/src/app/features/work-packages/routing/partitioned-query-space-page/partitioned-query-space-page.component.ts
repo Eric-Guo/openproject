@@ -28,7 +28,9 @@
 
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  Injector,
   OnDestroy,
   OnInit,
   inject,
@@ -89,6 +91,10 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
   readonly uiRouterGlobals = inject(UIRouterGlobals);
 
   readonly configuration = inject(ConfigurationService);
+
+  constructor(public injector:Injector, readonly cdr:ChangeDetectorRef) {
+    super(injector);
+  }
 
   text:Record<string, string> = {
     jump_to_pagination: this.I18n.t('js.work_packages.jump_marks.pagination'),
@@ -248,6 +254,8 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
     if (this.shouldUpdateHtmlTitle()) {
       this.titleService.setFirstPart(this.selectedTitle);
     }
+
+    this.cdr.detectChanges();
   }
 
   refresh(visibly = false, firstPage = false):void {
