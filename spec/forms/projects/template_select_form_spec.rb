@@ -151,8 +151,8 @@ RSpec.describe Projects::TemplateSelectForm, type: :forms do
     end
 
     context "when template_id is nil" do
-      it "renders checked radio button for Blank Project" do
-        expect(rendered_form).to have_checked_field "Blank project", type: :radio
+      it "renders checked radio button for the first available template" do
+        expect(rendered_form).to have_checked_field "Agile", type: :radio
       end
     end
 
@@ -161,6 +161,19 @@ RSpec.describe Projects::TemplateSelectForm, type: :forms do
 
       it "renders checked radio button for given template" do
         expect(rendered_form).to have_checked_field "PRINCE", type: :radio
+      end
+    end
+
+    context "when creation order differs from name order" do
+      let(:model) { create(:project, workspace_type: "project") }
+
+      before do
+        create(:template_project, name: "Zulu", workspace_type: "project", members: { user => copy_project_role })
+        create(:template_project, name: "Alpha", workspace_type: "project", members: { user => copy_project_role })
+      end
+
+      it "defaults to the first created template" do
+        expect(rendered_form).to have_checked_field "Zulu", type: :radio
       end
     end
   end
