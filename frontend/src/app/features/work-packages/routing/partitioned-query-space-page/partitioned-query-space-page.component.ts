@@ -27,6 +27,7 @@
 
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -89,6 +90,8 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
   readonly urlParams = inject(UrlParamsService);
 
   readonly configuration = inject(ConfigurationService);
+
+  readonly cdr = inject(ChangeDetectorRef);
 
   text:Record<string, string> = {
     jump_to_pagination: this.I18n.t('js.work_packages.jump_marks.pagination'),
@@ -241,6 +244,8 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
     if (this.shouldUpdateHtmlTitle()) {
       this.titleService.setFirstPart(this.selectedTitle);
     }
+
+    this.cdr.detectChanges();
   }
 
   refresh(visibly = false, firstPage = false):void {
