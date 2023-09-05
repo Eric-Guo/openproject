@@ -167,20 +167,21 @@ module Redmine::MenuManager::MenuHelper
     caption, url, selected = extract_node_details(item, project)
 
     link_text = ''.html_safe
-    link_text << spot_icon(item.icon, size: '1_25') if item.icon(project).present?
+    size = item.name.to_sym == :help ? '1_5' : '1_25'
+    link_text << spot_icon(item.icon, size:) if item.icon(project).present?
     badge_class = item.badge(project).present? ? " #{menu_class}--item-title_has-badge" : ''
     link_text << content_tag(:span,
                              class: "#{menu_class}--item-title#{badge_class}",
                              lang: menu_item_locale(item)) do
       title_text = ''.html_safe + content_tag(:span, caption, class: 'ellipsis') + badge_for(item)
       if item.enterprise_feature.present? && !EnterpriseToken.allows_to?(item.enterprise_feature)
-        title_text << (''.html_safe + spot_icon('enterprise-addons', size: '1_25'))
+        title_text << (''.html_safe + spot_icon('enterprise-addons', size:))
       end
       title_text
     end
 
     if item.icon_after.present?
-      link_text << (''.html_safe + spot_icon(item.icon_after, size: '1_25', classnames: "after-menu-icon"))
+      link_text << (''.html_safe + spot_icon(item.icon_after, size:, classnames: "after-menu-icon"))
     end
 
     html_options = item.html_options(selected:)
