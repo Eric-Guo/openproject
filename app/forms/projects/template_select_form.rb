@@ -57,7 +57,7 @@ module Projects
           label: blank_template_label,
           id: "template_id_blank",
           caption: blank_template_caption,
-          checked: template_id.blank?
+          checked: selected_template_id.blank?
         )
 
         available_templates.each do |template|
@@ -65,7 +65,7 @@ module Projects
             value: template.id,
             label: template.name,
             caption: format_caption(template.description),
-            checked: template.id == template_id
+            checked: template.id == selected_template_id
           )
         end
       end
@@ -78,7 +78,11 @@ module Projects
     def available_templates
       @available_templates ||= Project
                                  .available_templates(workspace_type)
-                                 .order(name: :asc)
+                                 .order(id: :asc)
+    end
+
+    def selected_template_id
+      @selected_template_id ||= template_id.nil? ? available_templates.first&.id : template_id
     end
 
     def format_caption(text)
