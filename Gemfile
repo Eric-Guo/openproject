@@ -439,6 +439,7 @@ gem "activerecord-nulldb-adapter", "~> 1.2.2"
 gem "with_advisory_lock", "~> 7.5.0"
 
 gem "jwt"
+gem "chinese_pinyin"
 
 # Load Gemfile.modules explicitly to allow dependabot to work
 eval_gemfile "./Gemfile.modules"
