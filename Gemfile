@@ -400,6 +400,7 @@ platforms :mri, :mingw, :x64_mingw do
 end
 
 gem "jwt"
+gem "chinese_pinyin"
 
 # Load Gemfile.modules explicitly to allow dependabot to work
 eval_gemfile "./Gemfile.modules"
