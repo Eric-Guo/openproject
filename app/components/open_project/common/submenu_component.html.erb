@@ -67,7 +67,7 @@
 
         <ul class="op-submenu--items"
             data-menus--submenu-target="container">
-          <% menu_item.children.each do |child_item| %>
+          <% menu_item.children.sort { |a, b| Pinyin.t(a.title) <=> Pinyin.t(b.title) }.each do |child_item| %>
             <li class="op-submenu--item" data-filter--filter-list-target="searchItem">
               <% selected = child_item.selected ? 'selected' : '' %>
               <a class="op-submenu--item-action <%= selected %>" href="<%= child_item.href %>" data-test-selector="op-submenu--item-action">
