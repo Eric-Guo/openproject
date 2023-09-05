@@ -28,6 +28,7 @@
 
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Injector,
   OnInit,
@@ -158,9 +159,10 @@ export class IFCViewerPageComponent extends PartitionedQuerySpacePageComponent i
     readonly ifcData:IfcModelsDataService,
     readonly bcfView:BcfViewService,
     readonly injector:Injector,
+    readonly cdr:ChangeDetectorRef,
     readonly viewerBridgeService:ViewerBridgeService,
   ) {
-    super(injector);
+    super(injector, cdr);
   }
 
   ngOnInit():void {
