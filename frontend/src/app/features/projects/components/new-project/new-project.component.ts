@@ -108,8 +108,10 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit, 
   ngAfterViewInit() {
     this.templateOptions$.subscribe((items) => {
       if (!items || items.length === 0) return;
-      this.templateForm.setValue({ template: items[0] });
-      this.onTemplateSelected({ href: items[0].href });
+      setTimeout(() => {
+        this.templateForm.setValue({ template: items[0] });
+        this.onTemplateSelected({ href: items[0].href });
+      }, 300);
     });
   }
 
@@ -127,6 +129,12 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit, 
       name: this.dynamicForm.model.name,
       _meta: {
         ...(this.initialPayload?._meta as Record<string, unknown>),
+        copyMembers: false,
+        copyVersions: false,
+        copyWiki: false,
+        copyWikiPageAttachments: false,
+        copyForums: false,
+        copyStorages: false,
         sendNotifications: false,
       },
     };
