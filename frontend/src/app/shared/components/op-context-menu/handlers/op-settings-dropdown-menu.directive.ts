@@ -291,7 +291,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger {
         linkText: 'Excel批量导入',
         icon: 'icon-download',
         onClick: () => {
-          const link = 'https://edoc.thape.com.cn:8022/index.html#doc/enterprise/10969797';
+          const link = 'https://ta2n4jodemn.feishu.cn/wiki/RzjswgN2Fiz4DekwPpmcQbsRn8f';
           window.open(link, '_blank');
           return true;
         },
