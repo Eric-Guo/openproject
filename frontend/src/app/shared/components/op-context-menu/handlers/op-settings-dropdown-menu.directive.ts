@@ -288,7 +288,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger {
       {
         // Export query
         disabled: false,
-        linkText: 'Excel同步工具下载',
+        linkText: 'Excel批量导入',
         icon: 'icon-download',
         onClick: () => {
           const link = 'https://edoc.thape.com.cn:8022/index.html#doc/enterprise/10969797';
