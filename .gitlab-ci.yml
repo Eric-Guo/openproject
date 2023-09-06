@@ -11,7 +11,7 @@ variables:
 stages:
   - deploy
 
-deploy_production:
+deploy_staging:
   cache:
     - key:
         files:
@@ -27,4 +27,4 @@ deploy_production:
     - bundle exec cap staging deploy
   environment:
     name: staging
-    url: https://ppm.thape.com.cn
+    url: https://plm-staging.thape.com.cn
