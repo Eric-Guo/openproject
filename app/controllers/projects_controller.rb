@@ -244,7 +244,7 @@ class ProjectsController < ApplicationController
   def create_from_template # rubocop:disable Metrics/AbcSize
     @copy_options = Projects::CopyOptions.new
 
-    target_project_params = permitted_params.new_project.to_h.merge(template: @template)
+    target_project_params = permitted_params.new_project.to_h.merge(template: @template, public: false)
 
     service_call = Projects::EnqueueCopyService
       .new(user: current_user, model: @template)
