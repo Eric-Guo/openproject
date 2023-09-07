@@ -375,7 +375,7 @@ RSpec.describe ProjectsController do
     end
 
     context "with a template" do
-      let(:template) { create(:template_project, workspace_type:) }
+      let(:template) { create(:template_project, workspace_type:, public: true) }
 
       before do
         copy_service = instance_double(Projects::EnqueueCopyService)
@@ -392,7 +392,7 @@ RSpec.describe ProjectsController do
         allow(copy_service)
           .to receive(:call)
               .with(
-                target_project_params: { "name" => name, "template" => template },
+                target_project_params: { "name" => name, "public" => false, "template" => template },
                 only: dependencies,
                 skip_custom_field_validation: true,
                 send_notifications: false

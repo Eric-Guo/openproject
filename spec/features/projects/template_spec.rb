@@ -68,6 +68,7 @@ RSpec.describe "Project templates", :js, with_good_job_batches: [CopyProjectJob,
              status_code: "on_track",
              status_explanation: "some explanation",
              name: "My template",
+             public: true,
              enabled_module_names: %w[work_package_tracking])
     end
     let!(:other_project) { create(:project, name: "Some other project") }
@@ -129,6 +130,7 @@ RSpec.describe "Project templates", :js, with_good_job_batches: [CopyProjectJob,
       project = Project.find_by identifier: "foo-bar"
       expect(project.name).to eq "Foo bar"
       expect(project).not_to be_templated
+      expect(project).not_to be_public
       # Members are copied by default from the template
       expect(project.users).to contain_exactly(current_user, other_user)
       expect(project.enabled_module_names.sort).to eq(template.enabled_module_names.sort)
