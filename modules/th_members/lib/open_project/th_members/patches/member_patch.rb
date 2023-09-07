@@ -9,6 +9,8 @@ module OpenProject::ThMembers
         accepts_nested_attributes_for :profile
 
         after_save :set_notification_settings
+
+        after_save :set_default_profile, if: Proc.new { |member| member.profile.blank? }
       end
     end
 
@@ -74,6 +76,11 @@ module OpenProject::ThMembers
           ns.responsible = true
         end
         ns.save!
+      end
+
+      def set_default_profile
+        profile = MemberProfile.new(member_id: self.id)
+        profile.save
       end
     end
   end
