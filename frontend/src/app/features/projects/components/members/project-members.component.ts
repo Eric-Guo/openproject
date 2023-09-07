@@ -152,6 +152,17 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
         if (this.currentFilter.department && this.currentFilter.department !== member.profile.department) return false;
       }
       return true;
+    }).sort((a, b) => {
+      if (!b.profile) return -1;
+      if (!a.profile) return 1;
+      if (!b.profile.company) return -1;
+      if (!a.profile.company) return 1;
+      const companyAB = a.profile.company.localeCompare(b.profile.company);
+      if (companyAB !== 0) return companyAB;
+      if (!b.profile.department) return -1;
+      if (!a.profile.department) return 1;
+      const departmentAB = a.profile.department.localeCompare(b.profile.department);
+      return departmentAB;
     });
   }
 
