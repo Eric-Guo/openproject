@@ -127,6 +127,7 @@ export class NewProjectComponent extends UntilDestroyedMixin implements OnInit, 
     this.initialPayload = {
       ...this.initialPayload,
       name: this.dynamicForm.model.name,
+      public: false,
       _meta: {
         ...(this.initialPayload?._meta as Record<string, unknown>),
         copyMembers: false,
