@@ -68,10 +68,6 @@ export class WidgetInboxComponent extends AbstractWidgetComponent implements OnI
       title: this.I18n.t('js.label_assignee'),
     },
     {
-      key: 'responsible',
-      title: this.I18n.t('js.notifications.menu.accountable'),
-    },
-    {
       key: 'watched',
       title: this.I18n.t('js.notifications.menu.watched'),
     },

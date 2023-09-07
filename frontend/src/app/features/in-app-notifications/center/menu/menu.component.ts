@@ -82,12 +82,6 @@ export class IanMenuComponent implements OnInit {
       ...getUiLinkForFilters({ filter: 'reason', name: 'assigned' }),
     },
     {
-      key: 'responsible',
-      title: this.I18n.t('js.notifications.menu.accountable'),
-      icon: 'accountable',
-      ...getUiLinkForFilters({ filter: 'reason', name: 'responsible' }),
-    },
-    {
       key: 'watched',
       title: this.I18n.t('js.notifications.menu.watched'),
       icon: 'watching',
