@@ -19,7 +19,6 @@ import { ProjectResource } from 'core-app/features/hal/resources/project-resourc
 import { RoleResource } from 'core-app/features/hal/resources/role-resource';
 import { ApiV3FilterBuilder } from 'core-app/shared/helpers/api-v3/api-v3-filter-builder';
 import { ToastService } from 'core-app/shared/components/toaster/toast.service';
-import { ColorsService } from 'core-app/shared/components/colors/colors.service';
 
 type TableRow = {
   name:string;
@@ -48,8 +47,6 @@ type GroupMembersItemGroup = {
   type:'group',
   title:string;
   total:number;
-  bgColor:string;
-  borderColor:string;
 };
 
 type GroupMembersItemMember = {
@@ -111,7 +108,6 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     readonly loadingIndicator:LoadingIndicatorService,
     readonly toastService:ToastService,
     readonly httpClient:HttpClient,
-    readonly colorsService:ColorsService,
   ) {}
 
   ngOnInit():void {
@@ -290,8 +286,6 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
           type: 'group',
           title: groupTitle,
           total: 0,
-          bgColor: this.colorsService.toHsla(groupTitle, 70),
-          borderColor: this.colorsService.toHsl(groupTitle),
         };
         groups.push(group);
       }
