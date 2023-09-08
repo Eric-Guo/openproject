@@ -322,16 +322,23 @@
           <tr
             *ngIf="groupMember.type === 'group'"
             class="member group"
+            [ngStyle]="{
+              backgroundColor: '#f8f8f8',
+            }"
           >
-            <td
-              colspan="10"
-              [ngStyle]="{
-                color: 'rgb(46, 46, 46)',
-                fontWeight: 'bold',
-                borderTop: '1px solid rgb(32, 32, 32)',
-              }"
-            >
-              {{ groupMember.title }}（{{ groupMember.total }}）
+            <td colspan="10">
+              <div
+                [ngStyle]="{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: 'rgb(46, 46, 46)',
+                }"
+              >
+                <span class="spot-icon spot-icon_group"></span>
+                <span [ngStyle]="{ marginTop: '2px', marginLeft: '4px' }">
+                  {{ groupMember.title }}（{{ groupMember.total }}）
+                </span>
+              </div>
             </td>
           </tr>
         </ng-template>
