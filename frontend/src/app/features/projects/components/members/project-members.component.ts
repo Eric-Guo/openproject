@@ -19,6 +19,7 @@ import { ProjectResource } from 'core-app/features/hal/resources/project-resourc
 import { RoleResource } from 'core-app/features/hal/resources/role-resource';
 import { ApiV3FilterBuilder } from 'core-app/shared/helpers/api-v3/api-v3-filter-builder';
 import { ToastService } from 'core-app/shared/components/toaster/toast.service';
+import { ColorsService } from 'core-app/shared/components/colors/colors.service';
 
 type TableRow = {
   name:string;
@@ -43,6 +44,19 @@ type ImportDatum = {
   remark:string;
 };
 
+type GroupMembersItemGroup = {
+  type:'group',
+  title:string;
+  total:number;
+  bgColor:string;
+  borderColor:string;
+};
+
+type GroupMembersItemMember = {
+  type:'member';
+  member:MembershipResource;
+};
+
 // eslint-disable-next-line change-detection-strategy/on-push
 @Component({
   selector: 'op-project-members',
@@ -62,7 +76,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
 
   public currentMembers:MembershipResource[] = [];
 
-  public currentGroupMembers:({ type:'group', title:string; total:number; } | { type:'member', member:MembershipResource })[] = [];
+  public currentGroupMembers:(GroupMembersItemGroup | GroupMembersItemMember)[] = [];
 
   public project:ProjectResource;
 
@@ -97,6 +111,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     readonly loadingIndicator:LoadingIndicatorService,
     readonly toastService:ToastService,
     readonly httpClient:HttpClient,
+    readonly colorsService:ColorsService,
   ) {}
 
   ngOnInit():void {
@@ -260,7 +275,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
   }
 
   setCurrentGroupMembers() {
-    let group:{ type:'group'; title:string; total:number; };
+    let group:GroupMembersItemGroup;
     this.currentGroupMembers = (this.currentMembers || []).reduce((groups, member) => {
       const roleIds = member.roles.map((item) => Number(item.id));
       if (roleIds.includes(3)) {
@@ -271,7 +286,13 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       const groupTitle = `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
       const lastGroupTitle = last && last.type === 'member' ? `${last.member.profile?.company?.trim() || ''} - ${last.member.profile?.department?.trim() || ''}` : '';
       if (groupTitle !== lastGroupTitle) {
-        group = { type: 'group', title: groupTitle, total: 0 };
+        group = {
+          type: 'group',
+          title: groupTitle,
+          total: 0,
+          bgColor: this.colorsService.toHsla(groupTitle, 70),
+          borderColor: this.colorsService.toHsl(groupTitle),
+        };
         groups.push(group);
       }
       group.total += 1;

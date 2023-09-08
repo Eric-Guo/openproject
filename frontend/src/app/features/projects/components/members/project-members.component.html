@@ -325,7 +325,13 @@
           >
             <td
               colspan="10"
-              style="color: rgb(46, 46, 46); font-weight: bold; border-top: 1px solid rgb(32, 32, 32);"
+              [ngStyle]="{
+                color: 'white',
+                fontWeight: 'bold',
+                borderTop: '2px solid',
+                borderTopColor: groupMember.borderColor,
+                backgroundColor: groupMember.bgColor,
+              }"
             >
               {{ groupMember.title }}（{{ groupMember.total }}）
             </td>
