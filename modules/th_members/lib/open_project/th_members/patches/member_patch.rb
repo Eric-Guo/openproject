@@ -8,8 +8,6 @@ module OpenProject::ThMembers
 
         accepts_nested_attributes_for :profile
 
-        after_save :set_notification_settings
-
         after_save :set_default_profile, if: Proc.new { |member| member.profile.blank? }
       end
     end
