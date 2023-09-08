@@ -170,14 +170,6 @@ export class StaticQueriesService {
       },
     ];
 
-    const projectIdentifier = this.CurrentProject.identifier;
-    if (projectIdentifier) {
-      items = [
-        ...items,
-        ...this.projectDependentQueries(projectIdentifier),
-      ];
-    }
-
     if (this.CurrentUser.isLoggedIn) {
       items = [
         ...items,
