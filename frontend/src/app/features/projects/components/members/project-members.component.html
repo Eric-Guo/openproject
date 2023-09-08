@@ -1,7 +1,7 @@
 <div class="toolbar-container">
   <div class="toolbar">
     <div class="title-container">
-      <h2>成员</h2>
+      <h2>成员（{{ members.length }}）</h2>
     </div>
     <ul class="toolbar-items">
       <li
@@ -311,13 +311,25 @@
         </tr>
       </thead>
       <tbody>
-        <ng-template ngFor let-member [ngForOf]="currentMembers">
+        <ng-template ngFor let-groupMember [ngForOf]="currentGroupMembers">
           <op-project-members-row
-            [member]="member"
+            *ngIf="groupMember.type === 'member'"
+            [member]="groupMember.member"
             [roles]="roles"
             [users]="users"
             [reloadMembers]="getMembers"
           ></op-project-members-row>
+          <tr
+            *ngIf="groupMember.type === 'group'"
+            class="member group"
+          >
+            <td
+              colspan="10"
+              style="color: rgb(46, 46, 46); font-weight: bold; border-top: 1px solid rgb(32, 32, 32);"
+            >
+              {{ groupMember.title }}（{{ groupMember.total }}）
+            </td>
+          </tr>
         </ng-template>
       </tbody>
     </table>

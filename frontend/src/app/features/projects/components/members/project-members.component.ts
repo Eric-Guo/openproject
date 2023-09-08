@@ -62,6 +62,8 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
 
   public currentMembers:MembershipResource[] = [];
 
+  public currentGroupMembers:({ type:'group', title:string; total:number; } | { type:'member', member:MembershipResource })[] = [];
+
   public project:ProjectResource;
 
   public indicator:LoadingIndicator;
@@ -164,6 +166,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       const departmentAB = a.profile.department.localeCompare(b.profile.department);
       return departmentAB;
     });
+    this.setCurrentGroupMembers();
   }
 
   get allowAddMember() {
@@ -210,7 +213,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       color: { argb: 'FFFF0000' },
       size: 9,
     };
-    this.members.forEach((member) => {
+    this.currentMembers.forEach((member) => {
       ws.addRow({
         name: member.name,
         email: member.email,
@@ -254,6 +257,22 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       }
     });
     return [...departments];
+  }
+
+  setCurrentGroupMembers() {
+    let group:{ type:'group'; title:string; total:number; };
+    this.currentGroupMembers = (this.currentMembers || []).reduce((groups, member) => {
+      const last = groups[groups.length - 1];
+      const groupTitle = `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
+      const lastGroupTitle = last && last.type === 'member' ? `${last.member.profile?.company?.trim() || ''} - ${last.member.profile?.department?.trim() || ''}` : '';
+      if (groupTitle !== lastGroupTitle) {
+        group = { type: 'group', title: groupTitle, total: 0 };
+        groups.push(group);
+      }
+      group.total += 1;
+      groups.push({ type: 'member', member });
+      return groups;
+    }, [] as typeof this.currentGroupMembers);
   }
 
   handleFilterSubmit(form:NgForm) {
