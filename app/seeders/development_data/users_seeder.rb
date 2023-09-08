@@ -103,7 +103,7 @@ module DevelopmentData
         user.status = User.statuses[:active]
         user.language = I18n.locale
         user.force_password_change = false
-        user.notification_settings.build(assignee: true, responsible: true, mentioned: true, watched: true)
+        user.notification_settings.build(assignee: false, responsible: false, mentioned: true, watched: false, due_date: 1)
       end
     end
 
