@@ -63,7 +63,7 @@ module Notifications
     end
 
     def reason_filters
-      %w[mentioned assigned responsible watched dateAlert shared].map do |reason|
+      %w[mentioned assigned watched dateAlert shared].map do |reason|
         count = unread_by_reason[reason]
         menu_item(title: I18n.t("notifications.reasons.#{reason}"),
                   icon_key: reason,
