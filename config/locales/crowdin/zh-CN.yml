@@ -1722,7 +1722,7 @@ zh-CN:
   label_project_hierarchy: "项目层次结构"
   label_project_new: "新的项目"
   label_project_plural: "项目"
-  label_project_settings: "项目设置"
+  label_project_settings: "设置"
   label_projects_storage_information: "%{count} 项目使用 %{storage} 磁盘存储"
   label_project_view_all: "查看所有项目"
   label_project_show_details: "显示项目详细信息"
