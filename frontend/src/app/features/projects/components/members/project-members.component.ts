@@ -271,28 +271,30 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
   }
 
   setCurrentGroupMembers() {
-    let group:GroupMembersItemGroup;
-    this.currentGroupMembers = (this.currentMembers || []).reduce((groups, member) => {
+    let currentGroup:GroupMembersItemGroup;
+    const admins:GroupMembersItemMember[] = [];
+    const groupMembers = (this.currentMembers || []).reduce((groups, member) => {
       const roleIds = member.roles.map((item) => Number(item.id));
       if (roleIds.includes(3)) {
-        groups.unshift({ type: 'member', member });
+        admins.push({ type: 'member', member });
         return groups;
       }
       const last = groups[groups.length - 1];
       const groupTitle = `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
       const lastGroupTitle = last && last.type === 'member' ? `${last.member.profile?.company?.trim() || ''} - ${last.member.profile?.department?.trim() || ''}` : '';
       if (groupTitle !== lastGroupTitle) {
-        group = {
+        currentGroup = {
           type: 'group',
           title: groupTitle,
           total: 0,
         };
-        groups.push(group);
+        groups.push(currentGroup);
       }
-      group.total += 1;
+      currentGroup.total += 1;
       groups.push({ type: 'member', member });
       return groups;
     }, [] as typeof this.currentGroupMembers);
+    this.currentGroupMembers = [...admins, ...groupMembers];
   }
 
   handleFilterSubmit(form:NgForm) {
