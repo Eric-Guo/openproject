@@ -64,21 +64,6 @@
           </td>
         </ng-container>
       </tr>
-      <tr>
-        <th class="op-table--cell op-table--cell_soft-heading">
-          {{ text.responsible }}
-        </th>
-        <ng-container *ngFor="let item of settings.controls">
-          <td class="op-table--cell" [formGroup]="item">
-            <input
-              type="checkbox"
-              formControlName="responsible"
-              data-qa-project-notification-type="responsible"
-              [attr.data-qa-project]="item.controls.project.value.title"
-            />
-          </td>
-        </ng-container>
-      </tr>
 
       <tr *ngIf="!eeShowBanners">
         <th class="op-table--cell op-table--cell_soft-heading">

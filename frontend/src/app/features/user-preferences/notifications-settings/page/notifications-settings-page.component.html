@@ -41,18 +41,6 @@
     />
   </spot-selector-field>
 
-  <spot-selector-field
-    [label]="text.responsible"
-    [control]="form.get('responsible')"
-  >
-    <input
-      slot="input"
-      type="checkbox"
-      formControlName="responsible"
-      data-qa-global-notification-type="responsible"
-    />
-  </spot-selector-field>
-
   <h5>{{ text.dateAlerts.title }}</h5>
   <p>{{ text.dateAlerts.description }}</p>
   <div *ngIf="!eeShowBanners">
