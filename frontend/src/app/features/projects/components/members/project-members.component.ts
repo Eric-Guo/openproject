@@ -262,6 +262,11 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
   setCurrentGroupMembers() {
     let group:{ type:'group'; title:string; total:number; };
     this.currentGroupMembers = (this.currentMembers || []).reduce((groups, member) => {
+      const roleIds = member.roles.map((item) => Number(item.id));
+      if (roleIds.includes(3)) {
+        groups.unshift({ type: 'member', member });
+        return groups;
+      }
       const last = groups[groups.length - 1];
       const groupTitle = `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
       const lastGroupTitle = last && last.type === 'member' ? `${last.member.profile?.company?.trim() || ''} - ${last.member.profile?.department?.trim() || ''}` : '';
