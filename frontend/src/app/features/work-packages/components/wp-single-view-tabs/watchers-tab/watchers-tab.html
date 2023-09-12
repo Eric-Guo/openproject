@@ -6,6 +6,12 @@
     </div>
   </div>
   <div [hidden]="error">
+    <wp-watchers-tab-button-group
+      *ngIf="!!workPackage"
+      [workPackage]="workPackage"
+      [addWatchers]="addWatchers"
+      [loading]="addWatchersLoading"
+    ></wp-watchers-tab-button-group>
     <div class="work-package--watchers form--selected-value--list"
          [ngClass]="{'-read-only': !allowedToRemove}">
 
