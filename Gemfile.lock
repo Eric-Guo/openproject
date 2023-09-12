@@ -998,7 +998,7 @@ GEM
       ffi (~> 1.1)
     table_print (1.5.7)
     temple (0.10.2)
-    test-prof (1.2.2)
+    test-prof (1.2.3)
     thor (1.2.2)
     thwait (0.2.0)
       e2mmap
