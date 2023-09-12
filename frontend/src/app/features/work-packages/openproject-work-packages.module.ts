@@ -407,6 +407,7 @@ import {
 import {
   OpBaselineLegendsComponent,
 } from 'core-app/features/work-packages/components/wp-baseline/baseline-legends/baseline-legends.component';
+import { WorkPackageWatchersTabButtonGroupComponent } from './components/wp-single-view-tabs/watchers-tab/watchers-tab-button-group.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {
   WorkPackageTimerButtonComponent,
@@ -599,6 +600,7 @@ import {
     // Watchers wp-tab-wrapper
     WorkPackageWatchersTabComponent,
     WorkPackageWatcherEntryComponent,
+    WorkPackageWatchersTabButtonGroupComponent,
 
     // Relations
     WorkPackageRelationsTabComponent,
