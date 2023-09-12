@@ -185,6 +185,7 @@ import { OpBaselineModalComponent } from 'core-app/features/work-packages/compon
 import { OpBaselineComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline/baseline.component';
 import { OpBaselineLoadingComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline-loading/baseline-loading.component';
 import { OpBaselineLegendsComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline-legends/baseline-legends.component';
+import { WorkPackageWatchersTabButtonGroupComponent } from './components/wp-single-view-tabs/watchers-tab/watchers-tab-button-group.component';
 
 @NgModule({
   imports: [
@@ -356,6 +357,7 @@ import { OpBaselineLegendsComponent } from 'core-app/features/work-packages/comp
     // Watchers wp-tab-wrapper
     WorkPackageWatchersTabComponent,
     WorkPackageWatcherEntryComponent,
+    WorkPackageWatchersTabButtonGroupComponent,
 
     // Relations
     WorkPackageRelationsTabComponent,

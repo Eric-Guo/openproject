@@ -69,6 +69,8 @@ export class WorkPackageWatchersTabComponent extends UntilDestroyedMixin impleme
 
   public watching:any[] = [];
 
+  public addWatchersLoading = false;
+
   public text = {
     loading: this.I18n.t('js.watchers.label_loading'),
     loadingError: this.I18n.t('js.watchers.label_error_loading'),
@@ -133,6 +135,23 @@ export class WorkPackageWatchersTabComponent extends UntilDestroyedMixin impleme
   public set loadingPromise(promise:Promise<any>) {
     this.loadingIndicator.wpDetails.promise = promise;
   }
+
+  public addWatchers = (users:any[]) => {
+    const userIds = (this.watching || []).map((item) => item.id);
+    this.addWatchersLoading = true;
+    Promise.all(users.map(async (user) => {
+      if (userIds.includes(user.id)) return;
+      await this.workPackage.addWatcher.$link.$fetch({ user: { href: user.href } });
+    })).then(() => {
+      this.wpWatchersService.require(this.workPackage, true);
+      this.apiV3Service.work_packages.id(this.workPackage).refresh();
+      this.cdRef.detectChanges();
+    }).catch((error:any) => {
+      this.notificationService.showError(error, this.workPackage);
+    }).finally(() => {
+      this.addWatchersLoading = false;
+    });
+  };
 
   public addWatcher(user:any) {
     this.loadingPromise = this.workPackage.addWatcher.$link.$fetch({ user: { href: user.href } })
