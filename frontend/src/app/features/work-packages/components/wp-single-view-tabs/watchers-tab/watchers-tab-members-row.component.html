@@ -1,0 +1,31 @@
+<tr class="member user">
+  <td class="buttons">
+    <input
+      type="checkbox"
+      [checked]="checked"
+      (change)="onChange($event.target.checked, member)"
+    />
+  </td>
+  <td class="name">
+    <op-principal
+      [principal]="member.principal"
+      size="mini"
+      [hideName]="false"
+    ></op-principal>
+  </td>
+  <td class="email">
+    {{ email }}
+  </td>
+  <td class="roles">
+    {{ memberRoles }}
+  </td>
+  <td class="company">
+    {{ company }}
+  </td>
+  <td class="department">
+    {{ department }}
+  </td>
+  <td class="position">
+    {{ position }}
+  </td>
+</tr>
