@@ -1,0 +1,184 @@
+<div>
+  <form
+    #filterForm="ngForm"
+    (ngSubmit)="handleFilterSubmit(filterForm)"
+    (reset)="handleFilterReset()"
+  >
+    <fieldset class="simple-filters--container">
+      <legend>筛选器</legend>
+      <ul class="simple-filters--filters">
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="company">公司:</label>
+          <select
+            name="company"
+            class="simple-filters--filter-value"
+            id="company"
+            [(ngModel)]="filterFormData.company"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of companies"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="department">部门:</label>
+          <select
+            name="department"
+            class="simple-filters--filter-value"
+            id="department"
+            [(ngModel)]="filterFormData.department"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of departments"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="name">名称:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="simple-filters--filter-value"
+            [(ngModel)]="filterFormData.name"
+          >
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="email">邮箱:</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="simple-filters--filter-value"
+            [(ngModel)]="filterFormData.email"
+          >
+        </li>
+        <li class="simple-filters--controls">
+          <input type="submit" value="应用" class="button -highlight -small">
+          <button type="reset" class="button -small -with-icon icon-undo">清除</button>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+</div>
+
+<div class="generic-table--container loading-indicator--location" data-indicator-name="members-module">
+  <div class="generic-table--results-container">
+    <table class="generic-table">
+      <thead>
+        <tr>
+          <th>
+            <div class="generic-table--empty-header">
+              <input
+                type="checkbox"
+                [checked]="isCheckedAll"
+                [indeterminate]="isIndeterminateAll"
+                (change)="handleCheckAllChange($event.target.checked)"
+              />
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  名称
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  电子邮件
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  角色
+                </span>
+              </div>
+            </div>
+          </th> 
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  公司
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  部门
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  职位
+                </span>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-groupMember [ngForOf]="currentGroupMembers">
+          <wp-watchers-tab-members-row
+            *ngIf="groupMember.type === 'member'"
+            [member]="groupMember.member"
+            [checked]="groupMember.checked"
+            [onChange]="handleRowChange"
+          ></wp-watchers-tab-members-row>
+          <tr
+            *ngIf="groupMember.type === 'group'"
+            class="member group"
+            [ngStyle]="{
+              backgroundColor: '#f8f8f8',
+            }"
+          >
+            <td colspan="7">
+              <div
+                [ngStyle]="{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: 'rgb(46, 46, 46)',
+                }"
+              >
+                <input
+                  type="checkbox"
+                  [ngStyle]="{ marginTop: '-2px',  }"
+                  [indeterminate]="groupMember.indeterminate"
+                  [checked]="groupMember.checked"
+                  (change)="handleGroupChange($event.target.checked, groupMember.title)"
+                />
+                <span [ngStyle]="{ marginLeft: '4px' }">
+                  {{ groupMember.title }}（{{ groupMember.total }}）
+                </span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
