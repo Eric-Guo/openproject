@@ -1,5 +1,6 @@
 <div *ngIf="allowManager" class="button-group">
   <button
+    *ngIf="allowSyncParentWatchers"
     class="button -alt-highlight"
     [disabled]="loading"
     (click)="syncParentWatchers()"
