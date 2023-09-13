@@ -175,7 +175,7 @@ export class PrincipalRendererService {
     const characters = [...name];
     const lastSpace = name.lastIndexOf(' ');
     const first = characters[0]?.toUpperCase();
-    const last = name[lastSpace + 1]?.toUpperCase();
+    const last = lastSpace > 0 ? name[lastSpace + 1]?.toUpperCase() : '';
 
     return [first, last].join('');
   }
