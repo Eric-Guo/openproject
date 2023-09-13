@@ -1,0 +1,46 @@
+<div *ngIf="allowManager" class="button-group">
+  <button
+    class="button -alt-highlight"
+    [disabled]="loading"
+    (click)="syncParentWatchers()"
+  >
+    <span class="spot-icon spot-icon_redo" [ngClass]="{ 'loading': loading }"></span>
+    同步父级
+  </button>
+  <button
+    class="button"
+    [disabled]="loading"
+    (click)="openMembersModal()"
+  >
+    <span class="spot-icon spot-icon_add"></span>
+    按项目成员添加
+  </button>
+</div>
+
+<div class="members-modal" [ngStyle]="{ display: membersModalOpen ? '' : 'none' }">
+  <div
+    class="members-modal-mask"
+    (click)="closeMembersModal()"
+  ></div>
+  <div class="members-modal-container">
+    <div class="members-modal-title">
+      项目成员
+    </div>
+    <div class="members-modal-body">
+      <wp-watchers-tab-members
+        [onUsersChange]="handleUsersChange"
+      ></wp-watchers-tab-members>
+    </div>
+    <div class="members-modal-footer">
+      <button
+        class="button"
+        (click)="closeMembersModal()"
+      >取消</button>
+      <button
+        class="button -alt-highlight"
+        [disabled]="membersModalConfirmDisabled"
+        (click)="addMemberUsers()"
+      >确定</button>
+    </div>
+  </div>
+</div>
