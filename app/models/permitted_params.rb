@@ -503,7 +503,8 @@ class PermittedParams
           ] }
         ],
         member: [
-          role_ids: []
+          { role_ids: [] },
+          { profile_attributes: MemberProfile.service_columns }
         ],
         new_work_package: [
           :assigned_to_id,
