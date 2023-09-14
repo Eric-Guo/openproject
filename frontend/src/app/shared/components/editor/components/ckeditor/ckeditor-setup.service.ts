@@ -141,10 +141,18 @@ export class CKEditorSetupService {
       ];
     }
 
+    const ddsConfig:Record<string, any> = {
+      button_name: '添加',
+    };
+
+    if (this.currentProject.ddsFolderId) {
+      ddsConfig.folder_id = this.currentProject.ddsFolderId;
+      ddsConfig.upload_folder_id = this.currentProject.ddsFolderId;
+    }
+
     return {
       context,
-      ddsFolderId: this.currentProject.ddsFolderId || '',
-      ddsButtonName: '添加',
+      ddsConfig,
       helpURL: this.PathHelper.textFormattingHelp(),
       pluginContext: window.OpenProject.pluginContext.value,
     };
