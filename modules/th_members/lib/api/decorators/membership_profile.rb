@@ -5,6 +5,10 @@ module API
         super(model, current_user: nil)
       end
 
+      property :name,
+               exec_context: :decorator,
+               getter: ->(*) { represented.name },
+               render_nil: true
       property :company,
                exec_context: :decorator,
                getter: ->(*) { represented.company },

@@ -492,7 +492,7 @@ class PermittedParams
         ],
         member: [
           { role_ids: [] },
-          { profile_attributes: %i(company department position mobile remark) }
+          { profile_attributes: MemberProfile.service_columns }
         ],
         new_work_package: [
           :assigned_to_id,

@@ -17,6 +17,10 @@ module OpenProject::ThMembers
 
           profile = member.profile || MemberProfile.new(member_id: member.id)
 
+          if profile.name.blank? && self.respond_to?(:name) && self.name.present?
+            profile.name = self.name
+          end
+
           if profile.company.blank? && self.respond_to?(:company) && self.company.present?
             profile.company = self.company
           end

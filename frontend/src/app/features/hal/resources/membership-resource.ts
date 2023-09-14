@@ -54,6 +54,7 @@ export class MembershipResource extends HalResource {
   public groups:string[];
 
   public profile?:{
+    name:string;
     company:string;
     position:string;
     department:string;

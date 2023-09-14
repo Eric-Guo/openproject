@@ -26,6 +26,7 @@ export class ProjectMembersRowComponent {
   public editing = false;
 
   public formData = {
+    name: '',
     roles: [] as string[],
     company: '',
     department: '',
@@ -42,6 +43,7 @@ export class ProjectMembersRowComponent {
   ) {}
 
   setFormData() {
+    this.formData.name = this.member.profile?.name || this.principal.name || '';
     this.formData.roles = this.member.roles.map((item) => item.id as string);
     this.formData.company = this.member.profile?.company || '';
     this.formData.department = this.member.profile?.department || '';
@@ -77,6 +79,7 @@ export class ProjectMembersRowComponent {
     indicator.start();
     try {
       const profile = {
+        name: this.formData.name,
         company: this.formData.company,
         department: this.formData.department,
         position: this.formData.position,
@@ -120,6 +123,10 @@ export class ProjectMembersRowComponent {
 
   get principal() {
     return this.member.principal;
+  }
+
+  get name() {
+    return this.member.profile?.name || this.member.principal.name;
   }
 
   get memberRoles() {

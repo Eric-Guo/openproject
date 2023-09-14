@@ -1,12 +1,20 @@
 class MemberProfile < ApplicationRecord
   belongs_to :member, class_name: "Member", foreign_key: "member_id"
 
+  before_save :set_default_name, if: Proc.new { |profile| profile.name.blank? }
   before_save :set_default_company, if: Proc.new { |profile| profile.company.blank? }
   before_save :set_default_department, if: Proc.new { |profile| profile.department.blank? }
   before_save :set_default_position, if: Proc.new { |profile| profile.position.blank? }
   before_save :set_default_mobile, if: Proc.new { |profile| profile.mobile.blank? }
 
+  def self.service_columns = %i(name company department position mobile remark)
+
   private
+  def set_default_name
+    return unless member.user.present? && member.user.respond_to?(:name) && member.user.name.present?
+    self.name = member.user.name
+  end
+
   def set_default_company
     return unless member.user.present? && member.user.respond_to?(:company) && member.user.company.present?
     self.company = member.user.company

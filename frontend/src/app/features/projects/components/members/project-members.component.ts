@@ -364,6 +364,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     formData.append(csrfParamMeta.content, csrfTokenMeta.content);
     formData.append('member[user_ids][]', userId);
     formData.append('member[role_ids][]', datum.roles.join(','));
+    formData.append('member[profile_attributes][name]', datum.name);
     formData.append('member[profile_attributes][company]', datum.company);
     formData.append('member[profile_attributes][department]', datum.department);
     formData.append('member[profile_attributes][position]', datum.position);

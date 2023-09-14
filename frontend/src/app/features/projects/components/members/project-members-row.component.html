@@ -1,10 +1,19 @@
 <tr class="member user">
-  <td class="name">
-    <op-principal
-      [principal]="member.principal"
-      size="mini"
-      [hideName]="false"
-    ></op-principal>
+  <td class="name" style="padding-left: 16px;">
+    <ng-template [ngIf]="editing" [ngIfElse]="toEditName">
+      <input
+        style="width: 100%;"
+        [(ngModel)]="formData.name"
+      />
+    </ng-template>
+    <ng-template #toEditName>
+      <op-principal
+        [principal]="member.principal"
+        size="mini"
+        [hideName]="true"
+      ></op-principal>
+      {{ name }}
+    </ng-template>
   </td>
   <td class="email">
     <a *ngIf="email" [href]="mailTo">{{ email }}</a>

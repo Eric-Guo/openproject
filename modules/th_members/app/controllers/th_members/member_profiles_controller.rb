@@ -20,7 +20,7 @@ module ::ThMembers
 
     private
       def update_params
-        params.require(:member).permit(:company, :position, :remark)
+        params.require(:member).permit(*MemberProfile.service_columns)
       end
   end
 end
