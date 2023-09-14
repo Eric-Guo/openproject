@@ -133,7 +133,7 @@ class MembersController < ApplicationController
     @principals = possible_members(params[:q], 100)
 
     @email = suggest_invite_via_email? current_user,
-                                       params[:q],
+                                       params[:q]&.strip,
                                        (@principals | @project.principals)
 
     respond_to do |format|
