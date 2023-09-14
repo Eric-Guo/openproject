@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -108,6 +109,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     readonly loadingIndicator:LoadingIndicatorService,
     readonly toastService:ToastService,
     readonly httpClient:HttpClient,
+    readonly cdRef:ChangeDetectorRef,
   ) {}
 
   ngOnInit():void {
@@ -295,6 +297,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       return groups;
     }, [] as typeof this.currentGroupMembers);
     this.currentGroupMembers = [...admins, ...groupMembers];
+    this.cdRef.detectChanges();
   }
 
   handleFilterSubmit(form:NgForm) {
@@ -325,15 +328,15 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       ws.eachRow((row, rowNumber) => {
         if (rowNumber > 2) {
           const rowData = {
-            name: row.getCell(1).text,
-            email: row.getCell(2).text,
-            roles: row.getCell(3).text,
-            statusName: row.getCell(4).text,
-            company: row.getCell(5).text,
-            department: row.getCell(6).text,
-            position: row.getCell(7).text,
-            mobile: row.getCell(8).text,
-            remark: row.getCell(9).text,
+            name: row.getCell(1).toCsvString().trim(),
+            email: row.getCell(2).toCsvString().trim().replace(/^((mailto:)|(https?:\/\/))/, ''),
+            roles: row.getCell(3).toCsvString().trim(),
+            statusName: row.getCell(4).toCsvString().trim(),
+            company: row.getCell(5).toCsvString().trim(),
+            department: row.getCell(6).toCsvString().trim(),
+            position: row.getCell(7).toCsvString().trim(),
+            mobile: row.getCell(8).toCsvString().trim(),
+            remark: row.getCell(9).toCsvString().trim(),
           };
           if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(rowData.email)) return;
           if (!emailCounts[rowData.email]) emailCounts[rowData.email] = 0;
