@@ -104,9 +104,9 @@ module API
                   },
                   setter: ->(fragment:, represented:, **args) {
                     represented.profile_attributes ||= API::ParserStruct.new
-                    ['company', 'position', 'remark'].each do |key|
-                      if fragment.key?(key)
-                        represented.profile_attributes[key] = fragment[key]
+                    MemberProfile.service_columns.each do |key|
+                      if fragment.key?(key.to_s)
+                        represented.profile_attributes[key.to_s] = fragment[key.to_s]
                       end
                     end
                   }
