@@ -45,6 +45,10 @@ export interface MembershipResourceEmbedded {
 }
 
 export class MembershipResource extends HalResource {
+  get name() {
+    return this.profile?.name || super.name;
+  }
+
   public email:string;
 
   public status:string;
