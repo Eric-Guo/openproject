@@ -105,7 +105,7 @@ class MembersController < ApplicationController
     @principals = possible_members(params[:q], 100, type:)
 
     if type.nil? || type == "User"
-      @email = suggest_invite_via_email?(current_user, params[:q], @principals | @project.principals)
+      @email = suggest_invite_via_email?(current_user, params[:q]&.strip, @principals | @project.principals)
     end
 
     respond_to do |format|
