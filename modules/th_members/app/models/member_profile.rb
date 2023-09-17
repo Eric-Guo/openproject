@@ -7,6 +7,8 @@ class MemberProfile < ApplicationRecord
   before_save :set_default_position, if: Proc.new { |profile| profile.position.blank? }
   before_save :set_default_mobile, if: Proc.new { |profile| profile.mobile.blank? }
 
+  after_save :update_user_name, if: Proc.new { |profile| profile.saved_change_to_name? }
+
   def self.service_columns = %i(name company department position mobile remark)
 
   private
@@ -33,5 +35,10 @@ class MemberProfile < ApplicationRecord
   def set_default_mobile
     return unless member.user.present? && member.user.respond_to?(:mobile) && member.user.mobile.present?
     self.mobile = member.user.mobile
+  end
+
+  def update_user_name
+    return unless member.user.present? && self.name.present? && member.user.name != self.name
+    member.user.update_columns(lastname: self.name)
   end
 end
