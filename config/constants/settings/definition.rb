@@ -331,7 +331,7 @@ module Settings
       # user configuration
       default_comment_sort_order: {
         description: "Default sort order for activities",
-        default: "asc"
+        default: "desc"
       },
       disable_keyboard_shortcuts: {
         description: "Whether keyboard short cuts should be disabled (e.g. for better screen reader support)",
