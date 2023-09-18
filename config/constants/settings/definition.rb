@@ -310,7 +310,7 @@ module Settings
       # user configuration
       default_comment_sort_order: {
         description: 'Default sort order for activities',
-        default: 'asc',
+        default: 'desc',
         writable: false
       },
       default_language: {
