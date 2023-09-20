@@ -51,7 +51,7 @@ module Users
       assign_name_attributes_from_mail(params) if model.invited? && model.valid_attribute?(:mail)
       assign_default_language
 
-      model.notification_settings.build(assignee: false, responsible: false, mentioned: true, watched: false, due_date: 1) unless model.notification_settings.any?
+      model.notification_settings.build(assignee: false, responsible: false, mentioned: true, watched: false, start_date: nil, due_date: 1) unless model.notification_settings.any?
     end
 
     def set_preferences
