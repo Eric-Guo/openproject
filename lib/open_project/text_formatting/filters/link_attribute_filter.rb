@@ -31,7 +31,7 @@ module OpenProject::TextFormatting
     class LinkAttributeFilter < HTML::Pipeline::Filter
       def call
         links.each do |node|
-          node['target'] = context[:target] if context[:target].present?
+          node['target'] = '_blank'
         end
 
         doc
