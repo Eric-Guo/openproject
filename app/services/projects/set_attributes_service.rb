@@ -96,7 +96,7 @@ module Projects
     end
 
     def set_profile_attributes(params)
-      unless model.present? && model.module_enabled?('th_projects') && params[:profile_attributes].present?
+      unless model.present? && model.respond_to?(:profile) && params[:profile_attributes].present?
         params.delete(:profile_attributes)
         return
       end

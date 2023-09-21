@@ -59,6 +59,13 @@ module API
                  writable: true,
                  required: false,
                  location: :meta
+
+          schema :profile,
+                 type: 'ProjectProfile',
+                 name_source: ->(*) { I18n.t(:project_module_th_projects) },
+                 has_default: false,
+                 writable: true,
+                 required: false
         end
       end
     end
