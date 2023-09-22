@@ -43,12 +43,16 @@ class Notifications::CreateFromModelService
   MENTION_GROUP_HASH_ID_PATTERN =
     '\bgroup#(\d+)\b'
 
+  MENTION_WP_GROUP_TAG_ID_PATTERN =
+    '<mention[^>]*(?:data-type="wp_group"[^>]*data-id="(\w+)")|(?:data-id="(\w+)"[^>]*data-type="wp_group")[^>]*>'
+
   COMBINED_MENTION_PATTERN =
     [MENTION_USER_TAG_ID_PATTERN,
      MENTION_USER_HASH_ID_PATTERN,
      MENTION_USER_LOGIN_PATTERN,
      MENTION_GROUP_TAG_ID_PATTERN,
-     MENTION_GROUP_HASH_ID_PATTERN]
+     MENTION_GROUP_HASH_ID_PATTERN,
+     MENTION_WP_GROUP_TAG_ID_PATTERN]
       .map { |pattern| "(?:#{pattern})" }
       .join("|").freeze
 
@@ -299,13 +303,33 @@ class Notifications::CreateFromModelService
         user_login_names,
         group_ids_tag_after,
         group_ids_tag_before,
-        group_ids_hash = text
+        group_ids_hash,
+        wp_group_ids_tag_after,
+        wp_group_ids_tag_before = text
                            .scan(MENTION_PATTERN)
                            .transpose
                            .each(&:compact!)
 
+      wp_group_ids_tag = [wp_group_ids_tag_after, wp_group_ids_tag_before].flatten.compact
+
+      wp_group_user_ids = []
+
+      if wp_group_ids_tag.present?
+        if wp_group_ids_tag.include?('members')
+          wp_group_user_ids += project.members.pluck(:user_id)
+        end
+        if wp_group_ids_tag.include?('watchers') && resource.is_a?(WorkPackage)
+          wp_group_user_ids += resource.watchers.pluck(:user_id)
+        end
+      end
+
+      # 去掉自己
+      if journal.present?
+        wp_group_user_ids -= [journal.user_id]
+      end
+
       {
-        user_ids: [user_ids_tag_after, user_ids_tag_before, user_ids_hash].flatten.compact,
+        user_ids: [user_ids_tag_after, user_ids_tag_before, user_ids_hash, wp_group_user_ids].flatten.compact,
         user_login_names: [user_login_names].flatten.compact,
         group_ids: [group_ids_tag_after, group_ids_tag_before, group_ids_hash].flatten.compact
       }
