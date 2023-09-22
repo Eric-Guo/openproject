@@ -178,6 +178,7 @@ module OpenProject::TextFormatting
         when "user"         then @mentioned_users[id]
         when "group"        then @mentioned_groups[id]
         when "work_package" then @mentioned_work_packages[id]
+        when "wp_group"     then mention.text
         else raise ArgumentError
         end || fallback_text(mention)
       end
