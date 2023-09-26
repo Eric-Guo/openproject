@@ -4,7 +4,13 @@ module OpenProject::ThMembers
       base.send(:include, InstanceMethods)
 
       base.class_eval do
-        after_save :update_member_profiles, if: Proc.new { |user| user.saved_change_to_last_login_on? }
+        after_save :update_member_profiles, if: Proc.new { |user| user.saved_change_to_last_login_on? \
+          || (user.respond_to?(:lastname) && user.saved_change_to_lastname?) \
+          || (user.respond_to?(:company) && user.saved_change_to_company?) \
+          || (user.respond_to?(:department) && user.saved_change_to_department?) \
+          || (user.respond_to?(:title) && user.saved_change_to_title?) \
+          || (user.respond_to?(:mobile) && user.saved_change_to_mobile?)
+        }
       end
     end
 

@@ -7,38 +7,38 @@ class MemberProfile < ApplicationRecord
   before_save :set_default_position, if: Proc.new { |profile| profile.position.blank? }
   before_save :set_default_mobile, if: Proc.new { |profile| profile.mobile.blank? }
 
-  after_save :update_user_name, if: Proc.new { |profile| profile.saved_change_to_name? }
+  after_save :update_principal_name, if: Proc.new { |profile| profile.saved_change_to_name? }
 
   def self.service_columns = %i(name company department position mobile remark)
 
   private
   def set_default_name
-    return unless member.user.present? && member.user.respond_to?(:name) && member.user.name.present?
-    self.name = member.user.name
+    return unless member.principal.present? && member.principal.respond_to?(:name) && member.principal.name.present?
+    self.name = member.principal.name
   end
 
   def set_default_company
-    return unless member.user.present? && member.user.respond_to?(:company) && member.user.company.present?
-    self.company = member.user.company
+    return unless member.principal.present? && member.principal.respond_to?(:company) && member.principal.company.present?
+    self.company = member.principal.company
   end
 
   def set_default_department
-    return unless member.user.present? && member.user.respond_to?(:department) && member.user.department.present?
-    self.department = member.user.department
+    return unless member.principal.present? && member.principal.respond_to?(:department) && member.principal.department.present?
+    self.department = member.principal.department
   end
 
   def set_default_position
-    return unless member.user.present? && member.user.respond_to?(:title) && member.user.title.present?
-    self.position = member.user.title
+    return unless member.principal.present? && member.principal.respond_to?(:title) && member.principal.title.present?
+    self.position = member.principal.title
   end
 
   def set_default_mobile
-    return unless member.user.present? && member.user.respond_to?(:mobile) && member.user.mobile.present?
-    self.mobile = member.user.mobile
+    return unless member.principal.present? && member.principal.respond_to?(:mobile) && member.principal.mobile.present?
+    self.mobile = member.principal.mobile
   end
 
-  def update_user_name
-    return unless member.user.present? && self.name.present? && member.user.name != self.name
-    member.user.update_columns(lastname: self.name)
+  def update_principal_name
+    return unless member.principal.present? && self.name.present? && member.principal.name != self.name
+    member.principal.update_columns(lastname: self.name)
   end
 end
