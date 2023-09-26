@@ -60,13 +60,15 @@ class Members::CreateService < BaseServices::Create
 
     return unless params[:profile_attributes].present?
 
-    if member.profile.present?
-      params[:profile_attributes][:id] = member.profile.id
+    profile = member.profile || MemberProfile.find_by(member_id: member.id)
+
+    if profile.present?
+      profile.update(params[:profile_attributes])
     else
       params[:profile_attributes][:member_id] = member.id
+      params[:profile_attributes][:member] = member
+      MemberProfile.create(params[:profile_attributes])
     end
-
-    member.update(profile_attributes: params[:profile_attributes])
   end
 
   def event_type
