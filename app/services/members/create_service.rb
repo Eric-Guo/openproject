@@ -39,6 +39,7 @@ class Members::CreateService < BaseServices::Create
     member = service_call.result
 
     add_group_memberships(member)
+    add_member_profile(member)
     send_notification(member)
   end
 
@@ -52,6 +53,25 @@ class Members::CreateService < BaseServices::Create
     Groups::CreateInheritedRolesService
       .new(member.principal, current_user: user, contract_class: EmptyContract)
       .call(user_ids: member.principal.user_ids, send_notifications: false, project_ids:)
+  end
+
+
+  def add_member_profile(member)
+    unless member.project.present? && member.project.module_enabled?('th_members')
+      params.delete(:profile_attributes)
+    end
+
+    return unless params[:profile_attributes].present?
+
+    profile = member.profile || MemberProfile.find_by(member_id: member.id)
+
+    if profile.present?
+      profile.update(params[:profile_attributes])
+    else
+      params[:profile_attributes][:member_id] = member.id
+      params[:profile_attributes][:member] = member
+      MemberProfile.create(params[:profile_attributes])
+    end
   end
 
   def event_type
