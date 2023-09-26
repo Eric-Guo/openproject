@@ -339,7 +339,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
             mobile: parseCell(row.getCell(8)),
             remark: parseCell(row.getCell(9)),
           };
-          if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(rowData.email)) return;
+          if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(rowData.email)) return;
           if (!emailCounts[rowData.email]) emailCounts[rowData.email] = 0;
           emailCounts[rowData.email] += 1;
           if (emailCounts[rowData.email] > 1) throw new Error(`邮箱${rowData.email}重复`);
