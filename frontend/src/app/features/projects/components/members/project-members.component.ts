@@ -386,6 +386,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
 
   updateMember = async (member:MembershipResource, formData:ImportDatum) => {
     const profile = {
+      name: formData.name,
       company: formData.company,
       department: formData.department,
       position: formData.position,
