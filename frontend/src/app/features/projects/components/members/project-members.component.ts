@@ -476,14 +476,14 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
         }
       }));
       this.toastService.addSuccess('人员信息更新成功');
-      setTimeout(() => {
-        this.getMembers();
-      }, 50);
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
       this.toastService.addError(err.message);
     } finally {
       this.indicator.stop();
+      setTimeout(() => {
+        this.getMembers();
+      }, 50);
     }
   };
 
