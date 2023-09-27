@@ -248,6 +248,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     ws.getCell('A2').alignment = {
       vertical: 'middle',
       horizontal: 'left',
+      wrapText: true,
     };
     ws.getCell('A2').font = {
       color: { argb: 'FF203680' },
