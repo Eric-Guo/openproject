@@ -201,45 +201,81 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     this.importInput.nativeElement.click();
   };
 
-  handleExport = async () => {
+  exportSheet = async (rows:{
+    name:string;
+    email:string;
+    roles:string;
+    statusName:string;
+    company:string;
+    department:string;
+    position:string;
+    mobile:string;
+    remark:string;
+  }[], filename:string) => {
+    const roleNames = this.roles.map((item) => item.name);
     const wb = new ExcelJs.Workbook();
     const ws = wb.addWorksheet('sheet1');
     ws.columns = [
       { header: '名称', key: 'name', width: 10 },
-      { header: '电子邮件**', key: 'email', width: 30 },
-      { header: '角色**', key: 'roles', width: 20 },
+      { header: '电子邮件（必填）', key: 'email', width: 30 },
+      { header: '角色（必填）', key: 'roles', width: 20 },
       { header: '状态', key: 'statusName', width: 20 },
-      { header: '公司*', key: 'company', width: 20 },
-      { header: '部门*', key: 'department', width: 20 },
-      { header: '职位*', key: 'position', width: 20 },
-      { header: '手机号*', key: 'mobile', width: 20 },
-      { header: '备注*', key: 'remark', width: 20 },
+      { header: '公司', key: 'company', width: 20 },
+      { header: '部门', key: 'department', width: 20 },
+      { header: '职位', key: 'position', width: 20 },
+      { header: '手机号', key: 'mobile', width: 20 },
+      { header: '备注', key: 'remark', width: 20 },
     ];
-    const roleNames = this.roles.map((item) => item.name);
-    ws.addRow({ name: `带两个*号项：表示必填项；带一个*号项：表示选填项；无*号项：表示不填项；角色值：${roleNames.join('、')}` });
-    ws.mergeCells(2, 1, 2, ws.columns.length);
-    ws.getCell('A2').alignment = {
+    ws.getRow(1).height = 20;
+    ws.getRow(1).alignment = {
       vertical: 'middle',
       horizontal: 'center',
     };
-    ws.getCell('A2').font = {
-      color: { argb: 'FFFF0000' },
-      size: 9,
+    ws.getRow(1).font = {
+      size: 12,
+      bold: true,
     };
-    this.currentMembers.forEach((member) => {
-      ws.addRow({
-        name: member.name,
-        email: member.email,
-        roles: member.roles.map((item) => item.name).join(','),
-        statusName: member.statusName,
-        company: member.profile?.company || '',
-        department: member.profile?.department || '',
-        position: member.profile?.position || '',
-        remark: member.profile?.remark || '',
-      });
+    ws.addRow({
+      name: [
+        `角色值：${roleNames.join('、')}`,
+        '必填项：电子邮件、角色',
+        '选填项：名称、公司、部门、职位、手机号',
+        '一行一条数据，不支持合并表格数据，否则系统无法正确读取',
+      ].join('\n'),
     });
+    ws.getRow(2).height = 60;
+    ws.mergeCells(2, 1, 2, ws.columns.length);
+    ws.getCell('A2').alignment = {
+      vertical: 'middle',
+      horizontal: 'left',
+    };
+    ws.getCell('A2').font = {
+      color: { argb: 'FF203680' },
+      size: 10,
+    };
+
+    rows.forEach((row) => {
+      ws.addRow(row);
+    });
+
     const buf = await wb.xlsx.writeBuffer();
-    saveAs(new Blob([buf]), `${this.currentProject?.name || '项目'}-成员列表.xlsx`);
+    saveAs(new Blob([buf]), `${filename}.xlsx`);
+  };
+
+  handleExport = async () => {
+    const rows = this.currentMembers.map((member) => ({
+      name: member.name,
+      email: member.email,
+      roles: member.roles.map((item) => item.name).join(','),
+      statusName: member.statusName,
+      company: member.profile?.company || '',
+      department: member.profile?.department || '',
+      position: member.profile?.position || '',
+      mobile: member.profile?.mobile || '',
+      remark: member.profile?.remark || '',
+    }));
+
+    await this.exportSheet(rows, `${this.currentProject?.name || '项目'}-成员列表`);
   };
 
   openAction(name:Exclude<typeof this.currentAction, null>) {
@@ -500,5 +536,9 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     } finally {
       this.indicator.stop();
     }
+  };
+
+  handleDownloadTemplate = async () => {
+    await this.exportSheet([], '项目成员列表模板');
   };
 }

@@ -17,6 +17,8 @@ export class MembershipSettingsMenuDirective extends OpContextMenuTrigger {
 
   @Input() public importHandle:() => void;
 
+  @Input() public downloadTemplateHandle:() => void;
+
   constructor(readonly elementRef:ElementRef,
     readonly opContextMenu:OPContextMenuService,
     readonly authorisationService:AuthorisationService,
@@ -67,7 +69,7 @@ export class MembershipSettingsMenuDirective extends OpContextMenuTrigger {
     this.items = [
       {
         disabled: false,
-        linkText: ' 导入',
+        linkText: ' 导入成员',
         hidden: false,
         icon: 'icon-import',
         onClick: () => {
@@ -77,11 +79,21 @@ export class MembershipSettingsMenuDirective extends OpContextMenuTrigger {
       },
       {
         disabled: false,
-        linkText: '导出',
+        linkText: '导出成员',
         hidden: false,
         icon: 'icon-export',
         onClick: () => {
           this.exportHandle?.();
+          return true;
+        },
+      },
+      {
+        disabled: false,
+        linkText: '模板下载',
+        hidden: false,
+        icon: 'icon-file-sheet',
+        onClick: () => {
+          this.downloadTemplateHandle?.();
           return true;
         },
       },
