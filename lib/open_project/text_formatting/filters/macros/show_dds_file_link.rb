@@ -22,16 +22,21 @@ module OpenProject::TextFormatting::Filters::Macros
 
       file_obj = OpenStruct.new(JSON.parse(file_info))
 
-      ApplicationController.helpers.tag.div(
-        class: class_name,
-        data: {
-          is_folder: !!file_obj.isFolder
-        }
-      ) do
-        p1 = ApplicationController.helpers.tag.p do
+      if file_obj.type == 'publish_files'
+        create_outer_share_link(file_obj, class_name)
+      else
+        create_inner_share_link(file_obj, class_name)
+      end
+    end
+
+    def create_inner_share_link(file_obj, class_name)
+      ApplicationController.helpers.tag.div(class: class_name) do
+        content = ''
+        content << ApplicationController.helpers.tag.p(class: 'dds-file') do
           ApplicationController.helpers.link_to(
             file_obj.name,
             file_obj.url,
+            class: 'dds-link',
             target: '_blank',
             rel: 'noreferrer',
             data: {
@@ -40,15 +45,50 @@ module OpenProject::TextFormatting::Filters::Macros
           )
         end
 
-        p2 = if file_obj.parentFolderFullPath.present?
-          ApplicationController.helpers.tag.p do
+        if file_obj.parentFolderFullPath.present?
+          content << ApplicationController.helpers.tag.p(class: 'dds-description') do
             file_obj.parentFolderFullPath
           end
-        else
-          ''
         end
 
-        p1 + p2
+        content.html_safe
+      end
+    end
+
+    def create_outer_share_link(file_obj, class_name)
+      ApplicationController.helpers.tag.div(class: class_name) do
+        content = ''
+        file_obj.files.each do |file|
+          file = OpenStruct.new(file)
+          content << ApplicationController.helpers.tag.p(class: 'dds-file') do
+            ApplicationController.helpers.link_to(
+              file.name,
+              file.url,
+              class: 'dds-link',
+              target: '_blank',
+              rel: 'noreferrer',
+              data: {
+                is_folder: !!file.isFolder
+              }
+            )
+          end
+        end
+
+        content << ApplicationController.helpers.tag.p(class: 'dds-description') do
+          text = '外链分享地址：'
+          text << ApplicationController.helpers.link_to(
+            file_obj.url,
+            file_obj.url,
+            class: 'dds-link',
+            target: '_blank',
+            rel: 'noreferrer',
+          )
+          text << "，验证码：【#{file_obj.pwd.presence || '无'}】，有效期：#{file_obj.expiredAt}"
+
+          text.html_safe
+        end
+
+        content.html_safe
       end
     end
   end
