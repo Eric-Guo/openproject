@@ -191,7 +191,8 @@ export class CKEditorSetupService {
     }
 
     const ddsConfig:Record<string, any> = {
-      button_name: '添加',
+      tabs: 'files',
+      system_name: 'PLM',
     };
 
     if (this.currentProject.ddsFolderId) {
