@@ -502,6 +502,9 @@ GEM
     faraday-net_http (3.0.2)
     fastimage (2.2.7)
     ffi (1.16.1)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     flamegraph (0.9.5)
     fog-aws (3.19.0)
       fog-core (~> 2.1)
@@ -591,9 +594,15 @@ GEM
       activesupport (>= 2)
       nokogiri (>= 1.4)
     htmldiff (0.0.1)
+    http (5.1.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.4.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    http-form_data (2.3.0)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
     i18n (1.13.0)
@@ -644,6 +653,9 @@ GEM
       sassc
       thor
       tilt
+    llhttp-ffi (0.4.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     lobby_boy (0.1.3)
       omniauth (~> 1.1)
       omniauth-openid-connect (>= 0.2.1)
@@ -1132,6 +1144,7 @@ DEPENDENCIES
   gruf
   html-pipeline (~> 2.14.0)
   htmldiff
+  http
   i18n-js (~> 3.9.0)
   json_schemer (~> 0.2.18)
   json_spec (~> 1.1.4)
