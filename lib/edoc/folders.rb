@@ -30,6 +30,24 @@ class Edoc::Folders
     result[:data]
   end
 
+  # 在文件夹中通过文件夹名称查找文件夹ID
+  # @param folder_name [String] - 文件名称
+  # @param folder_id [Integer] - 文件夹ID
+  # @return [Integer] - 文件夹ID，未找到返回nil
+  def self.id_by_name(folder_name, folder_id)
+    path = '/api/services/Folder/GetFolderIdInFolderByfolderName'
+    params = Edoc::Helpers.hash_with_token(folderId: folder_id, folderName: folder_name)
+
+    url = Edoc::Helpers.url(path, params)
+    result = Edoc::Helpers.parse_response(HTTP.get(url))
+
+    raise StandardError.new(result) unless result[:result] == 0
+
+    return nil unless result[:data] > 0
+
+    result[:data]
+  end
+
   # 获取子文件夹列表
   # @param folder_id [Integer] - 文件夹ID
   # @return [Array<Hash{folder_id=>Integer folder_name=>String}>]

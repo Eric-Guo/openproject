@@ -52,6 +52,12 @@ class Edoc::Helpers
 
   # 解析响应值
   def self.parse_response(response)
+    if Rails.env.development?
+      Rails.logger.tagged('Edoc::Helpers.parse_response') do |logger|
+        logger.tagged('reponse') { |logger| logger.info response.inspect }
+        logger.tagged('reponse body') { |logger| logger.info response.body.to_s }
+      end
+    end
     raise StandardError.new('访问天华云服务器失败') unless response.status.success?
     JSON.parse(response.body.to_s).with_indifferent_access
   end
