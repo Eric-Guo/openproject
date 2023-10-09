@@ -193,6 +193,11 @@ PATH
     openproject-th_user_auth (1.0.0)
 
 PATH
+  remote: modules/th_work_packages
+  specs:
+    openproject-th_work_packages (1.0.0)
+
+PATH
   remote: modules/two_factor_authentication
   specs:
     openproject-two_factor_authentication (1.0.0)
@@ -1193,6 +1198,7 @@ DEPENDENCIES
   openproject-th_plugin!
   openproject-th_projects!
   openproject-th_user_auth!
+  openproject-th_work_packages!
   openproject-token (~> 3.0.1)
   openproject-two_factor_authentication!
   openproject-webhooks!
