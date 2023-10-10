@@ -21,23 +21,40 @@ class Edoc::Helpers
   # @param hash [Hash]
   # @return [String]
   def self.hash2query(hash)
-    return '' unless hash.present?
+    return nil unless hash.present?
     hash.to_a.reduce('') do |query, item|
       key, value = item
       query << "&#{key.to_s}=#{URI.encode_www_form_component(value)}" unless value.nil?
       query
-    end.sub(/^&/, '')
+    end.sub(/^&/, '').presence
   end
 
   # 生成URL
-  def self._url(host, path, params = {})
+  # @param host [String] - 主机，格式https://xxxx.com
+  # @param path [String] - 路径
+  # @param query [String|Hash] - url?xxxxxx
+  # @param fragment [String|Hash] - url#xxxxxx
+  # @return [String]
+  def self._url(host, path, query = nil, fragment = nil)
     url = URI(Pathname.new(host).join(path.sub(/^\/+/, '')).to_s)
 
-    hash = query2hash(url.query)
+    if query.is_a?(Hash)
+      hash = query2hash(url.query).merge!(query)
+      url.query = hash2query(hash)
+    end
 
-    hash.merge!(params)
+    if query.is_a?(String)
+      url.query = query
+    end
 
-    url.query = hash2query(hash)
+    if fragment.is_a?(Hash)
+      hash = query2hash(url.fragment).merge!(fragment)
+      url.fragment = hash2query(hash)
+    end
+
+    if fragment.is_a?(String)
+      url.fragment = fragment
+    end
 
     url.to_s
   end
@@ -45,9 +62,10 @@ class Edoc::Helpers
   # 获取请求url
   # @param path [String] - 路径
   # @param params [Hash] - 参数
+  # @param fragment [String|Hash] - #部分
   # @return [String]
-  def self.url(path, params = {})
-    _url(Edoc::Config.host, path, params)
+  def self.url(path, params = nil, fragment = nil)
+    _url(Edoc::Config.host, path, params, fragment)
   end
 
   # 解析响应值
@@ -67,5 +85,27 @@ class Edoc::Helpers
   # @return [String]
   def self.publish_url(code)
     url('outpublish.html', { code: })
+  end
+
+  # 生成外发预览文件链接
+  # @param code [String] - 外发code
+  # @param file_id [Integer] - 文件ID
+  # @return [String]
+  def self.publish_preview_url(code, file_id)
+    url('preview.html', { code:, fileid: file_id, ispublish: true })
+  end
+
+  # 生成预览文件链接
+  # @param file_id [Integer] - 文件ID
+  # @return [String]
+  def self.preview_url(file_id)
+    url('preview.html', { fileid: file_id })
+  end
+
+  # 生成文件夹链接
+  # @param folder_id [Integer] - 文件夹ID
+  # @return [String]
+  def self.folder_url(folder_id, params = nil)
+    url('/index.html', params, "doc/enterprise/#{folder_id}")
   end
 end
