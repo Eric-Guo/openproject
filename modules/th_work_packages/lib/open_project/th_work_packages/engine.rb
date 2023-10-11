@@ -12,6 +12,36 @@ module OpenProject::ThWorkPackages
              :author_url => 'https://openproject.org',
              :requires_openproject => '>= 6.0.0'
 
-    patches %i[WorkPackage]
+    patches %i[WorkPackage API::V3::WorkPackages::WorkPackageRepresenter]
+
+    add_api_path :edoc_folder_by_work_package do |id|
+      "#{root}/work_packages/#{id}/edoc_folder"
+    end
+
+    add_api_path :work_package_edoc_folder do |id|
+      "#{root}/work_package_edoc_folders/#{id}"
+    end
+
+    add_api_path :edoc_files_by_work_package do |id|
+      "#{root}/work_packages/#{id}/edoc_files"
+    end
+
+    add_api_path :edoc_files_by_work_package_edoc_folder do |id|
+      "#{root}/work_package_edoc_folders/#{id}/files"
+    end
+
+    add_api_path :work_package_edoc_file do |id|
+      "#{root}/work_packages_edoc_files/#{id}"
+    end
+
+    add_api_endpoint 'API::V3::WorkPackages::WorkPackagesAPI', :id do
+      mount ::API::V3::WorkPackageEdocFolders::WorkPackageEdocFolderByWorkPackageAPI
+      mount ::API::V3::WorkPackageEdocFiles::WorkPackageEdocFilesByWorkPackageAPI
+    end
+
+    add_api_endpoint 'API::V3::Root' do
+      mount ::API::V3::WorkPackageEdocFolders::WorkPackageEdocFoldersAPI
+      mount ::API::V3::WorkPackageEdocFiles::WorkPackageEdocFilesAPI
+    end
   end
 end
