@@ -10,6 +10,7 @@ class Edoc::Helpers
   # @return [Hash]
   def self.query2hash(query)
     return {} unless query.present? && query.is_a?(String)
+
     query.split('&').reduce({}) do |hash, item|
       key, value = item.split('=')
       hash[key.to_sym] = URI.decode_www_form_component(value) unless value.nil?
@@ -21,10 +22,11 @@ class Edoc::Helpers
   # @param hash [Hash]
   # @return [String]
   def self.hash2query(hash)
-    return nil unless hash.present?
+    return nil if hash.blank?
+
     hash.to_a.reduce('') do |query, item|
       key, value = item
-      query << "&#{key.to_s}=#{URI.encode_www_form_component(value)}" unless value.nil?
+      query << "&#{key}=#{URI.encode_www_form_component(value)}" unless value.nil?
       query
     end.sub(/^&/, '').presence
   end
@@ -72,8 +74,8 @@ class Edoc::Helpers
   def self.parse_response(response)
     if Rails.env.development?
       Rails.logger.tagged('Edoc::Helpers.parse_response') do |logger|
-        logger.tagged('reponse') { |logger| logger.info response.inspect }
-        logger.tagged('reponse body') { |logger| logger.info response.body.to_s }
+        logger.tagged('reponse') { |log| log.info response.inspect }
+        logger.tagged('reponse body') { |log| log.info response.body.to_s }
       end
     end
     raise StandardError.new('访问天华云服务器失败') unless response.status.success?
@@ -107,5 +109,18 @@ class Edoc::Helpers
   # @return [String]
   def self.folder_url(folder_id, params = nil)
     url('/index.html', params, "doc/enterprise/#{folder_id}")
+  end
+
+  # 计算文件md5值
+  # @param file [File] - 文件
+  # @return [String]
+  def self.calc_file_md5(file)
+    md5 = Digest::MD5.new
+    File.open(file, 'rb') do |f|
+      while chunk = f.read(1024 * 1024 * 10) # 每次读取 10MB
+        md5.update(chunk)
+      end
+    end
+    md5.hexdigest
   end
 end

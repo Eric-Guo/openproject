@@ -191,7 +191,7 @@ class Edoc::Folders
       outpublishPwd: pwd,
       canDownload: can_download,
       canEdit: can_edit,
-      canUpload: can_edit,
+      canUpload: can_upload,
       canSetDownloadTime: can_set_download_time,
       downloadTime: download_time,
       outpublishRemark: remark,
@@ -199,7 +199,7 @@ class Edoc::Folders
 
     url = Edoc::Helpers.url(path, params)
 
-    result = Edoc::Helpers.parse_response(HTTP.get(Edoc::Helpers.url(path, params)))
+    result = Edoc::Helpers.parse_response(HTTP.get(url))
 
     raise StandardError.new(result) unless result[:Result] == 0
 

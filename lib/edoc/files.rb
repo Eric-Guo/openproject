@@ -179,8 +179,8 @@ class Edoc::Files
       fileName: file_name,
       fileMd5: md5,
       size: file_size,
-      chunks: chunks,
-      chunk: chunk,
+      chunks:,
+      chunk:,
       chunkSize: chunk_size,
       blockSize: block_size,
       file: HTTP::FormData::File.new(file.path),
@@ -223,7 +223,7 @@ class Edoc::Files
     raise StandardError.new('参数file的类型必须为File') unless file.is_a?(File)
 
     content_type = args[:content_type] || MiniMime.lookup_by_filename(file)&.content_type || 'application/octet-stream'
-    md5 = args[:md5] || Digest::MD5.hexdigest(File.open(file, 'rb'){ |fs| fs.read })
+    md5 = args[:md5] || Edoc::Helpers.calc_file_md5(file)
     is_update = args[:is_update].present? && args[:file_id].present?
 
     start_result = start_upload(
@@ -301,7 +301,7 @@ class Edoc::Files
 
     url = Edoc::Helpers.url(path, params)
 
-    result = Edoc::Helpers.parse_response(HTTP.get(Edoc::Helpers.url(path, params)))
+    result = Edoc::Helpers.parse_response(HTTP.get(url))
 
     raise StandardError.new(result) unless result[:result] == 0
 
@@ -346,7 +346,7 @@ class Edoc::Files
       can_download: result[:data][:CanDownload], # boolean 能否下载
       can_delete_file: result[:data][:CanDeleteFile], # boolean 能否删除
       attach_type: result[:data][:AttachType], # integer 附件类型
-      file_last_ver_ext_name: result[:data][:FileLastVerExtName], # string 文件最新版本扩展名
+      file_last_ver_ext_name: result[:data][:FileLastVerExtName] # string 文件最新版本扩展名
     }
   end
 
@@ -380,22 +380,22 @@ class Edoc::Files
   )
     path = '/api/services/DocPublish/CreateFilePublish'
     params = Edoc::Helpers.hash_with_token({
-      fileIds: file_ids.join(','),
-      publishEndTime: end_time,
-      publishName: name,
-      authType: auth_type,
-      canDownload: can_download,
-      canEdit: can_edit,
-      canSetDownloadTime: can_set_download_time,
-      downloadTime: download_time,
-      pwdStr: pwd,
-      outpublishRemark: remark,
-      canpreviewTime: can_preview_time,
-      previewTimes: preview_times,
-    })
+                                             fileIds: file_ids.join(','),
+                                             publishEndTime: end_time,
+                                             publishName: name,
+                                             authType: auth_type,
+                                             canDownload: can_download,
+                                             canEdit: can_edit,
+                                             canSetDownloadTime: can_set_download_time,
+                                             downloadTime: download_time,
+                                             pwdStr: pwd,
+                                             outpublishRemark: remark,
+                                             canpreviewTime: can_preview_time,
+                                             previewTimes: preview_times,
+                                           })
 
     url = Edoc::Helpers.url(path, params)
-    result = Edoc::Helpers.parse_response(HTTP.get(Edoc::Helpers.url(path, params)))
+    result = Edoc::Helpers.parse_response(HTTP.get(url))
 
     raise StandardError.new(result) unless result[:Result] == 0
 
