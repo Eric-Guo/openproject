@@ -325,7 +325,7 @@ GEM
     awesome_nested_set (3.6.0)
       activerecord (>= 4.0.0, < 7.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.836.0)
+    aws-partitions (1.837.0)
     aws-sdk-core (3.185.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -574,13 +574,13 @@ GEM
       grape
       rack
     gravatar_image_tag (1.2.0)
-    grpc (1.58.0)
-      google-protobuf (~> 3.23)
+    grpc (1.59.0)
+      google-protobuf (~> 3.24)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.58.0-x86_64-linux)
-      google-protobuf (~> 3.23)
+    grpc (1.59.0-x86_64-linux)
+      google-protobuf (~> 3.24)
       googleapis-common-protos-types (~> 1.0)
-    grpc-tools (1.58.0)
+    grpc-tools (1.59.0)
     gruf (2.17.0)
       activesupport (> 4)
       concurrent-ruby (> 1)
@@ -1281,4 +1281,4 @@ RUBY VERSION
    ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.19
+   2.4.21
