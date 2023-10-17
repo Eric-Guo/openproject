@@ -1,0 +1,12 @@
+zh-CN:
+  activerecord:
+    errors:
+      models:
+        work_package_edoc_file:
+          attributes:
+            folder_id: 文件夹ID
+            file_name: 文件名称
+            md5: 文件md5
+            file_size: 文件大小
+          not_allow_empty: 不允许为空
+          invalid: 是无效的

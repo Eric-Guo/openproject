@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    errors:
+      models:
+        work_package_edoc_file:
+          attributes:
+            folder_id: folder id
+            file_name: file name
+            md5: md5
+            file_size: file size
+          not_allow_empty: not allow empty
+          invalid: is invalid

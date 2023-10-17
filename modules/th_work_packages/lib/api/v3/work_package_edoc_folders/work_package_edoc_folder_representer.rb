@@ -25,6 +25,14 @@ module API
           }
         end
 
+        links :create_file,
+              uncacheable: true do
+          {
+            method: :post,
+            href: api_v3_paths.create_edoc_file_by_work_package_edoc_folder(represented.id)
+          }
+        end
+
         def _type
           'WorkPackageEdocFolder'
         end

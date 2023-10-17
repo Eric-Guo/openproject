@@ -17,6 +17,14 @@ module OpenProject::ThWorkPackages
             href: api_v3_paths.edoc_files_by_work_package(represented.id)
           }
         end
+
+        links :create_edoc_file,
+              uncacheable: true do
+          {
+            method: :post,
+            href: api_v3_paths.create_edoc_file_by_work_package(represented.id)
+          }
+        end
       end
     end
 

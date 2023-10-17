@@ -31,7 +31,19 @@ module OpenProject::ThWorkPackages
     end
 
     add_api_path :work_package_edoc_file do |id|
-      "#{root}/work_packages_edoc_files/#{id}"
+      "#{root}/work_package_edoc_files/#{id}"
+    end
+
+    add_api_path :create_edoc_file_by_work_package_edoc_folder do |id|
+      "#{root}/work_package_edoc_folders/#{id}/files/create"
+    end
+
+    add_api_path :create_edoc_file_by_work_package do |id|
+      "#{root}/work_packages/#{id}/edoc_files/create"
+    end
+
+    add_api_path :upload_work_package_edoc_file do |id|
+      "#{root}/work_package_edoc_files/#{id}/upload"
     end
 
     add_api_endpoint 'API::V3::WorkPackages::WorkPackagesAPI', :id do
