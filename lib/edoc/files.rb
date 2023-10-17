@@ -137,7 +137,7 @@ class Edoc::Files
   end
 
   # 分片上传
-  # @param file [File] - 切片文件
+  # @param file_path [String] - 切片文件地址
   # @param upload_id: [String] - 上传文件ID
   # @param region_hash: [String] - 区域Hash
   # @param region_id: [Integer] - 区域Id
@@ -152,7 +152,7 @@ class Edoc::Files
   # @param block_size: [Integer] - 本次请求传入的块大小
   # @return [Hash{upload_id=>String second_pass=>Boolean}]
   def self.chunk_upload(
-    file,
+    file_path,
     upload_id:,
     region_hash:,
     region_id:,
@@ -166,8 +166,6 @@ class Edoc::Files
     chunk_size:,
     block_size:
   )
-    raise StandardError.new('参数file的类型必须为File') unless file.is_a?(File)
-
     path = '/document/upload'
     host = region_type == 1 ? Edoc::Config.host : region_url
     url = Edoc::Helpers._url(host, path, Edoc::Helpers.hash_with_token)
@@ -183,7 +181,7 @@ class Edoc::Files
       chunk:,
       chunkSize: chunk_size,
       blockSize: block_size,
-      file: HTTP::FormData::File.new(file.path),
+      file: HTTP::FormData::File.new(file_path),
     }
 
     Rails.logger.tagged(upload_id) { |logger| logger.info "第#{chunk + 1}块" }
@@ -268,7 +266,7 @@ class Edoc::Files
         tempfile.syswrite(stream)
 
         chunk_result = chunk_upload(
-          tempfile,
+          tempfile.path,
           upload_id: start_result[:upload_id],
           region_hash: start_result[:region_hash],
           region_id: start_result[:region_id],
