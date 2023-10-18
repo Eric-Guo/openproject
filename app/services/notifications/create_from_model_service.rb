@@ -301,7 +301,7 @@ class Notifications::CreateFromModelService
                          .transpose
                          .each(&:compact!)
 
-    wp_group_ids_tag = wp_group_ids_tag_after + wp_group_ids_tag_before
+    wp_group_ids_tag = [wp_group_ids_tag_after, wp_group_ids_tag_before].flatten.compact
 
     wp_group_user_ids = []
 
