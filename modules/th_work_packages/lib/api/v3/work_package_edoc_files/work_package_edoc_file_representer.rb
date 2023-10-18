@@ -5,10 +5,11 @@ module API
   module V3
     module WorkPackageEdocFiles
       class WorkPackageEdocFileRepresenter < ::API::Decorators::Single
+        include API::Decorators::DateProperty
+        include API::Caching::CachedRepresenter
+
         self_link id_attribute: ->(*) { represented.file_id },
                   title_getter: ->(*) { represented.file_name }
-
-        include API::Caching::CachedRepresenter
 
         property :folder_id, render_nil: true
 
@@ -43,6 +44,10 @@ module API
         property :publish_preview_url, render_nil: true
 
         property :preview_url, render_nil: true
+
+        date_time_property :created_at, render_nil: true
+
+        date_time_property :updated_at, render_nil: true
 
         links :folder,
               uncacheable: true do
