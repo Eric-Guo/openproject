@@ -20,6 +20,7 @@ module OpenProject::ThWorkPackages
 
         links :create_edoc_file,
               uncacheable: true do
+          next unless represented.edoc_folder.present?
           {
             method: :post,
             href: api_v3_paths.create_edoc_file_by_work_package(represented.id)
