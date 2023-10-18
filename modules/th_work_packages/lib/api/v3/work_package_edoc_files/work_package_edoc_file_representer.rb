@@ -38,6 +38,8 @@ module API
 
         property :status, render_nil: true
 
+        property :content_type, render_nil: true
+
         property :publish_preview_url, render_nil: true
 
         property :preview_url, render_nil: true
@@ -55,6 +57,15 @@ module API
           {
             method: :post,
             href: api_v3_paths.upload_work_package_edoc_file(represented.file_id)
+          }
+        end
+
+        links :user,
+              uncacheable: true do
+          next if represented.user.nil?
+          {
+            href: api_v3_paths.user(represented.user.id),
+            title: represented.user.name
           }
         end
 
