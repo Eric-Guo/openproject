@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.1"
+lock "~> 3.18.0"
 
 set :application, "open_project"
 set :repo_url, "https://git.thape.com.cn/rails/openproject.git"
