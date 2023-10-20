@@ -32,6 +32,9 @@ import { ApiV3Resource } from 'core-app/core/apiv3/cache/cachable-apiv3-resource
 import { ApiV3WorkPackagesPaths } from 'core-app/core/apiv3/endpoints/work_packages/api-v3-work-packages-paths';
 import { StateCacheService } from 'core-app/core/apiv3/cache/state-cache.service';
 import { ApiV3WorkPackageForm } from 'core-app/core/apiv3/endpoints/work_packages/apiv3-work-package-form';
+import { ApiV3GettableResource, ApiV3GettableResourceCollection } from 'core-app/core/apiv3/paths/apiv3-resource';
+import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/work-package-edoc-file-resource';
+import { WorkPackageEdocFolderResource } from 'core-app/features/hal/resources/work-package-edoc-folder-resource';
 
 export class ApiV3WorkPackagePaths extends ApiV3Resource<WorkPackageResource> {
   // /api/v3/(?:projectPath)/work_packages/(:workPackageId)/relations
@@ -51,6 +54,12 @@ export class ApiV3WorkPackagePaths extends ApiV3Resource<WorkPackageResource> {
 
   // /api/v3/(?:projectPath)/work_packages/(:workPackageId)/github_pull_requests
   public readonly github_pull_requests = this.subResource('github_pull_requests');
+
+  // /api/v3/(?:projectPath)/work_packages/(:workPackageId)/edoc_files
+  public readonly edoc_files = this.subResource<ApiV3GettableResourceCollection<WorkPackageEdocFileResource>>('edoc_files');
+
+  // /api/v3/(?:projectPath)/work_packages/(:workPackageId)/edoc_folder
+  public readonly edoc_folder = this.subResource<ApiV3GettableResource<WorkPackageEdocFolderResource>>('edoc_folder');
 
   // /api/v3/(projects/:projectIdentifier)/work_packages/(:workPackageId)/form
   public readonly form:ApiV3WorkPackageForm = this.subResource('form', ApiV3WorkPackageForm);
