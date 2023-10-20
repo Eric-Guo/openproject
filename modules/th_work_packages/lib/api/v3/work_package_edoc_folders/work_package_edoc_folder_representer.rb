@@ -21,7 +21,7 @@ module API
         links :files,
               uncacheable: true do
           {
-            href: api_v3_paths.edoc_files_by_work_package_edoc_folder(represented.id)
+            href: api_v3_paths.edoc_files_by_work_package_edoc_folder(represented.folder_id)
           }
         end
 
@@ -29,7 +29,7 @@ module API
               uncacheable: true do
           {
             method: :post,
-            href: api_v3_paths.create_edoc_file_by_work_package_edoc_folder(represented.id)
+            href: api_v3_paths.create_edoc_file_by_work_package_edoc_folder(represented.folder_id)
           }
         end
 
