@@ -1,0 +1,84 @@
+<button
+  *ngIf="!!edocFolder"
+  class="button -alt-highlight"
+  [disabled]="!publishUrl"
+  (click)="goToFolder()"
+>
+  {{ publishUrl ? '查看文件夹内容' : '外发链接创建中...'}}
+</button>
+
+<op-work-package-edoc-file-list
+  [ngClass]="{
+    'op-file-section--list': true,
+    'op-file-section--list_dragging': dragging > 0
+  }"
+  *ngIf="edocFiles.length"
+  [edocFiles]="edocFiles"
+  [refreshList]="getEdocFiles"
+></op-work-package-edoc-file-list>
+
+<op-work-package-edoc-upload-file-list
+  [ngClass]="{
+    'op-file-section--list': true,
+  }"
+  *ngIf="uploadFileList.length"
+  [uploadFiles]="uploadFileList"
+></op-work-package-edoc-upload-file-list>
+
+<input
+  *ngIf="allowUpload"
+  #hiddenFileInput
+  type="file"
+  id="attachment_files"
+  name="attachment_files"
+  (change)="onFilePickerChanged()"
+  hidden
+  multiple
+/>
+
+<button
+  *ngIf="allowUpload"
+  [attr.aria-label]="text.uploadLabel"
+  data-qa-selector="op-work=package-edoc-files--drop-box"
+  [ngClass]="{
+    'hide-when-print': true,
+    'op-file-section--drop-box': true,
+    'op-file-section--drop-box_dragging': dragging > 0,
+    'op-file-section--drop-box_dragging-over': draggingOverDropZone,
+    'op-file-section--drop-box_float': edocFiles.length
+  }"
+  type="button"
+  (click)="triggerFileInput()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDropFiles($event)"
+>
+  <span
+    class="spot-icon spot-icon_add-attachment op-file-section--drop-box-icon"
+  ></span>
+  <span
+    *ngIf="edocFiles.length > 0"
+    class="op-file-section--drop-box-text"
+    [textContent]="text.dropFiles"
+  ></span>
+  <span
+    *ngIf="edocFiles.length === 0"
+    class="op-file-section--drop-box-text"
+    [textContent]="text.dropClickFiles"
+  ></span>
+</button>
+
+<div
+  *ngIf="allowUpload"
+  class="op-file-section--actions"
+>
+  <button
+    type="button"
+    class="spot-link"
+    (click)="triggerFileInput()"
+    data-qa-selector="op-work-package-edoc-files--upload-button"
+  >
+    <span class="spot-icon spot-icon_add-attachment"></span>
+    <span [textContent]="text.uploadLabel"></span>
+  </button>
+</div>

@@ -56,6 +56,7 @@ import { WorkPackageReplacementLabelComponent } from 'core-app/features/work-pac
 import { NewestActivityOnOverviewComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/activity-panel/activity-on-overview.component';
 import { WorkPackageActivityTabComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/activity-panel/activity-tab.component';
 import { OpenprojectAttachmentsModule } from 'core-app/shared/components/attachments/openproject-attachments.module';
+import { OpenprojectWorkPackageEdocFilesModule } from 'core-app/shared/components/work-package-edoc-files/openproject-work-package-edoc-files.module';
 import { WpCustomActionComponent } from 'core-app/features/work-packages/components/wp-custom-actions/wp-custom-actions/wp-custom-action.component';
 import { WpCustomActionsComponent } from 'core-app/features/work-packages/components/wp-custom-actions/wp-custom-actions.component';
 import { WorkPackageRelationsTabComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/relations-tab/relations-tab.component';
@@ -156,7 +157,7 @@ import { WorkPackageSplitViewToolbarComponent } from 'core-app/features/work-pac
 import { WorkPackageCopyFullViewComponent } from 'core-app/features/work-packages/components/wp-copy/wp-copy-full-view.component';
 import { OpenprojectTabsModule } from 'core-app/shared/components/tabs/openproject-tabs.module';
 import { TimeEntryChangeset } from 'core-app/features/work-packages/helpers/time-entries/time-entry-changeset';
-
+import { WorkPackageEdocFilesTabComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/edoc-files-tab/op-edoc-files-tab.component';
 import { OpAttachmentsComponent } from 'core-app/shared/components/attachments/attachments.component';
 import { QueryFiltersComponent } from 'core-app/features/work-packages/components/filters/query-filters/query-filters.component';
 import { FilterDateTimesValueComponent } from 'core-app/features/work-packages/components/filters/filter-date-times-value/filter-date-times-value.component';
@@ -199,6 +200,8 @@ import { WorkPackageWatchersTabMembersRowComponent } from './components/wp-singl
     OpenprojectEditorModule,
 
     OpenprojectAttachmentsModule,
+
+    OpenprojectWorkPackageEdocFilesModule,
 
     OpenprojectBcfModule,
 
@@ -375,6 +378,9 @@ import { WorkPackageWatchersTabMembersRowComponent } from './components/wp-singl
 
     // Files tab
     WorkPackageFilesTabComponent,
+
+    // Edoc Files tab
+    WorkPackageEdocFilesTabComponent,
 
     // Split view
     WorkPackageDetailsViewButtonComponent,
