@@ -69,6 +69,13 @@ module API
                 WorkPackageEdocFileRepresenter.create(res, current_user:)
               end
             end
+
+            namespace do
+              delete do
+                @edoc_file.destroy!
+                { success: true }
+              end
+            end
           end
         end
       end

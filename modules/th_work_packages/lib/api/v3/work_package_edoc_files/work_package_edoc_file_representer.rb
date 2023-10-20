@@ -74,6 +74,14 @@ module API
           }
         end
 
+        links :remove,
+              uncacheable: true do
+          {
+            method: :delete,
+            href: api_v3_paths.work_package_edoc_file(represented.file_id)
+          }
+        end
+
         def _type
           'WorkPackageEdocFile'
         end
