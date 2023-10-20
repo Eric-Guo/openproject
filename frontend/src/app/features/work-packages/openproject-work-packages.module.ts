@@ -92,6 +92,7 @@ import {
   WorkPackageActivityTabComponent,
 } from 'core-app/features/work-packages/components/wp-single-view-tabs/activity-panel/activity-tab.component';
 import { OpenprojectAttachmentsModule } from 'core-app/shared/components/attachments/openproject-attachments.module';
+import { OpenprojectWorkPackageEdocFilesModule } from 'core-app/features/plugins/linked/openproject-th_work_packages/work-package-edoc-files/openproject-work-package-edoc-files.module';
 import {
   WpCustomActionComponent,
 } from 'core-app/features/work-packages/components/wp-custom-actions/wp-custom-actions/wp-custom-action.component';
@@ -314,7 +315,7 @@ import {
 } from 'core-app/features/work-packages/components/wp-copy/wp-copy-full-view.component';
 import { OpenprojectTabsModule } from 'core-app/shared/components/tabs/openproject-tabs.module';
 import { TimeEntryChangeset } from 'core-app/features/work-packages/helpers/time-entries/time-entry-changeset';
-
+import { WorkPackageEdocFilesTabComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/edoc-files-tab/op-edoc-files-tab.component';
 import { OpAttachmentsComponent } from 'core-app/shared/components/attachments/attachments.component';
 import {
   QueryFiltersComponent,
@@ -427,6 +428,8 @@ import { WorkPackageFullViewEntryComponent } from 'core-app/features/work-packag
     OpenprojectEditorModule,
 
     OpenprojectAttachmentsModule,
+
+    OpenprojectWorkPackageEdocFilesModule,
 
     OpenprojectBcfModule,
 
@@ -599,6 +602,9 @@ import { WorkPackageFullViewEntryComponent } from 'core-app/features/work-packag
 
     // Files tab
     WorkPackageFilesTabComponent,
+
+    // Edoc Files tab
+    WorkPackageEdocFilesTabComponent,
 
     // Split view
     WorkPackageDetailsViewButtonComponent,
