@@ -96,6 +96,8 @@ import { OpUploadService } from 'core-app/core/upload/upload.service';
 import { ConfigurationService } from 'core-app/core/config/configuration.service';
 import { FogUploadService } from 'core-app/core/upload/fog-upload.service';
 import { LocalUploadService } from 'core-app/core/upload/local-upload.service';
+import { WorkPackageEdocFileUploadService } from 'core-app/core/upload/work-package-edoc-file-upload.service';
+import { HalResourceService } from 'core-app/features/hal/services/hal-resource.service';
 import { registerCustomElement } from 'core-app/shared/helpers/angular/custom-elements.helper';
 import {
   EmbeddedTablesMacroComponent,
@@ -358,6 +360,11 @@ export function runBootstrap(appRef:ApplicationRef) {
       provide: OpUploadService,
       useFactory: (config:ConfigurationService, http:HttpClient) => (config.isDirectUploads() ? new FogUploadService(http) : new LocalUploadService(http)),
       deps: [ConfigurationService, HttpClient],
+    },
+    {
+      provide: WorkPackageEdocFileUploadService,
+      useFactory: (http:HttpClient, halResourceService:HalResourceService) => new WorkPackageEdocFileUploadService(http, halResourceService),
+      deps: [HttpClient, HalResourceService],
     },
     PaginationService,
     OpenProjectBackupService,

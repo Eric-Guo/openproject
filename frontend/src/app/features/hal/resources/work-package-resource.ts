@@ -51,6 +51,8 @@ import { ICKEditorContext } from 'core-app/shared/components/editor/components/c
 import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { IWorkPackageTimestamp } from 'core-app/features/hal/resources/work-package-timestamp-resource';
 import { formatWorkPackageId } from 'core-app/shared/helpers/work-package-id-pattern';
+import { WorkPackageEdocFileCollectionResource } from 'core-app/features/hal/resources/work-package-edoc-file-collection-resource';
+import { WorkPackageEdocFolderResource } from 'core-app/features/hal/resources/work-package-edoc-folder-resource';
 
 export interface WorkPackageResourceEmbedded {
   activities:CollectionResource;
@@ -113,6 +115,10 @@ export interface WorkPackageResourceLinks extends WorkPackageResourceEmbedded {
   updateImmediately(payload:any):Promise<WorkPackageResource>;
 
   watch():Promise<any>;
+
+  edocFiles():Promise<WorkPackageEdocFileCollectionResource>;
+
+  edocFolder():Promise<WorkPackageEdocFolderResource>;
 }
 
 export interface WorkPackageLinksObject extends WorkPackageResourceLinks {
