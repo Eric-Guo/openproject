@@ -34,7 +34,12 @@ class ThWorkPackages::PublishEdocFolderJob < ApplicationJob
 
     return if edoc_folder.publish_code.present?
 
-    publish_code = Edoc::Folders.publish([edoc_folder.folder_id], name: "#{edoc_folder.folder_name}-PLM外发", end_time: '2099-12-31')
+    publish_code = Edoc::Folders.publish(
+      [edoc_folder.folder_id],
+      name: "#{edoc_folder.folder_name}-PLM外发",
+      end_time: '2099-12-31',
+      can_download: true
+    )
 
     edoc_folder.update(publish_code:)
   end
