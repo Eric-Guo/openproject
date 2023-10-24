@@ -75,7 +75,6 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def mail(headers = {}, &block)
-    return if headers[:to].present? && headers[:to].end_with?('@thape.com.cn')
     block ||= method(:default_formats_for_setting)
     super(headers, &block)
   end
