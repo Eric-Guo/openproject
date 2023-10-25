@@ -697,6 +697,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
+    mysql2 (0.5.5)
     net-imap (0.4.2)
       date
       net-protocol
@@ -1166,6 +1167,7 @@ DEPENDENCIES
   meta-tags (~> 2.19.0)
   mini_magick (~> 4.12.0)
   multi_json (~> 1.15.0)
+  mysql2
   net-ldap (~> 0.18.0)
   nokogiri (~> 1.14.3)
   oj (~> 3.14.0)

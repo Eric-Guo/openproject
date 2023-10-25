@@ -140,7 +140,7 @@
         (click)="closeAction()"
       ></a>
       <ul class="simple-filters--filters">
-        <li class="simple-filters--filter">
+        <li class="simple-filters--filter" *ngIf="isProjectAdmin">
           <label class="simple-filters--filter-name" for="company">公司:</label>
           <select
             name="company"
@@ -157,7 +157,7 @@
             </option>
           </select>
         </li>
-        <li class="simple-filters--filter">
+        <li class="simple-filters--filter" *ngIf="isProjectAdmin">
           <label class="simple-filters--filter-name" for="department">部门:</label>
           <select
             name="department"
@@ -168,6 +168,23 @@
             <option value="" label=" "></option>
             <option
               *ngFor="let item of departments"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="major">专业:</label>
+          <select
+            name="major"
+            class="simple-filters--filter-value"
+            id="major"
+            [(ngModel)]="filterFormData.major"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of majors"
               [value]="item"
             >
               {{ item }}
@@ -261,7 +278,7 @@
               </div>
             </div>
           </th>
-          <th>
+          <th *ngIf="isProjectAdmin">
             <div class="generic-table--sort-header-outer">
               <div class="generic-table--sort-header">
                 <span>
@@ -270,7 +287,7 @@
               </div>
             </div>
           </th>
-          <th>
+          <th *ngIf="isProjectAdmin">
             <div class="generic-table--sort-header-outer">
               <div class="generic-table--sort-header">
                 <span>
@@ -279,11 +296,20 @@
               </div>
             </div>
           </th>
-          <th>
+          <th *ngIf="isProjectAdmin">
             <div class="generic-table--sort-header-outer">
               <div class="generic-table--sort-header">
                 <span>
                   职位
+                </span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="generic-table--sort-header-outer">
+              <div class="generic-table--sort-header">
+                <span>
+                  专业
                 </span>
               </div>
             </div>
@@ -319,6 +345,7 @@
             [roles]="roles"
             [users]="users"
             [reloadMembers]="getMembers"
+            [isProjectAdmin]="isProjectAdmin"
           ></op-project-members-row>
           <tr
             *ngIf="groupMember.type === 'group'"
@@ -327,7 +354,7 @@
               backgroundColor: '#f8f8f8',
             }"
           >
-            <td colspan="10">
+            <td [colSpan]="isProjectAdmin ? '11' : '8'">
               <div
                 [ngStyle]="{
                   display: 'flex',

@@ -29,6 +29,7 @@ type TableRow = {
   company:string;
   department:string;
   position:string;
+  major:string;
   mobile:string;
   remark:string;
 };
@@ -40,6 +41,7 @@ type ImportDatum = {
   company:string;
   department:string;
   position:string;
+  major:string;
   mobile:string;
   remark:string;
 };
@@ -83,6 +85,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
   public filterFormData = {
     company: '',
     department: '',
+    major: '',
     name: '',
     email: '',
     role_id: '',
@@ -166,18 +169,17 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
         if (this.currentFilter.company !== member.profile.company) return false;
         if (this.currentFilter.department && this.currentFilter.department !== member.profile.department) return false;
       }
+      if (this.currentFilter.major) {
+        if (!member.profile) return false;
+        if (this.currentFilter.major && this.currentFilter.major !== member.profile.major) return false;
+      }
       return true;
     }).sort((a, b) => {
       if (!b.profile) return -1;
       if (!a.profile) return 1;
-      if (!b.profile.company) return -1;
-      if (!a.profile.company) return 1;
-      const companyAB = a.profile.company.localeCompare(b.profile.company);
-      if (companyAB !== 0) return companyAB;
-      if (!b.profile.department) return -1;
-      if (!a.profile.department) return 1;
-      const departmentAB = a.profile.department.localeCompare(b.profile.department);
-      return departmentAB;
+      if (!b.profile.major) return -1;
+      if (!a.profile.major) return 1;
+      return a.profile.major.localeCompare(b.profile.major);
     });
     this.setCurrentGroupMembers();
   }
@@ -196,6 +198,11 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     return `/projects/${this.currentProject.identifier}/members`;
   }
 
+  get isProjectAdmin() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return !!this.project && !!this.project.updateImmediately && !!this.project.updateImmediately.href;
+  }
+
   handleImport = () => {
     if (!this.importInput.nativeElement) return;
     this.importInput.nativeElement.click();
@@ -209,6 +216,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     company:string;
     department:string;
     position:string;
+    major:string;
     mobile:string;
     remark:string;
   }[], filename:string) => {
@@ -223,6 +231,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       { header: '公司', key: 'company', width: 20 },
       { header: '部门', key: 'department', width: 20 },
       { header: '职位', key: 'position', width: 20 },
+      { header: '专业', key: 'major', width: 20 },
       { header: '手机号', key: 'mobile', width: 20 },
       { header: '备注', key: 'remark', width: 20 },
     ];
@@ -239,7 +248,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       name: [
         `角色值：${roleNames.join('、')}`,
         '必填项：电子邮件、角色',
-        '选填项：名称、公司、部门、职位、手机号',
+        '选填项：名称、公司、部门、职位、专业、手机号',
         '一行一条数据，不支持合并表格数据，否则系统无法正确读取',
       ].join('\n'),
     });
@@ -272,6 +281,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       company: member.profile?.company || '',
       department: member.profile?.department || '',
       position: member.profile?.position || '',
+      major: member.profile?.major || '',
       mobile: member.profile?.mobile || '',
       remark: member.profile?.remark || '',
     }));
@@ -309,9 +319,21 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     return [...departments];
   }
 
+  get majors() {
+    if (!this.members) return [];
+    const majors:Set<string> = new Set();
+    this.members.forEach((member) => {
+      if (member.profile && member.profile.major) {
+        majors.add(member.profile.major.trim());
+      }
+    });
+    return [...majors];
+  }
+
   setCurrentGroupMembers() {
     let currentGroup:GroupMembersItemGroup;
     const admins:GroupMembersItemMember[] = [];
+    const getGroupTitle = (profile?:MembershipResource['profile']) => profile?.major?.trim() || '-';
     const groupMembers = (this.currentMembers || []).reduce((groups, member) => {
       const roleIds = member.roles.map((item) => Number(item.id));
       if (roleIds.includes(3)) {
@@ -319,8 +341,8 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
         return groups;
       }
       const last = groups[groups.length - 1];
-      const groupTitle = `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
-      const lastGroupTitle = last && last.type === 'member' ? `${last.member.profile?.company?.trim() || ''} - ${last.member.profile?.department?.trim() || ''}` : '';
+      const groupTitle = getGroupTitle(member.profile);
+      const lastGroupTitle = last && last.type === 'member' ? getGroupTitle(last.member.profile) : '';
       if (groupTitle !== lastGroupTitle) {
         currentGroup = {
           type: 'group',
@@ -373,6 +395,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
             company: parseCell(row.getCell(5)),
             department: parseCell(row.getCell(6)),
             position: parseCell(row.getCell(7)),
+            major: parseCell(row.getCell(7)),
             mobile: parseCell(row.getCell(8)),
             remark: parseCell(row.getCell(9)),
           };
@@ -406,6 +429,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
     formData.append('member[profile_attributes][company]', datum.company);
     formData.append('member[profile_attributes][department]', datum.department);
     formData.append('member[profile_attributes][position]', datum.position);
+    formData.append('member[profile_attributes][major]', datum.major);
     formData.append('member[profile_attributes][remark]', datum.remark);
     formData.append('button', '');
     await new Promise((resolve, reject) => {
@@ -427,6 +451,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
       company: formData.company,
       department: formData.department,
       position: formData.position,
+      major: formData.major,
       mobile: formData.mobile,
       remark: formData.remark,
     };
@@ -452,6 +477,7 @@ export class ProjectMembersComponent implements OnInit, AfterViewInit {
           company: row.company,
           department: row.department,
           position: row.position,
+          major: row.major,
           mobile: row.mobile,
           remark: row.remark,
         };

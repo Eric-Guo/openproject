@@ -366,3 +366,5 @@ gem 'jwt'
 gem 'chinese_pinyin'
 
 gem 'http'
+
+gem 'mysql2'

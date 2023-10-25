@@ -21,6 +21,8 @@ export class ProjectMembersRowComponent {
 
   @Input() reloadMembers:() => void;
 
+  @Input() isProjectAdmin:boolean;
+
   public invitedTip = '用户已被邀请，正在等待注册';
 
   public editing = false;
@@ -31,6 +33,7 @@ export class ProjectMembersRowComponent {
     company: '',
     department: '',
     position: '',
+    major: '',
     mobile: '',
     remark: '',
   };
@@ -48,6 +51,7 @@ export class ProjectMembersRowComponent {
     this.formData.company = this.member.profile?.company || '';
     this.formData.department = this.member.profile?.department || '';
     this.formData.position = this.member.profile?.position || '';
+    this.formData.major = this.member.profile?.major || '';
     this.formData.mobile = this.member.profile?.mobile || '';
     this.formData.remark = this.member.profile?.remark || '';
   }
@@ -83,6 +87,7 @@ export class ProjectMembersRowComponent {
         company: this.formData.company,
         department: this.formData.department,
         position: this.formData.position,
+        major: this.formData.major,
         mobile: this.formData.mobile,
         remark: this.formData.remark,
       };
@@ -164,6 +169,10 @@ export class ProjectMembersRowComponent {
 
   get position() {
     return this.member.profile?.position;
+  }
+
+  get major() {
+    return this.member.profile?.major;
   }
 
   get mobile() {

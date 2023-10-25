@@ -4,6 +4,8 @@ module OpenProject::ThMembers
       base.send(:include, InstanceMethods)
 
       base.class_eval do
+        before_create :set_th_profile
+
         after_save :update_member_profiles, if: Proc.new { |user| user.saved_change_to_last_login_on? \
           || (user.respond_to?(:lastname) && user.saved_change_to_lastname?) \
           || (user.respond_to?(:company) && user.saved_change_to_company?) \
@@ -15,6 +17,28 @@ module OpenProject::ThMembers
     end
 
     module InstanceMethods
+      def set_th_profile
+        return unless /@thape\.com\.cn$/ === self.mail
+
+        staff = Cybros::User.active.where(email: self.mail).first
+        return unless staff.present?
+
+        self.lastname = staff.chinese_name
+        self.firstname = self.mail.sub(/@thape\.com\.cn$/, '')
+        self.mobile = staff.mobile
+
+        position = staff.positions.first
+        return unless position.present?
+
+        self.title = position.name
+
+        department = position.department
+        return unless department.present?
+
+        self.company = department.company_name
+        self.department = department.name
+      end
+
       def update_member_profiles
         return unless self.members.present?
 

@@ -5,11 +5,12 @@ class MemberProfile < ApplicationRecord
   before_save :set_default_company, if: Proc.new { |profile| profile.company.blank? }
   before_save :set_default_department, if: Proc.new { |profile| profile.department.blank? }
   before_save :set_default_position, if: Proc.new { |profile| profile.position.blank? }
+  before_save :set_default_major, if: Proc.new { |profile| profile.major.blank? }
   before_save :set_default_mobile, if: Proc.new { |profile| profile.mobile.blank? }
 
   after_save :update_principal_name, if: Proc.new { |profile| profile.saved_change_to_name? }
 
-  def self.service_columns = %i(name company department position mobile remark)
+  def self.service_columns = %i(name company department position major mobile remark)
 
   private
   def set_default_name
@@ -35,6 +36,13 @@ class MemberProfile < ApplicationRecord
   def set_default_mobile
     return unless member.principal.present? && member.principal.respond_to?(:mobile) && member.principal.mobile.present?
     self.mobile = member.principal.mobile
+  end
+
+  def set_default_major
+    return unless member.principal.present? && (/@thape\.com\.cn$/ === member.principal.mail)
+    staff = Cybros::User.active.where(email: member.principal.mail).first
+    return unless staff.present? && staff.major_name.present?
+    self.major = staff.major_name
   end
 
   def update_principal_name
