@@ -4,6 +4,6 @@ module Hrdw
   class HrdwStfreinstateBi < HrdwLocalTimeRecord
     self.table_name = 'HRDW.HRDW_STFREINSTATE_BI'
 
-    scope :active, ->(code){ where(lastflag: 'Y') }
+    scope :active, ->{ where(lastflag: 'Y') }
   end
 end

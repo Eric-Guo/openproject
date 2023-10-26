@@ -75,6 +75,8 @@ class User < Principal
 
   has_many :notification_settings, dependent: :destroy
 
+  has_one :staff, class_name: 'Cybros::User', foreign_key: 'email', primary_key: 'mail'
+
   # Users blocked via brute force prevention
   # use lambda here, so time is evaluated on each query
   scope :blocked, -> { create_blocked_scope(self, true) }

@@ -20,7 +20,7 @@ module OpenProject::ThMembers
       def set_th_profile
         return unless /@thape\.com\.cn$/ === self.mail
 
-        staff = Cybros::User.active.where(email: self.mail).first
+        staff = self.staff
         return unless staff.present?
 
         self.lastname = staff.chinese_name
@@ -61,6 +61,10 @@ module OpenProject::ThMembers
 
           if profile.position.blank? && self.respond_to?(:title) && self.title.present?
             profile.position = self.title
+          end
+
+          if profile.major.blank? && self.staff.present? && self.staff.profession.present?
+            profile.major = self.staff.profession
           end
 
           if profile.mobile.blank? && self.respond_to?(:mobile) && self.mobile.present?
