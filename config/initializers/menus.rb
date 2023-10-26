@@ -672,17 +672,6 @@ Redmine::MenuManager.map :work_package_split_view do |menu|
                                  .count
                    },
             caption: :"js.work_packages.tabs.activity"
-  menu.push :files,
-            { tab: :files },
-            skip_permissions_check: true,
-            badge: ->(work_package:, **) {
-              count = Storages::FileLink.where(container_type: "WorkPackage", container_id: work_package).count
-              unless work_package.hide_attachments?
-                count += work_package.attachments.count
-              end
-              count
-            },
-            caption: :"js.work_packages.tabs.files"
   menu.push :relations,
             { tab: :relations },
             skip_permissions_check: true,
