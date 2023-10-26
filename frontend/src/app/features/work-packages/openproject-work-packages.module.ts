@@ -386,9 +386,6 @@ import {
 import {
   WorkPackageMarkNotificationButtonComponent,
 } from 'core-app/features/work-packages/components/wp-buttons/wp-mark-notification-button/work-package-mark-notification-button.component';
-import {
-  WorkPackageFilesTabComponent,
-} from 'core-app/features/work-packages/components/wp-single-view-tabs/files-tab/op-files-tab.component';
 import { WorkPackagesQueryViewService } from 'core-app/features/work-packages/components/wp-list/wp-query-view.service';
 import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { OpenprojectStoragesModule } from 'core-app/shared/components/storages/openproject-storages.module';
@@ -618,9 +615,6 @@ import {
     WorkPackageRelationsHierarchyComponent,
     WorkPackageRelationsAutocompleteComponent,
     WorkPackageBreadcrumbParentComponent,
-
-    // Files tab
-    WorkPackageFilesTabComponent,
 
     // Edoc Files tab
     WorkPackageEdocFilesTabComponent,
