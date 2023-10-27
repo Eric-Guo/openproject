@@ -17,6 +17,7 @@ import { RoleResource } from 'core-app/features/hal/resources/role-resource';
 import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { PostResource } from 'core-app/features/hal/resources/post-resource';
 import { SchemaResource } from 'core-app/features/hal/resources/schema-resource';
+import { WorkPackageEdocFolderResource } from 'core-app/features/hal/resources/work-package-edoc-folder-resource';
 
 export class States extends StatesGroup {
   name = 'MainStore';
@@ -26,6 +27,9 @@ export class States extends StatesGroup {
 
   /* /api/v3/work_packages */
   workPackages = multiInput<WorkPackageResource>();
+
+  /* /api/v3/work_packages */
+  workPackageEdocFolders = multiInput<WorkPackageEdocFolderResource>();
 
   /* /api/v3/wiki_pages */
   posts = multiInput<PostResource>();
