@@ -3,10 +3,9 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destroyed.mixin';
 import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/work-package-edoc-file-resource';
-import { catchError } from 'rxjs';
+import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-files.service';
 
 @Component({
   selector: 'op-work-package-edoc-file-list',
@@ -16,25 +15,13 @@ import { catchError } from 'rxjs';
 export class OpWorkPackageEdocFileListComponent extends UntilDestroyedMixin {
   @Input() public edocFiles:WorkPackageEdocFileResource[] = [];
 
-  @Input() public refreshList:() => void;
-
-  constructor(private readonly http:HttpClient) {
+  constructor(
+    protected readonly wpEdocFilesResourceService:WorkPackageEdocFilesResourceService,
+  ) {
     super();
   }
 
   public removeEdocFile(edocFile:WorkPackageEdocFileResource):void {
-    const url = edocFile.remove?.href;
-    if (!url) return;
-    this.http.delete(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).pipe(
-      catchError((error) => {
-        throw error;
-      }),
-    ).subscribe(() => {
-      this.refreshList?.();
-    });
+    this.wpEdocFilesResourceService.removeAttachment(edocFile.folderId, edocFile);
   }
 }

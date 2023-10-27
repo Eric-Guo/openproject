@@ -22,9 +22,9 @@ import { TimezoneService } from 'core-app/core/datetime/timezone.service';
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/work-package-edoc-file-resource';
 import { WorkPackageEdocFolderResource } from 'core-app/features/hal/resources/work-package-edoc-folder-resource';
-import { WorkPackageEdocFileUploadService } from 'core-app/core/upload/work-package-edoc-file-upload.service';
-import { UploadFile } from './work-package-edoc-upload-file-list/work-package-edoc-upload-file-list-item.component';
-import { PromiseTaskQueue } from 'core-app/shared/helpers/promise-task-queue';
+import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-files.service';
+import { IWorkPackageEdocFileUpload } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-file.model';
+import { StoreSubscriber } from 'core-app/shared/helpers/simple-store';
 
 function containsFiles(dataTransfer:DataTransfer):boolean {
   return dataTransfer.types.indexOf('Files') >= 0;
@@ -55,7 +55,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   public dragging = 0;
 
-  public uploadFileList:UploadFile[] = [];
+  public uploadFileList:IWorkPackageEdocFileUpload[] = [];
 
   @ViewChild('hiddenFileInput') public filePicker:ElementRef<HTMLInputElement>;
 
@@ -87,11 +87,11 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
     protected readonly I18n:I18nService,
     protected readonly states:States,
     protected readonly toastService:ToastService,
-    private readonly uploadService:WorkPackageEdocFileUploadService,
     private readonly apiV3Service:ApiV3Service,
     protected readonly halResourceService:HalResourceService,
     protected readonly timezoneService:TimezoneService,
     protected readonly cdRef:ChangeDetectorRef,
+    protected readonly wpEdocFilesResourceService:WorkPackageEdocFilesResourceService,
   ) {
     super();
 
@@ -100,7 +100,6 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   ngOnInit():void {
     this.getEdocFolder();
-    this.getEdocFiles();
 
     document.body.addEventListener('dragenter', this.onGlobalDragEnter);
     document.body.addEventListener('dragleave', this.onGlobalDragLeave);
@@ -109,29 +108,52 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
   }
 
   ngOnDestroy():void {
+    this.cancelSubscribers();
+
     document.body.removeEventListener('dragenter', this.onGlobalDragEnter);
     document.body.removeEventListener('dragleave', this.onGlobalDragLeave);
     document.body.removeEventListener('dragend', this.onGlobalDragEnd);
     document.body.removeEventListener('drop', this.onGlobalDragEnd);
   }
 
+  filesSubscriber:StoreSubscriber<WorkPackageEdocFileResource> = (list) => {
+    this.edocFiles = list;
+    this.cdRef.detectChanges();
+  };
+
+  uploadsSubscriber:StoreSubscriber<IWorkPackageEdocFileUpload> = (list) => {
+    this.uploadFileList = list;
+    this.cdRef.detectChanges();
+  };
+
+  setSubscribers() {
+    this.cancelSubscribers();
+    if (this.edocFolder) {
+      this.wpEdocFilesResourceService.subscribeFiles(this.edocFolder.folderId, this.filesSubscriber);
+      this.wpEdocFilesResourceService.subscribeUploads(this.edocFolder.folderId, this.uploadsSubscriber);
+    }
+  }
+
+  cancelSubscribers() {
+    if (this.edocFolder) {
+      this.wpEdocFilesResourceService.unsubscribeFiles(this.edocFolder.folderId, this.filesSubscriber);
+      this.wpEdocFilesResourceService.unsubscribeUploads(this.edocFolder.folderId, this.uploadsSubscriber);
+    }
+  }
+
   getEdocFolder = () => {
     if (!this.resource.id) return;
     this.apiV3Service.work_packages.id(this.resource.id).edoc_folder.get().subscribe((res) => {
       if (!res) return;
+      if (!this.edocFolder) {
+        this.wpEdocFilesResourceService.fetchCollection(res.folderId);
+      }
       this.edocFolder = res;
+      this.setSubscribers();
       this.cdRef.detectChanges();
       if (!res.publishUrl) {
         setTimeout(this.getEdocFolder, 5000);
       }
-    });
-  };
-
-  getEdocFiles = () => {
-    if (!this.resource.id) return;
-    this.apiV3Service.work_packages.id(this.resource.id).edoc_files.get().subscribe((res) => {
-      this.edocFiles = res.elements;
-      this.cdRef.detectChanges();
     });
   };
 
@@ -198,54 +220,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
       return;
     }
 
-    this.uploadFileList = filesWithoutFolders.map((file) => ({
-      file,
-      progress: 0,
-      status: 0,
-    }));
-
-    this.cdRef.detectChanges();
-
-    const queue = new PromiseTaskQueue();
-
-    queue.onFinish(() => {
-      setTimeout(() => {
-        this.uploadFileList = [];
-        this.getEdocFiles();
-      }, 500);
-    });
-
-    this.uploadFileList.forEach((uploadFile) => {
-      queue.add(async () => {
-        try {
-          void await this.uploadService.upload(
-            this.edocFolder,
-            uploadFile.file,
-            {
-              onComplete: () => {
-                uploadFile.status = 1;
-                uploadFile.progress = 100;
-                this.cdRef.detectChanges();
-              },
-              onProgress: (info) => {
-                uploadFile.progress = Math.round((100 * info.current) / info.total);
-                this.cdRef.detectChanges();
-              },
-              onError: () => {
-                uploadFile.status = -1;
-                this.cdRef.detectChanges();
-              },
-            },
-          );
-        } catch (e) {
-          console.error(e);
-          uploadFile.status = -1;
-          this.cdRef.detectChanges();
-        }
-      });
-    });
-
-    void queue.start();
+    this.wpEdocFilesResourceService.uploadAttachments(this.edocFolder, filesWithoutFolders);
   }
 
   /**

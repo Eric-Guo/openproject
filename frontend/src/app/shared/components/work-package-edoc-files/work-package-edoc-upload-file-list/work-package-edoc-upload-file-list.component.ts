@@ -3,13 +3,13 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import { UploadFile } from './work-package-edoc-upload-file-list-item.component';
+import { IWorkPackageEdocFileUpload } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-file.model';
 
 @Component({
   selector: 'op-work-package-edoc-upload-file-list',
   templateUrl: './work-package-edoc-upload-file-list.component.html',
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpWorkPackageEdocUploadFileListComponent {
-  @Input() public uploadFiles:UploadFile[] = [];
+  @Input() public uploadFiles:IWorkPackageEdocFileUpload[] = [];
 }

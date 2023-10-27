@@ -68,6 +68,7 @@ import { ApiV3StoragesPaths } from 'core-app/core/apiv3/endpoints/storages/api-v
 import {
   ApiV3ProjectStoragesPaths,
 } from 'core-app/core/apiv3/endpoints/project-storages/api-v3-project-storages-paths';
+import { ApiV3WorkPackageEdocFoldersPaths } from 'core-app/core/apiv3/endpoints/work_package_edoc_folders/api-v3-work-packages-edoc-folder-paths';
 
 @Injectable({ providedIn: 'root' })
 export class ApiV3Service {
@@ -142,6 +143,9 @@ export class ApiV3Service {
 
   // /api/v3/work_packages
   public readonly work_packages = this.apiV3CustomEndpoint(ApiV3WorkPackagesPaths);
+
+  // /api/v3/work_package_edoc_folders
+  public readonly work_package_edoc_folders = this.apiV3CustomEndpoint(ApiV3WorkPackageEdocFoldersPaths);
 
   // /api/v3/queries
   public readonly queries = this.apiV3CustomEndpoint(ApiV3QueriesPaths);
