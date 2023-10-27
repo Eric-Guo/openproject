@@ -57,6 +57,8 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   public uploadFileList:IWorkPackageEdocFileUpload[] = [];
 
+  private getFolderTimerId:number;
+
   @ViewChild('hiddenFileInput') public filePicker:ElementRef<HTMLInputElement>;
 
   public text = {
@@ -109,6 +111,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   ngOnDestroy():void {
     this.cancelSubscribers();
+    if (this.getFolderTimerId) clearTimeout(this.getFolderTimerId);
 
     document.body.removeEventListener('dragenter', this.onGlobalDragEnter);
     document.body.removeEventListener('dragleave', this.onGlobalDragLeave);
@@ -152,7 +155,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
       this.setSubscribers();
       this.cdRef.detectChanges();
       if (!res.publishUrl) {
-        setTimeout(this.getEdocFolder, 5000);
+        this.getFolderTimerId = window.setTimeout(this.getEdocFolder, 5000);
       }
     });
   };
