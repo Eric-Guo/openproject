@@ -90,6 +90,7 @@ export class WorkPackageEdocFileUploadService {
     folder:WorkPackageEdocFolderResource,
     file:File,
     config?:{
+      onStart?:() => void;
       onProgress?:(info:ProgressInfo) => void;
       onComplete?:() => void;
       onError?:(error:Error) => void;
@@ -102,9 +103,16 @@ export class WorkPackageEdocFileUploadService {
     if (resource.status === 1) return resource;
     if (resource.status === -1) throw new Error('Upload failed');
 
-    const { onProgress, onComplete, onError } = (config || {});
+    const {
+      onStart,
+      onProgress,
+      onComplete,
+      onError,
+    } = (config || {});
 
     const queue = new PromiseTaskQueue();
+
+    queue.onStart(onStart);
 
     queue.onProgress(onProgress);
 
