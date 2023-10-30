@@ -4,6 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import {
   catchError,
 } from 'rxjs/operators';
@@ -24,6 +25,8 @@ type EventListener = () => void;
 
 @Injectable()
 export class WorkPackageEdocFilesResourceService {
+  protected folders = new Map<number, WorkPackageEdocFolderResource>();
+
   protected fileStores = new Map<number, SimpleStore<WorkPackageEdocFileResource>>();
 
   protected uploadStores = new Map<number, SimpleStore<IWorkPackageEdocFileUpload>>();
@@ -40,19 +43,36 @@ export class WorkPackageEdocFilesResourceService {
     readonly configurationService:ConfigurationService,
   ) {}
 
-  private getFileStore(folderId:number) {
-    const store = this.fileStores.get(folderId);
+  private fetchFolder = (wpId:number) => this.apiV3Service.work_packages.id(wpId).edoc_folder.get();
+
+  public getFolder = (wpId:number) => new Observable<WorkPackageEdocFolderResource>((ob) => {
+    const folder = this.folders.get(wpId);
+    if (folder) {
+      ob.next(folder);
+      ob.complete();
+    } else {
+      this.fetchFolder(wpId).subscribe((res) => {
+        this.folders.set(wpId, res);
+        ob.next(res);
+        ob.complete();
+        this.fetchCollection(wpId);
+      });
+    }
+  });
+
+  private getFileStore(wpId:number) {
+    const store = this.fileStores.get(wpId);
     if (store) return store;
     const newStore = new SimpleStore<WorkPackageEdocFileResource>();
-    this.fileStores.set(folderId, newStore);
+    this.fileStores.set(wpId, newStore);
     return newStore;
   }
 
-  private getUploadStore(folderId:number) {
-    const store = this.uploadStores.get(folderId);
+  private getUploadStore(wpId:number) {
+    const store = this.uploadStores.get(wpId);
     if (store) return store;
     const newStore = new SimpleStore<IWorkPackageEdocFileUpload>();
-    this.uploadStores.set(folderId, newStore);
+    this.uploadStores.set(wpId, newStore);
     return newStore;
   }
 
@@ -77,35 +97,35 @@ export class WorkPackageEdocFilesResourceService {
     }
   }
 
-  public subscribeFiles(folderId:number, subscriber:StoreSubscriber<WorkPackageEdocFileResource>) {
-    const store = this.getFileStore(folderId);
+  public subscribeFiles(wpId:number, subscriber:StoreSubscriber<WorkPackageEdocFileResource>) {
+    const store = this.getFileStore(wpId);
     store.subscribe(subscriber);
   }
 
-  public subscribeUploads(folderId:number, subscriber:StoreSubscriber<IWorkPackageEdocFileUpload>) {
-    const store = this.getUploadStore(folderId);
+  public subscribeUploads(wpId:number, subscriber:StoreSubscriber<IWorkPackageEdocFileUpload>) {
+    const store = this.getUploadStore(wpId);
     store.subscribe(subscriber);
   }
 
-  public unsubscribeFiles(folderId:number, subscriber:StoreSubscriber<WorkPackageEdocFileResource>) {
-    const store = this.getFileStore(folderId);
+  public unsubscribeFiles(wpId:number, subscriber:StoreSubscriber<WorkPackageEdocFileResource>) {
+    const store = this.getFileStore(wpId);
     store.unsubscribe(subscriber);
   }
 
-  public unsubscribeUploads(folderId:number, subscriber:StoreSubscriber<IWorkPackageEdocFileUpload>) {
-    const store = this.getUploadStore(folderId);
+  public unsubscribeUploads(wpId:number, subscriber:StoreSubscriber<IWorkPackageEdocFileUpload>) {
+    const store = this.getUploadStore(wpId);
     store.unsubscribe(subscriber);
   }
 
-  public fetchCollection(folderId:number) {
-    if (!folderId) return;
-    this.apiV3Service.work_package_edoc_folders.id(folderId).files.get().subscribe((res) => {
-      const store = this.getFileStore(folderId);
+  public fetchCollection(wpId:number) {
+    if (!wpId) return;
+    this.apiV3Service.work_packages.id(wpId).edoc_files.get().subscribe((res) => {
+      const store = this.getFileStore(wpId);
       store.setAll(res.elements);
     });
   }
 
-  public removeAttachment(folderId:number, resource:WorkPackageEdocFileResource) {
+  public removeAttachment(wpId:number, resource:WorkPackageEdocFileResource) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     if (!resource.remove || !resource.remove.href) throw new Error('删除url不存在');
@@ -118,11 +138,17 @@ export class WorkPackageEdocFilesResourceService {
           throw new Error(error.message);
         }),
       ).subscribe(() => {
-        this.fetchCollection(folderId);
+        this.fetchCollection(wpId);
       });
   }
 
-  public uploadAttachments(folder:WorkPackageEdocFolderResource, files:File[]) {
+  public attachFiles(wpId:number, files:File[]) {
+    this.getFolder(wpId).subscribe((folder) => {
+      this.uploadAttachments(wpId, folder, files);
+    });
+  }
+
+  public uploadAttachments(wpId:number, folder:WorkPackageEdocFolderResource, files:File[]) {
     const queue = new PromiseTaskQueue();
 
     const uploadFiles:IWorkPackageEdocFileUpload[] = files.map((file) => (
@@ -133,7 +159,7 @@ export class WorkPackageEdocFilesResourceService {
       }
     ));
 
-    const store = this.getUploadStore(folder.folderId);
+    const store = this.getUploadStore(wpId);
 
     queue.onStart(() => {
       store.setAll(uploadFiles);
@@ -148,7 +174,7 @@ export class WorkPackageEdocFilesResourceService {
 
     queue.onFinish(() => {
       store.clear();
-      this.fetchCollection(folder.folderId);
+      this.fetchCollection(wpId);
       const listeners = this.getListeners('uploadfinish');
       listeners.forEach((listener) => listener());
     });
