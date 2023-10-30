@@ -42,6 +42,23 @@
           </select>
         </li>
         <li class="simple-filters--filter">
+          <label class="simple-filters--filter-name" for="major">专业:</label>
+          <select
+            name="major"
+            class="simple-filters--filter-value"
+            id="major"
+            [(ngModel)]="filterFormData.major"
+          >
+            <option value="" label=" "></option>
+            <option
+              *ngFor="let item of majors"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </li>
+        <li class="simple-filters--filter">
           <label class="simple-filters--filter-name" for="name">名称:</label>
           <input
             type="text"
@@ -134,7 +151,7 @@
             <div class="generic-table--sort-header-outer">
               <div class="generic-table--sort-header">
                 <span>
-                  职位
+                  专业
                 </span>
               </div>
             </div>
