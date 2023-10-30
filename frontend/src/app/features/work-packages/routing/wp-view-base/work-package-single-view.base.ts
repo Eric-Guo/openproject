@@ -55,7 +55,7 @@ import { HookService } from 'core-app/features/plugins/hook-service';
 import { WpSingleViewService } from 'core-app/features/work-packages/routing/wp-view-base/state/wp-single-view.service';
 import { Observable } from 'rxjs';
 import { ActionsService } from 'core-app/core/state/actions/actions.service';
-import { AttachmentsResourceService } from 'core-app/core/state/attachments/attachments.service';
+import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-files.service';
 import { StoragesResourceService } from 'core-app/core/state/storages/storages.service';
 import { FileLinksResourceService } from 'core-app/core/state/file-links/file-links.service';
 import { ProjectsResourceService } from 'core-app/core/state/projects/projects.service';
@@ -80,7 +80,7 @@ export class WorkPackageSingleViewBase extends UntilDestroyedMixin {
 
   @InjectField() authorisationService:AuthorisationService;
 
-  @InjectField() private readonly attachmentsResourceService:AttachmentsResourceService;
+  @InjectField() private readonly attachmentsResourceService:WorkPackageEdocFilesResourceService;
 
   @InjectField() private readonly fileLinkResourceService:FileLinksResourceService;
 
@@ -183,9 +183,7 @@ export class WorkPackageSingleViewBase extends UntilDestroyedMixin {
     // Preselect this work package for future list operations
     this.showStaticPagePath = this.PathHelper.workPackagePath(this.workPackageId);
 
-    // Fetch attachments of current work package
-    const attachments = this.workPackage.attachments as unknown&{ href:string };
-    this.attachmentsResourceService.fetchCollection(attachments.href).subscribe();
+    this.attachmentsResourceService.fetchCollection(Number(this.workPackage.id));
 
     if (this.workPackage.$links.fileLinks) {
       this.fileLinkResourceService

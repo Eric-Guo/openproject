@@ -19,7 +19,6 @@ import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destr
 import { populateInputsFromDataset } from 'core-app/shared/components/dataset-inputs';
 import { ToastService } from 'core-app/shared/components/toaster/toast.service';
 import { TimezoneService } from 'core-app/core/datetime/timezone.service';
-import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/work-package-edoc-file-resource';
 import { WorkPackageEdocFolderResource } from 'core-app/features/hal/resources/work-package-edoc-folder-resource';
 import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-files.service';
@@ -89,7 +88,6 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
     protected readonly I18n:I18nService,
     protected readonly states:States,
     protected readonly toastService:ToastService,
-    private readonly apiV3Service:ApiV3Service,
     protected readonly halResourceService:HalResourceService,
     protected readonly timezoneService:TimezoneService,
     protected readonly cdRef:ChangeDetectorRef,
@@ -102,6 +100,9 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   ngOnInit():void {
     this.getEdocFolder();
+    if (this.resource.id) {
+      this.wpEdocFilesResourceService.fetchCollection(Number(this.resource.id));
+    }
 
     document.body.addEventListener('dragenter', this.onGlobalDragEnter);
     document.body.addEventListener('dragleave', this.onGlobalDragLeave);
@@ -130,27 +131,22 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
   };
 
   setSubscribers() {
+    if (!this.resource.id) return;
     this.cancelSubscribers();
-    if (this.edocFolder) {
-      this.wpEdocFilesResourceService.subscribeFiles(this.edocFolder.folderId, this.filesSubscriber);
-      this.wpEdocFilesResourceService.subscribeUploads(this.edocFolder.folderId, this.uploadsSubscriber);
-    }
+    this.wpEdocFilesResourceService.subscribeFiles(Number(this.resource.id), this.filesSubscriber);
+    this.wpEdocFilesResourceService.subscribeUploads(Number(this.resource.id), this.uploadsSubscriber);
   }
 
   cancelSubscribers() {
-    if (this.edocFolder) {
-      this.wpEdocFilesResourceService.unsubscribeFiles(this.edocFolder.folderId, this.filesSubscriber);
-      this.wpEdocFilesResourceService.unsubscribeUploads(this.edocFolder.folderId, this.uploadsSubscriber);
-    }
+    if (!this.resource.id) return;
+    this.wpEdocFilesResourceService.unsubscribeFiles(Number(this.resource.id), this.filesSubscriber);
+    this.wpEdocFilesResourceService.unsubscribeUploads(Number(this.resource.id), this.uploadsSubscriber);
   }
 
   getEdocFolder = () => {
     if (!this.resource.id) return;
-    this.apiV3Service.work_packages.id(this.resource.id).edoc_folder.get().subscribe((res) => {
+    this.wpEdocFilesResourceService.getFolder(Number(this.resource.id)).subscribe((res) => {
       if (!res) return;
-      if (!this.edocFolder) {
-        this.wpEdocFilesResourceService.fetchCollection(res.folderId);
-      }
       this.edocFolder = res;
       this.setSubscribers();
       this.cdRef.detectChanges();
@@ -210,6 +206,8 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
   }
 
   protected uploadFiles(files:File[]):void {
+    if (!this.resource.id) return;
+
     let filesWithoutFolders = files || [];
     const countBefore = files.length;
     filesWithoutFolders = this.filterFolders(filesWithoutFolders);
@@ -223,7 +221,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
       return;
     }
 
-    this.wpEdocFilesResourceService.uploadAttachments(this.edocFolder, filesWithoutFolders);
+    this.wpEdocFilesResourceService.attachFiles(Number(this.resource.id), filesWithoutFolders);
   }
 
   /**
