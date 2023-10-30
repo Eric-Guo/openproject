@@ -64,17 +64,6 @@
       {{ department }}
     </ng-template>
   </td>
-  <td class="position" *ngIf="isProjectAdmin">
-    <ng-template [ngIf]="editing" [ngIfElse]="toEditPosition">
-      <input
-        style="width: 100%;"
-        [(ngModel)]="formData.position"
-      />
-    </ng-template>
-    <ng-template #toEditPosition>
-      {{ position }}
-    </ng-template>
-  </td>
   <td class="major">
     <ng-template [ngIf]="editing" [ngIfElse]="toEditMajor">
       <input
