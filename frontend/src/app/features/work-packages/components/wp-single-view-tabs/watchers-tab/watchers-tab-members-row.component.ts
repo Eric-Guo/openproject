@@ -9,6 +9,7 @@ import { ToastService } from 'core-app/shared/components/toaster/toast.service';
 
 // eslint-disable-next-line change-detection-strategy/on-push
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'wp-watchers-tab-members-row',
   templateUrl: './watchers-tab-members-row.component.html',
 })
@@ -65,6 +66,10 @@ export class WorkPackageWatchersTabMembersRowComponent {
 
   get position() {
     return this.member.profile?.position;
+  }
+
+  get major() {
+    return this.member.profile?.major;
   }
 
   get mobile() {
