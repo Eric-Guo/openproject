@@ -56,6 +56,7 @@ import {
 import {
   workPackageNotificationsCount,
 } from 'core-app/features/work-packages/components/wp-tabs/services/wp-tabs/wp-notifications-count.function';
+import { workPackageEdocFilesCount } from 'core-app/features/work-packages/components/wp-tabs/services/wp-tabs/wp-edoc-files-count.function';
 
 @Injectable({
   providedIn: 'root',
@@ -128,6 +129,7 @@ export class WorkPackageTabsService {
         id: 'edoc_files',
         component: WorkPackageEdocFilesTabComponent,
         name: I18n.t('js.work_packages.tabs.files'),
+        count: workPackageEdocFilesCount,
       },
       {
         id: 'relations',
