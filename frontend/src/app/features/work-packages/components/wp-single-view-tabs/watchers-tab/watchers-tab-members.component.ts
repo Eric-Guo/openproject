@@ -1,4 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild,
+} from '@angular/core';
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import { NgForm } from '@angular/forms';
@@ -27,10 +29,11 @@ type GroupMembersItemMember = {
   templateUrl: './watchers-tab-members.component.html',
   styleUrls: ['./watchers-tab-members.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'wp-watchers-tab-members',
 })
 export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterViewInit {
-  @Input() onUsersChange:(users:any[]) => void;
+  @Input() onUsersChange:(users:unknown[]) => void;
 
   @ViewChild('filterForm') filterForm:NgForm;
 
@@ -47,6 +50,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
   public filterFormData = {
     company: '',
     department: '',
+    major: '',
     name: '',
     email: '',
     role_id: '',
@@ -108,18 +112,17 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
         if (this.currentFilter.company !== member.profile.company) return false;
         if (this.currentFilter.department && this.currentFilter.department !== member.profile.department) return false;
       }
+      if (this.currentFilter.major) {
+        if (!member.profile) return false;
+        if (this.currentFilter.major && this.currentFilter.major !== member.profile.major) return false;
+      }
       return true;
     }).sort((a, b) => {
       if (!b.profile) return -1;
       if (!a.profile) return 1;
-      if (!b.profile.company) return -1;
-      if (!a.profile.company) return 1;
-      const companyAB = a.profile.company.localeCompare(b.profile.company);
-      if (companyAB !== 0) return companyAB;
-      if (!b.profile.department) return -1;
-      if (!a.profile.department) return 1;
-      const departmentAB = a.profile.department.localeCompare(b.profile.department);
-      return departmentAB;
+      if (!b.profile.major) return -1;
+      if (!a.profile.major) return 1;
+      return a.profile.major.localeCompare(b.profile.major);
     });
     this.setCurrentGroupMembers();
   }
@@ -160,7 +163,18 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
     return [...departments];
   }
 
-  getGroupName = (member:MembershipResource) => `${member.profile?.company?.trim() || ''} - ${member.profile?.department?.trim() || ''}`;
+  get majors() {
+    if (!this.members) return [];
+    const majors:Set<string> = new Set();
+    this.members.forEach((member) => {
+      if (member.profile && member.profile.major) {
+        majors.add(member.profile.major.trim());
+      }
+    });
+    return [...majors];
+  }
+
+  getGroupName = (member:MembershipResource) => member.profile?.major?.trim() || '-';
 
   setCurrentGroupMembers() {
     let currentGroup:GroupMembersItemGroup;
@@ -187,6 +201,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
         groups.push(currentGroup);
       }
       currentGroup.total += 1;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       currentGroup.memberIds.push(member.id!);
       groups.push({ type: 'member', member, checked: false });
       return groups;
@@ -207,7 +222,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
   }
 
   handleCurrentGroupMembersChange = () => {
-    const users:any[] = [];
+    const users:unknown[] = [];
     this.currentGroupMembers.forEach((item) => {
       if (item.type === 'member' && item.checked) {
         users.push(item.member.principal);
@@ -221,6 +236,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
     this.currentGroupMembers = this.currentGroupMembers.map((item) => {
       if (item.type === 'group' && item.title === groupName) {
         if (checked) {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           item.checkedMemberIds = Array.from(new Set([...item.checkedMemberIds, member.id!]));
         } else {
           item.checkedMemberIds = item.checkedMemberIds.filter((it) => it !== member.id);
