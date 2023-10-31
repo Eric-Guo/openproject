@@ -28,6 +28,13 @@
       class="op-file-list--item-avatar"
     ></div>
   </a>
+  <input
+    *ngIf="showCheckbox"
+    type="checkbox"
+    [ngStyle]="{ margin: '8px' }"
+    [disabled]="invalid"
+    (change)="checkedChange($event.target.checked)"
+  />
   <div
     *ngIf="canRemove"
     class="spot-list--item-floating-actions op-file-list--item-floating-actions hidden-for-mobile"

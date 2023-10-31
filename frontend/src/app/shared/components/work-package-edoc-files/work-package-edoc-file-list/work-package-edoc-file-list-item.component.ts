@@ -34,6 +34,12 @@ export class OpWorkPackageEdocFileListItemComponent extends UntilDestroyedMixin 
 
   @Input() public index:number;
 
+  @Input() public showCheckbox = false;
+
+  @Input() public hideRemoveButton = false;
+
+  @Output() public handleCheckedChange = new EventEmitter<boolean>();
+
   @Output() public removeEdocFile = new EventEmitter<void>();
 
   @ViewChild('avatar') avatar:ElementRef;
@@ -162,8 +168,12 @@ export class OpWorkPackageEdocFileListItemComponent extends UntilDestroyedMixin 
       .catch(() => { /* confirmation rejected */ });
   }
 
+  public checkedChange(checked:boolean):void {
+    this.handleCheckedChange.emit(checked);
+  }
+
   public get canRemove() {
-    return !!this.edocFile.remove;
+    return !this.hideRemoveButton && !!this.edocFile.remove;
   }
 
   public get invalid() {

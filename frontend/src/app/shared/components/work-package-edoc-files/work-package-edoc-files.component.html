@@ -1,5 +1,5 @@
 <button
-  *ngIf="!!edocFolder"
+  *ngIf="!hideEdocFolderButton && !!edocFolder"
   class="button -alt-highlight"
   [disabled]="!publishUrl"
   (click)="goToFolder()"
@@ -15,6 +15,9 @@
   *ngIf="edocFiles.length"
   [resource]="resource"
   [edocFiles]="edocFiles"
+  [showCheckbox]="showCheckbox"
+  [onCheckedChange]="handleCheckedChange"
+  [hideRemoveButton]="hideRemoveButton"
 ></op-work-package-edoc-file-list>
 
 <op-work-package-edoc-upload-file-list

@@ -10,5 +10,8 @@
     [edocFile]="edocFile"
     [index]="i"
     (removeEdocFile)="removeEdocFile(edocFile)"
+    [showCheckbox]="showCheckbox"
+    [hideRemoveButton]="hideRemoveButton"
+    (handleCheckedChange)="handleCheckedChange(edocFile, $event)"
   ></li>
 </ul>

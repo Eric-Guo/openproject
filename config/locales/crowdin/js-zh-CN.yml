@@ -178,6 +178,10 @@ zh-CN:
           text: '[Placeholder] 嵌入式工作包表'
         embedded_calendar:
           text: '[Placeholder]嵌入式日历'
+        dds:
+          button: 'DDS文件'
+        wp_edoc_files:
+          button: '插入文件'
     admin:
       type_form:
         custom_field: '自定义字段'

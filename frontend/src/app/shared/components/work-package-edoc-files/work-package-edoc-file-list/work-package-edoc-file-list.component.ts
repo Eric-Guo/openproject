@@ -18,14 +18,25 @@ export class OpWorkPackageEdocFileListComponent extends UntilDestroyedMixin {
 
   @Input() public edocFiles:WorkPackageEdocFileResource[] = [];
 
+  @Input() public showCheckbox = false;
+
+  @Input() public hideRemoveButton = false;
+
+  @Input() public onCheckedChange?:(edocFile:WorkPackageEdocFileResource, checked:boolean) => void;
+
   constructor(
     protected readonly wpEdocFilesResourceService:WorkPackageEdocFilesResourceService,
   ) {
     super();
   }
 
+  public handleCheckedChange(edocFile:WorkPackageEdocFileResource, checked:boolean):void {
+    this.onCheckedChange?.(edocFile, checked);
+  }
+
   public removeEdocFile(edocFile:WorkPackageEdocFileResource):void {
     if (!this.resource.id) return;
     this.wpEdocFilesResourceService.removeAttachment(Number(this.resource.id), edocFile);
+    this.onCheckedChange?.(edocFile, false);
   }
 }

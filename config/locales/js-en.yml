@@ -202,6 +202,10 @@ en:
           text: '[Placeholder] Embedded work package table'
         embedded_calendar:
           text: '[Placeholder] Embedded calendar'
+        dds:
+          button: 'DDS file'
+        wp_edoc_files:
+          button: 'Insert files'
 
     admin:
       type_form:

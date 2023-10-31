@@ -1,0 +1,38 @@
+<div
+  class="spot-modal spot-modal_autoheight loading-indicator--location"
+  data-indicator-name="modal"
+>
+  <div class="spot-modal--header">{{text.title}}</div>
+
+  <div class="spot-divider"></div>
+
+  <div class="spot-modal--body spot-container">
+    <op-work-package-edoc-files
+      [resource]="resource"
+      [showCheckbox]="true"
+      [hideRemoveButton]="true"
+      [hideEdocFolderButton]="true"
+      [onCheckedChange]="handleCheckedChange"
+    ></op-work-package-edoc-files>
+  </div>
+
+  <div class="spot-action-bar">
+    <div class="spot-action-bar--right">
+      <button
+        class="spot-modal--cancel-button button button_no-margin spot-action-bar--action"
+        (click)="closeMe($event)"
+        tabindex="4"
+        type="button"
+        [textContent]="text.button_cancel"
+      ></button>
+      <button
+        class="spot-modal--submit-button button button_no-margin -highlight spot-action-bar--action"
+        tabindex="3"
+        type="button"
+        (click)="applyAndClose($event)"
+        [disabled]="fileLinks.length === 0"
+        [textContent]="text.button_save"
+      ></button>
+    </div>
+  </div>
+</div>

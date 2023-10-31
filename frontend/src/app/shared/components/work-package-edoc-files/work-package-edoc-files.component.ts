@@ -46,6 +46,16 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
 
   @Input() public resource:HalResource;
 
+  @Input() public hideEdocFolderButton = false;
+
+  @Input() public showCheckbox = false;
+
+  @Input() public onCheckedChange?:(list:WorkPackageEdocFileResource[]) => void;
+
+  @Input() public hideUploadButton = false;
+
+  @Input() public hideRemoveButton = false;
+
   public edocFolder:WorkPackageEdocFolderResource;
 
   public edocFiles:WorkPackageEdocFileResource[] = [];
@@ -57,6 +67,8 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
   public uploadFileList:IWorkPackageEdocFileUpload[] = [];
 
   private getFolderTimerId:number;
+
+  public checkedEdocFiles:WorkPackageEdocFileResource[] = [];
 
   @ViewChild('hiddenFileInput') public filePicker:ElementRef<HTMLInputElement>;
 
@@ -157,7 +169,7 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
   };
 
   get allowUpload() {
-    return !!this.edocFolder && !!this.edocFolder.create_file && this.uploadFileList.length === 0;
+    return !this.hideUploadButton && !!this.edocFolder && !!this.edocFolder.create_file && this.uploadFileList.length === 0;
   }
 
   get publishUrl() {
@@ -246,4 +258,13 @@ export class OpWorkPackageEdocFilesComponent extends UntilDestroyedMixin impleme
       return true;
     });
   }
+
+  public handleCheckedChange = (edocFile:WorkPackageEdocFileResource, checked:boolean) => {
+    if (checked) {
+      this.checkedEdocFiles = [...this.checkedEdocFiles, edocFile];
+    } else {
+      this.checkedEdocFiles = this.checkedEdocFiles.filter((file) => file.fileId !== edocFile.fileId);
+    }
+    this.onCheckedChange?.(this.checkedEdocFiles);
+  };
 }

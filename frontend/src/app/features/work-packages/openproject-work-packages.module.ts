@@ -127,6 +127,7 @@ import { OpWpTabsModule } from 'core-app/features/work-packages/components/wp-ta
 import { EditFieldControlsModule } from 'core-app/shared/components/fields/edit/field-controls/edit-field-controls.module';
 import { WpTableExportModalComponent } from 'core-app/shared/components/modals/export-modal/wp-table-export.modal';
 import { WpButtonMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-button-modal/wp-button-macro.modal';
+import { WpEdocFilesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-edoc-files-modal/wp-edoc-files-macro.modal';
 import { QuerySharingModalComponent } from 'core-app/shared/components/modals/share-modal/query-sharing.modal';
 import { SaveQueryModalComponent } from 'core-app/shared/components/modals/save-modal/save-query.modal';
 import { QuerySharingFormComponent } from 'core-app/shared/components/modals/share-modal/query-sharing-form.component';
@@ -417,6 +418,7 @@ import { WorkPackageWatchersTabMembersRowComponent } from './components/wp-singl
     // editor module to avoid circular dependencies
     EmbeddedTablesMacroComponent,
     WpButtonMacroModalComponent,
+    WpEdocFilesMacroModalComponent,
 
     // Card view
     WorkPackageCardViewComponent,

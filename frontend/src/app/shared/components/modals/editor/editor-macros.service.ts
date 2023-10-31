@@ -29,6 +29,7 @@
 import { OpModalService } from 'core-app/shared/components/modal/modal.service';
 import { Injectable, Injector } from '@angular/core';
 import { WpButtonMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-button-modal/wp-button-macro.modal';
+import { WpEdocFilesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-edoc-files-modal/wp-edoc-files-macro.modal';
 import { WikiIncludePageMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wiki-include-page-modal/wiki-include-page-macro.modal';
 import { CodeBlockMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-code-block-modal/code-block-macro.modal';
 import { ChildPagesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-child-pages-modal/child-pages-macro.modal';
@@ -110,6 +111,20 @@ export class EditorMacrosService {
             page: modal.page,
             includeParent: modal.includeParent,
           });
+        }
+      }));
+    });
+  }
+
+  public configureWpEdocFiles(wpId:string):Promise<object> {
+    return new Promise<object>((resolve, _) => {
+      this.opModalService.show(
+        WpEdocFilesMacroModalComponent,
+        this.injector,
+        { wpId },
+      ).subscribe((modal) => modal.closingEvent.subscribe(() => {
+        if (modal.changed && modal.fileLinks && modal.fileLinks.length > 0) {
+          resolve(modal.fileLinks);
         }
       }));
     });
