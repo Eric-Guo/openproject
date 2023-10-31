@@ -113,6 +113,7 @@ en:
     button_export-pdf: "Download PDF"
     button_export-atom: "Download Atom"
     button_create: "Create"
+    button_insert: "Insert"
 
     card:
       add_new: 'Add new card'

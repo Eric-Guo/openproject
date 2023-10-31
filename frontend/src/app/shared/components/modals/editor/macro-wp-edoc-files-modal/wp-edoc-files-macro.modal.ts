@@ -34,7 +34,7 @@ export class WpEdocFilesMacroModalComponent extends OpModalComponent implements 
 
   public text:Record<string, string> = {
     title: this.I18n.t('js.work_packages.tabs.files'),
-    button_save: this.I18n.t('js.button_save'),
+    button_save: this.I18n.t('js.button_insert'),
     button_cancel: this.I18n.t('js.button_cancel'),
     close_popup: this.I18n.t('js.close_popup_title'),
   };
