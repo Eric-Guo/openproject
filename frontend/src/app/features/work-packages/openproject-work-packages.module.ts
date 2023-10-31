@@ -280,6 +280,7 @@ import {
 import {
   WpButtonMacroModalComponent,
 } from 'core-app/shared/components/modals/editor/macro-wp-button-modal/wp-button-macro.modal';
+import { WpEdocFilesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-edoc-files-modal/wp-edoc-files-macro.modal';
 import { QuerySharingModalComponent } from 'core-app/shared/components/modals/share-modal/query-sharing.modal';
 import { SaveQueryModalComponent } from 'core-app/shared/components/modals/save-modal/save-query.modal';
 import { QuerySharingFormComponent } from 'core-app/shared/components/modals/share-modal/query-sharing-form.component';
@@ -656,6 +657,7 @@ import {
     // editor module to avoid circular dependencies
     EmbeddedTablesMacroComponent,
     WpButtonMacroModalComponent,
+    WpEdocFilesMacroModalComponent,
 
     // Card view
     WorkPackageCardViewComponent,
