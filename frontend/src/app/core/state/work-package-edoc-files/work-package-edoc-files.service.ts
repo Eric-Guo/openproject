@@ -43,19 +43,26 @@ export class WorkPackageEdocFilesResourceService {
     readonly configurationService:ConfigurationService,
   ) {}
 
-  private fetchFolder = (wpId:number) => this.apiV3Service.work_packages.id(wpId).edoc_folder.get();
+  private fetchFolder = (wpId:number) => new Observable<WorkPackageEdocFolderResource>((ob) => {
+    this.apiV3Service.work_packages.id(wpId).edoc_folder.get().subscribe((res) => {
+      this.folders.set(wpId, res);
+      ob.next(res);
+      ob.complete();
+    });
+  });
 
   public getFolder = (wpId:number) => new Observable<WorkPackageEdocFolderResource>((ob) => {
+    if (!this.fileStores.get(wpId)) {
+      this.fetchCollection(wpId);
+    }
     const folder = this.folders.get(wpId);
-    if (folder) {
+    if (folder && folder.publishCode) {
       ob.next(folder);
       ob.complete();
     } else {
       this.fetchFolder(wpId).subscribe((res) => {
-        this.folders.set(wpId, res);
         ob.next(res);
         ob.complete();
-        this.fetchCollection(wpId);
       });
     }
   });
