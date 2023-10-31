@@ -122,6 +122,7 @@ en:
     button_export-atom: "Download Atom"
     button_generate_pdf: "Generate PDF"
     button_create: "Create"
+    button_insert: "Insert"
 
     card:
       add_new: "Add new card"
@@ -213,7 +214,10 @@ en:
           text: "[Placeholder] Embedded work package table"
         embedded_calendar:
           text: "[Placeholder] Embedded calendar"
-
+        dds:
+          button: 'DDS file'
+        wp_edoc_files:
+          button: 'Insert files'
     admin:
       type_form:
         custom_field: "Custom field"
