@@ -106,6 +106,7 @@ zh-CN:
     button_export-pdf: "下载 PDF"
     button_export-atom: "下载 Atom"
     button_create: "创建"
+    button_insert: "插入"
     card:
       add_new: "添加新卡"
       highlighting:
@@ -192,6 +193,10 @@ zh-CN:
           text: "[Placeholder] 嵌入式工作包表"
         embedded_calendar:
           text: "[Placeholder]嵌入式日历"
+        dds:
+          button: 'DDS文件'
+        wp_edoc_files:
+          button: '插入文件'
     admin:
       type_form:
         custom_field: "自定义字段"
