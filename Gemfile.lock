@@ -325,7 +325,7 @@ GEM
     awesome_nested_set (3.6.0)
       activerecord (>= 4.0.0, < 7.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.844.0)
+    aws-partitions (1.845.0)
     aws-sdk-core (3.186.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -698,7 +698,7 @@ GEM
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
     mysql2 (0.5.5)
-    net-imap (0.4.3)
+    net-imap (0.4.4)
       date
       net-protocol
     net-ldap (0.18.0)
@@ -800,7 +800,7 @@ GEM
     puma-plugin-statsd (2.5.0)
       puma (>= 5.0, < 7)
     raabro (1.4.0)
-    racc (1.7.2)
+    racc (1.7.3)
     rack (2.2.8)
     rack-accept (0.4.5)
       rack (>= 0.4)
