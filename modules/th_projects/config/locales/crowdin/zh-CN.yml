@@ -28,12 +28,13 @@
 
 ---
 zh-CN:
-  project_module_th_projects: "项目资料"
-  permission_view_th_projects: "查看项目资料"
-  permission_edit_th_projects: "修改项目资料"
-  project_module_th_project_timelines: "项目时间轴"
-  permission_view_th_project_timelines: "查看项目时间轴"
+  project_module_th_projects: "天华项目"
   label_project_timeline_plural: "时间轴"
+  label_project_more_plural: "更多"
+  permission_view_th_project_profiles: "查看天华项目资料"
+  permission_edit_th_project_profiles: "修改天华项目资料"
+  permission_view_th_project_timelines: "查看天华项目时间轴"
+  permission_view_th_project_more: "查看天华项目更多"
 
   activerecord:
     attributes:

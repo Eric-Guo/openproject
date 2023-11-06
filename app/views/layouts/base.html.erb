@@ -189,5 +189,16 @@ See COPYRIGHT and LICENSE files for more details.
     }
   });
 </script>
+<% if @project.present? && @project.module_enabled?(:th_projects) && User.current.logged? && User.current.allowed_to?(:view_th_project_more, @project) %>
+<% ith_url = "https://ith-workspace.thape.com.cn/projects/#{@project.id}" %>
+<script>
+  const projectMore = document.querySelector('li[data-name="project_more"]');
+  if (projectMore) {
+    projectMore.addEventListener('click', function() {
+      window.open('<%= ith_url %>', '_blank', 'noreferrer');
+    });
+  }
+</script>
+<% end %>
 </body>
 </html>

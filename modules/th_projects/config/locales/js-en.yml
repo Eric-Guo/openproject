@@ -2,6 +2,7 @@
 en:
   js:
     label_project_timeline_plural: "Timeline"
+    label_project_more_plural: "More"
     th_projects:
       project_profile:
         type_list:

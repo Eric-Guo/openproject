@@ -2,6 +2,7 @@
 zh-CN:
   js:
     label_project_timeline_plural: "时间轴"
+    label_project_more_plural: "更多"
     th_projects:
       project_profile:
         type_list:

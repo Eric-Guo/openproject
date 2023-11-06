@@ -28,12 +28,13 @@
 
 ---
 en:
-  project_module_th_projects: "Project Profile"
-  permission_view_th_projects: "View Project Profile"
-  permission_edit_th_projects: "Edit Project Profile"
-  project_module_th_project_timelines: "Project Timeline"
-  permission_view_th_project_timelines: "View Project Timeline"
+  project_module_th_projects: "TH Project"
   label_project_timeline_plural: "Timeline"
+  label_project_more_plural: "More"
+  permission_view_th_project_profiles: "View TH Project Profile"
+  permission_edit_th_project_profiles: "Edit TH Project Profile"
+  permission_view_th_project_timelines: "View TH Project Timeline"
+  permission_view_th_project_more: "View TH Project More"
 
   activerecord:
     attributes:

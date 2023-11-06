@@ -1,0 +1,16 @@
+<% html_title(t('label_project_more_plural')) %>
+
+<%= toolbar title: t(:label_project_more_plural) %>
+
+<% ith_url = "https://ith-workspace.thape.com.cn/projects/#{@project.id}" %>
+
+<div>
+  没有自动跳转？
+  <a
+    href="<%= ith_url %>"
+    target="_blank"
+    rel="noreferrer"
+  >
+    点击前往
+  </a>
+</div>

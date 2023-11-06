@@ -13,17 +13,21 @@ module OpenProject::ThProjects
              :requires_openproject => '>= 6.0.0',
              :name => :project_module_th_projects do
       project_module :th_projects do
-        permission :view_th_projects,
+        permission :view_th_project_profiles,
                     {
                       'th_projects/project_profiles': %i[update],
                     },
                     require: :project
-      end
 
-      project_module :th_project_timelines do
         permission :view_th_project_timelines,
                     {
                       'th_projects/project_timelines': %i[show],
+                    },
+                    require: :project
+
+        permission :view_th_project_more,
+                    {
+                      'th_projects/project_more': %i[show],
                     },
                     require: :project
       end
@@ -31,8 +35,17 @@ module OpenProject::ThProjects
       menu :project_menu,
         :project_timeline,
         { controller: '/th_projects/project_timelines', action: 'show' },
+        if: ->(project) { project.module_enabled?(:th_projects) && User.current.logged? && User.current.allowed_to?(:view_th_project_timelines, project) },
         caption: :label_project_timeline_plural,
         icon: 'icon2 icon-time',
+        before: :settings
+
+      menu :project_menu,
+        :project_more,
+        { controller: '/th_projects/project_more', action: 'show' },
+        if: ->(project) { project.module_enabled?(:th_projects) && User.current.logged? && User.current.allowed_to?(:view_th_project_more, project) },
+        caption: :label_project_more_plural,
+        icon: 'icon2 icon-more',
         before: :settings
     end
 
