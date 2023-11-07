@@ -78,6 +78,8 @@ module Queries::WorkPackages
     filter Filter::MilestoneFilter
     filter Filter::TypeaheadFilter
     filter Filter::DurationFilter
+    filter Filter::HeelsFilter
+    filter Filter::PreheelsFilter
     exclude Filter::RelatableFilter
 
     select Selects::PropertySelect

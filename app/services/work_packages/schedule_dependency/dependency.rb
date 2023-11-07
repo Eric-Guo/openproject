@@ -46,14 +46,14 @@ class WorkPackages::ScheduleDependency::Dependency
   end
 
   def moving_predecessors
-    @moving_predecessors ||= follows_relations
+    @moving_predecessors ||= (follows_relations + heels_relations)
       .map(&:to)
       .filter { |predecessor| schedule_dependency.moving?(predecessor) }
   end
 
   def soonest_start_date
     @soonest_start_date ||=
-      follows_relations
+      (follows_relations + heels_relations)
         .filter_map(&:successor_soonest_start)
         .max
   end
@@ -78,6 +78,10 @@ class WorkPackages::ScheduleDependency::Dependency
 
   def follows_relations
     schedule_dependency.follows_relations(work_package)
+  end
+
+  def heels_relations
+    schedule_dependency.heels_relations(work_package)
   end
 
   def descendants_dates
