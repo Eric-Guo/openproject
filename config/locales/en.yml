@@ -1766,6 +1766,7 @@ en:
   label_group: "Group"
   label_group_named: "Group %{name}"
   label_group_plural: "Groups"
+  label_heels: "heels"
   label_help: "Help"
   label_here: here
   label_hide: "Hide"
@@ -1916,6 +1917,7 @@ en:
   label_modules_and_plugins: "Modules and Plugins"
   label_precedes: "precedes"
   label_preferences: "Preferences"
+  label_preheels: "preheels"
   label_preview: "Preview"
   label_previous: "Previous"
   label_previous_week: "Previous week"

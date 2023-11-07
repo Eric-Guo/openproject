@@ -41,6 +41,10 @@ class Relation < ApplicationRecord
   TYPE_PARTOF       = 'partof'.freeze
   TYPE_REQUIRES     = 'requires'.freeze
   TYPE_REQUIRED     = 'required'.freeze
+  # 前置紧跟于
+  TYPE_PREHEELS     = 'preheels'.freeze
+  # 后置紧跟于
+  TYPE_HEELS        = 'heels'.freeze
   # The parent/child relation is maintained separately
   # (in WorkPackage and WorkPackageHierarchy) and a relation cannot
   # have the type 'parent' but this is abstracted to simplify the code.
@@ -88,6 +92,14 @@ class Relation < ApplicationRecord
     TYPE_REQUIRED => {
       name: :label_required, sym_name: :label_requires, order: 11,
       sym: TYPE_REQUIRES, reverse: TYPE_REQUIRES
+    },
+    TYPE_PREHEELS => {
+      name: :label_preheels, sym_name: :label_heels, order: 12,
+      sym: TYPE_HEELS, reverse: TYPE_HEELS
+    },
+    TYPE_HEELS => {
+      name: :label_heels, sym_name: :label_preheels, order: 13,
+      sym: TYPE_PREHEELS
     }
   }.freeze
 
@@ -97,11 +109,18 @@ class Relation < ApplicationRecord
          :types,
          :visible
 
+  scopes :heels_non_manual_ancestors,
+         :types,
+         :visible
+
   scope :of_work_package,
         ->(work_package) { where(from: work_package).or(where(to: work_package)) }
 
   scope :follows_with_delay,
         -> { follows.where("delay > 0") }
+
+  scope :heels_with_delay,
+        -> { heels.where("delay > 0") }
 
   validates :delay, numericality: { allow_nil: true }
 
@@ -135,7 +154,7 @@ class Relation < ApplicationRecord
   end
 
   def successor_soonest_start
-    if follows? && (to.start_date || to.due_date)
+    if (follows? || heels?) && (to.start_date || to.due_date)
       days = WorkPackages::Shared::Days.for(from)
       relation_start_date = (to.due_date || to.start_date) + 1.day
       days.soonest_working_day(relation_start_date, delay:)

@@ -315,6 +315,8 @@ module WorkPackages::Scopes
         when Relation::TYPE_PARENT, Relation::TYPE_CHILD
           unions << existing_relation_of_type_lateral(Relation::TYPE_FOLLOWS, limit_direction: true)
           unions << existing_relation_of_type_lateral(Relation::TYPE_PRECEDES, limit_direction: true)
+          unions << existing_relation_of_type_lateral(Relation::TYPE_HEElS, limit_direction: true)
+          unions << existing_relation_of_type_lateral(Relation::TYPE_PREHEELS, limit_direction: true)
         else
           unions << existing_relation_of_type_lateral(relation_type)
         end

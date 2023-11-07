@@ -144,7 +144,8 @@ class WorkPackages::SetScheduleService
   def reschedule_by_predecessors(scheduled, dependency)
     return unless dependency.soonest_start_date
 
-    new_start_date = [scheduled.start_date, dependency.soonest_start_date].compact.max
+    has_heels = dependency.schedule_dependency.heels_relations(scheduled).any? { |item| item.heels? }
+    new_start_date = has_heels ? dependency.soonest_start_date : [scheduled.start_date, dependency.soonest_start_date].compact.max
     new_due_date = determine_due_date(scheduled, new_start_date)
     set_dates(scheduled, new_start_date, new_due_date)
   end
