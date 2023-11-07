@@ -169,7 +169,7 @@ export class WorkPackageTableTimelineRelations extends UntilDestroyedMixin imple
       const relationsList = _.values(relations);
       relationsList.forEach((relation) => {
         if (!(relation.type === 'precedes'
-          || relation.type === 'follows')) {
+          || relation.type === 'follows' || relation.type === 'heels' || relation.type === 'preheels')) {
           return;
         }
 

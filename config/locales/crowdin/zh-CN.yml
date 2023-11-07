@@ -2275,6 +2275,7 @@ zh-CN:
   label_group: "组"
   label_group_named: "组 %{name}"
   label_group_plural: "组"
+  label_heels: "紧跟"
   label_help: "帮助"
   label_here: 这里
   label_hide: "隐藏"
@@ -2453,6 +2454,7 @@ zh-CN:
   label_modules_and_plugins: "模块和插件"
   label_precedes: "之前"
   label_preferences: "首选项"
+  label_preheels: "紧跟之前"
   label_preview: "预览"
   label_preview_not_available: "预览不可用"
   label_previous: "上一个"
@@ -3098,6 +3100,8 @@ zh-CN:
     shared_with_user: "与用户共享"
     shared_with_me: "与我共享"
     subproject_id: "包括子项目"
+    heels: "后置紧跟于"
+    preheels: "前置紧跟于"
   repositories:
     at_identifier: "在 %{identifier}"
     atom_revision_feed: "Atom 修订 feed"

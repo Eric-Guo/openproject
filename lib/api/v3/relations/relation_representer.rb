@@ -66,7 +66,7 @@ module API
                  render_nil: true,
                  if: ->(*) {
                    # the relation type may be blank when parsing for an update
-                   [Relation::TYPE_FOLLOWS, Relation::TYPE_PRECEDES].include?(relation_type) ||
+                   [Relation::TYPE_FOLLOWS, Relation::TYPE_PRECEDES, Relation::TYPE_HEELS, Relation::TYPE_PREHEELS].include?(relation_type) ||
                      relation_type.blank?
                  }
 

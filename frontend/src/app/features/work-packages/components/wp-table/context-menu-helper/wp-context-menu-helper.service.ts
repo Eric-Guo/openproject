@@ -211,6 +211,16 @@ export class WorkPackageContextMenuHelperService {
 
     if (!!workPackage.addRelation && this.wpViewTimeline.isVisible) {
       allowedActions.push({
+        key: 'relation-preheels',
+        text: I18n.t('js.relation_buttons.add_preheeler'),
+        link: 'addRelation',
+      });
+      allowedActions.push({
+        key: 'relation-heels',
+        text: I18n.t('js.relation_buttons.add_heeler'),
+        link: 'addRelation',
+      });
+      allowedActions.push({
         key: 'relation-precedes',
         text: I18n.t('js.relation_buttons.add_predecessor'),
         link: 'addRelation',

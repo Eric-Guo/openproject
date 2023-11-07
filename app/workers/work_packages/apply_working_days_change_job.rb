@@ -106,7 +106,7 @@ class WorkPackages::ApplyWorkingDaysChangeJob < ApplicationJob
 
   def applicable_predecessor(excluded)
     WorkPackage
-      .where(id: Relation.follows_with_lag.select(:to_id))
+      .where(id: Relation.follows_with_lag.select(:to_id) + Relation.heels_with_lag.select(:to_id))
       .where.not(id: excluded)
   end
 
