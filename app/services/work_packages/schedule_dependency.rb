@@ -113,9 +113,15 @@ class WorkPackages::ScheduleDependency
     @follows_relations[work_package] ||= all_direct_and_indirect_follows_relations_for(work_package)
   end
 
+  def heels_relations(work_package)
+    @heels_relations ||= {}
+    @heels_relations[work_package] ||= all_direct_and_indirect_heels_relations_for(work_package)
+  end
+
   private
 
   attr_accessor :known_follows_relations,
+                :known_heels_relations,
                 :moved_work_packages
 
   def all_direct_and_indirect_follows_relations_for(work_package)
@@ -126,8 +132,20 @@ class WorkPackages::ScheduleDependency
       .uniq
   end
 
+  def all_direct_and_indirect_heels_relations_for(work_package)
+    family = ancestors(work_package) + [work_package] + descendants(work_package)
+    heels_relations_by_follower_id
+      .fetch_values(*family.pluck(:id)) { [] }
+      .flatten
+      .uniq
+  end
+
   def follows_relations_by_follower_id
     @follows_relations_by_follower_id ||= known_follows_relations.group_by(&:from_id)
+  end
+
+  def heels_relations_by_follower_id
+    @heels_relations_by_heeler_id ||= known_heels_relations.group_by(&:from_id)
   end
 
   def create_dependencies
@@ -161,11 +179,15 @@ class WorkPackages::ScheduleDependency
     # preload the predecessors relations
     preload_follows_relations
 
+    preload_heels_relations
+
     # preload unmoving predecessors, as they influence the computation of Relation#successor_soonest_start
     known_work_packages.concat(fetch_unmoving_predecessors)
 
     # rehydrate the predecessors and followers of follows relations
     rehydrate_follows_relations
+
+    rehydrate_heels_relations
   end
 
   # Returns all the descendants of moved and moving work packages that are not
@@ -186,7 +208,7 @@ class WorkPackages::ScheduleDependency
 
   # Load all the predecessors of follows relations that are not already loaded.
   def fetch_unmoving_predecessors
-    not_yet_loaded_predecessors_ids = known_follows_relations.map(&:to_id) - known_work_packages.map(&:id)
+    not_yet_loaded_predecessors_ids = known_follows_relations.map(&:to_id) + known_heels_relations.map(&:to_id) - known_work_packages.map(&:id)
     WorkPackage
       .where(id: not_yet_loaded_predecessors_ids)
   end
@@ -198,11 +220,24 @@ class WorkPackages::ScheduleDependency
     self.known_follows_relations = Relation.follows.where(from_id: known_work_packages.map(&:id))
   end
 
+  def preload_heels_relations
+    raise "must be called only once" unless known_heels_relations.nil?
+
+    self.known_heels_relations = Relation.heels.where(from_id: known_work_packages.map(&:id))
+  end
+
   # rehydrate the #to and #from members of the preloaded follows relations, to
   # prevent triggering additional database requests when computing soonest
   # start.
   def rehydrate_follows_relations
     known_follows_relations.each do |relation|
+      relation.from = work_package_by_id(relation.from_id)
+      relation.to = work_package_by_id(relation.to_id)
+    end
+  end
+
+  def rehydrate_heels_relations
+    known_heels_relations.each do |relation|
       relation.from = work_package_by_id(relation.from_id)
       relation.to = work_package_by_id(relation.to_id)
     end

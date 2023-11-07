@@ -183,7 +183,7 @@ module WorkPackages::Scopes
                 FROM
                   relations
                 WHERE NOT to_schedule.manually
-                  AND (relations.to_id = to_schedule.id AND relations.relation_type = '#{Relation::TYPE_FOLLOWS}')
+                  AND (relations.to_id = to_schedule.id AND relations.relation_type IN ('#{Relation::TYPE_FOLLOWS}','#{Relation::TYPE_HEELS}'))
               UNION
                 SELECT
                   CASE
