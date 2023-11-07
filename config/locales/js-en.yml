@@ -915,6 +915,8 @@ en:
       add_follower: "Add follower"
       show_relations: "Show relations"
       add_predecessor: "Add predecessor"
+      add_heeler: "Add heller"
+      add_preheeler: "Add preheeler"
       remove: "Remove relation"
       save: "Save relation"
       abort: "Abort"
