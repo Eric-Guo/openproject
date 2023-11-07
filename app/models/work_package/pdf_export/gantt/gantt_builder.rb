@@ -344,10 +344,10 @@ module WorkPackage::PDFExport::Gantt
           target_work_package = relation.other_work_package(work_package)
           next unless @all_work_packages.include?(target_work_package)
 
-          if relation.to == work_package && relation.relation_type == Relation::TYPE_FOLLOWS
+          if relation.to == work_package && (relation.relation_type == Relation::TYPE_FOLLOWS || relation.relation_type == Relation::TYPE_HEELS)
             build_dep_line(work_package, target_work_package, page_groups)
           end
-          if relation.from == work_package && relation.relation_type == Relation::TYPE_PRECEDES
+          if relation.from == work_package && (relation.relation_type == Relation::TYPE_PRECEDES || relation.relation_type == Relation::TYPE_PREHEELS)
             build_dep_line(work_package, target_work_package, page_groups)
           end
         end

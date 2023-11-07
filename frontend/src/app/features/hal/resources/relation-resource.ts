@@ -50,6 +50,8 @@ export class RelationResource extends HalResource {
       'partof',
       'requires',
       'required',
+      'preheels',
+      'heels',
     ];
 
     if (includeParentChild) {
