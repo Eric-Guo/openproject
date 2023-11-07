@@ -12,6 +12,7 @@ export class TimelineRelationElement {
     return [
       workPackagePrefix(this.relation.ids.from),
       workPackagePrefix(this.relation.ids.to),
+      workPackagePrefix(this.relation.type as string),
     ];
   }
 }
