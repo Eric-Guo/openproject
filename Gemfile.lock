@@ -325,7 +325,7 @@ GEM
     awesome_nested_set (3.6.0)
       activerecord (>= 4.0.0, < 7.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.848.0)
+    aws-partitions (1.849.0)
     aws-sdk-core (3.186.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -527,7 +527,7 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (1.1.0)
-    friendly_id (5.5.0)
+    friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     fugit (1.9.0)
       et-orbi (~> 1, >= 1.2.7)
@@ -551,7 +551,7 @@ GEM
       retriable (>= 2.0, < 4.a)
       rexml
       webrick
-    google-apis-gmail_v1 (0.35.0)
+    google-apis-gmail_v1 (0.36.0)
       google-apis-core (>= 0.11.0, < 2.a)
     google-protobuf (3.25.0-arm64-darwin)
     google-protobuf (3.25.0-x86_64-linux)
@@ -670,7 +670,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.21.4)
+    loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -698,7 +698,7 @@ GEM
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
     mysql2 (0.5.5)
-    net-imap (0.4.4)
+    net-imap (0.4.5)
       date
       net-protocol
     net-ldap (0.18.0)
@@ -871,7 +871,7 @@ GEM
     recaptcha (5.16.0)
     redcarpet (3.6.0)
     regexp_parser (2.8.2)
-    reline (0.3.9)
+    reline (0.4.0)
       io-console (~> 0.5)
     representable (3.2.0)
       declarative (< 0.1.0)
