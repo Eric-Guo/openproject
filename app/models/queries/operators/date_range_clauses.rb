@@ -68,7 +68,7 @@ module Queries::Operators
     private
 
     def quoted_date_from_utc(value)
-      connection.quoted_date(value.to_time(:utc).end_of_day)
+      connection.quoted_date(value.to_time.end_of_day)
     end
   end
 end
