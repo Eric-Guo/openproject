@@ -93,7 +93,7 @@ module Sessions
            #{connection.quote(session_id)},
            #{connection.quote(self.class.serialize(data))},
            #{connection.quote(user_id)},
-           (now() at time zone 'utc')
+           (now())
         )
       SQL
     end
@@ -105,7 +105,7 @@ module Sessions
           data=#{connection.quote(self.class.serialize(data))},
           session_id=#{connection.quote(session_id)},
           user_id=#{connection.quote(user_id)},
-          updated_at=(now() at time zone 'utc')
+          updated_at=(now())
         WHERE session_id=#{connection.quote(@retrieved_by)}
       SQL
     end

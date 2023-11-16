@@ -578,7 +578,7 @@ module Journals
     def timestamp_sql
       # Use the timestamp of the statement, not now() or statement_timestamp
       # as they always return the same value of the start of transaction
-      "statement_timestamp() AT TIME ZONE 'utc'"
+      "statement_timestamp()"
     end
 
     # Because we added the journal via bare metal sql, rails does not yet

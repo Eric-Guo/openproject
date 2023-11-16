@@ -1,5 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
+  self.default_timezone = :local
 
   ##
   # Determine whether this resource was just created ?
