@@ -22,6 +22,11 @@ class AuthWechatController < ApplicationController
 
     user = User.find(user_id)
 
+    unless user.active?
+      user.activate
+      user.save!
+    end
+
     # generate a key and set cookie if autologin
     if Setting::Autologin.enabled? && (params[:autologin] || session.delete(:autologin_requested))
       set_autologin_cookie(user)
