@@ -19,26 +19,12 @@ module OpenProject::ThProjects
                     },
                     require: :project
 
-        permission :view_th_project_timelines,
-                    {
-                      'th_projects/project_timelines': %i[show],
-                    },
-                    require: :project
-
         permission :view_th_project_more,
                     {
                       'th_projects/project_more': %i[show],
                     },
                     require: :project
       end
-
-      menu :project_menu,
-        :project_timeline,
-        { controller: '/th_projects/project_timelines', action: 'show' },
-        if: ->(project) { project.module_enabled?(:th_projects) && User.current.logged? && User.current.allowed_to?(:view_th_project_timelines, project) },
-        caption: :label_project_timeline_plural,
-        icon: 'icon2 icon-time',
-        before: :settings
 
       menu :project_menu,
         :project_more,
