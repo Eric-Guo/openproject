@@ -11,6 +11,8 @@ zh-CN:
         missing_permission: "您没有查看此微件所需的权限。"
         custom_text:
           title: '自定义文本'
+        shortcut:
+          title: '快捷方式'
         documents:
           title: '文档'
           no_results: '没有文档。'
