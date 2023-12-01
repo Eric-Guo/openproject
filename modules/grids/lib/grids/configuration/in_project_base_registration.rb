@@ -11,7 +11,8 @@ module Grids::Configuration
             "members",
             "news",
             "documents",
-            "custom_text"
+            "custom_text",
+            "shortcut"
 
     remove_query_lambda = -> {
       @query = ::Query.find_by(id: options["queryId"])
@@ -47,6 +48,10 @@ module Grids::Configuration
     end
 
     widget_strategy "custom_text" do
+      options_representer "::API::V3::Grids::Widgets::CustomTextOptionsRepresenter"
+    end
+
+    widget_strategy "shortcut" do
       options_representer "::API::V3::Grids::Widgets::CustomTextOptionsRepresenter"
     end
 
