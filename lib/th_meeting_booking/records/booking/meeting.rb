@@ -286,7 +286,7 @@ class ThMeetingBooking::Records::Booking::Meeting < ThMeetingBooking::Records::B
 
   def members=(value)
     if value.is_a?(Array)
-      @members = value.map { |item| Member.new(item) }
+      @members = value.map { |item| ThMeetingBooking::Records::Booking::Member.new(item) }
     else
       @members = nil
     end

@@ -41,12 +41,13 @@ module ThMeetingBooking::Apis
     # @param show_order: [String] 显示顺序号，部门排序按从小到大排序
     # @return [ThMeetingBooking::Records::Organization::Dept]
     def self.sync_depts(upstream_id:, name:, upstream_parent_id: nil, show_order: nil)
-      result = ThMeetingBooking::Request.new.post('sync-depts', data: {
+      data = {
         upstreamId: upstream_id,
         name:,
         upstreamParentId: upstream_parent_id,
         showOrder: show_order,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-depts', data:)
       ThMeetingBooking::Records::Organization::Dept.new(result[:data])
     end
 
@@ -57,11 +58,12 @@ module ThMeetingBooking::Apis
     # @param name [String] 部门名称
     # @return [ThMeetingBooking::Records::Organization::Dept]
     def self.remove_sync_dept(upstream_id:, name:)
-      result = ThMeetingBooking::Request.new.post('sync-depts', data: {
+      data = {
         upstreamId: upstream_id,
         name:,
         deleted: 1,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-depts', data:)
       ThMeetingBooking::Records::Organization::Dept.new(result[:data])
     end
 
@@ -77,14 +79,15 @@ module ThMeetingBooking::Apis
     # @param login_name: [String] 登录名，如果无，可以直接传upsteamId
     # @return [ThMeetingBooking::Records::Organization::User]
     def self.sync_users(upstream_id:, name:, upstream_dept_id:, email: nil, mobile: nil, login_name: nil)
-      result = ThMeetingBooking::Request.new.post('sync-users', data: {
+      data = {
         upstreamId: upstream_id,
         name: name,
         upstreamDeptId: upstream_dept_id,
         email: email,
         mobile: mobile,
         loginName: login_name || upstream_id,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-users', data:)
       ThMeetingBooking::Records::Organization::User.new(result[:data])
     end
 
@@ -95,11 +98,12 @@ module ThMeetingBooking::Apis
     # @param name: [String] 人员姓名
     # @return [ThMeetingBooking::Records::Organization::User]
     def self.remove_sync_user(upstream_id:, name:)
-      result = ThMeetingBooking::Request.new.post('sync-user', data: {
+      data = {
         upstreamId: upstream_id,
         name:,
         deleted: 1,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-user', data:)
       ThMeetingBooking::Records::Organization::User.new(result[:data])
     end
 
@@ -108,11 +112,12 @@ module ThMeetingBooking::Apis
     # @param face: [String] 人脸照片base64值；如果要删除人脸，不需要传face参数
     # @return [ThMeetingBooking::Records::Organization::User]
     def self.sync_face(upstream_id:, face:)
-      result = ThMeetingBooking::Request.new.post('sync-face', data: {
+      data = {
         upstreamId: upstream_id,
         face:,
         deleted: 0,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-face', data:)
       ThMeetingBooking::Records::Organization::User.new(result[:data])
     end
 
@@ -120,10 +125,11 @@ module ThMeetingBooking::Apis
     # @param upstream_id [String] 业务系统部门ID。字符类型，如果业务系统是数字型ID，需要转成string
     # @return [ThMeetingBooking::Records::Organization::User]
     def self.remove_sync_face(upstream_id)
-      result = ThMeetingBooking::Request.new.post('sync-face', data: {
+      data = {
         upstreamId: upstream_id,
         deleted: 1,
-      })
+      }
+      result = ThMeetingBooking::Request.new.post('sync-face', data:)
       ThMeetingBooking::Records::Organization::User.new(result[:data])
     end
   end

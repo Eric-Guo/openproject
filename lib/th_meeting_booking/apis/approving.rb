@@ -7,5 +7,20 @@ module ThMeetingBooking::Apis
       result = ThMeetingBooking::Request.new.get('all-approves', params: { type: })
       ThMeetingBooking::Records::Approving::ApproveList.new(result)
     end
+
+    # 审批会议
+    # @param approve_meeting_id [String] 会议审批ID
+    # @param approval: [Boolean] 是否同意；true 同意 / false 拒绝
+    # @param approve_user: [String] 审批人登录名或邮箱或手机号，必须是当前会议指定的审批人才能审批通过
+    # @param remark: [String] 审批说明
+    # @return [String]
+    def self.approve_meeting(approve_meeting_id, approval:, approve_user:, remark:)
+      data = {
+        approval:,
+        approveUser: approve_user,
+        remark:,
+      }
+      result = ThMeetingBooking::Request.new.post("approves/#{approve_meeting_id}", data:)
+    end
   end
 end

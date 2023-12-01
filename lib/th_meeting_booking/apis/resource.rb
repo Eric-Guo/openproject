@@ -25,16 +25,14 @@ module ThMeetingBooking::Apis
     # @param room_type: [String] 资源类型，默认是ROOM，会议室
     # @return [ThMeetingBooking::Records::Resource::MeetingRoom]
     def self.sync_meeting_rooms(name:, upstream_id:, room_type: 'ROOM')
-      result = ThMeetingBooking::Request.new.put(
-        'sync-meeting-rooms',
-        params: {
-          roomType: room_type,
-        },
-        data: {
-          name:,
-          upstreamId: upstream_id,
-        }
-      )
+      params = {
+        roomType: room_type,
+      }
+      data = {
+        name:,
+        upstreamId: upstream_id,
+      }
+      result = ThMeetingBooking::Request.new.put('sync-meeting-rooms', params:, data:)
       ThMeetingBooking::Records::Resource::MeetingRoom.new(result[:data])
     end
 
@@ -45,18 +43,16 @@ module ThMeetingBooking::Apis
     # @param room_type: [String] 资源类型，默认是ROOM，会议室
     # @return [ThMeetingBooking::Records::Resource::MeetingRoom]
     def self.remove_sync_meeting_room(name:, upstream_id:, room_type: 'ROOM')
-      result = ThMeetingBooking::Request.new.put(
-        'sync-meeting-rooms',
-        params: {
-          roomType: room_type,
-        },
-        data: {
-          name:,
-          upstreamId: upstream_id,
-          deleted: 1,
-        }
-      )
-      ThMeetingBooking::Records::Resource::MeetingRoom.new({ name:, upstream_id:, deleted: 1 })
+      params = {
+        roomType: room_type,
+      }
+      data = {
+        name:,
+        upstreamId: upstream_id,
+        deleted: 1,
+      }
+      result = ThMeetingBooking::Request.new.put('sync-meeting-rooms', params:, data:)
+      ThMeetingBooking::Records::Resource::MeetingRoom.new(data)
     end
   end
 end
