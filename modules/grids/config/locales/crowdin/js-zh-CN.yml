@@ -8,6 +8,8 @@ zh-CN:
         text: "某些微件（例如工作包图微件）仅适用于"
         link: '企业版。'
       widgets:
+        shortcut:
+          title: '快捷方式'
         custom_text:
           title: '自定义文本'
         documents:

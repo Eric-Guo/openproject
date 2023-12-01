@@ -13,6 +13,7 @@ module Grids::Configuration
             'news',
             'documents',
             'custom_text',
+            'shortcut',
             'inbox'
 
     remove_query_lambda = -> {
@@ -50,6 +51,10 @@ module Grids::Configuration
     end
 
     widget_strategy 'custom_text' do
+      options_representer '::API::V3::Grids::Widgets::CustomTextOptionsRepresenter'
+    end
+
+    widget_strategy 'shortcut' do
       options_representer '::API::V3::Grids::Widgets::CustomTextOptionsRepresenter'
     end
 

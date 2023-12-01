@@ -57,6 +57,7 @@ import { WidgetProjectDescriptionComponent } from 'core-app/shared/components/gr
 import { WidgetHeaderComponent } from 'core-app/shared/components/grids/widgets/header/header.component';
 import { WidgetWpOverviewComponent } from 'core-app/shared/components/grids/widgets/wp-overview/wp-overview.component';
 import { WidgetCustomTextComponent } from 'core-app/shared/components/grids/widgets/custom-text/custom-text.component';
+import { WidgetShortcutComponent } from 'core-app/shared/components/grids/widgets/shortcut/shortcut.component';
 import { OpenprojectFieldsModule } from 'core-app/shared/components/fields/openproject-fields.module';
 import { WidgetProjectDetailsComponent } from 'core-app/shared/components/grids/widgets/project-details/project-details.component';
 import { WidgetProjectDetailsMenuComponent } from 'core-app/shared/components/grids/widgets/project-details/project-details-menu.component';
@@ -93,6 +94,7 @@ import { IaiBellService } from 'core-app/features/in-app-inbox/bell/state/iai-be
     OpenProjectInAppInboxModule,
 
     DynamicModule.withComponents([
+      WidgetShortcutComponent,
       WidgetCustomTextComponent,
       WidgetDocumentsComponent,
       WidgetMembersComponent,
@@ -124,6 +126,7 @@ import { IaiBellService } from 'core-app/features/in-app-inbox/bell/state/iai-be
     GridComponent,
 
     // Widgets
+    WidgetShortcutComponent,
     WidgetCustomTextComponent,
     WidgetDocumentsComponent,
     WidgetMembersComponent,
@@ -330,6 +333,17 @@ export function registerWidgets(injector:Injector) {
         title: i18n.t('js.grid.widgets.custom_text.title'),
         properties: {
           name: i18n.t('js.grid.widgets.custom_text.title'),
+          text: {
+            raw: '',
+          },
+        },
+      },
+      {
+        identifier: 'shortcut',
+        component: WidgetShortcutComponent,
+        title: i18n.t('js.grid.widgets.shortcut.title'),
+        properties: {
+          name: i18n.t('js.grid.widgets.shortcut.title'),
           text: {
             raw: '',
           },

@@ -8,6 +8,8 @@ en:
         text: "Some widgets, like the work package graph widget, are only available in the Enterprise edition."
         link: 'Enterprise edition.'
       widgets:
+        shortcut:
+          title: 'Shortcut'
         custom_text:
           title: 'Custom text'
         documents:
