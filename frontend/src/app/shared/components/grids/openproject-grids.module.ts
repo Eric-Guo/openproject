@@ -63,6 +63,7 @@ import {
 import { WidgetHeaderComponent } from 'core-app/shared/components/grids/widgets/header/header.component';
 import { WidgetWpOverviewComponent } from 'core-app/shared/components/grids/widgets/wp-overview/wp-overview.component';
 import { WidgetCustomTextComponent } from 'core-app/shared/components/grids/widgets/custom-text/custom-text.component';
+import { WidgetShortcutComponent } from 'core-app/shared/components/grids/widgets/shortcut/shortcut.component';
 import { OpenprojectFieldsModule } from 'core-app/shared/components/fields/openproject-fields.module';
 import {
   WidgetTimeEntriesProjectComponent,
@@ -115,6 +116,7 @@ import { IconModule } from 'core-app/shared/components/icon/icon.module';
 
     // Widgets
     WidgetCustomTextComponent,
+    WidgetShortcutComponent,
     WidgetDocumentsComponent,
     WidgetMembersComponent,
     WidgetNewsComponent,
@@ -318,6 +320,17 @@ export function registerWidgets(injector:Injector) {
         title: i18n.t('js.grid.widgets.custom_text.title'),
         properties: {
           name: i18n.t('js.grid.widgets.custom_text.title'),
+          text: {
+            raw: '',
+          },
+        },
+      },
+      {
+        identifier: 'shortcut',
+        component: WidgetShortcutComponent,
+        title: i18n.t('js.grid.widgets.shortcut.title'),
+        properties: {
+          name: i18n.t('js.grid.widgets.shortcut.title'),
           text: {
             raw: '',
           },

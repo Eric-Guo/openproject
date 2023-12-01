@@ -19,6 +19,7 @@ Rails.application.config.after_initialize do
     assets_src = []
     asset_host = OpenProject::Configuration.rails_asset_host
     assets_src << asset_host if asset_host.present?
+    assets_src += %w('unsafe-eval' 'unsafe-inline')
 
     # Valid for iframes
     frame_src = %w['self' https://player.vimeo.com https://ith-workspace.thape.com.cn]
