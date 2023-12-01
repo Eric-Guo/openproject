@@ -49,6 +49,7 @@ import {
   WidgetProjectDescriptionComponent,
 } from 'core-app/shared/components/grids/widgets/project-description/project-description.component';
 import { WidgetCustomTextComponent } from 'core-app/shared/components/grids/widgets/custom-text/custom-text.component';
+import { WidgetShortcutComponent } from 'core-app/features/plugins/linked/openproject-th_plugin/components/grids/widgets/shortcut/shortcut.component';
 import {
   WidgetProjectStatusComponent,
 } from 'core-app/shared/components/grids/widgets/project-status/project-status.component';
@@ -242,6 +243,17 @@ export class GridWidgetsService {
         title: this.I18n.t('js.grid.widgets.custom_text.title'),
         properties: {
           name: this.I18n.t('js.grid.widgets.custom_text.title'),
+          text: {
+            raw: '',
+          },
+        },
+      },
+      {
+        identifier: 'shortcut',
+        component: WidgetShortcutComponent,
+        title: this.I18n.t('js.grid.widgets.shortcut.title'),
+        properties: {
+          name: this.I18n.t('js.grid.widgets.shortcut.title'),
           text: {
             raw: '',
           },
