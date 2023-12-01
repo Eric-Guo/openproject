@@ -61,6 +61,7 @@ import {
 import { WidgetHeaderComponent } from 'core-app/shared/components/grids/widgets/header/header.component';
 import { WidgetWpOverviewComponent } from 'core-app/shared/components/grids/widgets/wp-overview/wp-overview.component';
 import { WidgetCustomTextComponent } from 'core-app/shared/components/grids/widgets/custom-text/custom-text.component';
+import { WidgetShortcutComponent } from 'core-app/features/plugins/linked/openproject-th_plugin/components/grids/widgets/shortcut/shortcut.component';
 import { OpenprojectFieldsModule } from 'core-app/shared/components/fields/openproject-fields.module';
 import {
   WidgetTimeEntriesProjectComponent,
@@ -117,6 +118,7 @@ import { ErrorBlankSlateComponent } from './widgets/error-blankslate/error-blank
 
     // Widgets
     WidgetCustomTextComponent,
+    WidgetShortcutComponent,
     WidgetDocumentsComponent,
     WidgetMembersComponent,
     WidgetNewsComponent,
