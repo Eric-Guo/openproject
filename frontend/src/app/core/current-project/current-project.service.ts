@@ -38,6 +38,7 @@ export class CurrentProjectService {
   private currentThCode:string|null = null;
   private currentThName:string|null = null;
   private currentThDocLink:string|null = null;
+  private currentThTypeId:number|null = null;
 
   constructor(
     private PathHelper:PathHelperService,
@@ -90,6 +91,10 @@ export class CurrentProjectService {
     return this.currentThDocLink;
   }
 
+  public get thTypeId():number|null {
+    return this.currentThTypeId;
+  }
+
   public get ddsFolderId():number|null {
     const reg = /^https?:\/\/edoc\.thape\.com\.cn:8022\/index\.html#doc\/enterprise\/(\d+)/;
 
@@ -110,6 +115,7 @@ export class CurrentProjectService {
       this.currentThCode = element.dataset.projectThCode as string;
       this.currentThName = element.dataset.projectThName as string;
       this.currentThDocLink = element.dataset.projectThDocLink as string;
+      this.currentThTypeId = element.dataset.projectThTypeId ? Number(element.dataset.projectThTypeId) : null;
     } else {
       this.currentId = null;
       this.currentName = null;
@@ -117,6 +123,7 @@ export class CurrentProjectService {
       this.currentThCode = null;
       this.currentThName = null;
       this.currentThDocLink = null;
+      this.currentThTypeId = null;
     }
   }
 }
