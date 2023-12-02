@@ -316,7 +316,7 @@ GEM
       rbtree3 (~> 0.6)
     airbrussh (1.5.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    appsignal (3.4.15)
+    appsignal (3.4.16)
       rack
     ast (2.4.2)
     attr_required (1.0.1)
@@ -623,7 +623,7 @@ GEM
       reline (>= 0.3.8)
     iso8601 (0.13.0)
     jmespath (1.6.2)
-    json (2.6.3)
+    json (2.7.0)
     json-jwt (1.16.3)
       activesupport (>= 4.2)
       aes_key_wrap
