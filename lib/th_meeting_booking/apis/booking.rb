@@ -37,7 +37,7 @@ module ThMeetingBooking::Apis
     # @return [ThMeetingBooking::Records::Booking::Meeting]
     def self.meeting(id)
       result = ThMeetingBooking::Request.new.get("meetings/#{id}")
-      ThMeetingBooking::Records::Booking::Meeting.new(result)
+      ThMeetingBooking::Records::Booking::Meeting.new(result[:data])
     end
 
     # 同步预订信息
