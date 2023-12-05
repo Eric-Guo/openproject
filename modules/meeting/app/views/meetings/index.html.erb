@@ -60,7 +60,7 @@ See COPYRIGHT and LICENSE files for more details.
         <%= link_to h(meeting.title), :controller => '/meetings', :action => 'show', :id => meeting %>
       </dt>
       <dd class="meeting" id="meeting-<%= meeting.id %>">
-        <p><strong><%= Meeting.human_attribute_name(:time) %></strong>: <%= format_time meeting.start_time, false %>-<%= format_time meeting.end_time, false %></p>
+        <p><strong><%= Meeting.human_attribute_name(:start_time) %></strong>: <%= format_time meeting.start_time, false %>-<%= format_time meeting.end_time, false %></p>
         <p><strong><%= Meeting.human_attribute_name(:location) %></strong>: <%=h meeting.location %></p>
         <p><strong><%= Meeting.human_attribute_name(:participants_invited) %></strong> (<%= meeting.participants.select(&:invited).count %>): <%= format_participant_list meeting.participants.select(&:invited) %></p>
         <p><strong><%= Meeting.human_attribute_name(:participants_attended) %></strong> (<%= meeting.participants.select(&:attended).count %>): <%= format_participant_list meeting.participants.select(&:attended) %></p>
