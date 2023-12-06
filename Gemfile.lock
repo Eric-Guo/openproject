@@ -173,6 +173,11 @@ PATH
     openproject-team_planner (1.0.0)
 
 PATH
+  remote: modules/th_meetings
+  specs:
+    openproject-th_meetings (1.0.0)
+
+PATH
   remote: modules/th_members
   specs:
     openproject-th_members (1.0.0)
@@ -1224,6 +1229,7 @@ DEPENDENCIES
   openproject-reporting!
   openproject-storages!
   openproject-team_planner!
+  openproject-th_meetings!
   openproject-th_members!
   openproject-th_notifications!
   openproject-th_plugin!
