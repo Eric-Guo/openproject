@@ -86,7 +86,7 @@ module OpenProject::ThMeetings
 
         th_meeting.upstream_room_name = self.th_meeting_upstream_room_name.to_s
 
-        th_meeting.booking_user_id = self.author.login.to_s
+        th_meeting.booking_user_id = self.author.mail.to_s
         th_meeting.booking_user_name = self.author.name.to_s
         th_meeting.booking_user_email = self.author.mail.to_s
         th_meeting.booking_user_phone = self.author.mobile.to_s
@@ -99,7 +99,7 @@ module OpenProject::ThMeetings
 
         members = self.participants.map do |participant|
           {
-            user_id: participant.user.login.to_s,
+            user_id: participant.user.mail.to_s,
             name: participant.user.name.to_s,
             mail_address: participant.user.mail.to_s,
           }
