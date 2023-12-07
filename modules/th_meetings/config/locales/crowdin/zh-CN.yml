@@ -3,3 +3,7 @@ zh-CN:
     attributes:
       meeting:
         th_meeting_upstream_room: "地点"
+    errors:
+      messages:
+        invalid: "是无效的"
+        occupied: "已被占用"
