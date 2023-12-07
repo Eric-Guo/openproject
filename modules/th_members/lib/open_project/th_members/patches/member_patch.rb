@@ -9,6 +9,13 @@ module OpenProject::ThMembers
         accepts_nested_attributes_for :profile
 
         after_save :set_default_profile, if: Proc.new { |member| member.profile.blank? }
+
+        after_create :send_join_notifications
+
+        private
+        def send_join_notifications
+          ThMembers::SendJoinToWxWorkJob.perform_later(self.id)
+        end
       end
     end
 
