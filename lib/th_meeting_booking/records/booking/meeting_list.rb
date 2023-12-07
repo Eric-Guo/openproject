@@ -14,7 +14,7 @@ module ThMeetingBooking::Records::Booking
 
     attr_accessor(*Fields)
 
-    def self.data=(value)
+    def data=(value)
       if value.is_a?(Array)
         @data = value.map { |item| Meeting.new(item) }
       else
@@ -22,7 +22,7 @@ module ThMeetingBooking::Records::Booking
       end
     end
 
-    def self.page_params=(value)
+    def page_params=(value)
       if value.present?
         @page_params = MeetingPageParams.new(value)
       else
