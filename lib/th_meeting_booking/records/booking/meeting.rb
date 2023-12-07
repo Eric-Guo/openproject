@@ -207,6 +207,7 @@ class ThMeetingBooking::Records::Booking::Meeting < ThMeetingBooking::Records::B
   Fields = [
     :id, # 主键
     :subject, # 会议主题
+    :upstream_id, # 业务系统ID
     :owner_id, # 预订人ID
     :owner_name, # 预订人姓名
     :owner_mobile, # 预订人手机
