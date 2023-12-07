@@ -36,6 +36,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "GetTemplateResp" do
       repeated :templates, :message, 1, "Template"
     end
+    add_message "GetUserInfoByCodeReq" do
+      optional :code, :string, 1
+    end
+    add_message "WorkerMessageReq" do
+      optional :toUserID, :int64, 1
+      optional :title, :string, 2
+      optional :description, :string, 3
+      optional :url, :string, 4
+      optional :buttonText, :string, 5
+    end
   end
 end
 
@@ -44,3 +54,5 @@ MessageRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Messa
 Result = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Result").msgclass
 Template = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Template").msgclass
 GetTemplateResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetTemplateResp").msgclass
+GetUserInfoByCodeReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetUserInfoByCodeReq").msgclass
+WorkerMessageReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("WorkerMessageReq").msgclass

@@ -16,6 +16,8 @@ module Proto
 
       rpc :SendMessage, ::MessageRequest, ::Result
       rpc :GetTemplates, ::Google::Protobuf::Empty, ::GetTemplateResp
+      rpc :GetUserInfoByCode, ::GetUserInfoByCodeReq, ::Result
+      rpc :SendWcWorkerMessage, ::WorkerMessageReq, ::Result
 
       def self.current_client
         @@current_client ||= ::Gruf::Client.new(service: Proto::OpService)

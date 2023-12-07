@@ -42,7 +42,22 @@ message Template {
 message GetTemplateResp {
   repeated Template templates = 1;
 }
+
+message GetUserInfoByCodeReq {
+  string code = 1;
+}
+
+message WorkerMessageReq {
+  int64 toUserID = 1; 
+  string title = 2; 
+  string description = 3;
+  string url = 4;
+  string buttonText = 5;
+}
+
 service OpService {
   rpc SendMessage(MessageRequest) returns(Result);
   rpc GetTemplates(google.protobuf.Empty) returns(GetTemplateResp);
+  rpc GetUserInfoByCode(GetUserInfoByCodeReq) returns(RespUser);
+  rpc SendWcWorkerMessage(WorkerMessageReq) returns(RespUser);
 }
