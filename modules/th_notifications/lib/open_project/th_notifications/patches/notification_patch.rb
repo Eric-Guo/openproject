@@ -11,6 +11,7 @@ module OpenProject::ThNotifications
     module InstanceMethods
       def send_to_wx
         ThNotifications::SendToWxJob.perform_later(id)
+        ThNotifications::SendToWxWorkJob.perform_later(id)
       end
     end
   end
