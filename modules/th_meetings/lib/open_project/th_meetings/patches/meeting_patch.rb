@@ -151,6 +151,10 @@ module OpenProject::ThMeetings
         end
       end
 
+      def th_meeting_content_show
+        th_meeting_content.presence || '-'
+      end
+
       def location
         [self.th_meeting_upstream_area_name, self.th_meeting_upstream_room_name].compact.join(' - ')
       end

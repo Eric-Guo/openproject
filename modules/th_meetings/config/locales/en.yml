@@ -3,6 +3,7 @@ en:
     attributes:
       meeting:
         th_meeting_upstream_room: "Location"
+        th_meeting_content: "Information"
     errors:
       messages:
         invalid: "is invalid"
