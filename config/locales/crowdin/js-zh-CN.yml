@@ -887,6 +887,15 @@ zh-CN:
       comment_send_failed: "出错。无法提交评论。"
       comment_updated: "注释已成功更新。"
       confirm_edit_cancel: "是否确定想要取消编辑工作包？"
+      datepicker_modal:
+        automatically_scheduled_parent: "自动调度。日期来源于关联项。"
+        manually_scheduled: "启用手动调度，忽略所有关联项。"
+        start_date_limited_by_relations: "可用的开始和结束日期受关联项的限制。"
+        changing_dates_affects_follow_relations: "修改这些日期信息将会对相关联的工作包日期产生影响。"
+        click_on_show_relations_to_open_gantt: '点击 "%{button_name}" 按钮打开甘特图视图。'
+        show_relations: '显示关联项'
+        ignore_non_working_days:
+          title: '仅限工作日'
       description_filter: "筛选器"
       description_enter_text: "输入文本"
       description_options_hide: "隐藏选项"

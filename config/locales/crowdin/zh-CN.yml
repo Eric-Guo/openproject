@@ -515,18 +515,24 @@ zh-CN:
         duration: "工期"
         end_insertion: "结束插入"
         end_deletion: "结束删除"
-        version: "版本"
+        ignore_non_working_days: "忽略非工作日"
+        include_non_working_days:
+          title: '工作日'
+          false: '仅限工作日'
+          true: '包括非工作日'
         parent: "父"
         parent_issue: "父"
         parent_work_package: "父"
         priority: "背景色"
         progress: "进度 (%)"
+        readonly: "只读"
         schedule_manually: "手动计划"
         spent_hours: "已耗时间"
         spent_time: "已耗时间"
         subproject: "子项目"
         time_entries: "记录时间"
         type: "类型"
+        version: "版本"
         watcher: "参与者"
       'doorkeeper/application':
         uid: "客户端 ID"
