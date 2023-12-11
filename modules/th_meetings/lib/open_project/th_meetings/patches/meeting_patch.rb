@@ -18,6 +18,10 @@ module OpenProject::ThMeetings
 
         after_save :create_or_update_th_meeting
 
+        after_destroy_commit do
+          ThMeetings::RemoveThMeetingBookingJob.perform_later(self.id)
+        end
+
         attr_accessor(*TH_MEETING_FIELDS.map{ |field| "th_meeting_#{field}".to_sym })
 
         TH_MEETING_FIELDS.each do |field|
@@ -65,6 +69,8 @@ module OpenProject::ThMeetings
         def validate_th_meeting_time
           if self.th_meeting_upstream_room_id.present?
             meetings = ThMeetingBooking::Apis::Booking.meetings(start_date: self.start_date, end_date: self.end_date, room_id: self.th_meeting_upstream_room_id)
+
+            return unless meetings.data.present?
 
             occupied = meetings.data.all? do |meeting|
               if meeting.upstream_id == self.th_meeting_upstream_id
