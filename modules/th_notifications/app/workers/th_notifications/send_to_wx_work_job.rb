@@ -14,7 +14,7 @@ class ThNotifications::SendToWxWorkJob < ApplicationJob
       toUserID: user.id,
       title: '工作通知',
       description: [
-        "<div class=\"highlight\">#{I18n.t("js.notifications.reasons.#{notification.reason}")}</div>",
+        "<div class=\"highlight\">#{I18n.t("js.notifications.reasons.#{API::V3::Notifications::PropertyFactory::reason_for(notification)}")}</div>",
         "<div class=\"normal\">工作包名：#{work_package.subject}</div>",
         "<div class=\"normal\">工作包ID：#{work_package.id}</div>",
         "<div class=\"normal\">项目名：#{project.name}</div>",

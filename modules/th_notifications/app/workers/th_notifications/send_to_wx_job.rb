@@ -48,7 +48,7 @@ class ThNotifications::SendToWxJob < ApplicationJob
       }
     when 'JlQs66nWj_kyHsfvraJxhDoUlXGc3ECusJBu_-BmBX0'
       data = {
-        first: { value: [project.name, I18n.t("js.notifications.reasons.#{notification.reason}")].join(' - ') },
+        first: { value: [project.name, I18n.t("js.notifications.reasons.#{API::V3::Notifications::PropertyFactory::reason_for(notification)}")].join(' - ') },
         keyword1: { value: work_package.id.to_s },
         keyword2: { value: work_package.subject },
         keyword3: { value: work_package.status&.name || '' },
@@ -56,7 +56,7 @@ class ThNotifications::SendToWxJob < ApplicationJob
       }
     when 'Sf47EGjbvBe8mZoFi4J54pThnU5MPWwPTwLiZM2MVXo'
       data = {
-        first: { value: [project.name, I18n.t("js.notifications.reasons.#{notification.reason}")].join(' - ') },
+        first: { value: [project.name, I18n.t("js.notifications.reasons.#{API::V3::Notifications::PropertyFactory::reason_for(notification)}")].join(' - ') },
         keyword1: { value: work_package.subject },
         keyword2: { value: work_package.id.to_s },
         keyword3: { value: notification.created_at&.strftime('%Y-%m-%d %H:%M:%S') || '' },
