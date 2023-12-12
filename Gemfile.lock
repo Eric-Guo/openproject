@@ -306,7 +306,7 @@ GEM
       activerecord (>= 4.2)
     acts_as_tree (2.9.1)
       activerecord (>= 3.0.0)
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     aes_key_wrap (1.1.0)
     afm (0.2.2)
@@ -316,7 +316,7 @@ GEM
       rbtree3 (~> 0.6)
     airbrussh (1.5.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    appsignal (3.4.16)
+    appsignal (3.5.0)
       rack
     ast (2.4.2)
     attr_required (1.0.1)
@@ -424,9 +424,9 @@ GEM
     date_validator (0.12.0)
       activemodel (>= 3)
       activesupport (>= 3)
-    debug (1.8.0)
-      irb (>= 1.5.0)
-      reline (>= 0.3.1)
+    debug (1.9.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     deckar01-task_list (2.3.3)
       html-pipeline
     declarative (0.0.20)
@@ -700,7 +700,7 @@ GEM
     mustermann-grape (1.0.2)
       mustermann (>= 1.0.0)
     mysql2 (0.5.5)
-    net-imap (0.4.7)
+    net-imap (0.4.8)
       date
       net-protocol
     net-ldap (0.18.0)
@@ -799,7 +799,7 @@ GEM
       multi_json
     puma (6.0.2)
       nio4r (~> 2.0)
-    puma-plugin-statsd (2.5.0)
+    puma-plugin-statsd (2.6.0)
       puma (>= 5.0, < 7)
     raabro (1.4.0)
     racc (1.7.3)
