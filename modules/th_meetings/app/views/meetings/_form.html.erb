@@ -1,16 +1,14 @@
 <%= error_messages_for 'meeting' %>
 
+<% content_controller 'th-meeting-form',
+                      dynamic: true,
+                      'th-meeting-form-th-meeting-id-value': f.object.th_meeting_id,
+                      'th-meeting-form-available-rooms-path-value': available_rooms_th_meetings_path %>
+
 <section class="form--section">
 
   <div class="form--field -required">
     <%= f.text_field :title, required: true, size: 60, container_class: '-wide' %>
-  </div>
-
-  <div class="form--field">
-    <%= f.select :th_meeting_upstream_room_id,
-      ThMeetingBooking::Apis::Resource.meeting_rooms.data&.map { |item| [[item.office_area, item.name].join(' - '), item.id] },
-      prompt: '请选择会议室',
-      container_class: '-wide' %>
   </div>
 
   <div class="form--field -required">
@@ -58,6 +56,14 @@
             suffix:   t(:text_in_hours),
             container_class: '-xslim' %>
     </div>
+  </div>
+
+  <div class="form--field">
+    <%= f.select :th_meeting_upstream_room_id,
+      ThMeeting.available_rooms(start_date_time: f.object.start_date_time, end_date_time: f.object.end_date_time, th_meeting_id: f.object.th_meeting_id).map { |item| [[item.office_area, item.name].join(' - '), item.id] },
+      prompt: '请选择会议室',
+      container_class: '-wide',
+      suffix: '<button class="button" type="button" style="margin: 0;" data-action="click->th-meeting-form#getAvailableRooms">获取可用会议室</button>' %>
   </div>
 
   <div class="form--field">

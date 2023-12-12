@@ -76,7 +76,7 @@ module OpenProject::ThMeetings
               if meeting.upstream_id == self.th_meeting_upstream_id
                 false
               else
-                !(self.start_time_format >= meeting.end_time || self.end_time_format <= meeting.begin_time)
+                !(self.start_date_time >= meeting.end_time || self.end_date_time <= meeting.begin_time)
               end
             end
 
@@ -151,6 +151,10 @@ module OpenProject::ThMeetings
         attrs
       end
 
+      def th_meeting_id
+        self.th_meeting&.th_meeting_id
+      end
+
       def th_meeting_upstream_id
         unless new_record?
           "plm_#{id}"
@@ -177,11 +181,11 @@ module OpenProject::ThMeetings
         end_time.year
       end
 
-      def start_time_format
+      def start_date_time
         start_time.strftime('%Y-%m-%d %H:%M:%S')
       end
 
-      def end_time_format
+      def end_date_time
         end_time.strftime('%Y-%m-%d %H:%M:%S')
       end
     end
