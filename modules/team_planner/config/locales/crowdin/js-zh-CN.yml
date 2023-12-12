@@ -1,0 +1,25 @@
+zh-TW:
+  js:
+    team_planner:
+      add_existing: '添加现有的'
+      add_existing_title: '添加现有工作包'
+      create_label: '团队计划'
+      create_title: '创建团队计划'
+      unsaved_title: '未命名团队计划'
+      no_data: '添加指定人来设置您的团队计划。'
+      add_assignee: '添加指定人'
+      remove_assignee: '移除指定人'
+      two_weeks: '2周'
+      one_week: '1周'
+      work_week: '工作周'
+      today: '今天'
+      drag_here_to_remove: '拖动此处可删除指定人、开始和结束日期。'
+      cannot_drag_here: '由于权限或编辑限制，无法删除工作包。'
+      cannot_drag_to_non_working_day: '此工作包无法在非工作日开始/完成。'
+      quick_add:
+        empty_state: '使用搜索字段查找工作包，并将其拖到计划器中，以将其分配给某人并定义开始和结束日期。'
+        search_placeholder: '搜索…'
+      modify:
+        errors:
+          permission_denied: '您没有权限来修改它。'
+          fallback: '无法编辑此工作包。'

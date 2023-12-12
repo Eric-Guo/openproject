@@ -1,0 +1,13 @@
+zh-TW:
+  permission_view_team_planner: "查看团队计划"
+  permission_manage_team_planner: "管理团队计划"
+  project_module_team_planner_view: "团队计划"
+
+  team_planner:
+    label_team_planner: "团队计划"
+    label_create_new_team_planner: "创建团队计划"
+    label_team_planner_plural: "团队计划"
+    label_assignees: "指定人"
+    upsale:
+      title: "团队计划"
+      description: "使用团队计划器获得团队计划的完整概述。拉伸、缩短和拖放工作包来修改日期、移动它们或更换任务。"
