@@ -10,6 +10,8 @@ class ThNotifications::SendToWxWorkJob < ApplicationJob
     work_package = notification.resource
     project = work_package.project
 
+    I18n.locale = user.language
+
     data = {
       toUserID: user.id,
       title: '工作通知',
