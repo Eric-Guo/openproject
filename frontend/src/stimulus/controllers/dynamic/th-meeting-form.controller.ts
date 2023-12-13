@@ -12,7 +12,10 @@ export default class ThMeetingFormController extends Controller {
 
   connect() {}
 
-  getAvailableRooms() {
+  getAvailableRooms(e:MouseEvent) {
+    const button = e.target as HTMLButtonElement;
+    const buttonText = button.textContent;
+
     if (!this.availableRoomsPathValue) throw new Error('Available rooms path not found');
 
     const startDateInput = this.element.querySelector<HTMLInputElement>('#meeting_start_date');
@@ -50,6 +53,10 @@ export default class ThMeetingFormController extends Controller {
       method: 'get',
       url: url.toString(),
       dataType: 'json',
+      beforeSend: () => {
+        button.disabled = true;
+        button.textContent = '数据获取中...';
+      },
       success: (data:{ id:string;name:string }[]) => {
         let value = meetingSelect.value;
         const existed = data.some((item) => item.id === value);
@@ -66,6 +73,16 @@ export default class ThMeetingFormController extends Controller {
           meetingSelect.append(option);
         });
         meetingSelect.value = value;
+        button.textContent = '数据获取成功！';
+      },
+      error: () => {
+        button.textContent = '数据获取失败！';
+      },
+      complete: () => {
+        setTimeout(() => {
+          button.disabled = false;
+          button.textContent = buttonText;
+        }, 1000);
       },
     });
   }

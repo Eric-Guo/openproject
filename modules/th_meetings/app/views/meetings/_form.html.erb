@@ -59,6 +59,13 @@
   </div>
 
   <div class="form--field">
+    <label class="form--label"></label>
+    <div class="form--field-container" style="font-size: 14px; color: #1c5908;">
+      修改时间后，请点击下方“<b>获取可用会议室</b>”按钮，重新获取会议室列表
+    </div>
+  </div>
+
+  <div class="form--field">
     <%= f.select :th_meeting_upstream_room_id,
       ThMeeting.available_rooms(start_date_time: f.object.start_date_time, end_date_time: f.object.end_date_time, th_meeting_id: f.object.th_meeting_id).map { |item| [[item.office_area, item.name].join(' - '), item.id] },
       prompt: '请选择会议室',
