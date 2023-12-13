@@ -87,4 +87,8 @@ class ThMeetingBooking::Helpers
     raise StandardError.new('访问天华云服务器失败') unless response.status.success?
     JSON.parse(response.body.to_s).with_indifferent_access
   end
+
+  def self.upstream_id(key)
+    "#{ThMeetingBooking::Config.prefix_key}_#{key}"
+  end
 end

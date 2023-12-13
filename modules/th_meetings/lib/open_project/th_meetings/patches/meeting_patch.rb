@@ -157,7 +157,7 @@ module OpenProject::ThMeetings
 
       def th_meeting_upstream_id
         unless new_record?
-          "plm_#{id}"
+          ThMeetingBooking::Helpers.upstream_id("plm_#{id}")
         end
       end
 

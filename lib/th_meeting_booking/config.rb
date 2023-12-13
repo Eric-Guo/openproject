@@ -29,4 +29,9 @@ class ThMeetingBooking::Config
   def self.app_secret
     env('APP_SECRET')
   end
+
+  # key前缀
+  def self.prefix_key
+    env('PREFIX_KEY')
+  end
 end
