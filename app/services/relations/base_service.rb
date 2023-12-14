@@ -45,7 +45,7 @@ class Relations::BaseService < BaseServices::BaseCallable
 
     result = ServiceResult.new success:, errors:, result: model
 
-    if success && model.follows?
+    if success && (model.follows? || model.heels?)
       reschedule_result = reschedule(model)
       result.merge!(reschedule_result)
     end
