@@ -1102,6 +1102,7 @@ zh-CN:
               not_a_valid_parent: "是无效的。"
             start_date:
               violates_relationships: "仅可以设置为 %{soonest_start} 或之后，以免违反工作包的关系。"
+              violates_heels_relationships: "仅可以设置为 %{soonest_start}，以免违反工作包的关系。"
               cannot_be_null: "无法设置为 null，因为结束日期和持续时间已知。"
             status_id:
               status_transition_invalid: "是无效的，因为在当前用户的角色下，没有从旧到新的状态有效的过渡存在。"
