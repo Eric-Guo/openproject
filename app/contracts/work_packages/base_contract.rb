@@ -213,11 +213,20 @@ module WorkPackages
     end
 
     def validate_after_soonest_start(date_attribute)
-      if !model.schedule_manually? && before_soonest_start?(date_attribute)
-        message = I18n.t('activerecord.errors.models.work_package.attributes.start_date.violates_relationships',
-                         soonest_start: model.soonest_start)
+      if date_attribute.to_sym == :start_date && has_heels?
+        if !model.schedule_manually? && equal_soonest_start?(date_attribute)
+          message = I18n.t('activerecord.errors.models.work_package.attributes.start_date.violates_heels_relationships',
+                           soonest_start: model.soonest_start)
 
-        errors.add date_attribute, message, error_symbol: :violates_relationships
+          errors.add date_attribute, message, error_symbol: :violates_heels_relationships
+        end
+      else
+        if !model.schedule_manually? && before_soonest_start?(date_attribute)
+          message = I18n.t('activerecord.errors.models.work_package.attributes.start_date.violates_relationships',
+                           soonest_start: model.soonest_start)
+
+          errors.add date_attribute, message, error_symbol: :violates_relationships
+        end
       end
     end
 
@@ -388,6 +397,16 @@ module WorkPackages
       model[date_attribute] &&
         model.soonest_start &&
         model[date_attribute] < model.soonest_start
+    end
+
+    def equal_soonest_start?(date_attribute)
+      model[date_attribute] &&
+        model.soonest_start &&
+          model[date_attribute] != model.soonest_start
+    end
+
+    def has_heels?
+      model.relations.any? { |relation| relation.heels? }
     end
 
     def parent_in_different_project?
