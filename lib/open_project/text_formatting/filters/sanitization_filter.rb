@@ -46,7 +46,7 @@ module OpenProject::TextFormatting
 
         Sanitize::Config.merge(
           base,
-          elements: base[:elements] + %w[macro mention],
+          elements: base[:elements] + %w[macro mention input label ul li],
           # Strip SVG entirely (tag + all nested content). SVG is not on the allowlist, but
           # without remove_contents Sanitize would keep SVG child nodes as orphaned content.
           remove_contents: Array(base[:remove_contents]) | %w[svg style],
@@ -63,7 +63,12 @@ module OpenProject::TextFormatting
             "table" => ["style"],
             "th" => ["style"],
             "tr" => ["style"],
-            "td" => ["style"]
+            "td" => ["style"],
+            "span" => ["style"],
+            "input" => ["checked", "disabled", "type", "class", "style"],
+            "ul" => ["class", "style"],
+            "li" => ["class", "style"],
+            "label" => ["class", "style"]
           ),
 
           # Add rel attribute to prevent tabnabbing and SEO spam
