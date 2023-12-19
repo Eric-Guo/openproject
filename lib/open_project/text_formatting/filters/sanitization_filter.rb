@@ -34,7 +34,7 @@ module OpenProject::TextFormatting
 
         Sanitize::Config.merge(
           base,
-          elements: base[:elements] + %w[macro mention],
+          elements: base[:elements] + %w[macro mention input label ul li],
 
           attributes: base[:attributes].deep_merge(
             # Whitelist class and data-* attributes on all macros
@@ -48,7 +48,12 @@ module OpenProject::TextFormatting
             'table' => ['style'],
             'th' => ['style'],
             'tr' => ['style'],
-            'td' => ['style']
+            'td' => ['style'],
+            'span' => ['style'],
+            'input' => ['checked', 'disabled', 'type', 'class', 'style'],
+            'ul' => ['class', 'style'],
+            'li' => ['class', 'style'],
+            'label' => ['class', 'style']
           ),
 
           # Add rel attribute to prevent tabnabbing

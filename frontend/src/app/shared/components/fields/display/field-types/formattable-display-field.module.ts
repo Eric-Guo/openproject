@@ -41,10 +41,15 @@ export class FormattableDisplayField extends DisplayField {
     div.classList.add(
       'read-value--html',
       'highlight',
-      'op-uc-container',
+      'op-uc-container_editing',
       'op-uc-container_reduced-headings',
       '-multiline',
+      'ck-content',
+      'op-uc-container',
     );
+
+    div.style.border = 'none';
+
     if (options.rtl) {
       div.classList.add('-rtl');
     }
