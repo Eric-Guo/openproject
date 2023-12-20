@@ -53,7 +53,8 @@ module OpenProject::TextFormatting
             'input' => ['checked', 'disabled', 'type', 'class', 'style'],
             'ul' => ['class', 'style'],
             'li' => ['class', 'style'],
-            'label' => ['class', 'style']
+            'label' => ['class', 'style'],
+            'mark' => ['class', 'style']
           ),
 
           # Add rel attribute to prevent tabnabbing
