@@ -321,7 +321,7 @@ zh-CN:
     label_all_work_packages: "所有工作包"
     label_and: "和"
     label_ascending: "升序"
-    label_author: "作者: %{user}"
+    label_author: "创建人: %{user}"
     label_avatar: "头像"
     label_between: "介于"
     label_board: "面板"
@@ -946,7 +946,7 @@ zh-CN:
         other: "其他"
       properties:
         assignee: "指定人"
-        author: "作者"
+        author: "创建人"
         createdAt: "创建"
         description: "描述"
         date: "日期"

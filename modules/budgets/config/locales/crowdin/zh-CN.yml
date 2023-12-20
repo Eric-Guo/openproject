@@ -23,7 +23,7 @@ zh-CN:
   activerecord:
     attributes:
       budget:
-        author: "作者"
+        author: "创建人"
         available: "可用"
         budget: "已计划"
         budget_ratio: "已支出（比例）"
