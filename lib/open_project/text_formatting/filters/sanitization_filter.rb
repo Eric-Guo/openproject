@@ -44,12 +44,12 @@ module OpenProject::TextFormatting
             # add styles to tables
             'figure' => %w[class style],
             # allow inline image styles
-            'img' => %w[src alt longdesc style],
-            'table' => ['style'],
-            'th' => ['style'],
-            'tr' => ['style'],
-            'td' => ['style'],
-            'span' => ['style'],
+            'img' => %w[src alt longdesc style class],
+            'table' => ['class', 'style'],
+            'th' => ['class', 'style'],
+            'tr' => ['class', 'style'],
+            'td' => ['class', 'style'],
+            'span' => ['class', 'style'],
             'input' => ['checked', 'disabled', 'type', 'class', 'style'],
             'ul' => ['class', 'style'],
             'li' => ['class', 'style'],
