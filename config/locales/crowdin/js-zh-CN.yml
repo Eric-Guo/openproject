@@ -1227,6 +1227,21 @@ zh-CN:
           placeholder: '现在可以在 %{project} 中使用占位符。同时，您已经可以与该用户一起制定计划并分配工作包等。'
           group: '该群组现已加入 %{project}。同时，您已经可以与该群组一起制定计划并分配工作包等。'
         next_button: '继续'
+    include_projects:
+      toggle_title: '包括项目'
+      title: '项目'
+      clear_selection: '清除选择'
+      apply: '应用'
+      selected_filter:
+        all: '全部项目'
+        selected: '仅选定的'
+      search_placeholder: '搜索项目...'
+      include_subprojects: '包括所有子项目'
+      tooltip:
+        include_all_selected: '项目已被包括，因为包括所有子项目已启用。'
+        current_project: '这是你目前所在的项目。'
+        does_not_match_search: '项目不匹配搜索条件。'
+      no_results: '没有项目符合你的搜索条件。'
     forms:
       submit_success_message: '表单已成功提交'
       load_error_message: '加载表单时出错'
