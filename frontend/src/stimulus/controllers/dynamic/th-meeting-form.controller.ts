@@ -35,7 +35,7 @@ export default class ThMeetingFormController extends Controller {
     if (!meetingSelect) throw new Error('Meeting select not found');
 
     const startDate = moment(`${startDateInput.value} ${startTimeInput.value}`, 'YYYY-MM-DD HH:mm');
-    const endDate = startDate.add(durationInput.value, 'hour');
+    const endDate = moment(startDate).add(durationInput.value, 'hour');
     const thMeetingId = this.thMeetingIdValue;
 
     const startDateTime = startDate.format('YYYY-MM-DD HH:mm:ss');
