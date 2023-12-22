@@ -116,7 +116,7 @@ module OpenProject::ThMeetings
               name: participant.user.name.to_s,
               mail_address: participant.user.mail.to_s,
             }
-            if member[:mail_address].end_with?('@thape.com.cn')
+            unless member[:mail_address].end_with?('@thape.com.cn')
               member[:type] = 'visitor'
             end
             member
