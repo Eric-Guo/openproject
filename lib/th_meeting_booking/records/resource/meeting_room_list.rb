@@ -17,7 +17,18 @@ module ThMeetingBooking::Records::Resource
 
     private
     def sort_data(data)
-      data.group_by(&:office_area).sort.map { |_,items| items.sort_by(&:show_order) }.flatten
+      online_rooms = []
+      offline_rooms = []
+      data.each do |item|
+        if item.online?
+          online_rooms << item
+        else
+          offline_rooms << item
+        end
+      end
+      online_rooms = online_rooms.group_by(&:office_area).sort.map { |_,items| items.sort_by(&:show_order) }.flatten
+      offline_rooms = offline_rooms.group_by(&:office_area).sort.map { |_,items| items.sort_by(&:show_order) }.flatten
+      [*online_rooms, *offline_rooms]
     end
   end
 end

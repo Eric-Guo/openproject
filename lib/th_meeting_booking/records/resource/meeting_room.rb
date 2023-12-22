@@ -58,5 +58,9 @@ module ThMeetingBooking::Records::Resource
     ]
 
     attr_accessor(*Fields)
+
+    def online?
+      self.office_area == '线上会议'
+    end
   end
 end

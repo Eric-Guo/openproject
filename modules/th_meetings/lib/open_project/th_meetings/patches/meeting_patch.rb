@@ -67,6 +67,13 @@ module OpenProject::ThMeetings
         end
 
         def validate_th_meeting_time
+          # 线上会议跳过检查
+          current_room = ThMeetingBooking::Records::Resource::MeetingRoom.new({
+            office_area_id: self.th_meeting_upstream_area_id,
+            office_area: self.th_meeting_upstream_area_name,
+          })
+          return if current_room.online?
+
           if self.th_meeting_upstream_room_id.present?
             meetings = ThMeetingBooking::Apis::Booking.meetings(start_date: self.start_date, end_date: self.end_date, room_id: self.th_meeting_upstream_room_id)
 

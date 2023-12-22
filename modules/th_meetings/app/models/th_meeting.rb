@@ -17,15 +17,16 @@ class ThMeeting < ApplicationRecord
     meetings = ThMeetingBooking::Apis::Booking.meetings(start_date:, end_date:)
     ThMeetingBooking::Apis::Resource.meeting_rooms.data&.select do |room|
       occupied = meetings.data.any? do |meeting|
-        if room.id == meeting.room_id
-          if meeting.id == th_meeting_id
-            false
-          else
-            !(start_date_time >= meeting.end_time || end_date_time <= meeting.begin_time)
-          end
-        else
-          false
-        end
+        # 线上会议 - 未占用
+        next false if room.online?
+
+        # 预定会议室!=当前 - 未占用
+        next false unless room.id == meeting.room_id
+
+        # 会议ID=当前 - 未占用，表示修改当前
+        next false if meeting.id == th_meeting_id
+
+        !(start_date_time >= meeting.end_time || end_date_time <= meeting.begin_time)
       end
       !occupied
     end
