@@ -45,6 +45,7 @@ class WorkPackageMailer < ApplicationMailer
       send_localized_mail(recipient) do
         I18n.t(:"mail.mention.subject",
                user_name: author.name,
+               project_name: @work_package.project.name,
                id: @work_package.id,
                subject: @work_package.subject)
       end
