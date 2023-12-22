@@ -4722,7 +4722,7 @@ zh-CN:
     mention:
       message_body: "%{user_name} mentioned you:"
       message_subject: "%{user_name} mentioned you in %{subject}"
-      subject: "%{user_name} 在 %{id} - %{subject} 中提及了您"
+      subject: "%{user_name} 在 *%{project_name}* %{id} - %{subject} 中提及了您"
     notification:
       center: 前往通知中心
       see_in_center: 在通知中心查看评论
