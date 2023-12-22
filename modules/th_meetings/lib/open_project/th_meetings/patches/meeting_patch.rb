@@ -111,11 +111,15 @@ module OpenProject::ThMeetings
           th_meeting.end_time = self.end_time.strftime('%Y-%m-%d %H:%M:%S')
 
           members = self.participants.map do |participant|
-            {
+            member = {
               user_id: participant.user.mail.to_s,
               name: participant.user.name.to_s,
               mail_address: participant.user.mail.to_s,
             }
+            if member[:mail_address].end_with?('@thape.com.cn')
+              member[:type] = 'visitor'
+            end
+            member
           end
 
           th_meeting.members = members

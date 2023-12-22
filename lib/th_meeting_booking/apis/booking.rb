@@ -57,6 +57,7 @@ module ThMeetingBooking::Apis
     # @param members.user_id: [String] 业务系统人员ID。字符类型，如果业务系统是数字型ID，需要转成string
     # @param members.name: [String] 姓名
     # @param members.mail_address: [String] 邮箱
+    # @param members.type: [String] 人员类型，访客=visitor，其他不传该字段
     # @return [ThMeetingBooking::Records::Booking::Meeting]
     def self.sync_meetings(
       upstream_id:,
