@@ -2164,7 +2164,7 @@ en:
       you_have: 'You have'
     logo_alt_text: 'Logo'
     mention:
-      subject: "%{user_name} mentioned you in #%{id} - %{subject}"
+      subject: "%{user_name} mentioned you in *%{project_name}* #%{id} - %{subject}"
     notification:
       center: 'To notification center'
       see_in_center: 'See comment in notification center'
