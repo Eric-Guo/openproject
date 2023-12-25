@@ -49,6 +49,7 @@ module OpenProject::TextFormatting
             'th' => ['class', 'style'],
             'tr' => ['class', 'style'],
             'td' => ['class', 'style'],
+            'p' => ['class', 'style'],
             'span' => ['class', 'style'],
             'input' => ['checked', 'disabled', 'type', 'class', 'style'],
             'ul' => ['class', 'style'],
