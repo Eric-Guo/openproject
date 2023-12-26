@@ -25,11 +25,11 @@ zh-CN:
       选择图像后，上传前会显示头像的预览。
     text_change_gravatar_html: '要为您的邮件地址更改或添加 Gravatar，请转到 %{gravatar_url}。'
     text_your_local_avatar: |
-      OpenProject 允许您上传自己的自定义头像。
+      PLM 允许您上传自己的自定义头像。
     text_local_avatar_over_gravatar: |
       如果您设置了一个自定义头像，则此头像将优先于上面的 Gravatar。
     text_your_current_gravatar: |
-      OpenProject 将使用您的 Gravatar（如果已注册）或者默认图像或图标（如果存在）。
+      PLM 将使用您的 Gravatar（如果已注册）或者默认图像或图标（如果存在）。
       当前头像如下：
     settings:
       enable_gravatars: '启用用户 Gravatar'

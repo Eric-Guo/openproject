@@ -57,8 +57,8 @@ en:
         main-menu-hover-font-color: "Main menu font on hover"
         main-menu-border-color: "Main menu border"
       custom_colors: "Custom colors"
-      customize: "Customize your OpenProject installation with your own logo and colors."
-      enterprise_notice: "As a special 'Thank you!' for their financial contribution to develop OpenProject, this tiny add-on is only available for Enterprise edition support subscribers."
+      customize: "Customize your PLM installation with your own logo and colors."
+      enterprise_notice: "As a special 'Thank you!' for their financial contribution to develop PLM, this tiny add-on is only available for Enterprise edition support subscribers."
       enterprise_more_info: "Note: the used logo will be publicly accessible."
       manage_colors: "Edit color select options"
       instructions:
@@ -130,39 +130,39 @@ en:
       name: Arbitrary name of the LDAP connection
       host: LDAP host name or IP address
       login_map: The attribute key in LDAP that is used to identify the unique user login. Usually, this will be `uid` or `samAccountName`.
-      generic_map: The attribute key in LDAP that is mapped to the OpenProject `%{attribute}` attribute
-      admin_map_html: "Optional: The attribute key in LDAP that <strong>if present</strong> marks the OpenProject user an admin. Leave empty when in doubt."
+      generic_map: The attribute key in LDAP that is mapped to the PLM `%{attribute}` attribute
+      admin_map_html: "Optional: The attribute key in LDAP that <strong>if present</strong> marks the PLM user an admin. Leave empty when in doubt."
       system_user_dn_html: |
         Enter the DN of the system user used for read-only access.
         <br/>
-        Example: uid=openproject,ou=system,dc=example,dc=com
+        Example: uid=PLM,ou=system,dc=example,dc=com
       system_user_password: Enter the bind password of the system user
       base_dn: |
-        Enter the Base DN of the subtree in LDAP you want OpenProject to look for users and groups.
-        OpenProject will filter for provided usernames in this subtree only.
+        Enter the Base DN of the subtree in LDAP you want PLM to look for users and groups.
+        PLM will filter for provided usernames in this subtree only.
         Example: ou=users,dc=example,dc=com
       filter_string: |
         Add an optional RFC4515 filter to apply to the results returned for users filtered in the LDAP.
-        This can be used to restrict the set of users that are found by OpenProject for authentication and group synchronization.
+        This can be used to restrict the set of users that are found by PLM for authentication and group synchronization.
       filter_string_concat: |
-        OpenProject will always filter for the login attribute provided by the user to identify the record. If you provide a filter here,
+        PLM will always filter for the login attribute provided by the user to identify the record. If you provide a filter here,
         it will be concatenated with an AND. By default, a catch-all (objectClass=*) will be used as a filter.
       onthefly_register: |
-        If you check this box, OpenProject will automatically create new users from their LDAP entries
-        when they first authenticate with OpenProject.
-        Leave this unchecked to only allow existing accounts in OpenProject to authenticate through LDAP!
+        If you check this box, PLM will automatically create new users from their LDAP entries
+        when they first authenticate with PLM.
+        Leave this unchecked to only allow existing accounts in PLM to authenticate through LDAP!
 
     connection_encryption: 'Connection encryption'
     encryption_details: 'LDAPS / STARTTLS options'
     system_account: 'System account'
     system_account_legend: |
-      OpenProject requires read-only access through a system account to lookup users and groups in your LDAP tree.
+      PLM requires read-only access through a system account to lookup users and groups in your LDAP tree.
       Please specify the bind credentials for that system user in the following section.
     ldap_details: 'LDAP details'
     user_settings: 'Attribute mapping'
     user_settings_legend: |
-      The following fields are related to how users are created in OpenProject from LDAP entries and
-      what LDAP attributes are used to define the attributes of an OpenProject user (attribute mapping).
+      The following fields are related to how users are created in PLM from LDAP entries and
+      what LDAP attributes are used to define the attributes of an PLM user (attribute mapping).
     tls_mode:
       plain: 'none'
       simple_tls: 'LDAPS'
@@ -335,7 +335,7 @@ en:
       description: >
         Placeholder users are a way to assign work packages to users who are not part of your project.
         They can be useful in a range of scenarios; for example, if you need to track tasks for a resource that is not yet named or available,
-         or if you don’t want to give that person access to OpenProject but still want to track tasks assigned to them.
+         or if you don’t want to give that person access to PLM but still want to track tasks assigned to them.
   prioritiies:
     edit:
       priority_color_text: |
@@ -667,7 +667,7 @@ en:
         confirmation: "doesn't match %{attribute}."
         could_not_be_copied: "%{dependency} could not be (fully) copied."
         does_not_exist: "does not exist."
-        error_enterprise_only: "%{action} is only available in the OpenProject Enterprise edition"
+        error_enterprise_only: "%{action} is only available in the PLM Enterprise edition"
         error_unauthorized: "may not be accessed."
         error_readonly: "was attempted to be written but is not writable."
         email: "is not a valid email address."
@@ -1090,7 +1090,7 @@ en:
       heading_create: "Create backup token"
       implications: >
         Enabling backups will allow any user with the required permissions and this backup token
-        to download a backup containing all data of this OpenProject installation.
+        to download a backup containing all data of this PLM installation.
         This includes the data of all other users.
       info: >
         You will need to generate a backup token to be able to create a backup.
@@ -1391,7 +1391,7 @@ en:
   error_can_not_unarchive_project: "This project cannot be unarchived: %{errors}"
   error_check_user_and_role: "Please choose a user and a role."
   error_code: "Error %{code}"
-  error_cookie_missing: 'The OpenProject cookie is missing. Please ensure that cookies are enabled, as this application will not properly function without.'
+  error_cookie_missing: 'The PLM cookie is missing. Please ensure that cookies are enabled, as this application will not properly function without.'
   error_custom_option_not_found: "Option does not exist."
   error_enterprise_activation_user_limit: "Your account could not be activated (user limit reached). Please contact your administrator to gain access."
   error_enterprise_token_invalid_domain: "The Enterprise edition is not active. Your Enterprise token's domain (%{actual}) does not match the system's host name (%{expected})."
@@ -1406,7 +1406,7 @@ en:
   error_work_package_done_ratios_not_updated: "Work package done ratios not updated."
   error_work_package_not_found_in_project: "The work package was not found or does not belong to this project"
   error_must_be_project_member: "must be project member"
-  error_migrations_are_pending: "Your OpenProject installation has pending database migrations. You have likely missed running the migrations on your last upgrade. Please check the upgrade guide to properly upgrade your installation."
+  error_migrations_are_pending: "Your PLM installation has pending database migrations. You have likely missed running the migrations on your last upgrade. Please check the upgrade guide to properly upgrade your installation."
   error_migrations_visit_upgrade_guides: "Please visit our upgrade guide documentation"
   error_no_default_work_package_status: "No default work package status is defined. Please check your configuration (Go to \"Administration -> Work package statuses\")."
   error_no_type_in_project: "No type is associated to this project. Please check the Project settings."
@@ -1491,7 +1491,7 @@ en:
       no_visible_projects: "There are no visible projects in this instance."
       users: "Newest registered users in this instance."
     blocks:
-      community: "OpenProject community"
+      community: "PLM community"
       upsale:
         title: "Upgrade to Enterprise edition"
         more_info: "More information"
@@ -1502,7 +1502,7 @@ en:
       faq: "FAQ"
       glossary: "Glossary"
       shortcuts: "Shortcuts"
-      blog: "OpenProject blog"
+      blog: "PLM blog"
       forums: "Community forum"
       newsletter: "Security alerts / Newsletter"
 
@@ -1552,10 +1552,10 @@ en:
         watched: "You are watching %{work_package}"
     update_info_mail:
       body: >
-        We are excited to announce the release of OpenProject 12.0. It's a major release that will hopefully significantly improve the way you use OpenProject.
+        We are excited to announce the release of PLM 12.0. It's a major release that will hopefully significantly improve the way you use PLM.
 
 
-        Starting with this release, we are introducing in-app notifications. From now on, you will receive notifications for updates to work packages directly in OpenProject. You can mark these notifications as read, reply to a comment or even directly modify work package attributes without leaving the notification center.
+        Starting with this release, we are introducing in-app notifications. From now on, you will receive notifications for updates to work packages directly in PLM. You can mark these notifications as read, reply to a comment or even directly modify work package attributes without leaving the notification center.
 
 
         This also means that we will no longer be using emails for notifications. We think the new notification center is a better place to view and act upon these updates. Nevertheless, if you would like continue receiving updates via email, you can choose to receive daily email reminders at particular times of your choosing.
@@ -1569,7 +1569,7 @@ en:
 
         Sincerely,
 
-        The OpenProject team
+        The PLM team
       body_header: 'Version 12.0 with Notification Center'
       body_subheader: 'News'
       subject: 'Important changes to notifications with the release of 12.0'
@@ -1889,7 +1889,7 @@ en:
   label_open_menu: "Open menu"
   label_open_work_packages: "open"
   label_open_work_packages_plural: "open"
-  label_openproject_website: "OpenProject website"
+  label_openproject_website: "PLM website"
   label_optional_description: "Description"
   label_options: "Options"
   label_other: "Other"
@@ -2199,8 +2199,8 @@ en:
   mail_body_backup_token_reset_user_info: Your backup token has been reset.
   mail_body_backup_token_info: The previous token is no longer valid.
   mail_body_backup_waiting_period: The new token will be enabled in %{hours} hours.
-  mail_body_backup_token_warning: If this wasn't you, login to OpenProject immediately and reset it again.
-  mail_body_incoming_email_error: The email you sent to OpenProject could not be processed.
+  mail_body_backup_token_warning: If this wasn't you, login to PLM immediately and reset it again.
+  mail_body_incoming_email_error: The email you sent to PLM could not be processed.
   mail_body_incoming_email_error_in_reply_to: "At %{received_at} %{from_email} wrote"
   mail_body_incoming_email_error_logs: "Logs"
   mail_body_lost_password: "To change your password, click on the following link:"
@@ -2209,10 +2209,10 @@ en:
   mail_body_register_user: "Dear %{name}, "
   mail_body_register_links_html: |
     Please feel free to browse our youtube channel (%{youtube_link}) where we provide a webinar (%{webinar_link})
-    and “Get started” videos (%{get_started_link}) to make your first steps in OpenProject as easy as possible.
+    and “Get started” videos (%{get_started_link}) to make your first steps in PLM as easy as possible.
     <br />
     If you have any further questions, consult our documentation (%{documentation_link}) or contact your administrator.
-  mail_body_register_closing: "Your OpenProject team"
+  mail_body_register_closing: "Your PLM team"
   mail_body_register_ending: "Stay connected! Kind regards,"
   mail_body_reminder: "%{count} work package(s) that are assigned to you are due in the next %{days} days:"
   mail_body_group_reminder: "%{count} work package(s) that are assigned to group \"%{group}\" are due in the next %{days} days:"
@@ -2221,7 +2221,7 @@ en:
   mail_subject_account_activation_request: "%{value} account activation request"
   mail_subject_backup_ready: "Your backup is ready"
   mail_subject_backup_token_reset: "Backup token reset"
-  mail_subject_incoming_email_error: "An email you sent to OpenProject could not be processed"
+  mail_subject_incoming_email_error: "An email you sent to PLM could not be processed"
   mail_subject_lost_password: "Your %{value} password"
   mail_subject_register: "Your %{value} account activation"
   mail_subject_wiki_content_added: "'%{id}' wiki page has been added"
@@ -2254,7 +2254,7 @@ en:
   mail_user_activation_limit_reached:
     subject: User activation limit reached
     message: |
-      A new user (%{email}) tried to create an account on an OpenProject environment that you manage (%{host}).
+      A new user (%{email}) tried to create an account on an PLM environment that you manage (%{host}).
       The user cannot activate their account since the user limit has been reached.
     steps:
       label: "To allow the user to sign in you can either: "
@@ -2264,7 +2264,7 @@ en:
 
   more_actions: "More functions"
 
-  noscript_description: "You need to activate JavaScript in order to use OpenProject!"
+  noscript_description: "You need to activate JavaScript in order to use PLM!"
   noscript_heading: "JavaScript disabled"
   noscript_learn_more: "Learn more"
 
@@ -2336,7 +2336,7 @@ en:
   notice_wont_delete_auth_source: The authentication mode cannot be deleted as long as there are still users using it.
   notice_project_cannot_update_custom_fields: "You cannot update the project's available custom fields. The project is invalid: %{errors}"
   notice_attachment_migration_wiki_page: >
-    This page was generated automatically during the update of OpenProject.
+    This page was generated automatically during the update of PLM.
     It contains all attachments previously associated with the %{container_type} "%{container_name}".
 
   # Default format for numbers
@@ -2362,7 +2362,7 @@ en:
 
   onboarding:
     heading_getting_started: "Get an overview"
-    text_getting_started_description: "Get a quick overview of project management and team collaboration with OpenProject. You can restart this video from the help menu."
+    text_getting_started_description: "Get a quick overview of project management and team collaboration with PLM. You can restart this video from the help menu."
     welcome: "Welcome to %{app_title}"
     select_language: "Please select your language"
 
@@ -2425,7 +2425,7 @@ en:
   permission_select_custom_fields: "Select custom fields"
   permission_select_project_modules: "Select project modules"
   permission_manage_types: "Select types"
-  permission_view_changesets: "View repository revisions in OpenProject"
+  permission_view_changesets: "View repository revisions in PLM"
   permission_view_commit_author_statistics: "View commit author statistics"
   permission_view_work_package_watchers: "View watchers list"
   permission_view_work_packages: "View work packages"
@@ -2515,7 +2515,7 @@ en:
     destroy:
       confirmation: "If you continue, this will permanently delete the managed repository."
       info: "Deleting the repository is an irreversible action."
-      info_not_managed: "Note: This will NOT delete the contents of this repository, as it is not managed by OpenProject."
+      info_not_managed: "Note: This will NOT delete the contents of this repository, as it is not managed by PLM."
       managed_path_note: "The following directory will be erased: %{path}"
       repository_verification: "Enter the project's identifier %{identifier} to verify the deletion of its repository."
       subtitle: "Do you really want to delete the %{repository_type} of the project %{project_name}?"
@@ -2529,8 +2529,8 @@ en:
       empty_repository: "The repository exists, but is empty. It does not contain any revisions yet."
       exists_on_filesystem: "The repository directory already exists in the filesystem."
       filesystem_access_failed: "An error occurred while accessing the repository in the filesystem: %{message}"
-      not_manageable: "This repository vendor cannot be managed by OpenProject."
-      path_permission_failed: "An error occurred trying to create the following path: %{path}. Please ensure that OpenProject may write to that folder."
+      not_manageable: "This repository vendor cannot be managed by PLM."
+      path_permission_failed: "An error occurred trying to create the following path: %{path}. Please ensure that PLM may write to that folder."
       unauthorized: "You're not authorized to access the repository or the credentials are invalid."
       unavailable: "The repository is unavailable."
       exception_title: "Cannot access the repository: %{message}"
@@ -2549,9 +2549,9 @@ en:
         path_encoding: "Override Git path encoding (Default: UTF-8)"
       local_title: "Link existing local Git repository"
       local_url: "Local URL"
-      local_introduction: "If you have an existing local Git repository, you can link it with OpenProject to access it from within the application."
-      managed_introduction: "Let OpenProject create and integrate a local Git repository automatically."
-      managed_title: "Git repository integrated into OpenProject"
+      local_introduction: "If you have an existing local Git repository, you can link it with PLM to access it from within the application."
+      managed_introduction: "Let PLM create and integrate a local Git repository automatically."
+      managed_title: "Git repository integrated into PLM"
       managed_url: "Managed URL"
       path: "Path to Git repository"
       path_encoding: "Path encoding"
@@ -2568,24 +2568,24 @@ en:
     scm_types:
       local: "Link existing local repository"
       existing: "Link existing repository"
-      managed: "Create new repository in OpenProject"
+      managed: "Create new repository in PLM"
     storage:
       not_available: "Disk storage consumption is not available for this repository."
       update_timeout: "Keep the last required disk space information for a repository for N minutes.\nAs counting the required disk space of a repository may be costly, increase this value to reduce performance impact."
-      oauth_application_details: "The client secret value will not be accessible again after you close this window. Please copy these values into the Nextcloud OpenProject Integration settings:"
+      oauth_application_details: "The client secret value will not be accessible again after you close this window. Please copy these values into the Nextcloud PLM Integration settings:"
       oauth_application_details_link_text: "Go to settings page"
       setup_documentation_details: "If you need help configuring a new file storage please check the documentation: "
       setup_documentation_details_link_text: "File Storages setup"
       show_warning_details: "To use this file storage remember to activate the module and the specific storage in the project settings of each desired project."
     subversion:
       existing_title: "Existing Subversion repository"
-      existing_introduction: "If you have an existing Subversion repository, you can link it with OpenProject to access it from within the application."
+      existing_introduction: "If you have an existing Subversion repository, you can link it with PLM to access it from within the application."
       existing_url: "Existing URL"
       instructions:
         managed_url: "This is the URL of the managed (local) Subversion repository."
         url: "Enter the repository URL. This may either target a local repository (starting with %{local_proto} ), or a remote repository.\nThe following URL schemes are supported:"
-      managed_title: "Subversion repository integrated into OpenProject"
-      managed_introduction: "Let OpenProject create and integrate a local Subversion repository automatically."
+      managed_title: "Subversion repository integrated into PLM"
+      managed_introduction: "Let PLM create and integrate a local Subversion repository automatically."
       managed_url: "Managed URL"
       password: "Repository Password"
       username: "Repository username"
@@ -2605,7 +2605,7 @@ en:
   setting_apiv3_cors_enabled: "Enable CORS"
   setting_apiv3_cors_origins: "API V3 Cross-Origin Resource Sharing (CORS) allowed origins"
   setting_apiv3_cors_origins_text_html: >
-    If CORS is enabled, these are the origins that are allowed to access OpenProject API.
+    If CORS is enabled, these are the origins that are allowed to access PLM API.
     <br/>
     Please check the <a href="%{origin_link}" target="_blank">Documentation on the Origin header</a> on how to specify the expected values.
   setting_apiv3_max_page_size: "Maximum API page size"
@@ -2784,7 +2784,7 @@ en:
       skip_last_comma: "false"
 
   text_accessibility_hint: "The accessibility mode is designed for users who are blind, motorically handicaped or have a bad eyesight. For the latter focused elements are specially highlighted. Please notice, that the Backlogs module is not available in this mode."
-  text_access_token_hint: "Access tokens allow you to grant external applications access to resources in OpenProject."
+  text_access_token_hint: "Access tokens allow you to grant external applications access to resources in PLM."
   text_analyze: "Further analyze: %{subject}"
   text_are_you_sure: "Are you sure?"
   text_are_you_sure_continue: "Are you sure you want to continue?"
@@ -2879,7 +2879,7 @@ en:
     Note: if enabled, this will display a badge with your installation status in the <a href="%{information_panel_path}">%{information_panel_label}</a> administration panel,
     and on the home page. It is displayed to administrators only.
     <br/>
-    The badge will check your current OpenProject version against the official OpenProject release database to alert you of any updates or known vulnerabilities.
+    The badge will check your current PLM version against the official PLM release database to alert you of any updates or known vulnerabilities.
     For more information on what the check provides, what data is needed to provide available updates, and how to disable this check, please visit <a href="%{more_info_url}">the configuration documentation</a>.
   text_own_membership_delete_confirmation: "You are about to remove some or all of your permissions and may no longer be able to edit this project after that.\nAre you sure you want to continue?"
   text_plugin_assets_writable: "Plugin assets directory writable"
@@ -2888,7 +2888,7 @@ en:
   text_reassign: "Reassign to work package:"
   text_regexp_info: "eg. ^[A-Z0-9]+$"
   text_regexp_multiline: 'The regex is applied in a multi-line mode. e.g., ^---\s+'
-  text_repository_usernames_mapping: "Select or update the OpenProject user mapped to each username found in the repository log.\nUsers with the same OpenProject and repository username or email are automatically mapped."
+  text_repository_usernames_mapping: "Select or update the PLM user mapped to each username found in the repository log.\nUsers with the same PLM and repository username or email are automatically mapped."
   text_status_changed_by_changeset: "Applied in changeset %{value}."
   text_table_difference_description: "In this table the single %{entries} are shown. You can view the difference between any two entries by first selecting the according checkboxes in the table. When clicking on the button below the table the differences are shown."
   text_time_logged_by_changeset: "Applied in changeset %{value}."
@@ -3112,7 +3112,7 @@ en:
     authentication_provider: "Authentication Provider"
     authentication_settings_disabled_due_to_external_authentication: >
       This user authenticates via an external authentication provider, so there is no password
-      in OpenProject to be changed.
+      in PLM to be changed.
     authorization_rejected: "You are not allowed to sign in."
     assign_random_password: "Assign random password (sent to user via email)"
     blocked: "locked temporarily"
@@ -3146,7 +3146,7 @@ en:
   warning_attachments_not_saved: "%{count} file(s) could not be saved."
   warning_imminent_user_limit: >
     You invited more users than are supported by your current plan.
-    Invited users may not be able to join your OpenProject environment.
+    Invited users may not be able to join your PLM environment.
     Please <a href="%{upgrade_url}">upgrade your plan</a> or block existing
     users in order to allow invited and registered users to join.
   warning_registration_token_expired: |
@@ -3339,24 +3339,24 @@ en:
         confidential: "Check if the application will be used where the client secret can be kept confidential. Native mobile apps and Single Page Apps are assumed non-confidential."
         scopes: "Check the scopes you want the application to grant access to. If no scope is checked, api_v3 is assumed."
         client_credential_user_id: "Optional user ID to impersonate when clients use this application. Leave empty to allow public access only"
-        register_intro: "If you are developing an OAuth API client application for OpenProject, you can register it using this form for all users to use."
+        register_intro: "If you are developing an OAuth API client application for PLM, you can register it using this form for all users to use."
         default_scopes: ""
     client_id: "Client ID"
     client_secret_notice: >
       This is the only time we can print the client secret, please note it down and keep it secure.
-      It should be treated as a password and cannot be retrieved by OpenProject at a later time.
+      It should be treated as a password and cannot be retrieved by PLM at a later time.
     authorization_dialog:
       authorize: "Authorize"
       cancel: "Cancel and deny authorization."
       prompt_html: "Authorize <strong>%{application_name}</strong> to use your account <em>%{login}</em>?"
       title: "Authorize %{application_name}"
       wants_to_access_html: >
-        This application requests access to your OpenProject account.
+        This application requests access to your PLM account.
         <br/>
         <strong>It has requested the following permissions:</strong>
     scopes:
       api_v3: "Full API v3 access"
-      api_v3_text: "Application will receive full read & write access to the OpenProject API v3 to perform actions on your behalf."
+      api_v3_text: "Application will receive full read & write access to the PLM API v3 to perform actions on your behalf."
     grants:
       created_date: "Approved on"
       scopes: "Permissions"
@@ -3372,7 +3372,7 @@ en:
     client_credentials_impersonation_set_to: "Client credentials user set to"
     client_credentials_impersonation_warning: "Note: Clients using the 'Client credentials' flow in this application will have the rights of this user"
     client_credentials_impersonation_html: >
-      By default, OpenProject provides OAuth 2.0 authorization via %{authorization_code_flow_link}.
+      By default, PLM provides OAuth 2.0 authorization via %{authorization_code_flow_link}.
       You can optionally enable %{client_credentials_flow_link}, but you must provide a user on whose behalf requests will be performed.
     authorization_error: "An authorization error has occurred."
     revoke_my_application_confirmation: "Do you really want to remove this application? This will revoke %{token_count} active for it."
@@ -3403,14 +3403,14 @@ en:
       refresh_token_updated_failed: "Error during update of OAuthClientToken"
       oauth_client_not_found_explanation: >
         This error appears after you have updated the client_id and client_secret
-        in OpenProject, but haven't updated the 'Return URI' field in the OAuth2 provider.
+        in PLM, but haven't updated the 'Return URI' field in the OAuth2 provider.
       oauth_code_not_present: "OAuth2 'code' not found in 'callback' endpoint (redirect_uri)."
       oauth_code_not_present_explanation: >
         This error appears if you have selected the wrong response_type
         in the OAuth2 provider. Response_type should be 'code' or similar.
       oauth_state_not_present: "OAuth2 'state' not found in 'callback' endpoint (redirect_uri)."
       oauth_state_not_present_explanation: >
-        The 'state' is used to indicate to OpenProject where to continue
+        The 'state' is used to indicate to PLM where to continue
         after a successful OAuth2 authorization.
         A missing 'state' is an internal error that may appear during setup.
         Please contact your system administrator.
@@ -3421,7 +3421,7 @@ en:
           This error appears if you try to authorize multiple times or in case of technical issues.
         invalid_response: "OAuth2 Authorization Server provided an invalid response (invalid_response)"
         invalid_grant: "The OAuth2 Authorization Server asks you to reauthorize (invalid_grant)."
-        invalid_client: "The OAuth2 Authorization Server doesn't recognize OpenProject (invalid_client)."
+        invalid_client: "The OAuth2 Authorization Server doesn't recognize PLM (invalid_client)."
         unauthorized_client: "The OAuth2 Authorization Server rejects the grant type (unauthorized_client)"
         unsupported_grant_type: "The OAuth2 Authorization Server asks you to reauthorize (unsupported_grant_type)."
         invalid_scope: "You are not allowed to access the requested resource (invalid_scope)."

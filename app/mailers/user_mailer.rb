@@ -37,7 +37,7 @@ class UserMailer < ApplicationMailer
     open_project_headers 'Type' => 'Test'
 
     send_mail(user,
-              'OpenProject Test')
+              'PLM Test')
   end
 
   def backup_ready(user)

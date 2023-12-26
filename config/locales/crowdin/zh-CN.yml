@@ -48,8 +48,8 @@ zh-CN:
         main-menu-hover-font-color: "悬停时的主菜单字体"
         main-menu-border-color: "主菜单边框"
       custom_colors: "自定义颜色"
-      customize: "使用您自己的徽标自定义 OpenProject 安装。注：此徽标可公开查看。"
-      enterprise_notice: "作为对为开发 OpenProject 提供财力支持的订阅者的特别“感谢”，这项小功能仅限企业版支持订阅者使用。"
+      customize: "使用您自己的徽标自定义 PLM 安装。注：此徽标可公开查看。"
+      enterprise_notice: "作为对为开发 PLM 提供财力支持的订阅者的特别“感谢”，这项小功能仅限企业版支持订阅者使用。"
       manage_colors: "编辑颜色选择选项"
       instructions:
         alternative-color: "强烈的颜色，通常用于屏幕上最重要的按钮。"
@@ -101,34 +101,34 @@ zh-CN:
       name: LDAP 连接的任意名称
       host: LDAP 主机名或 IP 地址
       login_map: LDAP 中用于识别唯一用户登录名的属性键。通常是 `uid` 或 `samAccountName`。
-      generic_map: LDAP 中用于映射到 OpenProject `%{attribute}` 属性的属性键
-      admin_map_html: "可选：LDAP 中将 OpenProject 用户标记为管理员的属性键（<strong>如存在</strong>）。如有疑问，请留空。"
+      generic_map: LDAP 中用于映射到 PLM `%{attribute}` 属性的属性键
+      admin_map_html: "可选：LDAP 中将 PLM 用户标记为管理员的属性键（<strong>如存在</strong>）。如有疑问，请留空。"
       system_user_dn_html: |
         输入系统用户用于只读访问的 DN。
         <br/>
-        示例：uid=openproject,ou=system,dc=example,dc=com
+        示例：uid=PLM,ou=system,dc=example,dc=com
       system_user_password: 输入系统用户的绑定密码
       base_dn: |
-        输入 LDAP 中您希望 OpenProject 查找用户和组的子树的基本 DN。
-        OpenProject 将仅在此子树中筛选提供的用户名。
+        输入 LDAP 中您希望 PLM 查找用户和组的子树的基本 DN。
+        PLM 将仅在此子树中筛选提供的用户名。
         示例：ou=users,dc=example,dc=com
       filter_string: |
         添加一个可选的 RFC4515 筛选器以应用于为 LDAP 中的筛选用户返回的结果。
-        这可以用于限制 OpenProject 为身份验证和组同步找到的用户集。
+        这可以用于限制 PLM 为身份验证和组同步找到的用户集。
       filter_string_concat: |
-        OpenProject 将始终筛选用户提供的登录属性来识别记录。如果您在这里提供筛选器，它将与 AND 串联。默认情况下，将使用“全部捕获”(objectClass=*) 作为筛选器。
+        PLM 将始终筛选用户提供的登录属性来识别记录。如果您在这里提供筛选器，它将与 AND 串联。默认情况下，将使用“全部捕获”(objectClass=*) 作为筛选器。
       onthefly_register: |
-        如果选中此框，OpenProject 将在新用户首次向 OpenProject 验证身份时从其 LDAP 条目创建这些用户。
-        不选中此框则会仅允许 OpenProject 中的现有帐户通过 LDAP 验证身份！
+        如果选中此框，PLM 将在新用户首次向 PLM 验证身份时从其 LDAP 条目创建这些用户。
+        不选中此框则会仅允许 PLM 中的现有帐户通过 LDAP 验证身份！
     connection_encryption: '连接加密'
     system_account: '系统帐户'
     system_account_legend: |
-      OpenProject 需要通过系统帐户获取只读权限来查找您的 LDAP 树中的用户和组。
+      PLM 需要通过系统帐户获取只读权限来查找您的 LDAP 树中的用户和组。
       请在下一部分中为该系统用户指定绑定凭据。
     ldap_details: 'LDAP 详细信息'
     user_settings: '属性映射'
     user_settings_legend: |
-      以下字段与在 OpenProject 中从 LDAP 条目创建用户的方式有关并决定用于定义 OpenProject 用户属性的 LDAP 属性（属性映射）。
+      以下字段与在 PLM 中从 LDAP 条目创建用户的方式有关并决定用于定义 PLM 用户属性的 LDAP 属性（属性映射）。
     tls_mode:
       plain: '无'
       simple_tls: 'simple_tls'
@@ -556,7 +556,7 @@ zh-CN:
         confirmation: "不匹配 %{attribute}。"
         could_not_be_copied: "无法（完全）复制 %{dependency}。"
         does_not_exist: "不存在。"
-        error_enterprise_only: "仅在 OpenProject 企业版中可用"
+        error_enterprise_only: "仅在 PLM 企业版中可用"
         error_unauthorized: "无法访问。"
         error_readonly: "曾尝试被写入，但不可写。"
         email: "不是一个有效的电子邮件地址。"
@@ -908,7 +908,7 @@ zh-CN:
       heading_reset: "重置备份令牌"
       heading_create: "创建备份令牌"
       implications: >
-        启用备份将允许具有所需权限和此备份令牌的任何用户下载包含此 OpenProject 安装的所有数据的备份。这包括所有其他用户的数据。
+        启用备份将允许具有所需权限和此备份令牌的任何用户下载包含此 PLM 安装的所有数据的备份。这包括所有其他用户的数据。
       info: >
         您需要生成备份令牌才能创建备份。每次您要请求备份时，都必须提供此令牌。您可以删除备份令牌以禁用此用户的备份。
       verification: >
@@ -1216,7 +1216,7 @@ zh-CN:
   error_can_not_unarchive_project: "此项目无法取消存档：%{errors}"
   error_check_user_and_role: "请选择用户和角色。"
   error_code: "错误 %{code}"
-  error_cookie_missing: 'OpenProject cookie 丢失。请确保已启用 cookie，因为如果不启用，此应用程序将无法正常运行。'
+  error_cookie_missing: 'PLM cookie 丢失。请确保已启用 cookie，因为如果不启用，此应用程序将无法正常运行。'
   error_custom_option_not_found: "选项不存在。"
   error_enterprise_activation_user_limit: "无法激活您的帐户 (已达到用户限制)。请与管理员联系以获取访问权限。"
   error_enterprise_token_invalid_domain: "企业版未激活。您的企业版令牌的域 (%{actual}) 与系统的主机名不匹配 (%{expected})。"
@@ -1230,7 +1230,7 @@ zh-CN:
   error_work_package_done_ratios_not_updated: "工作包完成比率不更新。"
   error_work_package_not_found_in_project: "工作包找不到或不属于此项目"
   error_must_be_project_member: "必须是项目成员"
-  error_migrations_are_pending: "您的 OpenProject 安装具有待定的数据库迁移。您可能在上次升级时错过了迁移。请查阅升级指南，正确升级您的安装。"
+  error_migrations_are_pending: "您的 PLM 安装具有待定的数据库迁移。您可能在上次升级时错过了迁移。请查阅升级指南，正确升级您的安装。"
   error_migrations_visit_upgrade_guides: "请访问我们的升级指南文档"
   error_no_default_work_package_status: "没有定义默认的工作包状态。请检查您的配置 （转到\"管理-> 工作包状态\"）。"
   error_no_type_in_project: "没有类型与此项目关联。请检查的项目设置。"
@@ -1299,11 +1299,11 @@ zh-CN:
   gui_validation_error_plural: "%{count} 错误"
   homescreen:
     additional:
-      projects: "这个 OpenProject 中的最新可见项目。"
-      no_visible_projects: "这个 OpenProject 中没有可见的项目。"
-      users: "这个 OpenProject 中的最新注册用户。"
+      projects: "这个 PLM 中的最新可见项目。"
+      no_visible_projects: "这个 PLM 中没有可见的项目。"
+      users: "这个 PLM 中的最新注册用户。"
     blocks:
-      community: "OpenProject 社区"
+      community: "PLM 社区"
       upsale:
         title: "升级到企业版"
         more_info: "更多信息"
@@ -1314,7 +1314,7 @@ zh-CN:
       faq: "常见问题"
       glossary: "术语表"
       shortcuts: "快捷方式"
-      blog: "OpenProject 博客"
+      blog: "PLM 博客"
       forums: "社区论坛"
       newsletter: "安全警报/通信"
   image_conversion:
@@ -1355,9 +1355,9 @@ zh-CN:
         watched: "您正在参与 %{work_package}"
     update_info_mail:
       body: >
-        我们十分高兴地宣布 OpenProject 12.0 现已发布。这一主要版本有望显著改善您使用 OpenProject 的方式。
+        我们十分高兴地宣布 PLM 12.0 现已发布。这一主要版本有望显著改善您使用 PLM 的方式。
 
-        从此版本开始，我们将引入应用内通知。现在起，您将直接在 OpenProject 中接收有关工作包更新的通知。您可以将这些通知标记为已读、回复评论，甚至直接修改工作包属性，而无需离开通知中心。
+        从此版本开始，我们将引入应用内通知。现在起，您将直接在 PLM 中接收有关工作包更新的通知。您可以将这些通知标记为已读、回复评论，甚至直接修改工作包属性，而无需离开通知中心。
 
         这也意味着我们将不再使用电子邮件进行通知。我们认为新通知中心是查看这些更新并采取行动的最佳场所。不过，如果您想继续通过电子邮件接收更新，可以选择在您选取的特定时间接收每日电子邮件提醒。
 
@@ -1366,7 +1366,7 @@ zh-CN:
         我们希望应用内通知能够满足您的使用需求，帮助您提高效率。
 
         谨上，
-        OpenProject 团队
+        PLM 团队
       body_header: '包含通知中心的 12.0 版本'
       body_subheader: '新闻'
       subject: '12.0 版本中加入了针对通知的重要变更'
@@ -1684,7 +1684,7 @@ zh-CN:
   label_open_menu: "打开菜单"
   label_open_work_packages: "打开"
   label_open_work_packages_plural: "打开"
-  label_openproject_website: "OpenProject 网站"
+  label_openproject_website: "PLM 网站"
   label_optional_description: "描述"
   label_options: "选项"
   label_other: "其他"
@@ -1985,16 +1985,16 @@ zh-CN:
   mail_body_backup_token_reset_user_info: 您的备份令牌已重置。
   mail_body_backup_token_info: 之前的令牌不再有效。
   mail_body_backup_waiting_period: 新令牌将在 %{hours} 小时后启用。
-  mail_body_backup_token_warning: 如果不是您在操作，请立即登录 OpenProject 并重置。
+  mail_body_backup_token_warning: 如果不是您在操作，请立即登录 PLM 并重置。
   mail_body_lost_password: "若要更改你的密码，请单击下面的链接："
-  mail_body_register: "欢迎使用 OpenProject。请点击此链接激活您的帐户："
+  mail_body_register: "欢迎使用 PLM。请点击此链接激活您的帐户："
   mail_body_register_header_title: "项目成员邀请电子邮件"
   mail_body_register_user: "%{name}，您好："
   mail_body_register_links_html: |
-    请随时浏览我们的 youtube 频道 (%{youtube_link})，在这里我们提供了网络研讨会 (%{webinar_link}) 和“入门”视频 (%{get_started_link})，让您在 OpenProject 中尽可能轻松地迈出第一步。
+    请随时浏览我们的 youtube 频道 (%{youtube_link})，在这里我们提供了网络研讨会 (%{webinar_link}) 和“入门”视频 (%{get_started_link})，让您在 PLM 中尽可能轻松地迈出第一步。
     <br />
     如果您有任何其他疑问，请参阅我们的文档 (%{documentation_link}) 或与您的管理员联系。
-  mail_body_register_closing: "您的 OpenProject 团队"
+  mail_body_register_closing: "您的 PLM 团队"
   mail_body_register_ending: "保持联系！谨致问候，"
   mail_body_reminder: "%{count} 个分配给您的工作包将在 %{days} 天后到期："
   mail_body_group_reminder: "%{count} 个分配给组“%{group}”的工作包将在 %{days} 天后到期："
@@ -2033,13 +2033,13 @@ zh-CN:
   mail_user_activation_limit_reached:
     subject: 已达到用户激活限制
     message: |
-      新用户 (%{email}) 试图在您管理的 OpenProject 环境 (%{host}) 上创建帐户。用户无法激活其帐户, 因为已达到用户限制。
+      新用户 (%{email}) 试图在您管理的 PLM 环境 (%{host}) 上创建帐户。用户无法激活其帐户, 因为已达到用户限制。
     steps:
       label: "要允许用户登录, 您可以: "
       a: "([在这里](upgrade_url)) 升级付款计划" #here turned into a link
       b: "([在这里](users_url)) 锁定或删除现有用户" #here turned into a link
   more_actions: "更多功能"
-  noscript_description: "您需要激活JavaScript才能使用 OpenProject！"
+  noscript_description: "您需要激活JavaScript才能使用 PLM！"
   noscript_heading: "JavaScript 被禁用"
   noscript_learn_more: "了解更多信息"
   notice_accessibility_mode: 可以在您的 [account settings](url) 中启用辅助功能模式。
@@ -2103,7 +2103,7 @@ zh-CN:
   notice_wont_delete_auth_source: 不能删除身份验证模式，仍有用户正在使用。
   notice_project_cannot_update_custom_fields: "您无法更新项目的可用自定义字段。项目无效：%{errors}"
   notice_attachment_migration_wiki_page: >
-    此页是在更新 OpenProject 时自动生成。它包含以前与 %{container_type} "%{container_name}" 关联的所有附件。
+    此页是在更新 PLM 时自动生成。它包含以前与 %{container_type} "%{container_name}" 关联的所有附件。
   #Default format for numbers
   number:
     format:
@@ -2186,7 +2186,7 @@ zh-CN:
   permission_select_project_modules: "选择项目模块"
   permission_manage_types: "选择类型"
   permission_view_calendar: "查看日历"
-  permission_view_changesets: "查看OpenProject 资源库修订"
+  permission_view_changesets: "查看PLM 资源库修订"
   permission_view_commit_author_statistics: "查看提交创建人统计信息"
   permission_view_work_package_watchers: "查看参与人列表"
   permission_view_work_packages: "查看工作包"
@@ -2266,7 +2266,7 @@ zh-CN:
     destroy:
       confirmation: "如果你继续将永久删除管理的存储库。"
       info: "删除存储库是一个不可逆转的操作。"
-      info_not_managed: "注意: 这不会删除这个资料库的内容，它不由 OpenProject 管理。"
+      info_not_managed: "注意: 这不会删除这个资料库的内容，它不由 PLM 管理。"
       managed_path_note: "以下目录将被删除: %{path}"
       repository_verification: "输入项目的标识符 %{identifier}，以确认其存储库中的删除。"
       subtitle: "你真的想要删除的项目 %{project_name} %{repository_type} 吗?"
@@ -2280,8 +2280,8 @@ zh-CN:
       empty_repository: "版本库已存在，不过该库是空的。它还不包括任何版本。"
       exists_on_filesystem: "存储库目录已存在文件系统中。"
       filesystem_access_failed: "访问文件系统中的存储库时出现错误: %{message}"
-      not_manageable: "此版本库提供商不能被 OpenProject 管理。"
-      path_permission_failed: "在创建目录： %{path} 时发生错误。请确定 OpenProject 对该目录有可写权限。"
+      not_manageable: "此版本库提供商不能被 PLM 管理。"
+      path_permission_failed: "在创建目录： %{path} 时发生错误。请确定 PLM 对该目录有可写权限。"
       unauthorized: "您无权访问版本库或凭据无效。"
       unavailable: "该版本库不可用。"
       exception_title: "不能访问 %{message} 版本库"
@@ -2298,9 +2298,9 @@ zh-CN:
         path_encoding: "重写 Git 路径编码 (默认: UTF-8)"
       local_title: "链接现有的本地 Git 版本库"
       local_url: "本地URL"
-      local_introduction: "如果您已有本地 Git 版本库，可以将其链接到 OpenProject 来访问。"
-      managed_introduction: "让 OpenProject 创建并自动集成一个本地 Git 版本库。"
-      managed_title: "Git 版本库集成入 OpenProject"
+      local_introduction: "如果您已有本地 Git 版本库，可以将其链接到 PLM 来访问。"
+      managed_introduction: "让 PLM 创建并自动集成一个本地 Git 版本库。"
+      managed_title: "Git 版本库集成入 PLM"
       managed_url: "托管的 URL"
       path: "Git 版本库路径"
       path_encoding: "路径编码"
@@ -2317,19 +2317,19 @@ zh-CN:
     scm_types:
       local: "链接现有的本地版本库"
       existing: "链接现有的版本库"
-      managed: "在 OpenProject 中创建新的版本库"
+      managed: "在 PLM 中创建新的版本库"
     storage:
       not_available: "磁盘存储开销不可用于此存储库。"
       update_timeout: "保持 N 分钟为一个存储库的最后所需的磁盘空间信息。作为计算存储库所需的磁盘空间可能开销很高，增加此值可减少对性能的影响。"
     subversion:
       existing_title: "现有的 Subversion 版本库"
-      existing_introduction: "如果您已有本地 Git 版本库，可以将其链接到 OpenProject 来访问。"
+      existing_introduction: "如果您已有本地 Git 版本库，可以将其链接到 PLM 来访问。"
       existing_url: "现在的URL"
       instructions:
         managed_url: "这是管理的 (本地) Subversion 版本库的 URL。"
         url: "输入版本库 URL。这可能既指向本地版本库 (以 %{local_proto} 开头) ，或者是一个远程版本库。下面的 URL 方案是被支持的:"
-      managed_title: "Subversion 版本库集成到 OpenProject"
-      managed_introduction: "让 OpenProject 创建和自动集成一个Subversion本地存储库。"
+      managed_title: "Subversion 版本库集成到 PLM"
+      managed_introduction: "让 PLM 创建和自动集成一个Subversion本地存储库。"
       managed_url: "托管的 URL"
       password: "版本库密码"
       username: "版本库用户名"
@@ -2346,7 +2346,7 @@ zh-CN:
   setting_apiv3_cors_enabled: "启用 CORS"
   setting_apiv3_cors_origins: "API V3 跨源资源共享 (CORS) 允许的源"
   setting_apiv3_cors_origins_text_html: >
-    如果启用了 CORS ，这些是允许访问 OpenProject API 的源。<br/>请查看<a href="%{origin_link}" target="_blank">有关“源”标题的文档</a>，了解如何指定预期值。
+    如果启用了 CORS ，这些是允许访问 PLM API 的源。<br/>请查看<a href="%{origin_link}" target="_blank">有关“源”标题的文档</a>，了解如何指定预期值。
   setting_apiv3_docs: "文档"
   setting_apiv3_docs_enabled: "启用文档页面"
   setting_apiv3_docs_enabled_instructions_html: >
@@ -2505,7 +2505,7 @@ zh-CN:
       sentence_connector: "和"
       skip_last_comma: "非"
   text_accessibility_hint: "辅助功能模式设计用于失明、具有行动障碍或视力不佳的用户。为视力不佳的用户特别突出显示关注的元素。请注意，此模式不支持待办清单模块。"
-  text_access_token_hint: "访问令牌允许你授予外部应用程序对 OpenProject 资源的访问权限。"
+  text_access_token_hint: "访问令牌允许你授予外部应用程序对 PLM 资源的访问权限。"
   text_analyze: "进一步分析： %{subject}"
   text_are_you_sure: "是否确定？"
   text_are_you_sure_with_children: "删除工作包和所有子工作包吗？"
@@ -2574,7 +2574,7 @@ zh-CN:
   text_no_notes: "没有注释可用于此工作包。"
   text_notice_too_many_values_are_inperformant: "注意： 每个页面显示超过 100 个项目会增加页面加载时间。"
   text_notice_security_badge_displayed_html: >
-    注：如果启用，这会在 <a href="%{information_panel_path}">%{information_panel_label}</a> 管理面板中和主页上显示一个包含您的安装状态的徽章。徽章仅向管理员显示。<br/>徽章将根据官方的 OpenProject 版本数据库检查您当前的 OpenProject 版本，提醒您是否存在任何更新或已知漏洞。如需详细了解检查可以提供哪些信息，需要哪些数据来提供可用更新，以及如何禁用此检查，请访问<a href="%{more_info_url}">配置文档</a>。
+    注：如果启用，这会在 <a href="%{information_panel_path}">%{information_panel_label}</a> 管理面板中和主页上显示一个包含您的安装状态的徽章。徽章仅向管理员显示。<br/>徽章将根据官方的 PLM 版本数据库检查您当前的 PLM 版本，提醒您是否存在任何更新或已知漏洞。如需详细了解检查可以提供哪些信息，需要哪些数据来提供可用更新，以及如何禁用此检查，请访问<a href="%{more_info_url}">配置文档</a>。
   text_own_membership_delete_confirmation: "您要移除部分或全部权限，并且可能无法在此后编辑这个项目。\n您确定要继续吗？"
   text_plugin_assets_writable: "插件资产目录可写"
   text_powered_by: "Powered by %{link}"
@@ -2582,7 +2582,7 @@ zh-CN:
   text_reassign: "重新分配工作包:"
   text_regexp_info: "例如 ^ [A-Z0-9]+$"
   text_regexp_multiline: '以多行模式应用正则表达式，如 ^---\s+'
-  text_repository_usernames_mapping: "选择或更新每个在代码库日志中发现的用户名所映射到的 OpenProject 用户。\n使用相同 OpenProject 和代码库用户名或电子邮件的用户已被自动映射。"
+  text_repository_usernames_mapping: "选择或更新每个在代码库日志中发现的用户名所映射到的 PLM 用户。\n使用相同 PLM 和代码库用户名或电子邮件的用户已被自动映射。"
   text_status_changed_by_changeset: "被实施在变更集 %{value} 中。"
   text_table_difference_description: "此表单展现了单个%{entries}。您可以先选择多选框，再点击表单下方的按钮来比较两项之间的差异。"
   text_time_logged_by_changeset: "被实施在变更集 %{value} 中。"
@@ -2786,7 +2786,7 @@ zh-CN:
     activate_and_reset_failed_logins: "激活和重置失败的帐户"
     authentication_provider: "身份验证提供程序"
     authentication_settings_disabled_due_to_external_authentication: >
-      此用户验证通过外部身份验证提供程序，所以在 OpenProject 中没有密码将被改变。
+      此用户验证通过外部身份验证提供程序，所以在 PLM 中没有密码将被改变。
     authorization_rejected: "你不允许登录。"
     assign_random_password: "分配随机密码 (通过电子邮件发送给用户)"
     blocked: "暂时锁定"
@@ -2816,7 +2816,7 @@ zh-CN:
   warning: 警告
   warning_attachments_not_saved: "%{count} 文件不能被保存。"
   warning_imminent_user_limit: >
-    您邀请的用户数超过了当前计划支持的用户数。 受邀用户可能无法加入您的OpenProject环境。 请<a href="%{upgrade_url}">升级您的计划</a>或阻止现有用户，以允许受邀和注册用户加入。
+    您邀请的用户数超过了当前计划支持的用户数。 受邀用户可能无法加入您的PLM环境。 请<a href="%{upgrade_url}">升级您的计划</a>或阻止现有用户，以允许受邀和注册用户加入。
   warning_registration_token_expired: |
     激活邮件已过期，我们给您发送了一封新邮件到%{email}。请单击内部的链接以激活您的帐户。
   warning_user_limit_reached: >
@@ -2948,21 +2948,21 @@ zh-CN:
         confidential: "检查在客户端密钥可以保密的地方是否使用应用程序。原生移动应用和单页应用被假定为非机密。"
         scopes: "选择您希望应用程序授予权限的范围。如果不选择任何范围，将假定 api_v3。"
         client_credential_user_id: "在客户端使用此应用程序时要冒充的可选用户 ID。留空可以仅允许公开访问"
-        register_intro: "如果您正在为 OpenProject 开发 OAuth API 客户端应用程序，则可以使用此表单注册，供所有用户使用。"
+        register_intro: "如果您正在为 PLM 开发 OAuth API 客户端应用程序，则可以使用此表单注册，供所有用户使用。"
         default_scopes: ""
     client_id: "客户端 ID"
     client_secret_notice: >
-      这是我们唯一可以打印客户端密钥的时间，请记下密钥并保证它的安全。密钥应被视为密码，并且之后无法通过 OpenProject 检索。
+      这是我们唯一可以打印客户端密钥的时间，请记下密钥并保证它的安全。密钥应被视为密码，并且之后无法通过 PLM 检索。
     authorization_dialog:
       authorize: "授权"
       cancel: "取消并拒绝授权。"
       prompt_html: "授权 <strong>%{application_name}</strong> 使用您的帐户 <em>%{login}</em>？"
       title: "授权 %{application_name}"
       wants_to_access_html: >
-        此应用程序请求访问您的 OpenProject 帐户。<br/> <strong>它请求了以下权限：</strong>
+        此应用程序请求访问您的 PLM 帐户。<br/> <strong>它请求了以下权限：</strong>
     scopes:
       api_v3: "API v3 完全访问权限"
-      api_v3_text: "应用程序将获得 OpenProject API v3 的完全读写访问权限来代表您执行操作。"
+      api_v3_text: "应用程序将获得 PLM API v3 的完全读写访问权限来代表您执行操作。"
     grants:
       created_date: "批准日期"
       scopes: "权限"
@@ -2977,7 +2977,7 @@ zh-CN:
     client_credentials_impersonation_set_to: "设置的目标客户端凭据用户"
     client_credentials_impersonation_warning: "注：在此应用程序中使用“客户端凭据”流的客户端将具有此用户的权限。"
     client_credentials_impersonation_html: >
-      默认情况下，OpenProject 通过 %{authorization_code_flow_link} 提供 OAuth 2.0 授权。您可以选择启用 %{client_credentials_flow_link}，但您必须提供代其执行请求的用户。
+      默认情况下，PLM 通过 %{authorization_code_flow_link} 提供 OAuth 2.0 授权。您可以选择启用 %{client_credentials_flow_link}，但您必须提供代其执行请求的用户。
     authorization_error: "发生了验证错误。"
     revoke_my_application_confirmation: "确定想要移除此应用程序吗？这将撤销对其有效的 %{token_count}。"
     my_registered_applications: "已注册的 OAuth 应用程序"
