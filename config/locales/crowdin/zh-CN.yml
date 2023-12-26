@@ -1965,6 +1965,7 @@ zh-CN:
       mentioned: '您已<b>在评论中被提及</b>'
       mentioned_by: '%{user} 在评论中提及了您'
       more_to_see:
+        one: '还有 %{count} 个包含通知的工作包。'
         other: '还有 %{count} 个包含通知的工作包。'
       reason:
         watched: '已参与'
