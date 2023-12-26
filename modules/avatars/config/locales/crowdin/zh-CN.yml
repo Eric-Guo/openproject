@@ -10,7 +10,7 @@ zh-CN:
       enable_gravatars: 启用用户 Gravatar
       enable_local_avatars: 启用用户自定义头像
       gravatar_default: 默认的 Gravatar 图像
-    text_avatar_gravatar_html: OpenProject 将使用您的 Gravatar（如果已在 %{gravatar_url} 注册）或者默认图像或图标（如果存在）。
+    text_avatar_gravatar_html: PLM 将使用您的 Gravatar（如果已在 %{gravatar_url} 注册）或者默认图像或图标（如果存在）。
     text_avatar_local: 您也可以点击图像，上传自定义头像以覆盖 Gravatar。建议使用 128×128 像素的图像。
     text_avatar_local_only: 您可以点击图像，上传自定义头像。建议使用 128×128 像素的图像。
   empty_file_error: 请上传一张有效的图像（jpg、png、gif）
