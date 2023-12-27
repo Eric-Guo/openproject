@@ -163,7 +163,7 @@ gem 'matrix', '~> 0.4.2'
 gem 'cells-erb', '~> 0.1.0'
 gem 'cells-rails', '~> 0.1.4'
 
-gem 'meta-tags', '~> 2.19.0'
+gem 'meta-tags', '~> 2.20.0'
 
 gem "paper_trail", "~> 12.3"
 
