@@ -28,6 +28,7 @@ deploy_staging:
   environment:
     name: staging
     url: https://plm-staging.thape.com.cn
+  when: manual
   rules:
     - if: '$CI_COMMIT_REF_NAME == "eric_dev"'
 
