@@ -297,7 +297,7 @@ group :development, :test do
   gem 'pry-rescue', '~> 1.5.2'
 
   # ruby linting
-  gem 'rubocop', '~> 1.57.2', require: false
+  gem 'rubocop', '~> 1.59.0', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
