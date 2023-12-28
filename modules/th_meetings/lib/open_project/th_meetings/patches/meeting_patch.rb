@@ -19,7 +19,13 @@ module OpenProject::ThMeetings
         after_save :create_or_update_th_meeting
 
         after_destroy_commit do
-          ThMeetings::RemoveThMeetingBookingJob.perform_later(self.id)
+          next unless self.th_meeting.present?
+
+          if self.th_meeting.begin_time.to_date > Time.now()
+            ThMeetings::CancelThMeetingBookingJob.perform_later(self.id)
+          else
+            ThMeetings::RemoveThMeetingBookingJob.perform_later(self.id)
+          end
         end
 
         attr_accessor(*TH_MEETING_FIELDS.map{ |field| "th_meeting_#{field}".to_sym })
