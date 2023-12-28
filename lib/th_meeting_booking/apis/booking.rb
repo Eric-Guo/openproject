@@ -84,7 +84,7 @@ module ThMeetingBooking::Apis
         begin_time:,
         end_time:,
         members:
-      }.transform_keys { |key| key.to_s.camelize(:lower).to_sym }
+      }.deep_transform_keys { |key| key.to_s.camelize(:lower).to_sym }
       result = ThMeetingBooking::Request.new.post('sync-meetings', data:)
       ThMeetingBooking::Records::Booking::Meeting.new(result[:data])
     end
@@ -127,7 +127,7 @@ module ThMeetingBooking::Apis
         begin_time:,
         end_time:,
         deleted: 1
-      }.transform_keys { |key| key.to_s.camelize(:lower).to_sym }
+      }.deep_transform_keys { |key| key.to_s.camelize(:lower).to_sym }
       result = ThMeetingBooking::Request.new.post('sync-meetings', data:)
       ThMeetingBooking::Records::Booking::Meeting.new(data)
     end
