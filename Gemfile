@@ -126,7 +126,7 @@ gem 'daemons'
 gem 'delayed_cron_job', '~> 0.9.0'
 gem 'delayed_job_active_record', '~> 4.1.5'
 
-gem 'rack-protection', '~> 3.0.0'
+gem 'rack-protection', '~> 3.2.0'
 
 # Rack::Attack is a rack middleware to protect your web app from bad clients.
 # It allows whitelisting, blacklisting, throttling, and tracking based
@@ -184,7 +184,7 @@ gem 'sd_notify'
 gem 'puma-plugin-statsd', '~> 2.0'
 gem 'rack-timeout', '~> 0.6.3', require: "rack/timeout/base"
 
-gem 'nokogiri', '~> 1.14.3'
+gem 'nokogiri', '~> 1.15.5'
 
 gem 'carrierwave', '= 1.3.2'
 gem 'carrierwave_direct', '~> 2.1.0'
@@ -279,9 +279,9 @@ end
 group :development, :test do
   gem 'dotenv-rails'
   # Require factory_bot for usage with openproject plugins testing
-  gem 'factory_bot', '~> 6.2.0'
+  gem 'factory_bot', '~> 6.4.3'
   # require factory_bot_rails for convenience in core development
-  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'factory_bot_rails', '~> 6.4.3'
 
   # Tracing and profiling gems
   gem 'flamegraph', require: false
