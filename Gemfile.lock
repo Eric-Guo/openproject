@@ -352,7 +352,7 @@ GEM
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.0)
     bindata (2.4.15)
-    bootsnap (1.16.0)
+    bootsnap (1.17.0)
       msgpack (~> 1.2)
     brakeman (5.4.1)
     browser (5.3.1)
@@ -1134,7 +1134,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.91)
   bcrypt (~> 3.1.6)
   bcrypt_pbkdf
-  bootsnap (~> 1.16.0)
+  bootsnap (~> 1.17.0)
   brakeman (~> 5.4.0)
   browser (~> 5.3.0)
   budgets!
