@@ -648,9 +648,10 @@ GEM
     iso8601 (0.13.0)
     jmespath (1.6.2)
     json (2.7.1)
-    json-jwt (1.16.4)
+    json-jwt (1.16.5)
       activesupport (>= 4.2)
       aes_key_wrap
+      base64
       bindata
       faraday (~> 2.0)
       faraday-follow_redirects
@@ -707,7 +708,7 @@ GEM
     meta-tags (2.20.0)
       actionpack (>= 6.0.0, < 7.2)
     method_source (1.0.0)
-    mime-types (3.5.1)
+    mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.1205)
     mini_magick (4.12.0)
@@ -962,7 +963,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-capybara (2.19.0)
+    rubocop-capybara (2.20.0)
       rubocop (~> 1.41)
     rubocop-factory_bot (2.24.0)
       rubocop (~> 1.33)
