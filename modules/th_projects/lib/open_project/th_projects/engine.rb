@@ -25,14 +25,6 @@ module OpenProject::ThProjects
                     },
                     require: :project
       end
-
-      menu :project_menu,
-        :project_more,
-        { controller: '/th_projects/project_more', action: 'show' },
-        if: ->(project) { project.module_enabled?(:th_projects) && User.current.logged? && User.current.allowed_to?(:view_th_project_more, project) },
-        caption: :label_project_more_plural,
-        icon: 'icon2 icon-more',
-        before: :settings
     end
 
     patches %i[Project Projects::BaseContract API::V3::Projects::Schemas::ProjectSchemaRepresenter]
