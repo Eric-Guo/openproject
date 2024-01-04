@@ -321,7 +321,7 @@ GEM
       rbtree3 (~> 0.6)
     airbrussh (1.5.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    appsignal (3.5.2)
+    appsignal (3.5.3)
       rack
     ast (2.4.2)
     attr_required (1.0.2)
@@ -1321,4 +1321,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.5.3
+   2.5.4
