@@ -336,7 +336,7 @@ GEM
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.8)
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-kms (1.75.0)
+    aws-sdk-kms (1.76.0)
       aws-sdk-core (~> 3, >= 3.188.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.142.0)
@@ -351,6 +351,7 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.0)
+    bigdecimal (3.1.5)
     bindata (2.4.15)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
@@ -419,7 +420,7 @@ GEM
     compare-xml (0.66)
       nokogiri (~> 1.8)
     concurrent-ruby (1.2.2)
-    cookiejar (0.3.3)
+    cookiejar (0.3.4)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -464,7 +465,8 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.7.1)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
       dry-inflector (~> 1.0)
@@ -723,7 +725,7 @@ GEM
       mustermann (>= 1.0.0)
     mutex_m (0.2.0)
     mysql2 (0.5.5)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-ldap (0.18.0)
@@ -733,7 +735,7 @@ GEM
       timeout
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
-    net-smtp (0.4.0)
+    net-smtp (0.4.0.1)
       net-protocol
     net-ssh (7.2.1)
     netrc (0.11.0)
@@ -778,7 +780,7 @@ GEM
     parallel (1.24.0)
     parallel_tests (4.4.0)
       parallel
-    parser (3.2.2.4)
+    parser (3.3.0.0)
       ast (~> 2.4.1)
       racc
     pdf-core (0.9.0)
@@ -904,7 +906,7 @@ GEM
     recaptcha (5.16.0)
     redcarpet (3.6.0)
     regexp_parser (2.8.3)
-    reline (0.4.1)
+    reline (0.4.2)
       io-console (~> 0.5)
     representable (3.2.0)
       declarative (< 0.1.0)
@@ -972,7 +974,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-rspec (2.26.0)
+    rubocop-rspec (2.26.1)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
