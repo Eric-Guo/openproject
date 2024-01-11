@@ -192,6 +192,15 @@ zh-CN:
     ignore_filenames: >
       指定在处理收到的邮件的附件（例如，签名或图标）时要忽略的名称列表。每行输入一个文件名。
   projects:
+    copy:
+      # Contains custom strings for options when copying a project that cannot be found elsewhere.
+      members: '项目成员'
+      overviews: '项目主页'
+      queries: '工作包视图'
+      wiki_page_attachments: 'Wiki附件'
+      work_package_attachments: '工作包附件'
+      work_package_categories: '工作包类别'
+      work_package_file_links: '工作包文件'
     delete:
       scheduled: "删除已安排并且将在后台执行。您将收到结果通知。"
       schedule_failed: "项目不能删除: %{errors}"
@@ -1732,6 +1741,7 @@ zh-CN:
   label_project_new: "新的项目"
   label_project_plural: "项目"
   label_project_settings: "设置"
+  label_project_storage_plural: "存储"
   label_projects_storage_information: "%{count} 项目使用 %{storage} 磁盘存储"
   label_project_view_all: "查看所有项目"
   label_project_show_details: "显示项目详细信息"
