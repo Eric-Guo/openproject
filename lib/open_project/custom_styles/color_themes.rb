@@ -99,6 +99,28 @@ module OpenProject::CustomStyles
         logo: 'logo_plm_dark.png'
       },
       {
+        theme: 'Thape IB',
+        colors: {
+          'primary-color' => "#797291",
+          'primary-color-dark' => "#F2AA00",
+          'alternative-color' => "#8F89A3",
+          'content-link-color' => "#1F1547",
+          'header-bg-color' => "#1F1547",
+          'header-item-bg-hover-color' => "#8F89A3",
+          'header-item-font-color' => "#FFFFFF",
+          'header-item-font-hover-color' => "#FFFFFF",
+          'header-border-bottom-color' => "",
+          'main-menu-bg-color' => "#333739",
+          'main-menu-bg-selected-background' => "#797291",
+          'main-menu-bg-hover-background' => "#8F89A3",
+          'main-menu-font-color' => "#FFFFFF",
+          'main-menu-hover-font-color' => "#FFFFFF",
+          'main-menu-selected-font-color' => "#FFFFFF",
+          'main-menu-border-color' => "#EAEAEA"
+        },
+        logo: 'logo_plm_dark.png'
+      },
+      {
         theme: 'Thape Light',
         colors: {
           'primary-color' => "#131E37",
