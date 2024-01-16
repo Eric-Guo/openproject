@@ -21,7 +21,7 @@ module OpenProject::ThMeetings
         after_destroy_commit do
           next unless self.th_meeting.present?
 
-          if self.th_meeting.begin_time.to_date > Time.now()
+          if self.th_meeting.begin_time.to_time > Time.now
             ThMeetings::CancelThMeetingBookingJob.perform_later(self.id)
           else
             ThMeetings::RemoveThMeetingBookingJob.perform_later(self.id)
