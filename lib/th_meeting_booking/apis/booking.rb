@@ -77,10 +77,10 @@ module ThMeetingBooking::Apis
         upstream_room_id:,
         booking_user_id:,
         booking_user_name:,
-        booking_user_email: nil,
-        booking_user_phone: nil,
+        booking_user_email:,
+        booking_user_phone:,
         subject:,
-        content: nil,
+        content:,
         begin_time:,
         end_time:,
         members:
