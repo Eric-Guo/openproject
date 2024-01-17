@@ -11,10 +11,19 @@ module ThMeetingBooking::Apis
     # 资源列表
     # 获取可预订的资源列表。
     # 资源：可给人在指定时间使用的资源，如会议室等。
-    # @param room_type [String] 资源类型，默认是ROOM，会议室
+    # @param room_type: [String] 资源类型，默认是ROOM，会议室
+    # @param begin_time: [String] 开始时间；begin_time和end_time需要同时提供，提供后会返回isBusy字段，2024-01-01 00:00
+    # @param end_time: [String] 结束时间；begin_time和end_time需要同时提供，提供后会返回isBusy字段，2024-01-31 12:00
+    # @param showBusy: [Boolean] 占用过滤；true：只显示占用, false: 只显示空闲，空值表示不过滤
     # @return [ThMeetingBooking::Records::Resource::MeetingRoomList]
-    def self.meeting_rooms(room_type = 'ROOM')
-      result = ThMeetingBooking::Request.new.get('meeting-rooms')
+    def self.meeting_rooms(room_type: 'ROOM', begin_time: nil, end_time: nil, show_busy: nil)
+      params = {
+        roomType: room_type,
+        begin: begin_time,
+        end: end_time,
+        showBusy: show_busy
+      }
+      result = ThMeetingBooking::Request.new.get('meeting-rooms', params:)
       ThMeetingBooking::Records::Resource::MeetingRoomList.new(result)
     end
 

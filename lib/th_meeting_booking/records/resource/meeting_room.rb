@@ -25,7 +25,8 @@ module ThMeetingBooking::Records::Resource
   #   "allowRoles": [],
   #   "type": "ROOM",
   #   "isFavorite": false,
-  #   "abilities": []
+  #   "abilities": [],
+  #   "isBusy": true, //是否被占用
   # }
   # ```
   class MeetingRoom < ThMeetingBooking::Records::Base
@@ -55,6 +56,8 @@ module ThMeetingBooking::Records::Resource
       :is_favorite,
       :abilities,
       :deleted,
+      :is_busy,
+      :busy_booking_ids,
     ]
 
     attr_accessor(*Fields)
