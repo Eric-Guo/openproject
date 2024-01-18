@@ -307,6 +307,10 @@ module API
             "#{project(id)}/copy/form"
           end
 
+          def self.project_activities(id)
+            "#{project(id)}/activities"
+          end
+
           resources :query
 
           def self.query_default
