@@ -65,5 +65,9 @@ module ThMeetingBooking::Records::Resource
     def online?
       self.office_area == '线上会议'
     end
+
+    def busy_booking_ids=(ids)
+      @busy_booking_ids = ids&.uniq
+    end
   end
 end
