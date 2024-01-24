@@ -39,6 +39,8 @@ export interface RelationResourceLinks {
 export class RelationResource extends HalResource {
   static RELATION_TYPES(includeParentChild = true):string[] {
     const types = [
+      'preheels',
+      'heels',
       'relates',
       'duplicates',
       'duplicated',
@@ -50,8 +52,6 @@ export class RelationResource extends HalResource {
       'partof',
       'requires',
       'required',
-      'preheels',
-      'heels',
     ];
 
     if (includeParentChild) {
@@ -68,7 +68,7 @@ export class RelationResource extends HalResource {
   }
 
   static DEFAULT() {
-    return 'relates';
+    return 'heels';
   }
 
   // Properties
