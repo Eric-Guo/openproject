@@ -85,7 +85,7 @@ module ThMeetingBooking::Apis
         end_time:,
         members:
       }.deep_transform_keys { |key| key.to_s.camelize(:lower).to_sym }
-      result = ThMeetingBooking::Request.new.post('sync-meetings', data:)
+      result = ThMeetingBooking::Request.new.post('book-meetings', data:)
       ThMeetingBooking::Records::Booking::Meeting.new(result[:data])
     end
 
