@@ -32,7 +32,11 @@ class ThMeetingBooking::Request
 
       result = JSON.parse(response.body.to_s).with_indifferent_access
 
-      raise StandardError.new(result[:message]) unless result[:code] == 0
+      unless result[:code] == 0
+        raise StandardError.new(result[:warnMessage]) if result[:data].blank? && result[:warnMessage].present?
+
+        raise StandardError.new(result[:message])
+      end
 
       result
     end

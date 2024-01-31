@@ -1,11 +1,26 @@
 class ThMeeting < ApplicationRecord
   belongs_to :meeting
 
-  after_save do
-    ThMeetings::SendToThMeetingBookingJob.perform_now(meeting_id)
+  before_save do
+    result = ThMeetingBooking::Apis::Booking.sync_meetings(
+      upstream_id:,
+      upstream_room_id:,
+      booking_user_id:,
+      booking_user_name:,
+      booking_user_email:,
+      booking_user_phone:,
+      subject:,
+      content:,
+      begin_time:,
+      end_time:,
+      members:
+    )
+    unless th_meeting_id == result.id
+      self.th_meeting_id = result.id
+    end
   rescue StandardError => e
     errors.add('接口：', e.message)
-    raise ActiveRecord::RecordInvalid.new(self)
+    throw :abort
   end
 
   # 获取有效的会议室列表
