@@ -4,6 +4,7 @@ zh-CN:
       meeting:
         th_meeting_upstream_room: "地点"
         th_meeting_content: "信息"
+        th_meeting: "天华会议"
     errors:
       messages:
         invalid: "是无效的"
