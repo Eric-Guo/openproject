@@ -804,6 +804,7 @@ zh-CN:
       template:
         body: "请检查以下字段："
         header:
+          one: "1 个错误使得 %{model} 无法保存"
           other: "%{count} 个错误使得 %{model} 无法保存"
     models:
       attachment: "文件"
