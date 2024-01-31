@@ -122,7 +122,12 @@ module OpenProject::ThMeetings
 
           th_meeting.members = members
 
-          th_meeting.save
+          unless th_meeting.save
+            th_meeting.errors.full_messages.each do |message|
+              errors.add(:th_meeting, message)
+            end
+            raise ActiveRecord::RecordInvalid.new(self)
+          end
         end
       end
     end

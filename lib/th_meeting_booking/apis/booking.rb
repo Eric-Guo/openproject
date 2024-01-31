@@ -86,6 +86,9 @@ module ThMeetingBooking::Apis
         members:
       }.deep_transform_keys { |key| key.to_s.camelize(:lower).to_sym }
       result = ThMeetingBooking::Request.new.post('book-meetings', data:)
+
+      raise StandardError.new(result[:warnMessage]) if result[:data].blank? && result[:warnMessage].present?
+
       ThMeetingBooking::Records::Booking::Meeting.new(result[:data])
     end
 

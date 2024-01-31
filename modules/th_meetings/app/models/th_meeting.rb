@@ -1,8 +1,11 @@
 class ThMeeting < ApplicationRecord
   belongs_to :meeting
 
-  after_save_commit do
-    ThMeetings::SendToThMeetingBookingJob.perform_later(meeting_id)
+  after_save do
+    ThMeetings::SendToThMeetingBookingJob.perform_now(meeting_id)
+  rescue StandardError => e
+    errors.add('接口：', e.message)
+    raise ActiveRecord::RecordInvalid.new(self)
   end
 
   # 获取有效的会议室列表
