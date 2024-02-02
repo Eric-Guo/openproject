@@ -10,7 +10,7 @@
   },
   "private": true,
   "engines": {
-    "node": "^20.9.0",
+    "node": "^18.19.0 || ^20.12.1",
     "npm": "^10.1.0"
   },
   "devDependencies": {
