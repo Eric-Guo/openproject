@@ -66,7 +66,7 @@ namespace :assets do
         if ENV["OPENPROJECT_ANGULAR_BUILD"] == "fast"
           "npm run build:fast"
         else
-          "npm run build"
+          "yarn run build"
         end
 
       sh(cmd) do |ok, res|
