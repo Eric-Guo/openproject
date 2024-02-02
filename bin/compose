@@ -53,7 +53,7 @@ elif [[ "$@" = "run" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm -p ${PORT:-3000}:3000 --name rails backend # run backend in TTY so you can debug using pry for instance
 elif [[ "$1" = "setup" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE run backend setup
-  yes no | $DOCKER_COMPOSE -f $COMPOSE_FILE run frontend npm install
+  yes no | $DOCKER_COMPOSE -f $COMPOSE_FILE run frontend yarn install
 elif [[ "$1" = "reset" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE down && docker volume rm `docker volume ls -q | grep ${PWD##*/}_`
 elif [[ "$1" = "rspec" ]]; then
