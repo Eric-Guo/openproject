@@ -45,11 +45,6 @@ module MeetingContentsHelper
     menu << meeting_content_edit_link(content_type) if can_edit_meeting_content?(content, content_type)
     menu << meeting_content_history_link(content_type, content.meeting)
 
-    if saved_meeting_content_text_present?(content)
-      menu << meeting_content_notify_link(content_type, content.meeting)
-      menu << meeting_content_icalendar_link(content_type, content.meeting)
-    end
-
     menu.join(' ')
   end
 

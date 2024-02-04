@@ -6,16 +6,3 @@
     (onContentChange)="markEdited()"
   ></op-ckeditor>
 </div>
-
-<fieldset
-  class="form--fieldset"
-  *ngIf="resource && resource.attachments"
->
-  <legend class="form--fieldset-legend">
-    {{ text.attachments }}
-  </legend>
-  <op-attachments
-    [resource]="resource"
-    [destroyImmediately]="false"
-  ></op-attachments>
-</fieldset>
