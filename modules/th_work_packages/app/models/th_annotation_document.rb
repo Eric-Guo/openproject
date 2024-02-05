@@ -1,0 +1,2 @@
+class ThAnnotationDocument < ApplicationRecord
+end

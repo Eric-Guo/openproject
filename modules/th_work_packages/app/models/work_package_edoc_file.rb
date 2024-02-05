@@ -3,14 +3,22 @@ class WorkPackageEdocFile < ApplicationRecord
 
   belongs_to :user
 
+  has_one :annotation_document, class_name: "WorkPackageEdocFiles::ThAnnotationDocument", foreign_key: "target_id"
+
   before_create :edoc_start_upload
 
   before_destroy :edoc_remove_file
 
-  def publish_preview_url
+  # 天华云外发预览链接
+  def edoc_publish_preview_url
     return nil unless status == 1 && folder.publish_code.present?
 
     Edoc::Helpers.publish_preview_url(folder.publish_code, file_id)
+  end
+
+  # 标注文档查看
+  def publish_preview_url
+    "/th_work_packages/edoc_files/#{id}/annotation_document"
   end
 
   def preview_url
@@ -40,6 +48,24 @@ class WorkPackageEdocFile < ApplicationRecord
     end
 
     self
+  end
+
+  # 创建批注文档
+  def create_annotation_document
+    return annotation_document if annotation_document.present?
+
+    return nil if edoc_publish_preview_url.nil?
+
+    uuid = ThAnnotator::Apis::Base.create_document(
+      file_name:,
+      document_type: content_type,
+      view_path: edoc_publish_preview_url
+    )
+
+    self.annotation_document = WorkPackageEdocFiles::ThAnnotationDocument.create!(
+      target_id: id,
+      uuid:
+    )
   end
 
   private
