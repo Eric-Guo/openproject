@@ -14,7 +14,7 @@ module OpenProject::ThMeetings
 
         validate :validate_th_meeting_room
 
-        validate :validate_th_meeting_time
+        validate :validate_th_meeting_time, if: Proc.new { |meeting| meeting.th_meeting_upstream_room_id.present? }
 
         after_save :create_or_update_th_meeting
 
@@ -64,6 +64,8 @@ module OpenProject::ThMeetings
               self.location = [room.office_area, room.name].compact.join(' - ')
             end
           else
+            errors.add(:th_meeting_upstream_room_id, :invalid)
+
             self.th_meeting_upstream_area_id = ''
             self.th_meeting_upstream_area_name = ''
             self.th_meeting_upstream_room_name = ''
