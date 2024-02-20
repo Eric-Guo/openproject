@@ -77,6 +77,6 @@ class ThAnnotator::Helpers
   end
 
   def self.jump_url(token:, uuid:)
-    _url(ThAnnotator::Config.host, '/auth/authorize', { token:, documentUUID: uuid })
+    _url(ThAnnotator::Config.host, request_path('auth/authorize'), { token:, documentUUID: uuid })
   end
 end
