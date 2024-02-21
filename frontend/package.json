@@ -27,6 +27,10 @@
     "@storybook/mdx2-csf": "^1.0.0",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/testing-library": "^0.1.0",
+    "@tsparticles/angular": "^3.0.0",
+    "@tsparticles/configs": "^3.1.0",
+    "@tsparticles/engine": "^3.1.0",
+    "@tsparticles/fireworks": "^3.1.0",
     "@types/chart.js": "^2.9.20",
     "@types/codemirror": "5.60.5",
     "@types/dragula": "^3.7.0",
@@ -80,6 +84,7 @@
     "style-loader": "^3.3.1",
     "theo": "^8.1.5",
     "ts-node": "~8.3.0",
+    "tsparticles": "^3.1.0",
     "typescript": "4.9",
     "webpack-bundle-analyzer": "^4.4.2"
   },
