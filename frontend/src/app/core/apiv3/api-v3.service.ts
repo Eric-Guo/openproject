@@ -68,7 +68,7 @@ import { ApiV3StoragesPaths } from 'core-app/core/apiv3/endpoints/storages/api-v
 import {
   ApiV3ProjectStoragesPaths,
 } from 'core-app/core/apiv3/endpoints/project-storages/api-v3-project-storages-paths';
-import { ApiV3WorkPackageEdocFoldersPaths } from 'core-app/core/apiv3/endpoints/work_package_edoc_folders/api-v3-work-packages-edoc-folder-paths';
+import { ApiV3WorkPackageEdocFoldersPaths } from 'core-app/core/apiv3/endpoints/work_package_edoc_folders/api-v3-work-package-edoc-folders-paths';
 
 @Injectable({ providedIn: 'root' })
 export class ApiV3Service {
