@@ -98,12 +98,12 @@ class Mails::MemberJob < ApplicationJob
       .deliver_now
   end
 
-  def every_group_user_member(member, &)
+  def every_group_user_member(member, &block)
     Member
       .of(member.project)
       .where(principal: member.principal.users)
       .includes(:project, :principal, :roles, :member_roles)
-      .each(&)
+      .each(&block)
   end
 
   def sending_disabled?(setting, current_user, user_id, message)

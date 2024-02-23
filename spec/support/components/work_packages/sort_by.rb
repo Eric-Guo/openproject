@@ -120,8 +120,8 @@ module Components
         page.find(".generic-table--sort-header ##{id}").click
       end
 
-      def within_column_context_menu(&)
-        page.within('#column-context-menu', &)
+      def within_column_context_menu(&block)
+        page.within('#column-context-menu', &block)
       end
     end
   end

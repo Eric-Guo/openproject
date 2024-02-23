@@ -44,8 +44,8 @@ module Components
       expect(page).to have_selector('.op-app-menu--dropdown')
     end
 
-    def within_dropdown(&)
-      page.within('.op-app-menu--dropdown', &)
+    def within_dropdown(&block)
+      page.within('.op-app-menu--dropdown', &block)
     end
 
     def trigger_element

@@ -53,9 +53,9 @@ module Mail
       (setting_provided?(:tls) && settings[:tls]) || (setting_provided?(:ssl) && settings[:ssl])
     end
 
-    def start_smtp_session(&)
+    def start_smtp_session(&block)
       build_smtp_session.start(settings[:domain], settings[:user_name], settings[:password],
-                               settings[:authentication], &)
+                               settings[:authentication], &block)
     end
 
     # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity

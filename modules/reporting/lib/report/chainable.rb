@@ -62,8 +62,8 @@ module Report
       superclass.base
     end
 
-    def self.from_base(&)
-      base.instance_eval(&)
+    def self.from_base(&block)
+      base.instance_eval(&block)
     end
 
     def self.available
@@ -129,9 +129,9 @@ module Report
 
     accepts_property :type
 
-    def each(&)
+    def each(&block)
       yield self
-      child.try(:each, &)
+      child.try(:each, &block)
     end
 
     def row?
@@ -218,14 +218,14 @@ module Report
       end
     end
 
-    def chain_collect(name, *args, &)
-      top.subchain_collect(name, *args, &)
+    def chain_collect(name, *args, &block)
+      top.subchain_collect(name, *args, &block)
     end
 
     # See #chain_collect
-    def subchain_collect(name, *args, &)
-      subchain = child.subchain_collect(name, *args, &) unless bottom?
-      [* send(name, *args, &)].push(*subchain).compact.uniq
+    def subchain_collect(name, *args, &block)
+      subchain = child.subchain_collect(name, *args, &block) unless bottom?
+      [* send(name, *args, &block)].push(*subchain).compact.uniq
     end
 
     # overwrite in subclass to maintain constisten state

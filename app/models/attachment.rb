@@ -229,8 +229,8 @@ class Attachment < ApplicationRecord
     attachment
   end
 
-  def copy!(&)
-    attachment = copy(&)
+  def copy!(&block)
+    attachment = copy(&block)
 
     attachment.save!
   end

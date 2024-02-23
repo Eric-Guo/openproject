@@ -120,7 +120,7 @@ You can slice 3D objects in all dimensions to get a view on the exact thing you 
 - Fixed: Webhook is crashing internally with NameError: undefined local variable or method `params' \[[#31848](https://community.openproject.com/wp/31848)\]
 - Fixed: Forum menu entry not highlighted \[[#31849](https://community.openproject.com/wp/31849)\]
 - Fixed: Removing a date is from a WP is not consistently possible \[[#31859](https://community.openproject.com/wp/31859)\]
-- Fixed: Ampersand (&) and quote marks (") is not exported correctly in work package description in pdf-export with description \[[#31860](https://community.openproject.com/wp/31860)\]
+- Fixed: Ampersand (&block) and quote marks (") is not exported correctly in work package description in pdf-export with description \[[#31860](https://community.openproject.com/wp/31860)\]
 - Fixed: Keyboard opens unnecessarily on mobile \[[#31871](https://community.openproject.com/wp/31871)\]
 - Fixed: Wrong thousands separator in budget values when language is set to German  \[[#31911](https://community.openproject.com/wp/31911)\]
 - Fixed: Child WP version cannot be edited although parent is no backlogs type \[[#31922](https://community.openproject.com/wp/31922)\]

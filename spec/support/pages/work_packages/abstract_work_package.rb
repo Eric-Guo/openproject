@@ -105,10 +105,10 @@ module Pages
       )
     end
 
-    def expect_group(name, &)
+    def expect_group(name, &block)
       expect(page).to have_selector('.attributes-group--header-text', text: name.upcase)
       if block_given?
-        page.within(".attributes-group[data-group-name='#{name}']", &)
+        page.within(".attributes-group[data-group-name='#{name}']", &block)
       end
     end
 

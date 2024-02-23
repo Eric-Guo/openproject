@@ -54,7 +54,7 @@ module ApplicationHelper
   # @param [optional, Hash] parameters_for_method_reference Extra parameters for link_to
   #
   # When a block is given, skip the name parameter
-  def link_to_if_authorized(*args, &)
+  def link_to_if_authorized(*args, &block)
     name = args.shift unless block_given?
     options = args.shift || {}
     html_options = args.shift
@@ -63,7 +63,7 @@ module ApplicationHelper
     return unless authorize_for(options[:controller] || params[:controller], options[:action])
 
     if block_given?
-      link_to(options, html_options, *parameters_for_method_reference, &)
+      link_to(options, html_options, *parameters_for_method_reference, &block)
     else
       link_to(name, options, html_options, *parameters_for_method_reference)
     end
@@ -151,11 +151,11 @@ module ApplicationHelper
   # Yields the given block for each project with its level in the tree
   #
   # Wrapper for Project#project_tree
-  def project_tree(projects, &)
-    Project.project_tree(projects, &)
+  def project_tree(projects, &block)
+    Project.project_tree(projects, &block)
   end
 
-  def project_nested_ul(projects, &)
+  def project_nested_ul(projects, &block)
     s = ''
     if projects.any?
       ancestors = []
@@ -250,8 +250,8 @@ module ApplicationHelper
     path.to_s
   end
 
-  def other_formats_links(&)
-    formats = capture(Redmine::Views::OtherFormatsBuilder.new(self), &)
+  def other_formats_links(&block)
+    formats = capture(Redmine::Views::OtherFormatsBuilder.new(self), &block)
     unless formats.nil? || formats.strip.empty?
       content_tag 'p', class: 'other-formats' do
         (I18n.t(:label_export_to) + formats).html_safe
@@ -312,10 +312,10 @@ module ApplicationHelper
     initial_lang_options + mapped_languages.sort_by(&:last)
   end
 
-  def labelled_tabular_form_for(record, options = {}, &)
+  def labelled_tabular_form_for(record, options = {}, &block)
     options.reverse_merge!(builder: TabularFormBuilder, html: {})
     options[:html][:class] = 'form' unless options[:html].has_key?(:class)
-    form_for(record, options, &)
+    form_for(record, options, &block)
   end
 
   def back_url_hidden_field_tag

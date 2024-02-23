@@ -67,8 +67,8 @@ module Components
         end
       end
 
-      def within_view_context_menu(&)
-        page.within('#wp-view-context-menu', &)
+      def within_view_context_menu(&block)
+        page.within('#wp-view-context-menu', &block)
       end
     end
   end

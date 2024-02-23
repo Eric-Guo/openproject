@@ -74,11 +74,11 @@ module OpenProject
       # @yieldparam [AuthHash] OmniAuth authentication information including user info
       #                        and credentials.
       # @yieldreturn [Decision] A Decision indicating whether or not to authorize the user.
-      def self.authorize_user(opts = {}, &)
+      def self.authorize_user(opts = {}, &block)
         if opts[:provider]
-          authorize_user_for_provider(opts[:provider], &)
+          authorize_user_for_provider(opts[:provider], &block)
         else
-          add_authorize_user_callback AuthorizationBlockCallback.new(&)
+          add_authorize_user_callback AuthorizationBlockCallback.new(&block)
         end
       end
 
@@ -106,13 +106,13 @@ module OpenProject
       # @yieldparam auth_hash [AuthHash] auth_hash OmniAuth authentication information
       #                                  including user info and credentials.
       # @yieldparam context The context from which the callback is called, e.g. a Controller.
-      def self.after_login(&)
+      def self.after_login(&block)
         ActiveSupport::Deprecation.warn(
           "after_login does not return the actually logged in user and has been deprecated. " \
           "Please use OpenProject::Hook omniauth_user_authorized or user_logged_in hooks instead",
           caller
         )
-        add_after_login_callback AfterLoginBlockCallback.new(&)
+        add_after_login_callback AfterLoginBlockCallback.new(&block)
       end
 
       ##

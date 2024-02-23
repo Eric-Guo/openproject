@@ -59,8 +59,8 @@ module Components
         end
       end
 
-      def within_modal(&)
-        page.within(selector, &)
+      def within_modal(&block)
+        page.within(selector, &block)
       end
 
       def modal_element

@@ -85,8 +85,8 @@ class DateEditField < EditField
     page.find(modal_selector)
   end
 
-  def within_modal(&)
-    page.within(modal_selector, &)
+  def within_modal(&block)
+    page.within(modal_selector, &block)
   end
 
   def input_element

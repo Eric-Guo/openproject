@@ -90,22 +90,22 @@ module Projects::Copy
       end
     end
 
-    def pages_top_down(&)
+    def pages_top_down(&block)
       id_by_parent = source.wiki.pages.pluck(:parent_id, :id).inject(Hash.new { [] }) do |h, (k, v)|
         h[k] += [v]
         h
       end
 
-      yield_downwards(id_by_parent, nil, &)
+      yield_downwards(id_by_parent, nil, &block)
     end
 
-    def yield_downwards(map, current, &)
+    def yield_downwards(map, current, &block)
       map[current].each do |child_id|
         child = source.wiki.pages.find(child_id)
 
         yield child
 
-        yield_downwards(map, child_id, &)
+        yield_downwards(map, child_id, &block)
       end
     end
 

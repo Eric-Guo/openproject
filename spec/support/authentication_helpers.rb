@@ -67,8 +67,8 @@ module AuthenticationHelpers
     # a let block) and treat that user as the one currently being logged in.
     #
     # @block [Proc] The user to log in.
-    def current_user(&)
-      let(:current_user, &)
+    def current_user(&block)
+      let(:current_user, &block)
 
       before { login_as current_user }
     end
@@ -83,8 +83,8 @@ module AuthenticationHelpers
     # in.
     #
     # @block [Proc] The user to log in.
-    def shared_current_user(&)
-      shared_let(:current_user, &)
+    def shared_current_user(&block)
+      shared_let(:current_user, &block)
 
       before { login_as current_user }
     end

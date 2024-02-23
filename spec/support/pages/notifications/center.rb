@@ -59,8 +59,8 @@ module Pages
         end
       end
 
-      def within_item(notification, &)
-        page.within("[data-qa-selector='op-ian-notification-item-#{notification.id}']", &)
+      def within_item(notification, &block)
+        page.within("[data-qa-selector='op-ian-notification-item-#{notification.id}']", &block)
       end
 
       def expect_item(notification, expected_text = notification.subject)

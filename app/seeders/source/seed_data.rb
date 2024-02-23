@@ -58,12 +58,12 @@ class Source::SeedData
     end
   end
 
-  def each(path, &)
+  def each(path, &block)
     case sub_data = fetch(path)
     when nil
       nil
     when Enumerable
-      sub_data.each(&)
+      sub_data.each(&block)
     else
       raise ArgumentError, "expected an Enumerable at path #{path}, got #{sub_data.class}"
     end
