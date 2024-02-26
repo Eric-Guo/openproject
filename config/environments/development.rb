@@ -74,6 +74,8 @@ OpenProject::Application.configure do
   # Suppress asset output
   config.assets.quiet = true unless config.log_level == :debug
 
+  config.log_tags = [:request_id]
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
