@@ -4562,6 +4562,7 @@ zh-CN:
   permission_delete_reportings: 删除报告
   permission_delete_timelines: 删除时间线
   permission_delete_work_package_watchers: 删除关注者
+  permission_delete_my_create_work_packages: 删除自己创建的工作包
   permission_delete_work_packages: 删除工作包
   permission_edit_attribute_help_texts: 编辑属性帮助文本
   permission_edit_messages: 编辑消息
