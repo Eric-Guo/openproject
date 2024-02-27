@@ -67,7 +67,7 @@ class WorkPackagePolicy < BasePolicy
   end
 
   def delete_allowed?(work_package)
-    user.allowed_in_project?(:delete_work_packages, work_package.project)
+    user.allowed_in_project?(:delete_work_packages, work_package.project) || (user.allowed_in_project?(:delete_my_create_work_packages, work_package.project) && work_package.author_id == user.id)
   end
 
   def add_allowed?(work_package)
