@@ -85,7 +85,7 @@ module API
         end
 
         link :delete,
-             cache_if: -> { current_user_allowed_to(:delete_work_packages, context: represented.project) } do
+             cache_if: -> { current_user_allowed_to(:delete_work_packages, context: represented.project) || (current_user_allowed_to(:delete_my_create_work_packages, context: represented.project) && current_user.id == represented.author_id) } do
           {
             href: api_v3_paths.work_package(represented.id),
             method: :delete

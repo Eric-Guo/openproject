@@ -204,6 +204,13 @@ Rails.application.reloader.to_prepare do
                      require: :member,
                      dependencies: :view_work_packages
 
+      wpt.permission :delete_my_create_work_packages,
+                     {
+                       work_packages: :destroy
+                     },
+                     require: :member,
+                     dependencies: :view_work_packages
+
       wpt.permission :manage_work_package_relations,
                      {
                        work_package_relations: %i[create destroy]

@@ -2157,6 +2157,7 @@ zh-CN:
   permission_copy_projects: "复制项目"
   permission_delete_work_package_watchers: "删除参与人"
   permission_delete_work_packages: "删除工作包"
+  permission_delete_my_create_work_packages: "删除自己创建的工作包"
   permission_delete_messages: "删除消息"
   permission_delete_own_messages: "删除自己的消息"
   permission_delete_reportings: "删除报告"

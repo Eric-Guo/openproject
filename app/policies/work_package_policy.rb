@@ -77,7 +77,7 @@ class WorkPackagePolicy < BasePolicy
 
   def delete_allowed?(work_package)
     @delete_cache ||= Hash.new do |hash, project|
-      hash[project] = user.allowed_to?(:delete_work_packages, project)
+      hash[project] = user.allowed_to?(:delete_work_packages, project) || (user.allowed_to?(:delete_my_create_work_packages, project) && work_package.author_id == user.id)
     end
 
     @delete_cache[work_package.project]
