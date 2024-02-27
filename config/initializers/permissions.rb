@@ -206,7 +206,8 @@ Rails.application.reloader.to_prepare do
 
       wpt.permission :delete_my_create_work_packages,
                      {
-                       work_packages: :destroy
+                       work_packages: :destroy,
+                       'work_packages/bulk': :destroy
                      },
                      require: :member,
                      dependencies: :view_work_packages
