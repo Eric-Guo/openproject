@@ -30,5 +30,6 @@
 module WorkPackages
   class DeleteContract < ::DeleteContract
     delete_permission :delete_work_packages
+    delete_permission :delete_my_create_work_packages
   end
 end
