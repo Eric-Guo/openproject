@@ -2209,6 +2209,8 @@ zh-CN:
   permission_view_timelines: "查看时间线"
   permission_view_wiki_edits: "查看 wiki 历史记录"
   permission_view_wiki_pages: "查看 wiki"
+  permission_work_package_assigned: "成为指定人/负责人"
+  permission_work_package_assigned_explanation: "可以将工作包分配给在相应项目中拥有此角色的使用者和群組"
   placeholders:
     default: "-"
   project:
