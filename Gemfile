@@ -178,7 +178,7 @@ group :production do
   gem "redis", "~> 5.3.0"
 end
 
-gem "i18n-js", "~> 4.2.3"
+gem "i18n-js", "~> 3.9.0"
 gem "rails-i18n", "~> 7.0.0"
 
 gem "sprockets", "~> 3.7.2" # lock sprockets below 4.0

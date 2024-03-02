@@ -29,17 +29,27 @@
 import * as moment from 'moment';
 import * as i18njs from 'i18n-js';
 
+// Extend the I18n class from i18n-js to include the extend method
+declare module 'i18n-js' {
+  interface I18n {
+    extend(obj1: any, obj2: any): any;
+  }
+}
+
 export function initializeLocale() {
   const meta = document.querySelector<HTMLMetaElement>('meta[name=openproject_initializer]');
   const userLocale = meta?.dataset.locale || 'en';
   const defaultLocale = meta?.dataset.defaultlocale || 'en';
-  const instanceLocale = meta?.dataset.instancelocale || 'en';
   const firstDayOfWeek = parseInt(meta?.dataset.firstdayofweek || '', 10); // properties of meta.dataset are exposed in lowercase
   const firstWeekOfYear = parseInt(meta?.dataset.firstweekofyear || '', 10); // properties of meta.dataset are exposed in lowercase
 
   window.I18n = new i18njs.I18n();
   I18n.locale = userLocale;
   I18n.defaultLocale = defaultLocale;
+
+  I18n.extend = function(obj1: any, obj2: any) {
+    return Object.assign(obj1, obj2);
+  };
 
   moment.locale(userLocale);
 
@@ -75,15 +85,5 @@ export function initializeLocale() {
     },
   );
 
-  const localeImports = _
-    .chain([userLocale, instanceLocale])
-    .uniq()
-    .map(
-      (locale) => import(/* webpackChunkName: "locale" */ `../../../locales/${locale}.json`)
-        .then((imported:{ default:object }) => {
-          I18n.store(imported.default);
-        }),
-      )
-    .value();
-  return Promise.all(localeImports);
+  return import(/* webpackChunkName: "locale" */ `../../../locales/${userLocale}.js`);
 }
