@@ -81,7 +81,7 @@ export class OpWorkPackageEdocFileListItemComponent extends UntilDestroyedMixin 
     const href = this.edocFile.user.href as string;
     this.author$ = this.principalsResourceService.requireEntity(href);
 
-    this.timestampText = this.timezoneService.parseDatetime(this.edocFile.createdAt).fromNow();
+    this.timestampText = this.timezoneService.parseDatetime(this.edocFile.createdAt).format('YYYY-MM-DD HH:mm');
 
     combineLatest([
       this.author$,
