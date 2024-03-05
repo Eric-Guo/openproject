@@ -6,8 +6,8 @@ module WorkPackageEdocFiles
       { value: self.members }.deep_transform_keys { |key| key.to_s.to_sym }[:value]
     end
 
-    def sync_members
-      users = edoc_file.folder.work_package.project.members do |member|
+    def sync_members # rubocop:disable Metrics/AbcSize
+      users = edoc_file.folder.work_package.project.members.map do |member|
         {
           name: member.principal.name,
           email: member.principal.mail,
