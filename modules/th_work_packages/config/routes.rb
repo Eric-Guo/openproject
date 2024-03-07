@@ -8,5 +8,14 @@ OpenProject::Application.routes.draw do
         get :annotation_document
       end
     end
+
+    resources :annotation_documents,
+              controller: 'th_work_packages/annotation_documents',
+              only: %i[],
+              as: :annotation_documents do
+      collection do
+        post :callback
+      end
+    end
   end
 end
