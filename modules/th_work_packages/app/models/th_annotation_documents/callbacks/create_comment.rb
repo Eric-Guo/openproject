@@ -37,12 +37,16 @@ module ThAnnotationDocuments::Callbacks
       '创建评论'
     end
 
-    def raw
-      <<~RAW.squish
+    def raw # rubocop:disable Metrics/AbcSize
+      @raw ||= <<~RAW.squish
         <p class="op-uc-p">
           <strong>#{title}</strong>
         </p>
         <p class="op-uc-p">#{comment.content}</p>
+        #{
+          comment.metions_raw && \
+          "<p class=\"op-uc-p\">#{comment.metions_raw}</p>"
+        }
         <blockquote class="op-uc-blockquote">
           <p class="op-uc-p">
             文件：
@@ -52,7 +56,17 @@ module ThAnnotationDocuments::Callbacks
           </p>
           <p class="op-uc-p">
             标注：
-            <i>[#{annotator.specialty}]</i> #{annotator.description}
+            <i>
+              #{
+                annotator.status.present? && \
+                "[#{annotator.status}] "
+              }
+              #{
+                annotator.specialty.present? && \
+                "[#{annotator.specialty}] "
+              }
+            </i>
+            #{annotator.description}
           </p>
         </blockquote>
       RAW
