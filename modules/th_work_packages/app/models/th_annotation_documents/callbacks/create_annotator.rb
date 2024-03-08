@@ -49,6 +49,10 @@ module ThAnnotationDocuments::Callbacks
           #{annotator.description}
         </p>
         #{
+          annotator.metions_raw && \
+          "<p class=\"op-uc-p\">#{annotator.metions_raw}</p>"
+        }
+        #{
           annotator.images_raw && \
           <<~IMAGE_RAW.squish
             <p class="op-uc-p">#{annotator.images_raw}</p>
