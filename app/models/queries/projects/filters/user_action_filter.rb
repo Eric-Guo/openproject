@@ -44,9 +44,15 @@ class Queries::Projects::Filters::UserActionFilter < Queries::Projects::Filters:
                  raise ArgumentError
                end
 
-    capability_select_queries
+    sql = capability_select_queries
       .map { |query| "#{Project.table_name}.id #{operator} (#{query.to_sql})" }
       .join(" AND ")
+
+    if values.include?("projects/copy") && values.length == 1
+      "#{sql} OR #{Project.table_name}.public = TRUE"
+    else
+      sql
+    end
   end
 
   private
