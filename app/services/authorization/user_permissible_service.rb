@@ -10,6 +10,13 @@ module Authorization
       perms = contextual_permissions(permission, :global)
       return false unless authorizable_user?
 
+      # 天华人员允许创建项目
+      if user.login.end_with?("@thape.com.cn") || user.mail&.end_with?("@thape.com.cn")
+        return true if permission.respond_to?(:to_sym) && permission.to_sym == :add_project
+        return true if permission.is_a?(Hash) && permission[:controller]&.to_sym == :projects && permission[:action]&.to_sym == :new
+        return true if permission.is_a?(OpenProject::AccessControl::Permission) && permission.name == :add_project
+      end
+
       cached_permissions(nil).intersect?(perms.map(&:name))
     end
 
@@ -80,6 +87,8 @@ module Authorization
       permissions_filtered_for_project = permissions_by_enabled_project_modules(project, permissions)
 
       return false if permissions_filtered_for_project.empty?
+      # 允许用户读取公开的项目数据
+      return true if project.public? && permissions_filtered_for_project == [:copy_projects]
 
       cached_permissions(project).intersect?(permissions_filtered_for_project)
     end
