@@ -70,7 +70,7 @@ gem 'addressable', '~> 2.8.0'
 gem "auto_strip_attributes", "~> 2.5"
 
 # Provide timezone info for TZInfo used by AR
-gem 'tzinfo-data', '~> 1.2023.1'
+gem 'tzinfo-data'
 
 # to generate html-diffs (e.g. for wiki comparison)
 gem 'htmldiff'
@@ -294,7 +294,7 @@ group :development, :test do
 
   gem 'pry-byebug', '~> 3.10.0', platforms: [:mri]
   gem 'pry-rails', '~> 0.3.6'
-  gem 'pry-rescue', '~> 1.5.2'
+  gem 'pry-rescue'
 
   # ruby linting
   gem 'rubocop', '~> 1.62.0', require: false
@@ -317,7 +317,7 @@ group :development, :test do
   gem "bcrypt_pbkdf"
 end
 
-gem 'bootsnap', '~> 1.17.0', require: false
+gem 'bootsnap', require: false
 
 # API gems
 gem 'grape', '~> 1.7.0'

@@ -353,7 +353,7 @@ GEM
     bcrypt_pbkdf (1.1.0)
     bigdecimal (3.1.6)
     bindata (2.5.0)
-    bootsnap (1.17.1)
+    bootsnap (1.18.3)
       msgpack (~> 1.2)
     brakeman (5.4.1)
     browser (5.3.1)
@@ -797,7 +797,7 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    pry-rescue (1.5.2)
+    pry-rescue (1.6.0)
       interception (>= 0.5)
       pry (>= 0.12.0)
     psych (5.1.2)
@@ -1052,7 +1052,7 @@ GEM
       rails (>= 5.0.4)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2023.4)
+    tzinfo-data (1.2024.1)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
     unf (0.1.4)
@@ -1119,7 +1119,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.91)
   bcrypt (~> 3.1.6)
   bcrypt_pbkdf
-  bootsnap (~> 1.17.0)
+  bootsnap
   brakeman (~> 5.4.0)
   browser (~> 5.3.0)
   budgets!
@@ -1238,7 +1238,7 @@ DEPENDENCIES
   prawn-markup (~> 0.3.0)
   pry-byebug (~> 3.10.0)
   pry-rails (~> 0.3.6)
-  pry-rescue (~> 1.5.2)
+  pry-rescue
   puffing-billy (~> 3.1.0)
   puma (~> 6.0.2)
   puma-plugin-statsd (~> 2.0)
@@ -1291,7 +1291,7 @@ DEPENDENCIES
   test-prof (~> 1.2.0)
   timecop (~> 0.9.0)
   typed_dag (~> 2.0.2)
-  tzinfo-data (~> 1.2023.1)
+  tzinfo-data
   validate_url
   view_component
   warden (~> 1.2)
