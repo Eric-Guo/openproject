@@ -31,7 +31,7 @@
 module Projects::Identifier
   extend ActiveSupport::Concern
 
-  IDENTIFIER_MAX_LENGTH = 100
+  IDENTIFIER_MAX_LENGTH = 191
   SEMANTIC_IDENTIFIER_MAX_LENGTH = 10
   RESERVED_IDENTIFIERS = %w[new menu queries filters identifier_update_dialog identifier_suggestion].freeze
   # Classic identifier format: lowercase letters, digits, hyphens, underscores — but not all-numeric.
