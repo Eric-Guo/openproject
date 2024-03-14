@@ -41,7 +41,7 @@ zh-CN:
       updating: 正在更新…
     attachments:
       delete: 删除附件
-      delete_confirmation: '确定要删除此规则吗？此操作无法撤消。
+      delete_confirmation: '确定要删除这个文件吗？此操作不可撤消。
 
         '
       draggable_hint: '将图片或附件拖到编辑区内即可添加。鼠标在关闭的编辑区上停留将打开这个编辑区。
@@ -59,7 +59,7 @@ zh-CN:
       placeholder:
         multi: 添加“%{name}”
         single: 选择“%{name}”
-      remove: 删除%{name}
+      remove: 移除%{name}
     autocompleter:
       notFoundText: 没有找到条目
       placeholder: 键入内容进行搜索
@@ -67,7 +67,7 @@ zh-CN:
         placeholder: 选择项目
       search: 搜索
     backup:
-      attachments_disabled: 可能无法包含附件，因为超过了最大文件限制。您可以配置修改限制（需要重新启动服务器）。
+      attachments_disabled: 可能无法包含附件，因为它们超出了允许的最大总文件大小。您可以通过配置更改此设置（需要重新启动服务器）。
       download_backup: 下载备份
       include_attachments: 包含附件
       info: '您可以在此处触发备份。该过程可能需要一些时间，具体取决于您的数据量（尤其是附件）。准备就绪后，您将收到一封电子邮件。
@@ -409,7 +409,7 @@ zh-CN:
     label_activate: 激活
     label_activity_show_all: 显示所有项目
     label_activity_show_only_comments: 仅显示批注的活动
-    label_add_attachments: 添加文件
+    label_add_attachments: 添加附件
     label_add_column_after: 之后添加列
     label_add_column_before: 在之前添加列
     label_add_columns: 添加列
@@ -448,17 +448,19 @@ zh-CN:
     label_collapsed: 折叠
     label_columns: 列
     label_comment: 评论
+    label_committed_at: 在 %{date} %{committed_revision_link}
+    label_committed_link: 上传的修订 %{revision_identifier}
     label_contains: 包含
     label_create: 创建
     label_create_work_package: 创建新工作包
     label_created_by: 创建自
     label_created_on: 创建于
     label_current: 当前
-    label_custom_queries: 不公开
+    label_custom_queries: 私有视图
     label_date: 日期
     label_date_with_format: 以%{format} 的格式输入 %{date_attribute}
     label_deactivate: 停用
-    label_default_queries: 默认
+    label_default_queries: 默认视图
     label_descending: 降序
     label_description: 描述
     label_details: 详细信息
@@ -483,7 +485,7 @@ zh-CN:
     label_filesize: 大小
     label_formattable_attachment_hint: 将文件拖拽到此区域或从剪贴板粘贴以附加文件
     label_general: 通用
-    label_global_queries: 公开
+    label_global_queries: 公共视图
     label_greater_or_equal: ">="
     label_group: 组
     label_group_by: 分组按照
@@ -510,6 +512,8 @@ zh-CN:
     label_me: 我
     label_meeting_agenda: 议程
     label_meeting_minutes: 会议记录
+    label_menu_collapse: 折叠
+    label_menu_expand: 展开
     label_moderate_comment: 审核评论
     label_more_than_ago: 更多天前
     label_next: 下一个
@@ -541,17 +545,18 @@ zh-CN:
     label_rejected_files_reason: 这些文件不能上传，因为它们大于 %{maximumFilesize}
     label_remove: 移除
     label_remove_all_files: 删除所有文件
-    label_remove_column: 移除列
-    label_remove_columns: 移除选择的列
+    label_remove_column: 删除列
+    label_remove_columns: 删除选定的列
     label_remove_file: 删除 %{fileName}
-    label_remove_row: 移除行
+    label_remove_row: 删除行
     label_remove_watcher: 删除关注者 %{name}
     label_report: 报告
-    label_repository_plural: 存储库
+    label_repository_plural: 代码库
     label_reset: 重置
     label_resize_project_menu: 调整项目菜单大小
     label_save_as: 另存为
     label_search_columns: 搜索列
+    label_select_project: 选择项目
     label_select_watcher: 选择一个关注者...
     label_selected_filter_list: 已选筛选器
     label_show_attributes: 显示所有属性
@@ -561,14 +566,14 @@ zh-CN:
     label_sort_lower: 向下移动
     label_sorted_by: 排序按
     label_sorting: 排序
-    label_spent_time: 已耗工时
+    label_spent_time: 已耗时间
     label_star_query: 已收藏
-    label_starred_queries: 收藏夹
+    label_starred_queries: 收藏夹视图
     label_subject: 主题
     label_sum: 总计
     label_sum_for: 总和
     label_this_week: 这一周
-    label_time_entry_plural: 已耗工时
+    label_time_entry_plural: 已耗时间
     label_today: 今天
     label_total_amount: '总计: %{amount}'
     label_total_progress: "%{percent} %总进度"
@@ -652,18 +657,18 @@ zh-CN:
         property_was: "%{difference_in_days}前。"
       no_unread: 没有未读通知
       reasons:
-        assigned: 指定人
+        assigned: 已指定
         commented: 已评论
         created: 已创建
         dateAlert: 日期提醒
         mentioned: 被提及
-        prioritized: 已优先
+        prioritized: 已优先处理
         processed: 已处理
         reminder: 提醒
-        responsible: 负责人
-        scheduled: 已计划
+        responsible: 已设为负责人
+        scheduled: 日期变更
         shared: 已共享
-        watched: 关注者
+        watched: 已关注
       reminders:
         note: 注："%{note}"
       settings:
@@ -687,7 +692,7 @@ zh-CN:
         quick_add_button: 点击标题导航中的加号 (+) 图标可<b>创建新项目</b>或<b>邀请同事</b>。
         sidebar_arrow: 使用左上角的返回箭头可返回到项目的<b>主菜单</b>。
         team_planner:
-          add_assignee: 首先，请将受理人添加到工作组规划器。
+          add_assignee: 首先，请将指定人添加到工作组规划器。
           add_existing: 搜索现有工作包并将其拖动到工作组规划器，以立即将其分配给团队成员并定义开始日期和结束日期。
           calendar: 单周或双周规划面板可以显示分配给您的团队成员的所有工作包。
           card: 水平拖动工作包以前移或后移其时间，拖动边缘以更改开始日期和结束日期，甚至可以将其垂直拖动到不同的行以分配给其他成员。
@@ -841,20 +846,20 @@ zh-CN:
       filter: 筛选器
       search_query_label: 搜索已保存的视图
       settings:
-        columns: 列
-        configure_view: 配置视图
+        columns: 列...
+        configure_view: 配置视图…
         delete: 删除
         display_hierarchy: 显示层次结构
         display_sums: 显示汇总
-        export: 导出
-        group_by: 分组依据
+        export: 导出...
+        group_by: 分组...
         hide_hierarchy: 隐藏层次结构
         hide_sums: 隐藏汇总
         page_settings: 重命名视图
         save: 保存
-        save_as: 另存为
+        save_as: 另存为...
         share_calendar: 订阅日历
-        sort_by: 排序依据
+        sort_by: 排序...
         visibility_settings: 可见性设置
       unselected_title: 工作包
     two_factor_authentication:
@@ -929,7 +934,7 @@ zh-CN:
       default_queries:
         all_open: 全部打开
         assigned_to_me: 分配给我
-        created_by_me: 我创建的
+        created_by_me: 由我创建
         latest_activity: 最新活动
         manually_sorted: 新的手动排序查询
         overdue: 逾期
@@ -989,14 +994,14 @@ zh-CN:
       progress:
         title: 工时估计和进展
       properties:
-        assignee: 受理人
-        author: 作者
+        assignee: 指定人
+        author: 创建人
         category: 类别
-        createdAt: 创建于
+        createdAt: 创建
         date: 日期
         description: 描述
         dueDate: 完成日期
-        duration: 时长
+        duration: 工期
         percentComplete: 完成百分比
         percentCompleteAlternative: 进度
         percentageDone: 完成百分比
@@ -1006,14 +1011,14 @@ zh-CN:
         remainingWork: 剩余工时
         remainingWorkAlternative: 剩余小时数
         responsible: 责任人
-        spentTime: 已耗工时
+        spentTime: 已耗时间
         startDate: 开始日期
         status: 状态
         subject: 主题
         subproject: 子项目
         title: 标题
         type: 类型
-        updatedAt: 更新时间
+        updatedAt: 更新于
         version: 版本
         versionName: 版本
         work: 工时
@@ -1033,12 +1038,12 @@ zh-CN:
           not_found: 无此视图
           unretrievable_query: 无法从 URL 检索视图
         filters: 筛选器
-        group: 分组按照
+        group: 分组依据
         group_by: 汇总结果根据
         group_by_disabled_by_hierarchy: 分组依据已禁用，因为层次结构模式处于有效状态。
         hide_column: 隐藏列
         hierarchy_disabled_by_group_by: 层次结构模式已禁用，因为结果依据 %{column} 分组。
-        insert_columns: 插入列
+        insert_columns: 插入列...
         move_column_left: 左移列
         move_column_right: 右移列
         public_text: '发布此视图，以允许其他用户访问您的视图。具有“管理公共视图”权限的用户可以修改或移除公共查询。这不会影响工作包结果在该视图中的可见性，并且用户可能会看到不同的结果，具体取决于他们的权限。
@@ -1047,7 +1052,7 @@ zh-CN:
         rename_query_placeholder: 此视图的名称
         sort_ascending: 升序排序
         sort_descending: 降序排序
-        star_text: 将此视图标记为收藏项，并添加到左侧的已保存视图边栏中。
+        star_text: 将该视图标记为收藏项，并添加到左侧的已保存视图边栏中。
         text_no_results: 未找到匹配的视图。
       reminders:
         button_label: 设置提醒
@@ -1109,7 +1114,7 @@ zh-CN:
         overview: 概述
         project_attributes: 项目特性
         relations: 关系
-        watchers: 关注者
+        watchers: 关注人
       time_relative:
         days: 天
         months: 月
