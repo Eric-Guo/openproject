@@ -15,7 +15,7 @@ zh-CN:
       free: 基本
       action: "操作面板 (%{attribute})"
     board_type_attributes:
-      assignee: 受理人
+      assignee: 指定人
       status: 状态
       version: 版本
       subproject: 子项目
