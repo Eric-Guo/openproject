@@ -31,7 +31,7 @@
 module Projects::Identifier
   extend ActiveSupport::Concern
 
-  CLASSIC_IDENTIFIER_MAX_LENGTH = 100
+  CLASSIC_IDENTIFIER_MAX_LENGTH = 191
   SEMANTIC_IDENTIFIER_MAX_LENGTH = 10
 
   # Classic format validation regexes:
