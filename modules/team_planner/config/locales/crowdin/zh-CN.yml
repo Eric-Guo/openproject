@@ -11,7 +11,7 @@ zh-CN:
     label_new_team_planner: "新的工作组规划器"
     label_create_new_team_planner: "创建新的工作组规划器"
     label_team_planner_plural: "工作组规划器"
-    label_assignees: "受理人"
+    label_assignees: "指定人"
     upsale:
       title: "工作组规划器"
-      description: "通过工作组规划器，您可以获得团队计划的完整概览。您可以拉伸、缩短和拖放工作包来修改日期、移动工作包或更改受理人。"
+      description: "通过工作组规划器，您可以获得团队计划的完整概览。您可以拉伸、缩短和拖放工作包来修改日期、移动工作包或更改指定人。"
