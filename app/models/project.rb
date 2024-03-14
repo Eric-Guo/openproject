@@ -41,7 +41,7 @@ class Project < ApplicationRecord
   include ::Scopes::Scoped
 
   # Maximum length for project identifiers
-  IDENTIFIER_MAX_LENGTH = 100
+  IDENTIFIER_MAX_LENGTH = 191
 
   # reserved identifiers
   RESERVED_IDENTIFIERS = %w[new menu queries export_list_modal].freeze
