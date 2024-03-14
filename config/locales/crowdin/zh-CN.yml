@@ -474,7 +474,7 @@ zh-CN:
     deletion_info:
       heading: "删除占位符用户 %{name}"
       data_consequences: >
-        出现的所有占位符用户（例如，作为受理人、负责人或其他用户值）将被重新分配给一个名为“已删除用户”的帐户。 由于每个已删除帐户的数据都会被重新分配给此帐户，因此无法将用户创建的数据与另一个已删除帐户的数据区分。
+        出现的所有占位符用户（例如，作为指定人、负责人或其他用户值）将被重新分配给一个名为“已删除用户”的帐户。 由于每个已删除帐户的数据都会被重新分配给此帐户，因此无法将用户创建的数据与另一个已删除帐户的数据区分。
       irreversible: "此操作不可逆"
       confirmation: "输入占位符用户名 %{name} 以确认删除。"
     upsale:
@@ -799,7 +799,7 @@ zh-CN:
         derived_done_ratio: "总完成度%"
         derived_remaining_hours: "总剩余工作总量"
         derived_remaining_time: "总剩余工作总量"
-        done_ratio: "% 完成"
+        done_ratio: "完成度(%)"
         duration: "持续时间"
         end_insertion: "结束插入"
         end_deletion: "结束删除"
@@ -813,7 +813,7 @@ zh-CN:
         parent_issue: "父级"
         parent_work_package: "父级"
         priority: "优先级"
-        progress: "% 完成"
+        progress: "进度(%)"
         readonly: "只读"
         remaining_hours: "剩余工作"
         remaining_time: "剩余工作"
@@ -1256,8 +1256,8 @@ zh-CN:
   #common attributes of all models
   attributes:
     active: "激活"
-    assigned_to: "受理人"
-    assignee: "受理人"
+    assigned_to: "指定人"
+    assignee: "指定人"
     attachments: "附件"
     author: "作者"
     base: "一般错误："
@@ -1932,7 +1932,7 @@ zh-CN:
   label_added: "已添加"
   label_added_by: "由%{author}添加"
   label_added_time_by: "由 %{author} %{age} 前添加"
-  label_additional_workflow_transitions_for_assignee: "当用户是受理人时允许额外的转移"
+  label_additional_workflow_transitions_for_assignee: "当用户是指定人时允许额外的转移"
   label_additional_workflow_transitions_for_author: "当用户是作者时允许额外转移"
   label_administration: "管理"
   label_interface_colors: "界面颜色"
@@ -2911,7 +2911,7 @@ zh-CN:
   permission_view_user_email: "查看用户的邮件地址"
   permission_view_wiki_edits: "查看维基历史记录"
   permission_view_wiki_pages: "查看维基"
-  permission_work_package_assigned: "成为受理人/责任人"
+  permission_work_package_assigned: "成为指定人/责任人"
   permission_work_package_assigned_explanation: "工作包可以分配给在各自项目中拥有此角色的用户和组"
   permission_view_project_activity: "查看项目活动"
   permission_view_project_attributes: "查看项目属性"
@@ -2962,9 +2962,9 @@ zh-CN:
   #which are not attributes of an AR-Model.
   query_fields:
     active_or_archived: "激活或已存档"
-    assigned_to_role: "受理人角色"
-    assignee_or_group: "受理人或所属组"
-    member_of_group: "受理人用户组"
+    assigned_to_role: "指定人角色"
+    assignee_or_group: "指定人或所属组"
+    member_of_group: "指定人用户组"
     name_or_identifier: "名称或标识符"
     only_subproject_id: "仅子项目"
     shared_with_user: "与用户共享"
