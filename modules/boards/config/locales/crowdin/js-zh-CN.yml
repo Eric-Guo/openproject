@@ -52,13 +52,13 @@ zh-CN:
         action_text_version: >
           基于版本属性的自动列面板。用于产品开发规划。
         action_type:
-          assignee: 受理人
+          assignee: 指定人
           status: 状态
           version: 版本
           subproject: 子项目
           subtasks: 父子
         board_type_title:
-          assignee: 受理人
+          assignee: 指定人
           status: 状态
           version: 版本
           subproject: 子项目
@@ -67,7 +67,7 @@ zh-CN:
         select_attribute: "操作属性"
       add_list_modal:
         labels:
-          assignee: 选择要添加到新受理人列表的用户
+          assignee: 选择要添加到新指定人列表的用户
           status: 选择要添加到新列表的状态
           version: 选择要添加到新列表的版本
           subproject: 选择要添加到新列表的子项目
