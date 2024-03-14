@@ -1815,7 +1815,7 @@ zh-CN:
   button_test: "测试"
   button_unarchive: "取消归档"
   button_uncheck_all: "全部不选"
-  button_unlock: "解锁​​​​"
+  button_unlock: "解除锁定"
   button_unfavorite: "取消收藏"
   button_unwatch: "取消关注"
   button_update: "更新"
@@ -2465,7 +2465,7 @@ zh-CN:
       mentioned: "被提及"
       responsible: "负责人"
       shared: "共享"
-      watched: "关注人"
+      watched: "关注者"
       reminder: "提醒"
     facets:
       unread: "未读"
