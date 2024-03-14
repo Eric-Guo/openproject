@@ -1926,7 +1926,7 @@ zh-CN:
   button_unarchive: 取消归档
   button_uncheck_all: 全部不选
   button_unfavorite: 取消收藏
-  button_unlock: 解锁​​​​
+  button_unlock: 解除锁定
   button_unpublish: 设为私有
   button_unwatch: 取消关注
   button_update: 更新
@@ -4287,7 +4287,7 @@ zh-CN:
       reminder: 提醒
       responsible: 负责人
       shared: 共享
-      watched: 关注人
+      watched: 关注者
     send_notifications: 发送此操作的通知
     work_packages:
       subject:
