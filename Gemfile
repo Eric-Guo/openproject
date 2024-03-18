@@ -323,6 +323,7 @@ group :development do
   gem "ed25519"
   gem "bcrypt_pbkdf"
 
+  gem "debugbar"
   # Support cursor / vs code
   gem "ruby-lsp", require: false
   gem "ruby-lsp-rails", require: false
