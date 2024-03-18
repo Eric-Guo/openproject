@@ -539,6 +539,9 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debugbar (0.3.3)
+      actioncable
+      rails
     deckar01-task_list (2.3.4)
       html-pipeline (~> 2.0)
     declarative (0.0.20)
@@ -1382,6 +1385,7 @@ DEPENDENCIES
   dashboards!
   date_validator (~> 0.12.0)
   debug
+  debugbar
   deckar01-task_list (~> 2.3.1)
   disposable (~> 0.6.2)
   doorkeeper (~> 5.7.0)

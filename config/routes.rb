@@ -781,6 +781,10 @@ Rails.application.routes.draw do
     get "ensure_connection", controller: "oauth_clients", action: :ensure_connection, as: "oauth_clients_ensure_connection"
   end
 
+  if defined? Debugbar
+    mount Debugbar::Engine => Debugbar.config.prefix
+  end
+
   if OpenProject::Configuration.lookbook_enabled?
     mount Lookbook::Engine, at: "/lookbook"
   end
