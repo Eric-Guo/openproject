@@ -210,4 +210,11 @@ See COPYRIGHT and LICENSE files for more details.
 <div class="op-wide-autocomplete-wrapper"></div>
 <%= call_hook :view_layouts_base_body_bottom %>
 <% end %>
+<% if ENV["RAILS_ENV"] == 'development' && ENV["ENABLE_DEBUGBAR"] == 'true' %>
+  <div id="__debugbar"></div>
+  <script defer src="/_debugbar/assets/script"></script>
+  <%= nonced_javascript_tag do %>
+    window._debugbarConfigOptions = {};
+  <% end %>
+<% end %>
 </html>
