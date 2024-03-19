@@ -165,7 +165,14 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
 
   ngOnInit():void {
     super.ngOnInit();
-    this.halResourceService.get<CollectionResource<TypeResource>>(this.apiV3Service.types.path).subscribe((types) => {
+
+    if (!this.projectIdentifier) {
+      this.showNotice('No project');
+      return;
+    }
+
+    const typesPath = this.apiV3Service.projects.id(this.projectIdentifier).types.path;
+    this.halResourceService.get<CollectionResource<TypeResource>>(typesPath).subscribe((types) => {
       if (!types || types.elements.length === 0) {
         this.showNotice('No types available');
         return;
