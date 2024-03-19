@@ -20,6 +20,7 @@ import { InjectField } from 'core-app/shared/helpers/angular/inject-field.decora
 import { TimeEntryCreateService } from 'core-app/shared/components/time_entries/create/create.service';
 import { splitViewRoute } from 'core-app/features/work-packages/routing/split-view-routes.helper';
 import { WpDestroyModalComponent } from 'core-app/shared/components/modals/wp-destroy-modal/wp-destroy.modal';
+import { WpImportModalComponent } from 'core-app/shared/components/modals/wp-import-modal/wp-import.modal';
 import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 
@@ -175,6 +176,21 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
         return true;
       },
     }));
+
+    items.unshift({
+      disabled: false,
+      icon: 'icon-import',
+      class: 'import-wp',
+      href: undefined,
+      linkText: '导入工作集',
+      onClick: ($event:JQuery.TriggeredEvent) => {
+        if (isClickedWithModifier($event)) {
+          return false;
+        }
+        this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.workPackage });
+        return true;
+      },
+    });
 
     if (!isNewResource(this.workPackage)) {
       items.unshift({

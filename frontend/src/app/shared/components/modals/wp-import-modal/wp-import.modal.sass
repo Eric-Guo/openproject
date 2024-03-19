@@ -1,0 +1,38 @@
+.wp-template-container
+  display: flex
+  flex-direction: row
+  
+  .wp-template-groups
+    min-width: 120px
+    max-width: 160px
+    flex: none
+    padding: 8px
+    border-right: 1px solid #ccc
+
+    .wp-template-group-item
+      padding: 4px
+      margin: 8px 0
+      text-align: left
+      cursor: pointer
+      font-size: 16px
+      line-height: 20px
+      border-bottom: 1px solid #ccc
+      color: rgba(0, 0, 0, .6)
+
+      &.active
+        border-bottom: 1px solid #5c5c5c
+        color: rgba(0, 0, 0, 1)
+
+  .wp-template-list
+    flex: 1
+    padding: 8px
+
+    .wp-template-list-item
+      padding: 4px
+      display: grid
+      gap: 4px
+      grid-template-columns: 24px 1fr 1fr 3fr
+      margin: 4px 0
+      border-bottom: 1px solid #ccc
+      font-size: 14px
+      line-height: 18px

@@ -187,6 +187,7 @@ import { OpBaselineModalComponent } from 'core-app/features/work-packages/compon
 import { OpBaselineComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline/baseline.component';
 import { OpBaselineLoadingComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline-loading/baseline-loading.component';
 import { OpBaselineLegendsComponent } from 'core-app/features/work-packages/components/wp-baseline/baseline-legends/baseline-legends.component';
+import { WpImportModalComponent } from 'core-app/shared/components/modals/wp-import-modal/wp-import.modal';
 import { WorkPackageWatchersTabButtonGroupComponent } from './components/wp-single-view-tabs/watchers-tab/watchers-tab-button-group.component';
 import { WorkPackageWatchersTabMembersComponent } from './components/wp-single-view-tabs/watchers-tab/watchers-tab-members.component';
 import { WorkPackageWatchersTabMembersRowComponent } from './components/wp-single-view-tabs/watchers-tab/watchers-tab-members-row.component';
@@ -408,6 +409,7 @@ import { WorkPackageWatchersTabMembersRowComponent } from './components/wp-singl
     QuerySharingModalComponent,
     SaveQueryModalComponent,
     WpDestroyModalComponent,
+    WpImportModalComponent,
 
     // CustomActions
     WpCustomActionComponent,

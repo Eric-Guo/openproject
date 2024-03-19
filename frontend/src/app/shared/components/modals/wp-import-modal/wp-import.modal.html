@@ -1,0 +1,84 @@
+<div
+  class="spot-modal loading-indicator--location"
+  data-indicator-name="modal"
+  id="wp_import_modal"
+>
+  <div class="spot-modal--header">导入工作包</div>
+
+  <div class="spot-modal--body spot-container">
+    <div>
+      <input
+        type="file"
+        [accept]="fileAccept"
+        (change)="onFileChange($event)"
+      />
+    </div>
+    <div class="wp-template-container">
+      <div class="wp-template-groups" *ngIf="!!groups">
+        <div
+          *ngFor="let group of groups"
+          class="wp-template-group-item"
+          [ngClass]="{ active: currentGroup === group }"
+          (click)="onGroupClick(group)"
+        >
+          {{ group.name }}
+        </div>
+      </div>
+      <div class="wp-template-list" *ngIf="!!currentGroup">
+        <div class="wp-template-list-item">
+          <div>
+            <input
+              type="checkbox"
+              [checked]="checkedAll"
+              [indeterminate]="indeterminateAll"
+              (change)="onCheckAllChange($event)"
+            >
+          </div>
+          <div>编号</div>
+          <div>类型</div>
+          <div>主题</div>
+        </div>
+        <div
+          *ngFor="let row of currentTemplateRows"
+          class="wp-template-list-item"
+        >
+          <div>
+            <input
+              type="checkbox"
+              [checked]="row.checked"
+              (change)="onRowCheckboxChange($event, row)"
+            >
+          </div>
+          <div>
+            {{ row.value.id }}
+          </div>
+          <div>
+            {{ row.value.type }}
+          </div>
+          <div>
+            {{ row.value.subject }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spot-action-bar">
+    <div class="spot-action-bar--right">
+      <button
+        class="button button_no-margin spot-modal--cancel-button spot-action-bar--action"
+        [textContent]="text.cancel"
+        (click)="closeMe($event)"
+      ></button>
+      <button
+        class="button button_no-margin -highlight spot-action-bar--action"
+        type="button"
+        form="wp-template-group-form"
+        [attr.disabled]="busy || undefined"
+        (click)="confirm($event)"
+      >
+        确定
+      </button>
+    </div>
+  </div>
+</div>
