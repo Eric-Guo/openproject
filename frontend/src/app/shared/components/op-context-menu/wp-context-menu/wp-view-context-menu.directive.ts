@@ -53,8 +53,10 @@ import {
   isCopyIdAction,
   PERMITTED_CONTEXT_MENU_ACTIONS,
 } from 'core-app/shared/components/op-context-menu/wp-context-menu/wp-static-context-menu-actions';
+import { OpModalService } from 'core-app/shared/components/modal/modal.service';
 import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
 import { CopyToClipboardService } from 'core-app/shared/components/copy-to-clipboard/copy-to-clipboard.service';
+import { WpImportModalComponent } from 'core-app/features/plugins/linked/openproject-th_work_packages/wp-import-modal/wp-import.modal';
 import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { UrlParamsService } from 'core-app/core/navigation/url-params.service';
@@ -67,6 +69,8 @@ export interface PositionArgs { placement?:Placement, reference?:HTMLElement }
 
 export class WorkPackageViewContextMenu extends OpContextMenuHandler {
   @LazyInject() protected states!:States;
+
+  @LazyInject() protected opModalService!:OpModalService;
 
   @LazyInject() protected wpTableSelection:WorkPackageViewSelectionService;
 
@@ -252,6 +256,21 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
       });
     });
 
+
+    items.unshift({
+      disabled: false,
+      icon: 'icon-import',
+      class: 'import-wp',
+      href: undefined,
+      linkText: '导入工作集',
+      onClick: ($event:JQuery.TriggeredEvent) => {
+        if (isClickedWithModifier($event)) {
+          return false;
+        }
+        this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.workPackage });
+        return true;
+      },
+    });
 
     if (selected.length === 1 && !isNewResource(this.workPackage)) {
       const projectIdentifier = this.currentProject.identifier;
