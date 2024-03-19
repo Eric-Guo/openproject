@@ -48,10 +48,12 @@ import {
 import {
   PERMITTED_CONTEXT_MENU_ACTIONS,
 } from 'core-app/shared/components/op-context-menu/wp-context-menu/wp-static-context-menu-actions';
+import { OpModalService } from 'core-app/shared/components/modal/modal.service';
 import { StateService } from '@uirouter/core';
 import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
 import { CopyToClipboardService } from 'core-app/shared/components/copy-to-clipboard/copy-to-clipboard.service';
 import { splitViewRoute } from 'core-app/features/work-packages/routing/split-view-routes.helper';
+import { WpImportModalComponent } from 'core-app/features/plugins/linked/openproject-th_work_packages/wp-import-modal/wp-import.modal';
 import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
@@ -66,6 +68,8 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
   @LazyInject() protected states!:States;
 
   @LazyInject() protected wpRelationsHierarchyService:WorkPackageRelationsHierarchyService;
+
+  @LazyInject() protected opModalService!:OpModalService;
 
   @LazyInject() protected $state!:StateService;
 
@@ -268,6 +272,21 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
         return true;
       },
     }));
+
+    items.unshift({
+      disabled: false,
+      icon: 'icon-import',
+      class: 'import-wp',
+      href: undefined,
+      linkText: '导入工作集',
+      onClick: ($event:JQuery.TriggeredEvent) => {
+        if (isClickedWithModifier($event)) {
+          return false;
+        }
+        this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.workPackage });
+        return true;
+      },
+    });
 
     if (selected.length === 1 && !isNewResource(this.workPackage)) {
       const projectIdentifier = this.currentProject.identifier;
