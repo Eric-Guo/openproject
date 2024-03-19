@@ -58,5 +58,5 @@ group :opf_plugins do
   gem 'openproject-th_meetings',               path: 'modules/th_meetings'
 
   # bundle config local.openproject-th_plugin /Users/guochunzhong/git/sso/openproject-th_plugin/
-  gem 'openproject-th_plugin', git: "https://git.thape.com.cn/rails/openproject-th_plugin.git", branch: "th_plugins"
+  gem 'openproject-th_plugin', git: "https://git.thape.com.cn/rails/openproject-th_plugin.git", branch: "op_old"
 end
