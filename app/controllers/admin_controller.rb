@@ -57,7 +57,7 @@ class AdminController < ApplicationController
   end
 
   def plugins
-    @plugins = Redmine::Plugin.not_bundled.sort
+    @plugins = Redmine::Plugin.all.sort
   end
 
   def test_email
