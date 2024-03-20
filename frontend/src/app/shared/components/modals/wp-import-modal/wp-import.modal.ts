@@ -2,7 +2,9 @@ import { States } from 'core-app/core/states/states.service';
 import {
   ChangeDetectorRef, Component, ElementRef, Inject, OnInit,
 } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import * as ExcelJs from 'exceljs';
+import { catchError } from 'rxjs';
 import { OpModalComponent } from 'core-app/shared/components/modal/modal.component';
 import { OpModalLocalsToken } from 'core-app/shared/components/modal/modal.service';
 import { OpModalLocalsMap } from 'core-app/shared/components/modal/modal.types';
@@ -339,22 +341,40 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
         raw: row.value.description || '',
       };
 
+      // 备注
       const customField6 = row.value.customField6 || '';
 
-      queue.add((lastResult:[]) => new Promise<[WpTemplate, WorkPackageResource][]>((resolve, reject) => {
+      queue.add((lastResult:[WpTemplate, WorkPackageResource][]) => new Promise<[WpTemplate, WorkPackageResource][]>((resolve, reject) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        let parent = this.wp?.$source._links.self;
+
+        if (lastResult && row.value.parent) {
+          const parentR = lastResult.find(([rr]) => rr.id === row.value.parent);
+
+          if (parentR) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            parent = parentR[1].$source._links.self;
+          }
+        }
+
         void this.wpCreate.createNewWorkPackage(this.projectIdentifier, {
           subject,
           customField6,
           _links: {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-            parent: this.wp.$source._links.self,
+            parent,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             type: type?.$source._links.self,
           },
         }).then((changeset) => {
           void changeset.buildRequestPayload().then((payload) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            this.apiV3Service.work_packages.post({ ...payload, description }).subscribe((work_package) => {
+            this.apiV3Service.work_packages.post({ ...payload, description }).pipe(
+              catchError((error:HttpErrorResponse) => {
+                reject(error.message);
+                throw new Error(error.message);
+              }),
+            ).subscribe((work_package) => {
               if (lastResult) {
                 resolve([...lastResult, [row.value, work_package]]);
               } else {
@@ -374,10 +394,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
 
     queue.start<[WpTemplate, WorkPackageResource][]>()
       .then((results) => {
-        this.halEvents.push(
-          results[results.length - 1][1],
-          { eventType: 'created' },
-        );
+        // 设置后置于、后置紧跟于关系
         results.forEach(([row, wp], _, arr) => {
           const types = ['heels', 'follows'] as const;
 
@@ -397,9 +414,14 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
             return;
           }
         });
-      }).catch(() => {
-        this.showNotice('导入工作集出错了');
+      }).catch((error) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+        this.showNotice(error || '导入工作集出错了');
       }).finally(() => {
+        this.halEvents.push(
+          { _type: 'WorkPackage', id: '1' },
+          { eventType: 'created' },
+        );
         this.busy = false;
         this.closeMe(e);
         indicator.stop();
