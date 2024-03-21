@@ -22,6 +22,16 @@
         <span [textContent]="text.create"></span>
       </button>
       <button
+        *ngIf="canAdd"
+        type="button"
+        class="spot-link"
+        style="margin-left: 8px;"
+        (click)="handleImportRowClick()"
+      >
+        <span class="spot-icon spot-icon_import"></span>
+        <span [textContent]="text.import"></span>
+      </button>
+      <button
        *ngIf="canReference"
         type="button"
         class="spot-link wp-inline-create--split-link"

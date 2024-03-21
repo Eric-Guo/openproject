@@ -209,13 +209,17 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
 
     if (!this.validateFile(file)) return;
 
-    const data = await this.excel2data(file);
+    try {
+      const data = await this.excel2data(file);
 
-    if (!data || data.length === 0) return;
+      if (!data || data.length === 0) return;
 
-    this.groups = data;
+      this.groups = data;
 
-    this.onGroupClick(this.groups[0]);
+      this.onGroupClick(this.groups[0]);
+    } catch (e) {
+      this.showNotice('文件中的数据存在问题');
+    }
   }
 
   validateWpTemplate(wpTemplate:WpTemplate):boolean {

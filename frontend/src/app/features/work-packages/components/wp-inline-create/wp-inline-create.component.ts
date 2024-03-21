@@ -54,6 +54,9 @@ import { WorkPackageChangeset } from 'core-app/features/work-packages/components
 import { EditForm } from 'core-app/shared/components/fields/edit/edit-form/edit-form';
 import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destroyed.mixin';
 import { SchemaCacheService } from 'core-app/core/schemas/schema-cache.service';
+import { WpImportModalComponent } from 'core-app/shared/components/modals/wp-import-modal/wp-import.modal';
+import { OpModalService } from 'core-app/shared/components/modal/modal.service';
+import { InjectField } from 'core-app/shared/helpers/angular/inject-field.decorator';
 import {
   inlineCreateCancelClassName,
   InlineCreateRowBuilder,
@@ -76,6 +79,8 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
 
   @Output() showing = new EventEmitter<boolean>();
 
+  @InjectField() protected opModalService:OpModalService;
+
   // inner state
   public canAdd = false;
 
@@ -86,7 +91,10 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
 
   public focus = false;
 
-  public text = this.wpInlineCreate.buttonTexts;
+  public text = {
+    ...this.wpInlineCreate.buttonTexts,
+    import: '导入工作集',
+  };
 
   private currentWorkPackage:WorkPackageResource|null;
 
@@ -207,6 +215,11 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
 
   public handleAddRowClick() {
     this.addWorkPackageRow();
+    return false;
+  }
+
+  public handleImportRowClick() {
+    this.opModalService.show(WpImportModalComponent, this.injector);
     return false;
   }
 
