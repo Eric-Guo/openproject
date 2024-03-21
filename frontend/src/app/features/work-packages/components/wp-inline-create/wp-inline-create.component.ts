@@ -46,6 +46,8 @@ import { WorkPackageChangeset } from 'core-app/features/work-packages/components
 import { EditForm } from 'core-app/shared/components/fields/edit/edit-form/edit-form';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { SchemaCacheService } from 'core-app/core/schemas/schema-cache.service';
+import { WpImportModalComponent } from 'core-app/features/plugins/linked/openproject-th_work_packages/wp-import-modal/wp-import.modal';
+import { OpModalService } from 'core-app/shared/components/modal/modal.service';
 import { InlineCreateRowBuilder, inlineCreateRowClassName } from './inline-create-row-builder';
 import { InlineCreateCancelButton } from './inline-create-cancel-button';
 import { WorkPackageCreateService } from '../wp-new/wp-create.service';
@@ -88,6 +90,7 @@ export class WorkPackageInlineCreateComponent implements AfterViewInit {
   readonly showing = output<boolean>();
 
   private readonly destroyRef = inject(DestroyRef);
+  protected readonly opModalService = inject(OpModalService);
 
   private readonly viewReady = signal(false);
 
@@ -119,7 +122,10 @@ export class WorkPackageInlineCreateComponent implements AfterViewInit {
 
   public focusTarget:'create'|'reference' = 'create';
 
-  public text = this.wpInlineCreate.buttonTexts;
+  public text = {
+    ...this.wpInlineCreate.buttonTexts,
+    import: '导入工作集',
+  };
 
   private currentWorkPackage:WorkPackageResource|null;
 
@@ -210,6 +216,16 @@ export class WorkPackageInlineCreateComponent implements AfterViewInit {
   public handleAddRowClick() {
     this.focusTarget = 'create';
     this.addWorkPackageRow();
+    return false;
+  }
+
+  public handleImportRowClick() {
+    this.wpCreate
+      .createOrContinueWorkPackage(this.projectIdentifier)
+      .then((change: WorkPackageChangeset) => {
+        this.currentWorkPackage = change.projectedResource;
+        this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.currentWorkPackage });
+      });
     return false;
   }
 
