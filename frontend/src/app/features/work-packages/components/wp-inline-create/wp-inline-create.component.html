@@ -21,6 +21,17 @@
             <svg plus-icon size="small" />
             <span [textContent]="text.create"></span>
           </button>
+          @if (!canReference) {
+            <button
+              type="button"
+              class="spot-link"
+              style="margin-left: 8px;"
+              (click)="handleImportRowClick()"
+              >
+              <svg plus-icon size="small" />
+              <span [textContent]="text.import"></span>
+            </button>
+          }
         }
         @if (canReference) {
           <button
