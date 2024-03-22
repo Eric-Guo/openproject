@@ -29,7 +29,7 @@ zh-CN:
     attributes:
       meeting:
         type: "会议类型"
-        location: "地点"
+        location: "详细地点"
         duration: "时长"
         notes: "备注"
         participants: "参加者"
