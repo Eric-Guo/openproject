@@ -83,7 +83,8 @@ module Authorization
 
     if perms.blank?
       if !OpenProject::AccessControl.disabled_permission?(action)
-        Rails.logger.debug { "Used permission \"#{action}\" that is not defined. It will never return true." }
+        # debugger if !action.is_a?(Hash) && action.end_with?('angular_kittens')
+        Rails.logger.debug { "permissions_for used permission \"#{action}\" that is not defined. It will never return true." }
         raise UnknownPermissionError.new(action) if raise_on_unknown
       end
 
