@@ -87,7 +87,7 @@ module Authorization
       if !OpenProject::AccessControl.disabled_permission?(action)
         # See https://www.openproject.org/docs/development/concepts/permissions/#definition-of-permissions
         # if you are wondering where to define permissions
-        Rails.logger.debug { "Used permission \"#{action}\" that is not defined. It will never return true." }
+        Rails.logger.debug { "permissions_for used permission \"#{action}\" that is not defined. It will never return true." }
         raise UnknownPermissionError.new(action) if raise_on_unknown
       end
 
