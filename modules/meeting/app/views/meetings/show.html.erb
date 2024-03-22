@@ -118,6 +118,12 @@ See COPYRIGHT and LICENSE files for more details.
         <strong><%= Meeting.human_attribute_name(:participants_attended) %></strong>: <%= format_participant_list @meeting.participants.attended %>
       </p>
     </div>
+    <div class="grid-content small-12" >
+      <p>
+        <strong><%= Meeting.human_attribute_name(:th_meeting_content) %></strong>: <br />
+        <span style="white-space: pre-wrap"><%=h @meeting.th_meeting_content_show %></span>
+      </p>
+    </div>
   </div>
 </div>
 
