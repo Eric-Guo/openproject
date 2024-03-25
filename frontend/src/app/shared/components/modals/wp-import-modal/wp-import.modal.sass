@@ -1,3 +1,22 @@
+.wp-sys-template-files
+  display: flex
+
+  .wp-sys-template-file
+    margin: 0 4px
+    text-underline-offset: 4px
+    cursor: pointer
+    color: #7e7e7e
+
+    &.active,&:hover
+      text-decoration: underline
+
+    &.active
+      color: black
+
+.wp-template-actions
+  display: flex
+  justify-content: space-between
+
 .wp-template-container
   display: flex
   flex-direction: row

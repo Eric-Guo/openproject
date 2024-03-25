@@ -2,7 +2,7 @@ import { States } from 'core-app/core/states/states.service';
 import {
   ChangeDetectorRef, Component, ElementRef, Inject, OnInit,
 } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as ExcelJs from 'exceljs';
 import { catchError } from 'rxjs';
 import { OpModalComponent } from 'core-app/shared/components/modal/modal.component';
@@ -42,7 +42,16 @@ type WpTemplateRow = {
   checked:boolean;
 };
 
+type SysTemplateFile = {
+  id:number;
+  name:string;
+  selected:boolean;
+  buffer?:ArrayBuffer;
+  groups?:WpTemplateGroup[];
+};
+
 const tempData:{
+  sysTemplateFiles?:SysTemplateFile[];
   groups?:WpTemplateGroup[];
   currentGroup?:WpTemplateGroup;
   currentTemplateRows?:WpTemplateRow[];
@@ -63,6 +72,17 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
   public wpTypes:TypeResource[] = [];
 
   public busy = false;
+
+  public _sysTemplateFiles:SysTemplateFile[] = [];
+
+  public get sysTemplateFiles() {
+    return this._sysTemplateFiles;
+  }
+
+  set sysTemplateFiles(value) {
+    tempData.sysTemplateFiles = value;
+    this._sysTemplateFiles = value;
+  }
 
   private _groups:WpTemplateGroup[];
 
@@ -148,6 +168,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     readonly wpRelations:WorkPackageRelationsService,
     readonly halEvents:HalEventsService,
     readonly loadingIndicator:LoadingIndicatorService,
+    readonly http:HttpClient,
   ) {
     super(locals, cdRef, elementRef);
 
@@ -158,6 +179,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     this.projectIdentifier = this.currentProjectService.identifier;
 
     // 读取缓存
+    if (tempData.sysTemplateFiles) this.sysTemplateFiles = tempData.sysTemplateFiles;
     if (tempData.groups) this.groups = tempData.groups;
     if (tempData.currentGroup) this.currentGroup = tempData.currentGroup;
     if (tempData.currentTemplateRows) this.currentTemplateRows = tempData.currentTemplateRows;
@@ -173,6 +195,8 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       return;
     }
 
+    this.getSysTemplateFiles();
+
     const typesPath = this.apiV3Service.projects.id(this.projectIdentifier).types.path;
     this.halResourceService.get<CollectionResource<TypeResource>>(typesPath).subscribe((types) => {
       if (!types || types.elements.length === 0) {
@@ -181,6 +205,22 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       }
 
       this.wpTypes = types.elements;
+    });
+  }
+
+  getSysTemplateFiles() {
+    if (this.sysTemplateFiles && this.sysTemplateFiles.length > 0) return;
+
+    this.http.get('/th_work_packages/templates').subscribe((res) => {
+      if (!Array.isArray(res)) return;
+
+      this.sysTemplateFiles = res.map((item:{ file_id:number; file_name:string; }) => ({
+        id: item.file_id,
+        name: item.file_name,
+        selected: false,
+      }));
+
+      this.cdRef.detectChanges();
     });
   }
 
@@ -217,6 +257,12 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       this.groups = data;
 
       this.onGroupClick(this.groups[0]);
+
+      this.sysTemplateFiles.forEach((item) => {
+        item.selected = false;
+      });
+
+      this.cdRef.detectChanges();
     } catch (e) {
       this.showNotice('文件中的数据存在问题');
     }
@@ -229,10 +275,15 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     return true;
   }
 
-  async excel2data(file:File) {
+  async excel2data(file:File|ArrayBuffer) {
     const wb = new ExcelJs.Workbook();
-    const buffer = await file.arrayBuffer();
-    await wb.xlsx.load(buffer);
+
+    if (file instanceof File) {
+      const buffer = await file.arrayBuffer();
+      await wb.xlsx.load(buffer);
+    } else {
+      await wb.xlsx.load(file);
+    }
 
     const groups:WpTemplateGroup[] = wb.worksheets.map((ws) => {
       const rows = ws.getSheetValues();
@@ -438,5 +489,58 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     setTimeout(() => {
       this.toastService.remove(t);
     }, 3 * 1000);
+  }
+
+  selectSysTemplateFile(sysTemplateFile:SysTemplateFile) {
+    if (sysTemplateFile.selected) return;
+
+    sysTemplateFile.selected = true;
+
+    this.sysTemplateFiles.forEach((tf) => {
+      if (tf !== sysTemplateFile) tf.selected = false;
+    });
+
+    this.cdRef.detectChanges();
+
+    void this.setSysTemplateFileGroups(sysTemplateFile);
+  }
+
+  async setSysTemplateFileGroups(sysTemplateFile:SysTemplateFile) {
+    this.groups = await this.getSysTemplateFileGroups(sysTemplateFile);
+
+    this.onGroupClick(this.groups[0]);
+  }
+
+  async getSysTemplateFileGroups(sysTemplateFile:SysTemplateFile) {
+    if (sysTemplateFile.groups) return sysTemplateFile.groups;
+
+    if (!sysTemplateFile.buffer) {
+      const buffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+        this.http.get(`/th_work_packages/templates/${sysTemplateFile.id}/download`, {
+          responseType: 'arraybuffer',
+        }).pipe(
+          catchError((error:HttpErrorResponse) => {
+            reject(error);
+            throw new Error(error.message);
+          }),
+        ).subscribe((res) => {
+          resolve(res);
+        });
+      });
+
+      sysTemplateFile.buffer = buffer;
+    }
+
+    const groups = await this.excel2data(sysTemplateFile.buffer);
+
+    return groups;
+  }
+
+  get downloadUrl() {
+    const sysTemplateFile = this.sysTemplateFiles.find((tf) => tf.selected);
+
+    if (!sysTemplateFile) return '';
+
+    return `/th_work_packages/templates/${sysTemplateFile.id}/download`;
   }
 }

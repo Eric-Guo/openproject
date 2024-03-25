@@ -17,5 +17,14 @@ OpenProject::Application.routes.draw do
         post :callback
       end
     end
+
+    resources :templates,
+              controller: 'th_work_packages/templates',
+              only: %i[index],
+              as: :templates do
+      member do
+        get :download
+      end
+    end
   end
 end

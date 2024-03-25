@@ -6,12 +6,34 @@
   <div class="spot-modal--header">导入工作包</div>
 
   <div class="spot-modal--body spot-container">
-    <div>
-      <input
-        type="file"
-        [accept]="fileAccept"
-        (change)="onFileChange($event)"
-      />
+    <div class="wp-sys-template-files" *ngIf="sysTemplateFiles && sysTemplateFiles.length > 0">
+      <div>系统模板：</div>
+      <div
+        class="wp-sys-template-file"
+        *ngFor="let templateFile of sysTemplateFiles"
+        [ngClass]="{ active: templateFile.selected }"
+        (click)="selectSysTemplateFile(templateFile)"
+      >
+        {{ templateFile.name }}
+      </div>
+    </div>
+    <div class="wp-template-actions">
+      <div>
+        <input
+          type="file"
+          [accept]="fileAccept"
+          (change)="onFileChange($event)"
+        />
+      </div>
+      <a
+        class="button -alt-highlight"
+        [href]="downloadUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        *ngIf="!!downloadUrl"
+      >
+        下载当前模板
+      </a>
     </div>
     <div class="wp-template-container">
       <div class="wp-template-groups" *ngIf="!!groups">

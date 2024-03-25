@@ -399,4 +399,32 @@ class Edoc::Files
 
     result[:Data]
   end
+
+  def self.check_download(file_id)
+    path = '/downLoad/DownLoadCheck?fileIds='
+    params = Edoc::Helpers.hash_with_token({ file_id: })
+
+    url = Edoc::Helpers.url(path, params)
+
+    result = Edoc::Helpers.parse_response(HTTP.get(url))
+
+    raise StandardError.new(result) unless result[:nResult] == 0
+
+    {
+      region_id: result[:RegionId],
+      region_type: result[:RegionType],
+      region_hash: result[:RegionHash],
+      region_url: result[:RegionUrl]
+    }
+  end
+
+  def self.download(file_id)
+    check_result = check_download(file_id)
+
+    path = '/downLoad/index'
+    params = Edoc::Helpers.hash_with_token({ file_id:, regionHash: check_result[:region_hash] })
+    url = Edoc::Helpers.url(path, params)
+
+    HTTP.get(url)
+  end
 end
