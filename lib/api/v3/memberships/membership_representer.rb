@@ -59,6 +59,15 @@ module API
           }
         end
 
+        link :delete do
+          next unless current_user.allowed_in_project?(:manage_members, represented.project)
+
+          {
+            href: api_v3_paths.membership(represented.id),
+            method: :delete
+          }
+        end
+
         property :id
 
         property :email,
