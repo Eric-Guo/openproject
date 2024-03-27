@@ -1,9 +1,13 @@
 module ThWorkPackages
   class TemplatesController < ::ApplicationController
     def index
-      @templates = Edoc::Files.list(ENV['EDOC_WP_TEMPLATE_FOLDER'])
+      folders = Edoc::Folders.list(ENV['EDOC_WP_TEMPLATE_FOLDER'])
 
-      render json: @templates
+      folders.each do |folder|
+        folder[:files] = Edoc::Files.list(folder[:folder_id])
+      end
+
+      render json: folders
     end
 
     def download

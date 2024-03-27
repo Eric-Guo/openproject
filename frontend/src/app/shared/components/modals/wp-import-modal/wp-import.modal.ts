@@ -50,7 +50,29 @@ type SysTemplateFile = {
   groups?:WpTemplateGroup[];
 };
 
+type SysTemplateFolder = {
+  id:number;
+  name:string;
+  files:SysTemplateFile[];
+  selected:boolean;
+};
+
+type SysTemplateFileSource = {
+  file_id:number;
+  file_name:string;
+  ext_name:string;
+  size:number;
+};
+
+type SysTemplateFolderSource = {
+  folder_id:number;
+  folder_name:string;
+  files:SysTemplateFileSource[];
+};
+
 const tempData:{
+  docTitle?:string;
+  sysTemplateFolders?:SysTemplateFolder[];
   sysTemplateFiles?:SysTemplateFile[];
   groups?:WpTemplateGroup[];
   currentGroup?:WpTemplateGroup;
@@ -72,6 +94,28 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
   public wpTypes:TypeResource[] = [];
 
   public busy = false;
+
+  public _docTitle:string;
+
+  public get docTitle() {
+    return this._docTitle;
+  }
+
+  set docTitle(value) {
+    tempData.docTitle = value;
+    this._docTitle = value;
+  }
+
+  public _sysTemplateFolders:SysTemplateFolder[] = [];
+
+  public get sysTemplateFolders() {
+    return this._sysTemplateFolders;
+  }
+
+  set sysTemplateFolders(value) {
+    tempData.sysTemplateFolders = value;
+    this._sysTemplateFolders = value;
+  }
 
   public _sysTemplateFiles:SysTemplateFile[] = [];
 
@@ -179,6 +223,8 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     this.projectIdentifier = this.currentProjectService.identifier;
 
     // 读取缓存
+    if (tempData.docTitle) this.docTitle = tempData.docTitle;
+    if (tempData.sysTemplateFolders) this.sysTemplateFolders = tempData.sysTemplateFolders;
     if (tempData.sysTemplateFiles) this.sysTemplateFiles = tempData.sysTemplateFiles;
     if (tempData.groups) this.groups = tempData.groups;
     if (tempData.currentGroup) this.currentGroup = tempData.currentGroup;
@@ -195,7 +241,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       return;
     }
 
-    this.getSysTemplateFiles();
+    this.getSysTemplateFolders();
 
     const typesPath = this.apiV3Service.projects.id(this.projectIdentifier).types.path;
     this.halResourceService.get<CollectionResource<TypeResource>>(typesPath).subscribe((types) => {
@@ -208,16 +254,21 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     });
   }
 
-  getSysTemplateFiles() {
+  getSysTemplateFolders() {
     if (this.sysTemplateFiles && this.sysTemplateFiles.length > 0) return;
 
     this.http.get('/th_work_packages/templates').subscribe((res) => {
       if (!Array.isArray(res)) return;
 
-      this.sysTemplateFiles = res.map((item:{ file_id:number; file_name:string; }) => ({
-        id: item.file_id,
-        name: item.file_name,
+      this.sysTemplateFolders = res.map((item:SysTemplateFolderSource) => ({
+        id: item.folder_id,
+        name: item.folder_name,
         selected: false,
+        files: item.files.map((file) => ({
+          id: file.file_id,
+          name: file.file_name,
+          selected: false,
+        })),
       }));
 
       this.cdRef.detectChanges();
@@ -255,6 +306,8 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       if (!data || data.length === 0) return;
 
       this.groups = data;
+
+      this.docTitle = `本地 / ${file.name}`;
 
       this.onGroupClick(this.groups[0]);
 
@@ -508,6 +561,18 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
   async setSysTemplateFileGroups(sysTemplateFile:SysTemplateFile) {
     this.groups = await this.getSysTemplateFileGroups(sysTemplateFile);
 
+    const selectedFolder = this.sysTemplateFolders.find((f) => f.selected);
+
+    const docTitle = ['系统'];
+
+    if (selectedFolder) {
+      docTitle.push(selectedFolder.name);
+    }
+
+    docTitle.push(sysTemplateFile.name);
+
+    this.docTitle = docTitle.join(' / ');
+
     this.onGroupClick(this.groups[0]);
   }
 
@@ -542,5 +607,43 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     if (!sysTemplateFile) return '';
 
     return `/th_work_packages/templates/${sysTemplateFile.id}/download`;
+  }
+
+  handleSysTemplateFolderChange(e:Event) {
+    const target = e.target as HTMLSelectElement;
+
+    const selectedId = Number(target.value);
+
+    let selectedFolder:SysTemplateFolder|undefined;
+
+    this.sysTemplateFolders.forEach((tf) => {
+      if (selectedFolder || tf.id !== selectedId) {
+        tf.selected = false;
+        return;
+      }
+
+      selectedFolder = tf;
+      tf.selected = true;
+    });
+
+    this.sysTemplateFiles.forEach((tf) => {
+      tf.selected = false;
+    });
+
+    this.sysTemplateFiles = selectedFolder?.files || [];
+
+    this.cdRef.detectChanges();
+  }
+
+  handleSysTemplateFileChange(e:Event) {
+    const target = e.target as HTMLSelectElement;
+
+    const selectedId = Number(target.value);
+
+    const selectedFile = this.sysTemplateFiles.find((tf) => tf.id === selectedId);
+
+    if (!selectedFile) return;
+
+    this.selectSysTemplateFile(selectedFile);
   }
 }

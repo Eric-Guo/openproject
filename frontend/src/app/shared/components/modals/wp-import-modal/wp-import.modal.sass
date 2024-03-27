@@ -1,21 +1,24 @@
-.wp-sys-template-files
+.wp-sys-templates
   display: flex
+  align-items: center
 
-  .wp-sys-template-file
+  &-files,&-folders
+    flex: none
+    width: 160px
     margin: 0 4px
-    text-underline-offset: 4px
-    cursor: pointer
-    color: #7e7e7e
 
-    &.active,&:hover
-      text-decoration: underline
-
-    &.active
-      color: black
+    select
+      width: 100%
 
 .wp-template-actions
   display: flex
   justify-content: space-between
+
+.wp-template-doc-title
+  font-size: 14px
+  border-bottom: 1px solid #ccc
+  padding: 4px
+  font-weight: 600
 
 .wp-template-container
   display: flex

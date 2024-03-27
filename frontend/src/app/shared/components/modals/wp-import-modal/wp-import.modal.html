@@ -6,25 +6,43 @@
   <div class="spot-modal--header">导入工作包</div>
 
   <div class="spot-modal--body spot-container">
-    <div class="wp-sys-template-files" *ngIf="sysTemplateFiles && sysTemplateFiles.length > 0">
-      <div>系统模板：</div>
-      <div
-        class="wp-sys-template-file"
-        *ngFor="let templateFile of sysTemplateFiles"
-        [ngClass]="{ active: templateFile.selected }"
-        (click)="selectSysTemplateFile(templateFile)"
-      >
-        {{ templateFile.name }}
+    <div class="wp-sys-templates">
+      <div class="wp-sys-templates-title">系统模板：</div>
+      <div class="wp-sys-templates-folders">
+        <select
+          (change)="handleSysTemplateFolderChange($event)"
+        >
+          <option value="">选择分类...</option>
+          <option
+            *ngFor="let folder of sysTemplateFolders"
+            [value]="folder.id"
+            [selected]="folder.selected"
+          >{{ folder.name }}</option>
+        </select>
+      </div>
+      <div class="wp-sys-templates-files">
+        <select
+          (change)="handleSysTemplateFileChange($event)"
+        >
+          <option value="">选择模板...</option>
+          <option
+            *ngFor="let file of sysTemplateFiles"
+            [value]="file.id"
+            [selected]="file.selected"
+          >{{ file.name }}</option>
+        </select>
       </div>
     </div>
     <div class="wp-template-actions">
-      <div>
+      <label class="button">
+        导入本地文件
         <input
+          style="display: none;"
           type="file"
           [accept]="fileAccept"
           (change)="onFileChange($event)"
         />
-      </div>
+      </label>
       <a
         class="button -alt-highlight"
         [href]="downloadUrl"
@@ -35,50 +53,55 @@
         下载当前模板
       </a>
     </div>
-    <div class="wp-template-container">
-      <div class="wp-template-groups" *ngIf="!!groups">
-        <div
-          *ngFor="let group of groups"
-          class="wp-template-group-item"
-          [ngClass]="{ active: currentGroup === group }"
-          (click)="onGroupClick(group)"
-        >
-          {{ group.name }}
-        </div>
+    <div>
+      <div class="wp-template-doc-title">
+        {{ docTitle }}
       </div>
-      <div class="wp-template-list" *ngIf="!!currentGroup">
-        <div class="wp-template-list-item">
-          <div>
-            <input
-              type="checkbox"
-              [checked]="checkedAll"
-              [indeterminate]="indeterminateAll"
-              (change)="onCheckAllChange($event)"
-            >
+      <div class="wp-template-container">
+        <div class="wp-template-groups" *ngIf="!!groups">
+          <div
+            *ngFor="let group of groups"
+            class="wp-template-group-item"
+            [ngClass]="{ active: currentGroup === group }"
+            (click)="onGroupClick(group)"
+          >
+            {{ group.name }}
           </div>
-          <div>编号</div>
-          <div>类型</div>
-          <div>主题</div>
         </div>
-        <div
-          *ngFor="let row of currentTemplateRows"
-          class="wp-template-list-item"
-        >
-          <div>
-            <input
-              type="checkbox"
-              [checked]="row.checked"
-              (change)="onRowCheckboxChange($event, row)"
-            >
+        <div class="wp-template-list" *ngIf="!!currentGroup">
+          <div class="wp-template-list-item">
+            <div>
+              <input
+                type="checkbox"
+                [checked]="checkedAll"
+                [indeterminate]="indeterminateAll"
+                (change)="onCheckAllChange($event)"
+              >
+            </div>
+            <div>编号</div>
+            <div>类型</div>
+            <div>主题</div>
           </div>
-          <div>
-            {{ row.value.id }}
-          </div>
-          <div>
-            {{ row.value.type }}
-          </div>
-          <div>
-            {{ row.value.subject }}
+          <div
+            *ngFor="let row of currentTemplateRows"
+            class="wp-template-list-item"
+          >
+            <div>
+              <input
+                type="checkbox"
+                [checked]="row.checked"
+                (change)="onRowCheckboxChange($event, row)"
+              >
+            </div>
+            <div>
+              {{ row.value.id }}
+            </div>
+            <div>
+              {{ row.value.type }}
+            </div>
+            <div>
+              {{ row.value.subject }}
+            </div>
           </div>
         </div>
       </div>
