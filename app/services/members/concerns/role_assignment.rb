@@ -71,7 +71,7 @@ module Members::Concerns::RoleAssignment
   end
 
   def set_profile_attributes(params)
-    unless model.project.present? && model.project.module_enabled?("th_members")
+    unless model.project.present? && model.project.module_enabled?("th_members_module")
       params.delete(:profile_attributes)
     end
 

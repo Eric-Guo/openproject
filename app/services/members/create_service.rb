@@ -57,7 +57,7 @@ class Members::CreateService < BaseServices::Create
 
 
   def add_member_profile(member)
-    unless member.project.present? && member.project.module_enabled?("th_members")
+    unless member.project.present? && member.project.module_enabled?("th_members_module")
       params.delete(:profile_attributes)
     end
 
