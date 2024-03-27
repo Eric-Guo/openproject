@@ -39,6 +39,7 @@ export interface IUserHalResourceLinks extends IHalResourceLinks {
 export interface IUser {
   id:ID;
   name:string;
+  href:string;
   createdAt:string;
   updatedAt:string;
 
