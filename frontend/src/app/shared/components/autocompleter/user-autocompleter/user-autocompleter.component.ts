@@ -66,6 +66,7 @@ export interface IUserAutocompleteItem {
   avatar?:string|null;
 }
 
+// eslint-disable-next-line change-detection-strategy/on-push
 @Component({
   templateUrl: '../op-autocompleter/op-autocompleter.component.html',
   selector: usersAutocompleterSelector,
@@ -129,9 +130,10 @@ export class UserAutocompleterComponent extends OpAutocompleterComponent<IUserAu
       .get<IHALCollection<IUser>>(filteredURL.toString())
       .pipe(
         map((res) => {
+          const elements = res._embedded?.elements ?? (res as unknown as IUser[]);
           const seen = new Set<string|number>();
-          return res._embedded.elements.filter((el) => {
-            const key = el._links.self?.href || el.id;
+          return elements.filter((el) => {
+            const key = el._links?.self?.href || el.id;
             if (seen.has(key)) { return false; }
             seen.add(key);
             return true;
@@ -139,7 +141,7 @@ export class UserAutocompleterComponent extends OpAutocompleterComponent<IUserAu
         }),
         map((users) => {
           const mapped:IUserAutocompleteItem[] = users.map((user) => {
-              return { id: user.id, name: user.name, href: user._links.self?.href, email: user.email };
+            return { id: user.id, name: user.name, href: user._links?.self?.href || user.href, email: user.email };
           });
 
           if (this.additionalOptions) {
