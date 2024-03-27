@@ -79,7 +79,7 @@ module Members
       end
 
       def filter_param_keys
-        super + %i(shared_role_id)
+        super + %i(shared_role_id project_id)
       end
 
       def share_options
