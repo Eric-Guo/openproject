@@ -56,13 +56,17 @@ class MembersController < ApplicationController
     elsif overall_result.all?(&:success?)
       flash[:notice] = members_added_notice(overall_result.map(&:result))
 
-      redirect_to project_members_path(project_id: @project, status: "all")
+      respond_to do |format|
+        format.json { render json: { error: false, message: nil } }
+        format.html { redirect_to project_members_path(project_id: @project, status: "all") }
+      end
     else
       display_error(overall_result.first, now: true)
 
       set_index_data!
 
       respond_to do |format|
+        format.json { render json: { error: true, message: overall_result.first } }
         format.html { render "index" }
       end
     end
@@ -101,11 +105,17 @@ class MembersController < ApplicationController
   end
 
   def autocomplete_for_member
+    q = if params[:filters].blank? || params[:filters] == "[]"
+          params[:q]
+        else
+          JSON.parse(params[:filters]).first["name"]["values"].first
+        end
+
     type = params[:type]
-    @principals = possible_members(params[:q], 100, type:)
+    @principals = possible_members(q, 100, type:)
 
     if type.nil? || type == "User"
-      @email = suggest_invite_via_email?(current_user, params[:q]&.strip, @principals | @project.principals)
+      @email = suggest_invite_via_email?(current_user, q&.strip, @principals | @project.principals)
     end
 
     respond_to do |format|
