@@ -61,6 +61,38 @@ module API
 
         property :id
 
+        property :email,
+                 getter: ->(*) { represented.principal&.mail },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: false
+
+        property :status,
+                 getter: ->(*) { represented.principal&.status },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: false
+
+        property :status_name,
+                 getter: ->(*) {
+                   next unless represented.principal&.status
+
+                   I18n.t(represented.principal.status, scope: :user)
+                 },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: false
+
+        property :groups,
+                 getter: ->(*) {
+                   next unless represented.principal && represented.principal.type == "User" && represented.principal&.groups
+
+                   represented.principal.groups.map(&:name)
+                 },
+                 exec_context: :decorator,
+                 render_nil: true,
+                 cache_if: false
+
         associated_resource :project
 
         associated_resource :principal,
@@ -97,19 +129,20 @@ module API
                               { member_roles: :role }]
 
         property :profile,
-                  writable: true,
-                  getter: ->(*) {
-                    next unless project.module_enabled?("th_members") && profile.present?
-                    ::API::Decorators::MembershipProfile.new(profile)
-                  },
-                  setter: ->(fragment:, represented:, **args) {
-                    represented.profile_attributes ||= API::ParserStruct.new
-                    MemberProfile.service_columns.each do |key|
-                      if fragment.key?(key.to_s)
-                        represented.profile_attributes[key.to_s] = fragment[key.to_s]
-                      end
-                    end
-                  }
+                 writable: true,
+                 getter: ->(*) {
+                   next unless project.module_enabled?("th_members_module") && profile.present?
+
+                   ::API::Decorators::MembershipProfile.new(profile)
+                 },
+                 setter: ->(fragment:, represented:, **_args) {
+                   represented.profile_attributes ||= API::ParserStruct.new
+                   MemberProfile.service_columns.each do |key|
+                     if fragment.key?(key.to_s)
+                       represented.profile_attributes[key.to_s] = fragment[key.to_s]
+                     end
+                   end
+                 }
 
         self.to_eager_load = %i[principal
                                 project
