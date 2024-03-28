@@ -70,6 +70,18 @@ type SysTemplateFolderSource = {
   files:SysTemplateFileSource[];
 };
 
+type PaymentNode = {
+  date:string;
+  title:string;
+};
+
+type Contract = {
+  code:string;
+  name:string;
+  date:string;
+  payment_nodes:PaymentNode[];
+};
+
 const tempData:{
   docTitle?:string;
   sysTemplateFolders?:SysTemplateFolder[];
@@ -80,6 +92,8 @@ const tempData:{
   checkedAll?:boolean;
   indeterminateAll?:boolean;
 } = {};
+
+const tempContracts:Record<string, Contract[]> = {};
 
 // eslint-disable-next-line change-detection-strategy/on-push
 @Component({
@@ -183,6 +197,8 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     this._indeterminateAll = value;
   }
 
+  public contracts:Contract[] = [];
+
   public fileAccept = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
 
   public text = {
@@ -220,7 +236,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       this.wp = locals.workPackage as WorkPackageResource;
     }
 
-    this.projectIdentifier = this.currentProjectService.identifier;
+    this.projectIdentifier = currentProjectService.identifier;
 
     // 读取缓存
     if (tempData.docTitle) this.docTitle = tempData.docTitle;
@@ -242,6 +258,14 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
     }
 
     this.getSysTemplateFolders();
+
+    this.getContracts();
+
+    this.getWpTypes();
+  }
+
+  getWpTypes() {
+    if (!this.projectIdentifier) return;
 
     const typesPath = this.apiV3Service.projects.id(this.projectIdentifier).types.path;
     this.halResourceService.get<CollectionResource<TypeResource>>(typesPath).subscribe((types) => {
@@ -273,6 +297,77 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
 
       this.cdRef.detectChanges();
     });
+  }
+
+  getContracts() {
+    if (!this.currentProjectService.id) return;
+
+    const projectId = this.currentProjectService.id;
+
+    if (tempContracts[projectId]) {
+      this.contracts = tempContracts[projectId];
+
+      this.cdRef.detectChanges();
+      return;
+    }
+
+    this.http.get(`/projects/${projectId}/payment_nodes`).subscribe((res:Contract[]) => {
+      if (!Array.isArray(res)) return;
+
+      this.contracts = res;
+      tempContracts[projectId] = res;
+
+      this.cdRef.detectChanges();
+    });
+  }
+
+  get canImportPaymentNodes() {
+    return this.contracts && this.contracts.length > 0;
+  }
+
+  handleClickImportPaymentNodes() {
+    if (!this.canImportPaymentNodes) return;
+
+    const group:WpTemplateGroup = {
+      key: 'payment_nodes',
+      name: '收款节点',
+      values: [],
+    };
+
+    const getValidDate = (date:string) => {
+      if (/^\d{4}-\d{2}-\d{2}/.test(date)) return date.slice(0, 10);
+      return '';
+    };
+
+    this.contracts.forEach((contract, ci) => {
+      group.values.push({
+        id: `${ci}`,
+        type: '合同',
+        subject: contract.name,
+        startDate: getValidDate(contract.date),
+      });
+      contract.payment_nodes.forEach((node, ni) => {
+        group.values.push({
+          id: `${ci}-${ni}`,
+          type: '里程碑',
+          subject: `【收款】${node.title}`,
+          startDate: getValidDate(node.date),
+          parent: `${ci}`,
+        });
+      });
+    });
+
+    this.groups = [group];
+
+    this.docTitle = group.name;
+
+    this.onGroupClick(this.groups[0]);
+
+    this.sysTemplateFiles.forEach((item) => {
+      item.selected = false;
+    });
+
+    this.cdRef.detectChanges();
   }
 
   validateFile(file:File):boolean {
@@ -452,6 +547,8 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       // 备注
       const customField6 = row.value.customField6 || '';
 
+      const startDate = row.value.startDate || '';
+
       queue.add((lastResult:[WpTemplate, WorkPackageResource][]) => new Promise<[WpTemplate, WorkPackageResource][]>((resolve, reject) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         let parent = this.wp?.$source._links.self;
@@ -467,6 +564,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
 
         void this.wpCreate.createNewWorkPackage(this.projectIdentifier, {
           subject,
+          startDate,
           customField6,
           _links: {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access

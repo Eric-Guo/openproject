@@ -34,15 +34,25 @@
       </div>
     </div>
     <div class="wp-template-actions">
-      <label class="button">
-        导入本地文件
-        <input
-          style="display: none;"
-          type="file"
-          [accept]="fileAccept"
-          (change)="onFileChange($event)"
-        />
-      </label>
+      <div>
+        <label class="button">
+          导入本地文件
+          <input
+            style="display: none;"
+            type="file"
+            [accept]="fileAccept"
+            (change)="onFileChange($event)"
+          />
+        </label>
+        <button
+          class="button"
+          type="button"
+          *ngIf="canImportPaymentNodes"
+          (click)="handleClickImportPaymentNodes()"
+        >
+          导入收款节点
+        </button>
+      </div>
       <a
         class="button -alt-highlight"
         [href]="downloadUrl"
