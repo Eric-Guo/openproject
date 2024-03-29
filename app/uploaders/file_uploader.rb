@@ -95,7 +95,7 @@ module FileUploader
 
   module ClassMethods
     def cache_dir
-      @cache_dir ||= File.join(Dir.tmpdir, "op_uploaded_files")
+      @cache_dir ||= File.join(Dir.tmpdir, "op_uploaded_files_#{Setting.installation_uuid.split('-').first}")
     end
   end
 end
