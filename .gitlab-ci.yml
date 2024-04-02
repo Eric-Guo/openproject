@@ -51,4 +51,4 @@ deploy_production:
     url: https://plm.thape.com.cn
   when: manual
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: '$CI_COMMIT_REF_NAME == "thape_prod"'
