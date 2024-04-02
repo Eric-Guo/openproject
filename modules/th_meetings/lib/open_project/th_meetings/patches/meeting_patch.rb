@@ -89,6 +89,15 @@ module OpenProject::ThMeetings
         def create_or_update_th_meeting
           return if new_record?
 
+          # 如果时间是过去的修改，则跳过同步到天华会议
+          if self.saved_change_to_start_time?
+            old_start_time, new_start_time = self.saved_change_to_start_time
+
+            return if (old_start_time.blank? || old_start_time < Time.now) && new_start_time < Time.now
+          elsif self.start_time < Time.now
+            return
+          end
+
           th_meeting = self.th_meeting || ThMeeting.new(meeting: self, upstream_id: self.th_meeting_upstream_id)
 
           th_meeting.upstream_area_id = self.th_meeting_upstream_area_id.to_s
