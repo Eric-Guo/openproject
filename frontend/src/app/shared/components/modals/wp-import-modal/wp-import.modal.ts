@@ -547,7 +547,7 @@ export class WpImportModalComponent extends OpModalComponent implements OnInit {
       // 备注
       const customField6 = row.value.customField6 || '';
 
-      const startDate = row.value.startDate || '';
+      const startDate = row.value.startDate || null;
 
       queue.add((lastResult:[WpTemplate, WorkPackageResource][]) => new Promise<[WpTemplate, WorkPackageResource][]>((resolve, reject) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
