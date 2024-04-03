@@ -2323,6 +2323,7 @@ zh-CN:
   label_placeholder_user_plural: "占位符用户"
   label_planning: "规划"
   label_please_login: "请登录"
+  label_plm_help_doc: "天华 PLM 帮助文档"
   label_plugins: "插件"
   label_modules_and_plugins: "模块和插件"
   label_precedes: "之前"
