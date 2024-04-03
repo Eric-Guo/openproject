@@ -33,6 +33,10 @@ See COPYRIGHT and LICENSE files for more details.
   data-modal-iframe-url="<%= OpenProject::Configuration.onboarding_video_url %>"
   data-modal-class-name="onboarding-modal"
 >
+  <%= link_to t(:label_plm_help_doc),
+              '/projects/plm-user-center',
+              title: t(:label_plm_help_doc),
+              class: 'op-menu--item-action' %>
   <%= link_to t(:label_introduction_video),
               '',
               title: t(:label_introduction_video),
