@@ -96,7 +96,7 @@ module API
         # so that browsers do not reinterpret the content
         header["X-Content-Type-Options"] = "nosniff"
         env["api.format"] = :binary
-        sendfile attachment.diskfile.path
+        sendfile is_local_file?(attachment) ? attachment.file.path : attachment.diskfile.path
       end
 
       def attachment_content_type(attachment)
@@ -139,6 +139,10 @@ module API
 
       def avatar_link_expiration_seconds
         @avatar_link_expiration_seconds ||= OpenProject::Configuration.avatar_link_expiration_seconds.to_i
+      end
+
+      def is_local_file?(attachment)
+        attachment.file.is_a?(LocalFileUploader)
       end
     end
   end
