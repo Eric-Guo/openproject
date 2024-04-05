@@ -38,7 +38,7 @@ module Homescreen
       def initialize(*)
         super
 
-        @newest_users = User.active.newest.take(3)
+        @newest_users = User.active.newest.take(7)
       end
 
       def title
