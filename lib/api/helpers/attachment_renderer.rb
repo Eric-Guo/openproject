@@ -93,7 +93,7 @@ module API
         content_type attachment_content_type(attachment)
         header["Content-Disposition"] = attachment.content_disposition
         env["api.format"] = :binary
-        sendfile attachment.diskfile.path
+        sendfile is_local_file?(attachment) ? attachment.file.path : attachment.diskfile.path
       end
 
       def attachment_content_type(attachment)
@@ -145,6 +145,10 @@ module API
 
       def avatar_link_expiry_seconds
         @avatar_link_expiry_seconds ||= OpenProject::Configuration.avatar_link_expiry_seconds.to_i
+      end
+
+      def is_local_file?(attachment)
+        attachment.file.is_a?(LocalFileUploader)
       end
     end
   end
