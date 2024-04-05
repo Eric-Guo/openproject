@@ -96,19 +96,9 @@ Redmine::MenuManager.map :top_menu do |menu|
             icon: "home",
             first: true
 
-  menu.push :my_page,
-            { controller: "/my/page", action: "show" },
-            context: :my,
-            after: :home,
-            icon: "person",
-            caption: I18n.t("my_page.label"),
-            if: ->(*) do
-              User.current.logged?
-            end
-
   menu.push :my_time,
             { controller: "/my/time_management", action: "index" },
-            after: :my_page,
+            after: :home,
             context: :my,
             caption: :label_my_time,
             if: ->(*) do
