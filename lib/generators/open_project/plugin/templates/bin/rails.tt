@@ -11,13 +11,13 @@ require "bundler/setup" if File.exist?(ENV["BUNDLE_GEMFILE"])
 
 ##
 # This is not ideal but better than nothing.
-if ENV["OPENPROJECT_ROOT"]
+if ENV["OPENPROJECT_CORE"]
   # /Users/mkahl/dev/openproject/release/lib
-  path = Pathname(ENV["OPENPROJECT_ROOT"]).join("lib")
+  path = Pathname(ENV["OPENPROJECT_CORE"]).join("lib")
   $LOAD_PATH.unshift(path.to_s)
 else
   puts
-  puts "Error: please define OPENPROJECT_ROOT pointing to your OpenProject core's root directory"
+  puts "Error: please define OPENPROJECT_CORE pointing to your OpenProject core's root directory"
   puts
   Kernel.exit(1)
 end
