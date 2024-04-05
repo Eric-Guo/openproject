@@ -24,7 +24,7 @@ export function getPosition(evt:any):number {
   const originalEvt = evt.originalEvent;
 
   try {
-    if (originalEvt.rangeParent) {
+    if (originalEvt?.rangeParent) {
       const range = document.createRange();
       range.setStart(originalEvt.rangeParent, originalEvt.rangeOffset);
       return range.startOffset;
