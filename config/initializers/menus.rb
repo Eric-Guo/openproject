@@ -139,12 +139,6 @@ Redmine::MenuManager.map :global_menu do |menu|
             icon: "home",
             first: true
 
-  menu.push :my_page,
-            { controller: "/my/page", action: "show" },
-            after: :home,
-            icon: "person",
-            caption: I18n.t("my_page.label")
-
   # Projects
   menu.push :projects,
             { controller: "/projects", project_id: nil, action: "index" },
