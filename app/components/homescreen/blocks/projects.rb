@@ -39,7 +39,7 @@ module Homescreen
         super
 
         @favorite_projects = Project.visible.active.favorited_by(current_user)
-        @newest_projects = Project.visible.newest.take(3)
+        @newest_projects = Project.visible.newest.take(7)
       end
 
       def title
