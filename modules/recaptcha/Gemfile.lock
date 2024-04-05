@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    openproject-recaptcha (1.0.0)
+      recaptcha (~> 5.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    recaptcha (5.16.0)
+
+PLATFORMS
+  arm64-darwin-22
+  ruby
+
+DEPENDENCIES
+  openproject-recaptcha!
+
+BUNDLED WITH
+   2.5.10
