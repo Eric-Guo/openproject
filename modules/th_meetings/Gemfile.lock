@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    openproject-th_meetings (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  arm64-darwin-22
+  ruby
+
+DEPENDENCIES
+  openproject-th_meetings!
+
+BUNDLED WITH
+   2.5.10
