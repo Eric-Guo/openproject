@@ -56,6 +56,7 @@ group :opf_plugins do
   gem 'openproject-th_notifications',          path: 'modules/th_notifications'
   gem 'openproject-th_work_packages',          path: 'modules/th_work_packages'
   gem 'openproject-th_meetings',               path: 'modules/th_meetings'
+  gem 'openproject-th_queries',                path: 'modules/th_queries'
 
   # bundle config local.openproject-th_plugin /Users/guochunzhong/git/sso/openproject-th_plugin/
   gem 'openproject-th_plugin', git: "https://git.thape.com.cn/rails/openproject-th_plugin.git", branch: "op_old"

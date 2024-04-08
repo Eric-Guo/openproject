@@ -193,6 +193,11 @@ PATH
     openproject-th_projects (1.0.0)
 
 PATH
+  remote: modules/th_queries
+  specs:
+    openproject-th_queries (1.0.0)
+
+PATH
   remote: modules/th_user_auth
   specs:
     openproject-th_user_auth (1.0.0)
@@ -702,7 +707,6 @@ GEM
     mime-types-data (3.2024.0305)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
     minisyntax (0.2.5)
     minitest (5.22.3)
     msgpack (1.7.2)
@@ -732,8 +736,9 @@ GEM
     net-ssh (7.2.3)
     netrc (0.11.0)
     nio4r (2.7.1)
-    nokogiri (1.15.6)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.6-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.6-x86_64-linux)
       racc (~> 1.4)
     oj (3.14.3)
     okcomputer (1.18.5)
@@ -1229,6 +1234,7 @@ DEPENDENCIES
   openproject-th_notifications!
   openproject-th_plugin!
   openproject-th_projects!
+  openproject-th_queries!
   openproject-th_user_auth!
   openproject-th_work_packages!
   openproject-token (~> 3.0.1)
