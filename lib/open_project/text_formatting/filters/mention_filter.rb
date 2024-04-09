@@ -87,7 +87,7 @@ module OpenProject::TextFormatting
                           Group
                         when "work_package"
                           WorkPackage
-                        when 'wp_group'
+                        when "wp_group"
                           return mention.text
                         else
                           raise ArgumentError
