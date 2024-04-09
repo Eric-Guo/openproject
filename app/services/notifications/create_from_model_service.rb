@@ -315,10 +315,10 @@ class Notifications::CreateFromModelService
       wp_group_user_ids = []
 
       if wp_group_ids_tag.present?
-        if wp_group_ids_tag.include?('members')
+        if wp_group_ids_tag.include?("members")
           wp_group_user_ids += project.members.pluck(:user_id)
         end
-        if wp_group_ids_tag.include?('watchers') && resource.is_a?(WorkPackage)
+        if wp_group_ids_tag.include?("watchers") && resource.is_a?(WorkPackage)
           wp_group_user_ids += resource.watchers.pluck(:user_id)
         end
       end

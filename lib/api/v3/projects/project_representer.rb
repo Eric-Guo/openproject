@@ -235,7 +235,7 @@ module API
                  writable: true,
                  uncacheable: true,
                  getter: ->(*) {
-                   next unless module_enabled?('th_projects') && profile.present?
+                   next unless module_enabled?("th_projects") && profile.present?
                    ::API::Decorators::ProjectProfile.new(profile)
                  },
                  setter: ->(fragment:, represented:, **_args) {
