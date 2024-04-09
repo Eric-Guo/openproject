@@ -465,8 +465,8 @@ module ApplicationHelper
   end
 
   def logo_base64
-    path = ENV['LOGO_ABS_PATH']
-    return '' unless path.present? && File.exist?(path)
+    path = ENV["LOGO_ABS_PATH"]
+    return "" unless path.present? && File.exist?(path)
     data = File.open(path).read
     encode = Base64.encode64(data)
     "data:#{MIME::Types.type_for(path).first.content_type};base64,#{encode.gsub(/\n/, '')}"
