@@ -177,10 +177,10 @@ class ApplicationController < ActionController::Base
   # 微信浏览器自动登录
   def wechat_auto_login
     return unless browser.wechat?
-    return if User.current && User.current.type.to_s == 'User'
-    return if ENV['WECHAT_AUTH_ITH_URL'].blank?
+    return if User.current && User.current.type.to_s == "User"
+    return if ENV["WECHAT_AUTH_ITH_URL"].blank?
 
-    uri = Addressable::URI.parse(ENV['WECHAT_AUTH_ITH_URL'])
+    uri = Addressable::URI.parse(ENV["WECHAT_AUTH_ITH_URL"])
 
     query = uri.query_values || {}
 

@@ -106,7 +106,7 @@ class WorkPackage::PDFExport::View
   private
 
   def noto_font_base_path
-    if RUBY_PLATFORM.include?('darwin')
+    if RUBY_PLATFORM.include?("darwin")
       Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
     else
       Rails.public_path.join("fonts/noto")
@@ -114,7 +114,7 @@ class WorkPackage::PDFExport::View
   end
 
   def spacemono_font_base_path
-    if RUBY_PLATFORM.include?('darwin')
+    if RUBY_PLATFORM.include?("darwin")
       Pathname.new("/Users/#{ENV['USER']}/Library/Fonts")
     else
       Rails.public_path.join("fonts/spacemono")
