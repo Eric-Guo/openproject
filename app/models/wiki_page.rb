@@ -29,10 +29,10 @@
 class WikiPage < ApplicationRecord
   belongs_to :wiki, touch: true
   has_one :project, through: :wiki
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, class_name: "User"
 
   acts_as_attachable delete_permission: :delete_wiki_pages_attachments
-  acts_as_tree dependent: :nullify, order: 'title'
+  acts_as_tree dependent: :nullify, order: "title"
 
   # Generate slug of the title
   acts_as_url :title,
@@ -45,7 +45,7 @@ class WikiPage < ApplicationRecord
   acts_as_watchable
   acts_as_event title: Proc.new { |o| "#{Wiki.model_name.human}: #{o.title}" },
                 description: :text,
-                url: Proc.new { |o| { controller: '/wiki', action: 'show', project_id: o.wiki.project, id: o.title } }
+                url: Proc.new { |o| { controller: "/wiki", action: "show", project_id: o.wiki.project, id: o.title } }
 
   acts_as_searchable columns: %W[#{WikiPage.table_name}.title text],
                      include: [{ wiki: :project }],
@@ -62,7 +62,7 @@ class WikiPage < ApplicationRecord
   validates :slug,
             presence: {
               message: ->(object, _) {
-                I18n.t('activerecord.errors.models.wiki_page.attributes.slug.undeducible', title: object.title)
+                I18n.t("activerecord.errors.models.wiki_page.attributes.slug.undeducible", title: object.title)
               }
             }
 
@@ -132,7 +132,7 @@ class WikiPage < ApplicationRecord
       # Remove redirects for the new title
       wiki.redirects.where(title: slug).find_each(&:destroy)
       # Create a redirect to the new title
-      wiki.redirects << WikiRedirect.new(title: previous_slug, redirects_to: slug) unless redirect_existing_links == '0'
+      wiki.redirects << WikiRedirect.new(title: previous_slug, redirects_to: slug) unless redirect_existing_links == "0"
 
       # Change title of dependent wiki menu item
       dependent_item = MenuItems::WikiMenuItem.find_by(navigatable_id: wiki.id, name: previous_slug)
