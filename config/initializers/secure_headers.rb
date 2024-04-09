@@ -39,8 +39,8 @@ Rails.application.config.after_initialize do
       connect_src += ["https://appsignal-endpoint.net"]
     end
 
-    if ENV['CSP_CONNECT_SRC'].present?
-      connect_src << ENV['CSP_CONNECT_SRC']
+    if ENV["CSP_CONNECT_SRC"].present?
+      connect_src << ENV["CSP_CONNECT_SRC"]
     end
 
     # Add proxy configuration for Angular CLI to csp

@@ -42,8 +42,8 @@ class Notifications::CreateFromModelService
     '\bgroup#(\d+)\b'
       .freeze
   MENTION_WP_GROUP_TAG_ID_PATTERN =
-  '<mention[^>]*(?:data-type="wp_group"[^>]*data-id="(\w+)")|(?:data-id="(\w+)"[^>]*data-type="wp_group")[^>]*>'
-    .freeze
+    '<mention[^>]*(?:data-type="wp_group"[^>]*data-id="(\w+)")|(?:data-id="(\w+)"[^>]*data-type="wp_group")[^>]*>'
+      .freeze
   COMBINED_MENTION_PATTERN =
     [MENTION_USER_TAG_ID_PATTERN,
      MENTION_USER_HASH_ID_PATTERN,
@@ -313,10 +313,10 @@ class Notifications::CreateFromModelService
       wp_group_user_ids = []
 
       if wp_group_ids_tag.present?
-        if wp_group_ids_tag.include?('members')
+        if wp_group_ids_tag.include?("members")
           wp_group_user_ids += project.members.pluck(:user_id)
         end
-        if wp_group_ids_tag.include?('watchers') && resource.is_a?(WorkPackage)
+        if wp_group_ids_tag.include?("watchers") && resource.is_a?(WorkPackage)
           wp_group_user_ids += resource.watchers.pluck(:user_id)
         end
       end
