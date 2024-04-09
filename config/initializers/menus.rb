@@ -619,6 +619,7 @@ Redmine::MenuManager.map :project_menu do |menu|
   menu.push :members,
             { controller: "/members", action: "index" },
             caption: :label_member_plural,
+            if: ->(project) { !project.module_enabled?('th_members_module') },
             before: :settings,
             icon: "people"
 
