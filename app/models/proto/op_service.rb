@@ -7,7 +7,6 @@ require_relative 'open_project_pb'
 module Proto
   module OpService
     class Service
-
       include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
@@ -18,6 +17,7 @@ module Proto
       rpc :GetTemplates, ::Google::Protobuf::Empty, ::GetTemplateResp
       rpc :GetUserInfoByCode, ::GetUserInfoByCodeReq, ::Result
       rpc :SendWcWorkerMessage, ::WorkerMessageReq, ::Result
+      rpc :GetPdf, ::GetPdfReq, ::GetPdfResp
 
       def self.current_client
         @@current_client ||= ::Gruf::Client.new(service: Proto::OpService)

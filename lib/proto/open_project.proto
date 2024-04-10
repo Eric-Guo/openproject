@@ -55,9 +55,32 @@ message WorkerMessageReq {
   string buttonText = 5;
 }
 
+message ReportForm {
+  int64 ID = 1;
+  int64 ReportProjectID = 2;
+  string Type = 3;
+  string Subject = 4;
+  string Status = 5;
+  string StartTime = 6;
+  string EndTime = 7;
+  string Duration = 8;
+  string Remarks = 9;
+  int64 ParentID = 10;
+}
+
+message GetPdfReq {
+  repeated ReportForm Data = 1;
+  string Email = 2;
+}
+
+message GetPdfResp {
+  string url = 1;
+}
+
 service OpService {
   rpc SendMessage(MessageRequest) returns(Result);
   rpc GetTemplates(google.protobuf.Empty) returns(GetTemplateResp);
   rpc GetUserInfoByCode(GetUserInfoByCodeReq) returns(RespUser);
   rpc SendWcWorkerMessage(WorkerMessageReq) returns(RespUser);
+  rpc GetPdf(GetPdfReq) returns(GetPdfResp);
 }

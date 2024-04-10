@@ -1,0 +1,37 @@
+<div class="spot-modal spot-modal_wide op-wp-table-export" tabindex="0">
+  <div class="spot-modal--header">{{text.title}}</div>
+
+  <div class="spot-divider"></div>
+
+  <div class="spot-modal--body spot-container">
+    <div style="display: flex; justify-content: center; align-items: center; flex: 1;">
+      <div *ngIf="isLoading">
+        正在生成数据中...
+      </div>
+      <button
+        *ngIf="!isLoading && !redirectUrl"
+        (click)="requestExport()"
+        class="button button_no-margin spot-modal--confirm-button spot-action-bar--action"
+      >
+        点击导出
+      </button>
+      <div *ngIf="!isLoading && !!redirectUrl">
+        没有自动跳转？
+        <a [href]="redirectUrl" target="_blank" rel="noopener noreferrer">
+          点击查看
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="spot-action-bar hidden-for-mobile">
+    <div class="spot-action-bar--right">
+      <button
+        type="button"
+        class="button button_no-margin spot-modal--cancel-button spot-action-bar--action"
+        (click)="closeMe()"
+        >
+        {{ text.cancelButton }}
+     </button>
+    </div>
+  </div>
+</div>

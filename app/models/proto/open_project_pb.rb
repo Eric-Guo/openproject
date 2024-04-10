@@ -46,6 +46,25 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :url, :string, 4
       optional :buttonText, :string, 5
     end
+    add_message "ReportForm" do
+      optional :ID, :int64, 1
+      optional :ReportProjectID, :int64, 2
+      optional :Type, :string, 3
+      optional :Subject, :string, 4
+      optional :Status, :string, 5
+      optional :StartTime, :string, 6
+      optional :EndTime, :string, 7
+      optional :Duration, :string, 8
+      optional :Remarks, :string, 9
+      optional :ParentID, :int64, 10
+    end
+    add_message "GetPdfReq" do
+      repeated :Data, :message, 1, "ReportForm"
+      optional :Email, :string, 2
+    end
+    add_message "GetPdfResp" do
+      optional :url, :string, 1
+    end
   end
 end
 
@@ -56,3 +75,6 @@ Template = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("Template").
 GetTemplateResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetTemplateResp").msgclass
 GetUserInfoByCodeReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetUserInfoByCodeReq").msgclass
 WorkerMessageReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("WorkerMessageReq").msgclass
+ReportForm = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("ReportForm").msgclass
+GetPdfReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetPdfReq").msgclass
+GetPdfResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("GetPdfResp").msgclass
