@@ -274,6 +274,9 @@ import {
   EditFieldControlsModule,
 } from 'core-app/shared/components/fields/edit/field-controls/edit-field-controls.module';
 import {
+  WpGanttExportModalComponent
+} from 'core-app/shared/components/modals/export-gantt-modal/wp-gantt-export.modal';
+import {
   WpButtonMacroModalComponent,
 } from 'core-app/shared/components/modals/editor/macro-wp-button-modal/wp-button-macro.modal';
 import { WpEdocFilesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-edoc-files-modal/wp-edoc-files-macro.modal';
@@ -632,6 +635,7 @@ import {
     WpTableConfigurationTimelinesTabComponent,
     WpTableConfigurationHighlightingTabComponent,
     WpTableConfigurationRelationSelectorComponent,
+    WpGanttExportModalComponent,
     QuerySharingFormComponent,
     QuerySharingModalComponent,
     SaveQueryModalComponent,
