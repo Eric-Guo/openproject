@@ -34,9 +34,7 @@ import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 })
 export class WpGanttExportModalComponent extends OpModalComponent implements OnInit {
   public text = {
-    title: this.I18n.t('js.label_export'),
-    closePopup: this.I18n.t('js.close_popup_title'),
-    exportPreparing: this.I18n.t('js.label_export_preparing'),
+    title: '导出甘特图',
     cancelButton: this.I18n.t('js.button_cancel'),
   };
 
