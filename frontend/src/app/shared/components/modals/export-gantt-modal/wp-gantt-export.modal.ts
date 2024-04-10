@@ -155,21 +155,22 @@ export class WpGanttExportModalComponent extends OpModalComponent implements OnI
   }
 
   private onJobResponse(response:HttpResponse<JobStatusInterface>) {
-    this.isLoading = false;
-
     const { body } = response;
 
     if (!body) {
       throw new Error(response as any);
     }
 
-    if (body.payload && body.payload.redirect) {
-      this.redirectUrl = body.payload.redirect;
-      window.open(body.payload.redirect, '_blank', 'noopener noreferrer');
-    }
+    if (body.payload) {
+      if (body.payload.errors && !body.payload.redirect) {
+        throw new Error(body.payload.errors);
+      }
 
-    if (body.payload && body.payload.errors) {
-      this.toastService.addError(body.payload.errors);
+      if (body.payload.redirect) {
+        this.isLoading = false;
+        this.redirectUrl = body.payload.redirect;
+        window.open(body.payload.redirect, '_blank', 'noopener noreferrer');
+      }
     }
 
     this.cdRef.detectChanges();
