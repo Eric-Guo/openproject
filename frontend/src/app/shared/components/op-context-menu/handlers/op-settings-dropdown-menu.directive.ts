@@ -49,6 +49,9 @@ import { QuerySharingModalComponent } from 'core-app/shared/components/modals/sh
 import {
   QueryGetIcalUrlModalComponent,
 } from 'core-app/shared/components/modals/get-ical-url-modal/query-get-ical-url.modal';
+import {
+  WpGanttExportModalComponent
+} from 'core-app/shared/components/modals/export-gantt-modal/wp-gantt-export.modal';
 import { SaveQueryModalComponent } from 'core-app/shared/components/modals/save-modal/save-query.modal';
 import { QueryFormResource } from 'core-app/features/hal/resources/query-form-resource';
 import isPersistedResource from 'core-app/features/hal/helpers/is-persisted-resource';
@@ -343,6 +346,19 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger {
               void this.turboRequests.requestStream(href);
             }
           }
+          return true;
+        },
+      },
+      {
+        // Export th_query
+        disabled: false,
+        linkText: '导出甘特图',
+        icon: 'icon-export',
+        onClick: ($event:JQuery.TriggeredEvent) => {
+          if (this.allowWorkPackageAction($event, 'representations')) {
+            this.opModalService.show(WpGanttExportModalComponent, this.injector);
+          }
+
           return true;
         },
       },
