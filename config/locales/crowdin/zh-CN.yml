@@ -851,7 +851,7 @@ zh-CN:
       此系统上禁用了用户注册。请让管理员为您创建帐户。
     error_self_registration_limited_provider: >
       用户注册在'%{name}'单点登录提供商上受限。请向管理员请求激活您的账户，或者更改该提供商的自主注册限制。
-    login_with_auth_provider: "或使用您的现有帐户登录"
+    login_with_auth_provider: "天华员工请点击下面按钮登录"
     signup_with_auth_provider: "或注册使用"
     auth_source_login: 请使用 <em>%{login}</em> 登录来激活您的帐户，
     omniauth_login: 请登录以激活您的帐户。
@@ -968,6 +968,7 @@ zh-CN:
         queries: "查询"
         status_code: "项目状态"
         status_explanation: "项目状态描述"
+        profile: "项目简介"
         status_codes:
           not_started: "未开始"
           on_track: "按计划进行"
@@ -1023,6 +1024,7 @@ zh-CN:
         manual_sorting: "手动排序顺序"
         ordered_work_packages: "工作包顺序"
         include_subprojects: "包含子项目"
+        include_all_members_assigned_projects: "包括项目成员的所有项目"
         results: "结果"
       relation:
         lag: "延迟"
@@ -1101,7 +1103,7 @@ zh-CN:
         daily_reminders: "每日提醒"
         workdays: "工作日"
       version:
-        effective_date: "完成日期"
+        effective_date: "生效日期"
         sharing: "共享"
       wiki_content:
         text: "文本"
@@ -1115,7 +1117,7 @@ zh-CN:
         begin_deletion: "开始删除"
         children: "子元素"
         derived_done_ratio: "总完成度%"
-        derived_remaining_hours: "总剩余工作总量"
+        derived_remaining_hours: "总剩余工时总量"
         derived_remaining_time: "总剩余工作总量"
         done_ratio: "完成度(%)"
         duration: "持续时间"
@@ -1139,7 +1141,7 @@ zh-CN:
         shared_with_users: "共享对象"
         schedule_manually: "手动计划"
         spent_hours: "已耗工时"
-        spent_time: "已耗工时"
+        spent_time: "已耗时间"
         subproject: "子项目"
         time_entries: "记录时间"
         type: "类型"
@@ -1654,8 +1656,8 @@ zh-CN:
     display_sums: "显示汇总"
     domain: "域"
     due_date: "完成日期"
-    estimated_hours: "工时"
-    estimated_time: "工时"
+    estimated_hours: "预估工时"
+    estimated_time: "预估时间"
     email: "Email"
     entity_type: "实体"
     expires_at: "过期于"
@@ -2341,9 +2343,9 @@ zh-CN:
   gui_validation_error_plural: "%{count} 错误"
   homescreen:
     additional:
-      projects: "此 OpenProject 实例中的最新可见项目。"
-      no_visible_projects: "这个 OpenProject 中没有可见的项目。"
-      users: "此 OpenProject 实例中的最新注册用户。"
+      projects: "最新可见项目"
+      no_visible_projects: "没有可见的项目"
+      users: "最新注册用户"
     blocks:
       community: "OpenProject 社区"
       upsell:
@@ -2368,7 +2370,7 @@ zh-CN:
       default_attribute_written: "已写入只读属性"
       progress_mode_changed_to_status_based: "更新进度计算"
       status_changed: "状态 '%{status_name}'"
-      system_update: "OpenProject 系统更新："
+      system_update: "PLM 系统更新："
       work_package_duplicate_closed: "重复的工作包已更新："
       total_percent_complete_mode_changed_to_work_weighted_average: "现在按工作加权计算的 完成% 总数。"
       total_percent_complete_mode_changed_to_simple_average: "完成% 总数的计算现在仅基于完成% 值的简单平均值。"
@@ -3328,7 +3330,7 @@ zh-CN:
       a: "([在这里](upgrade_url)) 升级付款计划" #here turned into a link
       b: "([在这里](users_url)) 锁定或删除现有用户" #here turned into a link
   more_actions: "更多功能"
-  noscript_description: "您需要激活JavaScript才能使用 OpenProject！"
+  noscript_description: "您需要激活JavaScript才能使用 PLM"
   noscript_heading: "JavaScript 被禁用"
   noscript_learn_more: "了解更多信息"
   notice_accessibility_mode: 可以在您的 [account settings](url) 中启用辅助功能模式。
@@ -3379,8 +3381,8 @@ zh-CN:
   notice_not_authorized_archived_project: "您尝试访问的项目已存档。"
   notice_requires_enterprise_token: "企业令牌缺失或不允许访问此页面。"
   notice_password_confirmation_failed: "您的密码不正确。无法继续。"
-  notice_principals_found_multiple: "找到 %{number} 条结果。\n 点击以关注第一条结果。"
-  notice_principals_found_single: "这有一个结果。\n点击来关注它。"
+  notice_principals_found_multiple: "找到 %{number} 条结果。\n 点击以参与第一条结果。"
+  notice_principals_found_single: "这有一个结果。\n点击来参与它。"
   notice_project_not_deleted: "项目没有被删除"
   notice_project_not_found: "未找到项目。"
   notice_successful_connection: "成功连接。"
