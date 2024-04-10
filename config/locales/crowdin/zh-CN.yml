@@ -68,7 +68,7 @@ zh-CN:
 
       '
     login_title: Sign in to %{app_title}
-    login_with_external_account: Sign in with an external account
+    login_with_external_account: 天华员工请点击下面按钮登录
     no_account_yet: You don't have an account yet?
     omniauth_direct_login_continue: 继续登录
     omniauth_direct_login_redirecting: 正在将您重定向到您的身份提供商…
@@ -290,7 +290,7 @@ zh-CN:
         latest_activity_at: 最近一次活动
         parent: 父项目
         portfolio: 项目组合
-        program: 计划
+        program: 项目群
         project_creation_wizard_assignee_custom_field: 提交时的受理人
         project_creation_wizard_enabled: 项目启动请求
         project_creation_wizard_notification_text: 通知文本
@@ -305,7 +305,7 @@ zh-CN:
           title: 可见性
           true: 公开
         queries: 查询
-        status_code: 状态
+        status_code: 项目状态
         status_codes:
           at_risk: 有风险
           discontinued: 已中断
@@ -313,7 +313,7 @@ zh-CN:
           not_started: 未开始
           off_track: 偏离计划
           on_track: 按计划进行
-        status_explanation: 状态描述
+        status_explanation: 项目状态描述
         template: 模板
         templated: 模板项目
         templated_value:
@@ -352,6 +352,7 @@ zh-CN:
         hidden: 隐藏
         highlighted_attributes: 高亮属性
         highlighting_mode: 高亮模式
+        include_all_members_assigned_projects: 包括项目成员的所有项目
         include_subprojects: 包含子项目
         manual_sorting: 手动排序顺序
         ordered_work_packages: 工作包顺序
@@ -520,7 +521,7 @@ zh-CN:
         id_or_email: 用户名或电子邮件地址
         principal_type: 邀请类型
       version:
-        effective_date: 完成日期
+        effective_date: 生效日期
         sharing: 共享
       wiki_content:
         text: 文本
@@ -534,7 +535,7 @@ zh-CN:
         begin_insertion: 开始插入
         children: 子元素
         derived_done_ratio: 总完成度%
-        derived_remaining_hours: 总剩余工作总量
+        derived_remaining_hours: 总剩余工时总量
         derived_remaining_time: 总剩余工作总量
         done_ratio: 完成度(%)
         duration: 持续时间
@@ -568,7 +569,7 @@ zh-CN:
         sequence_number: 序列号
         shared_with_users: 共享对象
         spent_hours: 已耗工时
-        spent_time: 已耗工时
+        spent_time: 已耗时间
         subproject: 子项目
         target_version: 目标版本
         target_versions: 目标版本
@@ -2336,8 +2337,8 @@ zh-CN:
     due_date: 完成日期
     email: Email
     entity_type: 实体
-    estimated_hours: 工时
-    estimated_time: 工时
+    estimated_hours: 预估工时
+    estimated_time: 预估时间
     exact_match: 精确匹配
     expires_at: 到期时间
     filter: 筛选器
@@ -3653,9 +3654,9 @@ zh-CN:
       favorite_projects:
         no_results: 您没有收藏的项目
         no_results_subtext: 通过项目概览或项目列表添加一个或多个项目作为收藏项目。
-      no_visible_projects: 这个 OpenProject 中没有可见的项目。
-      projects: 此 OpenProject 实例中的最新可见项目。
-      users: 此 OpenProject 实例中的最新注册用户。
+      no_visible_projects: 没有可见的项目
+      projects: 最新可见项目
+      users: 最新注册用户
     blocks:
       community: OpenProject 社区
       new_features:
@@ -3798,7 +3799,7 @@ zh-CN:
       meeting_outcome_recorded_html: "<strong>已添加为会议</strong> %{meeting_title_information} 中的结果"
       progress_mode_changed_to_status_based: 更新进度计算
       status_changed: 状态 '%{status_name}'
-      system_update: OpenProject 系统更新：
+      system_update: PLM 系统更新：
       total_percent_complete_mode_changed_to_simple_average: 完成% 总数的计算现在仅基于完成% 值的简单平均值。
       total_percent_complete_mode_changed_to_work_weighted_average: 现在按工作加权计算的 完成% 总数。
       work_package_children_changed_values: Updated automatically
@@ -5126,7 +5127,7 @@ zh-CN:
       no_results_content_text: 添加新闻项
       no_results_title_text: 目前没有消息报告。
   no_results_title_text: 当前没有可显示的内容。
-  noscript_description: 您需要激活JavaScript才能使用 OpenProject！
+  noscript_description: 您需要激活JavaScript才能使用 PLM
   noscript_heading: JavaScript 被禁用
   noscript_learn_more: 了解更多信息
   note: 请注意
@@ -5184,13 +5185,13 @@ zh-CN:
   notice_not_authorized: 您无权访问此页。
   notice_not_authorized_archived_project: 您尝试访问的项目已存档。
   notice_parent_item_not_found: 未找到父项
-  notice_password_confirmation_failed: 输入的密码不正确。
+  notice_password_confirmation_failed: 您的密码不正确。无法继续。
   notice_principals_found_multiple: |-
     找到 %{number} 条结果。
-     点击以关注第一条结果。
+     点击以参与第一条结果。
   notice_principals_found_single: |-
     这有一个结果。
-    点击来关注它。
+    点击来参与它。
   notice_project_not_deleted: 项目没有被删除
   notice_project_not_found: 未找到项目。
   notice_requires_enterprise_token: 企业令牌缺失或不允许访问此页面。
