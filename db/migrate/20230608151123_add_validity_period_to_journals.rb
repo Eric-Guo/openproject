@@ -7,7 +7,7 @@ class AddValidityPeriodToJournals < ActiveRecord::Migration[7.0]
         fix_all_journal_timestamps
         write_validity_period
 
-        add_validity_period_constraint
+        # add_validity_period_constraint
       end
     end
 
