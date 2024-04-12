@@ -83,11 +83,14 @@ module Meetings
             "show-when-checked",
             @meeting.is_a?(RecurringMeeting) ? "recurring-meetings--form" : nil,
             "meetings--form",
+            "th-meeting-form",
             use_refresh_on_form_changes? ? "refresh-on-form-changes" : nil
           ].compact.join(" "),
           "recurring-meetings--form-persisted-value": @meeting.persisted?,
           "refresh-on-form-changes-target": "form",
-          "refresh-on-form-changes-turbo-stream-url-value": fetch_templates_url
+          "refresh-on-form-changes-turbo-stream-url-value": fetch_templates_url,
+          "th-meeting-form-th-meeting-id-value": @meeting.th_meeting_id,
+          "th-meeting-form-available-rooms-path-value": available_rooms_th_meetings_path
         },
         html: { id: "meeting-form" },
         url: { controller: form_controller, action: form_action, project_id: @project }
