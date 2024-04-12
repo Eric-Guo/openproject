@@ -8,9 +8,12 @@
         turbo: true,
         controller: [
           "meetings--form",
+          "th-meeting-form",
           "show-when-value-selected",
           @meeting.is_a?(RecurringMeeting) ? "recurring-meetings--form" : nil
-        ].compact.join(" ")
+        ].compact.join(" "),
+        "th-meeting-form-th-meeting-id-value": @meeting.th_meeting_id,
+        "th-meeting-form-available-rooms-path-value": available_rooms_th_meetings_path
       },
       html: {
         id: "meeting-form"
@@ -39,12 +42,16 @@
         end
 
         modal_body.with_row(mt: 3) do
-          render(Meeting::Location.new(f, meeting: @meeting))
+          render(Meeting::TimeGroup.new(f, meeting: @meeting))
         end
 
         modal_body.with_row(mt: 3) do
-          render(Meeting::TimeGroup.new(f, meeting: @meeting))
-        end
+          render(Meeting::ThMeetingUpstreamRoomId.new(f, meeting: @meeting))
+        end unless @meeting.is_a?(RecurringMeeting)
+
+        modal_body.with_row(mt: 3) do
+          '<button class="button" type="button" style="margin: 0;" data-action="click->th-meeting-form#getAvailableRooms">获取可用会议室</button>'.html_safe
+        end unless @meeting.is_a?(RecurringMeeting)
 
         if @meeting.is_a?(RecurringMeeting)
           modal_body.with_row(mt: 3) do
