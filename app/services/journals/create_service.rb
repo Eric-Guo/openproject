@@ -317,7 +317,7 @@ module Journals
           insert_data.id,
           :data_type,
           :cause,
-          tstzrange((SELECT updated_at FROM fetch_time), NULL)
+          tstzrange(CURRENT_TIMESTAMP, NULL)
         FROM max_journals, insert_data
         RETURNING *
       SQL
@@ -406,7 +406,7 @@ module Journals
         UPDATE
           journals
         SET
-          validity_period = tstzrange(lower(validity_period), (SELECT updated_at FROM fetch_time), '[)')
+          validity_period = tstzrange(LEAST(lower(validity_period), (SELECT updated_at FROM fetch_time)), GREATEST(lower(validity_period), (SELECT updated_at FROM fetch_time)), '[)')
         WHERE
           id = (SELECT id from max_journals)
           #{only_on_changed_or_forced_condition_sql(predecessor, notes, cause)}
