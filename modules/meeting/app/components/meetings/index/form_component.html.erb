@@ -28,12 +28,16 @@
 
         unless @template
           modal_body.with_row(mt: 3) do
-            render(Meeting::Location.new(f, meeting: @meeting))
+            render(Meeting::TimeGroup.new(f, meeting: @meeting))
           end
 
           modal_body.with_row(mt: 3) do
-            render(Meeting::TimeGroup.new(f, meeting: @meeting))
-          end
+            render(Meeting::ThMeetingUpstreamRoomId.new(f, meeting: @meeting))
+          end unless @meeting.is_a?(RecurringMeeting)
+
+          modal_body.with_row(mt: 3) do
+            '<button class="button" type="button" style="margin: 0;" data-action="click->th-meeting-form#getAvailableRooms">获取可用会议室</button>'.html_safe
+          end unless @meeting.is_a?(RecurringMeeting)
         end
 
         if !@template && @meeting.is_a?(RecurringMeeting)
