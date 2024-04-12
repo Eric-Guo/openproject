@@ -11,7 +11,7 @@ class AddValidityPeriodToJournals < ActiveRecord::Migration[7.0]
 
         drop_successor_journals_utility_table
 
-        add_validity_period_constraint
+        # add_validity_period_constraint
       end
     end
 
