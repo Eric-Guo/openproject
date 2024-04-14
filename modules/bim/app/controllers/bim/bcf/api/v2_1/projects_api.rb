@@ -32,7 +32,6 @@ module Bim::Bcf::API::V2_1
         def visible_projects
           Project
             .visible(current_user)
-            .has_module(:bim)
         end
       end
 
