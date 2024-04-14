@@ -149,7 +149,7 @@ RSpec.describe WorkPackage, "search" do
     end
   end
 
-  context "with the keyword only in an internal journal and no enterprise token" do
+  context "with the keyword only in an internal journal and the internal comments feature unavailable" do
     let(:searchword) { "confidential" }
     let(:permissions) { %i[view_work_packages view_internal_comments] }
 
@@ -157,6 +157,8 @@ RSpec.describe WorkPackage, "search" do
       project.update!(enabled_internal_comments: true)
       work_package.add_journal(user: create(:admin), notes: "A #{searchword} remark", internal: true)
       work_package.save!(validate: false)
+      allow(EnterpriseToken).to receive(:allows_to?).and_call_original
+      allow(EnterpriseToken).to receive(:allows_to?).with(:internal_comments).and_return(false)
     end
 
     it "does not find the work package" do
