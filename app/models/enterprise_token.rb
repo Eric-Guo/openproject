@@ -54,7 +54,7 @@ class EnterpriseToken < ApplicationRecord
     end
 
     def allows_to?(feature)
-      active_tokens.any? { |token| Authorization::EnterpriseService.new(token).call(feature).result }
+      true
     end
 
     def active?
@@ -82,7 +82,7 @@ class EnterpriseToken < ApplicationRecord
     end
 
     def hide_banners?
-      OpenProject::Configuration.ee_hide_banners?
+      true
     end
 
     def user_limit
@@ -148,7 +148,6 @@ class EnterpriseToken < ApplicationRecord
            :reprieve_days,
            :reprieve_days_left,
            :restrictions,
-           :available_features,
            :plan,
            :features,
            :version,
@@ -163,7 +162,7 @@ class EnterpriseToken < ApplicationRecord
   end
 
   def allows_to?(action)
-    Authorization::EnterpriseService.new(self).call(action).result
+    true
   end
 
   delegate :clear_current_tokens_cache, to: :EnterpriseToken

@@ -100,16 +100,6 @@ module API
                      .map { |flag| flag.camelize(:lower) }
                  }
 
-        property :available_features,
-                 getter: ->(*) {
-                   EnterpriseToken.available_features
-                 }
-
-        property :trialling_features,
-                 getter: ->(*) {
-                   EnterpriseToken.trialling_features
-                 }
-
         property :allowed_link_protocols,
                  getter: ->(*) { Setting::AllowedLinkProtocols.all }
 

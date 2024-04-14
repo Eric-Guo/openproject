@@ -34,6 +34,8 @@ class EmojiReaction < ApplicationRecord
     grinning_face_with_smiling_eyes: "\u{1F604}",
     confused_face: "\u{1F615}",
     heart: "\u{2764 FE0F}",
+    broken_heart: "\u{1F494}",
+    handshake: "\u{1F91D}",
     party_popper: "\u{1F389}",
     rocket: "\u{1F680}",
     eyes: "\u{1F440}"
