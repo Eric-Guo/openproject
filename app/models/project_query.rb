@@ -73,6 +73,8 @@ class ProjectQuery < ApplicationRecord
     # filter out archived projects for everybody.
     if User.current.admin?
       super
+    elsif filters.length == 1 && filters[0].values == ["f"] && filters[0].name == :active && filters[0].operator == "="
+      super.includes(:memberships).where(memberships: { user_id: User.current&.id })
     else
       # Directly appending the .visible scope adds a
       # distinct which then requires every column used e.g. for ordering
