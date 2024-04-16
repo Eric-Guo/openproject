@@ -23,6 +23,9 @@ module BrowserHelper
       # Older version of non-chromium based Edge
       return true if browser.edge? && version < 109
 
+      # Older version of Wechat
+      return true if browser.wechat? && version < 6
+
       false
     end
   end
