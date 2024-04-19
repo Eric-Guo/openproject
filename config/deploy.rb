@@ -43,4 +43,4 @@ set :rbenv_ruby, "3.2.2"
 
 set :puma_init_active_record, true
 
-set :delayed_job_workers, 12
+set :delayed_job_workers, 6
