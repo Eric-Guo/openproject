@@ -1,4 +1,5 @@
 <select [(ngModel)]="groupBy"
+        id="selected-groupBy"
         (ngModelChange)="setQueryProps()">
     <option [ngValue]="option.key" *ngFor="let option of availableGroupBy">{{option.label}}</option>
 </select>
