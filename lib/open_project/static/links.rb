@@ -205,6 +205,14 @@ module OpenProject
               href: "https://www.openproject.org/docs/api/",
               label: :label_api_doc
             },
+            local_api_docs: {
+              href: "https://plm-ppp.thape.com.cn/api/docs",
+              label: :label_local_api_doc
+            },
+            local_lookbook: {
+              href: "http://localhost:3000/lookbook",
+              label: :label_local_lookbook
+            },
             text_formatting: {
               href: "https://www.openproject.org/docs/user-guide/wysiwyg/",
               label: :setting_text_formatting
