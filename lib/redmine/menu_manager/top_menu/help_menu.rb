@@ -139,6 +139,8 @@ module Redmine::MenuManager::TopMenu::HelpMenu
     result << static_link_item(:roadmap)
     result << static_link_item(:crowdin)
     result << static_link_item(:api_docs)
+    result << static_link_item(:local_api_docs)
+    result << static_link_item(:local_lookbook)
   end
 
   def static_link_item(key, options = {})
