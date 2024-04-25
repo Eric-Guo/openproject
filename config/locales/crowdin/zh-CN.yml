@@ -1979,6 +1979,8 @@ zh-CN:
   label_available_project_work_package_types: "可用的工作包类型"
   label_available_projects: "可用的项目"
   label_api_doc: "API 文档"
+  label_local_api_doc: "天华服务器 API"
+  label_local_lookbook: "本地的 Primer 设计系统"
   label_backup: "备份"
   label_backup_code: "备份代码"
   label_basic_details: "Basic details"

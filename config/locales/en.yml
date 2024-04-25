@@ -2140,6 +2140,8 @@ en:
   label_available_project_work_package_types: "Available work package types"
   label_available_projects: "Available projects"
   label_api_doc: "API documentation"
+  label_local_api_doc: "TH PPP API"
+  label_local_lookbook: "Local of Primer Design System "
   label_backup: "Backup"
   label_backup_code: "Backup code"
   label_basic_details: "Basic details"
