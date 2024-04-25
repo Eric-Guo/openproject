@@ -90,6 +90,12 @@ integrations:
   href: https://www.openproject.org/docs/system-admin-guide/integrations/
 ldap_encryption_documentation:
   href: https://www.rubydoc.info/gems/net-ldap/Net/LDAP#constructor_details
+local_api_docs:
+  href: https://plm-ppp.thape.com.cn/api/docs
+  label: :label_local_api_doc
+local_lookbook:
+  href: http://localhost:3000/lookbook
+  label: :label_local_lookbook
 manual_installation:
   href: https://www.openproject.org/docs/installation-and-operations/installation/manual/
   label: Manual installation
