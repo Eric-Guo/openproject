@@ -34,7 +34,7 @@ module Redmine::MenuManager::TopMenu::HelpMenu
                  OpenProject::Static::Links.cache_key,
                  I18n.locale,
                  OpenProject::Static::Links.help_link,
-                 EnterpriseToken.active?]
+                 true]
     OpenProject::Cache.fetch(cache_key) do
       if OpenProject::Static::Links.help_link_overridden?
         render(Primer::Beta::IconButton.new(icon: item.icon,
