@@ -108,7 +108,7 @@ PATH
   remote: modules/calendar
   specs:
     openproject-calendar (1.0.0)
-      icalendar (~> 2.10.0)
+      icalendar (~> 2.11.0)
 
 PATH
   remote: modules/costs
@@ -162,7 +162,7 @@ PATH
   remote: modules/meeting
   specs:
     openproject-meeting (1.0.0)
-      icalendar (~> 2.10.0)
+      icalendar (~> 2.11.0)
 
 PATH
   remote: modules/my_page
@@ -722,8 +722,10 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
-    icalendar (2.10.3)
+    icalendar (2.11.2)
+      base64
       ice_cube (~> 0.16)
+      logger
       ostruct
     ice_cube (0.17.0)
     ice_nine (0.11.2)
@@ -814,7 +816,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0610)
+    mime-types-data (3.2025.0617)
     mini_magick (5.2.0)
       benchmark
       logger
@@ -830,7 +832,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.5.8)
+    net-imap (0.5.9)
       date
       net-protocol
     net-ldap (0.19.0)
@@ -903,7 +905,7 @@ GEM
       openssl (> 2.0)
     optimist (3.2.1)
     os (1.1.4)
-    ostruct (0.6.1)
+    ostruct (0.6.2)
     ox (2.14.23)
       bigdecimal (>= 3.0)
     paper_trail (16.0.0)
@@ -1177,7 +1179,7 @@ GEM
       activesupport (>= 3.0.0)
       i18n
       iso8601
-    ruby-lsp (0.24.1)
+    ruby-lsp (0.24.2)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
@@ -1223,7 +1225,7 @@ GEM
       multi_json (~> 1.10)
     simpleidn (0.2.3)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.12184)
+    sorbet-runtime (0.5.12196)
     spreadsheet (1.3.4)
       bigdecimal
       logger

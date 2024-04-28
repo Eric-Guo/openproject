@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib,doc}/**/*", "README.md"]
 
-  s.add_dependency "icalendar", "~> 2.10.0"
+  s.add_dependency "icalendar", "~> 2.11.0"
   s.metadata["rubygems_mfa_required"] = "true"
 end
