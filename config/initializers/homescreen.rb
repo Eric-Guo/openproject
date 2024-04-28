@@ -64,7 +64,7 @@ OpenProject::Static::Homescreen.manage :blocks do |blocks|
     },
     {
       partial: "upsell",
-      if: Proc.new { !(EnterpriseToken.active? || EnterpriseToken.hide_banners?) || EnterpriseToken.trial_only? }
+      if: Proc.new { !(EnterpriseToken.hide_banners?) || EnterpriseToken.trial_only? }
     }
   )
 end
