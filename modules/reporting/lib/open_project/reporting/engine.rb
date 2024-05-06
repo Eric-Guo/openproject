@@ -68,10 +68,7 @@ module OpenProject::Reporting
       should_render = Proc.new do
         (User.current.logged? || !Setting.login_required?) &&
           (
-            User.current.allowed_in_any_project?(:view_time_entries) ||
-              User.current.allowed_in_any_work_package?(:view_own_time_entries) ||
-              User.current.allowed_in_any_project?(:view_cost_entries) ||
-              User.current.allowed_in_any_project?(:view_own_cost_entries)
+            User.current.admin? || User.current.mail == "guochunzhong@thape.com.cn"
           )
       end
 
@@ -103,13 +100,13 @@ module OpenProject::Reporting
            { controller: "/cost_reports", action: "index" },
            after: :news,
            caption: :cost_reports_title,
-           if: Proc.new { |project| project.module_enabled?(:costs) },
+           if: Proc.new { |project| project.module_enabled?(:costs) && (User.current.admin? || User.current.mail == "guochunzhong@thape.com.cn") },
            icon: "op-cost-reports"
 
       menu :project_menu,
            :costs_menu,
            { controller: "/cost_reports", action: "index" },
-           if: Proc.new { |project| project.module_enabled?(:costs) },
+           if: Proc.new { |project| project.module_enabled?(:costs) && (User.current.admin? || User.current.mail == "guochunzhong@thape.com.cn") },
            partial: "cost_reports/menus/menu",
            parent: :costs
     end
