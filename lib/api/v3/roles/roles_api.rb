@@ -35,7 +35,7 @@ module API
             authorize_in_any_project(%i[view_members manage_members])
           end
 
-          get &::API::V3::Utilities::Endpoints::Index.new(model: Role).mount
+          get &::API::V3::Utilities::Endpoints::Index.new(model: Role, scope: -> { Role.reorder(:position) }).mount
 
           route_param :id, type: Integer, desc: "Role ID" do
             after_validation do
