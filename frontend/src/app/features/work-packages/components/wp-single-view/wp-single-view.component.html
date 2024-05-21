@@ -19,7 +19,7 @@
 
     <div class="work-packages--info-row"
          *ngIf="!isNewResource">
-      <span [textContent]="idLabel"></span>:
+      <a [href]="workPackageUrl" target="_op_wp">{{ idLabel }}</a>:
       <span [textContent]="text.infoRow.createdBy"></span>
       <!-- The space has to be in an extra span
       because otherwise the browser would add a second space after it -->

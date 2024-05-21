@@ -103,6 +103,8 @@ export class WorkPackageSingleViewComponent extends UntilDestroyedMixin implemen
   /** Should we show the project field */
   @Input() public showProject = false;
 
+  public workPackageUrl: string;
+  
   // Grouped fields returned from API
   public groupedFields:GroupDescriptor[] = [];
 
@@ -168,7 +170,7 @@ export class WorkPackageSingleViewComponent extends UntilDestroyedMixin implemen
     this.$element = jQuery(this.elementRef.nativeElement as HTMLElement);
 
     this.isNewResource = isNewResource(this.workPackage);
-
+    this.workPackageUrl = `/work_packages/${this.workPackage.id}`;
     this.uiSelfRef = this.$state.$current.name;
 
     const change = this.halEditing.changeFor<WorkPackageResource, WorkPackageChangeset>(this.workPackage);
