@@ -28,7 +28,13 @@
 
 module WorkPackages
   class DeleteContract < ::DeleteContract
-    delete_permission :delete_work_packages
-    delete_permission :delete_my_create_work_packages
+    delete_permission -> {
+      return true if user.admin?
+      return false if model.having_any_time_entries?
+      return false if model.type.is_admin_only?
+
+      user.allowed_in_project?(:delete_work_packages, model.project) ||
+        (user.allowed_in_project?(:delete_my_create_work_packages, model.project) && model.author_id == user.id)
+    }
   end
 end

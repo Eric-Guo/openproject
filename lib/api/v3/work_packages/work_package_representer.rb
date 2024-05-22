@@ -83,7 +83,8 @@ module API
         end
 
         link :delete,
-             cache_if: -> { current_user.allowed_in_project?(:delete_work_packages, represented.project) || (current_user.allowed_in_project?(:delete_my_create_work_packages, represented.project) && current_user.id == represented.author_id) } do
+             cache_if: -> { (current_user.allowed_in_project?(:delete_work_packages, represented.project) && (!having_any_time_entries? || current_user.admin?) && (!represented.type.is_admin_only? || current_user.admin?)) \
+              || (current_user.allowed_in_project?(:delete_my_create_work_packages, represented.project) && (current_user.id == represented.author_id) && (!having_any_time_entries? || current_user.admin?) && (!represented.type.is_admin_only? || current_user.admin?)) } do
           {
             href: api_v3_paths.work_package(represented.id),
             method: :delete
@@ -684,6 +685,10 @@ module API
           @log_time_allowed =
             current_user.allowed_in_project?(:log_time, represented.project) ||
               current_user.allowed_in_work_package?(:log_own_time, represented)
+        end
+
+        def having_any_time_entries?
+          represented.time_entries.present?
         end
 
         def view_budgets_allowed?
