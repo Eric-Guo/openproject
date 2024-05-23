@@ -118,6 +118,14 @@ module WorkPackages
         @possible_assignees ||= Principal.possible_assignee(target_project)
       end
 
+      def deny_to_change_project?
+        return false if current_user.admin?
+
+        work_packages.any? do |work_package|
+          work_package.having_any_time_entries? && [2, 3].include?(work_package.project.profile&.type_id)
+        end
+      end
+
       def selected_target_versions = selected_versions_for(:target_version_ids, available_versions)
       def selected_observed_in_versions = selected_versions_for(:observed_in_version_ids, available_observed_in_versions)
 
