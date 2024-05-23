@@ -60,6 +60,8 @@ See COPYRIGHT and LICENSE files for more details.
       <div class="grid-block grid-block_visible-overflow">
         <div class="grid-content medium-6">
           <div class="form--field">
+            <% deny_to_change_project = @work_packages.any? { |wp| wp.time_entries.present? } %>
+            <% deny_to_change_project = false if current_user.admin? %>
             <label class="form--label" for="new_project_id"><%= WorkPackage.human_attribute_name(:project) %>:</label>
             <div class="form--field-container">
               <%= angular_component_tag 'opce-project-autocompleter',
@@ -70,6 +72,7 @@ See COPYRIGHT and LICENSE files for more details.
                                           appendTo: 'body',
                                           hiddenFieldAction: 'change->refresh-on-form-changes#triggerReload',
                                           clearable: false,
+                                          disabled: deny_to_change_project,
                                         },
                                         id: 'new_project_id',
                                         class: 'remote-field--input',
@@ -78,6 +81,11 @@ See COPYRIGHT and LICENSE files for more details.
                                         }
               %>
             </div>
+            <% if deny_to_change_project -%>
+              <div class="form--field-instructions">
+                <%= t("th_now_allow_to_change_project") -%>
+              </div>
+            <% end %>
           </div>
           <div class="form--field">
             <label class="form--label" for="new_type_id"><%= WorkPackage.human_attribute_name(:type) %>:</label>
