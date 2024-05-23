@@ -74,6 +74,7 @@ See COPYRIGHT and LICENSE files for more details.
                                           model: @target_project,
                                           appendTo: "body",
                                           hiddenFieldAction: "change->refresh-on-form-changes#triggerReload",
+                                          disabled: deny_to_change_project,
                                           clearable: false
                                         },
                                         id: "new_project_id",
@@ -82,6 +83,11 @@ See COPYRIGHT and LICENSE files for more details.
                                           "test-selector": "new_project_id"
                                         } %>
             </div>
+            <% if deny_to_change_project -%>
+              <div class="form--field-instructions">
+                <%= t("th_not_allow_to_change_project") -%>
+              </div>
+            <% end %>
           </div>
           <div class="form--field">
             <label class="form--label" for="new_type_id"><%= WorkPackage.human_attribute_name(:type) %>:</label>
