@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 919f80ae03577f11f6c935a5778efc9e7498d02a
+  revision: 318fc39cd8ac96a9cdcbe61f3ded3bc9895c10f6
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
