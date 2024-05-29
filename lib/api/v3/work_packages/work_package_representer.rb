@@ -627,7 +627,9 @@ module API
 
         def add_work_packages_allowed?
           @add_work_packages_allowed ||=
-            current_user.allowed_in_project?(:add_work_packages, represented.project)
+            current_user.admin? ||
+            (current_user.allowed_in_project?(:add_work_packages, represented.project) &&
+              represented.project.profile&.type_id != 1)
         end
 
         def relations
