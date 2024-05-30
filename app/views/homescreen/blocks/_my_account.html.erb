@@ -12,3 +12,17 @@
     <%= link_to t(:button_change_password), my_password_path, title: t(:button_change_password) %>
   </li>
 </ul>
+
+<p class="widget-box--additional-info"><%= t('label_labour_tracking') %></p>
+
+<ul class="widget-box--arrow-links">
+  <li>
+    <%= link_to t(:label_th_keyin), th_keyin_path, title: t(:label_th_keyin) %>
+  </li>
+  <li>
+    <%= link_to t(:label_th_keyin_check), 'https://ith-workspace.thape.com.cn/worktime/', title: t(:label_th_keyin_check), target: '_ith' %>
+  </li>
+  <li>
+    <%= link_to t(:label_th_keyin_report), 'https://cybros.thape.com.cn/report/subsidiary_working_hours', title: t(:label_th_keyin_report), target: '_cybros' %>
+  </li>
+</ul>

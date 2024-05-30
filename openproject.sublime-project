@@ -16,6 +16,30 @@
     {
       "path": "../openproject-labour_tracking",
       "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_projects",
+      "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_work_packages",
+      "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_user_auth",
+      "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_notifications",
+      "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_queries",
+      "folder_exclude_patterns": ["bin"]
+    },
+    {
+      "path": "../openproject-th_meetings",
+      "folder_exclude_patterns": ["bin"]
     }
   ],
   "settings":
