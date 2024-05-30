@@ -1,4 +1,65 @@
 GIT
+  remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
+  revision: 0701560cdbcfd142ab42de85eafef1daa1a2accc
+  branch: main
+  specs:
+    openproject-labour_tracking (0.0.2)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
+  revision: 68b948dda98bd29ca50063e1dfdfccfe356fe959
+  branch: main
+  specs:
+    openproject-th_meetings (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
+  revision: 3b01eccfba506a60dea8dd62460223f4fb854b20
+  branch: main
+  specs:
+    openproject-th_notifications (1.0.0)
+      gruf
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
+  revision: 4fe18bed40fa1c650c34985f7a9bdd02af5bdaf4
+  branch: th_plugins
+  specs:
+    openproject-th_plugin (7.1.0)
+      gruf
+      mysql2
+      rails (~> 8.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_projects.git
+  revision: 3528d09318d427f6c58bbf6c2f7df3839375ec23
+  branch: main
+  specs:
+    openproject-th_projects (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_queries.git
+  revision: 3da60b66a32a3069ba792c86df7f6a8ace6568f3
+  branch: main
+  specs:
+    openproject-th_queries (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_user_auth.git
+  revision: 3af285f4305f0b7cb0b22a1ba3922f5a8ac31566
+  branch: main
+  specs:
+    openproject-th_user_auth (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
+  revision: e878da7a61041d2f843996f96ebbc2be09f4e651
+  branch: main
+  specs:
+    openproject-th_work_packages (1.0.0)
+      http
+
+GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
   revision: 0823fb327ffe4405a9bc94e75f195602a28869d1
   branch: main
@@ -498,6 +559,7 @@ GEM
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
+    domain_name (0.6.20240107)
     doorkeeper (5.8.2)
       railties (>= 5)
     dotenv (3.1.8)
@@ -614,6 +676,9 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
+      rake
     flamegraph (0.9.5)
     fog-aws (3.32.0)
       base64 (~> 0.2.0)
@@ -670,6 +735,35 @@ GEM
       base64 (~> 0.2)
       faraday (>= 1.0, < 3.a)
     google-logging-utils (0.2.0)
+    google-protobuf (4.31.1)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-aarch64-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-aarch64-linux-musl)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-x86-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-x86-linux-musl)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-x86_64-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.31.1-x86_64-linux-musl)
+      bigdecimal
+      rake (>= 13)
+    googleapis-common-protos-types (1.20.0)
+      google-protobuf (>= 3.18, < 5.a)
     googleauth (1.14.0)
       faraday (>= 1.0, < 3.a)
       google-cloud-env (~> 2.2)
@@ -688,6 +782,33 @@ GEM
       grape
       rack
     gravatar_image_tag (1.2.0)
+    grpc (1.73.0)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.73.0-aarch64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.73.0-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.73.0-x86-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.73.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.73.0-x86_64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.73.0)
+    gruf (2.21.0)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
+      grpc (~> 1.10)
+      grpc-tools (~> 1.10)
+      json (>= 2.3)
+      slop (>= 4.6)
+      zeitwerk (>= 2)
     hana (1.3.7)
     hashdiff (1.2.0)
     hashery (2.1.2)
@@ -701,6 +822,14 @@ GEM
     htmldiff (0.0.1)
     htmlentities (4.3.4)
     http-2 (1.1.1)
+    http (5.3.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.5.0)
+    http-cookie (1.0.8)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     http_parser.rb (0.8.0)
     httpclient (2.9.0)
       mutex_m
@@ -776,6 +905,9 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp-ffi (0.5.1)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     lobby_boy (0.1.3)
       omniauth (~> 1.1)
       omniauth-openid-connect (>= 0.2.1)
@@ -830,6 +962,7 @@ GEM
     mustermann-grape (1.1.0)
       mustermann (>= 1.0.0)
     mutex_m (0.3.0)
+    mysql2 (0.5.6)
     net-http (0.6.0)
       uri
     net-imap (0.5.9)
@@ -1224,6 +1357,7 @@ GEM
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
     simpleidn (0.2.3)
+    slop (4.10.1)
     smart_properties (1.17.0)
     sorbet-runtime (0.5.12196)
     spreadsheet (1.3.4)
@@ -1374,6 +1508,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
+  arm64-darwin-24
   ruby
   x86-linux-gnu
   x86-linux-musl
@@ -1502,6 +1637,7 @@ DEPENDENCIES
   openproject-github_integration!
   openproject-gitlab_integration!
   openproject-job_status!
+  openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
   openproject-octicons (~> 19.25.0)
@@ -1512,6 +1648,13 @@ DEPENDENCIES
   openproject-reporting!
   openproject-storages!
   openproject-team_planner!
+  openproject-th_meetings!
+  openproject-th_notifications!
+  openproject-th_plugin!
+  openproject-th_projects!
+  openproject-th_queries!
+  openproject-th_user_auth!
+  openproject-th_work_packages!
   openproject-token (~> 7.2.0)
   openproject-two_factor_authentication!
   openproject-webhooks!
