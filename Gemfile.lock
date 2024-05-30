@@ -8,6 +8,67 @@ GIT
       rack (>= 1.6.2, < 3)
 
 GIT
+  remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
+  revision: b80010d80148dd2cf657638eb2767bbf02d6cd21
+  branch: main
+  specs:
+    openproject-labour_tracking (0.0.2)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
+  revision: 3458d758ad6c765377bb4bdd215f499d389a88b3
+  branch: main
+  specs:
+    openproject-th_meetings (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
+  revision: d2f1dbaf8d0961be3e991924480c1979a9961ec7
+  branch: main
+  specs:
+    openproject-th_notifications (1.0.0)
+      gruf
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
+  revision: 841ebe631285ec87a67c49813a6f9f8d91de8739
+  branch: th_plugins
+  specs:
+    openproject-th_plugin (7.1.0)
+      gruf
+      mysql2
+      rails (~> 7.1)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_projects.git
+  revision: ee667728ac4c3d58f11cd1556add5c36a8846f4b
+  branch: main
+  specs:
+    openproject-th_projects (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_queries.git
+  revision: 4243dd060e09e569a83ea0636b53ccb4c33b4f9c
+  branch: main
+  specs:
+    openproject-th_queries (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_user_auth.git
+  revision: 972749a32a4cb535370336c2f24e1c034e409114
+  branch: main
+  specs:
+    openproject-th_user_auth (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
+  revision: 089cbaee37b804fce756fca88f213f8139e70711
+  branch: main
+  specs:
+    openproject-th_work_packages (1.0.0)
+      http
+
+GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
   revision: 347bbe06cb420416855e80bb4e3a3016b2d5872c
   branch: main
@@ -486,6 +547,7 @@ GEM
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
+    domain_name (0.6.20240107)
     doorkeeper (5.7.1)
       railties (>= 5)
     dotenv (3.1.4)
@@ -587,6 +649,9 @@ GEM
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
     ffi (1.17.0)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
+      rake
     flamegraph (0.9.5)
     fog-aws (3.28.0)
       base64 (~> 0.2.0)
@@ -641,6 +706,11 @@ GEM
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.2.1)
       faraday (>= 1.0, < 3.a)
+    google-protobuf (4.28.2)
+      bigdecimal
+      rake (>= 13)
+    googleapis-common-protos-types (1.16.0)
+      google-protobuf (>= 3.18, < 5.a)
     googleauth (1.11.1)
       faraday (>= 1.0, < 3.a)
       google-cloud-env (~> 2.1)
@@ -658,6 +728,18 @@ GEM
       grape
       rack
     gravatar_image_tag (1.2.0)
+    grpc (1.67.0)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.67.0)
+    gruf (2.20.1)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
+      grpc (~> 1.10)
+      grpc-tools (~> 1.10)
+      json (>= 2.3)
+      slop (>= 4.6)
+      zeitwerk (>= 2)
     hana (1.3.7)
     hashdiff (1.1.1)
     hashery (2.1.2)
@@ -671,6 +753,15 @@ GEM
     htmldiff (0.0.1)
     htmlentities (4.3.4)
     http-2 (1.0.1)
+    http (5.2.0)
+      addressable (~> 2.8)
+      base64 (~> 0.1)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.5.0)
+    http-cookie (1.0.7)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     http_parser.rb (0.6.0)
     httpclient (2.8.3)
     httpx (1.3.1)
@@ -739,6 +830,9 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp-ffi (0.5.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     lobby_boy (0.1.3)
       omniauth (~> 1.1)
       omniauth-openid-connect (>= 0.2.1)
@@ -791,6 +885,7 @@ GEM
     mustermann-grape (1.1.0)
       mustermann (>= 1.0.0)
     mutex_m (0.2.0)
+    mysql2 (0.5.6)
     net-http (0.4.1)
       uri
     net-imap (0.5.0)
@@ -1118,6 +1213,7 @@ GEM
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
     simpleidn (0.2.3)
+    slop (4.10.1)
     smart_properties (1.17.0)
     sorbet-runtime (0.5.11604)
     spreadsheet (1.3.1)
@@ -1357,6 +1453,7 @@ DEPENDENCIES
   openproject-github_integration!
   openproject-gitlab_integration!
   openproject-job_status!
+  openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
   openproject-octicons (~> 19.18.0)
@@ -1367,6 +1464,13 @@ DEPENDENCIES
   openproject-reporting!
   openproject-storages!
   openproject-team_planner!
+  openproject-th_meetings!
+  openproject-th_notifications!
+  openproject-th_plugin!
+  openproject-th_projects!
+  openproject-th_queries!
+  openproject-th_user_auth!
+  openproject-th_work_packages!
   openproject-token (~> 4.0)
   openproject-two_factor_authentication!
   openproject-webhooks!
