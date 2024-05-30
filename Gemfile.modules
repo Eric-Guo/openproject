@@ -50,4 +50,21 @@ group :opf_plugins do
   gem 'openproject-storages',                  path: 'modules/storages'
 
   gem 'openproject-bim',                       path: 'modules/bim'
+
+  # bundle config local.openproject-th_plugin /Users/$(whoami)/git/sso/openproject-th_plugin/
+  gem 'openproject-th_plugin', git: "https://git.thape.com.cn/rails/openproject-th_plugin.git", branch: "th_plugins"
+  # bundle config local.openproject-labour_tracking /Users/$(whoami)/git/sso/openproject-labour_tracking/
+  gem 'openproject-labour_tracking', git: "https://git.thape.com.cn/rails/openproject-labour_tracking.git", branch: "main"
+  # bundle config local.openproject-th_projects /Users/$(whoami)/git/sso/openproject-th_projects/
+  gem 'openproject-th_projects', git: "https://git.thape.com.cn/rails/openproject-th_projects.git", branch: "main"
+  # bundle config local.openproject-th_work_packages /Users/$(whoami)/git/sso/openproject-th_work_packages/
+  gem 'openproject-th_work_packages', git: "https://git.thape.com.cn/rails/openproject-th_work_packages.git", branch: "main"
+  # bundle config local.openproject-th_user_auth /Users/$(whoami)/git/sso/openproject-th_user_auth/
+  gem 'openproject-th_user_auth', git: "https://git.thape.com.cn/rails/openproject-th_user_auth.git", branch: "main"
+  # bundle config local.openproject-th_notifications /Users/$(whoami)/git/sso/openproject-th_notifications/
+  gem 'openproject-th_notifications', git: "https://git.thape.com.cn/rails/openproject-th_notifications.git", branch: "main"
+  # bundle config local.openproject-th_queries /Users/$(whoami)/git/sso/openproject-th_queries/
+  gem 'openproject-th_queries', git: "https://git.thape.com.cn/rails/openproject-th_queries.git", branch: "main"
+  # bundle config local.openproject-th_meetings /Users/$(whoami)/git/sso/openproject-th_meetings/
+  gem 'openproject-th_meetings', git: "https://git.thape.com.cn/rails/openproject-th_meetings.git", branch: "main"
 end
