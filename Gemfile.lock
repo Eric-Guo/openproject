@@ -1,4 +1,66 @@
 GIT
+  remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
+  revision: db5c4821ced2adba903548a6b55b69f6da49eb45
+  branch: main
+  specs:
+    openproject-labour_tracking (0.0.2)
+      jbuilder
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
+  revision: 090f767b5b41be8202305cb413006a543c9044db
+  branch: main
+  specs:
+    openproject-th_meetings (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
+  revision: af265b0e2abbd37ccae401fef8ff1f9fce6500cf
+  branch: main
+  specs:
+    openproject-th_notifications (1.0.0)
+      gruf
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
+  revision: 7cd11d97f2512a3bd7b87b815861cc6f246b7781
+  branch: th_plugins
+  specs:
+    openproject-th_plugin (7.1.0)
+      gruf
+      mysql2
+      rails (~> 8.1)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_projects.git
+  revision: 2cb9afcd22d5fc144db57b946c48625186031099
+  branch: main
+  specs:
+    openproject-th_projects (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_queries.git
+  revision: c9fada7262ebdc2a9bacdeab3477de04c3d8c49f
+  branch: main
+  specs:
+    openproject-th_queries (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_user_auth.git
+  revision: 5526ee288625d6d91a4e4839f8413c8467ea1531
+  branch: main
+  specs:
+    openproject-th_user_auth (1.0.0)
+
+GIT
+  remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
+  revision: e72033286abe9e04b8bb31bdbedcb52c2b7fb973
+  branch: main
+  specs:
+    openproject-th_work_packages (1.0.0)
+      http
+
+GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
   revision: ba7e64a7f3a4bad936b484d169a330c495c351c0
   branch: thape
@@ -567,6 +629,7 @@ GEM
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
+    domain_name (0.7.20261117)
     doorkeeper (5.9.10)
       railties (>= 5)
     dotenv (3.2.0)
@@ -780,6 +843,36 @@ GEM
       rack
       zeitwerk
     gravatar_image_tag (1.2.0)
+    grpc (1.85.0)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-aarch64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-aarch64-linux-musl)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-x86_64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.85.0-x86_64-linux-musl)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.85.0)
+    gruf (2.22.0)
+      activesupport (> 4)
+      concurrent-ruby (> 1)
+      grpc (~> 1.10)
+      grpc-tools (~> 1.10)
+      json (>= 2.3)
+      slop (>= 4.6)
+      zeitwerk (>= 2)
     hana (1.3.7)
     hashdiff (1.2.2)
     hashery (2.2.2)
@@ -794,6 +887,11 @@ GEM
     htmldiff (0.0.1)
     htmlentities (4.4.2)
     http-2 (1.3.0)
+    http (6.0.4)
+      http-cookie (~> 1.0)
+      llhttp (~> 0.6.1)
+    http-cookie (1.1.6)
+      domain_name (~> 0.5)
     http_parser.rb (0.8.1)
     httpx (1.9.2)
       http-2 (>= 1.2.0)
@@ -884,6 +982,7 @@ GEM
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp (0.6.2)
     logger (1.7.0)
     lograge (0.15.1)
       actionpack (>= 4)
@@ -938,6 +1037,8 @@ GEM
     multi_json (1.21.2)
     multipart-post (2.4.1)
     mustermann (4.0.1)
+    mysql2 (0.5.7)
+      bigdecimal
     nap (1.2.0)
     net-http (0.10.0)
       net-protocol (>= 0.3.0)
@@ -1574,6 +1675,7 @@ GEM
       jwt (>= 1.5, < 4.0)
     simplecov (1.3.2)
     simpleidn (0.3.0)
+    slop (4.10.1)
     smart_properties (1.17.0)
     sorbet-runtime (0.6.13715)
     spreadsheet (1.3.5)
@@ -1856,6 +1958,7 @@ DEPENDENCIES
   openproject-gitlab_integration!
   openproject-itsm!
   openproject-job_status!
+  openproject-labour_tracking!
   openproject-ldap_departments!
   openproject-ldap_groups!
   openproject-llm!
@@ -1871,6 +1974,13 @@ DEPENDENCIES
   openproject-squashtm_integration!
   openproject-storages!
   openproject-team_planner!
+  openproject-th_meetings!
+  openproject-th_notifications!
+  openproject-th_plugin!
+  openproject-th_projects!
+  openproject-th_queries!
+  openproject-th_user_auth!
+  openproject-th_work_packages!
   openproject-token (~> 8.17.0)
   openproject-two_factor_authentication!
   openproject-webhooks!
@@ -2084,6 +2194,7 @@ CHECKSUMS
   dentaku (4.1.0)
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
   disposable (0.6.3) sha256=7f2a3fb251bff6cd83f25b164043d4ec3531209b51b066ed476a9df9c2d384cc
+  domain_name (0.7.20261117) sha256=13f6a6cc6190892a75041b606d90bfb358ecbd869c1099fdd57b83b11d79269e
   doorkeeper (5.9.10) sha256=6345423418223edb196d1609dc31165315e40b96945ab2c77850b98eea3f1375
   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d
   dotenv-rails (3.2.0) sha256=657e25554ba622ffc95d8c4f1670286510f47f2edda9f68293c3f661b303beab
@@ -2162,6 +2273,15 @@ CHECKSUMS
   grape_logging (3.0.1) sha256=371fb9ae4689c98bc6def715f9e4c3ef3681290a23de296822cd38ece262e98a
   gravatar_image_tag (1.2.0) sha256=eb5630fea846b711e713b934a0178fb9785f02f4eb9ced8d6faa4d537c40fdcf
   grids (1.0.0)
+  grpc (1.85.0) sha256=790fb8073453a7a4e4ade9ab265b92d6e8129f60c8ddae06cc9e3cb18e3e2366
+  grpc (1.85.0-aarch64-linux-gnu) sha256=d38ea50e5b45ce7ee8416b522e5926d271a94f8a3346d886625efe0043c6e2bd
+  grpc (1.85.0-aarch64-linux-musl) sha256=a84380f5586ae7d6393f69543c07ff5c85758236f52ebdc02c675530d2154015
+  grpc (1.85.0-arm64-darwin) sha256=27441b9851dbb07b57442b54cfaa4c31a6f0446a409bf0d932c1d0f94fc243b7
+  grpc (1.85.0-x86_64-darwin) sha256=e451ef4d733408530db44028197e8d9449743fcaed2ef81801e537a3c03d1516
+  grpc (1.85.0-x86_64-linux-gnu) sha256=1623b7d7c9a7c8a2f4709ffa00ad98fb873a530cf7003de76fc9136adebcaa9d
+  grpc (1.85.0-x86_64-linux-musl) sha256=dfc3ffa78de52c9b491d580ca445e0a4f62fbbc88c5d9e0c24abcdb812133d7b
+  grpc-tools (1.85.0) sha256=5db02e77dee25c5e207fb85f8aaa41350eb4689e267c4970872c4efee6c59a9a
+  gruf (2.22.0) sha256=60b27a80f040d1349c73319b2f3bd46f4f0a66d9b11a5f133db503e23d1212f1
   hana (1.3.7) sha256=5425db42d651fea08859811c29d20446f16af196308162894db208cac5ce9b0d
   hashdiff (1.2.2) sha256=e2e287452b42f18d2a8d82dd48c435e214a81dbadccf49344b956842a3b9127f
   hashery (2.2.2) sha256=786b64d98ecb889caa854c7dc916ee016a87c817a7af0dd8d0df66bb585f19e5
@@ -2171,7 +2291,9 @@ CHECKSUMS
   htmlbeautifier (1.4.3) sha256=b43d08f7e2aa6ae1b5a6f0607b4ed8954c8d4a8e85fd2336f975dda1e4db385b
   htmldiff (0.0.1) sha256=a96d068c8b8ea96cca3154a61785365d83129f47f1df964c6b1666924ce113a1
   htmlentities (4.4.2) sha256=bbafbdf69f2eca9262be4efef7e43e6a1de54c95eb600f26984f71d2fe96c5c3
+  http (6.0.4) sha256=3768f902489ea8309424f1881c668af8d3ca73675648a755dfe2cb0030d42d26
   http-2 (1.3.0) sha256=58fc8636c2b937b651853e9f6d9ada9fdaa8bf80b5a7d0333ce15653e5ca6ac1
+  http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   http_parser.rb (0.8.1) sha256=9ae8df145b39aa5398b2f90090d651c67bd8e2ebfe4507c966579f641e11097a
   httpx (1.9.2) sha256=5afa0ee69293c27b5c5b0acb2fe61ab8b521bc47f3ab1755d5b4fa9b05a16a9f
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
@@ -2204,6 +2326,7 @@ CHECKSUMS
   letter_opener_web (3.0.0) sha256=3f391efe0e8b9b24becfab5537dfb17a5cf5eb532038f947daab58cb4b749860
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   listen (3.10.1) sha256=4c3f32855657f348747da4dd2372ff3790d90a6b1d3e4f21a3706adb2d04783c
+  llhttp (0.6.2) sha256=3c3c59aafb1e1594ab2f45293478f697458f5a91eb0f0db4b27f61a064024982
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   lograge (0.15.1) sha256=b8a6b3d45f15855f3b038ce01019317e783fa9ddf774eb20818c751438c5c761
   loofah (2.25.3) sha256=545f14eef0cc2a7de80df560530d593232b7c07e515c5c4e37532d9cb5b0185c
@@ -2229,6 +2352,7 @@ CHECKSUMS
   multipart-post (2.4.1) sha256=9872d03a8e552020ca096adadbf5e3cb1cd1cdd6acd3c161136b8a5737cdb4a8
   mustermann (4.0.1) sha256=91cea92fbd21d80be193a63c5653ac45e9456c0d976039d526a277d98d29cb07
   my_page (1.0.0)
+  mysql2 (0.5.7) sha256=ba09ede515a0ae8a7192040a1b778c0fb0f025fa5877e9be895cd325fa5e9d7b
   nap (1.2.0) sha256=fdb4fd0de5509edca600b471570d00ce90745c9c06dc7d877efb513401953051
   net-http (0.10.0) sha256=1a2ff6e37a05724973c43f2bf7bf105f59c36a4cd0a7e9b1c021a0a566987c27
   net-imap (0.6.8) sha256=eb30bb62227b64a3af6b518b04b2375113d69f68f15de59b0193b07d98acf6d9
@@ -2273,6 +2397,7 @@ CHECKSUMS
   openproject-gitlab_integration (3.0.0)
   openproject-itsm (1.0.0)
   openproject-job_status (1.0.0)
+  openproject-labour_tracking (0.0.2)
   openproject-ldap_departments (1.0.0)
   openproject-ldap_groups (1.0.0)
   openproject-llm (1.0.0)
@@ -2288,6 +2413,13 @@ CHECKSUMS
   openproject-squashtm_integration (1.0.0)
   openproject-storages (1.0.0)
   openproject-team_planner (1.0.0)
+  openproject-th_meetings (1.0.0)
+  openproject-th_notifications (1.0.0)
+  openproject-th_plugin (7.1.0)
+  openproject-th_projects (1.0.0)
+  openproject-th_queries (1.0.0)
+  openproject-th_user_auth (1.0.0)
+  openproject-th_work_packages (1.0.0)
   openproject-token (8.17.0) sha256=2aceeb2c5e76ee10e10db501c0878d21d349b415a5ca82a6c3060b226c4612e2
   openproject-two_factor_authentication (1.0.0)
   openproject-webhooks (1.0.0)
@@ -2491,6 +2623,7 @@ CHECKSUMS
   signet (0.22.2) sha256=9c6861bb599845ea0cb05ffadd3d64c7a3b07a29bdee0f5352bcbe87b7ade21d
   simplecov (1.3.2) sha256=2a22ec1759f1b8db60881a2e038758956fc69ef93ed669be0bde0678de6d0e85
   simpleidn (0.3.0) sha256=12ca730bed2f3db04d11e9bfd1bca3e11fb37f55b21eb2e9793fb5814bf54d03
+  slop (4.10.1) sha256=844322b5ffcf17ed4815fdb173b04a20dd82b4fd93e3744c88c8fafea696d9c7
   smart_properties (1.17.0) sha256=f9323f8122e932341756ddec8e0ac9ec6e238408a7661508be99439ca6d6384b
   sorbet-runtime (0.6.13715) sha256=722e303edbab2990ab53e5b2b5c2ab9eaa7ad89474ffd5c90ba6442c6214bc25
   spreadsheet (1.3.5) sha256=cd83ea66803d9cae4ac258dfe16cd8c2b85da33eec18a6d7b48fd4a45840ab7d
