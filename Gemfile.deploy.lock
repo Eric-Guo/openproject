@@ -1,0 +1,66 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    airbrussh (1.5.3)
+      sshkit (>= 1.6.1, != 1.7.0)
+    base64 (0.2.0)
+    bcrypt_pbkdf (1.1.1)
+    bcrypt_pbkdf (1.1.1-arm64-darwin)
+    capistrano (3.19.1)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (2.1.1)
+      capistrano (~> 3.1)
+    capistrano-good-job (0.1.1)
+      capistrano (>= 3.0)
+    capistrano-rails (1.6.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (>= 1.1, < 3)
+    capistrano-rbenv (2.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano-yarn (2.0.2)
+      capistrano (~> 3.0)
+    capistrano3-puma (6.0.0.beta.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 5.1, < 7.0)
+    concurrent-ruby (1.3.4)
+    ed25519 (1.3.0)
+    i18n (1.14.6)
+      concurrent-ruby (~> 1.0)
+    net-scp (4.0.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
+    net-sftp (4.0.0)
+      net-ssh (>= 5.0.0, < 8.0.0)
+    net-ssh (7.3.0)
+    nio4r (2.7.3)
+    ostruct (0.6.0)
+    puma (6.4.3)
+      nio4r (~> 2.0)
+    rake (13.2.1)
+    sshkit (1.23.1)
+      base64
+      net-scp (>= 1.1.2)
+      net-sftp (>= 2.1.2)
+      net-ssh (>= 2.8.0)
+      ostruct
+
+PLATFORMS
+  arm64-darwin-22
+  ruby
+
+DEPENDENCIES
+  bcrypt_pbkdf
+  capistrano
+  capistrano-good-job
+  capistrano-rails
+  capistrano-rbenv
+  capistrano-yarn
+  capistrano3-puma (~> 6.0.0.beta.1)
+  ed25519
+
+BUNDLED WITH
+   2.5.11
