@@ -570,7 +570,7 @@ module Settings
         description: "",
         format: :integer,
         writable: false,
-        default: 10_000
+        default: 15_000
       },
       good_job_enable_cron: {
         description: "",
