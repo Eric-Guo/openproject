@@ -32,7 +32,7 @@ class CopyProjectJob < ApplicationJob
   include OpenProject::LocaleHelper
   include GoodJob::ActiveJobExtensions::Batches
 
-  queue_with_priority :above_normal
+  queue_with_priority :high
 
   def perform(target_project_params:, associations_to_copy:, skip_custom_field_validation: false, send_mails: false, **)
     User.current = user
