@@ -49,7 +49,7 @@ gem "rdoc", ">= 2.4.2"
 gem "doorkeeper", "~> 5.7.0"
 # Maintain our own omniauth due to relative URL root issues
 # see upstream PR: https://github.com/omniauth/omniauth/pull/903
-gem "omniauth", git: "https://github.com/opf/omniauth", ref: "fe862f986b2e846e291784d2caa3d90a658c67f0"
+gem "omniauth", git: "https://git.thape.com.cn/rails/omniauth.git", branch: :master
 gem "request_store", "~> 1.7.0"
 
 gem "warden", "~> 1.2"
@@ -158,7 +158,7 @@ gem "structured_warnings", "~> 0.4.0"
 gem "airbrake", "~> 13.0.0", require: false
 
 gem "markly", "~> 0.10" # another markdown parser like commonmarker, but with AST support used in PDF export
-gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", ref: "fe05b4f8bae8fd46f4fa93b8e0adee6295ef7388"
+gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", branch: :main
 gem "prawn", "~> 2.4"
 gem "ttfunk", "~> 1.7.0" # remove after https://github.com/prawnpdf/prawn/issues/1346 resolved.
 
@@ -218,7 +218,7 @@ gem "dry-validation"
 gem "store_attribute", "~> 1.0"
 
 # Appsignal integration
-gem "appsignal", "~> 3.10.0", require: false
+gem "appsignal", "~> 3.13.0", require: false
 
 gem "view_component"
 # Lookbook
@@ -242,7 +242,7 @@ group :test do
   # Test prof provides factories from code
   # and other niceties
   gem "test-prof", "~> 1.4.0"
-  gem "turbo_tests", github: "opf/turbo_tests", ref: "with-patches"
+  gem "turbo_tests", git: "https://github.com/opf/turbo_tests.git", branch: "with-patches"
 
   gem "rack_session_access"
   gem "rspec", "~> 3.13.0"
@@ -312,6 +312,20 @@ group :development do
 
   # git hooks manager
   gem "lefthook", require: false
+
+  # Deploy
+  gem "capistrano"
+  gem "capistrano-yarn", require: false
+  gem "capistrano-rails"
+  gem "capistrano-rbenv", require: false
+  gem "capistrano3-puma", "~> 6.0.0.beta.1", require: false
+  gem "capistrano-good-job", require: false
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
+
+  # Support cursor / vs code
+  gem "ruby-lsp", require: false
+  gem "ruby-lsp-rails", require: false
 end
 
 group :development, :test do
