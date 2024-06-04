@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+gem "capistrano"
+gem "capistrano-yarn", require: false
+gem "capistrano-rails"
+gem "capistrano-rbenv", require: false
+gem "capistrano3-puma", "~> 6.0.0.beta.1", require: false
+gem "capistrano-good-job", require: false
+gem "ed25519"
+gem "bcrypt_pbkdf"

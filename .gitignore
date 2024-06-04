@@ -43,6 +43,7 @@ npm-debug.log*
 
 # Ignore Visual Studio Code files
 /.vscode
+openproject.sublime-workspace
 
 # Ignore Vim backup files
 *~
@@ -100,12 +101,14 @@ npm-debug.log*
 *.icloud
 .rspec
 .byebug_history
+/config/master.key
 
 # coverage in plugins
 /lib/plugins/*/coverage
 
 # asset cache
 /.sass-cache/
+/frontend/.nx/cache
 
 # Frontend debug log
 /frontend/npm-debug.log*
@@ -142,3 +145,5 @@ acme.json
 
 # Generated seeders crowdin source file
 **/config/locales/en.seeders.yml
+
+config/master.key
