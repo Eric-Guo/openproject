@@ -221,7 +221,7 @@ gem "dry-validation"
 gem "store_attribute", "~> 2.0"
 
 # Appsignal integration
-gem "appsignal", "~> 3.10.0", require: false
+gem "appsignal", "~> 3.13.0", require: false
 
 # Yabeda integration
 gem "yabeda-activerecord"
@@ -326,6 +326,20 @@ group :development do
 
   # git hooks manager
   gem "lefthook", require: false
+
+  # Deploy
+  gem "capistrano"
+  gem "capistrano-yarn", require: false
+  gem "capistrano-rails"
+  gem "capistrano-rbenv", require: false
+  gem "capistrano3-puma", require: false
+  gem "capistrano-good-job", require: false
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
+
+  # Support cursor / vs code
+  gem "ruby-lsp", require: false
+  gem "ruby-lsp-rails", require: false
 end
 
 group :development, :test do

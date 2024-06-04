@@ -172,6 +172,14 @@
   "optionalDependencies": {
     "fsevents": "*"
   },
+  "resolutions": {
+    "@nrwl/tao": "=19.8.14",
+    "@nx/devkit": "=19.8.14",
+    "bignumber.js": "9.1.2",
+    "esbuild": "~0.24.2",
+    "nx": "=19.8.14",
+    "semver": "~7.6.0"
+  },
   "scripts": {
     "analyze": "ng build --configuration production --stats-json && webpack-bundle-analyzer -h 0.0.0.0 -p 9999 ../public/assets/frontend/stats.json",
     "build:fast": "OPENPROJECT_ANGULAR_BUILD=fast node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration production",

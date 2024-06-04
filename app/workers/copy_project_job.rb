@@ -32,7 +32,7 @@ class CopyProjectJob < ApplicationJob
   include OpenProject::LocaleHelper
   include GoodJob::ActiveJobExtensions::Batches
 
-  queue_with_priority :above_normal
+  queue_with_priority :high
 
   # Again error handling pushing the branch costs up
   def perform(target_project_params:, associations_to_copy:, send_mails: false)
