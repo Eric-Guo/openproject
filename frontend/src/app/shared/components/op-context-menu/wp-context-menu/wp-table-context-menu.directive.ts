@@ -18,6 +18,14 @@ export class WorkPackageTableContextMenu extends WorkPackageViewContextMenu {
 
   public triggerContextMenuAction(action:WorkPackageAction) {
     switch (action.key) {
+      case 'relation-preheels':
+        this.table.timelineController.startAddRelationPreheeler(this.workPackage);
+        break;
+
+      case 'relation-heels':
+        this.table.timelineController.startAddRelationHeeler(this.workPackage);
+        break;
+
       case 'relation-precedes':
         this.table.timelineController.startAddRelationPredecessor(this.workPackage);
         break;

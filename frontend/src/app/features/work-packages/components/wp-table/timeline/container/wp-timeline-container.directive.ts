@@ -288,6 +288,36 @@ export class WorkPackageTimelineTableController extends UntilDestroyedMixin impl
     });
   }
 
+  startAddRelationPreheeler(start:WorkPackageResource) {
+    this.activateSelectionMode(start.id!, (end) => {
+      this.wpRelations
+        .addCommonRelation(start.id!, 'heels', end.id!)
+        .then(() => {
+          this.halEvents.push(start, {
+            eventType: 'association',
+            relatedWorkPackage: end.id!,
+            relationType: 'preheels',
+          });
+        })
+        .catch((error:any) => this.notificationService.handleRawError(error, end));
+    });
+  }
+
+  startAddRelationHeeler(start:WorkPackageResource) {
+    this.activateSelectionMode(start.id!, (end) => {
+      this.wpRelations
+        .addCommonRelation(start.id!, 'preheels', end.id!)
+        .then(() => {
+          this.halEvents.push(start, {
+            eventType: 'association',
+            relatedWorkPackage: end.id!,
+            relationType: 'heels',
+          });
+        })
+        .catch((error:any) => this.notificationService.handleRawError(error, end));
+    });
+  }
+
   startAddRelationPredecessor(start:WorkPackageResource) {
     this.activateSelectionMode(start.id!, (end) => {
       this.wpRelations
