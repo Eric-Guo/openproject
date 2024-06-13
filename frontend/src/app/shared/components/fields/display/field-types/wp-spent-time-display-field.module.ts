@@ -30,11 +30,8 @@ import { PathHelperService } from 'core-app/core/path-helper/path-helper.service
 import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
 import URI from 'urijs';
-import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { WorkDisplayField } from 'core-app/shared/components/fields/display/field-types/work-display-field.module';
-import moment from 'moment-timezone';
-import { DialogCloseDetail } from 'core-turbo/dialog-stream-action';
 
 export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
   public text = {
@@ -46,8 +43,6 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
 
   @LazyInject() apiV3Service:ApiV3Service;
 
-  private closeDialogHandler:EventListener = this.handleDialogClose.bind(this);
-  private workPackageForHandler:WorkPackageResource;
 
   public render(element:HTMLElement, displayText:string):void {
     if (!this.value) {
@@ -95,38 +90,13 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
 
   private appendTimelogLink(element:HTMLElement) {
     if (this.resource.logTime) {
-      const workPackage = this.resource as WorkPackageResource;
       const timelogElement = document.createElement('a');
-      const url = `${this.PathHelper.timeEntryWorkPackageDialog(this.resource.id!)}?date=${moment().format('YYYY-MM-DD')}`;
       timelogElement.setAttribute('class', 'icon icon-time');
-      timelogElement.setAttribute('href', url);
-      timelogElement.dataset.turboStream = 'true';
+      timelogElement.setAttribute('href', '/th_keyin');
+      timelogElement.setAttribute('target', 'th_keyin');
 
       element.appendChild(withTooltip(timelogElement, this.text.logTime, 'label'));
 
-      timelogElement.addEventListener(
-        'click',
-        (event) => this.showTimelogWidget(workPackage, event),
-      );
-    }
-  }
-
-  private showTimelogWidget(wp:WorkPackageResource, event:MouseEvent) {
-    const url = `${this.PathHelper.timeEntryWorkPackageDialog(wp.id!)}?date=${moment().format('YYYY-MM-DD')}`;
-    (event.currentTarget as HTMLAnchorElement).href = url;
-
-    document.addEventListener('dialog:close', this.closeDialogHandler);
-    this.workPackageForHandler = wp;
-  }
-
-  private handleDialogClose(event:CustomEvent<DialogCloseDetail>):void {
-    document.removeEventListener('dialog:close', this.closeDialogHandler);
-
-    const { detail: { dialog, submitted } } = event;
-    if (dialog.id === 'time-entry-dialog' && submitted) {
-      void this.apiV3Service.work_packages
-        .id(this.workPackageForHandler.id!)
-        .refresh();
     }
   }
 }
