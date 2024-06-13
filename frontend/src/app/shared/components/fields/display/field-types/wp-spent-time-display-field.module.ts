@@ -100,15 +100,16 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
     if (this.resource.logTime) {
       const timelogElement = document.createElement('a');
       timelogElement.setAttribute('class', 'icon icon-time');
-      timelogElement.setAttribute('href', '');
+      timelogElement.setAttribute('href', '/th_keyin');
+      timelogElement.setAttribute('target', 'th_keyin');
       timelogElement.setAttribute('title', this.text.logTime);
 
       element.appendChild(timelogElement);
 
-      timelogElement.addEventListener(
-        'click',
-        this.showTimelogWidget.bind(this, this.resource),
-      );
+      // timelogElement.addEventListener(
+      //   'click',
+      //   this.showTimelogWidget.bind(this, this.resource),
+      // );
     }
   }
 
