@@ -9,10 +9,6 @@ export const PERMITTED_CONTEXT_MENU_ACTIONS:WorkPackageAction[] = [
     link: 'id',
   },
   {
-    key: 'log_time',
-    link: 'logTime',
-  },
-  {
     key: 'change_project',
     icon: 'icon-move',
     link: 'move',
