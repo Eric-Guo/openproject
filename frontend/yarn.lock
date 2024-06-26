@@ -3377,18 +3377,18 @@
     "@webassemblyjs/ast" "1.12.1"
     "@xtuc/long" "4.2.2"
 
-"@xeokit/xeokit-bim-viewer@2.5.1-beta-28":
-  version "2.5.1-beta-28"
-  resolved "https://registry.npmmirror.com/@xeokit/xeokit-bim-viewer/-/xeokit-bim-viewer-2.5.1-beta-28.tgz#8285e448968bec836762a7e8c7a34aeaf6e01952"
-  integrity sha512-xJ1jjHvS+yV04IJq5xudS7TsXdFMqu9bOADKHRBuh1/B58YrjgIOdeuo6aDDj8GdPjsDQAvderav6Ie3VFFotQ==
+"@xeokit/xeokit-bim-viewer@2.5.1-beta-33":
+  version "2.5.1-beta-33"
+  resolved "https://registry.npmmirror.com/@xeokit/xeokit-bim-viewer/-/xeokit-bim-viewer-2.5.1-beta-33.tgz#5eb9c9a53ff90aa134ac2d8dabe611cca9eb7c0e"
+  integrity sha512-5g6sQaWbOrB4ApnrCyXZGvfldaZnMugolozHlIWY4JX7JPbsgH+IpzuU3EH0xlXse8OSq7TUeCItVLuV30dGog==
   dependencies:
-    "@xeokit/xeokit-sdk" "2.6.0-beta-14"
+    "@xeokit/xeokit-sdk" "2.6.22"
     http-server "^13.0.2"
 
-"@xeokit/xeokit-sdk@2.6.0-beta-14":
-  version "2.6.0-beta-14"
-  resolved "https://registry.npmmirror.com/@xeokit/xeokit-sdk/-/xeokit-sdk-2.6.0-beta-14.tgz#2ce8820cf58ee13edb12a821fe95346f5c012d47"
-  integrity sha512-Gf2c0lMwy7xJTCC/p2GCet8zkskxm1ajo3n5u4vXrWb07ZxSeFiYcoSkZflOfFiBCylVwn1Qkj9bGD4DZFItTg==
+"@xeokit/xeokit-sdk@2.6.22":
+  version "2.6.22"
+  resolved "https://registry.npmmirror.com/@xeokit/xeokit-sdk/-/xeokit-sdk-2.6.22.tgz#f474c3aaf00efa8b5346a30f4db3e4f1e512ac3e"
+  integrity sha512-6K687b3lRH0ywy1koIi3a/c0aOs28+yxchEpvjCkFHRj4mMrAsztaLSu+CFVZQLcR1bg05jNc/31eDf79K7oEA==
   dependencies:
     "@loaders.gl/core" "^3.2.6"
     "@loaders.gl/gltf" "^3.2.6"
