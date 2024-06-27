@@ -600,6 +600,7 @@ en:
     label_sorted_by: "sorted by"
     label_sorting: "Sorting"
     label_spent_time: "Spent time"
+    label_all_members_assigned_projects: "Include all members assigned projects"
     label_star_query: "Favorited"
     label_starred_queries: "Favorite"
     label_subject: "Subject"
@@ -1112,6 +1113,7 @@ en:
           Publish this view, allowing other users to access your view. Users with the 'Manage public views' permission can modify or remove public query.
           This does not affect the visibility of work package results in that view and depending on their permissions, users may see different results.
         rename_query_placeholder: "Name of this view"
+        all_members_assigned_projects_text: "Mark this view including all members assigned projects and no need to select those members's projects in project list."
         sort_ascending: "Sort ascending"
         sort_descending: "Sort descending"
         star_text: "Mark this view as favorite and add to the saved views sidebar on the left."
