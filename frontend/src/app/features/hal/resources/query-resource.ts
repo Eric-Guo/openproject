@@ -111,6 +111,8 @@ export class QueryResource extends HalResource implements QueryResourceLinks {
 
   public includeSubprojects:boolean;
 
+  public includeAllMembersAssignedProjects:boolean;
+
   public ordered_work_packages:QueryOrder;
 
   public updatedAt:string;
