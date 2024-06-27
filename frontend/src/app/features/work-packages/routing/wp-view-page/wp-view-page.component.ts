@@ -37,6 +37,7 @@ import {
 } from 'core-app/features/work-packages/routing/partitioned-query-space-page/partitioned-query-space-page.component';
 import { ThEstimateButtonComponent } from 'core-app/features/plugins/linked/openproject-th_projects/th-estimate-button/th-estimate-button.component';
 import { BudgetStatusButtonComponent } from 'core-app/features/plugins/linked/openproject-th_projects/budget-status-button/budget-status-button.component';
+import { ProjectListButton } from 'core-app/features/plugins/linked/openproject-th_projects/project-list-button/project-list-button.component';
 import { WorkPackageCreateButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-create-button/wp-create-button.component';
 import { WorkPackageFilterButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-filter-button/wp-filter-button.component';
 import { WorkPackageDetailsViewButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-details-view-button/wp-details-view-button.component';
@@ -112,6 +113,11 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
     },
     {
       component: OpProjectIncludeComponent,
+      show: () => !!(this.currentQuery && !this.currentQuery.includeAllMembersAssignedProjects),
+    },
+    {
+      component: ProjectListButton,
+      show: () => !!(this.currentQuery && this.currentQuery.includeAllMembersAssignedProjects),
     },
     {
       component: OpBaselineModalComponent,

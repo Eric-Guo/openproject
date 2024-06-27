@@ -10,6 +10,7 @@ import {
   ViewPartitionState,
 } from 'core-app/features/work-packages/routing/partitioned-query-space-page/partitioned-query-space-page.component';
 import { ZenModeButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/zen-mode-toggle-button/zen-mode-toggle-button.component';
+import { ProjectListButton } from 'core-app/features/plugins/linked/openproject-th_projects/project-list-button/project-list-button.component';
 import { WorkPackageFilterButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-filter-button/wp-filter-button.component';
 import { WorkPackageFilterContainerComponent } from 'core-app/features/work-packages/components/filters/filter-container/filter-container.directive';
 import { QueryParamListenerService } from 'core-app/features/work-packages/components/wp-query/query-param-listener.service';
@@ -80,6 +81,11 @@ export class TeamPlannerPageComponent extends PartitionedQuerySpacePageComponent
   toolbarButtonComponents:ToolbarButtonComponentDefinition[] = [
     {
       component: OpProjectIncludeComponent,
+      show: () => !!(this.currentQuery && !this.currentQuery.includeAllMembersAssignedProjects),
+    },
+    {
+      component: ProjectListButton,
+      show: () => !!(this.currentQuery && this.currentQuery.includeAllMembersAssignedProjects),
     },
     {
       component: WorkPackageFilterButtonComponent,
