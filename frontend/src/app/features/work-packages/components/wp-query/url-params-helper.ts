@@ -64,6 +64,8 @@ export interface QueryProps {
   hla?:string[];
   // Display representation
   dr?:string;
+  // Include all members assigned projects
+  imp?:boolean;
   // Include subprojects
   is?:boolean;
   // Pagination
@@ -89,6 +91,7 @@ export interface QueryRequestParams {
   timelineLabels:string;
   timelineZoomLevel:string;
   displayRepresentation:string;
+  includeAllMembersAssignedProjects:boolean;
   includeSubprojects:boolean;
   highlightingMode:string;
   'highlightedAttributes[]':string[];
@@ -278,6 +281,10 @@ export class UrlParamsHelperService {
       queryData.displayRepresentation = properties.dr;
     }
 
+    if (properties.imp !== undefined) {
+      queryData.includeAllMembersAssignedProjects = properties.imp;
+    }
+
     if (properties.is !== undefined) {
       queryData.includeSubprojects = properties.is;
     }
@@ -365,6 +372,7 @@ export class UrlParamsHelperService {
       queryData.displayRepresentation = query.displayRepresentation;
     }
 
+    queryData.includeAllMembersAssignedProjects = !!query.includeAllMembersAssignedProjects;
     queryData.includeSubprojects = !!query.includeSubprojects;
     queryData.showHierarchies = !!query.showHierarchies;
     queryData.groupBy = query.groupBy?.id ?? '';
