@@ -28,6 +28,7 @@
 
 import { ApiV3GettableResource } from 'core-app/core/apiv3/paths/apiv3-resource';
 import { QueryResource } from 'core-app/features/hal/resources/query-resource';
+import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { ApiV3QueryOrder } from 'core-app/core/apiv3/endpoints/queries/apiv3-query-order';
 import { ApiV3QueryForm } from 'core-app/core/apiv3/endpoints/queries/apiv3-query-form';
 import { Observable } from 'rxjs';
