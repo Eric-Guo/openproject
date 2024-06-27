@@ -91,6 +91,11 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
     },
     {
       component: OpProjectIncludeComponent,
+      show: () => !!(this.currentQuery && !this.currentQuery.includeAllMembersAssignedProjects),
+    },
+    {
+      component: ProjectListButton,
+      show: () => !!(this.currentQuery && this.currentQuery.includeAllMembersAssignedProjects),
     },
     {
       component: OpBaselineModalComponent,
