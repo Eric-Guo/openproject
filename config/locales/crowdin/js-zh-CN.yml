@@ -510,6 +510,7 @@ zh-CN:
     label_sort_lower: "向下移动"
     label_sorting: "排序"
     label_spent_time: "已耗时间"
+    label_all_members_assigned_projects: "包含项目成员被指定的所有项目"
     label_star_query: "收藏夹"
     label_press_enter_to_save: "按回车键可以保存。"
     label_public_query: "公开"
@@ -1043,6 +1044,7 @@ zh-CN:
         confirm_edit_cancel: "确定要取消编辑此视图的名称吗？标题将重置为上一个值。"
         click_to_edit_query_name: "单击可以编辑此视图的标题。"
         rename_query_placeholder: "此视图的名称"
+        all_members_assigned_projects_text: "标记此视图包括所有成员被指定的工作包的所属项目，从而无需在项目列表中选择这些成员的项目。"
         star_text: "将该视图标记为收藏项，并添加到左侧的已保存视图边栏中。"
         public_text: >
           发布此视图，以允许其他用户访问您的视图。具有“管理公共视图”权限的用户可以修改或移除公共查询。这不会影响工作包结果在该视图中的可见性，并且用户可能会看到不同的结果，具体取决于他们的权限。
