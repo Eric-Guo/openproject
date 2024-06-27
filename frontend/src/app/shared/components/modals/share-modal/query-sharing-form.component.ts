@@ -33,6 +33,7 @@ import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { IsolatedQuerySpace } from 'core-app/features/work-packages/directives/query-space/isolated-query-space';
 
 export interface QuerySharingChange {
+  includeAllMembersAssignedProjects:boolean;
   isStarred:boolean;
   isPublic:boolean;
 }
@@ -54,6 +55,8 @@ export class QuerySharingFormComponent {
 
   @Input() public isSave:boolean;
 
+  @Input() public isShowAllMembersAssignedProjects:boolean;
+
   @Input() public isStarred:boolean;
 
   @Input() public isPublic:boolean;
@@ -61,12 +64,18 @@ export class QuerySharingFormComponent {
   @Output() public onChange = new EventEmitter<QuerySharingChange>();
 
   public text = {
+    showAllMembersAssignedProjects: this.I18n.t('js.label_all_members_assigned_projects'),
     showInMenu: this.I18n.t('js.label_star_query'),
     visibleForOthers: this.I18n.t('js.label_public_query'),
 
+    showAllMembersAssignedProjectsText: this.I18n.t('js.work_packages.query.all_members_assigned_projects_text'),
     showInMenuText: this.I18n.t('js.work_packages.query.star_text'),
     visibleForOthersText: this.I18n.t('js.work_packages.query.public_text'),
   };
+
+  public get canShowAllMembersAssignedProjects() {
+    return this.authorisationService.can('query', 'updateImmediately');
+  }
 
   public get canStar() {
     return this.isSave
@@ -81,6 +90,11 @@ export class QuerySharingFormComponent {
       && form.schema.public.writable;
   }
 
+  public updateShowAllMembersAssignedProjects(val:boolean) {
+    this.isShowAllMembersAssignedProjects = val;
+    this.changed();
+  }
+
   public updateStarred(val:boolean) {
     this.isStarred = val;
     this.changed();
@@ -92,6 +106,10 @@ export class QuerySharingFormComponent {
   }
 
   public changed() {
-    this.onChange.emit({ isStarred: !!this.isStarred, isPublic: !!this.isPublic });
+    this.onChange.emit({
+      includeAllMembersAssignedProjects: !!this.isShowAllMembersAssignedProjects,
+      isStarred: !!this.isStarred,
+      isPublic: !!this.isPublic,
+    });
   }
 }
