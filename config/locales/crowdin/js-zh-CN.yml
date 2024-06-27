@@ -567,6 +567,7 @@ zh-CN:
     label_sorted_by: 排序按
     label_sorting: 排序
     label_spent_time: 已耗时间
+    label_all_members_assigned_projects: 包含项目成员被指定的所有项目
     label_star_query: 已收藏
     label_starred_queries: 收藏夹视图
     label_subject: 主题
@@ -1050,6 +1051,7 @@ zh-CN:
 
           '
         rename_query_placeholder: 此视图的名称
+        all_members_assigned_projects_text: 标记此视图包括所有成员被指定的工作包的所属项目，从而无需在项目列表中选择这些成员的项目。
         sort_ascending: 升序排序
         sort_descending: 降序排序
         star_text: 将该视图标记为收藏项，并添加到左侧的已保存视图边栏中。
