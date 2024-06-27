@@ -48,6 +48,8 @@ import { States } from 'core-app/core/states/states.service';
 export class SaveQueryModalComponent extends OpModalComponent {
   public queryName = '';
 
+  public includeAllMembersAssignedProjects = false;
+
   public isStarred = false;
 
   public isPublic = false;
@@ -82,6 +84,7 @@ export class SaveQueryModalComponent extends OpModalComponent {
   }
 
   public setValues(change:QuerySharingChange):void {
+    this.includeAllMembersAssignedProjects = change.includeAllMembersAssignedProjects;
     this.isStarred = change.isStarred;
     this.isPublic = change.isPublic;
   }
@@ -103,6 +106,7 @@ export class SaveQueryModalComponent extends OpModalComponent {
 
     this.isBusy = true;
     const query = this.querySpace.query.value!;
+    query.includeAllMembersAssignedProjects = this.includeAllMembersAssignedProjects;
     query.public = this.isPublic;
 
     this.wpListService

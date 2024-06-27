@@ -48,6 +48,8 @@ import { IsolatedQuerySpace } from 'core-app/features/work-packages/directives/q
 export class QuerySharingModalComponent extends OpModalComponent implements OnInit {
   public query:QueryResource;
 
+  public includeAllMembersAssignedProjects = false;
+
   public isStarred = false;
 
   public isPublic = false;
@@ -84,11 +86,13 @@ export class QuerySharingModalComponent extends OpModalComponent implements OnIn
 
     this.query = this.querySpace.query.value!;
 
+    this.includeAllMembersAssignedProjects = this.query.includeAllMembersAssignedProjects;
     this.isStarred = this.query.starred;
     this.isPublic = this.query.public;
   }
 
   public setValues(change:QuerySharingChange):void {
+    this.includeAllMembersAssignedProjects = change.includeAllMembersAssignedProjects;
     this.isStarred = change.isStarred;
     this.isPublic = change.isPublic;
   }
@@ -105,8 +109,9 @@ export class QuerySharingModalComponent extends OpModalComponent implements OnIn
     this.isBusy = true;
     const promises = [];
 
-    if (this.query.public !== this.isPublic) {
+    if (this.query.public !== this.isPublic || this.query.includeAllMembersAssignedProjects !== this.includeAllMembersAssignedProjects) {
       this.query.public = this.isPublic;
+      this.query.includeAllMembersAssignedProjects = this.includeAllMembersAssignedProjects;
 
       promises.push(this.wpListService.save(this.query));
     }
