@@ -9,6 +9,7 @@
   <query-sharing-form class="spot-modal--body spot-container"
     [isSave]="false"
     (onChange)="setValues($event)"
+    [isShowAllMembersAssignedProjects]="includeAllMembersAssignedProjects"
     [isStarred]="isStarred"
     [isPublic]="isPublic" />
 
