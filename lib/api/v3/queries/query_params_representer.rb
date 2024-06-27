@@ -46,6 +46,7 @@ module API
 
         def to_h(column_key: :columns, highlighted_attributes_key: :highlightedAttributes)
           p = super.merge(display_options)
+          p[:includeAllMembersAssignedProjects] = query.include_all_members_assigned_projects
           p[:groupBy] = query.group_by if query.group_by?
           p[column_key] = columns_to_v3 unless query.has_default_columns?
           highlighted_attributes = highlighted_attributes_to_v3
