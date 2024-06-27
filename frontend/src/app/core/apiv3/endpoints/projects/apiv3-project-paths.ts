@@ -55,6 +55,9 @@ export class ApiV3ProjectPaths extends ApiV3Resource<ProjectResource> {
   // /api/v3/projects/:project_id/copy
   public readonly copy = new ApiV3ProjectCopyPaths(this.apiRoot, this.path);
 
+  // /api/v3/projects/:project_id/all_members_assigned_projects
+  public readonly all_members_assigned_projects = this.subResource('all_members_assigned_projects');
+
   protected createCache():StateCacheService<ProjectResource> {
     return (this.parent as ApiV3ProjectsPaths).cache;
   }
