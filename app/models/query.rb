@@ -431,7 +431,12 @@ class Query < ApplicationRecord
   end
 
   def statement_filters
-    if project
+    if include_all_members_assigned_projects?
+      all_members_assigned_projects_filter = Queries::WorkPackages::Filter::AllMembersAssignedProjectsFilter.create!
+      all_members_assigned_projects_filter.context = self
+      no_project_filters = remove_filter("project_id")
+      no_project_filters + [all_members_assigned_projects_filter]
+    elsif project
       filters + [project_limiting_filter].compact
     else
       filters
