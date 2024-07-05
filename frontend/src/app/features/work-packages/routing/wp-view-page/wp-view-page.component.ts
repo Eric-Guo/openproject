@@ -35,6 +35,8 @@ import {
   PartitionedQuerySpacePageComponent,
   ToolbarButtonComponentDefinition,
 } from 'core-app/features/work-packages/routing/partitioned-query-space-page/partitioned-query-space-page.component';
+import { ThEstimateButtonComponent } from 'core-app/features/plugins/linked/openproject-th_projects/th-estimate-button/th-estimate-button.component';
+import { ProjectListButton } from 'core-app/features/plugins/linked/openproject-th_projects/project-list-button/project-list-button.component';
 import { WorkPackageCreateButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-create-button/wp-create-button.component';
 import { WorkPackageFilterButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-filter-button/wp-filter-button.component';
 import { WorkPackageDetailsViewButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-details-view-button/wp-details-view-button.component';
@@ -65,6 +67,23 @@ import { BreadcrumbItem } from 'core-app/shared/components/breadcrumbs/op-breadc
 })
 export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageComponent implements OnInit {
   toolbarButtonComponents:ToolbarButtonComponentDefinition[] = [
+    {
+      component: ThEstimateButtonComponent,
+      show: ():boolean => {
+        if (this.currentQuery == undefined) {
+          return false;
+        }
+        const embedded = this.currentQuery.$embedded;
+        if (embedded === undefined) {
+          return false;
+        }
+        const project = embedded.project;
+        if (project === undefined) {
+          return false;
+        }
+        return project.showEstimateButton;
+      },
+    },
     {
       component: WorkPackageCreateButtonComponent,
       inputs: {
