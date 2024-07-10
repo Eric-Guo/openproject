@@ -125,6 +125,9 @@ import {
   WorkPackageFoldToggleButtonComponent,
 } from 'core-app/features/work-packages/components/wp-buttons/wp-fold-toggle-button/wp-fold-toggle-button.component';
 import {
+  WorkPackageHierarchiesToggleButtonComponent,
+} from 'core-app/features/work-packages/components/wp-buttons/wp-hierarchies-toggle-button/wp-hierarchies-toggle-button.component';
+import {
   WpTableConfigurationModalComponent,
 } from 'core-app/features/work-packages/components/wp-table/configuration-modal/wp-table-configuration.modal';
 import {
@@ -253,6 +256,9 @@ import { WorkPackagesTableComponent } from 'core-app/features/work-packages/comp
 import {
   WorkPackageGroupToggleDropdownMenuDirective,
 } from 'core-app/shared/components/op-context-menu/handlers/wp-group-toggle-dropdown-menu.directive';
+import {
+  WorkPackageHierarchyToggleDropdownMenuDirective,
+} from 'core-app/shared/components/op-context-menu/handlers/wp-hierarchy-toggle-dropdown-menu.directive';
 import {
   OpenprojectAutocompleterModule,
 } from 'core-app/shared/components/autocompleter/openproject-autocompleter.module';
@@ -534,6 +540,7 @@ import { PrimerButtonComponent } from 'core-app/shared/components/primer/button.
 
     // Fold/Unfold button on wp list
     WorkPackageFoldToggleButtonComponent,
+    WorkPackageHierarchiesToggleButtonComponent,
 
     // Filters
     QueryFiltersComponent,
@@ -552,6 +559,7 @@ import { PrimerButtonComponent } from 'core-app/shared/components/primer/button.
     WorkPackageFilterContainerComponent,
     WorkPackageFilterButtonComponent,
 
+    WorkPackageHierarchyToggleDropdownMenuDirective,
     // Timeline
     WorkPackageTimelineButtonComponent,
     WorkPackageTimelineHeaderController,

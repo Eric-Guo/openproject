@@ -124,6 +124,9 @@ import {
 import {
   WorkPackageViewCollapsedGroupsService,
 } from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-collapsed-groups.service';
+import {
+  WorkPackageViewCollapsedHierarchiesService,
+} from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-collapsed-hierarchies.service';
 import { WorkPackageService } from 'core-app/features/work-packages/services/work-package.service';
 import { WorkPackageViewSelectionGesturesService } from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-selection-gestures.service';
 import {
@@ -155,6 +158,7 @@ import {
     WorkPackageViewPaginationService,
     WorkPackageViewGroupByService,
     WorkPackageViewCollapsedGroupsService,
+    WorkPackageViewCollapsedHierarchiesService,
     WorkPackageViewHierarchiesService,
     WorkPackageViewSortByService,
     WorkPackageViewColumnsService,
