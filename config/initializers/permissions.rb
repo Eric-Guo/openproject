@@ -79,7 +79,7 @@ Rails.application.reloader.to_prepare do
 
       map.permission :manage_user,
                      {
-                       users: %i[index show edit update change_status change_status_info
+                       users: %i[index show edit update change_status login_as change_status_info
                                  update_reminders update_email_alerts update_workdays
                                  update_participating update_non_participating update_date_alerts
                                  new_project_settings create_project_settings
