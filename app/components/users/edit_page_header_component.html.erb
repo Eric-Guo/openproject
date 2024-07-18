@@ -72,6 +72,18 @@ See COPYRIGHT and LICENSE files for more details.
             title
           end
         end
+        header.with_action_button(tag: :a,
+                                  mobile_icon: 'sign-in',
+                                  mobile_label: "Login as",
+                                  size: :medium,
+                                  name: "Login as",
+                                  href: login_as_user_path(@user),
+                                  data: { method: :post },
+                                  aria: { label: "Login as" },
+                                  title: "Login as") do |button|
+          button.with_leading_visual_icon(icon: 'sign-in')
+          "Login as"
+        end
       end
 
       if Setting.users_deletable_by_admins?
