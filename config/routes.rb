@@ -639,6 +639,7 @@ Rails.application.routes.draw do
       get "/edit(/:tab)" => "users#edit", as: "edit"
       get "/change_status/:change_action" => "users#change_status_info", as: "change_status_info"
       post :change_status
+      post :login_as
       post :resend_invitation
       get :deletion_info
     end

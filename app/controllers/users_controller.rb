@@ -36,6 +36,7 @@ class UsersController < ApplicationController
                                      update
                                      change_status_info
                                      change_status
+                                     login_as
                                      destroy
                                      deletion_info
                                      resend_invitation]
@@ -185,6 +186,14 @@ class UsersController < ApplicationController
                              errors: @user.errors.full_messages.join(", "))
     end
     redirect_back_or_default(action: "edit", id: @user)
+  end
+
+  def login_as
+    if current_user.admin?
+      login_user! @user
+    else
+      redirect_to root_path
+    end
   end
 
   def resend_invitation
