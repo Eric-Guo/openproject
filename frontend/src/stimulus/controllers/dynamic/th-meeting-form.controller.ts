@@ -11,8 +11,6 @@ export default class ThMeetingFormController extends Controller {
 
   declare availableRoomsPathValue:string;
 
-  connect() {}
-
   getAvailableRooms(e:MouseEvent) {
     const button = e.target as HTMLButtonElement;
     const buttonText = button.textContent;
