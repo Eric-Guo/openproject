@@ -31,6 +31,7 @@ class Meeting::StartTime < ApplicationForm
 
   form do |meeting_form|
     meeting_form.text_field(
+      id: "meeting-form-start-time",
       name: :start_time_hour,
       type: "time",
       value: @initial_value,

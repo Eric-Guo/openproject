@@ -29,6 +29,7 @@
 class Meeting::StartDate < ApplicationForm
   form do |meeting_form|
     meeting_form.text_field(
+      id: "meeting_start_date",
       name: :start_date,
       type: "date",
       value: @initial_value,

@@ -29,6 +29,7 @@
 class Meeting::ThMeetingUpstreamRoomId < ApplicationForm
   form do |meeting_form|
     meeting_form.select_list(
+      id: "meeting_th_meeting_upstream_room_id",
       name: :th_meeting_upstream_room_id,
       label: Meeting.human_attribute_name(:th_meeting_upstream_room_id),
       visually_hide_label: false,
