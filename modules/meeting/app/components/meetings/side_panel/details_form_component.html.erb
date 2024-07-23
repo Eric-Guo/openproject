@@ -3,7 +3,13 @@
     primer_form_with(
       model: @meeting,
       method: :put,
-      data: { turbo: true, turbo_stream: true },
+      data: { turbo: true, 
+        turbo_stream: true,
+        controller: 'th-meeting-form',
+        'application-target': 'dynamic',
+        'th-meeting-form-th-meeting-id-value': @meeting.th_meeting_id,
+        'th-meeting-form-available-rooms-path-value': available_rooms_th_meetings_path
+      },
       url: update_details_meeting_path(@meeting)
     ) do |f|
       component_collection do |collection|
@@ -27,6 +33,10 @@
 
             modal_body.with_row(mt: 3) do
               render(Meeting::ThMeetingUpstreamRoomId.new(f, meeting: @meeting))
+            end
+
+            modal_body.with_row(mt: 3) do
+              '<button class="button" type="button" style="margin: 0;" data-action="click->th-meeting-form#getAvailableRooms">获取可用会议室</button>'.html_safe
             end
 
             modal_body.with_row do
