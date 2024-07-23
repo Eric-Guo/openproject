@@ -29,6 +29,7 @@
 class Meeting::Duration < ApplicationForm
   form do |meeting_form|
     meeting_form.text_field(
+      id: "meeting-form-duration",
       name: :duration,
       type: :number,
       min: 0,
