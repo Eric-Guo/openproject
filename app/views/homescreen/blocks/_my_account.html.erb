@@ -2,15 +2,23 @@
 
 <ul class="widget-box--arrow-links">
   <li>
-    <%= link_to t(:label_profile), my_account_path, title: t(:label_profile) %>
-  </li>
-  <li>
     <%= link_to t(:'js.my_page.label'), my_page_path,
                 title: t(:'js.my_page.label') %>
   </li>
   <li>
-    <%= link_to t(:button_change_password), my_password_path, title: t(:button_change_password) %>
+    <%= link_to t(:label_my_activity), { controller: "/users", action: "show", id: "me" },
+                title: t(:'js.my_page.label') %>
   </li>
+  <li>
+    <%= link_to t(:label_profile), my_account_path, title: t(:label_profile) %>
+  </li>
+  <% login_via_provider = !!current_user.identity_url %>
+  <% login_via_ldap = !!current_user.ldap_auth_source_id %>
+  <% unless login_via_ldap || login_via_provider %>
+    <li>
+      <%= link_to t(:button_change_password), my_password_path, title: t(:button_change_password) %>
+    </li>
+  <% end %>
 </ul>
 
 <p class="widget-box--additional-info"><%= t('label_labour_tracking') %></p>
