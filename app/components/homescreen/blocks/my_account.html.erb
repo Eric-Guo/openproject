@@ -8,8 +8,17 @@
                   title: t(:"my_page.label") %>
     </li>
     <li>
-      <%= link_to t(:button_change_password), my_security_path, title: t(:button_change_password) %>
+      <%= link_to t(:label_my_activity), { controller: "/users", action: "show", id: "me" },
+                  title: t(:label_my_activity) %>
     </li>
+    <li>
+      <%= link_to t(:label_profile), my_account_path, title: t(:label_profile) %>
+    </li>
+    <% if current_user.change_password_allowed? %>
+      <li>
+        <%= link_to t(:button_change_password), my_security_path, title: t(:button_change_password) %>
+      </li>
+    <% end %>
   </ul>
 
   <p class="widget-box--additional-info"><%= t('label_labour_tracking') %></p>
