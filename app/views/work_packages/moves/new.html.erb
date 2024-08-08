@@ -205,10 +205,8 @@ See COPYRIGHT and LICENSE files for more details.
   </section>
   <% if @copy %>
     <%= hidden_field_tag("copy") %>
-    <%= styled_submit_tag t(:button_copy), class: '-primary' %>
     <%= styled_submit_tag t(:button_copy_and_follow), name: 'follow', class: '-primary' %>
   <% else %>
-    <%= styled_submit_tag t(:button_move), class: '-primary' %>
     <%= styled_submit_tag t(:button_move_and_follow), name: 'follow', class: '-primary' %>
   <% end %>
 <% end %>
