@@ -118,11 +118,8 @@ module Projects
       call.result.project_custom_field_ids = source.project_custom_field_ids
     end
 
-    def retain_attributes(source, target)
-      # Ensure we keep the public value of the source project
-      # which might get overridden by the SetAttributesService
-      # unless the user provided a different value
-      target.public = source.public unless target_project_params.key?(:public)
+    def retain_attributes(_source, target)
+      target.public = false
     end
 
     def skipped_attributes
