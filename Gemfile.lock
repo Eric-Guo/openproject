@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: b80010d80148dd2cf657638eb2767bbf02d6cd21
+  revision: d707ce43e9fc7849b2255a62700382f2c37a45d4
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 841ebe631285ec87a67c49813a6f9f8d91de8739
+  revision: 7f8216548c34d7e6932eb56cf009750e12be7623
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: ee667728ac4c3d58f11cd1556add5c36a8846f4b
+  revision: f6b72b0b10425056da98d9f6855903e29c3df716
   branch: main
   specs:
     openproject-th_projects (1.0.0)
@@ -405,7 +405,7 @@ GEM
       activerecord (>= 4.0.0, < 8.0)
     awrence (1.2.1)
     aws-eventstream (1.3.0)
-    aws-partitions (1.992.0)
+    aws-partitions (1.993.0)
     aws-sdk-core (3.211.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -821,7 +821,7 @@ GEM
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
-    lefthook (1.8.0)
+    lefthook (1.8.1)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     letter_opener_web (3.0.0)
@@ -1034,7 +1034,7 @@ GEM
     rack_session_access (0.2.0)
       builder (>= 2.0.0)
       rack (>= 1.0.0)
-    rackup (1.0.0)
+    rackup (1.0.1)
       rack (< 3)
       webrick
     rails (7.1.4.1)
@@ -1117,7 +1117,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.1)
+    rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -1217,7 +1217,7 @@ GEM
     simpleidn (0.2.3)
     slop (4.10.1)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11604)
+    sorbet-runtime (0.5.11611)
     spreadsheet (1.3.1)
       bigdecimal
       ruby-ole
@@ -1333,7 +1333,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.37)
-    zeitwerk (2.7.0)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   ruby
