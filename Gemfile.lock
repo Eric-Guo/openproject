@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: b80010d80148dd2cf657638eb2767bbf02d6cd21
+  revision: d707ce43e9fc7849b2255a62700382f2c37a45d4
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 841ebe631285ec87a67c49813a6f9f8d91de8739
+  revision: 7f8216548c34d7e6932eb56cf009750e12be7623
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: ee667728ac4c3d58f11cd1556add5c36a8846f4b
+  revision: 5920e6fdc2e09d037b369e92bb15d59125cc0ff2
   branch: main
   specs:
     openproject-th_projects (1.0.0)
@@ -287,35 +287,35 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.1)
-    actioncable (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actioncable (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
       zeitwerk (~> 2.6)
-    actionmailbox (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      activejob (= 7.1.4.1)
-      activerecord (= 7.1.4.1)
-      activestorage (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actionmailbox (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      activejob (= 7.1.4.2)
+      activerecord (= 7.1.4.2)
+      activestorage (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       mail (>= 2.7.1)
       net-imap
       net-pop
       net-smtp
-    actionmailer (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      actionview (= 7.1.4.1)
-      activejob (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actionmailer (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      actionview (= 7.1.4.2)
+      activejob (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       mail (~> 2.5, >= 2.5.4)
       net-imap
       net-pop
       net-smtp
       rails-dom-testing (~> 2.2)
-    actionpack (7.1.4.1)
-      actionview (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actionpack (7.1.4.2)
+      actionview (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       nokogiri (>= 1.8.5)
       racc
       rack (>= 2.2.4)
@@ -326,31 +326,31 @@ GEM
     actionpack-xml_parser (2.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    actiontext (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      activerecord (= 7.1.4.1)
-      activestorage (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actiontext (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      activerecord (= 7.1.4.2)
+      activestorage (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (7.1.4.1)
-      activesupport (= 7.1.4.1)
+    actionview (7.1.4.2)
+      activesupport (= 7.1.4.2)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activejob (7.1.4.1)
-      activesupport (= 7.1.4.1)
+    activejob (7.1.4.2)
+      activesupport (= 7.1.4.2)
       globalid (>= 0.3.6)
-    activemodel (7.1.4.1)
-      activesupport (= 7.1.4.1)
+    activemodel (7.1.4.2)
+      activesupport (= 7.1.4.2)
     activemodel-serializers-xml (1.0.3)
       activemodel (>= 5.0.0.a)
       activesupport (>= 5.0.0.a)
       builder (~> 3.1)
-    activerecord (7.1.4.1)
-      activemodel (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    activerecord (7.1.4.2)
+      activemodel (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       timeout (>= 0.4.0)
     activerecord-import (1.7.0)
       activerecord (>= 4.2)
@@ -363,13 +363,13 @@ GEM
       multi_json (~> 1.11, >= 1.11.2)
       rack (>= 2.0.8, < 4)
       railties (>= 6.1)
-    activestorage (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      activejob (= 7.1.4.1)
-      activerecord (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    activestorage (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      activejob (= 7.1.4.2)
+      activerecord (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       marcel (~> 1.0)
-    activesupport (7.1.4.1)
+    activesupport (7.1.4.2)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -405,7 +405,7 @@ GEM
       activerecord (>= 4.0.0, < 8.0)
     awrence (1.2.1)
     aws-eventstream (1.3.0)
-    aws-partitions (1.992.0)
+    aws-partitions (1.994.0)
     aws-sdk-core (3.211.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -709,12 +709,12 @@ GEM
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.2.1)
       faraday (>= 1.0, < 3.a)
-    google-protobuf (4.28.2)
+    google-protobuf (4.28.3)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos-types (1.16.0)
       google-protobuf (>= 3.18, < 5.a)
-    googleauth (1.11.1)
+    googleauth (1.11.2)
       faraday (>= 1.0, < 3.a)
       google-cloud-env (~> 2.1)
       jwt (>= 1.4, < 3.0)
@@ -795,7 +795,7 @@ GEM
       reline (>= 0.4.2)
     iso8601 (0.13.0)
     jmespath (1.6.2)
-    json (2.7.2)
+    json (2.7.3)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -930,12 +930,12 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.18.0)
-    openproject-octicons_helper (19.18.0)
+    openproject-octicons (19.18.1)
+    openproject-octicons_helper (19.18.1)
       actionview
-      openproject-octicons (= 19.18.0)
+      openproject-octicons (= 19.18.1)
       railties
-    openproject-primer_view_components (0.48.0)
+    openproject-primer_view_components (0.48.1)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
       openproject-octicons (>= 19.17.0)
@@ -1034,23 +1034,23 @@ GEM
     rack_session_access (0.2.0)
       builder (>= 2.0.0)
       rack (>= 1.0.0)
-    rackup (1.0.0)
+    rackup (1.0.1)
       rack (< 3)
       webrick
-    rails (7.1.4.1)
-      actioncable (= 7.1.4.1)
-      actionmailbox (= 7.1.4.1)
-      actionmailer (= 7.1.4.1)
-      actionpack (= 7.1.4.1)
-      actiontext (= 7.1.4.1)
-      actionview (= 7.1.4.1)
-      activejob (= 7.1.4.1)
-      activemodel (= 7.1.4.1)
-      activerecord (= 7.1.4.1)
-      activestorage (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    rails (7.1.4.2)
+      actioncable (= 7.1.4.2)
+      actionmailbox (= 7.1.4.2)
+      actionmailer (= 7.1.4.2)
+      actionpack (= 7.1.4.2)
+      actiontext (= 7.1.4.2)
+      actionview (= 7.1.4.2)
+      activejob (= 7.1.4.2)
+      activemodel (= 7.1.4.2)
+      activerecord (= 7.1.4.2)
+      activestorage (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       bundler (>= 1.15.0)
-      railties (= 7.1.4.1)
+      railties (= 7.1.4.2)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -1065,9 +1065,9 @@ GEM
     rails-i18n (7.0.9)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    railties (7.1.4.1)
-      actionpack (= 7.1.4.1)
-      activesupport (= 7.1.4.1)
+    railties (7.1.4.2)
+      actionpack (= 7.1.4.2)
+      activesupport (= 7.1.4.2)
       irb
       rackup (>= 1.0.0)
       rake (>= 12.2)
@@ -1107,7 +1107,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.3.8)
+    rexml (3.3.9)
     rinku (2.0.6)
     roar (1.2.0)
       representable (~> 3.1)
@@ -1117,7 +1117,7 @@ GEM
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
       rspec-mocks (~> 3.13.0)
-    rspec-core (3.13.1)
+    rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -1178,7 +1178,7 @@ GEM
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 4)
       sorbet-runtime (>= 0.5.10782)
-    ruby-lsp-rails (0.3.20)
+    ruby-lsp-rails (0.3.21)
       ruby-lsp (>= 0.20.0, < 0.21.0)
     ruby-ole (1.2.13.1)
     ruby-prof (1.7.1)
@@ -1217,7 +1217,7 @@ GEM
     simpleidn (0.2.3)
     slop (4.10.1)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11604)
+    sorbet-runtime (0.5.11615)
     spreadsheet (1.3.1)
       bigdecimal
       ruby-ole
@@ -1333,7 +1333,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.37)
-    zeitwerk (2.7.0)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   ruby
