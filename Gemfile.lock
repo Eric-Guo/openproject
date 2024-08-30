@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: b80010d80148dd2cf657638eb2767bbf02d6cd21
+  revision: b9b962ae72e275928b533be3716bbffd2a94866e
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -405,7 +405,7 @@ GEM
       activerecord (>= 4.0.0, < 8.0)
     awrence (1.2.1)
     aws-eventstream (1.3.0)
-    aws-partitions (1.989.0)
+    aws-partitions (1.990.0)
     aws-sdk-core (3.209.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.651.0)
@@ -522,7 +522,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (1.19.0)
+    css_parser (1.19.1)
       addressable
     csv (3.3.0)
     cuprite (0.15.1)
@@ -888,7 +888,7 @@ GEM
     mysql2 (0.5.6)
     net-http (0.4.1)
       uri
-    net-imap (0.4.16)
+    net-imap (0.4.17)
       date
       net-protocol
     net-ldap (0.19.0)
@@ -1007,7 +1007,7 @@ GEM
       puma (>= 5.0, < 7)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.9)
+    rack (2.2.10)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-cors (2.0.2)
@@ -1171,13 +1171,13 @@ GEM
       activesupport (>= 3.0.0)
       i18n
       iso8601
-    ruby-lsp (0.19.1)
+    ruby-lsp (0.20.0)
       language_server-protocol (~> 3.17.0)
-      prism (>= 1.1, < 2.0)
+      prism (>= 1.2, < 2.0)
       rbs (>= 3, < 4)
       sorbet-runtime (>= 0.5.10782)
-    ruby-lsp-rails (0.3.18)
-      ruby-lsp (>= 0.19.0, < 0.20.0)
+    ruby-lsp-rails (0.3.19)
+      ruby-lsp (>= 0.20.0, < 0.21.0)
     ruby-ole (1.2.13.1)
     ruby-prof (1.7.0)
     ruby-progressbar (1.13.0)
@@ -1215,7 +1215,7 @@ GEM
     simpleidn (0.2.3)
     slop (4.10.1)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.11600)
+    sorbet-runtime (0.5.11602)
     spreadsheet (1.3.1)
       bigdecimal
       ruby-ole
@@ -1570,4 +1570,4 @@ RUBY VERSION
    ruby 3.3.5p100
 
 BUNDLED WITH
-   2.5.13
+   2.5.21
