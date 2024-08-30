@@ -183,6 +183,5 @@
     "lint:eslint": "eslint",
     "generate-typings": "tsc -d -p src/tsconfig.app.json"
   },
-  "overrides": {
-  }
+  "overrides": {}
 }
