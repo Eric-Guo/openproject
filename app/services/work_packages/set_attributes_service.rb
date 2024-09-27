@@ -193,6 +193,8 @@ class WorkPackages::SetAttributesService < BaseServices::SetAttributes
 
     work_package.due_date ||= if parent_due_later_than_start?
                                 work_package.parent.due_date
+                              elsif Setting.work_package_startdate_is_adddate?
+                                Time.zone.today + 1.month
                               end
   end
 
