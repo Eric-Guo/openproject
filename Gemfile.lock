@@ -794,7 +794,7 @@ GEM
     iso8601 (0.13.0)
     jmespath (1.6.2)
     json (2.7.2)
-    json-jwt (1.16.6)
+    json-jwt (1.16.7)
       activesupport (>= 4.2)
       aes_key_wrap
       base64
@@ -1136,7 +1136,7 @@ GEM
     rspec-support (3.13.1)
     rspec-wait (1.0.1)
       rspec (>= 3.4)
-    rubocop (1.66.1)
+    rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -1232,7 +1232,7 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sshkit (1.23.1)
+    sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
@@ -1268,7 +1268,7 @@ GEM
       openssl-signature_algorithm (~> 1.0)
     trailblazer-option (0.1.2)
     ttfunk (1.7.0)
-    turbo-rails (2.0.10)
+    turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     turbo_power (0.6.2)
@@ -1331,7 +1331,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.37)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.0)
 
 PLATFORMS
   ruby
