@@ -2420,9 +2420,9 @@
     tslib "^2.3.0"
 
 "@openproject/primer-view-components@^0.48.0":
-  version "0.48.0"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.48.0.tgz#60f5d2fa6e08396198336026446378bbab6d8147"
-  integrity sha512-eR9vv6UTInqr3Oi3nlOLHlFa6hDhy4kdEbTXZEZS8pEa9E4IlcZNGjA+0foRPecBCizg2v+E+TgpS/wk3Vd0FA==
+  version "0.48.1"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.48.1.tgz#20579bb8e07673128eacce840274d51fb84c250e"
+  integrity sha512-6mQC3fNq0F48AGkRBPg/GVych006/y6q4md5tjkI5twnpm/Pf2tSpou7zPegTSM9/3mK6dwZdpyIOShcu/C+Vg==
   dependencies:
     "@github/auto-check-element" "^5.2.0"
     "@github/auto-complete-element" "^3.6.2"
@@ -2480,9 +2480,9 @@
     prettier "3.3"
 
 "@primer/view-components@npm:@openproject/primer-view-components@^0.48.0":
-  version "0.48.0"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.48.0.tgz#60f5d2fa6e08396198336026446378bbab6d8147"
-  integrity sha512-eR9vv6UTInqr3Oi3nlOLHlFa6hDhy4kdEbTXZEZS8pEa9E4IlcZNGjA+0foRPecBCizg2v+E+TgpS/wk3Vd0FA==
+  version "0.48.1"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.48.1.tgz#20579bb8e07673128eacce840274d51fb84c250e"
+  integrity sha512-6mQC3fNq0F48AGkRBPg/GVych006/y6q4md5tjkI5twnpm/Pf2tSpou7zPegTSM9/3mK6dwZdpyIOShcu/C+Vg==
   dependencies:
     "@github/auto-check-element" "^5.2.0"
     "@github/auto-complete-element" "^3.6.2"
@@ -2779,9 +2779,9 @@
   integrity sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==
 
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.npmmirror.com/@types/express-serve-static-core/-/express-serve-static-core-5.0.0.tgz#91f06cda1049e8f17eeab364798ed79c97488a1c"
-  integrity sha512-AbXMTZGt40T+KON9/Fdxx0B2WK5hsgxcfXJLr5bFpZ7b4JCex2WyQPTEKdXqfHiY5nKKBScZ7yCoO6Pvgxfvnw==
+  version "5.0.1"
+  resolved "https://registry.npmmirror.com/@types/express-serve-static-core/-/express-serve-static-core-5.0.1.tgz#3c9997ae9d00bc236e45c6374e84f2596458d9db"
+  integrity sha512-CRICJIl0N5cXDONAdlTv5ShATZ4HEwk6kDDIW2/w9qOWKg+NU/5F8wYRWCrONad0/UKkloNSmmyN/wX4rtpbVA==
   dependencies:
     "@types/node" "*"
     "@types/qs" "*"
