@@ -336,7 +336,6 @@ group :development, :test do
   gem "rack-mini-profiler", require: false
   gem "ruby-prof", require: false
   gem "stackprof", require: false
-  gem "vernier", require: false
 
   # Output a stack trace anytime, useful when a process is stuck
   gem "rbtrace"
