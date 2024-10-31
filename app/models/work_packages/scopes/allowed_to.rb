@@ -42,6 +42,8 @@ module WorkPackages::Scopes
 
         if user.admin? && permissions.all?(&:grant_to_admin?)
           where(id: allowed_to_admin_relation(permissions))
+        elsif user.allowed_globally?(:view_all_project_info)
+          all
         elsif user.anonymous?
           where(project_id: Project.allowed_to(user, permissions))
         else

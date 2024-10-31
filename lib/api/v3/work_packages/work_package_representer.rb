@@ -665,7 +665,7 @@ module API
 
           @view_time_entries_allowed =
             current_user.allowed_in_project?(:view_time_entries, represented.project) ||
-            view_own_time_entries_allowed?
+            view_own_time_entries_allowed? || current_user.allowed_globally?(:view_all_project_info)
         end
 
         def view_own_time_entries_allowed?

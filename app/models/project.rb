@@ -218,7 +218,7 @@ class Project < ApplicationRecord
   }
 
   def visible?(user = User.current)
-    active? && (public? || user.admin? || user.access_to?(self))
+    active? && (public? || user.admin? || User.current.allowed_globally?(:view_all_project_info) || user.access_to?(self))
   end
 
   def archived?

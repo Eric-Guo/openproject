@@ -17,6 +17,7 @@ module Authorization
       perms = contextual_permissions(permission, :project)
       return false if projects_to_check.blank?
       return false unless authorizable_user?
+      return true if perms.any? { |p| p.name == :view_members } && user.allowed_globally?(:view_all_project_info)
 
       Array(projects_to_check).all? do |project|
         allowed_in_single_project?(perms, project)
@@ -80,6 +81,7 @@ module Authorization
       permissions_filtered_for_project = permissions_by_enabled_project_modules(project, permissions)
 
       return false if permissions_filtered_for_project.empty?
+      return true if user.allowed_globally?(:view_all_project_info) && permissions_filtered_for_project == [:view_work_packages]
 
       cached_permissions(project).intersect?(permissions_filtered_for_project)
     end
