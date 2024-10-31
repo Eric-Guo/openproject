@@ -97,6 +97,24 @@ RSpec.describe Project do
     end
   end
 
+  describe "#visible?" do
+    let(:project) { create(:project, public: false, active: true) }
+    let(:current_user) { create(:user) }
+
+    before do
+      login_as(current_user)
+      mock_permissions_for(current_user, &:forbid_everything)
+    end
+
+    it "uses the passed user when checking global permissions" do
+      mock_permissions_for(user) do |mock|
+        mock.allow_globally(:view_all_project_info)
+      end
+
+      expect(project.visible?(user)).to be(true)
+    end
+  end
+
   describe "#being_archived?" do
     subject { project.being_archived? }
 
