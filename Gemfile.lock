@@ -1152,7 +1152,6 @@ GEM
       public_suffix
     vcr (6.3.1)
       base64
-    vernier (1.4.0)
     view_component (3.20.0)
       activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1.0)
@@ -1400,7 +1399,6 @@ DEPENDENCIES
   tzinfo-data (~> 1.2024.1)
   validate_url
   vcr
-  vernier
   view_component
   warden (~> 1.2)
   warden-basic_auth (~> 0.2.1)
