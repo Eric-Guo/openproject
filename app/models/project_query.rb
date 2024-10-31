@@ -71,7 +71,7 @@ class ProjectQuery < ApplicationRecord
   def default_scope
     # Cannot simply use .visible here as it would
     # filter out archived projects for everybody.
-    if User.current.admin?
+    if User.current.admin? || User.current.allowed_globally?(:view_all_project_info)
       super
     elsif filters.length == 1 && filters[0].values == ["f"] && filters[0].name == :active && filters[0].operator == "="
       super.includes(:memberships).where(memberships: { user_id: User.current&.id })

@@ -38,7 +38,7 @@ module Projects::Scopes
       def visible(user = User.current)
         # Use a shortcut for admins and anonymous where
         # we don't need to calculate for work package roles which is more expensive
-        if user.admin? || user.anonymous?
+        if user.admin? || user.anonymous? || user.allowed_globally?(:view_all_project_info)
           allowed_to(user, :view_project)
         else
           active.public_projects.or(active.where(id: user.members.select(:project_id)))
