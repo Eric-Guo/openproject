@@ -41,8 +41,11 @@ module TimeEntries
 
       set_default_attributes(params) if model.new_record?
 
-      # Always set the logging user as logged_by
-      set_logged_by
+      if model.approved_hours_changed?
+        set_approved_by
+      else
+        set_logged_by
+      end
     end
 
     def set_default_attributes(*)
@@ -54,6 +57,12 @@ module TimeEntries
     def set_logged_by
       model.change_by_system do
         model.logged_by = user
+      end
+    end
+
+    def set_approved_by
+      model.change_by_system do
+        model.approved_by = user
       end
     end
 

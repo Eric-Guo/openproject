@@ -53,6 +53,9 @@ module API
           schema :hours,
                  type: "Duration"
 
+          schema :approved_hours,
+                 type: "Duration"
+
           schema :comment,
                  type: "Formattable",
                  required: false

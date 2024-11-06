@@ -43,6 +43,13 @@ get:
                   required: true
                   type: Duration
                   writable: true
+                approved_hours:
+                  hasDefault: false                  
+                  name: Approved Hours
+                  options: {}
+                  required: false
+                  type: Duration
+                  writable: true
                 id:
                   hasDefault: false
                   name: ID

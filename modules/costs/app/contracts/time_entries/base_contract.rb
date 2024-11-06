@@ -59,6 +59,7 @@ module TimeEntries
       validate_self_timer
     end
     attribute :hours
+    attribute :approved_hours
     attribute :comments
     attribute_alias :comments, :comment
 

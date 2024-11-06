@@ -18,6 +18,10 @@ properties:
     type: string
     format: duration
     description: The time quantifying the expenditure
+  approved_hours:
+    type: string
+    format: duration
+    description: The approved time quantifying the expenditure    
   ongoing:
     type: boolean
     description: Whether the time entry is actively tracking time
