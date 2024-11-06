@@ -64,12 +64,14 @@ en:
         work_package: Work package
         subject: Subject
         hours: Hours
+        approved_hours: Approved hours
         comments: Comment
         activity: Activity
         spent_on: Date
         start_time: Start time
         end_time: Finish time
         time: Time
+        from_th_keyin: From TH keyin
         entity: Logged for
         entity_id: Logged for
         entity_gid: Logged for
