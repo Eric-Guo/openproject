@@ -88,6 +88,16 @@ module API
                    datetime_formatter.format_duration_from_hours(represented.hours) if represented.hours
                  end
 
+        property :approved_hours,
+                 exec_context: :decorator,
+                 getter: ->(*) do
+                   datetime_formatter.format_duration_from_hours(represented.approved_hours) if represented.approved_hours
+                 end
+
+        property :from_th_keyin,
+                 exec_context: :decorator,
+                 getter: ->(*) { represented.from_th_keyin }
+
         date_time_property :created_at
         date_time_property :updated_at
 
@@ -170,6 +180,16 @@ module API
                                                      spent_on: represented.spent_on,
                                                      start_time: tz_specific_time.to_date))
           end
+        end
+
+        def approved_hours=(value)
+          represented.approved_hours = datetime_formatter.parse_duration_to_hours(value,
+                                                                                  "approvedHours",
+                                                                                  allow_nil: true)
+        end
+
+        def from_th_keyin=(value)
+          represented.from_th_keyin = value
         end
 
         self.to_eager_load = [:work_package,

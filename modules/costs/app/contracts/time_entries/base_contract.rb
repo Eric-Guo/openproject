@@ -63,6 +63,8 @@ module TimeEntries
       validate_no_other_ongoing
     end
     attribute :hours
+    attribute :approved_hours
+    attribute :from_th_keyin
     attribute :comments
     attribute_alias :comments, :comment
 

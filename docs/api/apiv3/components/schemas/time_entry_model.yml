@@ -17,9 +17,16 @@ properties:
     type: string
     format: duration
     description: The time quantifying the expenditure
+  approvedHours:
+    type: string
+    format: duration
+    description: The approved time quantifying the expenditure    
   ongoing:
     type: boolean
     description: Whether the time entry is actively tracking time
+  fromThKeyin:
+    type: boolean
+    description: From TH keyin or not
   createdAt:
     type: string
     format: date-time
