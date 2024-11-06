@@ -38,18 +38,26 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "rendering" do
                   created_at: DateTime.now - 6.hours,
                   updated_at: DateTime.now - 3.hours,
                   hours:,
+                  approved_hours:,
+                  from_th_keyin:,
                   activity:,
                   project: workspace,
                   entity: work_package,
                   user:)
   end
   let(:workspace) { build_stubbed(:project) }
-  let(:work_package) { build_stubbed(:work_package, project: workspace || build_stubbed(:project)) }
+  let(:work_package) do
+    build_stubbed(:work_package,
+                  project: workspace || build_stubbed(:project),
+                  type: build_stubbed(:type))
+  end
   let(:meeting) { build_stubbed(:meeting, project: workspace) }
   let(:activity) { build_stubbed(:time_entry_activity) }
   let(:user) { build_stubbed(:user) }
   let(:current_user) { user }
   let(:hours) { 5 }
+  let(:approved_hours) { 3 }
+  let(:from_th_keyin) { true }
   let(:embed_links) { true }
   let(:permissions) do
     [:edit_time_entries]
@@ -321,6 +329,24 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "rendering" do
           let(:value) { nil }
         end
       end
+    end
+
+    context "approvedHours" do
+      it_behaves_like "property", :approvedHours do
+        let(:value) { "PT3H" }
+      end
+
+      context "if approved hours are nil" do
+        let(:approved_hours) { nil }
+
+        it_behaves_like "property", :approvedHours do
+          let(:value) { nil }
+        end
+      end
+    end
+
+    it_behaves_like "property", :fromThKeyin do
+      let(:value) { true }
     end
 
     it_behaves_like "datetime property", :createdAt do
