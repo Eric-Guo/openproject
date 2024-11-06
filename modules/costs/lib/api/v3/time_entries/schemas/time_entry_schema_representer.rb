@@ -62,6 +62,14 @@ module API
           schema :hours,
                  type: "Duration"
 
+          schema :approved_hours,
+                 type: "Duration",
+                 required: false
+
+          schema :from_th_keyin,
+                 type: 'Boolean',
+                 required: false
+
           schema :comment,
                  type: "Formattable",
                  required: false
