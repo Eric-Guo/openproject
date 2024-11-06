@@ -39,6 +39,7 @@ class TimeEntry < ApplicationRecord
   belongs_to :activity, class_name: "TimeEntryActivity"
   belongs_to :rate, -> { where(type: %w[HourlyRate DefaultHourlyRate]) }, class_name: "Rate"
   belongs_to :logged_by, class_name: "User"
+  belongs_to :approved_by, class_name: "User", optional: true
 
   MIN_TIME = 0 # => 00:00
   MAX_TIME = (60 * 24) - 1 # => 23:59
@@ -150,6 +151,10 @@ class TimeEntry < ApplicationRecord
     else
       super
     end
+  end
+
+  def approved_hours=(value)
+    write_attribute :approved_hours, (value.is_a?(String) ? (value.to_hours || value) : value)
   end
 
   # Returns true if the time entry can be edited by usr, otherwise false
