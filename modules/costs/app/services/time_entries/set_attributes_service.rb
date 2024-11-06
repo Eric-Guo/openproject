@@ -50,8 +50,11 @@ module TimeEntries
       # Set start time for ongoing time entries
       ensure_start_time_for_ongoing_entries
 
-      # Always set the logging user as logged_by
-      set_logged_by
+      if model.approved_hours_changed?
+        set_approved_by
+      else
+        set_logged_by
+      end
 
       # Set custom_values_to_validate for customizable models
       set_custom_values_to_validate(params)
@@ -65,6 +68,12 @@ module TimeEntries
     def set_logged_by
       model.change_by_system do
         model.logged_by = user
+      end
+    end
+
+    def set_approved_by
+      model.change_by_system do
+        model.approved_by = user
       end
     end
 
