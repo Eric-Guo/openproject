@@ -41,7 +41,7 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
   let(:assigned_project) { nil }
   let(:activity) { build_stubbed(:time_entry_activity) }
   let(:time_entry) { build_stubbed(:time_entry) }
-  let(:writable_attributes) { %w(spent_on hours project entity activity comment user) }
+  let(:writable_attributes) { %w(spent_on hours approved_hours from_th_keyin project entity activity comment user) }
 
   let(:contract) do
     contract = instance_double(new_record ? TimeEntries::CreateContract : TimeEntries::UpdateContract,
@@ -162,6 +162,28 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
         let(:type) { "Duration" }
         let(:name) { TimeEntry.human_attribute_name("hours") }
         let(:required) { true }
+        let(:writable) { true }
+      end
+    end
+
+    describe "approvedHours" do
+      let(:path) { "approvedHours" }
+
+      it_behaves_like "has basic schema properties" do
+        let(:type) { "Duration" }
+        let(:name) { TimeEntry.human_attribute_name("approved_hours") }
+        let(:required) { false }
+        let(:writable) { true }
+      end
+    end
+
+    describe "fromThKeyin" do
+      let(:path) { "fromThKeyin" }
+
+      it_behaves_like "has basic schema properties" do
+        let(:type) { "Boolean" }
+        let(:name) { TimeEntry.human_attribute_name("from_th_keyin") }
+        let(:required) { false }
         let(:writable) { true }
       end
     end
