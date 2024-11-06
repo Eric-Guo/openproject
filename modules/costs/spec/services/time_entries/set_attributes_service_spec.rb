@@ -260,6 +260,31 @@ RSpec.describe TimeEntries::SetAttributesService, type: :model do
     end
   end
 
+  context "with approved hours being updated" do
+    let(:other_user) { create(:user) }
+    let(:time_entry_instance) do
+      create(:time_entry,
+             user: other_user,
+             logged_by: other_user,
+             approved_by: nil,
+             approved_hours: 1.0,
+             hours: 1.0)
+    end
+    let(:params) do
+      {
+        approved_hours: 2.5
+      }
+    end
+
+    it "tracks the approver without overwriting logged_by" do
+      expect { subject }
+        .to change(time_entry_instance, :approved_hours).from(1.0).to(2.5)
+        .and change(time_entry_instance, :approved_by).from(nil).to(user)
+
+      expect(time_entry_instance.logged_by).to eq other_user
+    end
+  end
+
   context "with an invalid contract" do
     let(:contract_valid) { false }
     let(:expect_time_instance_save) do
