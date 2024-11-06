@@ -81,9 +81,11 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "parsing" do
         }
       },
       "hours" => "PT5H",
+      "approvedHours" => "PT2H30M",
       "comment" => {
         "raw" => "some comment"
       },
+      "fromThKeyin" => true,
       "spentOn" => "2017-07-28",
       "startTime" => "2017-07-28T12:30:00Z",
       text_custom_field.attribute_name(:camel_case) => {
@@ -230,6 +232,24 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "parsing" do
           expect(time_entry.hours)
             .to be_nil
         end
+      end
+    end
+
+    describe "approvedHours" do
+      it "updates approved_hours" do
+        time_entry = representer.from_hash(hash)
+
+        expect(time_entry.approved_hours)
+          .to be(2.5)
+      end
+    end
+
+    describe "fromThKeyin" do
+      it "updates from_th_keyin" do
+        time_entry = representer.from_hash(hash)
+
+        expect(time_entry.from_th_keyin)
+          .to be(true)
       end
     end
 
