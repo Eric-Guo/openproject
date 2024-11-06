@@ -43,6 +43,20 @@ get:
                   required: true
                   type: Duration
                   writable: true
+                approvedHours:
+                  hasDefault: false                  
+                  name: Approved Hours
+                  options: {}
+                  required: false
+                  type: Duration
+                  writable: true
+                fromThKeyin:
+                  hasDefault: false
+                  name: From TH Keyin
+                  options: {}
+                  required: false
+                  type: Boolean
+                  writable: true                  
                 id:
                   hasDefault: false
                   name: ID
