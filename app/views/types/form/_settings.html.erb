@@ -44,6 +44,7 @@ See COPYRIGHT and LICENSE files for more details.
                } %>
     <div class="form--field -wide-label"><%= f.check_box :is_default %></div>
     <div class="form--field -wide-label"><%= f.check_box :is_milestone %></div>
+    <div class="form--field -wide-label"><%= f.check_box :is_admin_only %></div>
 
     <% if @type.new_record? && @types.any? %>
       <div class="form--field -wide-label">
