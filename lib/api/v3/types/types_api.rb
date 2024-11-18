@@ -38,7 +38,7 @@ module API
           end
 
           get do
-            types = Type.includes(:color, :variants).visible
+            types = Type.includes(:color, :variants).visible(current_user)
             TypeCollectionRepresenter
               .new(types,
                    self_link: api_v3_paths.types,
@@ -47,7 +47,7 @@ module API
 
           route_param :id, type: Integer, desc: "Type ID" do
             after_validation do
-              type = Type.visible.find(params[:id])
+              type = Type.visible(current_user).find(params[:id])
               @representer = TypeRepresenter.new(type, current_user:)
             end
 
