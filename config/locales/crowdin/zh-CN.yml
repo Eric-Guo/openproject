@@ -376,6 +376,7 @@ zh-CN:
       type:
         allow_project_variants: 允许项目特定变体
         color: 颜色
+        is_admin_only: 仅管理员可修改
         is_in_roadmap: 默认在路线图中显示
         is_milestone: 里程碑
         project_types: 项目

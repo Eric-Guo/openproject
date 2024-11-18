@@ -384,6 +384,7 @@ en:
       token/named:
         token_name: "Token name"
       type:
+        is_admin_only: "Only admins can change"
         allow_project_variants: "Allow project-specific variants"
         color: "Color"
         is_in_roadmap: "Displayed in roadmap by default"

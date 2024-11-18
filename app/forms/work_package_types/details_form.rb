@@ -70,6 +70,11 @@ module WorkPackageTypes
                                label: I18n.t("types.index.enabled_in_new_projects"),
                                checked: model.default_variant.enabled_in_new_projects?)
       end
+
+      details_form.check_box(name: :is_admin_only,
+                             label: label(:is_admin_only),
+                             disabled: inherited?,
+                             caption: inherited_caption)
     end
 
     private
