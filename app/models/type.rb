@@ -91,10 +91,16 @@ class Type < ApplicationRecord
   # configuration source picker and contract scope against (see FND-103 :manage_subtypes).
   scope :global, -> { all }
   scope :without_standard, -> { where(is_standard: false).order(:position) }
-  scope :default, -> { where(is_default: true) }
+  scope :default, -> {
+    if User.current.admin?
+      where(is_default: true)
+    else
+      where(is_admin_only: false, is_default: true)
+    end
+  }
   scope :visible, ->(user = User.current) {
     if user.allowed_in_any_project?(:view_work_packages) || user.allowed_in_any_project?(:manage_types)
-      all
+      user.admin? ? all : where(is_admin_only: false)
     else
       none
     end
@@ -129,11 +135,19 @@ class Type < ApplicationRecord
   end
 
   def self.standard_type
-    where(is_standard: true).first
+    if User.current.admin?
+      ::Type.where(is_standard: true).first
+    else
+      ::Type.where(is_standard: true, is_admin_only: false).first
+    end
   end
 
   def self.enabled_in(project)
-    includes(:projects).where(projects: { id: project })
+    if User.current.admin?
+      ::Type.includes(:projects).where(projects: { id: project })
+    else
+      ::Type.includes(:projects).where(is_admin_only: false, projects: { id: project })
+    end
   end
 
   def statuses(include_default: false, role: nil, tab: nil)
