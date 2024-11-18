@@ -58,7 +58,7 @@ class Type < ApplicationRecord
 
   scope :visible, ->(user = User.current) {
     if user.allowed_in_any_project?(:view_work_packages) || user.allowed_in_any_project?(:manage_types)
-      all
+      user.admin? ? all : where(is_admin_only: false)
     else
       none
     end
@@ -83,7 +83,8 @@ class Type < ApplicationRecord
   # row: a join would duplicate it, which the eager load only hid from callers reading records
   # and not from those plucking ids.
   def self.enabled_in(project)
-    where(id: ProjectType.where(project_id: project).select(:type_id))
+    scope = where(id: ProjectType.where(project_id: project).select(:type_id))
+    User.current.admin? ? scope : scope.where(is_admin_only: false)
   end
 
   private
