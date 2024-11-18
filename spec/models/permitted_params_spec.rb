@@ -453,6 +453,39 @@ RSpec.describe PermittedParams do
     it_behaves_like "allows params"
   end
 
+  describe "#type" do
+    let(:attribute) { :type }
+
+    context "when the user is an admin" do
+      let(:user) { admin }
+      let(:hash) do
+        {
+          "name" => "Bug",
+          "is_admin_only" => "1"
+        }
+      end
+
+      it_behaves_like "allows params"
+    end
+
+    context "when the user is not an admin" do
+      let(:hash) do
+        {
+          "name" => "Bug",
+          "is_admin_only" => "1"
+        }
+      end
+
+      let(:expected_permitted) do
+        {
+          "name" => "Bug"
+        }
+      end
+
+      it_behaves_like "allows params"
+    end
+  end
+
   describe "#custom_field" do
     let(:attribute) { :custom_field }
 
