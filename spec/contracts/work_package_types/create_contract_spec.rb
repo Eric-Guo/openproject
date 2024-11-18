@@ -34,7 +34,7 @@ module WorkPackageTypes
   RSpec.describe CreateContract do
     let(:user) { create(:admin) }
     let(:base_attributes) do
-      { name: "O-Negative", description: nil, is_milestone: true, is_default: false, is_in_roadmap: true }
+      { name: "O-Negative", description: nil, is_milestone: true, is_default: false, is_in_roadmap: true, is_admin_only: false }
     end
     let(:attributes) { base_attributes }
     let(:model) { Type.new(attributes) }
@@ -94,8 +94,8 @@ module WorkPackageTypes
         end
       end
 
-      context "when is_in_milestone or is_default aren't booleans" do
-        let(:attributes) { base_attributes.merge(is_default: nil, is_milestone: nil, is_in_roadmap: nil) }
+      context "when boolean flags aren't booleans" do
+        let(:attributes) { base_attributes.merge(is_default: nil, is_admin_only: nil, is_milestone: nil, is_in_roadmap: nil) }
 
         it "the contract is invalid" do
           expect(contract.validate).to be_falsey
@@ -105,6 +105,7 @@ module WorkPackageTypes
           contract.validate
 
           expect(contract.errors.details[:is_default]).to eq([{ error: :inclusion, value: nil }])
+          expect(contract.errors.details[:is_admin_only]).to eq([{ error: :inclusion, value: nil }])
           expect(contract.errors.details[:is_milestone]).to eq([{ error: :inclusion, value: nil }])
           expect(contract.errors.details[:is_in_roadmap]).to eq([{ error: :inclusion, value: nil }])
         end
