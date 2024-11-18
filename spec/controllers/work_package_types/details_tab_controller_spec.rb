@@ -71,6 +71,7 @@ RSpec.describe WorkPackageTypes::DetailsTabController do
             "color_id" => lightsaber_red.id.to_s,
             "is_milestone" => "0",
             "is_in_roadmap" => "1",
+            "is_admin_only" => "1",
             "allow_project_variants" => "0"
           }
         }
@@ -87,6 +88,7 @@ RSpec.describe WorkPackageTypes::DetailsTabController do
                                                color_id: lightsaber_red.id,
                                                is_milestone: false,
                                                is_in_roadmap: true,
+                                               is_admin_only: true,
                                                allow_project_variants: false)
       end
 
