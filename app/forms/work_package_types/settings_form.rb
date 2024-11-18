@@ -85,6 +85,11 @@ module WorkPackageTypes
         label: label(:is_default)
       )
 
+      settings_form.check_box(
+        name: :is_admin_only,
+        label: label(:is_admin_only)
+      )
+
       settings_form.submit(
         name: :submit,
         label: I18n.t(:button_save),
