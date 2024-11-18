@@ -228,6 +228,8 @@ class PermittedParams
 
     type_params = params.require(:type)
 
+    permitted << :is_admin_only if current_user.admin?
+
     whitelisted = type_params.permit(*permitted)
 
     if type_params[:attribute_groups]

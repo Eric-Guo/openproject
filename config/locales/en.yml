@@ -1149,6 +1149,7 @@ en:
         is_in_roadmap: "Displayed in roadmap by default"
         is_default: "Activated for new projects by default"
         is_milestone: "Is milestone"
+        is_admin_only: "Only admin can change"
         color: "Color"
         patterns: "Patterns"
       remote_identity:

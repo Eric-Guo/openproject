@@ -39,6 +39,7 @@ module Types
     attribute :name
     attribute :is_in_roadmap
     attribute :is_milestone
+    attribute :is_admin_only
     attribute :is_default
     attribute :color_id
     attribute :project_ids

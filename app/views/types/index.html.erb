@@ -112,6 +112,15 @@ See COPYRIGHT and LICENSE files for more details.
               <div class="generic-table--sort-header-outer">
                 <div class="generic-table--sort-header">
                   <span>
+                    <%= Type.human_attribute_name(:is_admin_only) %>
+                  </span>
+                </div>
+              </div>
+            </th>
+            <th>
+              <div class="generic-table--sort-header-outer">
+                <div class="generic-table--sort-header">
+                  <span>
                     <%= t(:button_sort) %>
                   </span>
                 </div>
@@ -144,6 +153,9 @@ See COPYRIGHT and LICENSE files for more details.
               </td>
               <td class="timelines-pet-is_milestone">
                 <%= checked_image(type.is_milestone) %>
+              </td>
+              <td class="timelines-pet-is_admin_only">
+                <%= checked_image(type.is_admin_only) %>
               </td>
               <td class="timelines-pet-reorder">
                 <%= reorder_links("type", { action: "move", id: type }) %>

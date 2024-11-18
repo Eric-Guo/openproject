@@ -1062,6 +1062,7 @@ zh-CN:
         is_in_roadmap: "默认在路线图中显示"
         is_default: "默认激活新项目"
         is_milestone: "里程碑"
+        is_admin_only: "仅管理员可修改"
         color: "颜色"
         patterns: "模式"
       remote_identity:
