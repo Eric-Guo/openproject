@@ -52,7 +52,7 @@ module WorkPackageTypes
     private
 
     def permitted_details_params
-      params.expect(type: %i[name color_id is_milestone is_in_roadmap is_default])
+      params.expect(type: %i[name color_id is_milestone is_in_roadmap is_default is_admin_only])
     end
   end
 end

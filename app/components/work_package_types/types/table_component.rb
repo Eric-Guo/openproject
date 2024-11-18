@@ -31,7 +31,7 @@
 module WorkPackageTypes
   module Types
     class TableComponent < ::TableComponent
-      columns :name, :color, :workflow_warning, :default, :milestone, :sort
+      columns :name, :color, :workflow_warning, :default, :milestone, :admin_only, :sort
 
       def headers
         [
@@ -40,6 +40,7 @@ module WorkPackageTypes
           [:workflow_warning, { caption: I18n.t(:label_workflow) }],
           [:default, { caption: I18n.t(:label_active_in_new_projects) }],
           [:milestone, { caption: Type.human_attribute_name(:is_milestone) }],
+          [:admin_only, { caption: Type.human_attribute_name(:is_admin_only) }],
           [:sort, { caption: I18n.t(:button_sort) }]
         ]
       end

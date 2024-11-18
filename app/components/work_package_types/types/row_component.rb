@@ -40,6 +40,7 @@ module WorkPackageTypes
           color: "timelines-pet-color",
           default: "timelines-pet-is_default",
           milestone: "timelines-pet-is_milestone",
+          admin_only: "timelines-pet-is_admin_only",
           sort: "timelines-pet-reorder"
         )
       end
@@ -73,6 +74,10 @@ module WorkPackageTypes
 
       def milestone
         checked_image model.is_milestone
+      end
+
+      def admin_only
+        checked_image model.is_admin_only
       end
 
       def sort
