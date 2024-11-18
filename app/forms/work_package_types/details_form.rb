@@ -74,6 +74,11 @@ module WorkPackageTypes
                                label: label(:allow_project_variants),
                                caption: I18n.t("types.edit.details.allow_project_variants_caption"))
       end
+
+      details_form.check_box(name: :is_admin_only,
+                             label: label(:is_admin_only),
+                             disabled: inherited?,
+                             caption: inherited_caption)
     end
 
     private
