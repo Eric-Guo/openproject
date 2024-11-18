@@ -62,6 +62,11 @@ module WorkPackageTypes
                              label: label(:is_in_roadmap),
                              disabled: inherited?,
                              caption: inherited_caption)
+
+      details_form.check_box(name: :is_admin_only,
+                             label: label(:is_admin_only),
+                             disabled: inherited?,
+                             caption: inherited_caption)
     end
 
     private

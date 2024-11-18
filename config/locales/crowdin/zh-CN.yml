@@ -350,6 +350,7 @@ zh-CN:
         dependent_configuration_links: 关联的类型
         description: 默认描述文本
         is_default: 默认激活新项目
+        is_admin_only: 仅管理员可修改
         is_in_roadmap: 默认在路线图中显示
         is_milestone: 里程碑
         parent: 父类型

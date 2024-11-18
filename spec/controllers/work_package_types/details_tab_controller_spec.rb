@@ -70,7 +70,8 @@ RSpec.describe WorkPackageTypes::DetailsTabController do
             "name" => "Galactic Order",
             "color_id" => lightsaber_red.id.to_s,
             "is_milestone" => "0",
-            "is_in_roadmap" => "1"
+            "is_in_roadmap" => "1",
+            "is_admin_only" => "1"
           }
         }
       end
@@ -85,7 +86,8 @@ RSpec.describe WorkPackageTypes::DetailsTabController do
         expect(type.reload).to have_attributes(own_name: "Galactic Order",
                                                color_id: lightsaber_red.id,
                                                is_milestone: false,
-                                               is_in_roadmap: true)
+                                               is_in_roadmap: true,
+                                               is_admin_only: true)
       end
 
       context "when the parent is submitted anyway" do

@@ -361,6 +361,7 @@ en:
         dependent_configuration_links: "Linked types"
         description: "Default text for description"
         is_default: "Activated for new projects by default"
+        is_admin_only: "Only admins can change"
         is_in_roadmap: "Displayed in roadmap by default"
         is_milestone: "Is milestone"
         parent: "Parent type"
