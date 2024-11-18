@@ -143,7 +143,8 @@ RSpec.describe Type do
   describe ".visible" do
     subject { described_class.visible(user) }
 
-    let!(:type) { create(:status) }
+    let!(:type) { create(:type) }
+    let!(:admin_only_type) { create(:type, is_admin_only: true) }
     let(:user) { create(:user) }
     let(:permissions) { %i[view_work_packages] }
 
@@ -151,14 +152,22 @@ RSpec.describe Type do
       create(:member, user:, roles: [create(:project_role, permissions: permissions)])
     end
 
-    it "returns the same types as all" do
-      expect(subject.to_a).to match_array(described_class.all.to_a)
+    it "returns all non-admin-only types" do
+      expect(subject.to_a).to match_array(described_class.where(is_admin_only: false).to_a)
     end
 
     context "when the user has the manage_types permission in a project" do
       let(:permissions) { %i[manage_types] }
 
-      it "returns the same types as all" do
+      it "returns all non-admin-only types" do
+        expect(subject.to_a).to match_array(described_class.where(is_admin_only: false).to_a)
+      end
+    end
+
+    context "when the user is an admin" do
+      let(:user) { create(:admin) }
+
+      it "returns all types" do
         expect(subject.to_a).to match_array(described_class.all.to_a)
       end
     end

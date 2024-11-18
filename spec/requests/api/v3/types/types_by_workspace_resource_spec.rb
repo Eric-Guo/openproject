@@ -43,12 +43,14 @@ RSpec.describe "/api/v3/projects/:id/types" do
 
   let!(:irrelevant_types) { create_list(:type, 4) }
   let!(:expected_types) { create_list(:type, 4) }
+  let!(:admin_only_type) { create(:type, is_admin_only: true) }
 
   shared_context "for types by workspace" do
     subject(:response) { last_response }
 
     before do
       project.types << expected_types
+      project.types << admin_only_type
     end
 
     context "for a logged in user" do
@@ -60,6 +62,10 @@ RSpec.describe "/api/v3/projects/:id/types" do
 
       it_behaves_like "API V3 collection response", 4, 4, "Type" do
         let(:elements) { expected_types }
+      end
+
+      it "does not include admin-only types" do
+        expect(response.body).not_to include(%("#{api_v3_paths.type(admin_only_type.id)}"))
       end
 
       context "in a foreign project" do

@@ -114,10 +114,16 @@ class Type < ApplicationRecord
   # configuration source picker and contract scope against (see FND-103 :manage_type_variants).
   scope :global, -> { all }
   scope :without_standard, -> { where(is_standard: false).order(:position) }
-  scope :default, -> { where(is_default: true) }
+  scope :default, -> {
+    if User.current.admin?
+      where(is_default: true)
+    else
+      where(is_admin_only: false, is_default: true)
+    end
+  }
   scope :visible, ->(user = User.current) {
     if user.allowed_in_any_project?(:view_work_packages) || user.allowed_in_any_project?(:manage_types)
-      all
+      user.admin? ? all : where(is_admin_only: false)
     else
       none
     end
@@ -159,7 +165,11 @@ class Type < ApplicationRecord
   end
 
   def self.standard_type
-    where(is_standard: true).first
+    if User.current.admin?
+      ::Type.where(is_standard: true).first
+    else
+      ::Type.where(is_standard: true, is_admin_only: false).first
+    end
   end
 
   # The roots the given project(s) use. A project uses a root even when it resolves the family
@@ -169,7 +179,8 @@ class Type < ApplicationRecord
   # a join would duplicate it, which the eager load only hid from callers reading records and
   # not from those plucking ids.
   def self.enabled_in(project)
-    where(id: ProjectType.where(project_id: project).select(:type_id))
+    scope = where(id: ProjectType.where(project_id: project).select(:type_id))
+    User.current.admin? ? scope : scope.where(is_admin_only: false)
   end
 
   # Writers use #own_workflows; the flag-off branch also keeps it so an eager-loaded
