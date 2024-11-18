@@ -31,19 +31,34 @@ module Projects::Types
 
   included do
     def types_used_by_work_packages
-      ::Type.where(id: WorkPackage.where(project_id: project.id)
-                                  .select(:type_id)
-                                  .distinct)
+      if User.current.admin?
+        ::Type.where(id: WorkPackage.where(project_id: project.id)
+                                    .select(:type_id)
+                                    .distinct)
+      else
+        ::Type.where(is_admin_only: false, id: WorkPackage.where(project_id: project.id)
+                                                          .select(:type_id)
+                                                          .distinct)
+      end
     end
 
     # Returns a scope of the types used by the project and its active sub projects
     def rolled_up_types
-      ::Type
-        .joins(:projects)
-        .select("DISTINCT #{::Type.table_name}.*")
-        .where(projects: { id: self_and_descendants.select(:id) })
-        .merge(Project.active)
-        .order("#{::Type.table_name}.position")
+      if User.current.admin?
+        ::Type
+          .joins(:projects)
+          .select("DISTINCT #{::Type.table_name}.*")
+          .where(projects: { id: self_and_descendants.select(:id) })
+          .merge(Project.active)
+          .order("#{::Type.table_name}.position")
+      else
+        ::Type
+          .joins(:projects)
+          .select("DISTINCT #{::Type.table_name}.*")
+          .where(is_admin_only: false, projects: { id: self_and_descendants.select(:id) })
+          .merge(Project.active)
+          .order("#{::Type.table_name}.position")
+      end
     end
   end
 end

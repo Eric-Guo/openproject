@@ -189,9 +189,17 @@ module WorkPackages
 
     def assignable_types
       scope = if model.project.nil?
-                Type
+                if User.current.admin?
+                  Type
+                else
+                  Type.where(is_admin_only: false)
+                end
               else
-                model.project.types.includes(:color)
+                if User.current.admin?
+                  model.project.types.includes(:color)
+                else
+                  model.project.types.where(is_admin_only: false).includes(:color)
+                end
               end
 
       scope.includes(:color)

@@ -38,7 +38,11 @@ module API
           end
 
           get do
-            types = @project.types
+            types = if current_user.admin?
+                      @project.types
+                    else
+                      @project.types.where(is_admin_only: false)
+                    end
             TypeCollectionRepresenter.new(types,
                                           self_link: api_v3_paths.types_by_project(@project.id),
                                           current_user:)

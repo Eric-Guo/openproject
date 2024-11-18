@@ -270,6 +270,7 @@ module API
                                              title: type.name
                                            }
                                          },
+                                         writable: ->(*) { represented.type&.is_admin_only? ? User.current.admin? : true },
                                          has_default: false
 
           schema_with_allowed_collection :status,
