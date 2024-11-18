@@ -42,6 +42,7 @@ RSpec.describe "API v3 Type resource" do
   end
 
   let!(:types) { create_list(:type, 4) }
+  let!(:admin_only_type) { create(:type, is_admin_only: true) }
 
   describe "types" do
     describe "#get" do
@@ -57,6 +58,10 @@ RSpec.describe "API v3 Type resource" do
         end
 
         it_behaves_like "API V3 collection response", 4, 4, "Type"
+
+        it "does not include admin-only types" do
+          expect(response.body).not_to include(%("#{api_v3_paths.type(admin_only_type.id)}"))
+        end
 
         context "with a variant" do
           # a 5th type exists but the collection still returns the 4 roots only
@@ -121,6 +126,12 @@ RSpec.describe "API v3 Type resource" do
           let(:get_path) { api_v3_paths.type "bogus" }
 
           it_behaves_like "not found"
+        end
+
+        context "when the type is admin-only" do
+          let(:type) { admin_only_type }
+
+          it { expect(response).to have_http_status(:not_found) }
         end
       end
 
