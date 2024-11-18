@@ -69,6 +69,8 @@ class WorkPackagePolicy < BasePolicy
   def delete_allowed?(work_package)
     return true if user.admin?
     return false if work_package.time_entries.present?
+    return false if work_package.type.is_admin_only?
+
     user.allowed_in_project?(:delete_work_packages, work_package.project) || (user.allowed_in_project?(:delete_my_create_work_packages, work_package.project) && work_package.author_id == user.id)
   end
 

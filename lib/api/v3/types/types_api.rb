@@ -39,7 +39,11 @@ module API
           end
 
           get do
-            types = Type.includes(:color).all
+            types = if current_user.admin?
+                      Type
+                    else
+                      Type.where(is_admin_only: false)
+                    end.includes(:color).all
             TypeCollectionRepresenter
               .new(types,
                    self_link: api_v3_paths.types,

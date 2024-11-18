@@ -83,7 +83,13 @@ module Redmine::MenuManager::TopMenu::QuickAddMenu
   def visible_types
     @visible_types ||= begin
       if user_can_create_work_package?
-        in_project_context? ? @project.types : Type.enabled_in(Project.allowed_to(User.current, :add_work_packages))
+        in_project_context? \
+          ? (if User.current.admin?
+              @project.types
+            else
+              @project.types.where(is_admin_only: false)
+            end)
+          : Type.enabled_in(Project.allowed_to(User.current, :add_work_packages))
       else
         Type.none
       end

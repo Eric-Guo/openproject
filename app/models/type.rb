@@ -87,15 +87,27 @@ class Type < ApplicationRecord
   end
 
   def self.standard_type
-    ::Type.where(is_standard: true).first
+    if User.current.admin?
+      ::Type.where(is_standard: true).first
+    else
+      ::Type.where(is_standard: true, is_admin_only: false).first
+    end
   end
 
   def self.default
-    ::Type.where(is_default: true)
+    if User.current.admin?
+      ::Type.where(is_default: true)
+    else
+      ::Type.where(is_default: true, is_admin_only: false)
+    end
   end
 
   def self.enabled_in(project)
-    ::Type.includes(:projects).where(projects: { id: project })
+    if User.current.admin?
+      ::Type.includes(:projects).where(projects: { id: project })
+    else
+      ::Type.includes(:projects).where(is_admin_only: false, projects: { id: project })
+    end
   end
 
   def statuses(include_default: false)
