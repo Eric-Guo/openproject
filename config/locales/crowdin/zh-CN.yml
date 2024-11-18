@@ -374,6 +374,7 @@ zh-CN:
       token/named:
         token_name: 令牌名称
       type:
+        is_admin_only: 仅管理员可修改
         allow_project_variants: Allow project-specific variants
         color: 颜色
         is_in_roadmap: 默认在路线图中显示
