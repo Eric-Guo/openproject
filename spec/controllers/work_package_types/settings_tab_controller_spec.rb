@@ -72,7 +72,8 @@ RSpec.describe WorkPackageTypes::SettingsTabController do
             "description" => "This is how the emperor governs you ... yes you!",
             "is_milestone" => "0",
             "is_in_roadmap" => "1",
-            "is_default" => "0"
+            "is_default" => "0",
+            "is_admin_only" => "1"
           }
         }
       end
@@ -82,6 +83,7 @@ RSpec.describe WorkPackageTypes::SettingsTabController do
       end
 
       it { expect(response).to redirect_to(edit_type_settings_path(type_id: type.id)) }
+      it { expect(type.reload.is_admin_only).to be(true) }
 
       context "if the the params are invalid" do
         let(:another_type) { create(:type_feature) }

@@ -110,6 +110,11 @@ module WorkPackageTypes
           name: :is_default,
           label: label(:is_default)
         )
+
+        flags_group.check_box(
+          name: :is_admin_only,
+          label: label(:is_admin_only)
+        )
       end
 
       settings_form.submit(
