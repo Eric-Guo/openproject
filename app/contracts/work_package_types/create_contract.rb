@@ -33,12 +33,13 @@ module WorkPackageTypes
     attribute :color_id
     attribute :description
     attribute :is_default
+    attribute :is_admin_only
     attribute :is_in_roadmap
     attribute :is_milestone
     attribute :name
     attribute :project_ids
     attribute :attribute_groups
 
-    validates :is_default, :is_milestone, :is_in_roadmap, inclusion: { in: [true, false] }
+    validates :is_default, :is_admin_only, :is_milestone, :is_in_roadmap, inclusion: { in: [true, false] }
   end
 end
