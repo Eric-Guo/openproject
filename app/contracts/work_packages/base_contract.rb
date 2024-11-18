@@ -202,6 +202,7 @@ module WorkPackages
 
     def assignable_types
       scope = model.project&.enabled_types || Type
+      scope = scope.where(is_admin_only: false) unless user.admin?
 
       scope.includes(:color)
     end
