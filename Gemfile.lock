@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: b1b3f1d409521d0df6dc8846f3d525464c911377
+  revision: bc335b641043096858c79d7e1aba8820c52d8b75
   branch: main
   specs:
     openproject-th_projects (1.0.0)

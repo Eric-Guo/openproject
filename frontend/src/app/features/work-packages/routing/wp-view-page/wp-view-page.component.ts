@@ -36,7 +36,7 @@ import {
   ToolbarButtonComponentDefinition,
 } from 'core-app/features/work-packages/routing/partitioned-query-space-page/partitioned-query-space-page.component';
 import { ThEstimateButtonComponent } from 'core-app/features/plugins/linked/openproject-th_projects/th-estimate-button/th-estimate-button.component';
-import { BudgetStatusButtonComponent } from 'core-app/features/plugins/linked/openproject-th_projects/budget-status-button/budget-status-button.component';
+import { ProjectListButton } from 'core-app/features/plugins/linked/openproject-th_projects/project-list-button/project-list-button.component';
 import { WorkPackageCreateButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-create-button/wp-create-button.component';
 import { WorkPackageFilterButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-filter-button/wp-filter-button.component';
 import { WorkPackageDetailsViewButtonComponent } from 'core-app/features/work-packages/components/wp-buttons/wp-details-view-button/wp-details-view-button.component';
@@ -80,27 +80,6 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
           return false;
         }
         return project.showEstimateButton;
-      },
-    },
-    {
-      component: BudgetStatusButtonComponent,
-      show: ():boolean => {
-        if (this.currentQuery == undefined) {
-          return false;
-        }
-        const embedded = this.currentQuery.$embedded;
-        if (embedded === undefined) {
-          return false;
-        }
-        const project = embedded.project;
-        if (project === undefined) {
-          return false;
-        }
-        const profile:any = project.profile;
-        if (profile === undefined) {
-          return false;
-        }
-        return (profile.typeId === 2 || profile.typeId === 3) && profile.allowViewThBudget;
       },
     },
     {
