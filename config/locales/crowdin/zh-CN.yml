@@ -6366,13 +6366,14 @@ zh-CN:
     relations:
       blocked_by_description: 在相关工作包结束之前，本工作包不能关闭
       blocked_description: 相关工作包结束之前，本工作包不能关闭
-      blocks_description: 在本工作包结束之前，相关工作包不能关闭
+      blocks_description: 在相关工作包结束之前，本工作包不能关闭
       child: 子工作包
       child_description: 使相关工作包成为当前(父) 工作包的子项目
       duplicated_by_description: 相关工作包是它的副本
       duplicated_description: 相关工作包是它的副本
       duplicates_description: 这是相关工作包的副本
       follows_description: 相关工作包必须在本工作包启动前完成
+      heels_description: 此工作包紧跟在相关工作包完成后一天开始
       ghost_relation_description: 由于权限问题，您无法看到这些信息。
       ghost_relation_title: 相关工作包
       includes_description: 将相关工作包标记为包括本工作包，不产生额外效果
@@ -6389,10 +6390,12 @@ zh-CN:
       label_duplicated_by_singular: 复制于
       label_duplicated_plural: 复制于
       label_duplicated_singular: 复制于
-      label_duplicates_plural: 复制
-      label_duplicates_singular: 复制
-      label_follows_plural: 前置任务 (SF)
-      label_follows_singular: 前置任务 (SF)
+      label_duplicates_plural: 重复项
+      label_duplicates_singular: 重复项
+      label_follows_plural: 后置于
+      label_follows_singular: 后置于
+      label_heels_plural: 后置紧跟于
+      label_heels_singular: 后置紧跟于
       label_includes_plural: 包括
       label_includes_singular: 包括
       label_new_child_created: 创建新工作包并将其添加为子项
@@ -6403,21 +6406,21 @@ zh-CN:
       label_part_of_singular: 隶属于
       label_partof_plural: 隶属于
       label_partof_singular: 隶属于
-      label_precedes_plural: 后置任务 (FS)
-      label_precedes_singular: 后置任务 (FS)
+      label_precedes_plural: 前置于
+      label_precedes_singular: 前置于
       label_relates_plural: 关联到
       label_relates_singular: 关联到
       label_relates_to_plural: 关联到
       label_relates_to_singular: 关联到
-      label_required_plural: 需求于
-      label_required_singular: 需求于
+      label_required_plural: 请求
+      label_required_singular: 请求
       label_requires_plural: 需求
       label_requires_singular: 需求
       new_child: 新建子工作包
       new_child_description: 为当前工作包（父）创建一个子项
       parent: 父级
       parent_description: 使相关工作包成为当前(子) 工作包的父级
-      part_of_description: 将相关工作包标记为本工作包的一部分，不产生额外效果
+      part_of_description: 将相关工作包标记为隶属于本工作包，不产生额外效果
       partof_description: 将相关工作包标记为隶属于本工作包，不产生额外效果
       precedes_description: 相关的工作包必然需要在这个完成后启动
       relates_description: 在两个工作包之间建立一个可见的链接，不产生额外效果
