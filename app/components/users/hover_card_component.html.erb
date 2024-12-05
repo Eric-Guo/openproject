@@ -42,7 +42,6 @@ See COPYRIGHT and LICENSE files for more details.
               end
             end
 
-            if show_email?
               f.with_column(classes: "op-user-hover-card--email") do
                 render(
                   Primer::Beta::Text.new(
@@ -51,10 +50,9 @@ See COPYRIGHT and LICENSE files for more details.
                     data: { test_selector: "user-hover-card-email" }
                   )
                 ) do
-                  @user.mail
+                  "#{@user.staff&.major_name} #{@user.staff&.position_title}"
                 end
               end
-            end
           end
         end
 
