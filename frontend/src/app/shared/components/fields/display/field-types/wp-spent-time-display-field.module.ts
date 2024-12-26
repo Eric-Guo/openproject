@@ -82,7 +82,7 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
             ),
           )
             .search(
-              `fields[]=WorkPackageId&operators[WorkPackageId]=%3D_child_work_packages&values[WorkPackageId]=${wpID}&set_filter=1`,
+              `fields[]=WorkPackageId&operators[WorkPackageId]=%3D_child_work_packages&values[WorkPackageId]=${wpID}&fields[]=ProjectId&operators[ProjectId]=%3D&values[ProjectId]=${project.id}&set_filter=1`,
             )
             .toString();
 
