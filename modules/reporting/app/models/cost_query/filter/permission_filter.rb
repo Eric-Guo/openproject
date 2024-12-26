@@ -35,7 +35,15 @@ class CostQuery::Filter::PermissionFilter < Report::Filter::Base
   initialize_query_with { |query| query.filter to_s.demodulize.to_sym }
 
   def permission_statement(permission)
-    User.current.allowed_to_condition_with_project_id(permission).gsub(/(user|project)s?\.id/, '\1_id')
+    if User.current.admin?
+      if %w[view_own_time_entries view_time_entries view_hourly_rates view_cost_rates]
+        "(1=1)"
+      else
+        "(projects.active = true)"
+      end
+    else
+      User.current.allowed_to_condition_with_project_id(permission).gsub(/(user|project)s?\.id/, '\1_id')
+    end
   end
 
   def permission_for(type)
