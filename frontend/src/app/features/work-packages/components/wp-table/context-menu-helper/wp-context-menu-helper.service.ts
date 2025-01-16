@@ -30,6 +30,7 @@ import { HalLink } from 'core-app/features/hal/hal-link/hal-link';
 import { Injectable } from '@angular/core';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { UrlParamsHelperService } from 'core-app/features/work-packages/components/wp-query/url-params-helper';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { WorkPackageViewTimelineService } from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-timeline.service';
 import { WorkPackageViewHierarchyIdentationService } from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-hierarchy-indentation.service';
@@ -75,6 +76,7 @@ export class WorkPackageContextMenuHelperService {
 
   constructor(private HookService:HookService,
     private UrlParamsHelper:UrlParamsHelperService,
+    readonly currentProject:CurrentProjectService,
     private wpViewRepresentation:WorkPackageViewDisplayRepresentationService,
     private wpViewTimeline:WorkPackageViewTimelineService,
     private wpViewIndent:WorkPackageViewHierarchyIdentationService,
@@ -230,7 +232,11 @@ export class WorkPackageContextMenuHelperService {
       });
     }
 
-    if (!!workPackage.addChild && allowSplitScreenActions) {
+    const workPackageInCurrentProject = workPackage.project.id == this.currentProject.id;
+    const currentProjectInGroupSpace = this.currentProject.thTypeId == 1;
+    const thAllowAddChild = currentProjectInGroupSpace ? workPackageInCurrentProject : true;
+
+    if (!!workPackage.addChild && thAllowAddChild && allowSplitScreenActions) {
       allowedActions.push({
         key: 'relation-new-child',
         text: I18n.t('js.relation_buttons.add_new_child'),
