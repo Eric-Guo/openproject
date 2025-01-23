@@ -42,9 +42,14 @@ module OpenProject::TextFormatting
         @ids = Set.new
       end
 
-      def add_header_link_class_and_id(node, id)
-        node.css("a").first["class"] = "op-uc-link_permalink icon-link"
+      def add_header_link(node, id)
+        link = content_tag(:a,
+                           "",
+                           class: "op-uc-link_permalink icon-link",
+                           "aria-hidden": true,
+                           href: "##{id}")
         node["id"] = id
+        node.add_child(link)
       end
 
       ##
@@ -63,7 +68,8 @@ module OpenProject::TextFormatting
       end
 
       ##
-      # Adds the bem classes to the header link and returns a toc item.
+      # Appends the header link and returns
+      # a toc item.
       # The item is prefixed by a number. If there is already a number prefix provided in the text,
       # that prefix is used if it matches the calculated number.
       def process_item(node, number)
@@ -71,7 +77,7 @@ module OpenProject::TextFormatting
         return "".html_safe if text.blank?
 
         id = get_unique_id(text)
-        add_header_link_class_and_id(node, id)
+        add_header_link(node, id)
 
         content_tag(:li, class: "op-uc-toc--list-item") do
           anchor_tag(text, number, id)
