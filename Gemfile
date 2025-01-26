@@ -179,6 +179,7 @@ group :production do
   # requires memcached 1.4+
   gem "dalli", "~> 3.2.0"
   gem "redis", "~> 5.4.0"
+  gem "rorvswild"
 end
 
 gem "i18n-js", "~> 3.9.0"
