@@ -105,7 +105,7 @@ class ProjectQueries::Static
 
     def list_with(name)
       ProjectQuery.new(name: I18n.t(name)) do |query|
-        query.order("lft" => "asc")
+        query.order(name: :desc)
         query.select(*Setting.enabled_projects_columns, add_not_existing: false)
 
         yield query
