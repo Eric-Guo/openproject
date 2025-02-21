@@ -123,7 +123,7 @@ class ProjectQueries::Static
 
     def static_query(field, operator, value, name:)
       ProjectQuery.new(name: I18n.t(name)) do |query|
-        query.order("lft" => "asc")
+        query.order(name: :desc)
         query.select(*Setting.enabled_projects_columns, add_not_existing: false)
         query.where(field, operator, value)
 
