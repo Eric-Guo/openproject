@@ -209,6 +209,26 @@ See COPYRIGHT and LICENSE files for more details.
 <% end %>
 <div class="op-wide-autocomplete-wrapper"></div>
 <%= call_hook :view_layouts_base_body_bottom %>
+<%= nonced_javascript_tag do %>
+  window.difyChatbotConfig = {
+   token: 'lal5IhsZMqnxTcgu',
+   dynamicScript: true,
+   baseUrl: 'https://dify.thape.com.cn'
+  }
+<% end unless request.remote_ip.start_with?('10.100.252.') %>
+<%= nonced_javascript_include_tag "/embed.js", id: "lal5IhsZMqnxTcgu", defer: true %>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1F1547 !important;
+    bottom: 2.5rem;
+    width: 34px;
+    height: 34px;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+  }
+</style>
 <% end %>
 <% if ENV["RAILS_ENV"] == 'development' && ENV["ENABLE_DEBUGBAR"] == 'true' %>
   <div id="__debugbar"></div>

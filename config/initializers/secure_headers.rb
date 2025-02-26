@@ -52,7 +52,7 @@ Rails.application.config.after_initialize do
     assets_src += %w('unsafe-eval' 'unsafe-inline')
 
     # Valid for iframes
-    frame_src = %w['self' https://player.vimeo.com https://www.youtube.com https://ith-workspace.thape.com.cn]
+    frame_src = %w['self' https://dify.thape.com.cn https://ith-workspace.thape.com.cn]
     frame_src << OpenProject::Configuration[:security_badge_url]
 
     # Default src
