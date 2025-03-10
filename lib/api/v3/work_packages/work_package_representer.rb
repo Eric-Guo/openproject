@@ -688,7 +688,8 @@ module API
         end
 
         def having_any_time_entries?
-          represented.time_entries.present?
+          # spent_hours need A user at least can see the work package, search visible_time_entries
+          represented.spent_hours(current_user) > 0
         end
 
         def view_budgets_allowed?
