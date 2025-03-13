@@ -64,6 +64,7 @@ module TimeEntries
     end
     attribute :hours
     attribute :approved_hours
+    attribute :sz_approved_hours
     attribute :from_th_keyin
     attribute :comments
     attribute_alias :comments, :comment

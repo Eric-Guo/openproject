@@ -132,6 +132,10 @@ class TimeEntry < ApplicationRecord
     write_attribute :approved_hours, (value.is_a?(String) ? (value.to_hours || value) : value)
   end
 
+  def sz_approved_hours=(value)
+    write_attribute :sz_approved_hours, (value.is_a?(String) ? (value.to_hours || value) : value)
+  end
+
   # Returns true if the time entry can be edited by usr, otherwise false
   def editable_by?(usr)
     (usr == user && usr.allowed_in_work_package?(:edit_own_time_entries, work_package)) ||

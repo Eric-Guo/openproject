@@ -53,6 +53,8 @@ module TimeEntries
 
       if model.approved_hours_changed?
         set_approved_by
+      elsif model.sz_approved_hours_changed?
+        set_approved_by_sz
       else
         set_logged_by
       end
@@ -72,6 +74,12 @@ module TimeEntries
     def set_approved_by
       model.change_by_system do
         model.approved_by = user
+      end
+    end
+
+    def set_approved_by_sz
+      model.change_by_system do
+        model.approved_by_sz = user
       end
     end
 

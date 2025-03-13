@@ -94,6 +94,12 @@ module API
                    datetime_formatter.format_duration_from_hours(represented.approved_hours) if represented.approved_hours
                  end
 
+        property :sz_approved_hours,
+                 exec_context: :decorator,
+                 getter: ->(*) do
+                   datetime_formatter.format_duration_from_hours(represented.sz_approved_hours) if represented.sz_approved_hours
+                 end
+
         property :from_th_keyin,
                  exec_context: :decorator,
                  getter: ->(*) { represented.from_th_keyin }
@@ -185,6 +191,12 @@ module API
         def approved_hours=(value)
           represented.approved_hours = datetime_formatter.parse_duration_to_hours(value,
                                                                                   "approvedHours",
+                                                                                  allow_nil: true)
+        end
+
+        def sz_approved_hours=(value)
+          represented.sz_approved_hours = datetime_formatter.parse_duration_to_hours(value,
+                                                                                  "szApprovedHours",
                                                                                   allow_nil: true)
         end
 
