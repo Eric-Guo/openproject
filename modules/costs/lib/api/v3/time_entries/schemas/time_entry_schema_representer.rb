@@ -60,9 +60,14 @@ module API
                  writable: false
 
           schema :hours,
-                 type: "Duration"
+                 type: "Duration",
+                 required: false
 
           schema :approved_hours,
+                 type: "Duration",
+                 required: false
+
+          schema :sz_approved_hours,
                  type: "Duration",
                  required: false
 
