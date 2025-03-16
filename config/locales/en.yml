@@ -3102,7 +3102,6 @@ en:
   label_read: "Read..."
   label_read_documentation: "Read documentation"
   label_register: "Create a new account"
-  label_register_with_developer: "Register as developer"
   label_registered_on: "Registered on"
   label_related_work_packages: "Related work packages"
   label_relates: "related to"
