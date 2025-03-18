@@ -30,6 +30,7 @@ zh-CN:
           not_set: 未设置
           not_started: 未开始
           off_track: 偏离计划
+          on_pause: 已暂停
           on_track: 按计划进行
           title: 状态
         project_timeline:
