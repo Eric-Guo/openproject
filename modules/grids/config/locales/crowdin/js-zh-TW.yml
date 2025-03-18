@@ -25,11 +25,12 @@ zh-TW:
           title: 收藏的專案
         project_status:
           at_risk: 存在風險
-          discontinued: 已中止
+          discontinued: 已中斷
           finished: 已完成
           not_set: 未設定
           not_started: 未開始
           off_track: 進度落後
+          on_pause: 已暫停
           on_track: 如期進行
           title: 狀態
         project_timeline:
