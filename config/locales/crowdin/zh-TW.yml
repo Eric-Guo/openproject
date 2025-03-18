@@ -244,10 +244,11 @@ zh-TW:
         status_code: 狀態
         status_codes:
           at_risk: 存在風險
-          discontinued: 已中止
+          discontinued: 已中斷
           finished: 已完成
           not_started: 未開始
           off_track: 進度落後
+          on_pause: 已暫停
           on_track: 進度良好
         status_explanation: 狀態說明
         template: 範本

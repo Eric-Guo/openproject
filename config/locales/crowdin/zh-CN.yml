@@ -249,6 +249,7 @@ zh-CN:
           finished: 已完成
           not_started: 未开始
           off_track: 偏离计划
+          on_pause: 已暂停
           on_track: 按计划进行
         status_explanation: 项目状态描述
         template: 模板
