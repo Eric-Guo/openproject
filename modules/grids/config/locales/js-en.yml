@@ -32,6 +32,7 @@ en:
           not_set: 'Not set'
           not_started: 'Not started'
           off_track: 'Off track'
+          on_pause: 'On pause'
           on_track: 'On track'
           title: 'Status'
         project_timeline:
