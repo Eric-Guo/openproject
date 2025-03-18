@@ -977,8 +977,9 @@ zh-CN:
           on_track: "按计划进行"
           at_risk: "有风险"
           off_track: "偏离计划"
+          on_pause: "已暂停"
           finished: "已完成"
-          discontinued: "已中断"
+          discontinued: "已中止"
         templated: "模板项目"
         templated_value:
           true: "保存为模板"

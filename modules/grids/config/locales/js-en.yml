@@ -29,6 +29,7 @@ en:
           not_started: 'Not started'
           on_track: 'On track'
           off_track: 'Off track'
+          on_pause: 'On pause'
           at_risk: 'At risk'
           not_set: 'Not set'
           finished: 'Finished'

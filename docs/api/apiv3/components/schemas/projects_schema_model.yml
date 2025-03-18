@@ -58,6 +58,8 @@ example:
         title: At risk
       - href: "/api/v3/project_statuses/off_track"
         title: Off track
+      - href: "/api/v3/project_statuses/on_pause"
+        title: On pause        
   statusExplanation:
     type: Formattable
     name: Status explanation

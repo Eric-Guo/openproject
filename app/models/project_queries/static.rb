@@ -33,6 +33,7 @@ class ProjectQueries::Static
   ARCHIVED = "archived".freeze
   ON_TRACK = "on_track".freeze
   OFF_TRACK = "off_track".freeze
+  ON_PAUSE = "on_pause".freeze
   AT_RISK = "at_risk".freeze
 
   DEFAULT = ACTIVE
@@ -52,6 +53,8 @@ class ProjectQueries::Static
         static_query_status_on_track
       when OFF_TRACK
         static_query_status_off_track
+      when ON_PAUSE
+        static_query_status_on_pause
       when AT_RISK
         static_query_status_at_risk
       end
@@ -92,6 +95,12 @@ class ProjectQueries::Static
     def static_query_status_off_track
       list_with(:"activerecord.attributes.project.status_codes.off_track") do |query|
         query.where("project_status_code", "=", Project.status_codes[:off_track])
+      end
+    end
+
+    def static_query_status_on_pause
+      list_with(:"activerecord.attributes.project.status_codes.on_pause") do |query|
+        query.where("project_status_code", "=", Project.status_codes[:on_pause])
       end
     end
 
