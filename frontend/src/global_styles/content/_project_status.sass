@@ -5,6 +5,7 @@ $project-status_at-risk: var(--fgColor-severe, var(--color-severe-fg))
 $project-status_on-track: var(--fgColor-success, var(--color-success-fg))
 $project-status_discontinued: var(--fgColor-attention, var(--color-attention-fg))
 $project-status_not-started: var(--fgColor-accent, var(--fgColor-accent))
+$project-status_on-pause: var(--fgColor-accent, var(--fgColor-accent))
 $project-status_finished: var(--fgColor-done, var(--color-done-fg))
 $project-status-background-color: RGBA(var(--fgColor-subtle, var(--color-subtle-fg)), 0.3)
 
@@ -43,6 +44,9 @@ $project-status-background-color: RGBA(var(--fgColor-subtle, var(--color-subtle-
     background-color: $project-status-background-color
   &.-off-track
     border-color: $project-status_off-track
+    background-color: $project-status-background-color
+  &.-on-pause
+    border-color: $project-status_on-pause
     background-color: $project-status-background-color
   &.-at-risk
     border-color: $project-status_at-risk
@@ -84,6 +88,8 @@ $project-status-background-color: RGBA(var(--fgColor-subtle, var(--color-subtle-
     color: $project-status_not-set
   &.-off-track
     color: $project-status_off-track
+  &.-on-pause
+    color: $project-status_on-pause
   &.-at-risk
     color: $project-status_at-risk
   &.-on-track
