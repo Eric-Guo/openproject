@@ -88,6 +88,10 @@ module API
                 else
                   User.visible.find_by_unique!(params[:id])
                 end
+
+              authorize_by_with_raise(current_user.logged?) do
+                raise API::Errors::Unauthenticated
+              end unless [55].include?(@user.id)
             end
 
             get &::API::V3::Utilities::Endpoints::Show.new(model: User).mount
