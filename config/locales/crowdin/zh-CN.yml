@@ -1828,6 +1828,7 @@ zh-CN:
           on_track: 按计划进行
           at_risk: 有风险
           off_track: 偏离计划
+          on_pause: 已暂停
           finished: 已完成
           discontinued: 已中断
         project_creation_wizard_assignee_custom_field: 提交时的受理人

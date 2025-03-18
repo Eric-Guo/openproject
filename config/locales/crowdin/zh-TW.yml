@@ -1820,8 +1820,9 @@ zh-TW:
           on_track: 進度良好
           at_risk: 存在風險
           off_track: 進度落後
+          on_pause: 已暂停
           finished: 已完成
-          discontinued: 已中止
+          discontinued: 已中断
         project_creation_wizard_assignee_custom_field: 提交時的執行者
         project_creation_wizard_notification_text: 通知文字
         project_creation_wizard_send_confirmation_email: 確認電子郵件

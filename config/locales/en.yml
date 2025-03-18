@@ -1936,6 +1936,7 @@ en:
           on_track: "On track"
           at_risk: "At risk"
           off_track: "Off track"
+          on_pause: "On pause"
           finished: "Finished"
           discontinued: "Discontinued"
         project_creation_wizard_assignee_custom_field: "Assignee when submitted"
