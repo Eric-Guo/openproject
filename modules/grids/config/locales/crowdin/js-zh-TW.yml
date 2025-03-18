@@ -25,10 +25,11 @@ zh-TW:
           not_started: 未開始
           on_track: 如期進行
           off_track: 進度落後
+          on_pause: 已暂停
           at_risk: 存在風險
           not_set: 未設定
           finished: 已完成
-          discontinued: 已中止
+          discontinued: 已中断
         subprojects:
           title: 子項目
         project_favorites:
