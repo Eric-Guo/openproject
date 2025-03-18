@@ -92,6 +92,7 @@ module Projects
       static_filters [
         ProjectQueries::Static::ON_TRACK,
         ProjectQueries::Static::OFF_TRACK,
+        ProjectQueries::Static::ON_PAUSE,
         ProjectQueries::Static::AT_RISK
       ]
     end
