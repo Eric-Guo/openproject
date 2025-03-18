@@ -35,6 +35,7 @@ class ProjectQueries::Static
   ARCHIVED = "archived"
   ON_TRACK = "on_track"
   OFF_TRACK = "off_track"
+  ON_PAUSE = "on_pause"
   AT_RISK = "at_risk"
 
   ACTIVE_PORTFOLIOS = "active_portfolios"
@@ -67,6 +68,8 @@ class ProjectQueries::Static
         static_query_status_on_track
       when OFF_TRACK
         static_query_status_off_track
+      when ON_PAUSE
+        static_query_status_on_pause
       when AT_RISK
         static_query_status_at_risk
       end
@@ -114,6 +117,12 @@ class ProjectQueries::Static
     def static_query_status_off_track
       static_query("project_status_code", "=", Project.status_codes[:off_track],
                    name: :"activerecord.attributes.project.status_codes.off_track")
+    end
+
+    def static_query_status_on_pause
+      list_with(:"activerecord.attributes.project.status_codes.on_pause") do |query|
+        query.where("project_status_code", "=", Project.status_codes[:on_pause])
+      end
     end
 
     def static_query_status_at_risk
