@@ -1560,6 +1560,7 @@ zh-CN:
       placeholder_user: "占位符用户"
       project:
         other: "项目"
+      "project/phase_definition": "项目阶段"
       project_query:
         other: "项目列表"
       query: "自定义查询"

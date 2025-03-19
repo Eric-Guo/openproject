@@ -106,12 +106,14 @@ export function initializeCoreDisplayFields(displayFieldService:DisplayFieldServ
         'Project',
         'TimeEntriesActivity',
         'Version',
+        'ProjectPhase',
         'Category',
         'CustomField::Hierarchy::Item',
         'CustomOption'])
       .addFieldType(ProjectPhaseDisplayField, 'projectPhase', ['ProjectPhase'])
       .addFieldType(ResourcesDisplayField, 'resources', ['[]CustomOption', '[]CustomField::Hierarchy::Item'])
       .addFieldType(ResourcesDisplayField, 'resources', ['[]Version'])
+      .addFieldType(ResourcesDisplayField, 'resources', ['[]ProjectPhase'])
       .addFieldType(MultipleUserFieldModule, 'users', ['[]User'])
       .addFieldType(FormattableDisplayField, 'formattable', ['Formattable'])
       .addFieldType(DaysDurationDisplayField, 'duration', ['duration'])

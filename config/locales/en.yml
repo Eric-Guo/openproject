@@ -1653,6 +1653,7 @@ en:
       project:
         one: "Project"
         other: "Projects"
+      "project/phase_definition": "Project phase"
       project_query:
         one: "Project list"
         other: "Project lists"

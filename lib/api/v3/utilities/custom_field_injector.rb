@@ -42,15 +42,17 @@ module API
           "user" => "User",
           "version" => "Version",
           "list" => "CustomOption",
+          "project_phase" => "ProjectPhase",
           "hierarchy" => "CustomField::Hierarchy::Item"
         }.freeze
 
-        LINK_FORMATS = %w(list user version hierarchy).freeze
+        LINK_FORMATS = %w[list user version hierarchy project_phase].freeze
 
         NAMESPACE_MAP = {
           "user" => ["users", "groups", "placeholder_users"],
           "version" => "versions",
           "list" => "custom_options",
+          "project_phase" => "project_phases",
           "hierarchy" => "custom_field_items"
         }.freeze
 
@@ -58,6 +60,7 @@ module API
           "user" => "::API::V3::Principals::PrincipalRepresenterFactory",
           "version" => "::API::V3::Versions::VersionRepresenter",
           "list" => "::API::V3::CustomOptions::CustomOptionRepresenter",
+          "project_phase" => "::API::V3::ProjectPhases::ProjectPhaseRepresenter",
           "hierarchy" => "::API::V3::CustomFields::Hierarchy::HierarchyItemRepresenter"
         }.freeze
 
@@ -113,7 +116,7 @@ module API
             inject_version_schema(custom_field)
           when "user"
             inject_user_schema(custom_field)
-          when "list"
+          when "list", "project_phase"
             inject_list_schema(custom_field)
           when "hierarchy"
             inject_hierarchy_schema(custom_field)
@@ -169,10 +172,33 @@ module API
             type: resource_type(custom_field),
             name_source: ->(*) { custom_field.name },
             values_callback: list_schemas_values_callback(custom_field),
-            value_representer: CustomOptions::CustomOptionRepresenter,
-            link_factory: list_schemas_link_callback,
+            value_representer: determine_value_representer(custom_field),
+            link_factory: determine_link_factory(custom_field),
             required: custom_field.is_required
           )
+        end
+
+        def determine_value_representer(custom_field)
+          case custom_field.field_format
+          when "project_phase"
+            ProjectPhases::ProjectPhaseRepresenter
+          else
+            CustomOptions::CustomOptionRepresenter
+          end
+        end
+
+        def determine_link_factory(custom_field)
+          case custom_field.field_format
+          when "project_phase"
+            ->(value) do
+              {
+                href: api_v3_paths.project_phase(value.id),
+                title: value.definition.name
+              }
+            end
+          else
+            list_schemas_link_callback
+          end
         end
 
         def inject_hierarchy_schema(custom_field)

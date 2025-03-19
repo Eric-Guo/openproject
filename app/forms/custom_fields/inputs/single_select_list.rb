@@ -62,6 +62,14 @@ class CustomFields::Inputs::SingleSelectList < CustomFields::Inputs::Base::Autoc
           selected: item.id == @custom_value.value&.to_i
         }
       end
+    when "project_phase"
+      @custom_field.possible_project_phases(@object).map do |phase|
+        {
+          label: phase.definition.name,
+          value: phase.id,
+          selected: phase.id.to_s == @custom_value.value
+        }
+      end
     else
       @custom_field.custom_options.map do |custom_option|
         {

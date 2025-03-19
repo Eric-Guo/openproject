@@ -33,6 +33,26 @@ module API
     module Queries
       module Schemas
         class ProjectPhaseFilterDependencyRepresenter < FilterDependencyRepresenter
+          schema_with_allowed_collection :values,
+                                         type: ->(*) { type },
+                                         writable: true,
+                                         has_default: false,
+                                         required: true,
+                                         values_callback: ->(*) {
+                                           represented.custom_field.possible_project_phases(represented.context)
+                                         },
+                                         value_representer: ProjectPhases::ProjectPhaseRepresenter,
+                                         link_factory: ->(value) {
+                                           {
+                                             href: api_v3_paths.project_phase(value.id),
+                                             title: value.definition.name
+                                           }
+                                         },
+                                         show_if: ->(*) {
+                                           value_required?
+                                         }
+
+
           def json_cache_key
             if filter.project
               super + [filter.project.id]

@@ -375,6 +375,10 @@ module API
             "#{project(id)}/copy/form"
           end
 
+          def self.project_phase(id)
+            "#{root}/project_phases/#{id}"
+          end
+
           resources :query
 
           def self.query_default

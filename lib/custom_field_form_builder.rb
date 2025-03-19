@@ -76,7 +76,7 @@ class CustomFieldFormBuilder < TabularFormBuilder
       text_area(field, input_options.merge(with_text_formatting: true, macros: false, editor_type: "constrained"))
     when "bool"
       check_box(field, input_options.merge(checked: custom_value.strategy.checked?))
-    when "list"
+    when "list", "project_phase"
       custom_field_input_list(field, input_options)
     else
       text_field(field, input_options)

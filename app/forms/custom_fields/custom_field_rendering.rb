@@ -84,7 +84,7 @@ module CustomFields::CustomFieldRendering
       CustomFields::Inputs::Int.new(builder, **form_args)
     when "float"
       CustomFields::Inputs::Float.new(builder, **form_args)
-    when "hierarchy", "list"
+    when "hierarchy", "list", "project_phase"
       CustomFields::Inputs::SingleSelectList.new(builder, **form_args)
     when "date"
       CustomFields::Inputs::Date.new(builder, **form_args)

@@ -32,9 +32,18 @@ module API
   module V3
     module ProjectPhases
       class ProjectPhaseRepresenter < ::API::Decorators::Single
+        include API::Decorators::LinkedResource
         include API::Decorators::DateProperty
+        include ::API::Caching::CachedRepresenter
 
         self_link
+
+        link :self do
+          {
+            href: api_v3_paths.project_phase(represented.id),
+            title: represented.definition.name
+          }
+        end
 
         link :definition do
           {
@@ -51,7 +60,8 @@ module API
         end
 
         property :id
-        property :name
+        property :name,
+                 getter: ->(represented:, **) { represented.definition.name }
         property :active
 
         date_time_property :created_at

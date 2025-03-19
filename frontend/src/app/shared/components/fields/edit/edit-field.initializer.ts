@@ -98,6 +98,7 @@ export function initializeCoreEditFields(editFieldService:EditFieldService, sele
         'Status',
         'Type',
         'Version',
+        'ProjectPhase',
         'TimeEntriesActivity',
         'Category',
         'CustomOption',

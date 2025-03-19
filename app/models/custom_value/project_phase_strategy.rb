@@ -26,17 +26,20 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module AssignableCustomFieldValues
-  extend ActiveSupport::Concern
+class CustomValue::ProjectPhaseStrategy < CustomValue::ARObjectStrategy
+  def validate_type_of_value
+    phase = Project::Phase.find_by(id: value)
 
-  included do
-    def assignable_custom_field_values(custom_field)
-      case custom_field.field_format
-      when "list", "project_phase"
-        custom_field.possible_values
-      when "version"
-        assignable_versions(only_open: !custom_field.allow_non_open_versions?)
-      end
-    end
+    :invalid if phase.nil?
+  end
+
+  private
+
+  def ar_class
+    Project::Phase
+  end
+
+  def ar_object(value)
+    Project::Phase.find_by(id: value)
   end
 end

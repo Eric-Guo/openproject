@@ -92,7 +92,7 @@ class CustomActions::Actions::CustomField < CustomActions::Actions::Base
       CustomActions::Actions::Strategies::Boolean
     when "user"
       CustomActions::Actions::Strategies::UserCustomField
-    when "list", "version"
+    when "list", "version", "project_phase"
       CustomActions::Actions::Strategies::AssociatedCustomField
     end
   end

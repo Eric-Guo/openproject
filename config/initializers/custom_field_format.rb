@@ -98,4 +98,10 @@ OpenProject::CustomFieldFormat.map do |fields|
                                                      enabled: lambda do
                                                        OpenProject::FeatureDecisions.calculated_value_project_attribute_active?
                                                      end)
+
+  fields.register OpenProject::CustomFieldFormat.new("project_phase",
+                                                     label: Proc.new { Project::PhaseDefinition.model_name.human },
+                                                     only: %w(WorkPackage),
+                                                     order: 14,
+                                                     formatter: "CustomValue::ProjectPhaseStrategy")
 end

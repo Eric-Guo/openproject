@@ -93,7 +93,7 @@ module CustomFieldsHelper
                                             [I18n.t(:general_text_no), "0"]].compact),
                         id: field_id,
                         include_blank: I18n.t(:label_no_change_option))
-    when "list"
+    when "list", "project_phase"
       styled_select_tag(field_name,
                         options_for_list(custom_field, project),
                         id: field_id,

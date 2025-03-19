@@ -181,6 +181,8 @@ class CustomField < ApplicationRecord
       possible_users(obj).pluck(:id).map(&:to_s)
     when "version"
       possible_versions(obj).pluck(:id).map(&:to_s)
+    when "project_phase"
+      possible_project_phases(obj)
     when "list"
       custom_options
     else
@@ -210,7 +212,7 @@ class CustomField < ApplicationRecord
     return if value.blank?
 
     case field_format
-    when "string", "text", "list", "link"
+    when "string", "text", "list", "link", "project_phase"
       value
     when "date"
       begin
@@ -330,6 +332,21 @@ class CustomField < ApplicationRecord
     tag = multi_value? ? "mv" : "sv"
 
     "#{super}/#{tag}"
+  end
+
+  def possible_project_phases(obj)
+    project = deduce_project(obj)
+    if project&.persisted?
+      project.available_phases.where(active: true)
+    else
+      Project::Phase.active
+    end
+  end
+
+  def possible_project_phase_values_options(obj)
+    possible_project_phases(obj)
+                       .sort
+                       .map { |phase| [phase.definition.name, phase.id.to_s] }
   end
 
   private

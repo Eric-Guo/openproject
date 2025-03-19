@@ -92,7 +92,7 @@ module Queries::Filters::Shared::CustomFieldFilter
       case custom_field.field_format
       when "user"
         ::Queries::Filters::Shared::CustomFields::User
-      when "list", "version"
+      when "list", "version", "project_phase"
         ::Queries::Filters::Shared::CustomFields::ListOptional
       when "hierarchy"
         ::Queries::Filters::Shared::CustomFields::Hierarchy
