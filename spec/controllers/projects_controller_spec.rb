@@ -467,6 +467,14 @@ RSpec.describe ProjectsController do
     end
 
     it_behaves_like "successful index"
+
+    context "when the user is anonymous" do
+      let(:user) { User.anonymous }
+
+      it "redirects to sign in" do
+        expect(response).to redirect_to(signin_path(back_url: projects_url))
+      end
+    end
   end
 
   describe "#destroy" do
