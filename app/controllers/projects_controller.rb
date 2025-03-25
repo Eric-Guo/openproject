@@ -39,12 +39,11 @@ class ProjectsController < ApplicationController
   before_action :load_query_or_deny_access, only: %i[index]
   before_action :authorize,
                 only: %i[copy_form copy deactivate_work_package_attachments export_project_initiation_pdf]
-  before_action :authorize_global, only: %i[new create]
+  before_action :authorize_global, only: %i[new create index]
   before_action :require_admin, only: %i[destroy destroy_info]
   before_action :find_optional_parent, only: :new
   before_action :find_optional_template, only: %i[new create]
 
-  no_authorization_required! :index
 
   include SortHelper
   include PaginationHelper
