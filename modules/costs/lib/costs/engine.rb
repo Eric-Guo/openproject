@@ -46,7 +46,7 @@ module Costs
                    contract_actions: { time_entries: %i[read_own] }
 
         permission :log_own_time,
-                   {},
+                   { th_keyins: %i[show create hover_hint] },
                    permissible_on: %i[work_package project],
                    require: :loggedin,
                    dependencies: :view_own_time_entries,
