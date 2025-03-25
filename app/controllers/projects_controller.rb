@@ -33,12 +33,12 @@ class ProjectsController < ApplicationController
   menu_item :roadmap, only: :roadmap
 
   before_action :find_project, except: %i[index new export_list_modal]
+  before_action :authorize_global, only: %i[new index]
   before_action :load_query_or_deny_access, only: %i[index export_list_modal]
   before_action :authorize, only: %i[copy deactivate_work_package_attachments]
-  before_action :authorize_global, only: %i[new]
   before_action :require_admin, only: %i[destroy destroy_info]
 
-  no_authorization_required! :index, :export_list_modal
+  no_authorization_required! :export_list_modal
 
   include SortHelper
   include PaginationHelper

@@ -38,6 +38,7 @@ module Projects::Scopes
 
         return none if user.locked?
         return none if permissions.empty?
+        return none if user.anonymous?
 
         if (user.admin? || user.allowed_globally?(:view_all_project_info)) && permissions.all?(&:grant_to_admin?)
           allowed_to_admin(permissions)
