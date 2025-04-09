@@ -146,7 +146,7 @@ module API
                                                 name_source: ->(*) { custom_field.name },
                                                 values_callback: ->(*) {
                                                   represented
-                                                    .assignable_custom_field_values(custom_field)
+                                                    .assignable_custom_field_values(custom_field, nil)
                                                 },
                                                 value_representer: Versions::VersionRepresenter,
                                                 link_factory: ->(version) {
@@ -354,7 +354,9 @@ module API
         end
 
         def list_schemas_values_callback(custom_field)
-          ->(*) { represented.assignable_custom_field_values(custom_field) }
+          ->(*) do
+            represented.assignable_custom_field_values(custom_field, represented)
+          end
         end
 
         def list_schemas_link_callback

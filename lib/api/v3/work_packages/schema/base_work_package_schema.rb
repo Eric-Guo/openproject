@@ -43,7 +43,7 @@ module API
             nil
           end
 
-          def assignable_custom_field_values(_custom_field)
+          def assignable_custom_field_values(_custom_field, _value)
             nil
           end
 

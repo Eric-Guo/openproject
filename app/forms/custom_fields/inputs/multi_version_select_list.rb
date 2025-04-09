@@ -44,7 +44,7 @@ class CustomFields::Inputs::MultiVersionSelectList < CustomFields::Inputs::Base:
     )
 
     custom_value_form.autocompleter(**version_input_attributes) do |list|
-      assignable_custom_field_values(@custom_field).each do |version|
+      assignable_custom_field_values(@custom_field, nil).each do |version|
         list.option(
           label: version.name,
           value: version.id,

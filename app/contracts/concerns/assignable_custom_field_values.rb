@@ -30,10 +30,12 @@ module AssignableCustomFieldValues
   extend ActiveSupport::Concern
 
   included do
-    def assignable_custom_field_values(custom_field)
+    def assignable_custom_field_values(custom_field, obj)
       case custom_field.field_format
-      when "list", "project_phase"
+      when "list"
         custom_field.possible_values
+      when "project_phase"
+        custom_field.possible_values(obj)
       when "version"
         assignable_versions(only_open: !custom_field.allow_non_open_versions?)
       end

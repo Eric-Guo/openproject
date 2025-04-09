@@ -335,7 +335,9 @@ class CustomField < ApplicationRecord
   end
 
   def possible_project_phases(obj)
-    project = deduce_project(obj)
+    return Project::Phase.active if obj.is_a?(Query)
+
+    project = deduce_project(obj.work_package)
     if project&.persisted?
       project.available_phases.where(active: true)
     else

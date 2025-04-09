@@ -87,7 +87,7 @@ module Versions
       end
     end
 
-    def assignable_custom_field_values(custom_field)
+    def assignable_custom_field_values(custom_field, _obj)
       custom_field.possible_values
     end
 
