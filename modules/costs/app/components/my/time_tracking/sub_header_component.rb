@@ -83,10 +83,6 @@ module My
             aria: { label: I18n.t(:label_next_month) } }
         end
       end
-
-      def can_create_time_entry?
-        User.current.allowed_in_any_work_package?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
-      end
     end
   end
 end
