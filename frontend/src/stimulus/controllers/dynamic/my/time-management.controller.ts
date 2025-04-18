@@ -25,7 +25,7 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import { ActionEvent, Controller } from '@hotwired/stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { Calendar, EventApi, EventContentArg, EventInput } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -43,7 +43,7 @@ import { useAngularServices, type PickedServices, type ServiceKey } from 'core-s
 import { DialogCloseDetail } from 'core-turbo/dialog-stream-action';
 import { renderDayTotal, renderFooterTotals } from 'core-stimulus/helpers/fullcalendar-footer-helpers';
 import { ONGOING_CLASS_NAME, renderTimeEntryCard, type TimeEntryCard, type TimeEntryEvent } from 'core-stimulus/helpers/time-entry-event';
-import { openTimeEntryDialog, reloadMyTimeManagementView } from 'core-stimulus/helpers/time-entry-dialog';
+import { reloadMyTimeManagementView } from 'core-stimulus/helpers/time-entry-dialog';
 import { EntryMenus, WORK_PACKAGE_UPDATED_EVENT } from 'core-stimulus/helpers/my-time-management-entry-menus';
 import {
   remainingAllocations,
@@ -128,7 +128,6 @@ export default class MyTimeManagementController extends Controller {
       setTimeout(() => this.calendar.updateSize(), 25);
     }
 
-    // handle dialog close event
     document.addEventListener('dialog:close', this.boundListener);
     document.addEventListener(WORK_PACKAGE_UPDATED_EVENT, this.reloadView);
   }
@@ -198,40 +197,6 @@ export default class MyTimeManagementController extends Controller {
 
         return { domNodes: [wrapper] };
       },
-      select: (info) => {
-        let dialogParams = 'onlyMe=true';
-
-        if (info.allDay) {
-          dialogParams = `${dialogParams}&date=${info.startStr}`;
-        } else {
-          dialogParams = `${dialogParams}&startTime=${info.start.toISOString()}&endTime=${info.end.toISOString()}`;
-        }
-
-        openTimeEntryDialog(this.turboRequests, `${this.pathHelperService.timeEntryDialog()}?${dialogParams}`);
-      },
-      eventResize: (info) => {
-        // it does not make sense to resize the events without start & end times
-        // we cannot only disable resize, because we want to be able to drag the events
-        // so we need to revert the event to its original size
-        if (info.event.allDay || !info.event.start || !info.event.end) {
-          info.revert();
-          return;
-        }
-
-        const startMoment = toMoment(info.event.start, this.calendar);
-        const newEventHours = this.calculateHours(info.event);
-
-        info.event.setExtendedProp('hours', newEventHours);
-
-        this.updateTimeEntry(
-          info.event.id,
-          startMoment.format('YYYY-MM-DD'),
-          info.event.allDay ? null : startMoment.format('HH:mm'),
-          newEventHours,
-          info.revert,
-        );
-      },
-
       eventDragStart: (info) => {
         // When dragging from all day into the calendar set the defaultTimedEventDuration to the hours of the event so
         // that we display it correctly in the calendar. Will be reset in the drop event
@@ -240,20 +205,8 @@ export default class MyTimeManagementController extends Controller {
         }
       },
 
-      eventAllow: (dropInfo, draggedEvent) => {
-        if (dropInfo.allDay && this.forceTimesValue) {
-          return false;
-        }
-
-        if (!dropInfo.allDay && draggedEvent?.allDay && !this.allowTimesValue) {
-          return false;
-        }
-
-        if (draggedEvent?.extendedProps.ongoing) {
-          return false;
-        }
-
-        return true;
+      eventAllow: (_dropInfo, _draggedEvent) => {
+        return false;
       },
 
       eventDrop: (info) => {
@@ -284,6 +237,10 @@ export default class MyTimeManagementController extends Controller {
         // The stop button of a running timer leads somewhere of its own, and the click can
         // land on its icon rather than on the anchor.
         if ((info.jsEvent.target as HTMLElement).closest('a[href]')) {
+          return;
+        }
+        const nineDaysAgo = moment().subtract(9, 'days').startOf('day');
+        if (moment(info.event.start).startOf('day').isSameOrBefore(nineDaysAgo) || info.event.extendedProps.approvedId) {
           return;
         }
 
@@ -432,13 +389,6 @@ export default class MyTimeManagementController extends Controller {
     });
 
     return hiddenDays;
-  }
-
-  async newTimeEntry(event:ActionEvent) {
-    const dialogParams = `onlyMe=true&date=${event.params.date}`;
-
-    const { turboRequests, pathHelperService } = await this.services;
-    openTimeEntryDialog(turboRequests, `${pathHelperService.timeEntryDialog()}?${dialogParams}`);
   }
 
   dialogCloseListener(event:CustomEvent<DialogCloseDetail<AdditionalDialogCloseData>>):void {

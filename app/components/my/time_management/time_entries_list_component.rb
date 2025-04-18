@@ -51,25 +51,7 @@ module My
         true
       end
 
-      def action_row_header_content
-        return unless can_create_time_entry?
-        return if options[:mode] == :month
-
-        render(Primer::Beta::IconButton.new(
-                 icon: "plus",
-                 scheme: :invisible,
-                 size: :small,
-                 tag: :a,
-                 tooltip_direction: :e,
-                 href: "#",
-                 data: {
-                   action: "my--time-management#newTimeEntry",
-                   "my--time-management-date-param" => options[:date]
-                 },
-                 label: t(:button_add_time_entry),
-                 aria: { label: t(:button_add_time_entry) }
-               ))
-      end
+      def action_row_header_content = nil
 
       def headers
         [
@@ -90,10 +72,6 @@ module My
         else
           false
         end
-      end
-
-      def can_create_time_entry?
-        User.current.allowed_in_any_work_package?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
       end
     end
   end

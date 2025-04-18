@@ -40,7 +40,6 @@ module TimeEntries
                data: { "time-entry-target" => "hoursHiddenInput" }
 
       if show_start_and_end_time_fields?
-        date_field(f)
 
         f.group(layout: :horizontal) do |g|
           start_time_field(g)
@@ -49,22 +48,12 @@ module TimeEntries
         end
       else
         f.group(layout: :horizontal) do |g|
-          date_field(g)
           hours_field(g)
         end
       end
     end
 
     private
-
-    def date_field(form)
-      form.single_date_picker name: :spent_on,
-                              type: "date",
-                              required: true,
-                              datepicker_options: { inDialog: "time-entry-dialog" },
-                              value: model.spent_on&.iso8601,
-                              label: TimeEntry.human_attribute_name(:spent_on)
-    end
 
     def start_time_field(form)
       form.text_field name: :start_time,

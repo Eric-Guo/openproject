@@ -108,16 +108,20 @@ module My
         end
       end
 
+      def locked_for_changes?
+        !User.current.admin? && (time_entry.spent_on <= 9.days.ago.to_date || time_entry.approved_by_id.present?)
+      end
+
       def can_modify?
         return @can_modify if defined?(@can_modify)
 
-        @can_modify = TimeEntries::UpdateContract.new(time_entry, User.current).valid?
+        @can_modify = !locked_for_changes? && TimeEntries::UpdateContract.new(time_entry, User.current).valid?
       end
 
       def can_delete?
         return @can_delete if defined?(@can_delete)
 
-        @can_delete = TimeEntries::DeleteContract.new(time_entry, User.current).valid?
+        @can_delete = !locked_for_changes? && TimeEntries::DeleteContract.new(time_entry, User.current).valid?
       end
     end
   end
