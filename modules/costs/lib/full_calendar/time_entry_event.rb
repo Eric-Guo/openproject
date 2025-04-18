@@ -39,6 +39,7 @@ module FullCalendar
           starts_at: time_entry.start_timestamp || time_entry.spent_on,
           ends_at: time_entry.end_timestamp || time_entry.spent_on,
           all_day: time_entry.start_time.blank?,
+          approved_by_id: time_entry.approved_by_id,
           title: "#{time_entry.project.name}: ##{time_entry.work_package.id} #{time_entry.work_package.subject}"
         )
         event.time_entry = time_entry

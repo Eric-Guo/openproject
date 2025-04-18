@@ -14,19 +14,6 @@
     <% flex_layout(justify_content: :flex_end, classes: "time-entry-dialog-footer-buttons") do |flex| %>
       <% if time_entry.persisted? %>
         <% flex.with_column do %>
-          <%= render(
-                Primer::Beta::Button.new(
-                  scheme: :danger,
-                  test_selector: "destroy-time-entry-button",
-                  data: {
-                    "turbo" => true,
-                    "turbo-method" => :delete,
-                    "turbo-confirm" => t("js.text_are_you_sure")
-                  },
-                  href: time_entry_path(time_entry),
-                  tag: :a
-                )
-              ) { t("button_delete") } %>
         <% end %>
       <% end %>
       <% flex.with_column(classes: "time-entry-button-push") %>

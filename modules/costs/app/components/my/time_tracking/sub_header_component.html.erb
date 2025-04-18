@@ -17,14 +17,4 @@
         I18n.t(:label_today_capitalized)
       end
 
-      component.with_action_button(
-        scheme: :primary,
-        leading_icon: :plus,
-        label: I18n.t(:button_log_time),
-        data: { "turbo-stream" => true },
-        tag: :a,
-        href: dialog_time_entries_path(onlyMe: true, date: date.iso8601)
-      ) do
-        t(:button_add_time_entry)
-      end
     end %>

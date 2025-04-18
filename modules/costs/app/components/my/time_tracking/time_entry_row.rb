@@ -39,6 +39,7 @@ module My
 
       def action_menu
         return nil unless User.current.allowed_in_work_package?(:edit_own_time_entries, time_entry.work_package)
+        return nil if (time_entry.spent_on <= 9.days.ago.to_date || time_entry.approved_by_id.present?) && !User.current.admin?
 
         render(Primer::Alpha::ActionMenu.new) do |menu|
           menu.with_show_button(icon: "kebab-horizontal", "aria-label": t("label_more"), scheme: :invisible)
