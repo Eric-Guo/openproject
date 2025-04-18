@@ -62,5 +62,9 @@ RSpec.describe My::TimeTracking::TimeEntriesListComponent, type: :component do
     it_behaves_like "rendering Box", row_count: 2
     it_behaves_like "rendering Border Box Grid headings"
     it_behaves_like "rendering Border Box Grid rows", row_count: 2, col_count: 5
+
+    it "does not render the add time entry action" do
+      expect(rendered_component).to have_no_button(I18n.t(:button_add_time_entry))
+    end
   end
 end

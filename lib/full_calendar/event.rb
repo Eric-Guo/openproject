@@ -38,6 +38,7 @@ module FullCalendar
     attribute :all_day, :boolean, default: false
     attribute :starts_at, :datetime
     attribute :ends_at, :datetime
+    attribute :approved_by_id, :string
     attribute :title, :string
     attribute :url, :string
     attribute :class_names, array: true, default: []
@@ -54,6 +55,7 @@ module FullCalendar
         "allDay" => all_day,
         "start" => starts_at,
         "end" => ends_at,
+        "approvedId" => approved_by_id,
         "title" => title,
         "url" => url,
         "classNames" => class_names
