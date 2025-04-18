@@ -36,13 +36,6 @@ module TimeEntries
       # force the form to submit the ongoing flag as false to stop active timers
       f.hidden name: :ongoing, value: false
 
-      f.single_date_picker name: :spent_on,
-                           type: "date",
-                           required: true,
-                           datepicker_options: { inDialog: "time-entry-dialog" },
-                           value: model.spent_on&.iso8601,
-                           label: TimeEntry.human_attribute_name(:spent_on)
-
       if show_start_and_end_time_fields?
         f.group(layout: :horizontal) do |g|
           g.text_field name: :start_time,
