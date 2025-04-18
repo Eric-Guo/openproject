@@ -32,6 +32,7 @@ module My
   module TimeTracking
     class TimeEntriesListComponent < OpPrimer::BorderBoxTableComponent
       include OpTurbo::Streamable
+
       columns :spent_on, :time, :hours, :subject, :project, :activity, :comments
       main_column :time, :subject, :project
 
@@ -47,25 +48,7 @@ module My
         true
       end
 
-      def action_row_header_content
-        return unless can_create_time_entry?
-        return if options[:mode] == :month
-
-        render(Primer::Beta::IconButton.new(
-                 icon: "plus",
-                 scheme: :invisible,
-                 size: :small,
-                 tag: :a,
-                 tooltip_direction: :e,
-                 href: "#",
-                 data: {
-                   action: "my--time-tracking#newTimeEntry",
-                   "my--time-tracking-date-param" => options[:date]
-                 },
-                 label: t(:button_add_time_entry),
-                 aria: { label: t(:button_add_time_entry) }
-               ))
-      end
+      def action_row_header_content = nil
 
       def headers
         [
@@ -87,10 +70,6 @@ module My
         else
           false
         end
-      end
-
-      def can_create_time_entry?
-        User.current.allowed_in_any_work_package?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
       end
     end
   end
