@@ -1,4 +1,4 @@
-import { ActionEvent, Controller } from '@hotwired/stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { Calendar, EventApi, EventContentArg } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -58,8 +58,13 @@ export default class MyTimeTrackingController extends Controller {
   private DEFAULT_TIMED_EVENT_DURATION = '01:00';
   private boundListener = this.dialogCloseListener.bind(this);
 
-  async connect() {
+  connect():void {
     useMeta(this, { suffix: false });
+    void this.initializeController();
+    document.addEventListener('dialog:close', this.boundListener);
+  }
+
+  async initializeController():Promise<void> {
     const context = await window.OpenProject.getPluginContext();
     this.turboRequests = context.services.turboRequests;
     this.pathHelper = context.services.pathHelperService;
@@ -71,9 +76,6 @@ export default class MyTimeTrackingController extends Controller {
       // so its height might not be set correctly yet.
       setTimeout(() => this.calendar.updateSize(), 25);
     }
-
-    // handle dialog close event
-    document.addEventListener('dialog:close', this.boundListener);
   }
 
   disconnect():void {
@@ -133,42 +135,6 @@ export default class MyTimeTrackingController extends Controller {
 
         return { domNodes: [wrapper] };
       },
-      select: (info) => {
-        let dialogParams = 'onlyMe=true';
-
-        if (info.allDay) {
-          dialogParams = `${dialogParams}&date=${info.startStr}`;
-        } else {
-          dialogParams = `${dialogParams}&startTime=${info.start.toISOString()}&endTime=${info.end.toISOString()}`;
-        }
-
-        void this.turboRequests.request(
-          `${this.pathHelper.timeEntryDialog()}?${dialogParams}`,
-          { method: 'GET' },
-        );
-      },
-      eventResize: (info) => {
-        // it does not make sense to resize the events without start & end times
-        // we cannot only disable resize, because we want to be able to drag the events
-        // so we need to revert the event to its original size
-        if (info.event.allDay || !info.event.start || !info.event.end) {
-          info.revert();
-          return;
-        }
-
-        const startMoment = toMoment(info.event.start, this.calendar);
-        const newEventHours = this.calculateHours(info.event);
-
-        info.event.setExtendedProp('hours', newEventHours);
-
-        this.updateTimeEntry(
-          info.event.id,
-          startMoment.format('YYYY-MM-DD'),
-          info.event.allDay ? null : startMoment.format('HH:mm'),
-          newEventHours,
-          info.revert,
-        );
-      },
 
       eventDragStart: (info) => {
         // When dragging from all day into the calendar set the defaultTimedEventDuration to the hours of the event so
@@ -178,20 +144,8 @@ export default class MyTimeTrackingController extends Controller {
         }
       },
 
-      eventAllow: (dropInfo, draggedEvent) => {
-        if (dropInfo.allDay && this.forceTimesValue) {
-          return false;
-        }
-
-        if (!dropInfo.allDay && draggedEvent?.allDay && !this.allowTimesValue) {
-          return false;
-        }
-
-        if (draggedEvent?.extendedProps.ongoing) {
-          return false;
-        }
-
-        return true;
+      eventAllow: (_dropInfo, _draggedEvent) => {
+        return false;
       },
 
       eventDrop: (info) => {
@@ -223,7 +177,12 @@ export default class MyTimeTrackingController extends Controller {
         if (info.jsEvent.target instanceof HTMLAnchorElement) {
           return;
         }
-
+        // Check if event is 9 days ago, if so return early to avoid showing modal
+        const nineDaysAgo = moment().subtract(9, 'days').startOf('day');
+        const eventStart = moment(info.event.start).startOf('day');
+        if (eventStart.isSameOrBefore(nineDaysAgo) || info.event.extendedProps.approvedId) {
+          return;
+        }
         void this.turboRequests.request(
           `${this.pathHelper.timeEntryEditDialog(info.event.id)}?onlyMe=true`,
           { method: 'GET' },
@@ -337,7 +296,7 @@ export default class MyTimeTrackingController extends Controller {
 
     const colgroup = document.createElement('colgroup');
     const col = document.createElement('col');
-    const otherCol = document.querySelector('.fc-scrollgrid-section-header .fc-col-header col') as HTMLElement;
+    const otherCol = document.querySelector<HTMLElement>('.fc-scrollgrid-section-header .fc-col-header col')!;
     col.style.width = otherCol?.style?.width;
 
     const tbody = document.createElement('tbody');
@@ -471,15 +430,6 @@ export default class MyTimeTrackingController extends Controller {
     });
 
     return hiddenDays;
-  }
-
-  newTimeEntry(event:ActionEvent) {
-    const dialogParams = `onlyMe=true&date=${event.params.date}`;
-
-    void this.turboRequests.request(
-      `${this.pathHelper.timeEntryDialog()}?${dialogParams}`,
-      { method: 'GET' },
-    );
   }
 
   dialogCloseListener(event:CustomEvent):void {

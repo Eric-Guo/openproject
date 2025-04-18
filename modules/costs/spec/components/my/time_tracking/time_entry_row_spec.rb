@@ -28,42 +28,45 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module FullCalendar
-  class Event
-    include ActiveModel::Model
-    include ActiveModel::Attributes
+require "rails_helper"
 
-    attribute :id, :string
-    attribute :group_id, :string
-    attribute :all_day, :boolean, default: false
-    attribute :starts_at, :datetime
-    attribute :ends_at, :datetime
-    attribute :approved_by_id, :string
-    attribute :title, :string
-    attribute :url, :string
-    attribute :class_names, array: true, default: []
+RSpec.describe My::TimeTracking::TimeEntryRow, type: :component do
+  let(:project) { create(:project_with_types) }
+  let(:work_package) { create(:work_package, project:) }
+  let(:user) do
+    create(:user, member_with_permissions: { project => %i[view_project edit_own_time_entries] })
+  end
+  let(:table) { instance_double(My::TimeTracking::TimeEntriesListComponent) }
 
-    # override in subclasses to add more fields to the JSON
-    def additional_attributes
-      {}
+  before do
+    allow(table).to receive(:columns).and_return([])
+  end
+
+  subject(:row_component) { described_class.new(row: time_entry, table:) }
+
+  context "when the time entry is older than 9 days" do
+    let(:time_entry) { create(:time_entry, user:, entity: work_package, spent_on: Date.current - 9.days) }
+
+    current_user { user }
+
+    around do |example|
+      travel_to Date.new(2026, 4, 18) do
+        example.run
+      end
     end
 
-    def as_json
-      {
-        "id" => id,
-        "groupId" => group_id,
-        "allDay" => all_day,
-        "start" => starts_at,
-        "end" => ends_at,
-        "approvedId" => approved_by_id,
-        "title" => title,
-        "url" => url,
-        "classNames" => class_names
-      }.merge(additional_attributes).compact.as_json
+    it "does not expose row actions" do
+      expect(row_component.action_menu).to be_nil
     end
+  end
 
-    def to_json(*)
-      as_json.to_json(*)
+  context "when the time entry is approved" do
+    let(:time_entry) { create(:time_entry, user:, entity: work_package, approved_by: create(:admin)) }
+
+    current_user { user }
+
+    it "does not expose row actions" do
+      expect(row_component.action_menu).to be_nil
     end
   end
 end
