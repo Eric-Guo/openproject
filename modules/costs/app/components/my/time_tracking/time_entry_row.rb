@@ -40,7 +40,7 @@ module My
       end
 
       def action_menu
-        return nil if !(can_modify_time_entry? || can_delete_time_entry?)
+        return nil unless action_menu_visible?
 
         render(Primer::Alpha::ActionMenu.new) do |menu|
           menu.with_show_button(icon: "kebab-horizontal", "aria-label": t("label_more"), scheme: :invisible)
@@ -190,6 +190,16 @@ module My
 
       def can_modify_time_entry?
         TimeEntries::UpdateContract.new(time_entry, User.current).valid?
+      end
+
+      def action_menu_visible?
+        (can_modify_time_entry? || can_delete_time_entry?) && !locked_for_changes?
+      end
+
+      def locked_for_changes?
+        return false if User.current.admin?
+
+        time_entry.spent_on <= 9.days.ago.to_date || time_entry.approved_by_id.present?
       end
     end
   end

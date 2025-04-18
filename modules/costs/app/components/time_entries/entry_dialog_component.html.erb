@@ -33,8 +33,8 @@
         <%= render(
               Primer::Beta::Button.new(data: { "close-dialog-id": "time-entry-dialog" })
             ) { I18n.t("button_cancel") } %>
-        <% end %>
-        <% grid.with_area("confirm") do %>
+      <% end %>
+      <% grid.with_area("confirm") do %>
         <%= render(
               Primer::Beta::Button.new(
                 scheme: :primary,
