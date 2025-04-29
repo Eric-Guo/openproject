@@ -513,6 +513,11 @@ RSpec.describe "Projects copy", :js,
       # has the parent of the original project
       parent_field.expect_selected parent_project.name
 
+      # copies over the value of the custom field
+      # has the parent of the original project
+      editor = Components::WysiwygEditor.new "[data-qa-field-name='customField#{project_custom_field.id}']"
+      editor.expect_value "some text cf"
+
       # has wp custom fields of original project active
       copied_settings_wp_cf_page = Pages::Projects::Settings::WorkPackageCustomFields.new(copied_project)
       copied_settings_wp_cf_page.visit!

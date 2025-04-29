@@ -262,7 +262,7 @@ Rails.application.routes.draw do
   resources :projects, except: %i[show edit create update] do
     scope module: "projects" do
       namespace "settings" do
-        resource :general, only: %i[show update], controller: "general" do
+        resource :general, only: %i[show], controller: "general" do
           get :toggle_public_dialog
           post :toggle_public
         end

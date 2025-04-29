@@ -158,9 +158,10 @@ RSpec.describe Project do
     let(:name) { "     Hello    World   " }
     let(:project) { described_class.new attributes_for(:project, name:) }
 
-    context "with whitespace in the name" do
-      it "normalizes excess whitespace" do
-        expect(subject).to normalize(:name).from(name).to("Hello World")
+    context "with white spaces in the name" do
+      it "trims the name" do
+        project.save
+        expect(project.name).to eql("Hello World")
       end
     end
 

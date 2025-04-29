@@ -156,7 +156,7 @@ class Project < ApplicationRecord
             presence: true,
             length: { maximum: 255 }
 
-  normalizes :name, with: ->(name) { name.squish }
+  before_validation :remove_white_spaces_from_project_name
 
   # TODO: we temporarily disable this validation because it leads to failed tests
   # it implicitly assumes a db:seed-created standard type to be present and currently
@@ -305,5 +305,9 @@ class Project < ApplicationRecord
     @allowed_actions ||= allowed_permissions.flat_map do |permission|
       OpenProject::AccessControl.allowed_actions(permission)
     end
+  end
+
+  def remove_white_spaces_from_project_name
+    self.name = name.squish unless name.nil?
   end
 end

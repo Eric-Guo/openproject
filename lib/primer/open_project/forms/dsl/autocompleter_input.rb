@@ -19,7 +19,12 @@ module Primer
             end
 
             def to_h
-              { id: value, name: label }.merge({ group_by:, classes: }.compact)
+              {
+                id: value,
+                name: label,
+                group_by:,
+                classes:
+              }.compact
             end
           end
 

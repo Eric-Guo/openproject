@@ -98,7 +98,7 @@ Rails.application.reloader.to_prepare do
 
       map.permission :edit_project,
                      {
-                       "projects/settings/general": %i[show update toggle_public toggle_public_dialog],
+                       "projects/settings/general": %i[show toggle_public toggle_public_dialog],
                        "projects/settings/storage": %i[show],
                        "projects/settings/work_packages": %i[show],
                        "projects/settings/work_packages/internal_comments": %i[show update],

@@ -58,7 +58,6 @@ import { fromEvent, Subscription } from 'rxjs';
 import { AttachmentCollectionResource } from 'core-app/features/hal/resources/attachment-collection-resource';
 import { populateInputsFromDataset } from 'core-app/shared/components/dataset-inputs';
 import { navigator } from '@hotwired/turbo';
-import { uniqueId } from 'lodash';
 
 @Component({
   templateUrl: './ckeditor-augmented-textarea.html',
@@ -310,18 +309,10 @@ export class CkeditorAugmentedTextareaComponent extends UntilDestroyedMixin impl
       return;
     }
 
-    const ckContent = this.element.querySelector<HTMLElement>('.ck-content')!;
-
-    let labelId;
-    if (label.hasAttribute('id')) {
-      labelId = label.getAttribute('id')!;
-    } else {
-      labelId = uniqueId('label-');
-      label.setAttribute('id', labelId);
-    }
+    const ckContent = this.element.querySelector('.ck-content') as HTMLElement;
 
     ckContent.removeAttribute('aria-label');
-    ckContent.setAttribute('aria-labelledby', labelId);
+    ckContent.setAttribute('aria-labelledby', this.textAreaId);
 
     if (!this.labelClickSubscription) {
       this.labelClickSubscription = fromEvent(label, 'click')

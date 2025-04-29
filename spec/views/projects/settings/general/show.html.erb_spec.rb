@@ -59,8 +59,34 @@ RSpec.describe "projects/settings/general/show" do
   context "when project is public" do
     let(:public) { true }
 
-    it "shows warning banner" do
-      expect(rendered).to have_test_selector "op-projects-public-warning"
+    before do
+      assign(:project, project)
+      allow(project).to receive(:copy_allowed?).and_return(true)
+      allow(User).to receive(:current).and_return(admin)
+      allow(view).to receive(:labelled_tabular_form_for).and_return("")
+      render
+    end
+
+    it "show delete and archive buttons" do
+      expect(rendered).to have_test_selector "project-settings--archive"
+      expect(rendered).to have_test_selector "project-settings--delete"
+    end
+  end
+
+  context "User.current is non-admin" do
+    let(:non_admin) { build_stubbed(:user) }
+
+    before do
+      assign(:project, project)
+      allow(project).to receive(:copy_allowed?).and_return(true)
+      allow(User).to receive(:current).and_return(non_admin)
+      allow(view).to receive(:labelled_tabular_form_for).and_return("")
+      render
+    end
+
+    it "hide delete and archive buttons" do
+      expect(rendered).to have_no_css("li.toolbar-item span.button--text", text: "Archive project")
+      expect(rendered).to have_no_css("li.toolbar-item span.button--text", text: "Delete project")
     end
   end
 end

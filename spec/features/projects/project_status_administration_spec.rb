@@ -81,7 +81,7 @@ RSpec.describe "Projects status administration", :js do
 
     status_description.set_markdown "Oh no"
 
-    click_button "Update status description"
+    click_button "Save"
 
     status_description.expect_value "Oh no"
   end
