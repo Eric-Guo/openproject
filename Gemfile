@@ -123,7 +123,9 @@ gem "sys-filesystem", "~> 1.6.0", require: false
 
 gem "bcrypt", "~> 3.1.22"
 
-gem "multi_json", "~> 1.21.0"
+gem "multi_json", "~> 1.21.1"
+gem "oj", "~> 3.17.3"
+gem "jbuilder" # Must here for http://localhost:3000/my_todo.json?clerk_code=015454&first_name=guochunzhong
 
 gem "daemons"
 gem "good_job", "~> 4.19.2" # update should be done manually in sync with saas-openproject version.
@@ -153,7 +155,7 @@ gem "structured_warnings", "~> 0.5.0"
 gem "airbrake", "~> 13.0.0", require: false
 
 gem "markly", "~> 0.15" # another markdown parser like commonmarker, but with AST support used in PDF export
-gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", ref: "a0c4345367e4b9fc869e0da191ec56bcc24bd877"
+gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", branch: :main
 gem "prawn", "~> 2.4"
 gem "ttfunk", "~> 1.7.0" # remove after https://github.com/prawnpdf/prawn/issues/1346 resolved.
 
@@ -266,7 +268,7 @@ group :test do
   # Test prof provides factories from code
   # and other niceties
   gem "test-prof", "~> 1.6.3"
-  gem "turbo_tests", github: "opf/turbo_tests", ref: "with-patches"
+  gem "turbo_tests", github: "opf/turbo_tests", branch: "2_2_5_with_patches"
 
   gem "rack_session_access"
   gem "rspec", "~> 3.13.2"
@@ -293,7 +295,7 @@ group :test do
   gem "rails-controller-testing", "~> 1.0.2"
 
   gem "capybara", "~> 3.40.0"
-  gem "capybara_accessible_selectors", git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.16.0"
+  gem "capybara_accessible_selectors", git: "https://github.com/citizensadvice/capybara_accessible_selectors", branch: :main
   gem "capybara-screenshot", "~> 1.0.17"
   gem "cuprite", "~> 0.18.0"
   gem "rspec-wait"
@@ -383,6 +385,8 @@ group :development, :test do
   gem "active_record_doctor", "~> 2.0.1"
 end
 
+gem "bootsnap", "~> 1.24.4", require: false
+
 # API gems
 gem "grape", "~> 3.3.5"
 gem "grape_logging", "~> 3.0.0"
@@ -399,7 +403,8 @@ gem "googleauth", require: false
 gem "disposable", "~> 0.6.2"
 
 # Used for formula evaluation of calculated values
-gem "dentaku", "~> 3.5", git: "https://github.com/opf/dentaku", ref: "78eece45bf3f4ed021c05dd2f5411d1c3f9b168a"
+# bundle config local.dentaku /Users/guochunzhong/git/oss/dentaku/
+gem "dentaku", git: "https://git.thape.com.cn/ruby/dentaku.git", branch: "fix-xor-behaviour-for-3.5.7"
 
 # Used for more powerful counter caches
 gem "counter_culture", "~> 3.14"
@@ -431,5 +436,6 @@ end
 source "https://rubygems.org", cooldown: 0 do
   gem "openproject-octicons", "~>19.37.0"
   gem "openproject-octicons_helper", "~>19.37.0"
-  gem "openproject-primer_view_components", "~>0.91.3"
+  # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
+  gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
 end
