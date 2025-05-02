@@ -18,7 +18,7 @@
 **ALWAYS verify versions before building:**
 - Ruby: `4.0.9` (see `.ruby-version`)
 - Node: `^24.22.1` (see `package.json` engines)
-- Bundler: `4.0.20` (see `BUNDLED WITH` in `Gemfile.lock`)
+- Bundler: `4.0.23` (see `BUNDLED WITH` in `Gemfile.lock`)
 
 ### Local Development Setup
 
