@@ -49,13 +49,13 @@ gem "rdoc", ">= 2.4.2"
 gem "doorkeeper", "~> 5.8.0"
 # Maintain our own omniauth due to relative URL root issues
 # see upstream PR: https://github.com/omniauth/omniauth/pull/903
-gem "omniauth", git: "https://github.com/opf/omniauth", ref: "7eb21563ba047ef86d71f099975587b5ec88f9c9"
+gem "omniauth", git: "https://github.com/opf/omniauth", branch: :master
 gem "request_store", "~> 1.7.0"
 
 gem "warden", "~> 1.2"
 gem "warden-basic_auth", "~> 0.2.1"
 
-gem "pagy"
+gem "pagy", "~> 9.4.0"
 gem "will_paginate", "~> 4.0.0"
 
 gem "friendly_id", "~> 5.5.0"
@@ -83,7 +83,7 @@ gem "htmldiff"
 gem "stringex", "~> 2.8.5"
 
 # CommonMark markdown parser with GFM extension
-gem "commonmarker", "~> 2.5.0"
+gem "commonmarker"
 
 # HTML pipeline for transformations on text formatter output
 # such as sanitization or additional features
@@ -153,7 +153,8 @@ gem "structured_warnings", "~> 0.5.0"
 gem "airbrake", "~> 13.0.0", require: false
 
 gem "markly", "~> 0.14" # another markdown parser like commonmarker, but with AST support used in PDF export
-gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", ref: "6c565541bfa390c58d90d49aa9b487777704fc66"
+gem "md_to_pdf", git: "https://github.com/opf/md-to-pdf", branch: :main
+
 gem "prawn", "~> 2.4"
 gem "ttfunk", "~> 1.7.0" # remove after https://github.com/prawnpdf/prawn/issues/1346 resolved.
 
@@ -189,7 +190,7 @@ gem "puma", "~> 6.5"
 gem "puma-plugin-statsd", "~> 2.0"
 gem "rack-timeout", "~> 0.7.0", require: "rack/timeout/base"
 
-gem "nokogiri", "~> 1.18.10"
+gem "nokogiri", "~> 1.19"
 
 gem "carrierwave", "~> 1.3.4"
 gem "carrierwave_direct", "~> 2.1.0"
@@ -258,7 +259,7 @@ group :test do
   # Test prof provides factories from code
   # and other niceties
   gem "test-prof", "~> 1.4.0"
-  gem "turbo_tests", github: "opf/turbo_tests", ref: "with-patches"
+  gem "turbo_tests", github: "opf/turbo_tests", branch: "with-patches"
 
   gem "rack_session_access"
   gem "rspec", "~> 3.13.2"
@@ -285,7 +286,7 @@ group :test do
   gem "rails-controller-testing", "~> 1.0.2"
 
   gem "capybara", "~> 3.40.0"
-  gem "capybara_accessible_selectors", git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.14.0"
+  gem "capybara_accessible_selectors", git: "https://github.com/citizensadvice/capybara_accessible_selectors", branch: :main
   gem "capybara-screenshot", "~> 1.0.17"
   gem "cuprite", "~> 0.17.0"
   gem "rspec-wait"
@@ -347,7 +348,7 @@ group :development, :test do
   # https://github.com/puma/puma/issues/2835#issuecomment-2302133927
   gem "byebug"
 
-  gem "pry-byebug", "~> 3.11.0", platforms: [:mri]
+  gem "pry-byebug", platforms: [:mri]
   gem "pry-rails", "~> 0.3.6"
   gem "pry-rescue", "~> 1.6.0"
 
@@ -369,7 +370,7 @@ group :development, :test do
   gem "brakeman", "~> 7.1.0"
 
   # i18n-tasks helps find and manage missing and unused translations.
-  gem "i18n-tasks", "~> 1.0.13", require: false
+  gem "i18n-tasks", require: false
 
   # Active Record Doctor helps to keep the database in good shape.
   gem "active_record_doctor", "~> 2.0.1"
