@@ -137,7 +137,7 @@ $ ruby --version
 ruby 4.0.2 (2026-03-17 revision d3da9fec82) +PRISM [arm64-darwin25]
 
 $ bundler --version
-4.0.3
+4.0.5
 
 node --version
 v24.18.0
