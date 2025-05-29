@@ -53,7 +53,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
-  revision: e878da7a61041d2f843996f96ebbc2be09f4e651
+  revision: 96602a60bed5c1cf6d3ae4eb5036ee7127096d22
   branch: main
   specs:
     openproject-th_work_packages (1.0.0)
@@ -69,7 +69,6 @@ GIT
 
 GIT
   remote: https://github.com/opf/md-to-pdf
-  revision: be1ab00e2c49ce2e5e08a4edb4733438081c53ab
   revision: 9961752e4d1e990ec1d4bf48436de9277838763f
   branch: main
   specs:
@@ -408,7 +407,7 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1120.0)
+    aws-partitions (1.1123.0)
     aws-sdk-core (3.226.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -416,7 +415,7 @@ GEM
       base64
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.105.0)
+    aws-sdk-kms (1.106.0)
       aws-sdk-core (~> 3, >= 3.225.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.191.0)
@@ -804,7 +803,7 @@ GEM
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
     grpc-tools (1.73.0)
-    gruf (2.21.0)
+    gruf (2.21.1)
       activesupport (> 4)
       concurrent-ruby (> 1)
       grpc (~> 1.10)
@@ -886,7 +885,7 @@ GEM
     json_spec (1.1.5)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
-    jwt (2.10.1)
+    jwt (2.10.2)
       base64
     ladle (1.0.1)
       open4 (~> 1.0)
@@ -950,7 +949,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0617)
+    mime-types-data (3.2025.0624)
     mini_magick (5.2.0)
       benchmark
       logger
@@ -1244,7 +1243,7 @@ GEM
     rinku (2.0.6)
     roar (1.2.0)
       representable (~> 3.1)
-    rorvswild (1.9.1)
+    rorvswild (1.9.2)
     rotp (6.3.0)
     rouge (4.5.2)
     rspec (3.13.1)
@@ -1322,7 +1321,7 @@ GEM
       sorbet-runtime (>= 0.5.10782)
     ruby-lsp-rails (0.4.6)
       ruby-lsp (>= 0.24.0, < 0.25.0)
-    ruby-next-core (1.1.1)
+    ruby-next-core (1.1.2)
     ruby-ole (1.2.13.1)
     ruby-prof (1.7.2)
       base64
@@ -1342,7 +1341,7 @@ GEM
       nokogiri (>= 1.16.8)
     secure_headers (7.1.0)
     securerandom (0.4.1)
-    selenium-devtools (0.137.0)
+    selenium-devtools (0.138.0)
       selenium-webdriver (~> 4.2)
     selenium-webdriver (4.34.0)
       base64 (~> 0.2)
@@ -1362,7 +1361,7 @@ GEM
     simpleidn (0.2.3)
     slop (4.10.1)
     smart_properties (1.17.0)
-    sorbet-runtime (0.5.12196)
+    sorbet-runtime (0.5.12214)
     spreadsheet (1.3.4)
       bigdecimal
       logger

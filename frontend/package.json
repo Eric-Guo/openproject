@@ -173,6 +173,7 @@
     "typedjson": "^1.5.1",
     "urijs": "^1.19.11",
     "uuid": "^8.3.2",
+    "ws": "~8.18.2",
     "zone.js": "~0.14.4"
   },
   "optionalDependencies": {
