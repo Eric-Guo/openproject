@@ -32,35 +32,4 @@
 # Intended to be used by the ApplicationController to provide authorization helpers
 module Accounts::EnterpriseGuard
   extend ActiveSupport::Concern
-
-  class_methods do
-    ##
-    # Adds a before_action check to test enterprise status of the feature
-    # @param feature_key [String] the name of the enterprise feature to check
-    #
-    # If a block is passed, it will be executed if the feature is not available.
-    def guard_enterprise_feature(feature_key, **action_args, &)
-      before_action(**action_args) do
-        perform_enterprise_feature_guard(feature_key, &)
-      end
-    end
-  end
-
-  private
-
-  ##
-  # Checks if the current action is covered by any authorization method.
-  # @param feature_key [String] the name of the enterprise feature to check
-  # If a block is passed, it will be executed if the feature is not available.
-  def perform_enterprise_feature_guard(feature_key, &)
-    return if EnterpriseToken.allows_to?(feature_key)
-
-    plan = OpenProject::Token.lowest_plan_for(feature_key)
-    if block_given?
-      flash[:error] = I18n.t("error_enterprise_plan_needed", plan:)
-      instance_eval(&)
-    else
-      render_403 message: I18n.t("error_enterprise_plan_needed", plan:)
-    end
-  end
 end
