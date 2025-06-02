@@ -54,7 +54,6 @@ See COPYRIGHT and LICENSE files for more details.
                          ["ClamAV (Socket)", :clamav_socket],
                          ["ClamAV (Host)", :clamav_host]
                        ],
-                       disabled: !EnterpriseToken.allows_to?(:virus_scanning),
                        container_class: "-wide",
                        data: {
                          action: "refresh-on-form-changes#triggerTurboStream"
@@ -71,6 +70,5 @@ See COPYRIGHT and LICENSE files for more details.
 
   <%= render partial: "av_form", locals: { selected: Setting.antivirus_scan_mode } %>
   <%= styled_button_tag t(:button_save),
-                        disabled: !EnterpriseToken.allows_to?(:virus_scanning),
                         class: "-primary -with-icon icon-checkmark" %>
 <% end %>

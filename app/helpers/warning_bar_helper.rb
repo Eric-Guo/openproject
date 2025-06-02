@@ -43,7 +43,6 @@ module WarningBarHelper
 
   def render_workflow_missing_warning?
     current_user.admin? &&
-      EnterpriseToken.allows_to?(:work_package_sharing) &&
       no_workflow_for_wp_edit_role?
   end
 

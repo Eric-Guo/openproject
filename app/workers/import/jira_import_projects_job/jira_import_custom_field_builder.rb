@@ -276,8 +276,7 @@ module Import
 
       def cascading_select_as_list?
         schema = jira_field.payload["schema"] || {}
-        schema["custom"].to_s.end_with?(":cascadingselect") &&
-          !EnterpriseToken.allows_to?(:custom_field_hierarchies)
+        schema["custom"].to_s.end_with?(":cascadingselect")
       end
 
       # Recursively collects every node as a full path label at every level of the cascading tree.
@@ -451,7 +450,7 @@ module Import
         if type == "array"
           JIRA_ARRAY_ITEMS_TO_OP_FORMAT.fetch(schema["items"], "string")
         elsif custom_suffix == "cascadingselect"
-          EnterpriseToken.allows_to?(:custom_field_hierarchies) ? "hierarchy" : "list"
+          "hierarchy"
         else
           JIRA_CUSTOM_SUFFIX_TO_OP_FORMAT[custom_suffix] || JIRA_TYPE_TO_OP_FORMAT.fetch(type, "string")
         end

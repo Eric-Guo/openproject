@@ -6,10 +6,6 @@ module LdapDepartments
 
     before_action :require_admin
 
-    guard_enterprise_feature(:ldap_groups, except: %i[deletion_dialog destroy]) do
-      redirect_to ldap_departments_synchronized_trees_path, status: :see_other
-    end
-
     before_action :find_department, only: %i[deletion_dialog destroy]
 
     layout "admin"
