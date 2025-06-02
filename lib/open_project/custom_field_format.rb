@@ -90,7 +90,7 @@ module OpenProject
     end
 
     def enterprise_feature_allowed?
-      !@enterprise_feature || EnterpriseToken.allows_to?(@enterprise_feature)
+      true
     end
 
     def for_class_name?(class_name)

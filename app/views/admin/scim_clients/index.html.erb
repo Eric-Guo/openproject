@@ -43,13 +43,11 @@ See COPYRIGHT and LICENSE files for more details.
 
 <%=
   render(Primer::OpenProject::SubHeader.new) do |component|
-    if EnterpriseToken.allows_to?(:scim_api)
       component.with_action_button(leading_icon: :plus,
                                    label: t(".label_create_button"),
                                    scheme: :primary,
                                    tag: :a,
                                    href: new_admin_scim_client_path) { ScimClient.model_name.human }
-    end
   end
 %>
 

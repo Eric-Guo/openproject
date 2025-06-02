@@ -38,8 +38,6 @@ module MeetingTemplates
     end
 
     def render_create_button?
-      return false unless EnterpriseToken.allows_to?(:meeting_templates)
-
       if @project
         User.current.allowed_in_project?(:create_meetings, @project)
       else
