@@ -50,8 +50,6 @@ module LdapGroups
       end
 
       def inline_create_link
-        return unless EnterpriseToken.allows_to?(:ldap_groups)
-
         link_to({ controller: target_controller, action: :new },
                 class: "budget-add-row wp-inline-create--add-link",
                 title: I18n.t("ldap_groups.synchronized_groups.add_new")) do

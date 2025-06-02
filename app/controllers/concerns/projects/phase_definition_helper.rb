@@ -32,6 +32,6 @@ module Projects::PhaseDefinitionHelper
   private
 
   def allowed_to_customize_life_cycle?
-    EnterpriseToken.allows_to?(:customize_life_cycle)
+    true
   end
 end

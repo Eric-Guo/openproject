@@ -30,8 +30,6 @@
 
 module ::ResourceManagement
   class MenusController < ApplicationController
-    guard_enterprise_feature(:resource_management)
-
     before_action :find_project_by_project_id,
                   :authorize
 
