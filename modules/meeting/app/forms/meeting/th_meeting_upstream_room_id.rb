@@ -39,7 +39,8 @@ class Meeting::ThMeetingUpstreamRoomId < ApplicationForm
       rooms = ThMeeting.available_rooms(
         start_date_time: @meeting.start_date_time,
         end_date_time: @meeting.end_date_time,
-        th_meeting_id: @meeting.th_meeting_id
+        th_meeting_id: @meeting.th_meeting_id,
+        show_busy: false,
       )
       rooms.each do |item|
         select_list.option(label: [item.office_area, item.name].join(" - "), value: item.id)
