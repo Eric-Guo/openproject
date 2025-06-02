@@ -132,7 +132,7 @@ module Notifications
     end
 
     def lacking_ee_permission?(reason)
-      reason == "shared" && !EnterpriseToken.allows_to?(:work_package_sharing)
+      false
     end
   end
 end

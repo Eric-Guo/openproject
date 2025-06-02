@@ -100,8 +100,6 @@ class MeetingTemplatesController < ApplicationController
   end
 
   def require_enterprise_token
-    return if EnterpriseToken.allows_to?(:meeting_templates)
-
     respond_to do |format|
       format.turbo_stream do
         render_error_flash_message_via_turbo_stream(message: I18n.t(:notice_not_authorized))

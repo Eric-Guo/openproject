@@ -47,7 +47,7 @@ module OpenProject::TextFormatting
       end
 
       def applicable?
-        Setting.capture_external_links? && EnterpriseToken.allows_to?(:capture_external_links)
+        Setting.capture_external_links?
       end
 
       private
