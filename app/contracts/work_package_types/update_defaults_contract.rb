@@ -40,7 +40,7 @@ module WorkPackageTypes
 
     def enterprise_edition
       action = :work_package_subject_generation
-      if model.patterns.subject&.enabled && !EnterpriseToken.allows_to?(action)
+      if model.patterns.subject&.enabled
         errors.add(:patterns, :error_enterprise_only, action: action.to_s.titleize)
       end
     end

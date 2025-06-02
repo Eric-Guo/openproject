@@ -41,7 +41,6 @@ class CustomFieldsController < ApplicationController
                          list_items)
   before_action :prepare_custom_option_position, only: %i(update create)
   before_action :find_custom_option, only: :delete_option
-  before_action :validate_enterprise_token, only: %i(create)
   before_action :find_or_initialize_attribute_help_text, only: %i(attribute_help_text update_attribute_help_text)
   # rubocop:enable Rails/LexicallyScopedActionFilter
 
@@ -77,12 +76,6 @@ class CustomFieldsController < ApplicationController
   end
 
   protected
-
-  def validate_enterprise_token
-    if params.dig(:custom_field, :field_format) == "hierarchy" && !EnterpriseToken.allows_to?(:custom_field_hierarchies)
-      render_403
-    end
-  end
 
   def find_custom_field
     @custom_field = CustomField.find(params[:id])

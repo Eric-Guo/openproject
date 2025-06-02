@@ -1448,12 +1448,12 @@ module Settings
       capture_external_links: {
         description: "Redirect external links through a warning page before leaving the application",
         default: false,
-        writable: -> { EnterpriseToken.allows_to?(:capture_external_links) }
+        writable: true
       },
       capture_external_links_require_login: {
         description: "Require users to be logged in before being able to navigate to external links",
         default: false,
-        writable: -> { EnterpriseToken.allows_to?(:capture_external_links) }
+        writable: true
       }
     }.freeze
 
