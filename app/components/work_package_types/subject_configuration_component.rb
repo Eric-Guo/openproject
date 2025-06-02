@@ -60,7 +60,7 @@ module WorkPackageTypes
     private
 
     def enterprise?
-      EnterpriseToken.allows_to?(:work_package_subject_generation)
+      true
     end
 
     def subject_form_object

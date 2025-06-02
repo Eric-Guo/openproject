@@ -107,6 +107,6 @@ module ProjectsHelper
   def portfolio_management_feature_required? = params[:workspace_type].in?(%w[portfolio program])
 
   def portfolio_management_feature_missing?
-    portfolio_management_feature_required? && !EnterpriseToken.allows_to?(:portfolio_management)
+    portfolio_management_feature_required?
   end
 end

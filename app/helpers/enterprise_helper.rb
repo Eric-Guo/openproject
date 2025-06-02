@@ -43,12 +43,7 @@ module EnterpriseHelper
   # Yields:
   # - Executes the provided block within the guard's context.
   def with_enterprise_banner_guard(feature_key, inactive_guard: false, **args)
-    if inactive_guard
-      yield
-    else
-      concat(render(EnterpriseEdition::BannerComponent.new(feature_key, **args)))
-      yield if EnterpriseToken.allows_to?(feature_key)
-    end
+    yield
   end
 
   def enterprise_angular_trial_inputs
