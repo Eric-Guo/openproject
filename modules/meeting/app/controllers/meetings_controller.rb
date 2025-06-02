@@ -452,7 +452,7 @@ class MeetingsController < ApplicationController
   private
 
   def check_for_enterprise_token
-    return unless @copy_from&.onetime_template? && !EnterpriseToken.allows_to?(:meeting_templates)
+    return unless @copy_from&.onetime_template?
 
     respond_to do |format|
       format.turbo_stream do

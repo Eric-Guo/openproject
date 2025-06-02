@@ -32,11 +32,6 @@ module LdapGroups
     include OpTurbo::ComponentStream
 
     before_action :require_admin
-
-    guard_enterprise_feature(:ldap_groups, except: %i[index show destroy]) do
-      redirect_to action: :index, status: :see_other
-    end
-
     before_action :find_group, only: %i(show edit update destroy_info destroy)
 
     layout "admin"
