@@ -29,7 +29,6 @@ See COPYRIGHT and LICENSE files for more details.
 
 <%= render(Settings::ProjectWorkPackages::HeaderComponent.new(@project)) %>
 
-<% if EnterpriseToken.allows_to?(:internal_comments) %>
   <%=
     primer_form_with(
       model: @project,
@@ -39,10 +38,3 @@ See COPYRIGHT and LICENSE files for more details.
   %>
     <%= render(Projects::Settings::WorkPackages::Activities::Form.new(f)) %>
   <% end %>
-<% else %>
-  <%= render(EnterpriseEdition::BannerComponent.new(
-    :internal_comments,
-    variant: :large,
-    video: "enterprise/internal_comments.mp4"
-  )) %>
-<% end %>
