@@ -45,7 +45,7 @@ module Storages
     end
 
     def self.allowed_by_enterprise_token?
-      EnterpriseToken.allows_to?(:one_drive_sharepoint_file_storage)
+      true
     end
 
     def configuration_checks

@@ -32,7 +32,6 @@ module Admin::Settings
     menu_item :attachments
 
     before_action :check_available
-    before_action :require_ee, except: :show # rubocop:disable Rails/LexicallyScopedActionFilter
     before_action :check_clamav, only: %i[update], if: -> { scan_enabled? }
 
     def av_form
@@ -48,12 +47,6 @@ module Admin::Settings
     end
 
     private
-
-    def require_ee
-      return if EnterpriseToken.allows_to?(:virus_scanning)
-
-      redirect_to action: :show
-    end
 
     def check_available
       return if Setting.antivirus_scan_available?

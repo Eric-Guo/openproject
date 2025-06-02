@@ -42,7 +42,7 @@ module Storages
     store_attribute :provider_fields, :managed_drive_name, :string
 
     def self.allowed_by_enterprise_token?
-      EnterpriseToken.allows_to?(:one_drive_sharepoint_file_storage)
+      true
     end
 
     def self.short_provider_name = :sharepoint

@@ -18,7 +18,6 @@
                                label: I18n.t("openid_connect.providers.singular"),
                                anchor_align: :end,
                                button_arguments: { scheme: :primary,
-                                                   disabled: !EnterpriseToken.allows_to?(:sso_auth_providers),
                                                    aria: { label: I18n.t("openid_connect.providers.label_add_new") } }) do |menu|
       OpenIDConnect::Provider::OIDC_PROVIDERS.each do |provider_type|
         menu.with_item(

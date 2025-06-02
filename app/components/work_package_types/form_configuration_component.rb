@@ -44,7 +44,7 @@ module WorkPackageTypes
     def exclusion_state = @context.exclusions
 
     def ee_available?
-      EnterpriseToken.allows_to?(:edit_attribute_groups)
+      true
     end
 
     def inactive_attributes

@@ -47,7 +47,6 @@ module Queries::Projects::Filters::AncestorWorkspaceTypeFilter
   def where = nil
 
   def available?
-    EnterpriseToken.allows_to?(:portfolio_management) &&
     Project.workspace_type(key.to_s).visible.exists?
   end
 

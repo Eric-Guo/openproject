@@ -28,7 +28,6 @@
 module LdapGroups
   class SynchronizationJob < ApplicationJob
     def perform
-      return unless EnterpriseToken.allows_to?(:ldap_groups)
       return if skipped?
 
       ::LdapGroups::SynchronizationService.synchronize!

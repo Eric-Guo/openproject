@@ -173,7 +173,7 @@ module EnterpriseEdition
     end
 
     def feature_available?
-      EnterpriseToken.allows_to?(feature_key)
+      true
     end
 
     def dismissed?

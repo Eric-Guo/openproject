@@ -79,12 +79,7 @@ module Redmine::MenuManager::TopMenu::ModuleMenu
 
   def render_action_list_items(list, items)
     items.each do |item|
-      label =
-        if item.enterprise_feature_missing?
-          h(item.caption) + upsell_icon
-        else
-          item.caption
-        end
+      label = item.caption
 
       content_arguments = {}
       content_arguments[:data] = item.html_options[:data] if item.html_options[:data].present?
