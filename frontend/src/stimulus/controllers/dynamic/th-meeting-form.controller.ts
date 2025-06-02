@@ -46,6 +46,7 @@ export default class ThMeetingFormController extends Controller {
 
     url.searchParams.append('start_date_time', startDateTime);
     url.searchParams.append('end_date_time', endDateTime);
+    url.searchParams.append('show_busy', 'false');
     if (thMeetingId) {
       url.searchParams.append('th_meeting_id', thMeetingId);
     }
