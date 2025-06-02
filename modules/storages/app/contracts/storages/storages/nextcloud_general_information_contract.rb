@@ -44,7 +44,6 @@ module Storages::Storages
     validate :require_ee_token_for_sso
 
     def require_ee_token_for_sso
-      return if EnterpriseToken.allows_to?(:nextcloud_sso)
       return unless model.authenticate_via_idp?
       return unless model.authentication_method_changed?
 

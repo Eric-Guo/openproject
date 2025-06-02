@@ -2,10 +2,6 @@ module LdapGroups
   class SynchronizedGroupsController < ::ApplicationController
     before_action :require_admin
 
-    guard_enterprise_feature(:ldap_groups, except: %i[index show destroy]) do
-      redirect_to action: :index, status: :see_other
-    end
-
     before_action :find_group, only: %i(show destroy_info destroy)
 
     layout "admin"

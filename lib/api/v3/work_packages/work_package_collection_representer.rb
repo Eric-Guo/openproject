@@ -290,8 +290,6 @@ module API
         end
 
         def representation_format_pdf_gantt
-          return unless EnterpriseToken.allows_to?(:gantt_pdf_export)
-
           representation_format "pdf",
                                 format: "pdf",
                                 i18n_key: "pdf_gantt",

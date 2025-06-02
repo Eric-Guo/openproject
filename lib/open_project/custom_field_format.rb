@@ -85,7 +85,7 @@ module OpenProject
 
       def available
         registered.select do |_, format|
-          format.enabled? && (!format.enterprise_feature || EnterpriseToken.allows_to?(format.enterprise_feature))
+          format.enabled? && (!format.enterprise_feature)
         end
       end
 

@@ -15,7 +15,6 @@
           leading_icon: :plus,
           label: I18n.t("saml.providers.label_add_new"),
           tag: :a,
-          disabled: !EnterpriseToken.allows_to?(:sso_auth_providers),
           href: new_saml_provider_path
         ) do
           t("saml.providers.singular")

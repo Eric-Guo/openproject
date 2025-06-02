@@ -30,8 +30,7 @@ class Setting
   module VirusScanning
     def self.enabled?
       Setting.antivirus_scan_available? &&
-        Setting.antivirus_scan_mode != :disabled &&
-        EnterpriseToken.allows_to?(:virus_scanning)
+        Setting.antivirus_scan_mode != :disabled
     end
   end
 end

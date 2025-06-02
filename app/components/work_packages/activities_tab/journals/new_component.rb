@@ -62,8 +62,7 @@ module WorkPackages
         end
 
         def adding_internal_comment_allowed?
-          EnterpriseToken.allows_to?(:internal_comments) &&
-            work_package.project.enabled_internal_comments &&
+          work_package.project.enabled_internal_comments &&
             User.current.allowed_in_project?(:add_internal_comments, work_package.project)
         end
 

@@ -45,11 +45,6 @@ module TabsHelper
     header.with_tab_nav(label: nil, test_selector:) do |tab_nav|
       tabs.each do |tab|
         tab_nav.with_tab(selected: selected_tab(tabs) == tab, href: tab[:path]) do |t|
-          feature = tab[:enterprise_feature]
-
-          if feature && !EnterpriseToken.allows_to?(feature)
-            t.with_icon(icon: :"op-enterprise-addons", classes: "upsell-colored")
-          end
           t.with_text { tab_label(tab) }
         end
       end

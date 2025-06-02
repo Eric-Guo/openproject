@@ -6,10 +6,6 @@ module ::TeamPlanner
     before_action :build_plan_view, only: %i[new]
     before_action :find_plan_view, only: %i[destroy]
 
-    guard_enterprise_feature(:team_planner_view, except: %i[index overview]) do
-      redirect_to action: :index
-    end
-
     menu_item :team_planner_view
 
     def index

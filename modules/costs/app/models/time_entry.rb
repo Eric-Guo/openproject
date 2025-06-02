@@ -178,8 +178,7 @@ class TimeEntry < ApplicationRecord
     end
 
     def must_track_start_and_end_time?
-      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
-        can_track_start_and_end_time? &&
+      can_track_start_and_end_time? &&
         Setting.enforce_tracking_start_and_end_times?
     end
   end

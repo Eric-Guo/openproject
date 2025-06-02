@@ -44,8 +44,6 @@ class CustomStylesController < ApplicationController
                      only: UNGUARDED_ACTIONS
   no_authorization_required! *UNGUARDED_ACTIONS
 
-  guard_enterprise_feature(:define_custom_style, except: UNGUARDED_ACTIONS + %i[show])
-
   def default_url_options
     super.merge(tab: params[:tab])
   end

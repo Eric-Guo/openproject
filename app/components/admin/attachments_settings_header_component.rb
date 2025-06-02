@@ -57,7 +57,7 @@ module Admin
 
       if Setting.antivirus_scan_available? &&
         User.current.admin? &&
-        (EnterpriseToken.allows_to?(:virus_scanning) || Attachment.status_quarantined.any?)
+        Attachment.status_quarantined.any?
         tabs << {
           name: "quarantined",
           path: admin_quarantined_attachments_path,

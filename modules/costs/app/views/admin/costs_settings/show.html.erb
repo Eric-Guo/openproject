@@ -73,7 +73,6 @@ See COPYRIGHT and LICENSE files for more details.
             form.check_box(
               name: :enforce_tracking_start_and_end_times,
               caption: I18n.t(:setting_enforce_tracking_start_and_end_times_caption),
-              disabled: !EnterpriseToken.allows_to?(:time_entry_time_restrictions)
             )
 
             form.submit

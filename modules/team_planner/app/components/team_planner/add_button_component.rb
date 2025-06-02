@@ -32,8 +32,6 @@
 module TeamPlanner
   class AddButtonComponent < ::AddButtonComponent
     def render?
-      return false unless EnterpriseToken.allows_to?(:team_planner_view)
-
       if current_project
         User.current.allowed_in_project?(:manage_team_planner, current_project)
       else

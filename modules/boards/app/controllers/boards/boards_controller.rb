@@ -91,7 +91,7 @@ module ::Boards
     end
 
     def restricted_board_type?
-      !EnterpriseToken.allows_to?(:board_view) && board_grid_params[:attribute] != "basic"
+      false
     end
 
     def service_call

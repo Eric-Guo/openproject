@@ -36,8 +36,6 @@ module WorkPackagesControllerHelper
 
   def check_allowed_export
     return unless params[:format] == "pdf" && params[:pdf_export_type] == "gantt"
-
-    render_403 unless EnterpriseToken.allows_to?(:gantt_pdf_export)
   end
 
   def user_allowed_to_export?

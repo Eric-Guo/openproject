@@ -45,21 +45,11 @@ class UpdateTypeService < BaseTypeService
     # A validation failure should return a service call failure.
     patterns = params[:patterns]
     if patterns.present?
-      validate_enterprise_action(patterns)
       set_patterns(patterns)
       return [false, type.errors] if type.errors.any?
     end
 
     super
-  end
-
-  def validate_enterprise_action(patterns)
-    change_from_manual_to_generated = !type.patterns.subject&.enabled? && patterns.dig(:subject, :enabled)
-    action = :work_package_subject_generation
-
-    if change_from_manual_to_generated && !EnterpriseToken.allows_to?(action)
-      type.errors.add(:patterns, :error_enterprise_only, action: action.to_s.titleize)
-    end
   end
 
   def set_patterns(patterns)

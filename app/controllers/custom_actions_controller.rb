@@ -29,10 +29,6 @@
 class CustomActionsController < ApplicationController
   before_action :require_admin
 
-  guard_enterprise_feature(:custom_actions, only: %i[new create edit update]) do
-    redirect_to action: :index
-  end
-
   self._model_object = CustomAction
   before_action :find_model_object, only: %i(edit update destroy)
   before_action :pad_params, only: %i(create update)

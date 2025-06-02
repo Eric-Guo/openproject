@@ -143,7 +143,7 @@ module Saml
     end
 
     def check_ee
-      redirect_to action: :index unless EnterpriseToken.allows_to?(:sso_auth_providers)
+      redirect_to action: :index
     end
 
     def update_provider_metadata_call

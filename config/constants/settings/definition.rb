@@ -1199,9 +1199,9 @@ module Settings
       },
       work_package_list_default_highlighting_mode: {
         format: :string,
-        default: -> { EnterpriseToken.allows_to?(:conditional_highlighting) ? "inline" : "none" },
+        default: -> { "inline" },
         allowed: -> { Query::QUERY_HIGHLIGHTING_MODES.map(&:to_s) },
-        writable: -> { EnterpriseToken.allows_to?(:conditional_highlighting) }
+        writable: -> { true }
       },
       work_package_list_default_columns: {
         default: %w[id subject type status assigned_to priority],

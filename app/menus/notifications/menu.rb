@@ -134,13 +134,7 @@ module Notifications
     end
 
     def show_enterprise_icon?(reason)
-      if reason == "shared"
-        !EnterpriseToken.allows_to?(:work_package_sharing)
-      elsif reason == "dateAlert"
-        !EnterpriseToken.allows_to?(:date_alerts)
-      else
-        false
-      end
+      false
     end
   end
 end

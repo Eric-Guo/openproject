@@ -39,8 +39,6 @@ module RequiresEnterpriseGuard
   module_function
 
   def has_enterprise
-    unless EnterpriseToken.allows_to?(enterprise_action)
-      errors.add :base, :error_enterprise_only, action: enterprise_action.to_s.titleize
-    end
+    true
   end
 end

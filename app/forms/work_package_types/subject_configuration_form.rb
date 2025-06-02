@@ -75,7 +75,7 @@ module WorkPackageTypes
     end
 
     def enterprise?
-      EnterpriseToken.allows_to?(:work_package_subject_generation)
+      true
     end
 
     def validation_message_for(attribute)

@@ -40,11 +40,6 @@ module WorkPackages
     attribute :journal_internal do
       next unless model.journal_internal
 
-      unless EnterpriseToken.allows_to?(:internal_comments)
-        plan_name = I18n.t("ee.upsell.plan_name", plan: OpenProject::Token.lowest_plan_for(:internal_comments)&.capitalize)
-        errors.add(:journal_internal, :enterprise_plan_required, plan_name:)
-      end
-
       unless allowed_in_project?(:add_internal_comments)
         errors.add(:journal_internal, :error_unauthorized)
       end

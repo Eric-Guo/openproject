@@ -18,7 +18,7 @@ module BoardsHelper
     ]
   end
 
-  def build_board_type_attributes(type_name, image_name, disabled = !EnterpriseToken.allows_to?(:board_view))
+  def build_board_type_attributes(type_name, image_name, disabled = false)
     BoardTypeAttributes.new(type_name,
                             I18n.t("boards.board_type_attributes.#{type_name}"),
                             I18n.t("boards.board_type_descriptions.#{type_name}"),

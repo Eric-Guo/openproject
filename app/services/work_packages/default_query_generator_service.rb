@@ -171,7 +171,7 @@ module ::WorkPackages
       end
 
       def show_enterprise_icon?(query_key)
-        !EnterpriseToken.allows_to?(:work_package_sharing) && %i[shared_with_users shared_with_me].any?(query_key)
+        false
       end
     end
   end

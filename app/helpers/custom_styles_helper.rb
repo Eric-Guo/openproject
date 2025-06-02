@@ -52,8 +52,7 @@ module CustomStylesHelper
 
   def apply_custom_styles?(skip_ee_check: OpenProject::Configuration.bim?)
     # Apply custom styles either if EE allows OR we are on a BIM edition with the BIM theme active.
-    CustomStyle.current.present? &&
-      (EnterpriseToken.allows_to?(:define_custom_style) || skip_ee_check)
+    CustomStyle.current.present? && skip_ee_check
   end
 
   # The default favicon and touch icons are both the same for normal OP and BIM.

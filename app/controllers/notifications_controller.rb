@@ -96,8 +96,6 @@ class NotificationsController < ApplicationController
   end
 
   def check_filter
-    return if EnterpriseToken.allows_to?(:date_alerts)
-
     if params[:filter] == "reason" && params[:name] == "dateAlert"
       redirect_to notifications_date_alert_upsell_path
     end
