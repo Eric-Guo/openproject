@@ -72,8 +72,7 @@ module Meetings
       menu_item(
         title: I18n.t(:label_meeting_templates),
         href: templates_href,
-        selected: params[:current_href] == templates_href,
-        show_enterprise_icon: !EnterpriseToken.allows_to?(:meeting_templates)
+        selected: params[:current_href] == templates_href
       )
     end
 

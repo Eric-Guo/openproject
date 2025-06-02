@@ -33,7 +33,6 @@ class Projects::Settings::CreationWizardController < Projects::SettingsControlle
 
   menu_item :settings_creation_wizard
 
-  before_action :check_enterprise_plan, only: :toggle
   before_action :check_activation_conditions, only: :toggle
 
   def show; end
@@ -101,16 +100,6 @@ class Projects::Settings::CreationWizardController < Projects::SettingsControlle
   end
 
   private
-
-  def check_enterprise_plan
-    # Allow disabling even without enterprise plan
-    return if @project.project_creation_wizard_enabled
-
-    unless EnterpriseToken.allows_to?(:project_creation_wizard)
-      flash[:error] = I18n.t(:notice_requires_enterprise_token)
-      redirect_to project_settings_creation_wizard_path(@project, tab: "attributes"), status: :see_other
-    end
-  end
 
   def check_activation_conditions
     # Allow disabling even without activation conditions met

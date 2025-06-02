@@ -68,7 +68,6 @@ module Backlogs::Projects
 
     def validate_sprint_sharing_in_ee_token
       if !model.not_sharing_sprints? &&
-         !EnterpriseToken.allows_to?(:sprint_sharing) &&
          model.sprint_sharing_changed?
         errors.add :sprint_sharing,
                    :enterprise_plan_required,
@@ -79,7 +78,7 @@ module Backlogs::Projects
     def validate_multiple_active_sprints_in_ee_token
       return unless model.allow_multiple_active_sprints_changed?
       return unless model.allow_multiple_active_sprints?
-      return if EnterpriseToken.allows_to?(:multiple_active_sprints)
+      return
 
       errors.add :allow_multiple_active_sprints,
                  :enterprise_plan_required,
