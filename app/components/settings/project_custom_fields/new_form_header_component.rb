@@ -47,7 +47,7 @@ module Settings
       end
 
       def hide_description?
-        model.field_format_calculated_value? && !EnterpriseToken.allows_to?(:calculated_values)
+        model.field_format_calculated_value?
       end
     end
   end

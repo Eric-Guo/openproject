@@ -44,7 +44,7 @@ module API
     end
 
     post "/" do
-      if !EnterpriseToken.allows_to?(:mcp_server) || !server_config.enabled?
+      if !server_config.enabled?
         status 404
         return "MCP server is not available."
       end

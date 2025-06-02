@@ -35,12 +35,6 @@ See COPYRIGHT and LICENSE files for more details.
         )
       ) %>
 
-  <% with_enterprise_banner_guard(
-       :multiple_active_sprints,
-       variant: :large,
-       image: "enterprise/multiple-active-sprints-light.png",
-       dark_image: "enterprise/multiple-active-sprints-dark.png"
-     ) do %>
     <div class="op-admin-settings-form-wrapper">
       <%=
         render(Primer::Beta::Text.new(tag: :div, color: :muted, mb: 3)) do
@@ -49,5 +43,4 @@ See COPYRIGHT and LICENSE files for more details.
       %>
       <%= render(Projects::Settings::Backlogs::MultipleActiveSprintsComponent.new(project: @project)) %>
     </div>
-  <% end %>
 <% end %>
