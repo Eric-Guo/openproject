@@ -103,7 +103,7 @@ module WorkPackageTypes
     end
 
     def enterprise?
-      EnterpriseToken.allows_to?(:work_package_subject_generation)
+      true
     end
 
     def show_enterprise_banner? = !enterprise?

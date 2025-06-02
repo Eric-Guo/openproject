@@ -32,8 +32,7 @@ module ::TeamPlanner
 
     def show
       @submenu_menu_items = ::TeamPlanner::Menu.new(project: @project, params:).menu_items
-      if User.current.allowed_in_project?(:manage_team_planner, @project) &&
-        EnterpriseToken.allows_to?(:team_planner_view)
+      if User.current.allowed_in_project?(:manage_team_planner, @project)
         @create_btn_options = { href: new_project_team_planners_path(@project), module_key: "team_planner" }
       end
 

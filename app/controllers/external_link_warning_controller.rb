@@ -60,7 +60,7 @@ class ExternalLinkWarningController < ApplicationController
   end
 
   def capture_enabled?
-    Setting.capture_external_links? && EnterpriseToken.allows_to?(:capture_external_links)
+    Setting.capture_external_links?
   end
 
   def parse_external_url

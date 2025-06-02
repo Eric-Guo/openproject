@@ -207,38 +207,30 @@ class TimeEntry < ApplicationRecord
     end
 
     def must_track_start_and_end_time?
-      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
-        can_track_start_and_end_time? &&
+      can_track_start_and_end_time? &&
         Setting.enforce_tracking_start_and_end_times?
     end
 
     def max_hours_per_entry
-      return nil unless EnterpriseToken.allows_to?(:time_entry_time_restrictions)
-
       limit = Setting.time_entries_max_hours_per_entry
       limit if limit.positive?
     end
 
     def max_hours_per_day
-      return nil unless EnterpriseToken.allows_to?(:time_entry_time_restrictions)
-
       limit = Setting.time_entries_max_hours_per_day
       limit if limit.positive?
     end
 
     def prohibit_logging_on_non_working_days?
-      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
-        Setting.time_entries_prohibit_logging_on_non_working_days?
+      Setting.time_entries_prohibit_logging_on_non_working_days?
     end
 
     def limit_to_user_working_hours?
-      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
-        Setting.time_entries_limit_to_user_working_hours?
+      Setting.time_entries_limit_to_user_working_hours?
     end
 
     def prohibit_logging_for_past_months?
-      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
-        Setting.time_entries_prohibit_logging_for_past_months?
+      Setting.time_entries_prohibit_logging_for_past_months?
     end
 
     # Only meaningful while prohibit_logging_for_past_months? applies
