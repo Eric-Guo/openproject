@@ -55,7 +55,7 @@ module My
       end
 
       def date_alerts_available?
-        EnterpriseToken.allows_to?(:date_alerts)
+        true
       end
     end
   end

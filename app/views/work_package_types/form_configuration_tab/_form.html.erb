@@ -35,12 +35,10 @@ See COPYRIGHT and LICENSE files for more details.
       <div class="grid-content -visible-overflow small-12 large-10">
         <%= render(EnterpriseEdition::BannerComponent.new(:edit_attribute_groups, mb: 3)) %>
 
-        <% unless EnterpriseToken.allows_to?(:edit_attribute_groups) %>
-          <%= angular_component_tag "opce-no-results",
+        <%= angular_component_tag "opce-no-results",
                                     inputs: {
                                       title: t("text_form_configuration") + t("text_custom_field_hint_activate_per_project")
                                     } %>
-        <% end %>
       </div>
     </div>
     <div class="grid-block -visible-overflow wrap">

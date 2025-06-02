@@ -37,7 +37,7 @@ module WorkPackages
         end
 
         def gantt_chart_allowed?
-          EnterpriseToken.allows_to?(:gantt_pdf_export)
+          true
         end
 
         def enterprise_icon
