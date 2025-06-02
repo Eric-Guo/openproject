@@ -40,7 +40,7 @@ module WorkPackageTypes
     end
 
     def update_main_content_via_turbo_stream(groups: active_groups_for_form, editing_group_key: nil, form_model: nil)
-      ee_available = EnterpriseToken.allows_to?(:edit_attribute_groups)
+      ee_available = true
       group_components = build_group_components(
         groups:,
         ee_available:,

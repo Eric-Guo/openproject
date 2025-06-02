@@ -20,7 +20,6 @@
         label: t("custom_actions.new"),
         test_selector: "op-admin-custom-actions--button-new",
         tag: :a,
-        disabled: !EnterpriseToken.allows_to?(:custom_actions),
         href: new_custom_action_path
       ) do
         CustomAction.model_name.human
