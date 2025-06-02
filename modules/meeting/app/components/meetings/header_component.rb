@@ -99,8 +99,7 @@ module Meetings
 
     def create_from_template_enabled?
       @meeting.onetime_template? &&
-        User.current.allowed_in_project?(:create_meetings, @meeting.project) &&
-        EnterpriseToken.allows_to?(:meeting_templates)
+        User.current.allowed_in_project?(:create_meetings, @meeting.project)
     end
 
     def create_from_template_button_params

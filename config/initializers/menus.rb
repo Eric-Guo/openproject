@@ -195,7 +195,6 @@ Redmine::MenuManager.map :global_menu do |menu|
 
   menu.push :portfolios_query_select,
             { controller: "/portfolios", action: "index" },
-            if: ->(_) { EnterpriseToken.allows_to?(:portfolio_management) },
             parent: :portfolios,
             partial: "portfolios/menus/menu"
 
