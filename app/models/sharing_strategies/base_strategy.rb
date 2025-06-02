@@ -77,9 +77,7 @@ module SharingStrategies
     end
 
     def feature_available?
-      return true if enterprise_feature.nil?
-
-      EnterpriseToken.allows_to?(enterprise_feature)
+      true
     end
 
     def custom_body_components?

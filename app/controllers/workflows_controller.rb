@@ -69,4 +69,12 @@ class WorkflowsController < ApplicationController
   def eligible_roles
     @eligible_roles ||= Workflow.eligible_roles
   end
+
+  def permitted_status_params
+    return {} if params["status"].blank?
+
+    params["status"]
+      .to_unsafe_h
+      .select { |key, value| /\A\d+\z/.match?(key) && value.keys.all? { /\A\d+\z/.match?(it) } }
+  end
 end

@@ -42,7 +42,7 @@ module WorkPackageTypes
     end
 
     def ee_available?
-      EnterpriseToken.allows_to?(:edit_attribute_groups)
+      true
     end
 
     def wrapper_data

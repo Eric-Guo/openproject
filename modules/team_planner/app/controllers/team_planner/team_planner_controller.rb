@@ -11,10 +11,6 @@ module ::TeamPlanner
     before_action :find_plan_view, only: %i[destroy split_view]
     authorize_with_permission :add_work_packages, only: %i[split_create]
 
-    guard_enterprise_feature(:team_planner_view, except: %i[index overview]) do
-      redirect_to action: :index
-    end
-
     menu_item :team_planner_view
 
     def index
