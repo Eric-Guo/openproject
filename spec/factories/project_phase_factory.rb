@@ -31,7 +31,7 @@
 FactoryBot.define do
   factory :project_phase, class: "Project::Phase" do
     project
-    definition factory: :project_phase_definition
+    definition { association(:project_phase_definition) }
     active { true }
 
     start_date { Date.current - 2.days }
