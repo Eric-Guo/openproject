@@ -50,12 +50,12 @@ export class BannersService {
     return !this.allowsTo(feature) || this.trialling(feature);
   }
 
-  public allowsTo(feature:string):boolean {
-    return this.configuration.availableFeatures.includes(feature);
+  public allowsTo(_feature:string):boolean {
+    return true;
   }
 
-  public trialling(feature:string):boolean {
-    return this.configuration.triallingFeatures.includes(feature);
+  public trialling(_feature:string):boolean {
+    return false;
   }
 
   public getEnterPriseEditionUrl({ referrer, hash }:{ referrer?:string, hash?:string } = {}) {

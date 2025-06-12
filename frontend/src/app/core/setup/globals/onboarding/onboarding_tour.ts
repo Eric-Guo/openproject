@@ -82,7 +82,7 @@ function ganttTour(configuration:ConfigurationService) {
 
   const boardsDemoDataAvailable = jQuery('meta[name=boards_demo_data_available]').attr('content') === 'true';
   const teamPlannerDemoDataAvailable = jQuery('meta[name=demo_view_of_type_team_planner_seeded]').attr('content') === 'true';
-  const eeTokenAvailable = configuration.availableFeatures.includes('board_view');
+  const eeTokenAvailable = true;
 
   waitForElement('.work-package--results-tbody', '#content', () => {
     let steps:OnboardingStep[] = ganttOnboardingTourSteps();
@@ -111,7 +111,7 @@ function boardTour(configuration:ConfigurationService) {
   initializeTour('boardsTourFinished');
 
   const teamPlannerDemoDataAvailable = jQuery('meta[name=demo_view_of_type_team_planner_seeded]').attr('content') === 'true';
-  const eeTokenAvailable = configuration.availableFeatures.includes('board_view');
+  const eeTokenAvailable = true;
 
   waitForElement('wp-single-card', '#content', () => {
     let steps:OnboardingStep[] = eeTokenAvailable ? boardTourSteps('enterprise') : boardTourSteps('basic');

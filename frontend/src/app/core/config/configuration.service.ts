@@ -150,14 +150,6 @@ export class ConfigurationService {
     return this.systemPreference<string[]>('activeFeatureFlags');
   }
 
-  public get availableFeatures():string[] {
-    return this.systemPreference<string[]>('availableFeatures');
-  }
-
-  public get triallingFeatures():string[] {
-    return this.systemPreference<string[]>('triallingFeatures');
-  }
-
   private loadConfiguration() {
     return this
       .apiV3Service
