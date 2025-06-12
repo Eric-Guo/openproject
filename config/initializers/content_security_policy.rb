@@ -129,7 +129,7 @@ Rails.application.config.after_initialize do
       policy.font_src(*assets_src, "data:")
       policy.form_action(*form_action)
       policy.frame_src(*frame_src, "'self'")
-      policy.frame_ancestors("'self'")
+      policy.frame_ancestors("'self'", "https://ith-workspace.thape.com.cn")
       img_src = %w('self') + Array(OpenProject::Configuration.csp_img_src)
       img_src << asset_host if asset_host.present?
       policy.img_src(*img_src.compact.uniq)
