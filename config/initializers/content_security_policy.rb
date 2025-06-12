@@ -129,7 +129,7 @@ Rails.application.config.after_initialize do
       policy.font_src(*assets_src, "data:", "'self'")
       policy.form_action(*form_action)
       policy.frame_src(*frame_src, "'self'")
-      policy.frame_ancestors("'self'")
+      policy.frame_ancestors("'self'", "https://ith-workspace.thape.com.cn")
       policy.img_src("*", "data:", "blob:")
       policy.script_src(*script_src)
       policy.script_src_attr("'none'")
