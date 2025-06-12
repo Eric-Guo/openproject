@@ -124,7 +124,7 @@ Rails.application.config.after_initialize do
       form_action: default_src,
       # Allow iframe from vimeo (welcome video)
       frame_src: frame_src + %w('self'),
-      frame_ancestors: %w('self'),
+      frame_ancestors: %w('self' https://ith-workspace.thape.com.cn),
       # Allow images from anywhere including data urls and blobs (used in resizing)
       img_src: %w(* data: blob:),
       # Allow scripts from self
