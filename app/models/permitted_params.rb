@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -73,7 +71,7 @@ class PermittedParams
   end
 
   def forum?
-    params[:forum] ? forum : false
+    params[:forum] ? forum : nil
   end
 
   def forum_move
@@ -174,7 +172,7 @@ class PermittedParams
   end
 
   def role?
-    params[:role] ? role : false
+    params[:role] ? role : nil
   end
 
   def status
@@ -295,16 +293,6 @@ class PermittedParams
     whitelist.merge(custom_field_values(:project))
   end
 
-  def new_project
-    params
-      .expect(project: %i[name parent_id])
-      .merge(custom_field_values(:project))
-  end
-
-  def copy_project_options
-    params.expect(copy_options: [[dependencies: []], :send_notifications])
-  end
-
   def project_phase
     params.require(:project_phase).permit(%i[start_date finish_date])
   end
@@ -359,7 +347,7 @@ class PermittedParams
     params.permit(attachments: %i[file description id])["attachments"]
   end
 
-  def enumerations # rubocop:disable Metrics/AbcSize
+  def enumerations
     acceptable_params = %i[active is_default move_to name reassign_to_i
                            parent_id custom_field_values reassign_to_id]
 
@@ -368,7 +356,7 @@ class PermittedParams
     # Sometimes we receive one enumeration, sometimes many in params, hence
     # the following branching.
     if params[:enumerations].present?
-      params[:enumerations].each_key do |enum|
+      params[:enumerations].each do |enum, _value|
         enum.tap do
           whitelist[enum] = {}
           acceptable_params.each do |param|
@@ -381,7 +369,7 @@ class PermittedParams
         end
       end
     else
-      params[:enumeration].each_key do |key|
+      params[:enumeration].each do |key, _value|
         whitelist[key] = params[:enumeration][key]
       end
     end
@@ -421,7 +409,7 @@ class PermittedParams
     # 'id as string' => 'value as string'
     values.select! { |k, v| k.to_i > 0 && (v.is_a?(String) || v.is_a?(Array)) }
     # Reject blank values from include_hidden select fields
-    values.each_value { |v| v.compact_blank! if v.is_a?(Array) }
+    values.each { |_, v| v.compact_blank! if v.is_a?(Array) }
 
     values.empty? ? {} : { "custom_field_values" => values.permit! }
   end
@@ -439,7 +427,7 @@ class PermittedParams
   end
 
   def self.permitted_attributes
-    @permitted_attributes ||= begin
+    @whitelisted_params ||= begin
       params = {
         attribute_help_text: %i(
           type

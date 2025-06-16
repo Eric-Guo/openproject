@@ -946,11 +946,6 @@ en:
 
   actionview_instancetag_blank_option: "Please select"
 
-  activemodel:
-    attributes:
-      projects/copy_options:
-        dependencies: "Dependencies"
-
   activerecord:
     attributes:
       announcements:
@@ -3551,8 +3546,6 @@ en:
   notice_successful_delete: "Successful deletion."
   notice_successful_cancel: "Successful cancellation."
   notice_successful_update: "Successful update."
-  notice_unsuccessful_create: "Creation failed."
-  notice_unsuccessful_create_with_reason: "Creation failed: %{reason}"
   notice_unsuccessful_update: "Update failed."
   notice_unsuccessful_update_with_reason: "Update failed: %{reason}"
   notice_successful_update_custom_fields_added_to_project: |

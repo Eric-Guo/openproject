@@ -33,18 +33,4 @@ See COPYRIGHT and LICENSE files for more details.
     header.with_breadcrumbs([{ href: home_path, text: organization_name }, t(:label_project_new)])
   end
 %>
-
-<%=
-  render Projects::TemplateSelectComponent.new(
-    template: @template,
-    parent: @parent
-  )
-%>
-
-<%=
-  render Projects::NewComponent.new(
-    project: @new_project,
-    template: @template,
-    copy_options: @copy_options
-  )
-%>
+<%= angular_component_tag "opce-new-project" %>

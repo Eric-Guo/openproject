@@ -40,7 +40,7 @@ module Projects
             model: project_autocompleter_model,
             focusDirectly: false,
             dropdownPosition: "bottom",
-            url: project_autocompleter_url,
+            url: ::API::V3::Utilities::PathHelper::ApiV3Path.projects_available_parents + "?of=#{model.id}",
             filters: [],
             data: { qa_field_name: "parent" }
           }
@@ -54,12 +54,6 @@ module Projects
         return { id: parent.id, name: I18n.t(:"api_v3.undisclosed.parent") } unless parent.visible? || User.current.admin?
 
         { id: parent.id, name: parent.name }
-      end
-
-      def project_autocompleter_url
-        url_str = ::API::V3::Utilities::PathHelper::ApiV3Path.projects_available_parents
-        url_str << "?of=#{model.id}" unless model.new_record?
-        url_str
       end
     end
   end

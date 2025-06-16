@@ -32,198 +32,33 @@ require "spec_helper"
 
 RSpec.describe ProjectsController do
   shared_let(:admin) { create(:admin) }
-
-  let(:user) { admin }
+  let(:non_member) { create(:non_member) }
 
   before do
     allow(controller).to receive(:set_localization)
 
-    login_as user
+    login_as admin
   end
 
   describe "#new" do
-    shared_examples_for "successful requests" do
-      context "without a parent" do
-        let(:parent) { nil }
-
-        context "without a template" do
-          let(:template) { nil }
-
-          it_behaves_like "successful request"
-        end
-
-        context "with a template" do
-          let(:template) { create(:template_project) }
-
-          it_behaves_like "successful request"
-        end
-      end
-
-      context "with a parent" do
-        let(:parent) { create(:project) }
-
-        context "without a template" do
-          let(:template) { nil }
-
-          it_behaves_like "successful request"
-        end
-
-        context "with a template" do
-          let(:template) { create(:template_project) }
-
-          it_behaves_like "successful request"
-        end
-      end
+    it "renders 'new'" do
+      get "new"
+      expect(response).to be_successful
+      expect(response).to render_template "new"
     end
 
-    shared_examples_for "successful request" do
-      it "renders 'new'", :aggregate_faulures do
+    context "by non-admin user with add_project permission" do
+      let(:non_member_user) { create(:user) }
+
+      before do
+        non_member.add_permission! :add_project
+        login_as non_member_user
+      end
+
+      it "accepts get" do
+        get :new
         expect(response).to be_successful
-        expect(assigns(:new_project)).to be_a_new(Project)
-        expect(assigns(:parent)).to eq parent
-        expect(assigns(:template)).to eq template
         expect(response).to render_template "new"
-      end
-    end
-
-    before do
-      get :new, params: { parent_id: parent&.id, template_id: template&.id }
-    end
-
-    context "as an admin" do
-      it_behaves_like "successful requests"
-    end
-
-    context "as a non-admin with global add_project permission" do
-      let(:user) { create(:user, global_permissions: [:add_project]) }
-      let(:template) { nil }
-
-      context "without a parent" do
-        let(:parent) { nil }
-
-        it_behaves_like "successful request"
-      end
-
-      context "with a parent with public permissions" do
-        let(:user) { create(:user, global_permissions: [:add_project], member_with_roles: { parent => parent_role }) }
-        let(:parent_role) { create(:project_role) }
-        let(:parent) { create(:project) }
-
-        it_behaves_like "successful request"
-      end
-    end
-
-    context "as a non-admin without global add_project permission" do
-      let(:user) { create(:user, global_permissions: []) }
-      let(:template) { nil }
-
-      context "without a parent" do
-        let(:parent) { nil }
-
-        it "returns 403 Not Authorized" do
-          expect(response).not_to be_successful
-          expect(response).to have_http_status :forbidden
-        end
-      end
-
-      context "with a parent with add_subprojects permissions" do
-        let(:user) { create(:user, global_permissions: [], member_with_roles: { parent => parent_role }) }
-        let(:parent_role) { create(:project_role, permissions: [:add_subprojects]) }
-        let(:parent) { create(:project) }
-        let(:template) { nil }
-
-        it_behaves_like "successful request"
-      end
-    end
-  end
-
-  describe "#create" do
-    context "without a template" do
-      before do
-        creation_service = instance_double(Projects::CreateService, call: service_result)
-
-        allow(Projects::CreateService)
-          .to receive(:new)
-                .with(user: admin)
-                .and_return(creation_service)
-      end
-
-      context "when service call succeeds" do
-        let(:project) { build_stubbed(:project) }
-        let(:service_result) { ServiceResult.success(result: project) }
-
-        it "redirects to project show", :aggregate_failures do
-          post :create, params: { project: { name: "New Project" } }
-
-          expect(response).to redirect_to project_path(project)
-          expect(flash[:notice]).to eq I18n.t(:notice_successful_create)
-        end
-      end
-
-      context "when service call fails" do
-        let(:project) { Project.new }
-        let(:service_result) { ServiceResult.failure(result: project, message: "") }
-
-        it "renders new template with errors", :aggregate_failures do
-          post :create, params: { project: { name: "" } }
-
-          expect(response).not_to be_successful
-          expect(response).to have_http_status :unprocessable_entity
-          expect(assigns(:new_project)).to be_a_new(Project)
-          expect(assigns(:new_project)).not_to be_valid
-          expect(flash[:error]).to start_with I18n.t(:notice_unsuccessful_create_with_reason, reason: "")
-          expect(response).to render_template "new"
-        end
-      end
-    end
-
-    context "with a template" do
-      let(:template) { create(:template_project) }
-
-      before do
-        copy_service = instance_double(Projects::EnqueueCopyService, call: service_result)
-
-        allow(Projects::EnqueueCopyService)
-          .to receive(:new)
-                .with(user: admin, model: template)
-                .and_return(copy_service)
-      end
-
-      context "when service call succeeds" do
-        let(:job) { CopyProjectJob.new }
-        let(:service_result) { ServiceResult.success(result: job) }
-
-        it "redirects to job status", :aggregate_failures do
-          post :create, params: {
-            template_id: template.id,
-            project: { name: "New Project" },
-            copy_options: { dependencies: [], send_notifications: false }
-          }
-
-          expect(response).to redirect_to job_status_path(job.job_id)
-        end
-      end
-
-      context "when service call fails" do
-        let(:project) { Project.new }
-        let(:service_result) { ServiceResult.failure(result: project, message: "") }
-
-        it "renders new template with errors", :aggregate_failures do
-          post :create, params: {
-            template_id: template.id,
-            project: { name: "" },
-            copy_options: { dependencies: [], send_notifications: false }
-          }
-
-          expect(response).not_to be_successful
-          expect(response).to have_http_status :unprocessable_entity
-          expect(assigns(:new_project)).to be_a_new(Project)
-          expect(assigns(:new_project)).not_to be_valid
-          expect(assigns(:template)).not_to be_nil
-          expect(assigns(:copy_options)).not_to be_nil
-          expect(flash[:error]).to start_with I18n.t(:notice_unsuccessful_create_with_reason, reason: "")
-          expect(response).to render_template "new"
-        end
       end
     end
   end

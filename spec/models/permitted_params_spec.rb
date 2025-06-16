@@ -256,52 +256,6 @@ RSpec.describe PermittedParams do
     it_behaves_like "allows params"
   end
 
-  describe "#new_project" do
-    let(:attribute) { :new_project }
-    let(:hash_key) { "project" }
-
-    context "with minimal params" do
-      let(:hash) { { "name" => "Brand New Project" } }
-
-      it_behaves_like "allows params"
-    end
-
-    context "with parent_id" do
-      let(:hash) { { "name" => "Brand New Project", "parent_id" => "19" } }
-
-      it_behaves_like "allows params"
-    end
-
-    context "with custom_field_values" do
-      let(:hash) { { "name" => "Brand New Project", "custom_field_values" => { "4" => "21" } } }
-
-      it_behaves_like "allows params"
-    end
-  end
-
-  describe "#copy_project_options" do
-    let(:attribute) { :copy_project_options }
-    let(:hash_key) { "copy_options" }
-
-    context "with minimal params" do
-      let(:hash) { { "dependencies" => [] } }
-
-      it_behaves_like "allows params"
-    end
-
-    context "with dependencies" do
-      let(:hash) { { "dependencies" => ["members"] } }
-
-      it_behaves_like "allows params"
-    end
-
-    context "with send_notifications" do
-      let(:hash) { { "dependencies" => [], "send_notifications" => "1" } }
-
-      it_behaves_like "allows params"
-    end
-  end
-
   describe "#projects_type_ids" do
     let(:attribute) { :projects_type_ids }
     let(:hash_key) { "project" }

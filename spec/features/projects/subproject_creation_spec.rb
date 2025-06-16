@@ -31,6 +31,7 @@
 require "spec_helper"
 
 RSpec.describe "Subproject creation", :js do
+  let(:name_field) { FormFields::InputFormField.new :name }
   let(:parent_field) { FormFields::SelectFormField.new :parent }
   let(:add_subproject_role) { create(:project_role, permissions: %i[edit_project add_subprojects]) }
   let(:view_project_role) { create(:project_role, permissions: %i[edit_project]) }
@@ -54,22 +55,16 @@ RSpec.describe "Subproject creation", :js do
   end
 
   it "can create a subproject" do
-    click_on "New subproject"
+    click_link "Subproject"
 
-    expect(page).to have_heading "New project"
-
-    fill_in "Name", with: "Foo child"
-
-    expect(page).to have_combo_box "Subproject of"
-
+    name_field.set_value "Foo child"
+    parent_field.expect_required
     # The other project is not a valid parent since the user is lacking
     # the add_subproject permission therein.
     parent_field.expect_no_option(other_project.name)
     parent_field.expect_selected parent_project.name
 
-    click_on "Create"
-
-    expect_and_dismiss_flash type: :success, message: "Successful creation."
+    click_button "Save"
 
     expect(page).to have_current_path /\/projects\/foo-child\/?/
 

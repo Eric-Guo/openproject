@@ -35,14 +35,11 @@ RSpec.describe "Project attribute help texts", :js do
 
   let(:instance) do
     create(:project_help_text,
-           attribute_name: :name,
-           help_text: "Some **help text** for name.")
+           attribute_name: :status,
+           help_text: "Some **help text** for status.")
     create(:project_help_text,
            attribute_name: :description,
            help_text: "Some **help text** for description.")
-    create(:project_help_text,
-           attribute_name: :status,
-           help_text: "Some **help text** for status.")
   end
 
   let(:grid) do
@@ -90,27 +87,19 @@ RSpec.describe "Project attribute help texts", :js do
 
     it_behaves_like "allows to view help texts"
 
-    it "shows the help text on the project create form", :selenium do
+    it "shows the help text on the project create form" do
       visit new_project_path
 
-      expect(page).to have_field "Name"
+      page.find(".op-fieldset--legend", text: "ADVANCED SETTINGS").click
 
-      within(:element, "label", text: "Name") do
-        click_on accessible_name: "Show help text"
-      end
+      expect(page).to have_css(".spot-form-field--label attribute-help-text", wait: 10)
 
-      expect(page).to have_modal "Name"
+      # Open help text modal
+      modal.open!
+      expect(modal.modal_container).to have_css("strong", text: "help text")
+      modal.expect_edit(editable: user.allowed_globally?(:edit_attribute_help_texts))
 
-      within_modal "Name" do
-        expect(page).to have_css "strong", text: "help text"
-
-        expect(page).to have_button "Close"
-        expect(page).to have_link "Edit"
-
-        click_on "Close"
-      end
-
-      expect(page).not_to have_modal "Name"
+      modal.close!
     end
   end
 

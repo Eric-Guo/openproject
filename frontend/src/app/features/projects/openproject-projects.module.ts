@@ -30,6 +30,7 @@ import { NgModule } from '@angular/core';
 import { OpenprojectHalModule } from 'core-app/features/hal/openproject-hal.module';
 import { OpenprojectFieldsModule } from 'core-app/shared/components/fields/openproject-fields.module';
 import { DynamicFormsModule } from 'core-app/shared/components/dynamic-forms/dynamic-forms.module';
+import { NewProjectComponent } from 'core-app/features/projects/components/new-project/new-project.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OpSharedModule } from 'core-app/shared/shared.module';
 import { CopyProjectComponent } from 'core-app/features/projects/components/copy-project/copy-project.component';
@@ -47,6 +48,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     DynamicFormsModule,
   ],
   declarations: [
+    NewProjectComponent,
     CopyProjectComponent,
   ],
 })

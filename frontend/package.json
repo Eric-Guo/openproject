@@ -111,7 +111,6 @@
     "@primer/live-region-element": "^0.8.0",
     "@primer/primitives": "^9.1.2",
     "@primer/view-components": "npm:@openproject/primer-view-components@^0.70.2",
-    "@stimulus-components/auto-submit": "^6.0.0",
     "@types/hotwired__turbo": "^8.0.1",
     "@uirouter/angular": "^13.0.0",
     "@uirouter/core": "^6.1.0",

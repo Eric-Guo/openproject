@@ -85,7 +85,10 @@ RSpec.describe "Project templates", :js, with_good_job_batches: [CopyProjectJob,
       create(:user, member_with_roles: { template => role })
     end
 
+    let(:name_field) { FormFields::InputFormField.new :name }
     let(:template_field) { FormFields::SelectFormField.new :use_template }
+    let(:status_field) { FormFields::SelectFormField.new :status }
+    let(:parent_field) { FormFields::SelectFormField.new :parent }
 
     current_user do
       create(:user,
@@ -96,37 +99,42 @@ RSpec.describe "Project templates", :js, with_good_job_batches: [CopyProjectJob,
     it "can instantiate the project with the copy permission" do
       visit new_project_path
 
-      fill_in "Name", with: "Foo bar"
+      name_field.set_value "Foo bar"
 
-      expect(page).to have_no_selector :fieldset, "Copy options"
+      expect(page)
+        .to have_no_content("COPY OPTIONS")
 
       template_field.select_option "My template"
 
       # Only when a template is selected, the options are displayed.
       # Using this to know when the copy form has been fetched from the backend.
-      expect(page).to have_selector :fieldset, "Copy options"
+      expect(page)
+        .to have_content("COPY OPTIONS")
 
-      # FIXME: It should keep the name. See BUG OP#64594 https://community.openproject.org/wp/64594
-      # expect(page).to have_field "Name", with: "Foo bar"
-      fill_in "Name", with: "Foo bar"
-
+      # It keeps the name
+      name_field.expect_value "Foo bar"
       template_field.expect_selected "My template"
 
-      expect(page).to have_unchecked_field "Send email notifications during the project copy"
+      # Updates the identifier in advanced settings
+      page.find(".op-fieldset--toggle", text: "ADVANCED SETTINGS").click
+      status_field.expect_selected "ON TRACK"
 
-      within_fieldset "Copy options" do
-        # And allows to deselect copying the members.
-        uncheck "Project members"
-      end
+      # Update status to off track
+      status_field.select_option "Off track"
+      parent_field.select_option other_project.name
 
-      click_on "Create"
+      page.find(".op-fieldset--toggle", text: "COPY OPTIONS").click
 
-      expect(page).to have_dialog "Background job status"
+      # Now shows the send notifications field.
+      expect(page).to have_css('[data-qa-field-name="sendNotifications"]')
 
-      within_dialog "Background job status" do
-        expect(page).to have_heading "Copy project"
-        expect(page).to have_text "The job has been queued and will be processed shortly."
-      end
+      # And allows to deselect copying the members.
+      uncheck I18n.t(:"projects.copy.members")
+
+      page.find("button:not([disabled])", text: "Save").click
+
+      expect(page).to have_content I18n.t(:label_copy_project)
+      expect(page).to have_content I18n.t("job_status_dialog.generic_messages.in_queue")
 
       # Run background jobs twice: the background job which itself enqueues the mailer job
       GoodJob.perform_inline

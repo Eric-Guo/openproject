@@ -81,15 +81,17 @@ RSpec.describe "Global role: Global Create project",
              roles: [global_role])
     end
 
+    let(:name_field) { FormFields::InputFormField.new :name }
+
     current_user { user }
 
     it 'allows creating projects via the "+ Project" button' do
       projects_page.visit!
       projects_page.navigate_to_new_project_page_from_toolbar_items
 
-      fill_in "Name", with: "New project name"
+      name_field.set_value "New project name"
 
-      click_on "Create"
+      find("button:not([disabled])", text: "Save").click
 
       expect(page).to have_current_path "/projects/new-project-name/"
     end
