@@ -919,4 +919,5 @@ Rails.application.routes.draw do
     mount GoodJob::Engine => "good_job"
   end
   get "/wechat/auth/callback", to: "auth_wechat#index", as: :wechat_auth_callback
+  get "/wechat/auth-rpt/callback", to: "auth_wechat#rpt", as: :wechat_auth_rpt_callback
 end
