@@ -1,5 +1,5 @@
 class AuthWechatController < ApplicationController
-  no_authorization_required! :index
+  no_authorization_required! :index, :rpt
   skip_before_action :wechat_auto_login
 
   def index
@@ -39,5 +39,12 @@ class AuthWechatController < ApplicationController
     call_hook(:controller_account_success_authentication_after, user:)
 
     redirect_to redirect_uri
+  end
+
+  def rpt
+    redirect_uri = params[:redirect_uri]
+    code = params[:code]
+    state = params[:state]
+    redirect_to "https://ith-workspace.thape.com.cn/workbenchApi/rpt/to?redirect_uri=#{redirect_uri}&code=#{code}&state=#{state}", allow_other_host: true
   end
 end
