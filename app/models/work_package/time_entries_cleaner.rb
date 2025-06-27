@@ -38,7 +38,7 @@ module WorkPackage::TimeEntriesCleaner
 
     def cleanup_time_entries_before_destruction_of(work_packages,
                                                    user,
-                                                   to_do = { action: "destroy" })
+                                                   to_do = { action: "reassign" })
       return false unless to_do.present?
 
       case to_do[:action]

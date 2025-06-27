@@ -90,7 +90,7 @@ module WorkPackages::Costs
   class_methods do
     protected
 
-    def cleanup_cost_entries_before_destruction_of(work_packages, user, to_do = { action: "destroy" })
+    def cleanup_cost_entries_before_destruction_of(work_packages, user, to_do = { action: "reassign" })
       work_packages = Array(work_packages)
 
       return false unless to_do.present?
