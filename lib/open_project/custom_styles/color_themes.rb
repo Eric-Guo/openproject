@@ -37,7 +37,6 @@ module OpenProject::CustomStyles
     DEPRECATED_BIM_ALTERNATIVE_COLOR = "#349939".freeze
     DEPRECATED_PRIMARY_DARK_COLOR = "#175A8E".freeze
     DEPRECATED_LINK_COLOR = "#155282".freeze
-    DEPRECATED_MAIN_MENU_COLOR = "#333739".freeze
     PRIMER_PRIMARY_BUTTON_COLOR = "#1F883D".freeze
     ACCENT_COLOR = "#1A67A3".freeze
 
@@ -49,7 +48,7 @@ module OpenProject::CustomStyles
           "accent-color" => ACCENT_COLOR,
           "header-bg-color" => "#1A67A3",
           "header-item-bg-hover-color" => "#175A8E",
-          "main-menu-bg-color" => "#FFFFFF",
+          "main-menu-bg-color" => "#333739",
           "main-menu-bg-selected-background" => "#175A8E",
         }
       },

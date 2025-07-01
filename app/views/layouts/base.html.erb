@@ -109,7 +109,7 @@ See COPYRIGHT and LICENSE files for more details.
         <div id="menu-sidebar">
           <div class="main-menu--top-container">
             <%= render(Primer::OpenProject::FlexLayout.new(align_items: :center, pt: 3)) do |flex|
-              flex.with_column(overflow: :hidden) do
+              flex.with_column(overflow: :hidden, ml: 2) do
                 render_projects_top_menu_node
               end
               flex.with_column(text_align: :right, flex: :auto) do

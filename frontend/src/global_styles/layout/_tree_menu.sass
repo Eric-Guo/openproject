@@ -1,4 +1,4 @@
-$tree-menu-item-height: 36px
+$tree-menu-item-height: 40px
 
 #main-menu ul ul.main-menu--children ul.pages-hierarchy,
 div.wiki ul.pages-hierarchy,
@@ -31,7 +31,6 @@ div.wiki ul.pages-hierarchy,
   // collapsed: right arrow
   .tree-menu--hierarchy-indicator
     color: var(--accent-color)
-    display: block
     height: $tree-menu-item-height
     line-height: $tree-menu-item-height
     text-decoration: none !important
@@ -54,9 +53,6 @@ div.wiki ul.pages-hierarchy,
   .tree-menu--hierarchy-indicator-icon
     @include icon-common
     @extend .icon-arrow-down1
-    display: flex
-    align-items: center
-    line-height: $tree-menu-item-height
     font-size: 0.6rem
     padding-right: 10px
 
@@ -68,9 +64,6 @@ div.wiki ul.pages-hierarchy,
     > .tree-menu--item > .tree-menu--hierarchy-span > .tree-menu--hierarchy-indicator > .tree-menu--hierarchy-indicator-icon
       @include icon-common
       @extend .icon-arrow-right2
-      display: flex
-      align-items: center
-      line-height: $tree-menu-item-height
       font-size: 0.6rem
     > ul.-with-hierarchy
       display: none
@@ -81,19 +74,15 @@ div.wiki ul.pages-hierarchy,
     list-style-type: none
 
   .tree-menu--item
-    display: flex
-    align-items: center
+    display: inline-block
     width: 100%
-    border-radius: var(--borderRadius-medium)
+    border-radius: 3px
     line-height: $tree-menu-item-height
-    padding: 0
+    padding: 0 10px 0 0
     white-space: nowrap
-    margin-bottom: 2px
     &.-selected
       background: var(--control-transparent-bgColor-hover)
       .tree-menu--title
-        padding-left: 7px
-        border-left: 0px
         color: var(--main-menu-font-color)
     &:hover
       background: var(--control-transparent-bgColor-hover)
