@@ -27,11 +27,12 @@
 //++
 
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { TransitionService } from '@uirouter/core';
 import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destroyed.mixin';
 import { ResizeDelta } from 'core-app/shared/components/resizer/resizer.component';
 import { fromEvent } from 'rxjs';
+import { MainMenuToggleService } from 'core-app/core/main-menu/main-menu-toggle.service';
 
 @Component({
   selector: 'wp-resizer',
@@ -72,6 +73,7 @@ export class WpResizerDirective extends UntilDestroyedMixin implements OnInit, A
   public resizerClass = 'work-packages--resizer icon-resizer-vertical-lines';
 
   constructor(
+    readonly toggleService:MainMenuToggleService,
     private elementRef:ElementRef,
     readonly $transitions:TransitionService,
   ) {
@@ -106,6 +108,17 @@ export class WpResizerDirective extends UntilDestroyedMixin implements OnInit, A
 
     // Add event listener
     this.element = this.elementRef.nativeElement;
+
+    // Listen on sidebar changes and toggle column layout, if necessary
+    this.toggleService.changeData$
+      .pipe(
+        distinctUntilChanged(),
+        this.untilDestroyed(),
+        debounceTime(100),
+      )
+      .subscribe(() => {
+        this.applyColumnLayout();
+      });
 
     // Listen to event
     fromEvent(window, 'resize', { passive: true })

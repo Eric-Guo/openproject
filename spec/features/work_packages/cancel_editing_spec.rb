@@ -72,7 +72,7 @@ RSpec.describe "Cancel editing work package", :js, :selenium do
       find(".op-logo--link").click
     end
 
-    expect(page).to have_css("#projects-menu", text: "All projects")
+    expect(page).to have_css("#projects-menu", text: "Select a project")
   end
 
   it "does not show an alert when moving to other pages" do

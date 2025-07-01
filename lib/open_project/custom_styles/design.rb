@@ -73,7 +73,8 @@ module OpenProject::CustomStyles
           header-bg-color
           header-item-bg-hover-color
           main-menu-bg-color
-          main-menu-bg-selected-background)
+          main-menu-bg-selected-background
+          main-menu-bg-hover-background)
     end
   end
 end

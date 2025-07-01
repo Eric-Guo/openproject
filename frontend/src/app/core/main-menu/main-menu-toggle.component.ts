@@ -26,58 +26,40 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
 import { distinctUntilChanged } from 'rxjs/operators';
-
-import { ResizeDelta } from 'core-app/shared/components/resizer/resizer.component';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
+import { InjectField } from 'core-app/shared/helpers/angular/inject-field.decorator';
 import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destroyed.mixin';
-import { MainMenuToggleService } from 'core-app/core/main-menu/main-menu-toggle.service';
-
+import { MainMenuToggleService } from './main-menu-toggle.service';
+import { TopMenuService } from 'core-app/core/top-menu/top-menu.service';
 
 @Component({
-  selector: 'opce-main-menu-resizer',
+  selector: 'opce-main-menu-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <op-resizer class="main-menu--resizer"
-                [customHandler]="true"
-                [cursorClass]="'col-resize'"
-                (resizeFinished)="resizeEnd()"
-                (resizeStarted)="resizeStart()"
-                (move)="resizeMove($event)">
-      <button
-        class="spot-link main-menu--navigation-toggler"
-        [attr.title]="toggleTitle"
-        [class.open]="toggleService.showNavigation"
-        (click)="toggleService.toggleNavigation($event)"
-      >
-        <span class="resize-handle"><svg op-resizer-vertical-lines-icon size="small"></svg></span>
-        <span class="collapse-menu"><svg chevron-left-icon size="small"></svg></span>
-        <span class="expand-menu"><svg chevron-right-icon size="small"></svg></span>
-      </button>
-    </op-resizer>
-  `,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    class: 'op-app-menu op-main-menu-toggle',
+  },
+  templateUrl: './main-menu-toggle.component.html',
 })
+export class MainMenuToggleComponent extends UntilDestroyedMixin implements OnInit {
+  toggleTitle = '';
 
-export class MainMenuResizerComponent extends UntilDestroyedMixin implements OnInit {
-  public toggleTitle:string;
-
-  private resizeEvent:string;
-
-  private elementWidth:number;
-
-  private mainMenu = jQuery('#main-menu')[0];
-
-  public moving = false;
+  @InjectField() currentProject:CurrentProjectService;
 
   constructor(
+    readonly topMenu:TopMenuService,
     readonly toggleService:MainMenuToggleService,
     readonly cdRef:ChangeDetectorRef,
-    readonly elementRef:ElementRef,
+    readonly injector:Injector,
   ) {
     super();
   }
 
-  ngOnInit() {
+  ngOnInit():void {
+    this.toggleService.initializeMenu();
+
     this.toggleService.titleData$
       .pipe(
         distinctUntilChanged(),
@@ -87,20 +69,10 @@ export class MainMenuResizerComponent extends UntilDestroyedMixin implements OnI
         this.toggleTitle = setToggleTitle;
         this.cdRef.detectChanges();
       });
-
-    this.resizeEvent = 'main-menu-resize';
   }
 
-  public resizeStart() {
-    this.elementWidth = this.mainMenu.clientWidth;
-  }
-
-  public resizeMove(deltas:ResizeDelta) {
-    this.toggleService.saveWidth(this.elementWidth + deltas.absolute.x);
-  }
-
-  public resizeEnd() {
-    const event = new Event(this.resizeEvent);
-    window.dispatchEvent(event);
+  toggle(event:Event):void {
+    this.toggleService.toggleNavigation(event);
+    this.topMenu.close();
   }
 }

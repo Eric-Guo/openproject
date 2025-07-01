@@ -50,6 +50,7 @@ module OpenProject::CustomStyles
           "header-item-bg-hover-color" => "#175A8E",
           "main-menu-bg-color" => "#333739",
           "main-menu-bg-selected-background" => "#175A8E",
+          "main-menu-bg-hover-background" => "#124E7C",
         }
       },
       {
@@ -61,6 +62,7 @@ module OpenProject::CustomStyles
           "header-item-bg-hover-color" => "#E1E1E1",
           "main-menu-bg-color" => "#ECECEC",
           "main-menu-bg-selected-background" => "#A9A9A9",
+          "main-menu-bg-hover-background" => "#FFFFFF",
         },
         logo: "logo_openproject.png"
       },
@@ -73,6 +75,7 @@ module OpenProject::CustomStyles
           "header-item-bg-hover-color" => "#163473",
           "main-menu-bg-color" => "#0E2045",
           "main-menu-bg-selected-background" => "#3270DB",
+          "main-menu-bg-hover-background" => "#163473",
         }
       }
     ].freeze

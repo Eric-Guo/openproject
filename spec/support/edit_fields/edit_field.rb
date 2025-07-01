@@ -110,7 +110,7 @@ class EditField
     retry_block(args: { tries: 2 }) do
       unless active?
         SeleniumHubWaiter.wait unless using_cuprite?
-        scroll_to_and_click(display_trigger_element, block: :nearest)
+        scroll_to_and_click(display_trigger_element)
         SeleniumHubWaiter.wait unless using_cuprite?
       end
 
@@ -190,7 +190,7 @@ class EditField
   # Set or select the given value.
   # For fields of type select, will check for an option with that value.
   def set_value(content)
-    scroll_to_element(input_element, block: :nearest)
+    scroll_to_element(input_element)
     if autocompleter_field?
       autocomplete(content)
     elsif using_cuprite?

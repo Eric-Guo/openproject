@@ -79,6 +79,7 @@ RSpec.describe EnvData::CustomDesignSeeder, :webmock do
             OPENPROJECT_SEED_DESIGN_HEADER__ITEM__BG__HOVER__COLOR: "#E5E5E5",
             OPENPROJECT_SEED_DESIGN_MAIN__MENU__BG__COLOR: "#FFFFFF",
             OPENPROJECT_SEED_DESIGN_MAIN__MENU__BG__SELECTED__BACKGROUND: "#571EFA",
+            OPENPROJECT_SEED_DESIGN_MAIN__MENU__BG__HOVER__BACKGROUND: "#E5E5E5",
             OPENPROJECT_SEED_DESIGN_TOUCH__ICON: "http://test.foobar.com/image.png",
             OPENPROJECT_SEED_DESIGN_LOGO: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wQACfsD/QqnFgAAAABJRU5ErkJggg=="
           } do
@@ -93,6 +94,7 @@ RSpec.describe EnvData::CustomDesignSeeder, :webmock do
       expect(DesignColor.find_by(variable: "header-item-bg-hover-color").hexcode).to eq("#E5E5E5")
       expect(DesignColor.find_by(variable: "main-menu-bg-color").hexcode).to eq("#FFFFFF")
       expect(DesignColor.find_by(variable: "main-menu-bg-selected-background").hexcode).to eq("#571EFA")
+      expect(DesignColor.find_by(variable: "main-menu-bg-hover-background").hexcode).to eq("#E5E5E5")
 
       RequestStore.clear!
       custom_style = CustomStyle.current
@@ -213,7 +215,8 @@ RSpec.describe EnvData::CustomDesignSeeder, :webmock do
       DesignColor.create!(variable: "header-item-bg-hover-color", hexcode: "#E5E5E5")
       DesignColor.create!(variable: "main-menu-bg-color", hexcode: "#FFFFFF")
       DesignColor.create!(variable: "main-menu-bg-selected-background", hexcode: "#571EFA")
-      expect(DesignColor.count).to eq(6)
+      DesignColor.create!(variable: "main-menu-bg-hover-background", hexcode: "#E5E5E5")
+      expect(DesignColor.count).to eq(7)
 
       seeder.seed!
 

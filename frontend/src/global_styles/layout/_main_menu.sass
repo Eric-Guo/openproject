@@ -31,29 +31,20 @@
 $menu-item-line-height: 30px
 $arrow-left-width: 40px
 
-@mixin main-menu-hover($main-item: true)
-  background: var(--control-transparent-bgColor-hover)
-  color: var(--main-menu-font-color)
-  border-style: solid
-  border-color: var(--main-menu-hover-border-color)
-  @if $main-item
-    border-width: 1px 1px 1px 5px
-    padding-left: 12px
-  @else
-    border-width: 1px
+@mixin main-menu-hover
+  background: var(--main-menu-bg-hover-background)
+  color: var(--main-menu-hover-font-color)
+  border: 1px solid var(--main-menu-hover-border-color)
 
 @mixin main-menu-selected
-  background: var(--control-transparent-bgColor-selected)
+  background: var(--main-menu-bg-selected-background)
   color: var(--main-menu-selected-font-color)
   border: 1px solid var(--main-menu-bg-selected-border)
-  border-left: 5px solid var(--main-menu-bg-selected-background) !important
-  padding-left: 12px
 
 .main-menu
   width: var(--main-menu-width)
   min-width: var(--main-menu-width)
   overflow-x: hidden
-  overflow-y: hidden
   border-right-style: solid
   border-right-width: var(--main-menu-border-width)
   border-right-color: var(--main-menu-border-color)
@@ -67,6 +58,9 @@ $arrow-left-width: 40px
     position: relative
     @include styled-scroll-bar
     padding: 0 var(--main-menu-x-spacing)
+
+  a:not(.Button):focus
+    color: var(--main-menu-font-color)
 
   ul
     margin: 0
@@ -126,16 +120,16 @@ $arrow-left-width: 40px
     justify-content: center
     align-items: center
 
-  .op-project-select--trigger-button
-    &:hover, &:focus, &:active
-      @include main-menu-hover(false)
+  .icon-time
+    background: none
+    padding: 0
 
 .main-item-wrapper,
 .main-menu .main-menu-item
   display: flex
 
   .toggler:hover
-    @include main-menu-hover(false)
+    @include main-menu-hover
 
   a:not(.Button)
     border: 1px solid transparent
@@ -143,11 +137,14 @@ $arrow-left-width: 40px
     &.selected, &.selected + a
       @include main-menu-selected
 
+      &:hover
+        @include main-menu-hover
+
     &:hover, &:focus, &:active
       @include main-menu-hover
 
       & ~ .toggler
-        @include main-menu-hover(false)
+        @include main-menu-hover
 
   a:not(.Button):not(.toggler)
     @extend .small-12
@@ -169,7 +166,7 @@ $arrow-left-width: 40px
     &:hover
       // simultaneously hover all menu item anchor tags
       > a
-        color: var(--control-transparent-bgColor-hover)
+        color: var(--main-menu-bg-hover-background)
 
     > a
       &.selected, &.selected
@@ -183,7 +180,7 @@ $arrow-left-width: 40px
   top: 0
   z-index: 1
   background: var(--main-menu-bg-color)
-  padding: 0px 10px 0 4px
+  padding: 10px 10px 0 4px
   height: calc(var(--main-menu-item-height) + 10px)
 
   .main-menu--arrow-left-to-project:not(.Button)
@@ -196,17 +193,7 @@ $arrow-left-width: 40px
     border: 1px solid transparent
 
     &:hover, &:focus, &:active
-      @include main-menu-hover(false)
-
-.main-menu--top-container
-  position: sticky
-  top: 0
-  z-index: 1
-  background: var(--main-menu-bg-color)
-
-  .main-menu--projects-divider
-    background: var(--borderColor-neutral-emphasis)
-    margin: 1rem 0
+      @include main-menu-hover
 
 a.main-menu--parent-node:not(.Button)
   border: 1px solid transparent
@@ -221,7 +208,7 @@ a.main-menu--parent-node:not(.Button)
   color: var(--main-menu-font-color)
 
   &:hover, &:focus, &:active
-    @include main-menu-hover(false)
+    @include main-menu-hover
 
 // logic for showing either parent or child menu
 .main-menu
@@ -229,13 +216,11 @@ a.main-menu--parent-node:not(.Button)
     flex-grow: 1
 
     &.closed
-      overflow: hidden
       li
         display: none
 
       > li.open
         display: list-item
-        height: 100%
 
         .main-item-wrapper
           display: none
@@ -248,14 +233,9 @@ a.main-menu--parent-node:not(.Button)
 
         .main-menu--children
           display: block
-          // Children header == 50px
-          height: calc(100% - 50px)
-          overflow: auto
 
           li
             display: list-item
-            &.partial
-              height: 100%
 
     &.open
       > li
@@ -342,10 +322,10 @@ a.main-menu--parent-node:not(.Button)
         color: var(--main-menu-selected-font-color)
 
     &:hover
-      background: var(--control-transparent-bgColor-hover)
+      background: var(--main-menu-bg-hover-background)
 
       .tree-menu--title
-        color: var(--main-menu-font-color)
+        color: var(--main-menu-hover-font-color)
         text-decoration: none
 
 // Resizer & toggle styles
@@ -411,6 +391,7 @@ $badge_offset: 4px
   background: transparent
   color: var(--main-menu-font-color)
   border: none
+
 
 #main-menu-toggle
   .icon-close

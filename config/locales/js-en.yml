@@ -377,7 +377,6 @@ en:
     label_added_time_by: 'Added by <a href="%{authorLink}">%{author}</a> at %{age}'
     label_ago: "days ago"
     label_all: "all"
-    label_all_projects: "All projects"
     label_all_uppercase: "All"
     label_all_work_packages: "all work packages"
     label_and: "and"
@@ -487,6 +486,7 @@ en:
     label_repository_plural: "Repositories"
     label_save_as: "Save as"
     label_search_columns: "Search a column"
+    label_select_project: "Select a project"
     label_select_watcher: "Select a watcher..."
     label_selected_filter_list: "Selected filters"
     label_show_attributes: "Show all attributes"

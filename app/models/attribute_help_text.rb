@@ -30,9 +30,7 @@ class AttributeHelpText < ApplicationRecord
   acts_as_attachable viewable_by_all_users: true
 
   def self.cached(user)
-    RequestStore.fetch(name) do
-      visible(user).select(:id, :attribute_name).index_by(&:attribute_name)
-    end
+    OpenProject::Cache.fetch([name, user]) { visible(user).select(:id, :attribute_name).index_by(&:attribute_name) }
   end
 
   def self.for(model)

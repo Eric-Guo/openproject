@@ -75,6 +75,7 @@ en:
         header-item-bg-hover-color: "Header background on hover"
         main-menu-bg-color: "Main menu background"
         main-menu-bg-selected-background: "Main menu when selected"
+        main-menu-bg-hover-background: "Main menu on hover"
       custom_colors: "Custom colors"
       manage_colors: "Edit color select options"
       instructions:

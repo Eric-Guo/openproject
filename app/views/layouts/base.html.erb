@@ -30,7 +30,7 @@ See COPYRIGHT and LICENSE files for more details.
 <html xmlns="http://www.w3.org/1999/xhtml"
       lang="<%= I18n.locale.to_s %>"
       xml:lang="<%= I18n.locale.to_s %>"
-      class="<%= "in_modal" unless show_decoration %>">
+      class="<%= 'in_modal' unless show_decoration %>">
 <head>
   <%= nonced_javascript_tag do %>
     window.TA_CONFIG = {
@@ -49,13 +49,13 @@ See COPYRIGHT and LICENSE files for more details.
 </head>
 <%= content_tag :body,
                 class: "#{body_css_classes}  __overflowing_element_container __overflowing_body",
-                data: body_data_attributes(local_assigns) do %>
-<%= render partial: "warning_bar/warning_bar" %>
+                data: body_data_attributes(local_assigns) do  %>
+<%= render partial: 'warning_bar/warning_bar' %>
 <noscript>
   <div class="top-shelf">
     <p>
       <span>
-        <%= op_icon "icon3 icon-warning" %>
+        <%= op_icon 'icon3 icon-warning' %>
         <strong><%= t(:noscript_heading) %></strong>
       </span>
       <%= t(:noscript_description) %>
@@ -75,15 +75,16 @@ See COPYRIGHT and LICENSE files for more details.
 <% initial_classes = initial_menu_classes(side_displayed, show_decoration) %>
 <div id="wrapper" style="<%= initial_menu_styles(side_displayed) %>" class="<%= initial_classes %>">
   <% if show_decoration %>
-    <header class="op-app-header<%= " op-app-header_development" if OpenProject::Configuration.development_highlight_enabled? %>">
+    <header class="op-app-header<%= ' op-app-header_development' if OpenProject::Configuration.development_highlight_enabled? %>">
       <div class="op-app-header--start">
         <h1 class="hidden-for-sighted">
           <%= t(:label_top_menu) %>
         </h1>
+        <opce-main-menu-toggle></opce-main-menu-toggle>
         <a href="" class="hidden-for-sighted skip-navigation-link"
            id="skip-navigation--content"
-           aria-label="<%= I18n.t("js.work_packages.jump_marks.label_content") %>">
-          <%= I18n.t("js.work_packages.jump_marks.content") %>
+           aria-label="<%= I18n.t('js.work_packages.jump_marks.label_content') %>">
+          <%= I18n.t('js.work_packages.jump_marks.content') %>
         </a>
         <%= render_top_menu_left %>
       </div>
@@ -97,37 +98,16 @@ See COPYRIGHT and LICENSE files for more details.
     </header>
   <% end %>
   <div id="main"
-       class="<%= initial_classes %>"
-       data-controller="menus--main-toggle">
+       class="<%= initial_classes %>">
     <% if (side_displayed && show_decoration) %>
       <div
         id="main-menu"
         class="main-menu"
-        data-controller="menus--main">
+        data-controller="menus--main"
+      >
         <h1 class="hidden-for-sighted"><%= t(:label_main_menu) %></h1>
         <opce-main-menu-resizer></opce-main-menu-resizer>
         <div id="menu-sidebar">
-          <div class="main-menu--top-container">
-            <%= render(Primer::OpenProject::FlexLayout.new(align_items: :center, pt: 3)) do |flex|
-              flex.with_column(overflow: :hidden, ml: 2) do
-                render_projects_top_menu_node
-              end
-              flex.with_column(text_align: :right, flex: :auto) do
-                render(OpenProject::Common::MainMenuToggleComponent.new(expanded: true))
-              end
-            end %>
-
-            <%= render(
-                  Primer::BaseComponent.new(
-                    tag: :hr,
-                    classes: "main-menu--projects-divider",
-                    role: :presentation,
-                    aria: {
-                      hidden: true
-                    }
-                  )
-                ) %>
-          </div>
           <%= main_menu %>
           <%= content_for :main_menu %>
           <%= call_hook :view_layouts_base_main_menu %>
@@ -149,11 +129,11 @@ See COPYRIGHT and LICENSE files for more details.
         <section data-augmented-model-wrapper
                  data-modal-initialize-now="true"
                  data-modal-class-name="onboarding-modal">
-          <%= render partial: "/onboarding/configuration_modal" %>
+          <%= render partial: '/onboarding/configuration_modal' %>
         </section>
       <% end %>
       <%= content_tag :div,
-                      id: "content",
+                      id: 'content',
                       class: "#{initial_classes} #{'content--split' if content_for?(:content_body_right)}" do %>
         <h1 class="hidden-for-sighted accessibility-helper"><%= t(:label_content) %></h1>
         <% if content_for?(:content_header) %>
@@ -163,7 +143,6 @@ See COPYRIGHT and LICENSE files for more details.
         <% end %>
 
         <div id="content-body">
-          <%= render(OpenProject::Common::MainMenuToggleComponent.new(expanded: false)) %>
           <%= content_for :content_body %>
           <% unless local_assigns[:no_layout_yield] %>
             <%= yield %>

@@ -51,6 +51,9 @@ See COPYRIGHT and LICENSE files for more details.
     <% if design_color.variable == "main-menu-bg-selected-background" %>
       --main-menu-selected-font-color: <%= design_color.contrasting_font_color %>;
     <% end %>
+    <% if design_color.variable == "main-menu-bg-hover-background" %>
+      --main-menu-hover-font-color: <%= design_color.contrasting_font_color %>;
+    <% end %>
     <% if design_color.variable == "primary-button-color" %>
         --primary-button-color--major1: <%= design_color.darken 0.18 %>;
         --primary-button-color--minor1: <%= design_color.lighten 0.8 %>;
