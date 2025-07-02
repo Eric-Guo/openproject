@@ -231,6 +231,23 @@ RSpec.describe Authorization::UserPermissibleService do
         end
       end
 
+      context "and the user has a global role with view_all_project_info" do
+        let(:global_role) { create(:global_role, permissions: [:view_all_project_info]) }
+        let!(:global_member) { create(:global_member, user:, roles: [global_role]) }
+
+        context "when requesting view_project" do
+          let(:permission) { :view_project }
+
+          it { is_expected.to be_allowed_in_project(permission, project) }
+        end
+
+        context "when requesting edit_project" do
+          let(:permission) { :edit_project }
+
+          it { is_expected.to be_allowed_in_project(permission, project) }
+        end
+      end
+
       context "and the user is a member of a work package" do
         let(:role) { create(:work_package_role, permissions: [permission]) }
         let!(:wp_member) { create(:work_package_member, user:, project:, entity: work_package, roles: [role]) }
