@@ -53,7 +53,7 @@ module API
           end
           route_param :id do
             after_validation do
-              @project = if current_user.admin?
+              @project = if current_user.admin? || current_user.allowed_globally?(:view_all_project_info)
                            Project.all
                          else
                            Project.visible(current_user)
