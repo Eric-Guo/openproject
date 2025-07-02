@@ -130,6 +130,19 @@ RSpec.describe "API v3 Project Configuration resource" do
       end
     end
 
+    context "when user can only view all project info globally" do
+      let(:user) { create(:user) }
+      let(:global_role) { create(:global_role, permissions: [:view_all_project_info]) }
+
+      before do
+        create(:global_member, user:, roles: [global_role])
+      end
+
+      it "returns 200 OK" do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     context "when user cannot view project" do
       let(:other_user) { create(:user) }
 
