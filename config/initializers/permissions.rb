@@ -119,6 +119,7 @@ Rails.application.reloader.to_prepare do
 
       map.permission :view_project,
                      {
+                       "projects/settings/general": %i[show],
                        projects: %i[index show list_row_menu],
                        "projects/hover_card": %i[show]
                      },
