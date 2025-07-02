@@ -63,7 +63,7 @@ module API
               # But since it and especially the NestedAPIs are established routes,
               # we keep it intact for all kinds of workspaces for 17.0.
               # This behaviour is not documented in the API docs to nudge users to switch.
-              @project = if current_user.admin?
+              @project = if current_user.admin? || current_user.allowed_globally?(:view_all_project_info)
                            Project
                          else
                            Project.visible(current_user)
