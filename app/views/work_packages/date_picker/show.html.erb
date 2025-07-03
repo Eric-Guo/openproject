@@ -1,11 +1,15 @@
 <%=
-  render(
-    WorkPackages::DatePicker::DialogContentComponent.new(
-      work_package:,
-      schedule_manually:,
-      focused_field:,
-      triggering_field: params[:field].underscore.to_sym,
-      date_mode: params[:date_mode]
+  content_tag("turbo-frame", id: "wp-datepicker-dialog--content") do
+    render(
+      WorkPackages::DatePicker::DialogContentComponent.new(
+        work_package:,
+        schedule_manually:,
+        focused_field:,
+        triggering_field: params[:triggering_field] || params[:field]&.underscore&.to_sym,
+        touched_field_map:,
+        date_mode:,
+        preview:
+      )
     )
-  )
+  end
 %>

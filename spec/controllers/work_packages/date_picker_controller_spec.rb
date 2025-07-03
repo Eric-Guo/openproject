@@ -53,6 +53,37 @@ RSpec.describe WorkPackages::DatePickerController do
     work_package.errors.group_by_attribute.slice(:start_date, :due_date, :duration)
   end
 
+  # the parameters used to re-render the date picker after changing values is
+  # enriched by the stimulus preview controller. Here nothing is changed yet,
+  # each test uses this as a basis to update the values.
+  # captured on 2025-04-17.
+  let(:params_after_changing_values) do
+    {
+      "field" => "work_package[due_date]",
+      "date_mode" => "single",
+      "triggering_field" => "",
+      "work_package" => {
+        "start_date" => "",
+        "due_date" => "2025-04-18",
+        "duration" => "",
+        "ignore_non_working_days" => "0",
+        "schedule_manually" => "true",
+        "initial" => {
+          "start_date" => "",
+          "due_date" => "2025-04-18",
+          "duration" => "",
+          "ignore_non_working_days" => "false",
+          "schedule_manually" => "true"
+        },
+        "start_date_touched" => "false",
+        "due_date_touched" => "false",
+        "duration_touched" => "false",
+        "ignore_non_working_days_touched" => "false",
+        "schedule_manually_touched" => "false"
+      }
+    }
+  end
+
   describe "GET /work_packages/date_picker/new" do
     # the parameters as they are sent when the date picker is opened again
     # from the new work package page after a due date has been entered.
@@ -73,39 +104,13 @@ RSpec.describe WorkPackages::DatePickerController do
         }
       }
     end
-    # the parameters used to re-render the date picker after changing values is
-    # enriched by the stimulus preview controller. Here nothing is changed yet,
-    # each test uses this as a basis to update the values.
-    # captured on 2025-04-17.
-    let(:params_after_changing_values) do
-      {
-        "field" => "work_package[due_date]",
-        "date_mode" => "single",
-        "triggering_field" => "",
-        "work_package" => {
-          "start_date" => "",
-          "due_date" => "2025-04-18",
-          "duration" => "",
-          "ignore_non_working_days" => "0",
-          "schedule_manually" => "true",
-          "initial" => {
-            "start_date" => "",
-            "due_date" => "2025-04-18",
-            "duration" => "",
-            "ignore_non_working_days" => "false",
-            "schedule_manually" => "true"
-          },
-          "start_date_touched" => "false",
-          "due_date_touched" => "false",
-          "duration_touched" => "false",
-          "ignore_non_working_days_touched" => "false",
-          "schedule_manually_touched" => "false"
-        }
-      }
-    end
+
+    let(:params) { params_from_first_display_of_date_picker }
+
+    subject { get("new", params:) }
 
     it "assigns work package initialized with initial values" do
-      get("new", params: params_from_first_display_of_date_picker)
+      subject
 
       assigned_work_package = assigns(:work_package)
       expect(assigned_work_package).to be_new_record
@@ -118,7 +123,41 @@ RSpec.describe WorkPackages::DatePickerController do
     end
 
     context "when values for untouched fields are received (like derived values)" do
-      let(:params_with_due_date_value_but_untouched) do
+      let(:params) do
+        params_after_changing_values.deep_merge(
+          "work_package" => {
+            "start_date" => "2025-01-01",
+            "start_date_touched" => "false",
+            "due_date" => "2025-04-21",
+            "due_date_touched" => "false"
+          }
+        )
+      end
+
+      render_views
+
+      it "keeps the initial value for untouched fields in the assigned work package" do
+        subject
+
+        assigned_work_package = assigns(:work_package)
+        # initial values are used for untouched fields
+        expect(assigned_work_package.start_date).to be_nil
+        expect(assigned_work_package.due_date).to eq(Date.parse("2025-04-18"))
+      end
+
+      it "does not include the live region turbo-stream" do
+        subject
+
+        expect(response.body).not_to include('<turbo-stream action="liveRegion"')
+      end
+    end
+  end
+
+  describe "GET /work_packages/date_picker/preview" do
+    subject { get("preview", params:) }
+
+    context "when values for untouched fields are received (like derived values)" do
+      let(:params) do
         params_after_changing_values.deep_merge(
           "work_package" => {
             "start_date" => "2025-01-01",
@@ -130,8 +169,7 @@ RSpec.describe WorkPackages::DatePickerController do
       end
 
       it "keeps the initial value for untouched fields in the assigned work package" do
-        get("new", params: params_with_due_date_value_but_untouched)
-
+        subject
         assigned_work_package = assigns(:work_package)
         # initial values are used for untouched fields
         expect(assigned_work_package.start_date).to be_nil
@@ -140,7 +178,7 @@ RSpec.describe WorkPackages::DatePickerController do
     end
 
     context "when the user edits the dates" do
-      let(:params_after_editing_due_date) do
+      let(:params) do
         params_after_changing_values.deep_merge(
           "work_package" => {
             "start_date" => "2025-04-14",
@@ -152,7 +190,7 @@ RSpec.describe WorkPackages::DatePickerController do
       end
 
       it "assigns work package updated with touched and derived values" do
-        get("new", params: params_after_editing_due_date)
+        subject
 
         assigned_work_package = assigns(:work_package)
         expect(assigned_work_package).to be_new_record
@@ -168,7 +206,7 @@ RSpec.describe WorkPackages::DatePickerController do
         end
 
         it "displays read-only errors" do
-          get("new", params: params_after_editing_due_date)
+          subject
 
           assigned_work_package = assigns(:work_package)
           expect(date_errors(assigned_work_package)).to match(
@@ -184,7 +222,7 @@ RSpec.describe WorkPackages::DatePickerController do
         end
 
         it "does not display any errors" do
-          get("new", params: params_after_editing_due_date)
+          subject
 
           assigned_work_package = assigns(:work_package)
           expect(date_errors(assigned_work_package)).to be_empty
@@ -193,7 +231,7 @@ RSpec.describe WorkPackages::DatePickerController do
     end
 
     context "when changing the start date" do
-      let(:params_after_changing_start_date) do
+      let(:params) do
         params_after_changing_values.deep_merge(
           "work_package" => {
             "start_date" => "2025-04-15",
@@ -204,8 +242,10 @@ RSpec.describe WorkPackages::DatePickerController do
         )
       end
 
+      render_views
+
       it "includes the live region turbo-stream with the correct message and attributes" do
-        get("new", params: params_after_changing_start_date)
+        subject
 
         expect(response.body).to include('<turbo-stream action="liveRegion"')
         expect(response.body).to include('politeness="polite"')

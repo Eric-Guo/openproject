@@ -309,7 +309,10 @@ export default class PreviewController extends DialogPreviewController {
     this.updateFlatpickrCalendar();
   }
 
-  afterRendering() {
+  afterRendering(params:{ shouldFocusBanner?:boolean }) {
+    if (params.shouldFocusBanner) {
+      this.focusOnOpen();
+    }
     this.readCurrentValues();
     this.updateFlatpickrCalendar();
   }

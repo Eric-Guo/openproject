@@ -23,7 +23,6 @@
                     icon: :pin,
                     href: dialog_content_with(schedule_manually: true),
                     data: {
-                      turbo_stream: true,
                       qa_selected: schedule_manually
                     },
                     test_selector: "op-datepicker-modal--scheduling_manual",
@@ -35,7 +34,6 @@
                     icon: "op-auto-date",
                     href: dialog_content_with(schedule_manually: false),
                     data: {
-                      turbo_stream: true,
                       qa_selected: !schedule_manually
                     },
                     test_selector: "op-datepicker-modal--scheduling_automatic",

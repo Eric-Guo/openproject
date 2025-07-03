@@ -74,17 +74,29 @@ export abstract class DialogPreviewController extends Controller {
     // caption and validation message unaccessible for screen readers and other
     // assistive technologies. This is why morph cannot be used here.
     this.frameMorphRenderer = (event:CustomEvent<TurboBeforeFrameRenderEventDetail>) => {
+      const target = event.target as HTMLTurboFrameElement;
+      const requestUrl = new URL(target.src || '', window.location.origin);
+      // Do not replace the angular datepicker unless the schedule_manually flag is changed.
+      const schedulingChanged = requestUrl.searchParams.has('schedule_manually');
+
       event.detail.render = (currentElement:HTMLElement, newElement:HTMLElement) => {
         Idiomorph.morph(currentElement, newElement, {
           ignoreActiveValue: this.ignoreActiveValueWhenMorphing(),
           callbacks: {
-            beforeNodeMorphed: (oldNode:Element) => {
-              // In case the element is an OpenProject custom dom element, morphing is prevented.
-              return !oldNode.tagName?.startsWith('OPCE-');
+            beforeNodeMorphed: (oldNode:Element, newNode:Element) => {
+              // In case the element is an OpenProject custom dom element, prevent morphing and
+              // replace the angular tag with the new version.
+              if (oldNode.tagName?.startsWith('OPCE-')) {
+                if (schedulingChanged) {
+                  oldNode.replaceWith(newNode);
+                }
+                return false;
+              }
+              return true;
             },
           },
         });
-        this.afterRendering();
+        this.afterRendering({ shouldFocusBanner: schedulingChanged });
       };
     };
 
@@ -134,8 +146,7 @@ export abstract class DialogPreviewController extends Controller {
       });
     }
 
-    const wpAction = this.isUpdatingWorkPackage(form.action) ? 'edit' : 'new';
-    const previewUrl = `${form.action}/${wpAction}?${new URLSearchParams(wpParams).toString()}`;
+    const previewUrl = `${form.action}/preview?${new URLSearchParams(wpParams).toString()}`;
     const turboFrame = this.formTarget.closest('turbo-frame') as HTMLTurboFrameElement;
 
     if (turboFrame) {
@@ -158,7 +169,7 @@ export abstract class DialogPreviewController extends Controller {
     }
   }
 
-  abstract afterRendering():void;
+  abstract afterRendering(params?:object):void;
 
   // Whether to ignore the active element value when morphing.
   abstract ignoreActiveValueWhenMorphing():boolean;

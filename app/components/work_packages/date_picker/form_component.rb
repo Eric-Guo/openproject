@@ -74,9 +74,9 @@ module WorkPackages
                               .merge(schedule_manually:)
                               .permit!
         if work_package.new_record?
-          new_date_picker_path(dialog_params)
+          preview_date_picker_path(dialog_params)
         else
-          work_package_date_picker_path(work_package, dialog_params)
+          preview_work_package_date_picker_path(work_package, dialog_params)
         end
       end
 

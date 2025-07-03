@@ -695,23 +695,32 @@ Rails.application.routes.draw do
 
     resources :hierarchy_relations, only: %i[new create destroy], controller: "work_package_hierarchy_relations"
 
-    resource :progress, only: %i[edit update], controller: "work_packages/progress"
+    resource :progress, only: %i[edit update], controller: "work_packages/progress" do
+      get :preview, on: :member
+    end
     collection do
       resource :progress,
                only: %i[create new],
                controller: "work_packages/progress",
-               as: :work_package_progress
+               as: :work_package_progress do
+        get :preview, on: :collection
+      end
     end
 
     resource :date_picker,
              only: %i[show edit update],
              controller: "work_packages/date_picker",
-             as: "date_picker"
+             as: "date_picker" do
+      get :preview, on: :member
+    end
+
     collection do
       resource :date_picker,
                only: %i[create new],
                controller: "work_packages/date_picker",
-               as: "date_picker"
+               as: "date_picker" do
+        get :preview, on: :collection
+      end
     end
 
     resources :relations_tab, only: %i[index], controller: "work_package_relations_tab"

@@ -29,62 +29,44 @@
 # ++
 
 class WorkPackages::DatePickerController < ApplicationController
-  include OpTurbo::ComponentStream
-
   ERROR_PRONE_ATTRIBUTES = %i[start_date
                               due_date
                               duration].freeze
 
   layout false
 
-  before_action :find_work_package, except: %i[new create]
-  authorization_checked! :show, :update, :edit, :new, :create
+  before_action :find_work_package, except: %i[new create preview]
+  authorization_checked! :show, :preview, :update, :edit, :new, :create
 
   attr_accessor :work_package
 
   def show
     set_date_attributes_to_work_package
-
-    respond_to do |format|
-      format.html do
-        render :show,
-               locals: { work_package:, schedule_manually:, focused_field:, params: params.merge(date_mode: date_mode).permit! },
-               layout: false
-      end
-
-      format.turbo_stream do
-        replace_via_turbo_stream(
-          component: datepicker_modal_component
-        )
-        render turbo_stream: turbo_streams
-      end
-    end
+    render_form
   end
 
   def new
     make_fake_initial_work_package
     set_date_attributes_to_work_package
-
-    respond_to do |format|
-      format.turbo_stream do
-        replace_via_turbo_stream(
-          component: datepicker_modal_component
-        )
-        render turbo_stream: turbo_streams
-      end
-      format.html do
-        render datepicker_modal_component, status: :ok
-      end
-    end
+    render_form
   end
 
   def edit
     set_date_attributes_to_work_package
-
-    render datepicker_modal_component
+    render_form
   end
 
-  # rubocop:disable Metrics/AbcSize
+  def preview
+    if params[:work_package_id]
+      find_work_package
+    else
+      make_fake_initial_work_package
+    end
+
+    set_date_attributes_to_work_package
+    render_form(preview: true)
+  end
+
   def create
     make_fake_initial_work_package
     service_call = set_date_attributes_to_work_package
@@ -92,17 +74,7 @@ class WorkPackages::DatePickerController < ApplicationController
     if service_call.errors
                    .map(&:attribute)
                    .intersect?(ERROR_PRONE_ATTRIBUTES)
-      respond_to do |format|
-        format.turbo_stream do
-          # Bundle 422 status code into stream response so
-          # Angular has context as to the success or failure of
-          # the request in order to fetch the new set of Work Package
-          # attributes in the ancestry solely on success.
-          render turbo_stream: [
-            turbo_stream.morph("wp-datepicker-dialog--content", datepicker_modal_component)
-          ], status: :unprocessable_entity
-        end
-      end
+      render_form(status: :unprocessable_entity)
     else
       render json: {
         startDate: @work_package.start_date,
@@ -117,7 +89,6 @@ class WorkPackages::DatePickerController < ApplicationController
       }
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def update
     wp_params = work_package_datepicker_params
@@ -129,61 +100,25 @@ class WorkPackages::DatePickerController < ApplicationController
                      .call(wp_params)
 
     if service_call.success?
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: []
-        end
-      end
+      head :ok
     else
-      respond_to do |format|
-        format.turbo_stream do
-          # Bundle 422 status code into stream response so
-          # Angular has context as to the success or failure of
-          # the request in order to fetch the new set of Work Package
-          # attributes in the ancestry solely on success.
-          render turbo_stream: [
-            turbo_stream.morph("wp-datepicker-dialog--content", datepicker_modal_component)
-          ], status: :unprocessable_entity
-        end
-      end
+      render_form(status: :unprocessable_entity)
     end
   end
 
   private
 
-  def datepicker_modal_component
-    WorkPackages::DatePicker::DialogContentComponent.new(work_package: @work_package,
-                                                         schedule_manually:,
-                                                         focused_field:,
-                                                         triggering_field: params[:triggering_field],
-                                                         touched_field_map:,
-                                                         date_mode:,
-                                                         live_region_message:)
-  end
-
-  def live_region_message
-    message_parts = [
-      "Scheduling mode: #{scheduling_label}",
-      working_days_label
-    ]
-
-    message_parts << "Start date: #{@work_package.start_date}" if @work_package.start_date.present?
-    message_parts << "Finish date: #{@work_package.due_date}" if @work_package.due_date.present?
-    message_parts << "Duration: #{@work_package.duration} days" if @work_package.duration.present?
-
-    I18n.t(
-      "work_packages.datepicker_modal.update_inputs_aria_live_message",
-      message: message_parts.join(", ")
-    )
-  end
-
-  def working_days_label
-    I18n.t("activerecord.attributes.work_package.include_non_working_days.#{@work_package.ignore_non_working_days || false}")
-  end
-
-  def scheduling_label
-    mode = @work_package.schedule_manually ? "manual" : "automatic"
-    I18n.t("work_packages.datepicker_modal.mode.#{mode}")
+  def render_form(status: :ok, preview: false)
+    render :show,
+           locals: {
+             work_package:,
+             schedule_manually:,
+             focused_field:,
+             touched_field_map:,
+             date_mode:,
+             preview:
+           },
+           status:
   end
 
   def focused_field

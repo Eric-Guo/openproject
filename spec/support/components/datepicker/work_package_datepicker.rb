@@ -104,6 +104,10 @@ module Components
       expect(container).to have_link("Start date")
     end
 
+    def expect_add_finish_date_button_visible
+      expect(container).to have_link("Finish date")
+    end
+
     def enable_due_date
       retry_block do
         page.find_test_selector("wp-datepicker--show-due-date").click
@@ -171,6 +175,13 @@ module Components
     def toggle_scheduling_mode
       page.within_test_selector "op-datepicker-modal--scheduling" do
         page.find('[data-qa-selected="false"]').click
+      end
+    end
+
+    def toggle_scheduling_mode_via_keyboard
+      page.within_test_selector "op-datepicker-modal--scheduling" do
+        el = page.find('[data-qa-selected="false"]')
+        el.native.send_keys(:enter)
       end
     end
 

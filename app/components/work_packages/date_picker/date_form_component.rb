@@ -32,6 +32,9 @@ module WorkPackages
   module DatePicker
     class DateFormComponent < ApplicationComponent
       include OpPrimer::ComponentHelpers
+
+      FOCUSED_CLASS = "op-datepicker-modal--date-field_current"
+
       attr_reader :work_package
 
       def initialize(work_package:,
@@ -78,7 +81,7 @@ module WorkPackages
           disabled: disabled?(name),
           label:,
           show_clear_button: show_clear_button?(name),
-          classes: "op-datepicker-modal--date-field #{'op-datepicker-modal--date-field_current' if @focused_field == name}",
+          classes: "op-datepicker-modal--date-field #{FOCUSED_CLASS if focused?(name)}",
           validation_message: validation_message(name),
           type: field_type(name),
           placeholder: placeholder(name)
@@ -165,6 +168,10 @@ module WorkPackages
         @disabled
       end
 
+      def focused?(name)
+        @focused_field == name && !disabled?(name)
+      end
+
       def field_value(name)
         errors = @work_package.errors.where(name)
         if (user_value = errors.map { |error| error.options[:value] }.find { !it.nil? })
@@ -206,7 +213,7 @@ module WorkPackages
                          "focus->work-packages--date-picker--preview#onHighlightField",
                  test_selector: "op-datepicker-modal--#{name.to_s.dasherize}-field" }
 
-        if @focused_field == name && !disabled?(name)
+        if focused?(name)
           data[:qa_highlighted] = "true"
           data[:focus] = "true"
         end
@@ -217,10 +224,10 @@ module WorkPackages
       def single_date_field_button_link(focused_field)
         permitted_params = params.merge(date_mode: "range", focused_field:).permit!
 
-        if params[:action] == "new"
-          new_date_picker_path(permitted_params)
+        if work_package.new_record?
+          preview_date_picker_path(permitted_params)
         else
-          work_package_date_picker_path(permitted_params)
+          preview_work_package_date_picker_path(work_package, permitted_params)
         end
       end
 

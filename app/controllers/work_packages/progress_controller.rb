@@ -35,7 +35,7 @@ class WorkPackages::ProgressController < ApplicationController
                               done_ratio].freeze
 
   layout false
-  authorization_checked! :new, :edit, :create, :update
+  authorization_checked! :new, :edit, :preview, :create, :update
 
   def new
     make_fake_initial_work_package
@@ -48,6 +48,17 @@ class WorkPackages::ProgressController < ApplicationController
     find_work_package
     set_progress_attributes_to_work_package
 
+    render progress_modal_component
+  end
+
+  def preview
+    if params[:work_package_id]
+      find_work_package
+    else
+      make_fake_initial_work_package
+    end
+
+    set_progress_attributes_to_work_package
     render progress_modal_component
   end
 

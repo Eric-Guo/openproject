@@ -1,108 +1,104 @@
+<live-region></live-region>
+<% if preview && live_region_message %>
+  <%= render OpTurbo::StreamComponent.new(action: :liveRegion, message: live_region_message, politeness: "polite", delay: "500", target: nil) %>
+<% end %>
 <%=
-  content_tag("turbo-frame", id: "wp-datepicker-dialog--content") do
-%>
-  <live-region></live-region>
-  <% if @live_region_message %>
-    <%= render OpTurbo::StreamComponent.new(action: :liveRegion, message: @live_region_message, politeness: "polite", delay: "500", target: nil) %>
-  <% end %>
-  <%=
-    component_wrapper(
-      data: { controller: "work-packages--date-picker--preview",
-              "work-packages--date-picker--preview-date-mode-value": date_mode,
-              "work-packages--date-picker--preview-triggering-field-value": triggering_field,
-              "work-packages--date-picker--preview-schedule-manually-value": schedule_manually,
-              test_selector: "op-datepicker-modal" },
-      class: "wp-datepicker-dialog--content"
-    ) do
-      component_collection do |collection|
-        if show_banner?
-          collection.with_component(WorkPackages::DatePicker::BannerComponent.new(work_package:, manually_scheduled: schedule_manually))
-        end
+  component_wrapper(
+    data: { controller: "work-packages--date-picker--preview",
+            "work-packages--date-picker--preview-date-mode-value": date_mode,
+            "work-packages--date-picker--preview-triggering-field-value": triggering_field,
+            "work-packages--date-picker--preview-schedule-manually-value": schedule_manually,
+            test_selector: "op-datepicker-modal" },
+    class: "wp-datepicker-dialog--content"
+  ) do
+    component_collection do |collection|
+      if show_banner?
+        collection.with_component(WorkPackages::DatePicker::BannerComponent.new(work_package:, manually_scheduled: schedule_manually))
+      end
 
-        collection.with_component(Primer::Alpha::Dialog::Body.new(classes: "wp-datepicker-dialog--body", p: 0)) do
-          render(
-            Primer::Alpha::UnderlinePanels.new(
-              "aria-label": I18n.t("work_packages.datepicker_modal.tabs.aria_label"),
-              label: I18n.t("work_packages.datepicker_modal.tabs.aria_label"),
-              classes: "wp-datepicker-dialog--UnderlineNav",
-              px: 3
-            )
-          ) do |component|
-            component.with_tab(selected: true, id: "wp-datepicker-dialog--content-tab--dates") do |tab|
-              tab.with_text { I18n.t("work_packages.datepicker_modal.tabs.dates") }
-              tab.with_panel(m: 3) do
-                render(
-                  WorkPackages::DatePicker::FormComponent.new(
-                    form_id: DIALOG_FORM_ID,
-                    show_date_form: can_set_dates?,
-                    work_package:,
-                    schedule_manually:,
-                    focused_field:,
-                    triggering_field:,
-                    touched_field_map:,
-                    date_mode:
-                  )
+      collection.with_component(Primer::Alpha::Dialog::Body.new(classes: "wp-datepicker-dialog--body", p: 0)) do
+        render(
+          Primer::Alpha::UnderlinePanels.new(
+            "aria-label": I18n.t("work_packages.datepicker_modal.tabs.aria_label"),
+            label: I18n.t("work_packages.datepicker_modal.tabs.aria_label"),
+            classes: "wp-datepicker-dialog--UnderlineNav",
+            px: 3
+          )
+        ) do |component|
+          component.with_tab(selected: true, id: "wp-datepicker-dialog--content-tab--dates") do |tab|
+            tab.with_text { I18n.t("work_packages.datepicker_modal.tabs.dates") }
+            tab.with_panel(m: 3) do
+              render(
+                WorkPackages::DatePicker::FormComponent.new(
+                  form_id: DIALOG_FORM_ID,
+                  show_date_form: can_set_dates?,
+                  work_package:,
+                  schedule_manually:,
+                  focused_field:,
+                  triggering_field:,
+                  touched_field_map:,
+                  date_mode:
                 )
-              end
+              )
             end
+          end
 
-            additional_tabs.each do |tab|
-              component.with_tab(id: "wp-datepicker-dialog--content-tab--#{tab.key}") do |tab_content|
-                relation_group = tab.relation_group
-                tab_content.with_text { I18n.t("work_packages.datepicker_modal.tabs.#{tab.key}") }
-                tab_content.with_counter(count: relation_group.count)
-                tab_content.with_panel(m: 3, classes: "wp-datepicker-dialog--content-tab--relation-tab") do
-                  if relation_group.any?
-                    render(border_box_container(padding: :condensed)) do |box|
-                      relation_group.all_relation_items.each do |relation_item|
-                        box.with_row(scheme: :default) do
-                          render(
-                            WorkPackageRelationsTab::RelationComponent.new(
-                              relation_item:,
-                              editable: false
-                            )
+          additional_tabs.each do |tab|
+            component.with_tab(id: "wp-datepicker-dialog--content-tab--#{tab.key}") do |tab_content|
+              relation_group = tab.relation_group
+              tab_content.with_text { I18n.t("work_packages.datepicker_modal.tabs.#{tab.key}") }
+              tab_content.with_counter(count: relation_group.count)
+              tab_content.with_panel(m: 3, classes: "wp-datepicker-dialog--content-tab--relation-tab") do
+                if relation_group.any?
+                  render(border_box_container(padding: :condensed)) do |box|
+                    relation_group.all_relation_items.each do |relation_item|
+                      box.with_row(scheme: :default) do
+                        render(
+                          WorkPackageRelationsTab::RelationComponent.new(
+                            relation_item:,
+                            editable: false
                           )
-                        end
+                        )
                       end
                     end
-                  else
-                    render(Primer::Beta::Blankslate.new(border: true)) do |blankslate|
-                      blankslate.with_visual_icon(icon: :book, size: :medium)
-                      blankslate.with_heading(tag: :h2) { I18n.t("work_packages.datepicker_modal.tabs.blankslate.#{tab.key}.title") }
-                      blankslate.with_description { I18n.t("work_packages.datepicker_modal.tabs.blankslate.#{tab.key}.description") }
-                    end
+                  end
+                else
+                  render(Primer::Beta::Blankslate.new(border: true)) do |blankslate|
+                    blankslate.with_visual_icon(icon: :book, size: :medium)
+                    blankslate.with_heading(tag: :h2) { I18n.t("work_packages.datepicker_modal.tabs.blankslate.#{tab.key}.title") }
+                    blankslate.with_description { I18n.t("work_packages.datepicker_modal.tabs.blankslate.#{tab.key}.description") }
                   end
                 end
               end
             end
           end
         end
+      end
 
-        collection.with_component(Primer::Alpha::Dialog::Footer.new) do
-          component_collection do |footer|
-            footer.with_component(
-              Primer::Beta::Button.new(
-                data: { action: "work-packages--date-picker--preview#cancel" },
-                test_selector: "op-datepicker-modal--action"
-              )
-            ) do
-              I18n.t("button_cancel")
-            end
+      collection.with_component(Primer::Alpha::Dialog::Footer.new) do
+        component_collection do |footer|
+          footer.with_component(
+            Primer::Beta::Button.new(
+              data: { action: "work-packages--date-picker--preview#cancel" },
+              test_selector: "op-datepicker-modal--action"
+            )
+          ) do
+            I18n.t("button_cancel")
+          end
 
-            footer.with_component(
-              Primer::Beta::Button.new(
-                scheme: :primary,
-                type: :submit,
-                form: DIALOG_FORM_ID,
-                test_selector: "op-datepicker-modal--action",
-                disabled: !can_set_dates?
-              )
-            ) do
-              I18n.t("button_save")
-            end
+          footer.with_component(
+            Primer::Beta::Button.new(
+              scheme: :primary,
+              type: :submit,
+              form: DIALOG_FORM_ID,
+              test_selector: "op-datepicker-modal--action",
+              disabled: !can_set_dates?
+            )
+          ) do
+            I18n.t("button_save")
           end
         end
       end
     end
-  %>
-<% end %>
+  end
+%>

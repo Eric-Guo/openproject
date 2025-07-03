@@ -65,9 +65,9 @@ RSpec.describe "Manual scheduling", :js do
       # Toggle to manual scheduling mode
       datepicker.toggle_scheduling_mode
 
-      # Expect editable in single mode with due date field visible
-      datepicker.expect_add_start_date_button_visible
-      datepicker.expect_due_date ""
+      # Expect editable in single mode with start date field visible
+      datepicker.expect_add_finish_date_button_visible
+      datepicker.expect_start_date ""
       datepicker.expect_cancel_button_enabled
       datepicker.expect_save_button_enabled
 
@@ -99,8 +99,8 @@ RSpec.describe "Manual scheduling", :js do
       datepicker.toggle_scheduling_mode
 
       # Enable start date then set dates
-      datepicker.expect_add_start_date_button_visible
-      datepicker.enable_start_date
+      datepicker.expect_add_finish_date_button_visible
+      datepicker.enable_due_date
       datepicker.set_start_date "2020-07-20"
       datepicker.set_due_date "2020-07-25"
       datepicker.save!
