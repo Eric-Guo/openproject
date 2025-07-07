@@ -2282,9 +2282,9 @@
     tslib "^2.3.0"
 
 "@openproject/primer-view-components@npm:@openproject/primer-view-components@^0.70.2":
-  version "0.70.2"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.2.tgz#cb4ec560569cd15ed43d563a2778019b39f79f27"
-  integrity sha512-h/2m1Ott9n1awZQRA26bNbex9g6NItBI1/sPDIWBVlQovy5pVJOx1LBjgv8W8VBCwKCJwWoTarK7Ln6JrNkc5A==
+  version "0.70.3"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.3.tgz#a308bdddccdc6d86674a60d2c09461ac5233c75d"
+  integrity sha512-b/cNIpxfXWcaQzq282EqobEtqUZ6oTCrPilHRGEhJCkM4JVDZIbN9UvXZjuORGfs3s53Q1HACL1q5Q7/BTHP2Q==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
@@ -2355,9 +2355,9 @@
     prettier "3.3"
 
 "@primer/view-components@npm:@openproject/primer-view-components@^0.70.2":
-  version "0.70.2"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.2.tgz#cb4ec560569cd15ed43d563a2778019b39f79f27"
-  integrity sha512-h/2m1Ott9n1awZQRA26bNbex9g6NItBI1/sPDIWBVlQovy5pVJOx1LBjgv8W8VBCwKCJwWoTarK7Ln6JrNkc5A==
+  version "0.70.3"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.3.tgz#a308bdddccdc6d86674a60d2c09461ac5233c75d"
+  integrity sha512-b/cNIpxfXWcaQzq282EqobEtqUZ6oTCrPilHRGEhJCkM4JVDZIbN9UvXZjuORGfs3s53Q1HACL1q5Q7/BTHP2Q==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
