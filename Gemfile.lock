@@ -894,7 +894,7 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lefthook (1.12.1)
+    lefthook (1.12.2)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     letter_opener_web (3.0.0)
@@ -1291,7 +1291,7 @@ GEM
     rubocop-factory_bot (2.27.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-openproject (0.2.0)
+    rubocop-openproject (0.3.0)
       rubocop
     rubocop-performance (1.25.0)
       lint_roller (~> 1.1)
@@ -1648,7 +1648,7 @@ DEPENDENCIES
   openproject-octicons (~> 19.25.0)
   openproject-octicons_helper (~> 19.25.0)
   openproject-openid_connect!
-  openproject-primer_view_components (~> 0.70.2)
+  openproject-primer_view_components (~> 0.70.4)
   openproject-recaptcha!
   openproject-reporting!
   openproject-storages!
