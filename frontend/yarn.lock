@@ -2589,95 +2589,95 @@
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
 "@tiptap/core@^2.12.0":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/core/-/core-2.25.0.tgz#201cbe1b118fc524472431097c06589cc47b6b64"
-  integrity sha512-pTLV0+g+SBL49/Y5A9ii7oHwlzIzpgroJVI3AcBk7/SeR7554ZzjxxtJmZkQ9/NxJO+k1jQp9grXaqqOLqC7cA==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/core/-/core-2.25.1.tgz#2a10002818b860a097306ce2c5d9c9f9ffef3770"
+  integrity sha512-zdYMeJVkfWWdSpp+W2JcLw7jG/4uUpNgJNI6C1LUJzjOlDclDp5WK5cVeARBt4QlCvDOZq82LDNVlFrwMEEQag==
 
 "@tiptap/extension-bold@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-bold/-/extension-bold-2.25.0.tgz#21fa8d9988dd11326ad8a6f68b1e5ceeabe7fca1"
-  integrity sha512-3cBX2EtdFR3+EDTkIshhpQpXoZQbFUzxf6u86Qm0qD49JnVOjX9iexnUp8MydXPZA6NVsKeEfMhf18gV7oxTEw==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-bold/-/extension-bold-2.25.1.tgz#1d638fa59734f8cc08cbde3c5dd6fe2c27c76b9f"
+  integrity sha512-CNiMcHOojssfsLY920Xjy/rUjd/wigHJpspGi15XPkaDWSVSS0+lIsfBo7a0GtkcUlEsHZ1tmth+o6pK9IQ29Q==
 
-"@tiptap/extension-bubble-menu@^2.25.0":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-bubble-menu/-/extension-bubble-menu-2.25.0.tgz#f2b298e0ec4c126be6ae94dada08ceae1dec5798"
-  integrity sha512-BnbfQWRXJDDy9/x/0Atu2Nka5ZAMyXLDFqzSLMAXqXSQcG6CZRTSNRgOCnjpda6Hq2yCtq7l/YEoXkbHT1ZZdQ==
+"@tiptap/extension-bubble-menu@^2.25.1":
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-bubble-menu/-/extension-bubble-menu-2.25.1.tgz#f0f58d8f63abe1476062edca7cccae78e1a55147"
+  integrity sha512-osgN0kZ7bxpkF8yJx/r3baCh9a3G6dAncMHBrx6jrElP00UX+gxbf+G14EN28kclFS26VOacPUADFAAxHT6uZg==
   dependencies:
     tippy.js "^6.3.7"
 
 "@tiptap/extension-code@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-code/-/extension-code-2.25.0.tgz#3c7f3677f0a0aaaa2a2d21bfd29aee04797b261a"
-  integrity sha512-rRp6X2aNNnvo7Fbqc3olZ0vLb52FlCPPfetr9gy6/M9uQdVYDhJcFOPuRuXtZ8M8X+WpCZBV29BvZFeDqfw8bw==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-code/-/extension-code-2.25.1.tgz#e53a7a9b959c00775756e3748d3ca931b0b63949"
+  integrity sha512-5so+IziyUE0R48grDLRs2yHhmuNvAGJco4A8qVFSg+eOLmFYVvosWsracfymOdK62agni5r0dGPIAZa/DDpYBA==
 
-"@tiptap/extension-floating-menu@^2.25.0":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-floating-menu/-/extension-floating-menu-2.25.0.tgz#2ab22de58c493b74e8b65435926170a5ee4061de"
-  integrity sha512-hPZ5SNpI14smTz4GpWQXTnxmeICINYiABSgXcsU5V66tik9OtxKwoCSR/gpU35esaAFUVRdjW7+sGkACLZD5AQ==
+"@tiptap/extension-floating-menu@^2.25.1":
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-floating-menu/-/extension-floating-menu-2.25.1.tgz#61b11eb9231386dba8613a46ae48517d02021e41"
+  integrity sha512-MNEaBV+TyGCmhENRnPg8E1e/ZMaEBg0YgSNMWauzL3TXovxlTfSGHYOeqinCl4c/vlMFgv2vM+zsL2tTeq8a4w==
   dependencies:
     tippy.js "^6.3.7"
 
 "@tiptap/extension-gapcursor@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-gapcursor/-/extension-gapcursor-2.25.0.tgz#0773e91e1a48122472f3a712b51a908a117ee54d"
-  integrity sha512-s/3WDbgkvLac88h5iYJLPJCDw8tMhlss1hk9GAo+zzP4h0xfazYie09KrA0CBdfaSOFyeJK3wedzjKZBtdgX4w==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-gapcursor/-/extension-gapcursor-2.25.1.tgz#27aeddd03660b94833f1e3bc44b23ef9bf48b143"
+  integrity sha512-NirxAbM0BTMI2Oi1gJelr89RY/wMssuxvWfXZAD114dv0nGnzy17PL5KxPAX86YQGvhDY8pOWq/gzkopkNvLZw==
 
 "@tiptap/extension-history@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-history/-/extension-history-2.25.0.tgz#c215b0a73c1eaa934d495866e5457fb1a2ccda58"
-  integrity sha512-y3uJkJv+UngDaDYfcVJ4kx8ivc3Etk5ow6N+47AMCRjUUweQ/CLiJwJ2C7nL7L82zOzVbb/NoR/B3UeE4ts/wQ==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-history/-/extension-history-2.25.1.tgz#4049d182e8d1809e5982ed05f29d27790427673d"
+  integrity sha512-ZoxxOAObk1U8H3d+XEG0MjccJN0ViGIKEZqnLUSswmVweYPdkJG2WF2pEif9hpwJONslvLTKa+f8jwK5LEnJLQ==
 
 "@tiptap/extension-horizontal-rule@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-horizontal-rule/-/extension-horizontal-rule-2.25.0.tgz#ec3675ebc1e65d5cdb39154620c5a4a512dee709"
-  integrity sha512-bZovyhdOexB3Cv9ddUogWT+cd3KbnenMIZKhgrJ+R0J27rlOtzeUD9TeIjn4V8Of9mTxm3XDKUZGLgPiriN8Ww==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-horizontal-rule/-/extension-horizontal-rule-2.25.1.tgz#1653c1817652eb93d0925cdd244155cb22460028"
+  integrity sha512-3lhlJQwWRwPG7Rcz6M6nzSOcvpIkrjye1l958ux5rpN2OKffVexrLHRJZEF0l18qSwbQi+WHNI4hTB71x/ZpYQ==
 
 "@tiptap/extension-italic@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-italic/-/extension-italic-2.25.0.tgz#661f78fef61678e967161a5ce0804e099f7d0734"
-  integrity sha512-FZHmNqvWJ5SHYlUi+Qg3b2C0ZBt82DUDUqM+bqcQqSQu6B0c4IEc3+VHhjAJwEUIO9wX7xk/PsdM4Z5Ex4Lr3w==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-italic/-/extension-italic-2.25.1.tgz#f2bd145eeda1218befe962e3ccf8cb5bc183a6ff"
+  integrity sha512-5YC74y4fXWHGJ/NUOtFSWNtfyj+FVXqtoocGx8AvWJ7OV7MmkDwhMwFN+Eaesho8qv1ESU08WPx2laI8ZwT8jA==
 
 "@tiptap/extension-link@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-link/-/extension-link-2.25.0.tgz#afe13bc71184ae74344f2e4ef56bab9b40cbc02d"
-  integrity sha512-jNd+1Fd7wiIbxlS51weBzyDtBEBSVzW0cgzdwOzBYQtPJueRyXNNVERksyinDuVgcfvEWgmNZUylgzu7mehnEg==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-link/-/extension-link-2.25.1.tgz#83e0020c365c14d6d6a41f657b6d982bdb63cb50"
+  integrity sha512-kEx/2fGAlv3le6EAUikz1febrBXjMsbaeHysaHrSi10ZwJpOPV6U07e/8xn7mf6Oifcvp185v3mIumLUtxpOhA==
   dependencies:
     linkifyjs "^4.2.0"
 
 "@tiptap/extension-paragraph@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-paragraph/-/extension-paragraph-2.25.0.tgz#fdcf6376e099868d3cde3bf64aac67f5500e8102"
-  integrity sha512-53gpWMPedkWVDp3u/1sLt6vnr3BWz4vArGCmmabLucCI2Yl4R6S/AQ9yj/+jOHvWbXCroCbKtmmwxJl32uGN2w==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-paragraph/-/extension-paragraph-2.25.1.tgz#9d46ef789e90b26053b8a3d5a210eb14d0a6d07f"
+  integrity sha512-8zOKKmDuDk0757nqKspBZnIHLHCefQ7SUSfy6OAwzZSkq1uPuEpXM7JeRLQUaMaJMSfNzx8rn4eNDCSxjXLu8Q==
 
 "@tiptap/extension-strike@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-strike/-/extension-strike-2.25.0.tgz#d571cb1ef885305862fb37efacc7e4b01f85c3ac"
-  integrity sha512-Z5YBKnv4N6MMD1LEo9XbmWnmdXavZKOOJt/OkXYFZ3KgzB52Z3q3DDfH+NyeCtKKSWqWVxbBHKLnsojDerSf2g==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-strike/-/extension-strike-2.25.1.tgz#9b730299053d5ab867a9044e2bf0512b09a0b768"
+  integrity sha512-n+0jtwKFJBFfmE1DlWveNeXNdskmmKHHIRe0YBimUejSb+A55ZkvDA2OcWRV0ypE/3qvTY8Sjjp3mupwUsF4Hw==
 
 "@tiptap/extension-table-cell@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-table-cell/-/extension-table-cell-2.25.0.tgz#9777765cffe1ebbfdeb2e3a61c38ce5304a022bb"
-  integrity sha512-W7y+TPUqfhQBoo5sVrkE+BJgqopWIUvLlcnLLAF6C1qWsmiTTCk/N3gY5pOlCHb98X4kkerUHoHZW1MJ8Eu/Pw==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-table-cell/-/extension-table-cell-2.25.1.tgz#35fdad5faa5da45084045bbd08614d8244439665"
+  integrity sha512-ko8dsOdwZyBwV0tzfsWuhakPRDHIFGJM4d+o/mANewft8v6ROLg+4nvn9zLIcLwjDeZWAqKQXPpeOkQPe0Oa4w==
 
 "@tiptap/extension-table-header@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-table-header/-/extension-table-header-2.25.0.tgz#bf673dd49106366aba6b326d0544aaa1ce1932ff"
-  integrity sha512-1qFP7ldetkqUZ4MCrxS6e/IY9Y2+sPo94LsnW7qy72hu/WcAW6/V+6cY/4UYNmt8dxXnvBHtwmUpTuoIts37Fw==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-table-header/-/extension-table-header-2.25.1.tgz#5f263f406a8c177bd77617991b9a328d641c003f"
+  integrity sha512-YPeUbF97uMvqXmn4GA1PpNhvq9BQrvS88qkB35YsvBEfY1Lu41lhx8cuCrpqBLUhccznFZDlh2xXCiwElBBjhg==
 
 "@tiptap/extension-text@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-text/-/extension-text-2.25.0.tgz#cc116896c7f0319fb11fe52b07100fa9a2dc8064"
-  integrity sha512-HlZL86rihpP/R8+dqRrvzSRmiPpx6ctlAKM9PnWT/WRMeI4Y1AUq6PSHLz74wtYO1LH4PXys1ws3n+pLP4Mo6g==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-text/-/extension-text-2.25.1.tgz#58504d9c04201be4be958dafc301f7f904288f4d"
+  integrity sha512-5t9Bjr1OY7fwadjOggo5Ze8L9xZe4G+eOHHuotyGly7BuLDVdAumdn6clE04VmhrbzWmEl9h4+dV0JWSfxr13A==
 
 "@tiptap/extension-underline@^2.11.5":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-underline/-/extension-underline-2.25.0.tgz#3352b126f1db6144c9428d02a2ec0fead511f49c"
-  integrity sha512-RqXkWSMJyllfsDukugDzWEZfWRUOgcqzuMWC40BnuDUs4KgdRA0nhVUWJbLfUEmXI0UVqN5OwYTTAdhaiF7kjQ==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-underline/-/extension-underline-2.25.1.tgz#5d66080fe07ad53ceaccc9b0e7b439ef096b7cf1"
+  integrity sha512-JS+YtOyTVHMRGef2Fa0vc5XtBTr0bI9nmYsqWTQ6kFGM1q9H7gEeh1JeBV+vgXJ8/zhcw1Spts6OQdVfuiEIug==
 
 "@tiptap/pm@^2.12.0":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/pm/-/pm-2.25.0.tgz#6485276749aa72a05013237a31932e0d77d2244c"
-  integrity sha512-vuzU0pLGQyHqtikAssHn9V61aXLSQERQtn3MUtaJ36fScQg7RClAK5gnIbBt3Ul3VFof8o4xYmcidARc0X/E5A==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/pm/-/pm-2.25.1.tgz#a96ebf82b4931d13b307f267dc2abf93425fa866"
+  integrity sha512-r886WklOcrsOgoX2+FIKNEz7dtIaa7sjyKxqWwuGvlkhpWK1Miv/jC37HDmOdqNdT3JtKY11+xSGi8+Wl0qCdQ==
   dependencies:
     prosemirror-changeset "^2.3.0"
     prosemirror-collab "^1.3.1"
@@ -2699,12 +2699,12 @@
     prosemirror-view "^1.37.0"
 
 "@tiptap/react@^2.12.0":
-  version "2.25.0"
-  resolved "https://registry.npmmirror.com/@tiptap/react/-/react-2.25.0.tgz#9b28d575fec5c64ccd3c5b91b35153cf7f8e1a16"
-  integrity sha512-Fc7uj/+goEhvJkH2vYJxXLH1GsUkOcsIR3kUyL0vejNRvpzzd87CI/EiSD2ESJO43czQcsJkiYzY4EC+p8NF9w==
+  version "2.25.1"
+  resolved "https://registry.npmmirror.com/@tiptap/react/-/react-2.25.1.tgz#df14d2342f632139ba2dc284b7d8b0f76bdf6b5c"
+  integrity sha512-75wyirpP5unltKiBSY/rUeuBuFCTPfPIq4f96mY/Sjn9bdWeSTVNGqFnOPhjJUy0bAQHErFdoQ9rGGm95tsvKw==
   dependencies:
-    "@tiptap/extension-bubble-menu" "^2.25.0"
-    "@tiptap/extension-floating-menu" "^2.25.0"
+    "@tiptap/extension-bubble-menu" "^2.25.1"
+    "@tiptap/extension-floating-menu" "^2.25.1"
     "@types/use-sync-external-store" "^0.0.6"
     fast-deep-equal "^3"
     use-sync-external-store "^1"
@@ -2985,9 +2985,9 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=10.0.0":
-  version "24.0.12"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-24.0.12.tgz#3cf8719572145cfecf4cf9d180d8e7f74a61af00"
-  integrity sha512-LtOrbvDf5ndC9Xi+4QZjVL0woFymF/xSTKZKPgrrl7H7XoeDvnD+E2IclKVDyaK9UM756W/3BXqSU+JEHopA9g==
+  version "24.0.13"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-24.0.13.tgz#93ed8c05c7b188a59760be0ce2ee3fa7ad0f83f6"
+  integrity sha512-Qm9OYVOFHFYg3wJoTSrz80hoec5Lia/dPp84do3X7dZvLikQvM1YpmvTBEdIr/e+U8HTkFjLHLnl78K/qjf+jQ==
   dependencies:
     undici-types "~7.8.0"
 
@@ -5533,9 +5533,9 @@ ejs@^3.1.5, ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.173:
-  version "1.5.181"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.181.tgz#2f68dc900651858200a423acdf12c644f6b7f014"
-  integrity sha512-+ISMj8OIQ+0qEeDj14Rt8WwcTOiqHyAB+5bnK1K7xNNLjBJ4hRCQfUkw8RWtcLbfBzDwc15ZnKH0c7SNOfwiyA==
+  version "1.5.182"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.182.tgz#4ab73104f893938acb3ab9c28d7bec170c116b3e"
+  integrity sha512-Lv65Btwv9W4J9pyODI6EWpdnhfvrve/us5h1WspW8B2Fb0366REPtY3hX7ounk1CkV/TBjWCEvCBBbYbmV0qCA==
 
 emoji-mart@^5.6.0:
   version "5.6.0"
