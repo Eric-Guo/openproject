@@ -5533,9 +5533,9 @@ ejs@^3.1.5, ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.173:
-  version "1.5.182"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.182.tgz#4ab73104f893938acb3ab9c28d7bec170c116b3e"
-  integrity sha512-Lv65Btwv9W4J9pyODI6EWpdnhfvrve/us5h1WspW8B2Fb0366REPtY3hX7ounk1CkV/TBjWCEvCBBbYbmV0qCA==
+  version "1.5.183"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.183.tgz#38c2e16910569b6c595bd16d1d39d1218bf0ffb6"
+  integrity sha512-vCrDBYjQCAEefWGjlK3EpoSKfKbT10pR4XXPdn65q7snuNOZnthoVpBfZPykmDapOKfoD+MMIPG8ZjKyyc9oHA==
 
 emoji-mart@^5.6.0:
   version "5.6.0"
@@ -8624,9 +8624,9 @@ levn@^0.4.1:
     type-check "~0.4.0"
 
 lib0@^0.2.109, lib0@^0.2.85, lib0@^0.2.99:
-  version "0.2.109"
-  resolved "https://registry.npmmirror.com/lib0/-/lib0-0.2.109.tgz#78a4a15cfb9de489a031396c6497eefe620ca794"
-  integrity sha512-jP0gbnyW0kwlx1Atc4dcHkBbrVAkdHjuyHxtClUPYla7qCmwIif1qZ6vQeJdR5FrOVdn26HvQT0ko01rgW7/Xw==
+  version "0.2.111"
+  resolved "https://registry.npmmirror.com/lib0/-/lib0-0.2.111.tgz#f9037bfcf94a3ba72252dbbc3c377ba8b642840e"
+  integrity sha512-NZPvycjIPaSY1DV9uz88RJYFwrul6kLMtZGIw1T1zE6i1E9q17XElZJPfWVn2iVDQTLLqhJijghuVxKS/z8EHQ==
   dependencies:
     isomorphic.js "^0.2.4"
 
