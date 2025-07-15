@@ -65,11 +65,7 @@ module API
         end
 
         def active_projects
-          if represented.present?
-            Project.visible_with_activated_time_activity(represented)
-          else
-            Project.where(id: 1157)
-          end
+          Project.where(id: 1157).visible_with_activated_time_activity(represented)
         end
       end
     end
