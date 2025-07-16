@@ -39,7 +39,7 @@ append :linked_dirs, *%w[vendor files log node_modules frontend/node_modules pub
 
 set :yarn_flags, "--silent --no-progress --ignore-engines"
 set :rbenv_type, :user
-set :rbenv_ruby, "3.4.4"
+set :rbenv_ruby, "3.4.5"
 
 set :puma_init_active_record, true
 
