@@ -867,7 +867,7 @@ GEM
       reline (>= 0.4.2)
     iso8601 (0.13.0)
     jmespath (1.6.2)
-    json (2.12.2)
+    json (2.13.0)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -949,7 +949,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0708)
+    mime-types-data (3.2025.0715)
     mini_magick (5.3.0)
       logger
     mini_mime (1.1.5)
@@ -1038,7 +1038,7 @@ GEM
       openssl (> 2.0)
     optimist (3.2.1)
     os (1.1.4)
-    ostruct (0.6.2)
+    ostruct (0.6.3)
     ox (2.14.23)
       bigdecimal (>= 3.0)
     paper_trail (16.0.0)
@@ -1221,7 +1221,7 @@ GEM
       psych (>= 4.0.0)
     recaptcha (5.19.0)
     redcarpet (3.6.1)
-    redis (5.4.0)
+    redis (5.4.1)
       redis-client (>= 0.22.0)
     redis-client (0.25.1)
       connection_pool
