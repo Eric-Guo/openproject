@@ -30,7 +30,7 @@ require "optparse"
 
 begin
   Bundler.gem("parallel_tests")
-rescue Gem::LoadError
+rescue Gem::LoadError,NoMethodError
   # In case parallel_tests is not provided, the whole of the parallel task group will not work.
   return
 end
