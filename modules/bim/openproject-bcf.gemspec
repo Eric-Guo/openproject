@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "CHANGELOG.md", "README.rdoc"]
 
   s.add_dependency "activerecord-import"
-  s.add_dependency "rubyzip", "~> 2.3.0"
+  s.add_dependency "rubyzip", "~> 2.4.0"
   s.metadata["rubygems_mfa_required"] = "true"
 end

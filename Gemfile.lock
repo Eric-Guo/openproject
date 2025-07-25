@@ -152,7 +152,7 @@ PATH
   specs:
     openproject-bim (1.0.0)
       activerecord-import
-      rubyzip (~> 2.3.0)
+      rubyzip (~> 2.4.0)
 
 PATH
   remote: modules/boards
@@ -1341,7 +1341,7 @@ GEM
     ruby2_keywords (0.0.5)
     rubytree (2.1.1)
       json (~> 2.0, > 2.9)
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     safety_net_attestation (0.4.0)
       jwt (~> 2.0)
     sanitize (7.0.0)
