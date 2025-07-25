@@ -415,7 +415,7 @@ GEM
       base64
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.107.0)
+    aws-sdk-kms (1.108.0)
       aws-sdk-core (~> 3, >= 3.227.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.194.0)
@@ -653,7 +653,7 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    faraday (2.13.3)
+    faraday (2.13.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -931,7 +931,7 @@ GEM
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    lookbook (2.3.11)
+    lookbook (2.3.12)
       activemodel
       css_parser
       htmlbeautifier (~> 1.3)
