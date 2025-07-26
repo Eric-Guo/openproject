@@ -55,7 +55,7 @@
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
     bottom: var(--${buttonId}-bottom, 1rem); /* Align with dify-chatbot-bubble-button. */
     left: unset;
-    min-width: 24rem;
+    min-width: 32rem;
     width: 48%;
     max-width: 40rem; /* Match mobile breakpoint*/
     min-height: 43.75rem;
