@@ -408,7 +408,7 @@ gem "disposable", "~> 0.6.2"
 # Used for formula evaluation of calculated values
 gem "dentaku", "~> 3.5"
 
-platforms :mri, :mingw, :x64_mingw do
+platforms :mri, :windows do
   group :postgres do
     gem "pg", "~> 1.5.0"
   end
