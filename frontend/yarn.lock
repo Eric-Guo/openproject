@@ -5533,9 +5533,9 @@ ejs@^3.1.5, ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.173:
-  version "1.5.191"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.191.tgz#8ae49a471447b1ceaf1d4d183a9000082f52363c"
-  integrity sha512-xcwe9ELcuxYLUFqZZxL19Z6HVKcvNkIwhbHUz7L3us6u12yR+7uY89dSl570f/IqNthx8dAw3tojG7i4Ni4tDA==
+  version "1.5.192"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.192.tgz#6dfc57a41846a57b18f9c0121821a6df1e165cc1"
+  integrity sha512-rP8Ez0w7UNw/9j5eSXCe10o1g/8B1P5SM90PCCMVkIRQn2R0LEHWz4Eh9RnxkniuDe1W0cTSOB3MLlkTGDcuCg==
 
 emoji-mart@^5.6.0:
   version "5.6.0"
@@ -10943,9 +10943,9 @@ raw-body@2.5.2:
     unpipe "1.0.0"
 
 react-dom@^19.1.0:
-  version "19.1.0"
-  resolved "https://registry.npmmirror.com/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
-  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
+  version "19.1.1"
+  resolved "https://registry.npmmirror.com/react-dom/-/react-dom-19.1.1.tgz#2daa9ff7f3ae384aeb30e76d5ee38c046dc89893"
+  integrity sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==
   dependencies:
     scheduler "^0.26.0"
 
@@ -11006,9 +11006,9 @@ react-textarea-autosize@8.5.9:
     use-latest "^1.2.1"
 
 react@^19.1.0:
-  version "19.1.0"
-  resolved "https://registry.npmmirror.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
-  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
+  version "19.1.1"
+  resolved "https://registry.npmmirror.com/react/-/react-19.1.1.tgz#06d9149ec5e083a67f9a1e39ce97b06a03b644af"
+  integrity sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==
 
 read-package-json-fast@^3.0.0:
   version "3.0.2"
