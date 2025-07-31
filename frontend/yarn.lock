@@ -2260,9 +2260,9 @@
   integrity sha512-iFrvar5SOMtKFOSjYvs4z9UlLqDdJbMx0mgISLcPedv+g0ac5sgeETLGtipHCVIae6HJPclNEH5aCyD1RZaEHw==
 
 "@openproject/octicons-angular@^19.25.0":
-  version "19.26.2"
-  resolved "https://registry.npmmirror.com/@openproject/octicons-angular/-/octicons-angular-19.26.2.tgz#95db9e2fc24a8d020f8a877d90af55425cd4dc21"
-  integrity sha512-Y/8BPW7Rr1/V7uW7utnYuczYDVq68DXvAwobDQAPTT7SPNmt9wcDwskyArF5Zl8X9/a9G0atu8d/3VuIZmbDlA==
+  version "19.26.3"
+  resolved "https://registry.npmmirror.com/@openproject/octicons-angular/-/octicons-angular-19.26.3.tgz#7a8088511d1923cba058bf1d39671912434d228b"
+  integrity sha512-7GGBbpwR/R90xppL5DvPr9L+mdqY3pZfo1eSNcqv6YYn9zxwThZCaVuomF5oM1tz/V7TQc/laHtnTGhH3Fcgiw==
   dependencies:
     tslib "^2.3.0"
 
