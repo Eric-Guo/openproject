@@ -183,9 +183,9 @@
     "@babel/runtime" "^7.0.0"
 
 "@redocly/ajv@^8.6.4":
-  version "8.11.2"
-  resolved "https://registry.npmmirror.com/@redocly/ajv/-/ajv-8.11.2.tgz#46e1bf321ec0ac1e0fd31dea41a3d1fcbdcda0b5"
-  integrity sha512-io1JpnwtIcvojV7QKDUSIuMN/ikdOUd1ReEnUnMKGfDVridQZ31J0MmIuqwuRjWDZfmvr+Q0MqCcfHM2gTivOg==
+  version "8.11.3"
+  resolved "https://registry.npmmirror.com/@redocly/ajv/-/ajv-8.11.3.tgz#4f148d1cec14ef3fd9d0efecedaa504159c959a6"
+  integrity sha512-4P3iZse91TkBiY+Dx5DUgxQ9GXkVJf++cmI0MOyLDxV9b5MUBI4II6ES8zA5JCbO72nKAJxWrw4PUPW+YP3ZDQ==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
