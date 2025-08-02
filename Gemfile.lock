@@ -502,7 +502,7 @@ GEM
     carrierwave_direct (2.1.0)
       carrierwave (>= 1.0.0)
       fog-aws
-    cbor (0.5.9.8)
+    cbor (0.5.9.9)
     cgi (0.5.0)
     childprocess (5.1.0)
       logger (~> 1.5)
