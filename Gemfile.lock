@@ -441,7 +441,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.1)
@@ -502,7 +502,7 @@ GEM
     carrierwave_direct (2.1.0)
       carrierwave (>= 1.0.0)
       fog-aws
-    cbor (0.5.9.9)
+    cbor (0.5.10.1)
     cgi (0.5.0)
     childprocess (5.1.0)
       logger (~> 1.5)
@@ -684,8 +684,8 @@ GEM
       ffi (>= 1.15.5)
       rake
     flamegraph (0.9.5)
-    fog-aws (3.32.0)
-      base64 (~> 0.2.0)
+    fog-aws (3.33.0)
+      base64 (>= 0.2, < 0.4)
       fog-core (~> 2.6)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
@@ -1370,7 +1370,7 @@ GEM
       bigdecimal
       logger
       ruby-ole
-    spring (4.3.0)
+    spring (4.4.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     spring-commands-rubocop (0.4.0)
