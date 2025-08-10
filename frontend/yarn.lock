@@ -1569,9 +1569,9 @@
   integrity sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==
 
 "@fullcalendar/angular@^6.1.10":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/angular/-/angular-6.1.18.tgz#a550eb0a700e033d1c60877a7a94fabdefe852c4"
-  integrity sha512-OBdpz0OA/7a2QdLES3vAAIO/TddtaIh7v4mZDYSFqTAia+ISkgGEqb6rZUPcqoSNS/SRLbvowSUO8qgbHOQMTg==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/angular/-/angular-6.1.19.tgz#6203c892e5e61f74f30dddf5771e5a7a69bb3704"
+  integrity sha512-a3TmjKnF8xprH1aNgFn9zYehEhM4GBAyh+91SJymno2j1cE8D8z0+W1HNwtDekKWwJt/5YoinCvDTHydmF/kKw==
   dependencies:
     tslib "^2.3.0"
 
@@ -1583,36 +1583,36 @@
     tslib "^2.1.0"
 
 "@fullcalendar/core@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/core/-/core-6.1.18.tgz#772477215aa45c4cad0f45a83465a9c8095bd15a"
-  integrity sha512-cD7XtZIZZ87Cg2+itnpsONCsZ89VIfLLDZ22pQX4IQVWlpYUB3bcCf878DhWkqyEen6dhi5ePtBoqYgm5K+0fQ==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/core/-/core-6.1.19.tgz#60379111ba0cfb9fd9bc6594fee47cf855fc77b2"
+  integrity sha512-z0aVlO5e4Wah6p6mouM0UEqtRf1MZZPt4mwzEyU6kusaNL+dlWQgAasF2cK23hwT4cmxkEmr4inULXgpyeExdQ==
   dependencies:
     preact "~10.12.1"
 
-"@fullcalendar/daygrid@^6.1.11", "@fullcalendar/daygrid@~6.1.18":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/daygrid/-/daygrid-6.1.18.tgz#49b4a237d0115b4695cd8593d0dfa36d81fa5ad4"
-  integrity sha512-s452Zle1SdMEzZDw+pDczm8m3JLIZzS9ANMThXTnqeqJewW1gqNFYas18aHypJSgF9Fh9rDJjTSUw04BpXB/Mg==
+"@fullcalendar/daygrid@^6.1.11", "@fullcalendar/daygrid@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/daygrid/-/daygrid-6.1.19.tgz#1d70a7f3f4cc13d3f27f55ed6880aae09a1a367b"
+  integrity sha512-IAAfnMICnVWPjpT4zi87i3FEw0xxSza0avqY/HedKEz+l5MTBYvCDPOWDATpzXoLut3aACsjktIyw9thvIcRYQ==
 
 "@fullcalendar/interaction@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/interaction/-/interaction-6.1.18.tgz#2fbcae93f982af2abfe8a1078bfa740fe559fe44"
-  integrity sha512-f/mD5RTjzw+Q6MGTMZrLCgIrQLIUUO9NV/58aM2J6ZBQZeRlNizDqmqldqyG+j49zj2vFhUfZibPrVKWm5yA4Q==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/interaction/-/interaction-6.1.19.tgz#48d85601a4203ede7cb400323fe5a9c163e28804"
+  integrity sha512-GOciy79xe8JMVp+1evAU3ytdwN/7tv35t5i1vFkifiuWcQMLC/JnLg/RA2s4sYmQwoYhTw/p4GLcP0gO5B3X5w==
 
 "@fullcalendar/list@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/list/-/list-6.1.18.tgz#e37909506e0956b487ec76ab3bfbd2dac94d363a"
-  integrity sha512-XPZI50mq3HXyDQ5sT3jmqQUuwG8zQb5H14dQIUAmOHAIFRA3WpkxlzrXO0U1SrosvGySMPyyNNxvMKI1Q/jL7A==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/list/-/list-6.1.19.tgz#060bc8ee1895c172d28689475b8e567e166a9828"
+  integrity sha512-knZHpAVF0LbzZpSJSUmLUUzF0XlU/MRGK+Py2s0/mP93bCtno1k2L3XPs/kzh528hSjehwLm89RgKTSfW1P6cA==
 
 "@fullcalendar/moment-timezone@^6.1.17":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/moment-timezone/-/moment-timezone-6.1.18.tgz#07e0e49848fbeed9e332f9aad2142c6d969e4ec9"
-  integrity sha512-3z9GTzjJCTBgxSELJwcanPGgIR4wZ18QXhsxbDMlpdfoG7W90DFgDZ2Wm3/UPZAW7WKu3YYjU3c5VwYExI/aRA==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/moment-timezone/-/moment-timezone-6.1.19.tgz#a70650613a4ca534a93b7974ab3e03e3b9e83a19"
+  integrity sha512-6UOhMThdzDnh10/SPW5t5zmNq+betGebK3i7ytg2EHzlEb2EztfHJC5mbqEU2B2AoKNr2FUIonWuergYe7OVhA==
 
 "@fullcalendar/moment@^6.1.17":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/moment/-/moment-6.1.18.tgz#7790189347b2b904d3087876a04bd40796e939cd"
-  integrity sha512-NfphuaZvttJzhZ4tu4wzHMyJoxgZWmFURJQrl1WMx84eyXcBg5G/7Djc3jPC5nvtKBco0O2tby6MO6m3SQp4UQ==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/moment/-/moment-6.1.19.tgz#4eaa012a37d3947257225d34f4bc5e4d7f7c4211"
+  integrity sha512-wpP0yXSGPDFoY0P3BA6Nw35q/x9TNbnvkwVyu7qgaewepO2Ss10E1yNVM4EtDl82T5IDRcgmFSQ48z1vGcGe1g==
 
 "@fullcalendar/premium-common@~5.11.5":
   version "5.11.5"
@@ -1622,10 +1622,10 @@
     "@fullcalendar/common" "~5.11.5"
     tslib "^2.1.0"
 
-"@fullcalendar/premium-common@~6.1.18":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/premium-common/-/premium-common-6.1.18.tgz#2fabb638e70e6ba78eb40ed08faff58c956b8081"
-  integrity sha512-/EUtCOgdrZZss+xtEPAWRkZVCayFiqUx4SHQHBurloWdNp0Krro2xW7G1qNM8f4Qcg/0wwtK7GmOROcom0oFgg==
+"@fullcalendar/premium-common@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/premium-common/-/premium-common-6.1.19.tgz#367ab5f4bf2cdd4f64b553b1c954f5fa49ab0ee4"
+  integrity sha512-bOWHm1u1dUy6M4fQ0hNK7qEI7SrVWrN1ovv/z4/FE/ybfM19ukz7SFs907Ur7KUBWLNKTQYXBtdrY/ginwWraw==
 
 "@fullcalendar/resource-common@^5.11.5":
   version "5.11.5"
@@ -1637,42 +1637,42 @@
     tslib "^2.1.0"
 
 "@fullcalendar/resource-timeline@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/resource-timeline/-/resource-timeline-6.1.18.tgz#36e65a84ba692ba0862adb2d65593ce12aea1d4d"
-  integrity sha512-dM39v+4B3pEegridB7ES39c5Yk9FrhBYCL/14gnlx+NzptqWJ3DKwqN0KtomfR6tPpeiQUpMmnGDi2USlJS4Cw==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/resource-timeline/-/resource-timeline-6.1.19.tgz#95d1d822b942ca4d8d11008d8b4da0db663ae1c7"
+  integrity sha512-oC3aVR++dLqJNeBwmLHq9sDgRDFfIG0qSteV7bgBekvNlqEMqXx8wPjUxnELrq8rrhMmK4iV3wO7AB/48IVgyg==
   dependencies:
-    "@fullcalendar/premium-common" "~6.1.18"
-    "@fullcalendar/scrollgrid" "~6.1.18"
-    "@fullcalendar/timeline" "~6.1.18"
+    "@fullcalendar/premium-common" "~6.1.19"
+    "@fullcalendar/scrollgrid" "~6.1.19"
+    "@fullcalendar/timeline" "~6.1.19"
 
 "@fullcalendar/resource@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/resource/-/resource-6.1.18.tgz#102f2c978b3116a927ad8cdfff3a976925859d37"
-  integrity sha512-E8k2CFu6zo9Kr3GWJEA1P+TMjoaWZEJudRGIvKYVpPnmcdnDSv8KUnUOzxF5A3jXkFwDrL4UGv950AYqi3oK+A==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/resource/-/resource-6.1.19.tgz#fb3c3534d55648bce16916e58639271a517d39d8"
+  integrity sha512-br1ylX/aIOfd8m7Tzl2LpJBSI+N9Q6aS1qw7K9qnQjYXWQyHBlfLG6ZcPmmkjfaqTUJc8ARRbtNWj1ts5qOZgQ==
   dependencies:
-    "@fullcalendar/premium-common" "~6.1.18"
+    "@fullcalendar/premium-common" "~6.1.19"
 
-"@fullcalendar/scrollgrid@~6.1.18":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/scrollgrid/-/scrollgrid-6.1.18.tgz#ffff2970232b70d2d6c9dc4eac7b6d0cf3388202"
-  integrity sha512-5LASFSeUlWDrnmWo7zgEJFE85ytSxjIQuG/qLd+P1llUgrYgaOL2+r8ZXSmSKUAvhuIoUlguIvn2b4METvs8BA==
+"@fullcalendar/scrollgrid@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/scrollgrid/-/scrollgrid-6.1.19.tgz#34ed62ba5febd0bada817c90e73fad0fb36df110"
+  integrity sha512-S1pbiYHvmV0ep6z5sWXJQfgW4Y/jrS5iLIAqSagDFPK0jr327nBxl7Ryi3Zb5UdMIP0/O4GXs8jwZabQPd8SOg==
   dependencies:
-    "@fullcalendar/premium-common" "~6.1.18"
+    "@fullcalendar/premium-common" "~6.1.19"
 
 "@fullcalendar/timegrid@^6.1.11":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/timegrid/-/timegrid-6.1.18.tgz#8673c4870282ade1545f12e81c0dc11d2da039f6"
-  integrity sha512-T/ouhs+T1tM8JcW7Cjx+KiohL/qQWKqvRITwjol8ktJ1e1N/6noC40/obR1tyolqOxMRWHjJkYoj9fUqfoez9A==
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/timegrid/-/timegrid-6.1.19.tgz#bb4b2e3039c995b61284ee5b76ad9dcc696b71ce"
+  integrity sha512-OuzpUueyO9wB5OZ8rs7TWIoqvu4v3yEqdDxZ2VcsMldCpYJRiOe7yHWKr4ap5Tb0fs7Rjbserc/b6Nt7ol6BRg==
   dependencies:
-    "@fullcalendar/daygrid" "~6.1.18"
+    "@fullcalendar/daygrid" "~6.1.19"
 
-"@fullcalendar/timeline@~6.1.18":
-  version "6.1.18"
-  resolved "https://registry.npmmirror.com/@fullcalendar/timeline/-/timeline-6.1.18.tgz#12e96bdfb0adf013265b6648f37e9b67b6bd1512"
-  integrity sha512-ib3pQoXtX/OBgUGJhUzzpZhR/3Nvqx6r+H86dgHHlSobPl2jXKw3phtt9r8OL8fpxjNQjtX4+TEgpfqYq7s/fg==
+"@fullcalendar/timeline@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmmirror.com/@fullcalendar/timeline/-/timeline-6.1.19.tgz#d08dfcd6bacc87507d59e8159f529ca83d93cd46"
+  integrity sha512-d2P961mnUTXtJeWNmIq1neoDmZcrPUaK7nGFoc+jQAlnmG3aNSVWQmD1ia694AMqLWtcWkwipW9MuaJgx2QvrA==
   dependencies:
-    "@fullcalendar/premium-common" "~6.1.18"
-    "@fullcalendar/scrollgrid" "~6.1.18"
+    "@fullcalendar/premium-common" "~6.1.19"
+    "@fullcalendar/scrollgrid" "~6.1.19"
 
 "@github/auto-check-element@^6.0.0":
   version "6.0.0"
@@ -4388,12 +4388,12 @@ braces@^3.0.2, braces@^3.0.3, braces@~3.0.2:
     fill-range "^7.1.1"
 
 browserslist@^4.21.10, browserslist@^4.21.5, browserslist@^4.23.0, browserslist@^4.24.0, browserslist@^4.24.4, browserslist@^4.25.1:
-  version "4.25.1"
-  resolved "https://registry.npmmirror.com/browserslist/-/browserslist-4.25.1.tgz#ba9e8e6f298a1d86f829c9b975e07948967bb111"
-  integrity sha512-KGj0KoOMXLpSNkkEI6Z6mShmQy0bc1I+T7K9N81k4WWMrfz+6fQ6es80B/YLAeRoKvjYE1YSHHOW1qe9xIVzHw==
+  version "4.25.2"
+  resolved "https://registry.npmmirror.com/browserslist/-/browserslist-4.25.2.tgz#90c1507143742d743544ae6e92bca3348adff667"
+  integrity sha512-0si2SJK3ooGzIawRu61ZdPCO1IncZwS8IzuX73sPZsXW6EQ/w/DAfPyKI8l1ETTCr2MnvqWitmlCUxgdul45jA==
   dependencies:
-    caniuse-lite "^1.0.30001726"
-    electron-to-chromium "^1.5.173"
+    caniuse-lite "^1.0.30001733"
+    electron-to-chromium "^1.5.199"
     node-releases "^2.0.19"
     update-browserslist-db "^1.1.3"
 
@@ -4516,7 +4516,7 @@ camelcase@^5.3.1:
   resolved "https://registry.npmmirror.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001726:
+caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001733:
   version "1.0.30001733"
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001733.tgz#918405ed6647a62840fb328832cf5a03f986974b"
   integrity sha512-e4QKw/O2Kavj2VQTKZWrwzkt3IxOmIlU6ajRb6LP64LHpBo1J67k2Hi4Vu/TgJWsNtynurfS0uK3MaUTCPfu5Q==
@@ -5517,7 +5517,7 @@ ejs@^3.1.5, ejs@^3.1.7:
   dependencies:
     jake "^10.8.5"
 
-electron-to-chromium@^1.5.173:
+electron-to-chromium@^1.5.199:
   version "1.5.199"
   resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.199.tgz#4d8be9c78362c05f095eb7392e9a54f1fb14fd3a"
   integrity sha512-3gl0S7zQd88kCAZRO/DnxtBKuhMO4h0EaQIN3YgZfV6+pW+5+bf2AdQeHNESCoaQqo/gjGVYEf2YM4O5HJQqpQ==
