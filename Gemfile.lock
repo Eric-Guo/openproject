@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 0c7aecc82e8fb74bfe72829aec0710686f0cff84
+  revision: 131ba9330a054457908d56f8db82aea843bffe06
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -1231,7 +1231,7 @@ GEM
     redcarpet (3.6.1)
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.25.1)
+    redis-client (0.25.2)
       connection_pool
     regexp_parser (2.11.1)
     reline (0.6.2)
