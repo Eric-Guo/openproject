@@ -2267,9 +2267,9 @@
     tslib "^2.3.0"
 
 "@openproject/primer-view-components@npm:@openproject/primer-view-components@^0.70.4":
-  version "0.70.4"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.4.tgz#18d01593e53f35f4d6795a8c3bb7bf23f150e1c8"
-  integrity sha512-W88Xml0s/A+tUQtdkGwVH6h9qeV4VcfvkddLMm03fvxGF7X1E58LWLvUMGKrivxuWimDQj108RJztJoOWtS8cQ==
+  version "0.70.5"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.5.tgz#9a30ca484e461eda8801bcaf4c29e1422b10fe19"
+  integrity sha512-6J0ZDqXZ5OxjJPNIGSwqLQCeIV60LNDMoxqXNj5Bw8WU3435aOQaZcwsDVs6t1gVJE9+iTKU9woUy0gzmDtOGA==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
@@ -2340,9 +2340,9 @@
     prettier "3.3"
 
 "@primer/view-components@npm:@openproject/primer-view-components@^0.70.4":
-  version "0.70.4"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.4.tgz#18d01593e53f35f4d6795a8c3bb7bf23f150e1c8"
-  integrity sha512-W88Xml0s/A+tUQtdkGwVH6h9qeV4VcfvkddLMm03fvxGF7X1E58LWLvUMGKrivxuWimDQj108RJztJoOWtS8cQ==
+  version "0.70.5"
+  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.5.tgz#9a30ca484e461eda8801bcaf4c29e1422b10fe19"
+  integrity sha512-6J0ZDqXZ5OxjJPNIGSwqLQCeIV60LNDMoxqXNj5Bw8WU3435aOQaZcwsDVs6t1gVJE9+iTKU9woUy0gzmDtOGA==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
@@ -4517,9 +4517,9 @@ camelcase@^5.3.1:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001733:
-  version "1.0.30001733"
-  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001733.tgz#918405ed6647a62840fb328832cf5a03f986974b"
-  integrity sha512-e4QKw/O2Kavj2VQTKZWrwzkt3IxOmIlU6ajRb6LP64LHpBo1J67k2Hi4Vu/TgJWsNtynurfS0uK3MaUTCPfu5Q==
+  version "1.0.30001734"
+  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001734.tgz#f97e08599e2d75664543ae4b6ef25dc2183c5cc6"
+  integrity sha512-uhE1Ye5vgqju6OI71HTQqcBCZrvHugk0MjLak7Q+HfoBgoq5Bi+5YnwjP4fjDgrtYr/l8MVRBvzz9dPD4KyK0A==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -4694,9 +4694,9 @@ clsx@^2.1.1:
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 codemirror@^5.62.0:
-  version "5.65.19"
-  resolved "https://registry.npmmirror.com/codemirror/-/codemirror-5.65.19.tgz#71016c701d6a4b6e1982b0f6e7186be65e49653d"
-  integrity sha512-+aFkvqhaAVr1gferNMuN8vkTSrWIFvzlMV9I2KBLCWS2WpZ2+UAkZjlMZmEuT+gcXTi6RrGQCkWq1/bDtGqhIA==
+  version "5.65.20"
+  resolved "https://registry.npmmirror.com/codemirror/-/codemirror-5.65.20.tgz#8aa77c2dbfeb2df9b0828bf8e7d64fdd566eeff0"
+  integrity sha512-i5dLDDxwkFCbhjvL2pNjShsojoL3XHyDwsGv1jqETUoW+lzpBKKqNTUWgQwVAOa0tUm4BwekT455ujafi8payA==
 
 collection-visit@^1.0.0:
   version "1.0.0"
