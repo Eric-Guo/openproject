@@ -84,6 +84,10 @@ RSpec.describe WorkPackages::ActivitiesTab::CommentAttachmentsClaims::SetAttribu
         allow(Attachment).to receive(:where)
           .with(id: [assigned_attachment.id.to_s, unattached_attachment.id.to_s])
           .and_return([assigned_attachment, unattached_attachment])
+        # A second call happens when setting the filtered replacements
+        allow(Attachment).to receive(:where)
+          .with(id: [unattached_attachment.id.to_s])
+          .and_return([unattached_attachment])
       end
 
       it "filters out the assigned attachment and only sets unattached ones" do
