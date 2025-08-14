@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 131ba9330a054457908d56f8db82aea843bffe06
+  revision: b995453fe7a5d3683b7c12f0c5e6b9f5173c59af
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 4fe18bed40fa1c650c34985f7a9bdd02af5bdaf4
+  revision: bd99534a3478850c67a017c079aa3208536aa118
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -407,8 +407,8 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1146.0)
-    aws-sdk-core (3.229.0)
+    aws-partitions (1.1150.0)
+    aws-sdk-core (3.230.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -419,7 +419,7 @@ GEM
     aws-sdk-kms (1.110.0)
       aws-sdk-core (~> 3, >= 3.228.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.196.1)
+    aws-sdk-s3 (1.197.0)
       aws-sdk-core (~> 3, >= 3.228.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -554,7 +554,7 @@ GEM
     deckar01-task_list (2.3.4)
       html-pipeline (~> 2.0)
     declarative (0.0.20)
-    dentaku (3.5.4)
+    dentaku (3.5.5)
       bigdecimal
       concurrent-ruby
     descendants_tracker (0.0.4)
@@ -647,9 +647,9 @@ GEM
       tzinfo
     eventmachine (1.2.7)
     eventmachine_httpserver (0.2.1)
-    excon (1.2.8)
+    excon (1.3.0)
       logger
-    factory_bot (6.5.4)
+    factory_bot (6.5.5)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
@@ -705,7 +705,7 @@ GEM
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     front_matter_parser (1.0.1)
-    fugit (1.11.1)
+    fugit (1.11.2)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     fuubar (2.5.1)
@@ -739,31 +739,31 @@ GEM
       base64 (~> 0.2)
       faraday (>= 1.0, < 3.a)
     google-logging-utils (0.2.0)
-    google-protobuf (4.31.1)
+    google-protobuf (4.32.0)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-aarch64-linux-gnu)
+    google-protobuf (4.32.0-aarch64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-aarch64-linux-musl)
+    google-protobuf (4.32.0-aarch64-linux-musl)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-arm64-darwin)
+    google-protobuf (4.32.0-arm64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-x86-linux-gnu)
+    google-protobuf (4.32.0-x86-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-x86-linux-musl)
+    google-protobuf (4.32.0-x86-linux-musl)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-x86_64-darwin)
+    google-protobuf (4.32.0-x86_64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-x86_64-linux-gnu)
+    google-protobuf (4.32.0-x86_64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.31.1-x86_64-linux-musl)
+    google-protobuf (4.32.0-x86_64-linux-musl)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos-types (1.20.0)
@@ -931,7 +931,7 @@ GEM
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    lookbook (2.3.12)
+    lookbook (2.3.13)
       activemodel
       css_parser
       htmlbeautifier (~> 1.3)
@@ -958,8 +958,8 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0812)
-    mini_magick (5.3.0)
+    mime-types-data (3.2025.0819)
+    mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
@@ -976,7 +976,9 @@ GEM
     net-imap (0.5.9)
       date
       net-protocol
-    net-ldap (0.19.0)
+    net-ldap (0.20.0)
+      base64
+      ostruct
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -1029,10 +1031,10 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.26.3)
-    openproject-octicons_helper (19.26.3)
+    openproject-octicons (19.27.0)
+    openproject-octicons_helper (19.27.0)
       actionview
-      openproject-octicons (= 19.26.3)
+      openproject-octicons (= 19.27.0)
       railties
     openproject-primer_view_components (0.70.5)
       actionview (>= 7.1.0)
@@ -1198,7 +1200,7 @@ GEM
     rails-html-sanitizer (1.6.2)
       loofah (~> 2.21)
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
-    rails-i18n (8.0.1)
+    rails-i18n (8.0.2)
       i18n (>= 0.7, < 2)
       railties (>= 8.0.0, < 9)
     railties (8.0.2.1)
@@ -1275,10 +1277,10 @@ GEM
       rspec-support (~> 3.13)
     rspec-retry (0.6.2)
       rspec-core (> 3.3)
-    rspec-support (3.13.4)
+    rspec-support (3.13.5)
     rspec-wait (1.0.2)
       rspec (>= 3.4)
-    rubocop (1.79.2)
+    rubocop (1.80.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -1433,7 +1435,7 @@ GEM
     tzinfo-data (1.2025.2)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
-    unicode-display_width (3.1.4)
+    unicode-display_width (3.1.5)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.3)
@@ -1627,7 +1629,7 @@ DEPENDENCIES
   mini_magick (~> 5.3.0)
   multi_json (~> 1.15.0)
   my_page!
-  net-ldap (~> 0.19.0)
+  net-ldap (~> 0.20.0)
   nokogiri (~> 1.18.8)
   oj (~> 3.16.0)
   okcomputer (~> 1.19.0)
@@ -1650,10 +1652,10 @@ DEPENDENCIES
   openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
-  openproject-octicons (~> 19.26.0)
-  openproject-octicons_helper (~> 19.26.0)
+  openproject-octicons (~> 19.27.0)
+  openproject-octicons_helper (~> 19.27.0)
   openproject-openid_connect!
-  openproject-primer_view_components (~> 0.70.4)
+  openproject-primer_view_components (~> 0.70.5)
   openproject-recaptcha!
   openproject-reporting!
   openproject-storages!

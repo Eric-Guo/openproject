@@ -311,7 +311,7 @@ group :test do
 end
 
 group :ldap do
-  gem "net-ldap", "~> 0.19.0"
+  gem "net-ldap", "~> 0.20.0"
 end
 
 group :development do
@@ -436,6 +436,6 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.26.0"
-gem "openproject-octicons_helper", "~>19.26.0"
-gem "openproject-primer_view_components", "~>0.70.4"
+gem "openproject-octicons", "~>19.27.0"
+gem "openproject-octicons_helper", "~>19.27.0"
+gem "openproject-primer_view_components", "~>0.70.5"
