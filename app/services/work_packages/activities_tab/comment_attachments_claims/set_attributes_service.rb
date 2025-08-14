@@ -70,7 +70,7 @@ module WorkPackages
           attachments = Attachment.where(id: ids)
 
           attachments
-            .select { |att| att.container.nil? }
+            .select { |att| att.container.nil? || att.container == model }
             .map { |att| att.id.to_s }
         end
 
