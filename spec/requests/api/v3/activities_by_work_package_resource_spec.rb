@@ -231,6 +231,45 @@ RSpec.describe API::V3::Activities::ActivitiesByWorkPackageAPI, with_ee: [:inter
           expect(journal.attachments).to contain_exactly(attachment1, attachment2)
         end
       end
+
+      context "when the comment references an attachment already assigned to the work package" do
+        include_context "create activity"
+
+        let(:existing_attachment) { create(:attachment, container: work_package, author: current_user) }
+
+        let(:comment) do
+          <<~HTML
+            <img class="op-uc-image op-uc-image_inline" src="/api/v3/attachments/#{existing_attachment.id}/content">
+          HTML
+        end
+
+        it "succeeds and does not attempt to reassign the attachment" do
+          expect(last_response).to have_http_status :created
+          journal = work_package.journals.last
+          expect(journal.attachments).to be_empty
+          expect(last_response.body).to be_json_eql(comment.to_json).at_path("comment/raw")
+        end
+      end
+
+      context "when the comment references both an assigned and an unattached attachment" do
+        include_context "create activity"
+
+        let(:assigned_attachment) { create(:attachment, container: work_package, author: current_user) }
+        let(:unattached_attachment) { create(:attachment, container: nil, author: current_user) }
+
+        let(:comment) do
+          <<~HTML
+            <img class="op-uc-image op-uc-image_inline" src="/api/v3/attachments/#{assigned_attachment.id}/content">
+            <img class="op-uc-image op-uc-image_inline" src="/api/v3/attachments/#{unattached_attachment.id}/content">
+          HTML
+        end
+
+        it "succeeds and only claims the unattached attachment" do
+          expect(last_response).to have_http_status :created
+          journal = work_package.journals.last
+          expect(journal.attachments).to contain_exactly(unattached_attachment)
+        end
+      end
     end
   end
 end
