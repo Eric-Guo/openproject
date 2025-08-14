@@ -45,8 +45,8 @@ RSpec.describe WorkPackages::ActivitiesTab::CommentAttachmentsClaims::SetAttribu
 
   describe "#call" do
     context "when the journal notes have attachments" do
-      let(:attachment1) { build_stubbed(:attachment) }
-      let(:attachment2) { build_stubbed(:attachment) }
+      let(:attachment1) { build_stubbed(:attachment, container: nil) }
+      let(:attachment2) { build_stubbed(:attachment, container: nil) }
 
       let(:notes) do
         <<~HTML
@@ -66,6 +66,29 @@ RSpec.describe WorkPackages::ActivitiesTab::CommentAttachmentsClaims::SetAttribu
       it "sets the attachments replacements" do
         expect(set_attributes_service).to be_success
         expect(set_attributes_service.result.attachments_replacements).to contain_exactly(attachment1, attachment2)
+      end
+    end
+
+    context "when the journal notes reference an attachment already assigned to a container" do
+      let(:assigned_attachment) { build_stubbed(:attachment, container: build_stubbed(:work_package)) }
+      let(:unattached_attachment) { build_stubbed(:attachment, container: nil) }
+
+      let(:notes) do
+        <<~HTML
+          <img class="op-uc-image op-uc-image_inline" src="/api/v3/attachments/#{assigned_attachment.id}/content">
+          <img class="op-uc-image op-uc-image_inline" src="/api/v3/attachments/#{unattached_attachment.id}/content">
+        HTML
+      end
+
+      before do
+        allow(Attachment).to receive(:where)
+          .with(id: [assigned_attachment.id.to_s, unattached_attachment.id.to_s])
+          .and_return([assigned_attachment, unattached_attachment])
+      end
+
+      it "filters out the assigned attachment and only sets unattached ones" do
+        expect(set_attributes_service).to be_success
+        expect(set_attributes_service.result.attachments_replacements).to contain_exactly(unattached_attachment)
       end
     end
 
