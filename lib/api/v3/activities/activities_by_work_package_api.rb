@@ -75,7 +75,16 @@ module API
             if call.success?
               Activities::ActivityRepresenter.new(call.result, current_user:)
             else
-              fail ::API::Errors::ErrorBase.create_and_merge_errors(call.errors)
+              errors = call.errors
+              if errors.empty?
+                first_with_errors = call.results_with_errors.first
+                errors = first_with_errors.errors if first_with_errors
+              end
+              if errors.nil? || (errors.respond_to?(:empty?) && errors.empty?)
+                fail ::API::Errors::UnprocessableContent.new
+              else
+                fail ::API::Errors::ErrorBase.create_and_merge_errors(errors)
+              end
             end
           end
         end
