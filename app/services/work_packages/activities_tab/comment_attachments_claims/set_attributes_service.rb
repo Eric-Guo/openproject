@@ -67,11 +67,12 @@ module WorkPackages
         def filter_claimable_attachment_ids(ids)
           return [] if ids.blank?
 
-          attachments = Attachment.where(id: ids)
-
-          attachments
-            .select { |att| att.container.nil? || att.container == model }
-            .map { |att| att.id.to_s }
+          Attachment
+            .where(container: nil)
+            .or(Attachment.where(container: model))
+            .where(id: ids)
+            .pluck(:id)
+            .map(&:to_s)
         end
 
         def parser
