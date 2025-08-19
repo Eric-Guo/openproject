@@ -41,7 +41,7 @@ module OpenProject
 end
 
 if Rails.env.local?
-  OpenProject::Patches.patch_gem_version "lookbook", "2.3.12" do
+  OpenProject::Patches.patch_gem_version "lookbook", "2.3.13" do
     Lookbook::TreeNode.prepend OpenProject::Patches::LookbookTreeNodeInflector
   end
 end
