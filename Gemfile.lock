@@ -60,6 +60,17 @@ GIT
       http
 
 GIT
+  remote: https://git.thape.com.cn/rails/primer_view_components.git
+  revision: b9a230f15dd9bcf936351ce3e54c0e731ed9175f
+  branch: main
+  specs:
+    openproject-primer_view_components (0.72.0)
+      actionview (>= 7.2.0)
+      activesupport (>= 7.2.0)
+      openproject-octicons (>= 19.25.0)
+      view_component (>= 3.1, < 5.0)
+
+GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
   revision: 0823fb327ffe4405a9bc94e75f195602a28869d1
   branch: main
@@ -407,8 +418,8 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1150.0)
-    aws-sdk-core (3.230.0)
+    aws-partitions (1.1153.0)
+    aws-sdk-core (3.232.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -973,7 +984,7 @@ GEM
     mysql2 (0.5.6)
     net-http (0.6.0)
       uri
-    net-imap (0.5.9)
+    net-imap (0.5.10)
       date
       net-protocol
     net-ldap (0.20.0)
@@ -1031,16 +1042,11 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.27.0)
-    openproject-octicons_helper (19.27.0)
+    openproject-octicons (19.27.1)
+    openproject-octicons_helper (19.27.1)
       actionview
-      openproject-octicons (= 19.27.0)
+      openproject-octicons (= 19.27.1)
       railties
-    openproject-primer_view_components (0.70.5)
-      actionview (>= 7.1.0)
-      activesupport (>= 7.1.0)
-      openproject-octicons (>= 19.25.0)
-      view_component (>= 3.1, < 4.0)
     openproject-token (7.2.2)
       activemodel
     openssl (3.3.0)
@@ -1448,10 +1454,9 @@ GEM
       public_suffix
     vcr (6.3.1)
       base64
-    view_component (3.23.2)
-      activesupport (>= 5.2.0, < 8.1)
+    view_component (4.0.2)
+      activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
-      method_source (~> 1.0)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -1655,7 +1660,7 @@ DEPENDENCIES
   openproject-octicons (~> 19.27.0)
   openproject-octicons_helper (~> 19.27.0)
   openproject-openid_connect!
-  openproject-primer_view_components (~> 0.70.5)
+  openproject-primer_view_components!
   openproject-recaptcha!
   openproject-reporting!
   openproject-storages!

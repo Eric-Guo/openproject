@@ -1,15 +1,52 @@
 <% html_title(t("my_page.label")) -%>
 
 <%=
-  render(Primer::OpenProject::PageHeader.new) do |header|
-    header.with_title { t("my_page.label") }
-    header.with_breadcrumbs(
-      [
-        { href: home_path, text: organization_name },
-        t("my_page.label")
-      ]
-    )
-  end
+  render(Primer::OpenProject::SubHeader.new) do |component|
+  
+    component.with_action_button(tag: :a,
+                                 href: 'https://ith-workspace.thape.com.cn/projects',
+                                 leading_icon: :'search',
+                                 scheme: :primary,
+                                 location: :left,
+                                 label: t(:label_th_project_filter)) do
+      t(:label_th_project_filter)
+    end
+
+    component.with_action_button(icon_only: true, leading_icon: :info, label: "Info", location: :middle)
+    component.with_text { "在日期设置弹出窗可以方便的对“工作日”与“非工作日”加以区分。" }
+
+    component.with_action_button(tag: :a,
+                                 href: '/th_keyin',
+                                 leading_icon: :'id-badge',
+                                 scheme: :primary,
+                                 label: t(:label_th_keyin)) do
+      t(:label_th_keyin)
+    end
+
+    component.with_action_button(tag: :a,
+                                 href: 'https://ith-workspace.thape.com.cn/worktime/',
+                                 leading_icon: :'op-gitlab-issue-closed',
+                                 scheme: :primary,
+                                 label: t(:label_th_keyin_check)) do
+      t(:label_th_keyin_check)
+    end
+
+    component.with_action_button(tag: :a,
+                                 href: 'https://cybros.thape.com.cn/report/subsidiary_working_hours',
+                                 leading_icon: :'op-cost-reports',
+                                 scheme: :primary,
+                                 label: t(:label_th_keyin_report)) do
+      t(:label_th_keyin_report)
+    end
+
+    component.with_action_button(tag: :a,
+                                 href: 'https://ith-workspace.thape.com.cn/projects/milestones',
+                                 leading_icon: :'git-commit',
+                                 scheme: :primary,
+                                 label: t(:label_th_milestones)) do
+      t(:label_th_milestones)
+    end
+  end 
 %>
 
 <openproject-base></openproject-base>
