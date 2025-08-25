@@ -61,6 +61,17 @@ GIT
       http
 
 GIT
+  remote: https://git.thape.com.cn/rails/primer_view_components.git
+  revision: c20259932bebbf3ffbd67a8098a77e8d5d09bda4
+  branch: thape
+  specs:
+    openproject-primer_view_components (0.84.3)
+      actionview (>= 7.2.0)
+      activesupport (>= 7.2.0)
+      openproject-octicons (>= 19.33.0)
+      view_component (>= 3.1, < 5.0)
+
+GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
   revision: d518ee5271f60e18a555434160ae02b74e534046
   branch: main
@@ -1044,11 +1055,6 @@ GEM
       actionview
       openproject-octicons (= 19.34.0)
       railties
-    openproject-primer_view_components (0.84.5)
-      actionview (>= 7.2.0)
-      activesupport (>= 7.2.0)
-      openproject-octicons (>= 19.34.0)
-      view_component (>= 3.1, < 5.0)
     openproject-token (8.8.2)
       activemodel
     openssl (4.0.1)
@@ -1854,7 +1860,7 @@ DEPENDENCIES
   openproject-octicons (~> 19.34.0)
   openproject-octicons_helper (~> 19.34.0)
   openproject-openid_connect!
-  openproject-primer_view_components (~> 0.84.5)
+  openproject-primer_view_components!
   openproject-recaptcha!
   openproject-reporting!
   openproject-storages!
@@ -2277,7 +2283,7 @@ CHECKSUMS
   openproject-octicons (19.34.0) sha256=4efe8a58a2d8051b79c94b37e9a7f04fd242a4da12b50f027c3c7f441a042adc
   openproject-octicons_helper (19.34.0) sha256=12eb7af2214e21631369c76464ebaa30de788e1074c4b3bd0fcef7e74cb9edb4
   openproject-openid_connect (1.0.0)
-  openproject-primer_view_components (0.84.5) sha256=307ad2135cfb283b2d1da354e545bd3e3f1dda43158f020c89ff4641e441fe86
+  openproject-primer_view_components (0.84.3)
   openproject-recaptcha (1.0.0)
   openproject-reporting (1.0.0)
   openproject-storages (1.0.0)

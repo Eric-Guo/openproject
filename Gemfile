@@ -453,4 +453,5 @@ end
 
 gem "openproject-octicons", "~>19.34.0"
 gem "openproject-octicons_helper", "~>19.34.0"
-gem "openproject-primer_view_components", "~>0.84.5"
+# bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
+gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
