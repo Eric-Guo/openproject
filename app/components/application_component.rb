@@ -32,7 +32,7 @@ class ApplicationComponent < ViewComponent::Base
   attr_reader :model, :options
 
   def initialize(model = nil, **options)
-    super
+    super()
     @model = model if model
     @options = options
   end

@@ -12,7 +12,7 @@ Rails.application.configure do
   config.lookbook.page_paths = [Rails.root.join("lookbook/docs").to_s]
 
   config.lookbook.component_paths << Primer::ViewComponents::Engine.root.join("app/components").to_s
-  config.view_component.preview_paths += [
+  config.view_component.previews.paths += [
     Rails.root.join("lookbook/previews").to_s,
     Primer::ViewComponents::Engine.root.join("previews").to_s
   ]
