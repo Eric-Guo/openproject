@@ -2034,6 +2034,25 @@
   resolved "https://registry.npmmirror.com/@math.gl/types/-/types-3.6.3.tgz#9fa9866feabcbb76de107d78ff3a89c0243ac374"
   integrity sha512-3uWLVXHY3jQxsXCr/UCNPSc2BG0hNUljhmOBt9l+lNFDp7zHgm0cK2Tw4kj2XfkJy4TgwZTBGwRDQgWEbLbdTA==
 
+"@mixtint/primer-view-components@0.72.0":
+  version "0.72.0"
+  resolved "https://registry.npmmirror.com/@mixtint/primer-view-components/-/primer-view-components-0.72.0.tgz#f6078b6f6175549b4d8e7c6a59fda779c60bd829"
+  integrity sha512-Gs2ANCKGAnre7umP+COx0jHmxdIejrvkY6S09kiphcxfJCLmFp5AxgCxkl0J7ZQe0FfWXQ0a9EpC8ZF8sxFaoA==
+  dependencies:
+    "@github/auto-check-element" "^6.0.0"
+    "@github/auto-complete-element" "^3.8.0"
+    "@github/catalyst" "^1.6.0"
+    "@github/clipboard-copy-element" "^1.3.0"
+    "@github/details-menu-element" "^1.0.12"
+    "@github/image-crop-element" "^5.0.0"
+    "@github/include-fragment-element" "^6.3.0"
+    "@github/relative-time-element" "^4.0.0"
+    "@github/remote-input-element" "^0.4.0"
+    "@github/tab-container-element" "^3.1.2"
+    "@oddbird/popover-polyfill" "^0.5.2"
+    "@primer/behaviors" "^1.3.4"
+    "@primer/live-region-element" "^0.8.0"
+
 "@napi-rs/wasm-runtime@0.2.4":
   version "0.2.4"
   resolved "https://registry.npmmirror.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.4.tgz#d27788176f250d86e498081e3c5ff48a17606918"
@@ -2270,25 +2289,6 @@
   integrity sha512-5yx1rQTDTZUFzEBcmYyXd1oqzQpo38hMWKQGE1VleI4MhbgktSOysU5PAnQUKk0kokGDFb/IvzvvM2JoovgS1w==
   dependencies:
     tslib "^2.3.0"
-
-"@openproject/primer-view-components@npm:@openproject/primer-view-components@^0.70.5":
-  version "0.70.5"
-  resolved "https://registry.npmmirror.com/@openproject/primer-view-components/-/primer-view-components-0.70.5.tgz#9a30ca484e461eda8801bcaf4c29e1422b10fe19"
-  integrity sha512-6J0ZDqXZ5OxjJPNIGSwqLQCeIV60LNDMoxqXNj5Bw8WU3435aOQaZcwsDVs6t1gVJE9+iTKU9woUy0gzmDtOGA==
-  dependencies:
-    "@github/auto-check-element" "^6.0.0"
-    "@github/auto-complete-element" "^3.8.0"
-    "@github/catalyst" "^1.6.0"
-    "@github/clipboard-copy-element" "^1.3.0"
-    "@github/details-menu-element" "^1.0.12"
-    "@github/image-crop-element" "^5.0.0"
-    "@github/include-fragment-element" "^6.3.0"
-    "@github/relative-time-element" "^4.0.0"
-    "@github/remote-input-element" "^0.4.0"
-    "@github/tab-container-element" "^3.1.2"
-    "@oddbird/popover-polyfill" "^0.5.2"
-    "@primer/behaviors" "^1.3.4"
-    "@primer/live-region-element" "^0.8.0"
 
 "@openproject/reactivestates@^3.0.1":
   version "3.0.1"
@@ -10208,7 +10208,7 @@ onetime@^5.1.0, onetime@^5.1.2:
 
 "op-blocknote-extensions@github:opf/op-blocknote-extensions":
   version "0.0.2"
-  resolved "https://codeload.github.com/opf/op-blocknote-extensions/tar.gz/15cd21092251741c8976773b676c7d1ccd476657"
+  resolved "https://codeload.github.com/opf/op-blocknote-extensions/tar.gz/615a8d604103648ce50fe7be33e595d6e21af350"
 
 open@8.4.2, open@^8.0.9, open@^8.4.0:
   version "8.4.2"

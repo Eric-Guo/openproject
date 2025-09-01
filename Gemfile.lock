@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: b9a230f15dd9bcf936351ce3e54c0e731ed9175f
+  revision: a2827fdc6b39220225976b625f50e38541296cca
   branch: main
   specs:
     openproject-primer_view_components (0.72.0)
@@ -1318,7 +1318,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
-    rubocop-rspec (3.6.0)
+    rubocop-rspec (3.7.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     rubocop-rspec_rails (2.31.0)

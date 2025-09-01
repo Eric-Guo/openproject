@@ -60,7 +60,7 @@ require('mark.js/dist/jquery.mark.min');
 
 require('moment-timezone/builds/moment-timezone-with-data.min');
 // eslint-disable-next-line import/extensions,import/no-extraneous-dependencies
-require('@openproject/primer-view-components/app/assets/javascripts/primer_view_components.js');
+require('@mixtint/primer-view-components/app/assets/javascripts/primer_view_components.js');
 
 require('expose-loader?URI!urijs');
 require('urijs/src/URITemplate');
