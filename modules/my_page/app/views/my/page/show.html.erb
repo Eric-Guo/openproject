@@ -12,7 +12,13 @@
       t(:label_th_project_filter)
     end
 
-    component.with_action_button(icon_only: true, leading_icon: :info, label: "Info", location: :middle)
+    component.with_action_button(icon_only: true, 
+      tag: :a,
+      leading_icon: :info,       
+      href: hover_hint_th_keyin_path,
+      data: { turbo: true, turbo_stream: true },
+      label: "Info", 
+      location: :middle)
     component.with_text { "在日期设置弹出窗可以方便的对“工作日”与“非工作日”加以区分。" }
 
     component.with_action_button(tag: :a,
@@ -48,5 +54,97 @@
     end
   end 
 %>
+
+<turbo-frame id="th-keyin-hint-body">
+</turbo-frame>
+
+<%= render(Primer::Alpha::Stack.new(direction: browser.mobile? ? :vertical : :horizontal, justify: :space_evenly)) do %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :attention, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%=
+      render(Primer::Alpha::ActionList.new(
+               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+               scheme: :inset,
+               show_dividers: false
+             )) do |component|
+        component.with_heading(title: "待更新里程碑项目")
+        component.with_item(label: "巡场问题总汇 1", href: "/") do |item|
+          item.with_leading_visual_icon(icon: :gear)
+        end
+        component.with_item(label: "巡场问题总汇 2", href: "/") do |item|
+          item.with_leading_visual_icon(icon: :star)
+        end
+        component.with_item(label: "巡场问题总汇 3", href: "/") do |item|
+          item.with_leading_visual_icon(icon: :heart)
+        end
+      end
+     %>
+  <% end %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :accent, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%=
+      render(Primer::Alpha::ActionList.new(
+               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+               scheme: :inset,
+               show_dividers: false
+             )) do |component|
+        component.with_heading(title: "待复核工作包")
+        need_confirm_wps = @query_need_confirm&.results&.work_packages&.limit(5) || []
+        if need_confirm_wps.any?
+          need_confirm_wps.each do |wp|
+            component.with_item(label: wp.subject, href: work_package_path(id: wp.id)) do |item|
+              item.with_leading_visual_icon(icon: :tasklist)
+            end
+          end
+        else
+          component.with_item(label: "暂无待复核工作包")
+        end
+      end
+     %>
+  <% end %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%=
+      render(Primer::Alpha::ActionList.new(
+               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+               scheme: :inset,
+               show_dividers: false
+             )) do |component|
+        component.with_heading(title: "预算超支项目")
+        component.with_item(label: "暂无预算超支项目")
+      end
+     %>
+  <% end %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%=
+      render(Primer::Alpha::ActionList.new(
+               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+               scheme: :inset,
+               show_dividers: false
+             )) do |component|
+        component.with_heading(title: "待归档项目")
+        component.with_item(label: "暂无待归档项目")
+      end
+     %>
+  <% end %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%=
+      render(Primer::Alpha::ActionList.new(
+               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+               scheme: :inset,
+               show_dividers: false
+             )) do |component|
+        component.with_heading(title: "逾期工作包")
+        overdue_wps = @query_due_date&.results&.work_packages&.limit(5) || []
+        if overdue_wps.any?
+          overdue_wps.each do |wp|
+            component.with_item(label: wp.subject, href: work_package_path(id: wp.id)) do |item|
+              item.with_leading_visual_icon(icon: :clock)
+            end
+          end
+        else
+          component.with_item(label: "暂无逾期工作包")
+        end
+      end
+     %>
+  <% end %>
+<% end %>
 
 <openproject-base></openproject-base>
