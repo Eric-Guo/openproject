@@ -39,6 +39,10 @@ module My
     def show
       respond_to do |format|
         format.html do
+          @query_due_date = Query.find 81614 # 我的逾期工作包
+          @query_due_date.sort_criteria = [["due_date", "desc"]]
+          @query_need_confirm = Query.find 81615 # 我的待复核工作包
+          @query_need_confirm.sort_criteria = [["due_date", "desc"]]
           render locals: { menu_name: :global_menu }
         end
       end
