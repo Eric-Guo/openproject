@@ -35,6 +35,7 @@ RSpec.describe "my time tracking", :js do
   let(:user) do
     create(:user,
            preferences: { time_zone: },
+           global_permissions: [:view_all_project_info],
            member_with_permissions: {
              project1 => %i[view_project view_time_entries log_own_time edit_own_time_entries],
              project2 => %i[view_project view_time_entries log_own_time]
