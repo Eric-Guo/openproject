@@ -106,7 +106,7 @@ module Costs
                    require: :member
 
         permission :view_cost_entries,
-                   { costlog: [:index] },
+                   { costlog: [:index], "my/time_tracking": [:index] },
                    permissible_on: :project
         permission :view_own_cost_entries,
                    { costlog: [:index] },
@@ -149,7 +149,8 @@ module Costs
            after: :my_page,
            caption: :label_my_time_tracking,
            if: ->(*) do
-             User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
+             (User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)) &&
+               (User.current.admin? || User.current.allowed_globally?(:view_all_project_info))
            end,
            icon: :stopwatch
 
@@ -160,7 +161,8 @@ module Costs
            context: :my,
            caption: :label_my_time_tracking,
            if: ->(*) do
-             User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
+             (User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)) &&
+               (User.current.admin? || User.current.allowed_globally?(:view_all_project_info))
            end,
            icon: :stopwatch
     end
