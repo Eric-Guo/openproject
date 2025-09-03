@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 2c57bb50eb419d1b4728f6feaa5823fc687b4bca
+  revision: 7e708045c34d5ea81ef32d0edca96f382b6d939c
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: 3528d09318d427f6c58bbf6c2f7df3839375ec23
+  revision: 5d5de92a32f8495741726240a875231bb8e8f01a
   branch: main
   specs:
     openproject-th_projects (1.0.0)
@@ -61,8 +61,8 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: a2827fdc6b39220225976b625f50e38541296cca
-  branch: main
+  revision: ebfa7a3ae73be3dcc4b6064bafa23ee09e38e3bb
+  branch: thape
   specs:
     openproject-primer_view_components (0.72.0)
       actionview (>= 7.2.0)
@@ -418,7 +418,7 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1154.0)
+    aws-partitions (1.1160.0)
     aws-sdk-core (3.232.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -430,7 +430,7 @@ GEM
     aws-sdk-kms (1.112.0)
       aws-sdk-core (~> 3, >= 3.231.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.198.0)
+    aws-sdk-s3 (1.199.0)
       aws-sdk-core (~> 3, >= 3.231.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -463,7 +463,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     bindata (2.5.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
@@ -527,14 +527,14 @@ GEM
       descendants_tracker (~> 0.0.1)
     color_conversion (0.1.2)
     colored2 (4.0.3)
-    commonmarker (2.3.2)
+    commonmarker (2.4.0)
       rb_sys (~> 0.9)
-    commonmarker (2.3.2-aarch64-linux)
-    commonmarker (2.3.2-aarch64-linux-musl)
-    commonmarker (2.3.2-arm64-darwin)
-    commonmarker (2.3.2-x86_64-darwin)
-    commonmarker (2.3.2-x86_64-linux)
-    commonmarker (2.3.2-x86_64-linux-musl)
+    commonmarker (2.4.0-aarch64-linux)
+    commonmarker (2.4.0-aarch64-linux-musl)
+    commonmarker (2.4.0-arm64-darwin)
+    commonmarker (2.4.0-x86_64-darwin)
+    commonmarker (2.4.0-x86_64-linux)
+    commonmarker (2.4.0-x86_64-linux-musl)
     compare-xml (0.66)
       nokogiri (~> 1.8)
     concurrent-ruby (1.3.5)
@@ -736,7 +736,7 @@ GEM
       fugit (>= 1.1)
       railties (>= 6.0.0)
       thor (>= 0.14.1)
-    google-apis-core (1.0.1)
+    google-apis-core (1.0.2)
       addressable (~> 2.8, >= 2.8.7)
       faraday (~> 2.13)
       faraday-follow_redirects (~> 0.3)
@@ -750,35 +750,35 @@ GEM
       base64 (~> 0.2)
       faraday (>= 1.0, < 3.a)
     google-logging-utils (0.2.0)
-    google-protobuf (4.32.0)
+    google-protobuf (4.32.1)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-aarch64-linux-gnu)
+    google-protobuf (4.32.1-aarch64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-aarch64-linux-musl)
+    google-protobuf (4.32.1-aarch64-linux-musl)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-arm64-darwin)
+    google-protobuf (4.32.1-arm64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-x86-linux-gnu)
+    google-protobuf (4.32.1-x86-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-x86-linux-musl)
+    google-protobuf (4.32.1-x86-linux-musl)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-x86_64-darwin)
+    google-protobuf (4.32.1-x86_64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-x86_64-linux-gnu)
+    google-protobuf (4.32.1-x86_64-linux-gnu)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.32.0-x86_64-linux-musl)
+    google-protobuf (4.32.1-x86_64-linux-musl)
       bigdecimal
       rake (>= 13)
-    googleapis-common-protos-types (1.20.0)
-      google-protobuf (>= 3.18, < 5.a)
+    googleapis-common-protos-types (1.21.0)
+      google-protobuf (~> 4.26)
     googleauth (1.15.0)
       faraday (>= 1.0, < 3.a)
       google-cloud-env (~> 2.2)
@@ -797,34 +797,34 @@ GEM
       grape
       rack
     gravatar_image_tag (1.2.0)
-    grpc (1.74.1)
+    grpc (1.75.0)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-aarch64-linux-gnu)
+    grpc (1.75.0-aarch64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-aarch64-linux-musl)
+    grpc (1.75.0-aarch64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-arm64-darwin)
+    grpc (1.75.0-arm64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-x86-linux-gnu)
+    grpc (1.75.0-x86-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-x86-linux-musl)
+    grpc (1.75.0-x86-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-x86_64-darwin)
+    grpc (1.75.0-x86_64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-x86_64-linux-gnu)
+    grpc (1.75.0-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.74.1-x86_64-linux-musl)
+    grpc (1.75.0-x86_64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc-tools (1.74.1)
+    grpc-tools (1.75.0)
     gruf (2.21.1)
       activesupport (> 4)
       concurrent-ruby (> 1)
@@ -834,7 +834,7 @@ GEM
       slop (>= 4.6)
       zeitwerk (>= 2)
     hana (1.3.7)
-    hashdiff (1.2.0)
+    hashdiff (1.2.1)
     hashery (2.1.2)
     hashie (5.0.0)
     highline (3.1.2)
@@ -914,7 +914,7 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
-    lefthook (1.12.3)
+    lefthook (1.13.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     letter_opener_web (3.0.0)
@@ -960,7 +960,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
-    markly (0.13.1)
+    markly (0.14.1)
     matrix (0.4.3)
     messagebird-rest (1.4.2)
     meta-tags (2.22.1)
@@ -969,7 +969,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0902)
+    mime-types-data (3.2025.0909)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -1002,24 +1002,24 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.9)
+    nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.9-aarch64-linux-gnu)
+    nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-aarch64-linux-musl)
+    nokogiri (1.18.10-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm-linux-gnu)
+    nokogiri (1.18.10-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm-linux-musl)
+    nokogiri (1.18.10-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.9-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-darwin)
+    nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.9-x86_64-linux-musl)
+    nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
     oj (3.16.11)
       bigdecimal (>= 3.0)
@@ -1042,10 +1042,10 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.27.1)
-    openproject-octicons_helper (19.27.1)
+    openproject-octicons (19.28.0)
+    openproject-octicons_helper (19.28.0)
       actionview
-      openproject-octicons (= 19.27.1)
+      openproject-octicons (= 19.28.0)
       railties
     openproject-token (7.2.2)
       activemodel
@@ -1088,7 +1088,7 @@ GEM
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
     prettyprint (0.2.0)
-    prism (1.4.0)
+    prism (1.5.1)
     prometheus-client-mmap (1.2.10)
       base64
       bigdecimal
@@ -1225,7 +1225,7 @@ GEM
       ffi (~> 1.0)
     rb_sys (0.9.117)
       rake-compiler-dock (= 1.9.1)
-    rbs (3.9.4)
+    rbs (3.9.5)
       logger
     rbtrace (0.5.2)
       ffi (>= 1.0.6)
@@ -1235,13 +1235,13 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    recaptcha (5.20.1)
+    recaptcha (5.21.0)
     redcarpet (3.6.1)
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.25.2)
+    redis-client (0.25.3)
       connection_pool
-    regexp_parser (2.11.2)
+    regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
     representable (3.2.0)
@@ -1254,7 +1254,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.4.2)
+    rexml (3.4.4)
     rinku (2.0.6)
     roar (1.2.0)
       representable (~> 3.1)
@@ -1286,7 +1286,7 @@ GEM
     rspec-support (3.13.5)
     rspec-wait (1.0.2)
       rspec (>= 3.4)
-    rubocop (1.80.1)
+    rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -1308,10 +1308,10 @@ GEM
       rubocop (~> 1.72, >= 1.72.1)
     rubocop-openproject (0.3.0)
       rubocop
-    rubocop-performance (1.25.0)
+    rubocop-performance (1.26.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     rubocop-rails (2.33.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
@@ -1412,7 +1412,7 @@ GEM
       attr_required (>= 0.0.5)
       faraday (~> 2.0)
       faraday-follow_redirects
-    sys-filesystem (1.5.3)
+    sys-filesystem (1.5.4)
       ffi (~> 1.1)
     table_print (1.5.7)
     terminal-table (4.0.0)
@@ -1441,9 +1441,9 @@ GEM
     tzinfo-data (1.2025.2)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
-    unicode-display_width (3.1.5)
-      unicode-emoji (~> 4.0, >= 4.0.4)
-    unicode-emoji (4.0.4)
+    unicode-display_width (3.2.0)
+      unicode-emoji (~> 4.1)
+    unicode-emoji (4.1.0)
     uri (1.0.3)
     useragent (0.16.11)
     validate_email (0.1.6)
@@ -1493,7 +1493,7 @@ GEM
       zeitwerk (>= 2.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yabeda (0.13.1)
+    yabeda (0.14.0)
       anyway_config (>= 1.0, < 3)
       concurrent-ruby
       dry-initializer
@@ -1507,7 +1507,7 @@ GEM
       json
       puma
       yabeda (~> 0.5)
-    yabeda-rails (0.9.0)
+    yabeda-rails (0.10.0)
       activesupport
       anyway_config (>= 1.3, < 3)
       railties
@@ -1570,7 +1570,7 @@ DEPENDENCIES
   climate_control
   closure_tree (~> 8.0.0)
   colored2
-  commonmarker (~> 2.3.0)
+  commonmarker (~> 2.4.0)
   compare-xml (~> 0.66)
   costs!
   csv (~> 3.3)
@@ -1657,8 +1657,8 @@ DEPENDENCIES
   openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
-  openproject-octicons (~> 19.27.0)
-  openproject-octicons_helper (~> 19.27.0)
+  openproject-octicons (~> 19.28.0)
+  openproject-octicons_helper (~> 19.28.0)
   openproject-openid_connect!
   openproject-primer_view_components!
   openproject-recaptcha!
@@ -1772,4 +1772,4 @@ RUBY VERSION
    ruby 3.4.5p51
 
 BUNDLED WITH
-   2.7.1
+   2.7.2

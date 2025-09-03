@@ -83,7 +83,7 @@ gem "htmldiff"
 gem "stringex", "~> 2.8.5"
 
 # CommonMark markdown parser with GFM extension
-gem "commonmarker", "~> 2.3.0"
+gem "commonmarker", "~> 2.4.0"
 
 # HTML pipeline for transformations on text formatter output
 # such as sanitization or additional features
@@ -436,7 +436,7 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.27.0"
-gem "openproject-octicons_helper", "~>19.27.0"
+gem "openproject-octicons", "~>19.28.0"
+gem "openproject-octicons_helper", "~>19.28.0"
 # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
-gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :main
+gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
