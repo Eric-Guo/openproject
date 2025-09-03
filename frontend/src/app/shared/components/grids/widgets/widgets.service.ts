@@ -37,9 +37,6 @@ import { WidgetWpGraphComponent } from 'core-app/shared/components/grids/widgets
 import { WidgetWpCalendarComponent } from 'core-app/shared/components/grids/widgets/wp-calendar/wp-calendar.component';
 import { WidgetWpOverviewComponent } from 'core-app/shared/components/grids/widgets/wp-overview/wp-overview.component';
 import {
-  WidgetTimeEntriesCurrentUserComponent,
-} from 'core-app/shared/components/grids/widgets/time-entries/current-user/time-entries-current-user.component';
-import {
   WidgetTimeEntriesProjectComponent,
 } from 'core-app/shared/components/grids/widgets/time-entries/project/time-entries-project.component';
 import { WidgetDocumentsComponent } from 'core-app/shared/components/grids/widgets/documents/documents.component';
@@ -186,15 +183,6 @@ export class GridWidgetsService {
         title: this.I18n.t('js.grid.widgets.work_packages_overview.title'),
         properties: {
           name: this.I18n.t('js.grid.widgets.work_packages_overview.title'),
-        },
-      },
-      {
-        identifier: 'time_entries_current_user',
-        component: WidgetTimeEntriesCurrentUserComponent,
-        title: this.I18n.t('js.grid.widgets.time_entries_current_user.title'),
-        properties: {
-          name: this.I18n.t('js.grid.widgets.time_entries_current_user.title'),
-          days: [true, true, true, true, true, true, true],
         },
       },
       {
