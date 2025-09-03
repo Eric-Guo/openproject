@@ -268,15 +268,6 @@ export function registerWidgets(injector:Injector) {
         },
       },
       {
-        identifier: 'time_entries_current_user',
-        component: WidgetTimeEntriesCurrentUserComponent,
-        title: i18n.t('js.grid.widgets.time_entries_current_user.title'),
-        properties: {
-          name: i18n.t('js.grid.widgets.time_entries_current_user.title'),
-          days: [true, true, true, true, true, true, true],
-        },
-      },
-      {
         identifier: 'time_entries_list',
         component: WidgetTimeEntriesProjectComponent,
         title: i18n.t('js.grid.widgets.time_entries_list.title'),
