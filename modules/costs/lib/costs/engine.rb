@@ -105,7 +105,7 @@ module Costs
                    require: :member
 
         permission :view_cost_entries,
-                   { costlog: [:index] },
+                   { costlog: [:index], "my/time_tracking": [:index] },
                    permissible_on: :project
         permission :view_own_cost_entries,
                    { costlog: [:index] },
@@ -145,6 +145,7 @@ module Costs
       menu :global_menu,
            :my_time_tracking,
            { controller: "/my/time_tracking", action: "index" },
+           if: ->(*) { User.current.admin? || User.current.allowed_globally?(:view_all_project_info) },
            after: :my_page,
            caption: :label_my_time_tracking,
            icon: :stopwatch
