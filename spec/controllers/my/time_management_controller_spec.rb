@@ -30,7 +30,7 @@
 require_relative "../../spec_helper"
 
 RSpec.describe My::TimeManagementController do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, global_permissions: [:view_all_project_info]) }
 
   before do
     login_as user
@@ -196,6 +196,15 @@ RSpec.describe My::TimeManagementController do
           expect(user.reload.pref.my_time_management_mode).to eq("week")
         end
       end
+    end
+  end
+
+  context "when the user lacks the global permission" do
+    let(:user) { create(:user) }
+
+    it "rejects access" do
+      get :index
+      expect(response).to have_http_status(:forbidden)
     end
   end
 

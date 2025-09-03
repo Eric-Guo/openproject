@@ -127,7 +127,7 @@ module Costs
                    require: :member
 
         permission :view_cost_entries,
-                   { costlog: [:index] },
+                   { costlog: [:index], "my/time_tracking": [:index] },
                    permissible_on: :project
         permission :view_own_cost_entries,
                    { costlog: [:index] },

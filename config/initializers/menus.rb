@@ -102,7 +102,8 @@ Redmine::MenuManager.map :top_menu do |menu|
             context: :my,
             caption: :label_my_time,
             if: ->(*) do
-              User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
+              (User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)) &&
+                (User.current.admin? || User.current.allowed_globally?(:view_all_project_info))
             end,
             icon: :clock
 end
@@ -229,7 +230,8 @@ Redmine::MenuManager.map :global_menu do |menu|
             after: :my_page,
             caption: :label_my_time,
             if: ->(*) do
-              User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)
+              (User.current.allowed_in_any_project?(:log_own_time) || User.current.allowed_in_any_project?(:log_time)) &&
+                (User.current.admin? || User.current.allowed_globally?(:view_all_project_info))
             end,
             icon: :clock
 

@@ -34,7 +34,7 @@ module My
 
     before_action :require_login, :view_mode, :mode, :date
 
-    no_authorization_required!(:index, :refresh)
+    authorize_with_permission :view_all_project_info, global: true
 
     menu_item :my_time
 
