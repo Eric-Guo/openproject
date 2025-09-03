@@ -31,7 +31,7 @@
 require_relative "../../spec_helper"
 
 RSpec.describe My::TimeTrackingController do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, global_permissions: [:view_all_project_info]) }
 
   before do
     login_as user
@@ -96,6 +96,16 @@ RSpec.describe My::TimeTrackingController do
           expect(assigns(:view_mode)).to eq(:list)
         end
       end
+    end
+  end
+
+  context "when the user lacks the global permission" do
+    let(:user) { create(:user) }
+
+    it "rejects access" do
+      get :index
+
+      expect(response).to have_http_status(:forbidden)
     end
   end
 
