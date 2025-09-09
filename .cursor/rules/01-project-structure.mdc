@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+## OpenProject Monorepo Structure Guide
+
+- Backend (Ruby on Rails)
+  - Entry point and boot: [config/application.rb](mdc:config/application.rb), [config/boot.rb](mdc:config/boot.rb)
+  - Routes: [config/routes.rb](mdc:config/routes.rb)
+  - App code: `app/` (models, services, controllers, views, workers, mailers)
+  - API (Ruby): `lib/api/` (versioned API endpoints and helpers)
+  - Initializers: `config/initializers/`
+  - Background jobs: `app/workers/`
+
+- Frontend (Angular)
+  - Workspace configuration: [frontend/angular.json](mdc:frontend/angular.json)
+  - TypeScript config: [frontend/tsconfig.json](mdc:frontend/tsconfig.json)
+  - Dev proxy to Rails: [frontend/cli_to_rails_proxy.js](mdc:frontend/cli_to_rails_proxy.js)
+  - Source code: `frontend/src/` (modules, components, services, styles, assets)
+
+- Testing
+  - Rails specs: `spec/`
+  - Frontend unit tests: `frontend/src/**/*.spec.ts`
+  - Frontend test runner config: [frontend/karma.conf.js](mdc:frontend/karma.conf.js)
+
+- Other key files
+  - Ruby dependencies: [Gemfile](mdc:Gemfile)
+  - Rack entrypoint: [config.ru](mdc:config.ru)
+  - Rake tasks: [Rakefile](mdc:Rakefile)
+  - Rails executables: `bin/` (e.g., [bin/rails](mdc:bin/rails))
+
+Guidance
+- Keep backend changes within Rails conventions (models/services/controllers) and frontend changes within Angular modules/components.
+- Prefer small, focused edits and match existing patterns and naming.

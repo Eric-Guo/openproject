@@ -1,0 +1,17 @@
+---
+globs: frontend/**/*.ts,frontend/**/*.html,frontend/**/*.sass
+---
+## Angular Frontend Conventions
+
+- Project layout follows Angular CLI: sources in `frontend/src/` with modules, components, and services.
+- Use RxJS and Observables for async data; avoid manual Promise chains when streams exist.
+- Keep components presentational where possible; move data-fetching and business logic to services.
+- Respect existing module boundaries and lazy-loading configuration in [frontend/angular.json](mdc:frontend/angular.json).
+- Use translation helpers and existing i18n keys instead of hard-coded strings.
+- Styles use SASS; prefer component-scoped styles and existing variables/mixins.
+- HTTP calls should go through well-defined services; prefer interceptors for cross-cutting concerns.
+- Testing: add `.spec.ts` alongside components/services.
+
+Dev Workflow
+- Run the Angular dev server with Rails proxy as configured in [frontend/cli_to_rails_proxy.js](mdc:frontend/cli_to_rails_proxy.js).
+- Match TypeScript configuration in [frontend/tsconfig.json](mdc:frontend/tsconfig.json) and [frontend/tsconfig.base.json](mdc:frontend/tsconfig.base.json).

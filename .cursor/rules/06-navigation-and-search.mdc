@@ -1,0 +1,12 @@
+---
+alwaysApply: false
+description: Guidance for safe edits and codebase navigation in OpenProject
+---
+## Navigation and Search Guidance
+
+- Use semantic search to find concepts (e.g., authentication, permissions) across Rails and Angular.
+- Prefer exact text search when you know identifiers (class/module/function names).
+- For Rails code, cross-reference models, services, and controllers by namespace and file path.
+- For Angular code, search by module and component names; respect lazy-loaded boundaries.
+- Before editing, scan related specs in `spec/` or `*.spec.ts` to understand behavior and guardrails.
+- Keep edits minimal and localized; follow the existing patterns and naming conventions.

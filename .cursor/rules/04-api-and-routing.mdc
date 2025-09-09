@@ -1,0 +1,9 @@
+---
+globs: lib/api/**/*.rb,app/controllers/**/*.rb,config/routes.rb
+---
+## API and Routing
+
+- Rails controllers routes are defined in [config/routes.rb](mdc:config/routes.rb). Keep routes RESTful and namespaced when appropriate.
+- The Ruby-based API is implemented in `lib/api/` with versioned endpoints and entities. Follow the existing namespace and versioning patterns.
+- When adding or changing API endpoints, update documentation and tests in `spec/` accordingly.
+- For frontend to backend communication during dev, the Angular CLI proxy in [frontend/cli_to_rails_proxy.js](mdc:frontend/cli_to_rails_proxy.js) forwards requests to Rails.

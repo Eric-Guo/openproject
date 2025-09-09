@@ -1,0 +1,20 @@
+---
+globs: app/**/*.rb,lib/**/*.rb,config/**/*.rb,modules/**/*.rb
+---
+## Rails Backend Conventions
+
+- Controllers live in `app/controllers/` and render JSON or HTML. Prefer service objects in `app/services/` for non-trivial logic.
+- Models live in `app/models/`. Use scopes and validations close to the model, and keep business logic in services where possible.
+- Policies/authorization use Pundit-style policies in `app/policies/` or module-specific policies in `modules/**/app/policies/`.
+- Background jobs live in `app/workers/`. Ensure idempotency and use queues appropriately.
+- Mailers live in `app/mailers/` with views in `app/views/`.
+- API endpoints (Ruby-based API) are organized in [lib/api/](mdc:lib/api/). Follow existing versioning and entity patterns.
+- Internationalization: Use `I18n.t` with keys defined under `config/locales/` or module locales under `modules/**/config/locales/`.
+- Configuration: Put initial setup in `config/initializers/`. Avoid adding secrets; use `config/credentials.yml.enc` and environment variables.
+- Database changes: Add migrations under `db/migrate/`. Keep them reversible and minimal; move data changes into separate rake tasks or post-migration services when needed.
+- Routes: Update [config/routes.rb](mdc:config/routes.rb) for Rails controllers; the Ruby API under `lib/api/` has its own routing mechanism.
+
+Editing Guidance
+- Match existing naming, module namespaces, and directory layout.
+- Prefer dependency injection via initializer arguments over singletons.
+- Add tests in `spec/` for new models, services, controllers, and workers.

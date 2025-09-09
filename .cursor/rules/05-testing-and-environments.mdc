@@ -1,0 +1,10 @@
+---
+globs: spec/**/*.rb,frontend/**/*.spec.ts,config/environments/**/*.rb
+---
+## Testing and Environments
+
+- Rails tests live in `spec/` using RSpec. Add unit tests for models, services, and request specs for controllers/API.
+- Frontend tests live alongside code as `*.spec.ts`. Keep tests fast and deterministic.
+- Use factories/fixtures consistent with existing test patterns.
+- Respect environment-specific configs: see `config/environments/*.rb` and [config/application.rb](mdc:config/application.rb).
+- Secrets and credentials are managed via [config/credentials.yml.enc](mdc:config/credentials.yml.enc) and environment variables; never commit plaintext secrets.
