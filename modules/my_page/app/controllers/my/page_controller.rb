@@ -30,7 +30,7 @@
 module My
   class PageController < ApplicationController
     before_action :require_login
-    no_authorization_required! :show
+    no_authorization_required! :show, :welcome
 
     current_menu_item [:show] do
       :my_page
@@ -45,6 +45,12 @@ module My
           @query_need_confirm.sort_criteria = [["due_date", "desc"]]
           render locals: { menu_name: :global_menu }
         end
+      end
+    end
+
+    def welcome
+      respond_to do |format|
+        format.turbo_stream
       end
     end
   end
