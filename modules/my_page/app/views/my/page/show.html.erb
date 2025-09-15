@@ -19,7 +19,7 @@
       data: { turbo: true, turbo_stream: true },
       label: "Info", 
       location: :middle)
-    component.with_text { "在日期设置弹出窗可以方便的对“工作日”与“非工作日”加以区分。" }
+    component.with_text { link_to @one_news.title, news_path(@one_news), target: "_news" }
 
     component.with_action_button(tag: :a,
                                  href: '/th_keyin',

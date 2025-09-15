@@ -43,6 +43,7 @@ module My
           @query_due_date.sort_criteria = [["due_date", "desc"]]
           @query_need_confirm = Query.find 81615 # 我的待复核工作包
           @query_need_confirm.sort_criteria = [["due_date", "desc"]]
+          @one_news = News.where(project_id: 1157).latest(count: 4).sample
           render locals: { menu_name: :global_menu }
         end
       end
