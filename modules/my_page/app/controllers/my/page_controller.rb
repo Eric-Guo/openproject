@@ -44,6 +44,19 @@ module My
           @query_need_confirm = Query.find 81615 # 我的待复核工作包
           @query_need_confirm.sort_criteria = [["due_date", "desc"]]
           @one_news = News.where(project_id: 1157).latest(count: 4).sample
+          update_milestone_project_resp = get_update_milestone_project
+          unless update_milestone_project_resp.cancelled
+            @update_milestone_projects = Project.where(id: update_milestone_project_resp.message.projectIds.to_a) # otherwise will be Google::Protobuf::RepeatedField
+          end
+          archive_projects_resp = get_archive_projects
+          unless archive_projects_resp.cancelled
+            @archive_projects = Project.where(id: archive_projects_resp.message.projectIds.to_a)
+          end
+          budget_overrun_projects_resp = get_budget_overrun_projects
+          unless budget_overrun_projects_resp.cancelled
+            @show_budget_overrun_projects = budget_overrun_projects_resp.message.show
+            @budget_overrun_projects = Project.where(id: budget_overrun_projects_resp.message.projectIds.to_a)
+          end
           render locals: { menu_name: :global_menu }
         end
       end
@@ -53,6 +66,35 @@ module My
       respond_to do |format|
         format.turbo_stream
       end
+    end
+
+    private
+
+    def get_update_milestone_project
+      Proto::OpService::Service.current_client.call(
+        :GetUpdateMilestoneProject,
+        {
+          UserID: current_user.id
+        }
+      )
+    end
+
+    def get_archive_projects
+      Proto::OpService::Service.current_client.call(
+        :GetArchiveProjects,
+        {
+          UserID: current_user.id
+        }
+      )
+    end
+
+    def get_budget_overrun_projects
+      Proto::OpService::Service.current_client.call(
+        :GetBudgetOverrunProjects,
+        {
+          UserID: current_user.id
+        }
+      )
     end
   end
 end

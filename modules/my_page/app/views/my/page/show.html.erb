@@ -67,14 +67,15 @@
                show_dividers: false
              )) do |component|
         component.with_heading(title: "待更新里程碑项目")
-        component.with_item(label: "巡场问题总汇 1", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :gear)
-        end
-        component.with_item(label: "巡场问题总汇 2", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :star)
-        end
-        component.with_item(label: "巡场问题总汇 3", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :heart)
+        update_milestone_projects = @update_milestone_projects&.limit(5) || []
+        if update_milestone_projects.any?
+          update_milestone_projects.each do |project|
+            component.with_item(label: project.name, href: project_path(project), target: "_blank", rel: "noopener") do |item|
+              item.with_leading_visual_icon(icon: :'git-commit')
+            end
+          end
+        else
+          component.with_item(label: "暂无待更新里程碑项目")
         end
       end
      %>
@@ -100,17 +101,28 @@
       end
      %>
   <% end %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
-    <%=
-      render(Primer::Alpha::ActionList.new(
-               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
-               scheme: :inset,
-               show_dividers: false
-             )) do |component|
-        component.with_heading(title: "预算超支项目")
-        component.with_item(label: "暂无预算超支项目")
-      end
-     %>
+  <% if @show_budget_overrun_projects %>
+    <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+      <%=
+        render(Primer::Alpha::ActionList.new(
+                 role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+                 scheme: :inset,
+                 show_dividers: false
+               )) do |component|
+          component.with_heading(title: "预算超支项目")
+          budget_overrun_projects = @budget_overrun_projects&.limit(5) || []
+          if budget_overrun_projects.any?
+            budget_overrun_projects.each do |project|
+              component.with_item(label: project.name, href: project_path(project), target: "_blank", rel: "noopener") do |item|
+                item.with_leading_visual_icon(icon: :alert)
+              end
+            end
+          else
+            component.with_item(label: "暂无预算超支项目")
+          end
+        end
+       %>
+    <% end %>
   <% end %>
   <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
@@ -120,7 +132,16 @@
                show_dividers: false
              )) do |component|
         component.with_heading(title: "待归档项目")
-        component.with_item(label: "暂无待归档项目")
+        archive_projects = @archive_projects&.limit(5) || []
+        if archive_projects.any?
+          archive_projects.each do |project|
+            component.with_item(label: project.name, href: project_path(project), target: "_blank", rel: "noopener") do |item|
+              item.with_leading_visual_icon(icon: :'file-removed')
+            end
+          end
+        else
+          component.with_item(label: "暂无待归档项目")
+        end
       end
      %>
   <% end %>
