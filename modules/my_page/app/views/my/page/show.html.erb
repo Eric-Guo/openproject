@@ -8,6 +8,7 @@
                                  leading_icon: :'search',
                                  scheme: :primary,
                                  location: :left,
+                                 target: "_blank", rel: "noopener",
                                  label: t(:label_th_project_filter)) do
       t(:label_th_project_filter)
     end
@@ -16,15 +17,17 @@
       tag: :a,
       leading_icon: :info,
       href: my_page_welcome_path,
-      data: { turbo: true, turbo_stream: true },
-      label: "Info",
-      location: :middle)
-    component.with_text { "在日期设置弹出窗可以方便的对“工作日”与“非工作日”加以区分。" }
+      data: { turbo: true, turbo_stream: true, welcome_href: my_page_welcome_path, hide_href: my_page_hide_welcome_path },
+      label: "小贴士",
+      location: :left)
+
+    component.with_text(location: :left) { link_to @one_news.title, news_path(@one_news), target: "_news" }
 
     component.with_action_button(tag: :a,
                                  href: '/th_keyin',
                                  leading_icon: :'id-badge',
                                  scheme: :primary,
+                                 target: "_blank", rel: "noopener",
                                  label: t(:label_th_keyin)) do
       t(:label_th_keyin)
     end
@@ -33,6 +36,7 @@
                                  href: 'https://ith-workspace.thape.com.cn/worktime/',
                                  leading_icon: :'op-gitlab-issue-closed',
                                  scheme: :primary,
+                                 target: "_blank", rel: "noopener",
                                  label: t(:label_th_keyin_check)) do
       t(:label_th_keyin_check)
     end
@@ -41,6 +45,7 @@
                                  href: 'https://cybros.thape.com.cn/report/subsidiary_working_hours',
                                  leading_icon: :'op-cost-reports',
                                  scheme: :primary,
+                                 target: "_blank", rel: "noopener",
                                  label: t(:label_th_keyin_report)) do
       t(:label_th_keyin_report)
     end
@@ -49,6 +54,7 @@
                                  href: 'https://ith-workspace.thape.com.cn/projects/milestones',
                                  leading_icon: :'git-commit',
                                  scheme: :primary,
+                                 target: "_blank", rel: "noopener",
                                  label: t(:label_th_milestones)) do
       t(:label_th_milestones)
     end
@@ -57,6 +63,31 @@
 
 <turbo-frame id="th-keyin-hint-body">
 </turbo-frame>
+
+<%= nonced_javascript_tag do %>
+  (function() {
+    if (window.__thWelcomeToggleInitialized__) { return; }
+    window.__thWelcomeToggleInitialized__ = true;
+
+    document.addEventListener('turbo:before-stream-render', function(event) {
+      var stream = event.target;
+      if (!stream || stream.tagName !== 'TURBO-STREAM') { return; }
+      var target = stream.getAttribute('target');
+      if (target !== 'th-my-page-welcome') { return; }
+
+      var btn = document.getElementById('th-welcome-toggle');
+      if (!btn) { return; }
+
+      var welcomeHref = btn.getAttribute('data-welcome-href');
+      var hideHref = btn.getAttribute('data-hide-href');
+      if (!welcomeHref || !hideHref) { return; }
+
+      var current = btn.getAttribute('href');
+      var next = (current === welcomeHref) ? hideHref : welcomeHref;
+      btn.setAttribute('href', next);
+    });
+  })();
+<% end %>
 
 <%= render(Primer::Alpha::Stack.new(direction: browser.mobile? ? :vertical : :horizontal, justify: :space_evenly)) do %>
   <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :attention, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
@@ -67,14 +98,15 @@
                show_dividers: false
              )) do |component|
         component.with_heading(title: "待更新里程碑项目")
-        component.with_item(label: "巡场问题总汇 1", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :gear)
-        end
-        component.with_item(label: "巡场问题总汇 2", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :star)
-        end
-        component.with_item(label: "巡场问题总汇 3", href: "/") do |item|
-          item.with_leading_visual_icon(icon: :heart)
+        update_milestone_projects = @update_milestone_projects&.limit(5) || []
+        if update_milestone_projects.any?
+          update_milestone_projects.each do |project|
+            component.with_item(label: project.name, href: "https://ith-workspace.thape.com.cn/projects/#{project.id}/milestone", target: "_blank", rel: "noopener") do |item|
+              item.with_leading_visual_icon(icon: :'git-commit')
+            end
+          end
+        else
+          component.with_item(label: "暂无待更新里程碑项目")
         end
       end
      %>
@@ -100,17 +132,28 @@
       end
      %>
   <% end %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
-    <%=
-      render(Primer::Alpha::ActionList.new(
-               role: Primer::Alpha::ActionList::DEFAULT_ROLE,
-               scheme: :inset,
-               show_dividers: false
-             )) do |component|
-        component.with_heading(title: "预算超支项目")
-        component.with_item(label: "暂无预算超支项目")
-      end
-     %>
+  <% if @show_budget_overrun_projects %>
+    <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+      <%=
+        render(Primer::Alpha::ActionList.new(
+                 role: Primer::Alpha::ActionList::DEFAULT_ROLE,
+                 scheme: :inset,
+                 show_dividers: false
+               )) do |component|
+          component.with_heading(title: "预算超支项目")
+          budget_overrun_projects = @budget_overrun_projects&.limit(5) || []
+          if budget_overrun_projects.any?
+            budget_overrun_projects.each do |project|
+              component.with_item(label: project.name, href: "https://ith-workspace.thape.com.cn/projects/#{project.id}/costs", target: "_blank", rel: "noopener") do |item|
+                item.with_leading_visual_icon(icon: :alert)
+              end
+            end
+          else
+            component.with_item(label: "暂无预算超支项目")
+          end
+        end
+       %>
+    <% end %>
   <% end %>
   <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
