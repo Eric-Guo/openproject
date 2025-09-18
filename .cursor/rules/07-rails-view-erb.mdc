@@ -1,0 +1,5 @@
+---
+globs: *.html.erb
+---
+
+* do not using <script> to wrap javascript, using <%= nonced_javascript_tag do %><% end %> instead.
