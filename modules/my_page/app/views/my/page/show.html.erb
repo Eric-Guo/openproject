@@ -59,7 +59,7 @@
 </turbo-frame>
 
 <%= render(Primer::Alpha::Stack.new(direction: browser.mobile? ? :vertical : :horizontal, justify: :space_evenly)) do %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :attention, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :attention, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
       render(Primer::Alpha::ActionList.new(
                role: Primer::Alpha::ActionList::DEFAULT_ROLE,
@@ -80,7 +80,7 @@
       end
      %>
   <% end %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :accent, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :accent, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
       render(Primer::Alpha::ActionList.new(
                role: Primer::Alpha::ActionList::DEFAULT_ROLE,
@@ -102,7 +102,7 @@
      %>
   <% end %>
   <% if @show_budget_overrun_projects %>
-    <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+    <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
       <%=
         render(Primer::Alpha::ActionList.new(
                  role: Primer::Alpha::ActionList::DEFAULT_ROLE,
@@ -124,7 +124,7 @@
        %>
     <% end %>
   <% end %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
       render(Primer::Alpha::ActionList.new(
                role: Primer::Alpha::ActionList::DEFAULT_ROLE,
@@ -145,7 +145,7 @@
       end
      %>
   <% end %>
-  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
+  <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :default, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>
     <%=
       render(Primer::Alpha::ActionList.new(
                role: Primer::Alpha::ActionList::DEFAULT_ROLE,
