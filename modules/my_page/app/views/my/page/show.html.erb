@@ -12,12 +12,13 @@
       t(:label_th_project_filter)
     end
 
-    component.with_action_button(icon_only: true, 
+    component.with_action_button(icon_only: true,
       tag: :a,
-      leading_icon: :info,       
+      id: "th-welcome-toggle",
+      leading_icon: :info,
       href: my_page_welcome_path,
-      data: { turbo: true, turbo_stream: true },
-      label: "Info", 
+      data: { turbo: true, turbo_stream: true, welcome_href: my_page_welcome_path, hide_href: my_page_hide_welcome_path },
+      label: "Info",
       location: :middle)
     component.with_text { link_to @one_news.title, news_path(@one_news), target: "_news" }
 
@@ -55,8 +56,33 @@
   end 
 %>
 
-<turbo-frame id="th-keyin-hint-body">
+<turbo-frame id="th-my-page-welcome">
 </turbo-frame>
+
+<script>
+  (function() {
+    if (window.__thWelcomeToggleInitialized__) { return; }
+    window.__thWelcomeToggleInitialized__ = true;
+
+    document.addEventListener('turbo:before-stream-render', function(event) {
+      var stream = event.target;
+      if (!stream || stream.tagName !== 'TURBO-STREAM') { return; }
+      var target = stream.getAttribute('target');
+      if (target !== 'th-my-page-welcome') { return; }
+
+      var btn = document.getElementById('th-welcome-toggle');
+      if (!btn) { return; }
+
+      var welcomeHref = btn.getAttribute('data-welcome-href');
+      var hideHref = btn.getAttribute('data-hide-href');
+      if (!welcomeHref || !hideHref) { return; }
+
+      var current = btn.getAttribute('href');
+      var next = (current === welcomeHref) ? hideHref : welcomeHref;
+      btn.setAttribute('href', next);
+    });
+  })();
+  </script>
 
 <%= render(Primer::Alpha::Stack.new(direction: browser.mobile? ? :vertical : :horizontal, justify: :space_evenly)) do %>
   <%= render(Primer::BaseComponent.new(tag: :div, p: 3, m: (browser.mobile? ? 0 : 2), bg: :attention, border_radius: 2, style: 'min-width: 200px; max-width: 350px')) do %>

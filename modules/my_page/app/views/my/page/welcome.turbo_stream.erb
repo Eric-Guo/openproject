@@ -1,6 +1,6 @@
 <% in_mobile = browser.mobile? %>
 
-<%= turbo_stream.update "th-keyin-hint-body" do %>
+<%= turbo_stream.update "th-my-page-welcome" do %>
   <%= render(Primer::Beta::Flash.new(my: 2, mx: in_mobile ? 0 : 5, scheme: :default)) do %>
     <div class="wiki op-uc-container">
       <%= format_text(Setting.welcome_text, headings: false) %>

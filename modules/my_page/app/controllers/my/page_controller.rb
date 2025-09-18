@@ -30,7 +30,7 @@
 module My
   class PageController < ApplicationController
     before_action :require_login
-    no_authorization_required! :show, :welcome
+    no_authorization_required! :show, :welcome, :hide_welcome
 
     current_menu_item [:show] do
       :my_page
@@ -63,6 +63,12 @@ module My
     end
 
     def welcome
+      respond_to do |format|
+        format.turbo_stream
+      end
+    end
+
+    def hide_welcome
       respond_to do |format|
         format.turbo_stream
       end
