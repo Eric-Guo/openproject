@@ -97,7 +97,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: "待更新里程碑项目")
+        component.with_heading(title: t(:label_th_update_milestone_projects))
         update_milestone_projects = @update_milestone_projects&.limit(5) || []
         if update_milestone_projects.any?
           update_milestone_projects.each do |project|
@@ -106,7 +106,7 @@
             end
           end
         else
-          component.with_item(label: "暂无待更新里程碑项目")
+          component.with_item(label: t(:label_th_no_update_milestone_projects))
         end
       end
      %>
@@ -118,7 +118,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: "待复核工作包")
+        component.with_heading(title: t(:label_th_need_confirm_projects))
         need_confirm_wps = @query_need_confirm&.results&.work_packages&.limit(5) || []
         if need_confirm_wps.any?
           need_confirm_wps.each do |wp|
@@ -127,7 +127,7 @@
             end
           end
         else
-          component.with_item(label: "暂无待复核工作包")
+          component.with_item(label: t(:label_th_no_need_confirm_projects))
         end
       end
      %>
@@ -140,7 +140,7 @@
                  scheme: :inset,
                  show_dividers: false
                )) do |component|
-          component.with_heading(title: "预算超支项目")
+          component.with_heading(title: t(:label_th_budget_overrun_projects))
           budget_overrun_projects = @budget_overrun_projects&.limit(5) || []
           if budget_overrun_projects.any?
             budget_overrun_projects.each do |project|
@@ -149,7 +149,7 @@
               end
             end
           else
-            component.with_item(label: "暂无预算超支项目")
+            component.with_item(label: t(:label_th_no_budget_overrun_projects))
           end
         end
        %>
@@ -162,7 +162,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: "待归档项目")
+        component.with_heading(title: t(:label_th_archive_projects))
         archive_projects = @archive_projects&.limit(5) || []
         if archive_projects.any?
           archive_projects.each do |project|
@@ -171,7 +171,7 @@
             end
           end
         else
-          component.with_item(label: "暂无待归档项目")
+          component.with_item(label: t(:label_th_no_archive_projects))
         end
       end
      %>
@@ -183,7 +183,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: "逾期工作包")
+        component.with_heading(title: t(:label_th_due_date_work_packages))
         overdue_wps = @query_due_date&.results&.work_packages&.limit(5) || []
         if overdue_wps.any?
           overdue_wps.each do |wp|
@@ -192,7 +192,7 @@
             end
           end
         else
-          component.with_item(label: "暂无逾期工作包")
+          component.with_item(label: t(:label_th_no_due_date_work_packages))
         end
       end
      %>
