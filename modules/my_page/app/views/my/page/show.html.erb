@@ -118,7 +118,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: t(:label_th_need_confirm_projects))
+        component.with_heading(title: link_to(t(:label_th_need_confirm_projects), work_packages_path(query_id: 81615), target: "_blank", rel: "noopener"))
         need_confirm_wps = @query_need_confirm&.results&.work_packages&.limit(5) || []
         if need_confirm_wps.any?
           need_confirm_wps.each do |wp|
@@ -183,7 +183,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: t(:label_th_due_date_work_packages))
+        component.with_heading(title: link_to(t(:label_th_due_date_work_packages), work_packages_path(query_id: 81614), target: "_blank", rel: "noopener"))
         overdue_wps = @query_due_date&.results&.work_packages&.limit(5) || []
         if overdue_wps.any?
           overdue_wps.each do |wp|
