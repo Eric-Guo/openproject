@@ -69,6 +69,7 @@ module My
 
       respond_to do |format|
         format.turbo_stream
+        format.html { render :welcome }
       end
     end
 
