@@ -732,6 +732,12 @@ class User < Principal
     all_dates.select { |d| working_wdays.include?(d.wday) }
   end
 
+  def mark_welcome_text_viewed!
+    return if is_a?(AnonymousUser)
+
+    update_column(:view_welcome_text_time, Time.current)
+  end
+
   private
 
   def system_non_working_dates_for_year(year)
