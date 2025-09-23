@@ -30,5 +30,6 @@ Rails.application.routes.draw do
   namespace :my do
     get "/page", to: "page#show"
     get "/page/welcome", to: "page#welcome", as: :page_welcome
+    get "/page/hide_welcome", to: "page#hide_welcome", as: :page_hide_welcome
   end
 end
