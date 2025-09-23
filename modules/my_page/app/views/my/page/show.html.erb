@@ -15,8 +15,9 @@
 
     component.with_action_button(icon_only: true,
       tag: :a,
+      id: "th-welcome-toggle",
       leading_icon: :info,
-      href: my_page_welcome_path,
+      href: (@auto_load_welcome ? my_page_hide_welcome_path : my_page_welcome_path),
       data: { turbo: true, turbo_stream: true, welcome_href: my_page_welcome_path, hide_href: my_page_hide_welcome_path },
       label: "小贴士",
       location: :left)
@@ -61,8 +62,9 @@
   end
 %>
 
-<turbo-frame id="th-keyin-hint-body">
-</turbo-frame>
+<%= turbo_frame_tag "th-my-page-welcome" do %>
+  <%= render "welcome_content" if @auto_load_welcome %>
+<% end %>
 
 <%= nonced_javascript_tag do %>
   (function() {
