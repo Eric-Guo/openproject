@@ -51,6 +51,7 @@ module My
           archive_projects_resp = get_archive_projects
           unless archive_projects_resp.cancelled
             @archive_projects = Project.where(id: archive_projects_resp.message.projectIds.to_a)
+            @archive_projects_url = archive_projects_resp.message.url
           end
           budget_overrun_projects_resp = get_budget_overrun_projects
           unless budget_overrun_projects_resp.cancelled
