@@ -61,8 +61,8 @@
   end 
 %>
 
-<turbo-frame id="th-my-page-welcome">
-</turbo-frame>
+<%= turbo_frame_tag "th-my-page-welcome", src: (@auto_load_welcome ? my_page_welcome_path : nil) do %>
+<% end %>
 
 <%= nonced_javascript_tag do %>
   (function() {

@@ -39,6 +39,7 @@ module My
     def show
       respond_to do |format|
         format.html do
+          @auto_load_welcome = auto_load_welcome?
           @query_due_date = Query.find 81614 # 我的逾期工作包
           @query_due_date.sort_criteria = [["due_date", "desc"]]
           @query_need_confirm = Query.find 81615 # 我的待复核工作包
@@ -64,6 +65,8 @@ module My
     end
 
     def welcome
+      current_user&.mark_welcome_text_viewed!
+
       respond_to do |format|
         format.turbo_stream
       end
@@ -76,6 +79,17 @@ module My
     end
 
     private
+
+    def auto_load_welcome?
+      return false unless Setting.welcome_text.present?
+
+      welcome_updated_at = Setting.where(name: "welcome_text").pick(:updated_at)
+      return false unless welcome_updated_at
+
+      last_viewed_at = current_user.view_welcome_text_time
+
+      last_viewed_at.nil? || welcome_updated_at > last_viewed_at
+    end
 
     def get_update_milestone_project
       Proto::OpService::Service.current_client.call(

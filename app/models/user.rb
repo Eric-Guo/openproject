@@ -574,6 +574,12 @@ class User < Principal
     SystemUser.first
   end
 
+  def mark_welcome_text_viewed!
+    return if is_a?(AnonymousUser)
+
+    update_column(:view_welcome_text_time, Time.current)
+  end
+
   protected
 
   # Login must not be aliased value 'me'
