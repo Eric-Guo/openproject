@@ -38,9 +38,9 @@ See COPYRIGHT and LICENSE files for more details.
     <header class="op-app-header<%= " op-app-header_development" if OpenProject::Configuration.development_highlight_enabled? %>">
       <div class="op-app-header--center">
         <div class="op-logo">
-          <%= link_to(I18n.t("label_home"), configurable_home_url, class: "op-logo--link") %>
+          <%= link_to(I18n.t("my_page.label"), my_page_url, class: "op-logo--link") %>
         </div>
-        <%= link_to(I18n.t("label_home"), configurable_home_url, class: "op-logo--icon op-logo--link op-logo--icon_white") %>
+        <%= link_to(I18n.t("my_page.label"), my_page_url, class: "op-logo--icon op-logo--link op-logo--icon_white") %>
       </div>
     </header>
     <main id="content-wrapper">
