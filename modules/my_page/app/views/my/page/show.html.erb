@@ -13,11 +13,12 @@
       t(:label_th_project_filter)
     end
 
+    toggle_initial_href = @auto_load_welcome ? my_page_hide_welcome_path : my_page_welcome_path
     component.with_action_button(icon_only: true,
       tag: :a,
       id: "th-welcome-toggle",
       leading_icon: :info,
-      href: my_page_welcome_path,
+      href: toggle_initial_href,
       data: { turbo: true, turbo_stream: true, welcome_href: my_page_welcome_path, hide_href: my_page_hide_welcome_path },
       label: "小贴士",
       location: :left)
