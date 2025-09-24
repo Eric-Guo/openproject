@@ -108,6 +108,7 @@
     "@mantine/core": "^8.3.13",
     "@mantine/hooks": "^8.3.6",
     "@mantine/utils": "^6.0.22",
+    "@mixtint/primer-view-components": "0.74.1",
     "@ng-select/ng-option-highlight": "^20.6.3",
     "@ng-select/ng-select": "^20.1.0",
     "@ngneat/content-loader": "^7.0.0",
