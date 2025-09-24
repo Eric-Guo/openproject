@@ -48,7 +48,7 @@ module Accounts::RedirectAfterLogin
     if (url = Setting.after_login_default_redirect_url)
       redirect_back_or_default url
     else
-      redirect_back_or_default home_path
+      redirect_back_or_default my_page_url
     end
   end
 
