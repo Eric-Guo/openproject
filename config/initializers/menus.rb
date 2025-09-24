@@ -169,15 +169,9 @@ Redmine::MenuManager.map :account_menu do |menu|
 end
 
 Redmine::MenuManager.map :global_menu do |menu|
-  # Homescreen
-  menu.push :home,
-            { controller: "/homescreen", action: "index" },
-            icon: "home",
-            first: true
-
   menu.push :my_page,
             { controller: "/my/page", action: "show" },
-            after: :home,
+            first: true,
             icon: "person",
             caption: I18n.t("my_page.label")
 
