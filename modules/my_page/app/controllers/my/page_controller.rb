@@ -45,19 +45,46 @@ module My
           @query_need_confirm = Query.find 81615 # 我的待复核工作包
           @query_need_confirm.sort_criteria = [["due_date", "desc"]]
           @one_news = News.where(project_id: 1157).latest(count: 4).sample
-          update_milestone_project_resp = get_update_milestone_project
-          unless update_milestone_project_resp.cancelled
-            @update_milestone_projects = Project.where(id: update_milestone_project_resp.message.projectIds.to_a) # otherwise will be Google::Protobuf::RepeatedField
+          begin
+            update_milestone_project_resp = get_update_milestone_project
+            if update_milestone_project_resp.cancelled
+              @update_milestone_projects = Project.none
+            else
+              @update_milestone_projects = Project.where(id: update_milestone_project_resp.message.projectIds.to_a) # otherwise will be Google::Protobuf::RepeatedField
+            end
+          rescue StandardError => e
+            Rails.logger.warn("GetUpdateMilestoneProject failed: #{e.class}: #{e.message}")
+            @update_milestone_projects = Project.none
           end
-          archive_projects_resp = get_archive_projects
-          unless archive_projects_resp.cancelled
-            @archive_projects = Project.where(id: archive_projects_resp.message.projectIds.to_a)
-            @archive_projects_url = archive_projects_resp.message.url
+
+          begin
+            archive_projects_resp = get_archive_projects
+            if archive_projects_resp.cancelled
+              @archive_projects = Project.none
+              @archive_projects_url = nil
+            else
+              @archive_projects = Project.where(id: archive_projects_resp.message.projectIds.to_a)
+              @archive_projects_url = archive_projects_resp.message.url
+            end
+          rescue StandardError => e
+            Rails.logger.warn("GetArchiveProjects failed: #{e.class}: #{e.message}")
+            @archive_projects = Project.none
+            @archive_projects_url = nil
           end
-          budget_overrun_projects_resp = get_budget_overrun_projects
-          unless budget_overrun_projects_resp.cancelled
-            @show_budget_overrun_projects = budget_overrun_projects_resp.message.show
-            @budget_overrun_projects = Project.where(id: budget_overrun_projects_resp.message.projectIds.to_a)
+
+          begin
+            budget_overrun_projects_resp = get_budget_overrun_projects
+            if budget_overrun_projects_resp.cancelled
+              @show_budget_overrun_projects = false
+              @budget_overrun_projects = Project.none
+            else
+              @show_budget_overrun_projects = budget_overrun_projects_resp.message.show
+              @budget_overrun_projects = Project.where(id: budget_overrun_projects_resp.message.projectIds.to_a)
+            end
+          rescue StandardError => e
+            Rails.logger.warn("GetBudgetOverrunProjects failed: #{e.class}: #{e.message}")
+            @show_budget_overrun_projects = false
+            @budget_overrun_projects = Project.none
           end
           render locals: { menu_name: :global_menu }
         end
