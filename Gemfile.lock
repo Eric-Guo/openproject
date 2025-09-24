@@ -61,13 +61,13 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 9b0ee60440e8dce95d39494e1b731094cbd328b1
+  revision: 39bfcade918df3a5b326d5c9427a41b94306389a
   branch: thape
   specs:
-    openproject-primer_view_components (0.72.0)
+    openproject-primer_view_components (0.73.0)
       actionview (>= 7.2.0)
       activesupport (>= 7.2.0)
-      openproject-octicons (>= 19.25.0)
+      openproject-octicons (>= 19.29.0)
       view_component (>= 3.1, < 5.0)
 
 GIT
@@ -427,7 +427,7 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.112.0)
+    aws-sdk-kms (1.113.0)
       aws-sdk-core (~> 3, >= 3.231.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.199.0)
@@ -662,9 +662,9 @@ GEM
       logger
     factory_bot (6.5.5)
       activesupport (>= 6.1.0)
-    factory_bot_rails (6.4.4)
+    factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
-      railties (>= 5.0.0)
+      railties (>= 6.1.0)
     faraday (2.13.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -969,7 +969,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0916)
+    mime-types-data (3.2025.0924)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -1599,7 +1599,7 @@ DEPENDENCIES
   erblint-github
   escape_utils (~> 1.3)
   factory_bot (~> 6.5.0)
-  factory_bot_rails (~> 6.4.4)
+  factory_bot_rails (~> 6.5.1)
   ffi (~> 1.15)
   flamegraph
   fog-aws
