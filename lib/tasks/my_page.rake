@@ -30,33 +30,31 @@ namespace :openproject do
   namespace :my_page do
     desc "Apply the configured My Page grid to all non-builtin users."
     task apply_grid: :environment do
-      layout = {
-        row_count: 1,
-        column_count: 2,
-        widgets: [
-          {
-            identifier: "project_favorites",
-            start_row: 1,
-            end_row: 2,
-            start_column: 1,
-            end_column: 2,
-            options: {
-              "name" => "\u6536\u85CF\u7684\u9879\u76EE"
-            }
-          },
-          {
-            identifier: "work_packages_table",
-            start_row: 1,
-            end_row: 2,
-            start_column: 2,
-            end_column: 3,
-            options: {
-              "name" => "\u5206\u914D\u7ED9\u6211\u7684\u5DE5\u4F5C\u5305",
-              "queryId" => "152"
-            }
-          }
-        ]
-      }.freeze
+      query_name = "我的工作包"
+
+      # Ensure every user owns a private global query that lists work packages assigned to them.
+      ensure_work_packages_query_for = lambda do |user|
+        User.execute_as(user) do
+          query = Query.find_or_initialize_by(project_id: nil, user:, name: query_name)
+
+          query.public = false
+          query.starred = false
+          query.timeline_visible = false
+          query.show_hierarchies = false
+          query.display_sums = false
+          query.include_subprojects = false
+          query.include_all_members_assigned_projects = false
+          query.column_names = %w[id project type subject]
+          query.sort_criteria = [%w[updated_at desc]]
+          query.filters = []
+          query.add_filter("status_id", "o", [""])
+          query.add_filter("assigned_to_id", "=", [::Queries::Filters::MeValue::KEY])
+
+          query.save!
+
+          query
+        end
+      end
 
       processed = 0
       created = 0
@@ -67,11 +65,13 @@ namespace :openproject do
         processed += 1
 
         ActiveRecord::Base.transaction do
+          query = ensure_work_packages_query_for.call(user)
+
           my_page = Grids::MyPage.find_or_initialize_by(user: user)
           new_record = my_page.new_record?
 
-          my_page.row_count = layout.fetch(:row_count)
-          my_page.column_count = layout.fetch(:column_count)
+          my_page.row_count = 1
+          my_page.column_count = 2
           my_page.options = {}
           my_page.name = nil
 
@@ -80,8 +80,32 @@ namespace :openproject do
             my_page.widgets.reload
           end
 
-          layout.fetch(:widgets).each do |widget_definition|
-            attrs = widget_definition.deep_dup
+          widgets = [
+            {
+              identifier: "project_favorites",
+              start_row: 1,
+              end_row: 2,
+              start_column: 1,
+              end_column: 2,
+              options: {
+                "name" => "\u6536\u85CF\u7684\u9879\u76EE"
+              }
+            },
+            {
+              identifier: "work_packages_table",
+              start_row: 1,
+              end_row: 2,
+              start_column: 2,
+              end_column: 3,
+              options: {
+                "name" => query_name,
+                "queryId" => query.id.to_s
+              }
+            }
+          ]
+
+          widgets.each do |definition|
+            attrs = definition.deep_dup
             options = attrs.delete(:options) || {}
 
             my_page.widgets.build(attrs.merge(options: options))
