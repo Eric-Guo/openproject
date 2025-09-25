@@ -51,6 +51,7 @@ module My
               @update_milestone_projects = Project.none
             else
               @update_milestone_projects = Project.where(id: update_milestone_project_resp.message.projectIds.to_a) # otherwise will be Google::Protobuf::RepeatedField
+              @update_milestone_projects_total = update_milestone_project_resp.message.total
             end
           rescue StandardError => e
             Rails.logger.warn("GetUpdateMilestoneProject failed: #{e.class}: #{e.message}")
@@ -65,6 +66,7 @@ module My
             else
               @archive_projects = Project.where(id: archive_projects_resp.message.projectIds.to_a)
               @archive_projects_url = archive_projects_resp.message.url
+              @archive_projects_total = archive_projects_resp.message.total
             end
           rescue StandardError => e
             Rails.logger.warn("GetArchiveProjects failed: #{e.class}: #{e.message}")
@@ -80,6 +82,7 @@ module My
             else
               @show_budget_overrun_projects = budget_overrun_projects_resp.message.show
               @budget_overrun_projects = Project.where(id: budget_overrun_projects_resp.message.projectIds.to_a)
+              @budget_overrun_projects_total = budget_overrun_projects_resp.message.total
             end
           rescue StandardError => e
             Rails.logger.warn("GetBudgetOverrunProjects failed: #{e.class}: #{e.message}")

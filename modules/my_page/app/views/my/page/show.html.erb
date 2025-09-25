@@ -99,7 +99,8 @@
                  scheme: :inset,
                  show_dividers: false
                )) do |component|
-          component.with_heading(title: t(:label_th_budget_overrun_projects))
+          component.with_heading(title: link_to(t(:label_th_budget_overrun_projects),"https://ith-workspace.thape.com.cn/projects/overBudget", target: "_blank", rel: "noopener"))
+          component.with_trailing_visual_counter(count: @budget_overrun_projects_total)
           budget_overrun_projects = @budget_overrun_projects&.limit(5) || []
           if budget_overrun_projects.any?
             budget_overrun_projects.each do |project|
@@ -122,6 +123,7 @@
                show_dividers: false
              )) do |component|
         component.with_heading(title: t(:label_th_update_milestone_projects))
+        component.with_trailing_visual_counter(count: @update_milestone_projects_total)
         update_milestone_projects = @update_milestone_projects&.limit(5) || []
         if update_milestone_projects.any?
           update_milestone_projects.each do |project|
@@ -143,6 +145,7 @@
                show_dividers: false
              )) do |component|
         component.with_heading(title: t(:label_th_archive_projects))
+        component.with_trailing_visual_counter(count: @archive_projects_total)
         archive_projects = @archive_projects&.limit(5) || []
         if archive_projects.any?
           archive_projects.each do |project|

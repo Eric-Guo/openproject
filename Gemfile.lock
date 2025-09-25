@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 39bfcade918df3a5b326d5c9427a41b94306389a
+  revision: 7f4cf7debda985eeb90c0a9ae8f42561feb88810
   branch: thape
   specs:
     openproject-primer_view_components (0.73.0)
