@@ -122,7 +122,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: t(:label_th_update_milestone_projects))
+        component.with_heading(title: link_to(t(:label_th_update_milestone_projects),"https://ith-workspace.thape.com.cn/projects/milestones", target: "_blank", rel: "noopener"))
         component.with_trailing_visual_counter(count: @update_milestone_projects_total)
         update_milestone_projects = @update_milestone_projects&.limit(5) || []
         if update_milestone_projects.any?
@@ -144,7 +144,7 @@
                scheme: :inset,
                show_dividers: false
              )) do |component|
-        component.with_heading(title: t(:label_th_archive_projects))
+        component.with_heading(title: link_to(t(:label_th_archive_projects),@archive_projects_url, target: "_blank", rel: "noopener"))
         component.with_trailing_visual_counter(count: @archive_projects_total)
         archive_projects = @archive_projects&.limit(5) || []
         if archive_projects.any?
