@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 90bf8d7ebe5e7c7fdacf432e49e2b13036c8c0d0
+  revision: ab38096242c2c50f2b835a01b8e77a2a5f33b7ab
   branch: thape
   specs:
     openproject-primer_view_components (0.74.1)
@@ -973,7 +973,7 @@ GEM
       logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.25.5)
+    minitest (5.26.0)
     msgpack (1.8.0)
     multi_json (1.15.0)
     mustermann (3.0.4)
