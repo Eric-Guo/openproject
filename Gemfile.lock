@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: ab38096242c2c50f2b835a01b8e77a2a5f33b7ab
+  revision: 59f20626734e04cc398894080dec87b5d2376647
   branch: thape
   specs:
     openproject-primer_view_components (0.74.1)
@@ -1260,7 +1260,7 @@ GEM
     rinku (2.0.6)
     roar (1.2.0)
       representable (~> 3.1)
-    rorvswild (1.9.2)
+    rorvswild (1.10.0)
     rotp (6.3.0)
     rouge (4.5.2)
     rspec (3.13.1)
