@@ -2042,10 +2042,10 @@
   resolved "https://registry.npmmirror.com/@math.gl/types/-/types-3.6.3.tgz#9fa9866feabcbb76de107d78ff3a89c0243ac374"
   integrity sha512-3uWLVXHY3jQxsXCr/UCNPSc2BG0hNUljhmOBt9l+lNFDp7zHgm0cK2Tw4kj2XfkJy4TgwZTBGwRDQgWEbLbdTA==
 
-"@mixtint/primer-view-components@0.74.1":
-  version "0.74.1"
-  resolved "https://registry.npmmirror.com/@mixtint/primer-view-components/-/primer-view-components-0.74.1.tgz#a485be13a58e28af38e5ee199c8142305d01c63f"
-  integrity sha512-09kxhv0V4EY7d5A6Hl3bVjaIpou0tWHx/ZGSWV7Kuy1228EEmcI6lpKLcn7GjSSZRVbd4puldR4d9STQD1dLLg==
+"@mixtint/primer-view-components@0.75.1":
+  version "0.75.1"
+  resolved "https://registry.npmmirror.com/@mixtint/primer-view-components/-/primer-view-components-0.75.1.tgz#8fd6a6530b48c544a13e6c9fdfd2f329849700f7"
+  integrity sha512-owUB/f1wR/oTgoazCeI2mQpNUaZUxA9Svk30TUMhIsWUmUMutMUOqixFtZFpPHNEhocdh6oQLl6WhdJ3fwY85Q==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
