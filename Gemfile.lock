@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 682755e3e9fd2da2bb24688d7ce4617de3c307e8
+  revision: bc2ac282f85d41b153461e47c584d7f4b3f89f3d
   branch: thape
   specs:
     openproject-primer_view_components (0.75.1)
@@ -715,7 +715,7 @@ GEM
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     front_matter_parser (1.0.1)
-    fugit (1.12.0)
+    fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
     fuubar (2.5.1)
@@ -1076,7 +1076,7 @@ GEM
       ruby-rc4
       ttfunk
     pg (1.5.9)
-    plaintext (0.3.4)
+    plaintext (0.3.5)
       activesupport (> 2.2.1)
       nokogiri (~> 1.10, >= 1.10.4)
       rubyzip (>= 1.2.0)
