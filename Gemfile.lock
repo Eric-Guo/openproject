@@ -1499,8 +1499,9 @@ GEM
       anyway_config (>= 1.0, < 3)
       concurrent-ruby
       dry-initializer
-    yabeda-activerecord (0.1.1)
+    yabeda-activerecord (0.1.2)
       activerecord (>= 6.0)
+      anyway_config (>= 1.3, < 3.0)
       yabeda (~> 0.6)
     yabeda-prometheus-mmap (0.4.0)
       prometheus-client-mmap
