@@ -83,7 +83,7 @@ gem "htmldiff"
 gem "stringex", "~> 2.8.5"
 
 # CommonMark markdown parser with GFM extension
-gem "commonmarker", "~> 2.4.0"
+gem "commonmarker", "~> 2.5.0"
 
 # HTML pipeline for transformations on text formatter output
 # such as sanitization or additional features
@@ -134,7 +134,7 @@ gem "rack-protection", "~> 3.2.0"
 # It allows whitelisting, blacklisting, throttling, and tracking based
 # on arbitrary properties of the request.
 # https://github.com/kickstarter/rack-attack
-gem "rack-attack", "~> 6.7.0"
+gem "rack-attack", "~> 6.8.0"
 
 # CSP headers
 gem "secure_headers", "~> 7.1.0"
