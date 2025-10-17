@@ -287,9 +287,9 @@
   integrity sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==
 
 "@zip.js/zip.js@^2.2.38":
-  version "2.8.7"
-  resolved "https://registry.npmmirror.com/@zip.js/zip.js/-/zip.js-2.8.7.tgz#ea828f03af80dc1a3f3cc5b9146f193587485715"
-  integrity sha512-8daf29EMM3gUpH/vSBSCYo2bY/wbamgRPxPpE2b+cDnbOLBHAcZikWad79R4Guemth/qtipzEHrZMq1lFXxWIA==
+  version "2.8.8"
+  resolved "https://registry.npmmirror.com/@zip.js/zip.js/-/zip.js-2.8.8.tgz#93674320bb63c6f3247aaa5b6aef891e0a8cad53"
+  integrity sha512-v0KutehhSAuaoFAFGLp+V4+UiZ1mIxQ8vNOYMD7k9ZJaBbtQV49MYlg568oRLiuwWDg2Di58Iw3Q0ESNWR+5JA==
 
 ajv@^6.12.3:
   version "6.12.6"
