@@ -436,7 +436,7 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.29.0"
-gem "openproject-octicons_helper", "~>19.29.0"
+gem "openproject-octicons", "~>19.30.0"
+gem "openproject-octicons_helper", "~>19.30.0"
 # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
 gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape

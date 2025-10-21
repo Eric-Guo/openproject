@@ -1041,10 +1041,10 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.29.0)
-    openproject-octicons_helper (19.29.0)
+    openproject-octicons (19.30.0)
+    openproject-octicons_helper (19.30.0)
       actionview
-      openproject-octicons (= 19.29.0)
+      openproject-octicons (= 19.30.0)
       railties
     openproject-token (7.2.2)
       activemodel
@@ -1660,8 +1660,8 @@ DEPENDENCIES
   openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
-  openproject-octicons (~> 19.29.0)
-  openproject-octicons_helper (~> 19.29.0)
+  openproject-octicons (~> 19.30.0)
+  openproject-octicons_helper (~> 19.30.0)
   openproject-openid_connect!
   openproject-primer_view_components!
   openproject-recaptcha!
