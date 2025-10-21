@@ -115,7 +115,12 @@ class WorkPackages::UpdateService < BaseServices::Update
   def move_time_entries(work_packages, project_id)
     TimeEntry
       .on_work_packages(work_packages)
-      .update_all(project_id:)
+      .find_each do |time_entry|
+        next if time_entry.project_id == project_id
+
+        time_entry.project_id = project_id
+        time_entry.save!
+      end
   end
 
   def move_work_package_memberships(work_packages, project_id)

@@ -169,6 +169,27 @@ RSpec.describe WorkPackages::UpdateService, "integration", type: :model do
         expect(TimeEntry.where(id: time_entries.map(&:id)).pluck(:project_id).uniq)
           .to contain_exactly(target_project.id)
       end
+
+      it "touches the time entries' timestamps" do
+        original_timestamps = time_entries.map { |entry| entry.reload.updated_at }
+
+        moved_at = nil
+        service_call = nil
+
+        travel_to(Time.current + 5.minutes) do
+          moved_at = Time.current
+          service_call = subject
+        end
+
+        expect(service_call).to be_success
+
+        time_entries.zip(original_timestamps).each do |entry, previous_timestamp|
+          current_timestamp = entry.reload.updated_at
+
+          expect(current_timestamp).to be_within(1.second).of(moved_at)
+          expect(current_timestamp).to be > previous_timestamp
+        end
+      end
     end
 
     describe "memberships" do
