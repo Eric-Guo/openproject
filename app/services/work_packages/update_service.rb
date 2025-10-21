@@ -150,6 +150,8 @@ class WorkPackages::UpdateService < BaseServices::Update
     TimeEntry
       .on_work_packages(work_packages)
       .find_each do |entry|
+        next if entry.project_id == project_id
+
         entry.project_id = project_id
         entry.save(validate: false)
       end
