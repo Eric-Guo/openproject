@@ -419,7 +419,7 @@ GEM
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
     aws-partitions (1.1174.0)
-    aws-sdk-core (3.233.0)
+    aws-sdk-core (3.234.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -427,24 +427,24 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.114.0)
-      aws-sdk-core (~> 3, >= 3.231.0)
+    aws-sdk-kms (1.115.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.200.0)
-      aws-sdk-core (~> 3, >= 3.231.0)
+    aws-sdk-s3 (1.201.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
-    aws-sdk-sns (1.106.0)
-      aws-sdk-core (~> 3, >= 3.231.0)
+    aws-sdk-sns (1.107.0)
+      aws-sdk-core (~> 3, >= 3.234.0)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.10.3)
+    axe-core-api (4.11.0)
       dumb_delegator
       ostruct
       virtus
-    axe-core-rspec (4.10.3)
-      axe-core-api (= 4.10.3)
+    axe-core-rspec (4.11.0)
+      axe-core-api (= 4.11.0)
       dumb_delegator
       ostruct
       virtus
@@ -455,7 +455,7 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
-    benchmark (0.4.1)
+    benchmark (0.5.0)
     better_html (2.2.0)
       actionview (>= 7.0)
       activesupport (>= 7.0)
