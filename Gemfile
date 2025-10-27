@@ -110,10 +110,7 @@ gem "email_validator", "~> 2.2.3"
 gem "json_schemer", "~> 2.4.0"
 gem "ruby-duration", "~> 3.2.0"
 
-# `config/initializers/mail_starttls_patch.rb` has also been patched to
-# fix STARTTLS handling until https://github.com/mikel/mail/pull/1536 is
-# released.
-gem "mail", "= 2.8.1"
+gem "mail"
 
 gem "csv", "~> 3.3"
 
