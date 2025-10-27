@@ -1693,7 +1693,7 @@
   dependencies:
     "@github/combobox-nav" "^2.1.7"
 
-"@github/catalyst@^1.6.0":
+"@github/catalyst@^1.6.0", "@github/catalyst@^1.7.0":
   version "1.7.0"
   resolved "https://registry.npmmirror.com/@github/catalyst/-/catalyst-1.7.0.tgz#12dd1097a66260f0dde1d1d1f5ebfe7d1f576a80"
   integrity sha512-qOAxrDdRZz9+v4y2WoAfh11rpRY/x4FRofPNmJyZFzAjubtzE3sCa/tAycWWufmQGoYiwwzL/qJBBgyg7avxPw==
@@ -1708,7 +1708,7 @@
   resolved "https://registry.npmmirror.com/@github/combobox-nav/-/combobox-nav-2.3.1.tgz#76da4c47f1e33af56392c5c9cf661a28d5b4168e"
   integrity sha512-gwxPzLw8XKecy1nP63i9lOBritS3bWmxl02UX6G0TwMQZbMem1BCS1tEZgYd3mkrkiDrUMWaX+DbFCuDFo3K+A==
 
-"@github/details-menu-element@^1.0.12":
+"@github/details-menu-element@^1.0.12", "@github/details-menu-element@^1.0.13":
   version "1.0.13"
   resolved "https://registry.npmmirror.com/@github/details-menu-element/-/details-menu-element-1.0.13.tgz#d62263077b16bc7edc386e7b23f0ce41af1301b4"
   integrity sha512-gMkii86w/oUP5dq8yOWZn1sgbgtFj3AYETxxtpsqRggZktgd8te4+npAn4Hm+936c/lxmEzXqfjARL/CzGR4+w==
@@ -1718,7 +1718,7 @@
   resolved "https://registry.npmmirror.com/@github/image-crop-element/-/image-crop-element-5.0.0.tgz#6ae2c31f1e7dc355c41c3140554fb76ca7a71ef7"
   integrity sha512-Vgm2OwWAs1ESoib/t5sjxsAYo6YTOxxAjWDRxswX7qrqoyCejTZ3hshdo4Ep5e+Mz/GVTZC3rdMtg06dk/eT4g==
 
-"@github/include-fragment-element@^6.3.0":
+"@github/include-fragment-element@^6.3.0", "@github/include-fragment-element@^6.4.1":
   version "6.4.1"
   resolved "https://registry.npmmirror.com/@github/include-fragment-element/-/include-fragment-element-6.4.1.tgz#fb20bfa9b0655a5d894fd40ec5faafcddc8db80c"
   integrity sha512-ffgXc7qwBtY/rYcMkAjxZJlyOPFaeC9K1Oc+n7Edwt3BAHPokUSdMfDivb+/dGO+NU2n7l1/L4v5uQN+wBeV4g==
@@ -1728,7 +1728,7 @@
   resolved "https://registry.npmmirror.com/@github/mini-throttle/-/mini-throttle-2.1.1.tgz#c66db5c3b857aaf8c467de2528cd92f36f542ac5"
   integrity sha512-KtOPaB+FiKJ6jcKm9UKyaM5fPURHGf+xcp+b4Mzoi81hOc6M1sIGpMZMAVbNzfa2lW5+RPGKq888Px0j76OZ/A==
 
-"@github/relative-time-element@^4.0.0":
+"@github/relative-time-element@^4.0.0", "@github/relative-time-element@^4.5.0":
   version "4.5.0"
   resolved "https://registry.npmmirror.com/@github/relative-time-element/-/relative-time-element-4.5.0.tgz#e851832ead41c953790234cc619c2ec6aed5b495"
   integrity sha512-zKC/tUHeDDdbODBuZh3CkT5pCy41M8mGuUplzhtBMuiEQ5+qY/l/iu0X1IBY/6QhNeP/xdQIVkLYKh2O5En4dg==
@@ -1738,7 +1738,7 @@
   resolved "https://registry.npmmirror.com/@github/remote-input-element/-/remote-input-element-0.4.0.tgz#76956e82342d5887b68f3fe7ce8c20ff1f55181b"
   integrity sha512-apsMwsFW24F+w2wzT8oKoBi9lpm6GeFOmtuL+1YwDVmIiwixfHOD3MnEsEOv0RwmHsMdWmIjP9mxWyTWPKZHGg==
 
-"@github/tab-container-element@^3.1.2":
+"@github/tab-container-element@^3.1.2", "@github/tab-container-element@^3.4.0":
   version "3.4.0"
   resolved "https://registry.npmmirror.com/@github/tab-container-element/-/tab-container-element-3.4.0.tgz#0a167ed81c9f4a1c1c79f0d0a6a8c012c49a6147"
   integrity sha512-Yx70pO8A0p7Stnm9knKkUNX8i4bjuwDYZarRkM8JH0Z+ffhpe++oNAPbzGI9GEcGugRHvKuSC6p4YOdoHtTniQ==
@@ -2042,23 +2042,23 @@
   resolved "https://registry.npmmirror.com/@math.gl/types/-/types-3.6.3.tgz#9fa9866feabcbb76de107d78ff3a89c0243ac374"
   integrity sha512-3uWLVXHY3jQxsXCr/UCNPSc2BG0hNUljhmOBt9l+lNFDp7zHgm0cK2Tw4kj2XfkJy4TgwZTBGwRDQgWEbLbdTA==
 
-"@mixtint/primer-view-components@0.75.1":
-  version "0.75.1"
-  resolved "https://registry.npmmirror.com/@mixtint/primer-view-components/-/primer-view-components-0.75.1.tgz#8fd6a6530b48c544a13e6c9fdfd2f329849700f7"
-  integrity sha512-owUB/f1wR/oTgoazCeI2mQpNUaZUxA9Svk30TUMhIsWUmUMutMUOqixFtZFpPHNEhocdh6oQLl6WhdJ3fwY85Q==
+"@mixtint/primer-view-components@0.75.2":
+  version "0.75.2"
+  resolved "https://registry.npmmirror.com/@mixtint/primer-view-components/-/primer-view-components-0.75.2.tgz#efc0e40e4cd9b31af963b35ce2ee976afd897827"
+  integrity sha512-yhqspTyRdUg4yrrpLmc7UeCuJdDIy5mquJsrnSD8JUGQrY+UlWz6DbNG0pNrUcIwbiOUZuL5/o3Jm+vWYmYnbA==
   dependencies:
     "@github/auto-check-element" "^6.0.0"
     "@github/auto-complete-element" "^3.8.0"
-    "@github/catalyst" "^1.6.0"
+    "@github/catalyst" "^1.7.0"
     "@github/clipboard-copy-element" "^1.3.0"
-    "@github/details-menu-element" "^1.0.12"
+    "@github/details-menu-element" "^1.0.13"
     "@github/image-crop-element" "^5.0.0"
-    "@github/include-fragment-element" "^6.3.0"
-    "@github/relative-time-element" "^4.0.0"
+    "@github/include-fragment-element" "^6.4.1"
+    "@github/relative-time-element" "^4.5.0"
     "@github/remote-input-element" "^0.4.0"
-    "@github/tab-container-element" "^3.1.2"
+    "@github/tab-container-element" "^3.4.0"
     "@oddbird/popover-polyfill" "^0.5.2"
-    "@primer/behaviors" "^1.3.4"
+    "@primer/behaviors" "^1.8.3"
     "@primer/live-region-element" "^0.8.0"
 
 "@napi-rs/wasm-runtime@0.2.4":
@@ -2327,7 +2327,7 @@
   dependencies:
     make-synchronized "^0.4.2"
 
-"@primer/behaviors@^1.3.4":
+"@primer/behaviors@^1.3.4", "@primer/behaviors@^1.8.3":
   version "1.8.3"
   resolved "https://registry.npmmirror.com/@primer/behaviors/-/behaviors-1.8.3.tgz#59ebe9aebf8eeee66f770242d7e44d5e65ee2243"
   integrity sha512-Cot5Jg5McTT4zg41omctzY60DygZ6qlhrBtD4rpDBM6vNi6CrCAs/2QSPAgYTW7Kz+jFp4BXJFhNcVqfqTgaxA==
