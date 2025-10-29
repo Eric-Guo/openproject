@@ -156,7 +156,7 @@
     "ng2-dragula": "^5.1.0",
     "ngx-cookie-service": "^14.0.1",
     "observable-array": "0.0.4",
-    "op-blocknote-extensions": "github:opf/op-blocknote-extensions",
+    "op-blocknote-extensions": "github:Eric-Guo/op-blocknote-extensions",
     "pako": "^2.1.0",
     "qr-creator": "^1.0.0",
     "react": "^19.2.0",

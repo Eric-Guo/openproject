@@ -1754,17 +1754,17 @@
   integrity sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==
 
 "@hotwired/turbo-rails@^8.0.18":
-  version "8.0.18"
-  resolved "https://registry.npmmirror.com/@hotwired/turbo-rails/-/turbo-rails-8.0.18.tgz#021d9556eec5bf6648b607531f4c0ec960706d84"
-  integrity sha512-iRxd922VSTVH0NzlLDx9T9S8Ep0NPnrLCKva31WIMLNApJgUZKa/a90EFiBa2G6Do+x4xuKZk53dlweiwTyXkQ==
+  version "8.0.20"
+  resolved "https://registry.npmmirror.com/@hotwired/turbo-rails/-/turbo-rails-8.0.20.tgz#a6f6f78591e9868ca1e5e67f4c7d453dbd49a475"
+  integrity sha512-4aYkYF9XMKL7ZZPfgElq15+60osZOwMwhztE4myKQYEzCPvaPUxwZH301tOrBNtWUwOD+TNOm1Hrpeaq22RX9A==
   dependencies:
-    "@hotwired/turbo" "^8.0.18"
+    "@hotwired/turbo" "^8.0.20"
     "@rails/actioncable" ">=7.0"
 
-"@hotwired/turbo@^8.0.18":
-  version "8.0.18"
-  resolved "https://registry.npmmirror.com/@hotwired/turbo/-/turbo-8.0.18.tgz#10ae3de450b955862f89e30c50d96d676813744e"
-  integrity sha512-dG0N7khQsP8sujclodQE3DYkI4Lq7uKA04fhT0DCC/DwMgn4T4WM3aji6EC6+iCfABQeJncY0SraXqVeOq0vvQ==
+"@hotwired/turbo@^8.0.18", "@hotwired/turbo@^8.0.20":
+  version "8.0.20"
+  resolved "https://registry.npmmirror.com/@hotwired/turbo/-/turbo-8.0.20.tgz#068ede648c4db09fed4cf0ac0266788056673f2f"
+  integrity sha512-IilkH/+h92BRLeY/rMMR3MUh1gshIfdra/qZzp/Bl5FmiALD/6sQZK/ecxSbumeyOYiWr/JRI+Au1YQmkJGnoA==
 
 "@html-eslint/eslint-plugin@^0.24.1":
   version "0.24.1"
@@ -2328,9 +2328,9 @@
     make-synchronized "^0.4.2"
 
 "@primer/behaviors@^1.3.4", "@primer/behaviors@^1.8.3":
-  version "1.8.3"
-  resolved "https://registry.npmmirror.com/@primer/behaviors/-/behaviors-1.8.3.tgz#59ebe9aebf8eeee66f770242d7e44d5e65ee2243"
-  integrity sha512-Cot5Jg5McTT4zg41omctzY60DygZ6qlhrBtD4rpDBM6vNi6CrCAs/2QSPAgYTW7Kz+jFp4BXJFhNcVqfqTgaxA==
+  version "1.8.4"
+  resolved "https://registry.npmmirror.com/@primer/behaviors/-/behaviors-1.8.4.tgz#497c6c8ff8b0709c4a5c525b010489a87c290cdb"
+  integrity sha512-+z7LNbijJqBnsz1u9Jcgrc9yPLwGmzYMnI+yBiS1oNuEW1zLH5ZE7Kp9UFRo7fqPgM/IZ8xbtdTAuBZq9DPs7g==
 
 "@primer/css@^21.5.1":
   version "21.5.1"
@@ -2394,9 +2394,9 @@
     "@babel/runtime" "^7.0.0"
 
 "@rails/actioncable@>=7.0":
-  version "8.1.0"
-  resolved "https://registry.npmmirror.com/@rails/actioncable/-/actioncable-8.1.0.tgz#cd884d50a34af9a8c9149ec4e256fbb99a67b37f"
-  integrity sha512-9WSbN548dplVkfCFJFi/CKrJ+P4runAHZLlpXFn0xL+Y6tFJvo3zp92fr4ON9WOhNt8inetu8NJG1xDDAJ8N8g==
+  version "8.1.100"
+  resolved "https://registry.npmmirror.com/@rails/actioncable/-/actioncable-8.1.100.tgz#b1f85f3482425fb91e5eba1deb55152ee0bb2f85"
+  integrity sha512-j4vJQqz51CDVYv2UafKRu4jiZi5/gTnm7NkyL+VMIgEw3s8jtVtmzu9uItUaZccUg9NJ6o05yVyBAHxNfTuCRA==
 
 "@remirror/core-constants@3.0.0":
   version "3.0.0"
@@ -3009,9 +3009,9 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@>=10.0.0":
-  version "24.9.1"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-24.9.1.tgz#b7360b3c789089e57e192695a855aa4f6981a53c"
-  integrity sha512-QoiaXANRkSXK6p0Duvt56W208du4P9Uye9hWLWgGMDTEoKPhuenzNcC4vGUmrNkiOKTlIrBoyNQYNpSwfEZXSg==
+  version "24.9.2"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-24.9.2.tgz#90ded2422dbfcafcf72080f28975adc21366148d"
+  integrity sha512-uWN8YqxXxqFMX2RqGOrumsKeti4LlmIMIyV0lgut4jx7KQBcBiW6vkDtIBvHnHIquwNfJhk8v2OtmO8zXWHfPA==
   dependencies:
     undici-types "~7.16.0"
 
@@ -4211,9 +4211,9 @@ axe-core@^4.10.0:
   integrity sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==
 
 axios@^1.7.4:
-  version "1.13.0"
-  resolved "https://registry.npmmirror.com/axios/-/axios-1.13.0.tgz#ead6f495f41f9c8869dcf7b0f24f5a4ab89707f0"
-  integrity sha512-zt40Pz4zcRXra9CVV31KeyofwiNvAbJ5B6YPz9pMJ+yOSLikvPT4Yi5LjfgjRa9CawVYBaD1JQzIVcIvBejKeA==
+  version "1.13.1"
+  resolved "https://registry.npmmirror.com/axios/-/axios-1.13.1.tgz#45b62dc8fe04e0e92274e08b98e910ba3d7963a7"
+  integrity sha512-hU4EGxxt+j7TQijx1oYdAjw4xuIp1wRQSsbMFwSthCWeBQur1eF+qJ5iQ5sN3Tw8YRzQNKb8jszgBdMDVqwJcw==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.4"
@@ -5570,9 +5570,9 @@ ejs@^3.1.5, ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.238:
-  version "1.5.241"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.241.tgz#350a2cdcde43829d36af245a27167243e917c6ed"
-  integrity sha512-ILMvKX/ZV5WIJzzdtuHg8xquk2y0BOGlFOxBVwTpbiXqWIH0hamG45ddU4R3PQ0gYu+xgo0vdHXHli9sHIGb4w==
+  version "1.5.242"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.242.tgz#c318f37df542a04df819c6eaefc9302258cf5a98"
+  integrity sha512-msZ7SYGFpXkm/iUizlMrm/FPNeYo8uSltQccLVFO3fV4RN2JWGdG7Aatztxtw3uDWp3DkupfkrosLjUnhY+iOw==
 
 emoji-mart@^5.6.0:
   version "5.6.0"
@@ -10233,9 +10233,9 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-"op-blocknote-extensions@github:opf/op-blocknote-extensions":
+"op-blocknote-extensions@github:Eric-Guo/op-blocknote-extensions":
   version "0.0.2"
-  resolved "https://codeload.github.com/opf/op-blocknote-extensions/tar.gz/615a8d604103648ce50fe7be33e595d6e21af350"
+  resolved "https://codeload.github.com/Eric-Guo/op-blocknote-extensions/tar.gz/6119e5cacad87ad7a6a21c393ead8e39d8023f23"
 
 open@8.4.2, open@^8.0.9, open@^8.4.0:
   version "8.4.2"
