@@ -23,7 +23,7 @@ set :pty, false
 append :linked_files, *%w[config/configuration.yml config/database.yml config/secrets.yml config/master.key .env config/puma.rb]
 
 # Default value for linked_dirs is []
-append :linked_dirs, *%w[vendor files log node_modules frontend/node_modules public/fonts/noto public/fonts/spacemono tmp/pids tmp/cache tmp/sockets]
+append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemono tmp/pids tmp/cache tmp/sockets]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -37,7 +37,7 @@ append :linked_dirs, *%w[vendor files log node_modules frontend/node_modules pub
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :yarn_flags, "--silent --no-progress --ignore-engines"
+set :pnpm_flags, '--silent'
 set :rbenv_type, :user
 set :rbenv_ruby, "3.4.7"
 

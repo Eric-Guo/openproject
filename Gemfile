@@ -327,7 +327,7 @@ group :development do
 
   # Deploy
   gem "capistrano"
-  gem "capistrano-yarn", require: false
+  gem "capistrano-pnpm", require: false
   gem "capistrano-rails"
   gem "capistrano-rbenv", require: false
   gem "capistrano3-puma", require: false

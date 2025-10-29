@@ -64,9 +64,9 @@ namespace :assets do
     Dir.chdir Rails.root.join("frontend") do
       cmd =
         if ENV["OPENPROJECT_ANGULAR_BUILD"] == "fast"
-          "npm run build:fast"
+          "pnpm run build:fast"
         else
-          "yarn run build"
+          "pnpm run build"
         end
 
       sh(cmd) do |ok, res|

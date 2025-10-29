@@ -1,0 +1,8 @@
+nodeLinker: hoisted
+
+onlyBuiltDependencies:
+  - core-js
+  - es5-ext
+  - esbuild
+  - highlight.js
+  - nice-napi
