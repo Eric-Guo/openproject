@@ -133,10 +133,10 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2
       '@hotwired/turbo':
-        specifier: ^8.0.18
+        specifier: ^8.0.20
         version: 8.0.20
       '@hotwired/turbo-rails':
-        specifier: ^8.0.18
+        specifier: ^8.0.20
         version: 8.0.20
       '@kolkov/ngx-gallery':
         specifier: ^2.0.1
@@ -226,7 +226,7 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3
       esbuild:
-        specifier: ~0.25.9
+        specifier: ~0.25.11
         version: 0.25.11
       exceljs:
         specifier: ^4.4.0
@@ -340,7 +340,7 @@ importers:
         specifier: git+https://git.thape.com.cn/plugins/th-analytics.git
         version: git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79
       tmp:
-        specifier: ~0.2.4
+        specifier: ~0.2.5
         version: 0.2.5
       ts-action:
         specifier: ^11.0.0
@@ -361,10 +361,10 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
       webpack:
-        specifier: ^5.99.6
+        specifier: ^5.102.1
         version: 5.102.1(esbuild@0.25.11)
       ws:
-        specifier: ~8.18.2
+        specifier: ~8.18.3
         version: 8.18.3
       zone.js:
         specifier: ~0.14.10
