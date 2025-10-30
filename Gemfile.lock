@@ -61,7 +61,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: ecf217a3c7e06205f6bc7920ecac630dc479416a
+  revision: 303de151b2a91c6bd027aa68ceca770c94ed2dad
   branch: thape
   specs:
     openproject-primer_view_components (0.75.2)
@@ -1021,7 +1021,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
-    oj (3.16.11)
+    oj (3.16.12)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     okcomputer (1.19.0)
