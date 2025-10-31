@@ -29,6 +29,12 @@
 class Mails::DeliverJob < ApplicationJob
   queue_with_priority :notification
 
+  SSL_READ_RETRY_MESSAGE = "SSL_read: unexpected eof while reading"
+  SSL_READ_MAX_ATTEMPTS = 3
+  SSL_READ_RETRY_DELAY = 30.seconds
+
+  rescue_from OpenSSL::SSL::SSLError, with: :handle_ssl_read_error
+
   def perform(recipient_id)
     self.recipient_id = recipient_id
 
@@ -76,5 +82,21 @@ class Mails::DeliverJob < ApplicationJob
                    else
                      User.find_by(id: recipient_id)
                    end
+  end
+
+  def handle_ssl_read_error(error)
+    raise error unless retryable_ssl_read_error?(error)
+
+    if executions < SSL_READ_MAX_ATTEMPTS
+      Rails.logger.warn "#{self.class.name}: Retrying after OpenSSL::SSL::SSLError: #{error.message}"
+      retry_job wait: SSL_READ_RETRY_DELAY
+    else
+      Rails.logger.error "#{self.class.name}: Exhausted retries after OpenSSL::SSL::SSLError: #{error.message}"
+      raise error
+    end
+  end
+
+  def retryable_ssl_read_error?(error)
+    error.message&.include?(SSL_READ_RETRY_MESSAGE)
   end
 end
