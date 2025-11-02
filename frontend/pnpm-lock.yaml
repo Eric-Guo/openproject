@@ -226,7 +226,7 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3
       esbuild:
-        specifier: ~0.25.11
+        specifier: ~0.25.12
         version: 0.25.12
       exceljs:
         specifier: ^4.4.0
@@ -8721,7 +8721,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
