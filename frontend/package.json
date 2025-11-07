@@ -187,7 +187,7 @@
     "@nx/devkit": "=19.8.14",
     "bignumber.js": "9.1.2",
     "cookie": "~0.7.2",
-    "esbuild": "~0.25.11",
+    "esbuild": "~0.25.12",
     "mime-db": "~1.54.0",
     "nx": "=19.8.14",
     "watchpack": "~2.4.4",
