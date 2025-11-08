@@ -122,8 +122,8 @@ packages:
     engines: {node: '>=10.0.0'}
     deprecated: this version is no longer supported, please update to at least 0.8.*
 
-  '@zip.js/zip.js@2.8.8':
-    resolution: {integrity: sha512-v0KutehhSAuaoFAFGLp+V4+UiZ1mIxQ8vNOYMD7k9ZJaBbtQV49MYlg568oRLiuwWDg2Di58Iw3Q0ESNWR+5JA==}
+  '@zip.js/zip.js@2.8.10':
+    resolution: {integrity: sha512-WVywWK8HSttmFFYSih7lUjjaV4zGzMxy992y0tHrZY4Wf9x/uNBA/XJ50RvfGjuuJKti4yueEHA2ol2pOq6VDg==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   ajv@6.12.6:
@@ -1031,7 +1031,7 @@ snapshots:
       '@loaders.gl/obj': 3.4.15
       '@loaders.gl/ply': 3.4.15
       '@loaders.gl/polyfills': 3.4.15
-      '@zip.js/zip.js': 2.8.8
+      '@zip.js/zip.js': 2.8.10
       earcut: 2.2.4
       fs: 0.0.1-security
       jszip: 3.10.1
@@ -1048,7 +1048,7 @@ snapshots:
 
   '@xmldom/xmldom@0.7.13': {}
 
-  '@zip.js/zip.js@2.8.8': {}
+  '@zip.js/zip.js@2.8.10': {}
 
   ajv@6.12.6:
     dependencies:
