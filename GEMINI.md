@@ -7,7 +7,7 @@ OpenProject is a web-based project management software. This repository contains
 - **Backend:** Ruby on Rails (Ruby 3.4.7)
 - **Frontend:** Angular 17+ (TypeScript)
 - **Runtime:** Node.js ^22.15.0
-- **Package Manager:** pnpm (v10.20.0+)
+- **Package Manager:** pnpm (v10.21.0+)
 - **Database:** PostgreSQL (implied standard for this stack)
 - **Background Jobs:** `good_job`
 

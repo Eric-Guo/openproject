@@ -1406,7 +1406,7 @@ GEM
     store_attribute (2.0.1)
       activerecord (>= 6.1)
     stringex (2.8.6)
-    stringio (3.1.7)
+    stringio (3.1.8)
     structured_warnings (0.5.0)
     svg-graph (2.2.2)
     swd (2.0.3)
@@ -1457,7 +1457,8 @@ GEM
       public_suffix
     vcr (6.3.1)
       base64
-    view_component (4.1.0)
+    view_component (4.1.1)
+      actionview (>= 7.1.0, < 8.2)
       activesupport (>= 7.1.0, < 8.2)
       concurrent-ruby (~> 1)
     virtus (2.0.0)
