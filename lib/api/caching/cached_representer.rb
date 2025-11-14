@@ -141,7 +141,9 @@ module API
           sanitized_options = normalize_link_options(options)
           sanitized_options.except!(:cache_if, :uncacheable)
 
-          super(href, sanitized_options)
+          sanitized_href = sanitized_options[:array] ? normalize_link_array(href) : href
+
+          super(sanitized_href, sanitized_options)
         end
 
         # Overriding Roar::Hypermedia#combile_links_for
@@ -216,39 +218,65 @@ module API
         end
 
         def filter_link_configs(configs)
-          return [] unless configs.respond_to?(:select)
-
-          valid_configs = configs.select { |config| config.respond_to?(:first) && config.respond_to?(:last) }
+          valid_configs = normalize_link_configs(configs)
 
           case caching_state
           when :cacheable
-            valid_configs.reject { |config| link_uncacheable?(config) }
+            valid_configs.reject { |config| link_uncacheable?(config.first) }
           when :uncacheable
-            valid_configs.select { |config| link_uncacheable?(config) }
+            valid_configs.select { |config| link_uncacheable?(config.first) }
           else
             valid_configs
           end
         end
 
-        def link_uncacheable?(config)
-          options = config.first
+        def normalize_link_configs(configs)
+          return [] unless configs.respond_to?(:each)
+
+          configs.each_with_object([]) do |config, normalized|
+            next unless config.respond_to?(:first) && config.respond_to?(:last)
+
+            normalized << [normalize_link_options(config.first), config.last]
+          end
+        end
+
+        def link_uncacheable?(options)
           options.respond_to?(:[]) && options[:uncacheable]
         end
 
         def normalize_link_options(options)
-          normalized = begin
-            if options.is_a?(Hash)
-              options.dup
-            elsif options.respond_to?(:to_hash)
-              options.to_hash
-            else
-              nil
-            end
-          rescue TypeError
-            nil
-          end
+          coerce_link_hash(options, fallback_key: :rel, nil_fallback: {})
+        end
 
-          normalized || (options.nil? ? {} : { rel: options })
+        def normalize_link_array(entries)
+          Array(entries).each_with_object([]) do |entry, normalized|
+            sanitized_entry = normalize_link_fragment(entry)
+            normalized << sanitized_entry if sanitized_entry
+          end
+        end
+
+        def normalize_link_fragment(fragment)
+          coerce_link_hash(fragment, fallback_key: :href, nil_fallback: nil)
+        end
+
+        def coerce_link_hash(value, fallback_key:, nil_fallback:)
+          normalized_hash = extract_hash_like(value)
+          return normalized_hash if normalized_hash
+
+          return nil_fallback if value.nil?
+
+          { fallback_key => value }
+        end
+
+        def extract_hash_like(value)
+          if value.is_a?(Hash)
+            value.dup
+          elsif value.respond_to?(:to_hash)
+            hash_like = value.to_hash
+            hash_like.is_a?(Hash) ? hash_like : nil
+          end
+        rescue TypeError
+          nil
         end
       end
 
