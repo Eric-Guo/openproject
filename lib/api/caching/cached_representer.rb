@@ -146,22 +146,18 @@ module API
         # to remove the cache_if option which would otherwise
         # be visible in the output
         def prepare_link_for(href, options)
-          super(href, options.except(:cache_if, :uncacheable))
+          sanitized_options = normalize_link_options(options)
+          sanitized_options.except!(:cache_if, :uncacheable)
+
+          super(href, sanitized_options)
         end
 
         # Overriding Roar::Hypermedia#combile_links_for
         # to remove all uncacheable links if the caching_state is set to :cacheable
         def compile_links_for(configs, *)
-          current_configs = case caching_state
-                            when :cacheable
-                              configs.reject { |c| c.first[:uncacheable] }
-                            when :uncacheable
-                              configs.select { |c| c.first[:uncacheable] }
-                            else
-                              configs
-                            end
+          filtered_configs = filter_link_configs(configs)
 
-          super(current_configs, *)
+          super(filtered_configs, *)
         end
 
         def delete_from_hash(hash, path, key)
@@ -225,6 +221,42 @@ module API
 
         def no_caching?
           self.class.cached_representer_configuration[:disabled]
+        end
+
+        def filter_link_configs(configs)
+          return [] unless configs.respond_to?(:select)
+
+          valid_configs = configs.select { |config| config.respond_to?(:first) && config.respond_to?(:last) }
+
+          case caching_state
+          when :cacheable
+            valid_configs.reject { |config| link_uncacheable?(config) }
+          when :uncacheable
+            valid_configs.select { |config| link_uncacheable?(config) }
+          else
+            valid_configs
+          end
+        end
+
+        def link_uncacheable?(config)
+          options = config.first
+          options.respond_to?(:[]) && options[:uncacheable]
+        end
+
+        def normalize_link_options(options)
+          normalized = begin
+            if options.is_a?(Hash)
+              options.dup
+            elsif options.respond_to?(:to_hash)
+              options.to_hash
+            else
+              nil
+            end
+          rescue TypeError
+            nil
+          end
+
+          normalized || (options.nil? ? {} : { rel: options })
         end
       end
 
