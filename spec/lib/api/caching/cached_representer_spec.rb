@@ -3,14 +3,15 @@ require "rails_helper"
 RSpec.describe API::Caching::CachedRepresenter do
   let(:base_module) do
     Module.new do
-      attr_reader :passed_configs, :prepared_options
+      attr_reader :passed_configs, :prepared_options, :prepared_href
 
       def compile_links_for(configs, *args)
         @passed_configs = configs
         configs
       end
 
-      def prepare_link_for(_href, options)
+      def prepare_link_for(href, options)
+        @prepared_href = href
         @prepared_options = options
       end
     end
@@ -63,6 +64,14 @@ RSpec.describe API::Caching::CachedRepresenter do
                        { rel: :self, cache_if: -> { true }, uncacheable: true })
 
       expect(representer.prepared_options).to eq(rel: :self)
+    end
+
+    it "wraps array fragments that are not hashes" do
+      representer.send(:prepare_link_for,
+                       [:foo, { href: "/bar" }, nil],
+                       { rel: :children, array: true })
+
+      expect(representer.prepared_href).to eq([{ href: :foo }, { href: "/bar" }])
     end
   end
 end
