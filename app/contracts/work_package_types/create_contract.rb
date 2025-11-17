@@ -35,9 +35,10 @@ module WorkPackageTypes
     attribute :is_default
     attribute :is_in_roadmap
     attribute :is_milestone
+    attribute :is_admin_only
     attribute :name
 
     validates :name, presence: true, length: { maximum: 255 }
-    validates :is_default, :is_milestone, :is_in_roadmap, inclusion: { in: [true, false] }
+    validates :is_default, :is_milestone, :is_in_roadmap, :is_admin_only, inclusion: { in: [true, false] }
   end
 end
