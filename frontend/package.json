@@ -102,7 +102,7 @@
     "@hotwired/turbo": "^8.0.20",
     "@hotwired/turbo-rails": "^8.0.20",
     "@kolkov/ngx-gallery": "^2.0.1",
-    "@mixtint/primer-view-components": "0.75.2",
+    "@mixtint/primer-view-components": "0.78.0",
     "@ng-select/ng-option-highlight": "14.2.6",
     "@ng-select/ng-select": "^14.9.0",
     "@ngneat/content-loader": "^7.0.0",
