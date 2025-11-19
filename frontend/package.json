@@ -125,7 +125,7 @@
     "chartjs-plugin-datalabels": "^2.2.0",
     "codemirror": "^5.65.20",
     "copy-text-to-clipboard": "^3.2.2",
-    "core-js": "^3.46.0",
+    "core-js": "^3.47.0",
     "crossvent": "^1.5.5",
     "dom-autoscroller": "^2.3.4",
     "dom-plane": "^1.0.2",
@@ -175,7 +175,7 @@
     "typedjson": "^1.8.0",
     "urijs": "^1.19.11",
     "uuid": "^8.3.2",
-    "webpack": "^5.102.1",
+    "webpack": "^5.103.0",
     "ws": "~8.18.3",
     "zone.js": "~0.14.10"
   },
