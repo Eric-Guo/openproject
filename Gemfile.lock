@@ -1091,41 +1091,41 @@ GEM
       prawn (>= 1.3.0, < 3.0.0)
     prettyprint (0.2.0)
     prism (1.6.0)
-    prometheus-client-mmap (1.2.10)
+    prometheus-client-mmap (1.3.0)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-aarch64-linux-gnu)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-aarch64-linux-gnu)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-aarch64-linux-musl)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-aarch64-linux-musl)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-arm64-darwin)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-arm64-darwin)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-x86_64-darwin)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-x86_64-darwin)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-x86_64-linux-gnu)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-x86_64-linux-gnu)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
-    prometheus-client-mmap (1.2.10-x86_64-linux-musl)
+      rb_sys (~> 0.9.117)
+    prometheus-client-mmap (1.3.0-x86_64-linux-musl)
       base64
       bigdecimal
       logger
-      rb_sys (~> 0.9.109)
+      rb_sys (~> 0.9.117)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
