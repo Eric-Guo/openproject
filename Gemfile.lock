@@ -961,7 +961,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
-    markly (0.14.1)
+    markly (0.15.0)
     matrix (0.4.3)
     messagebird-rest (1.4.2)
     meta-tags (2.22.2)

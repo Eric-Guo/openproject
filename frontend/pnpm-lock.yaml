@@ -361,7 +361,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
       webpack:
-        specifier: ^5.103.0
+        specifier: ^5.102.1
         version: 5.103.0(esbuild@0.25.12)
       ws:
         specifier: ~8.18.3
@@ -1665,8 +1665,8 @@ packages:
   '@github/mini-throttle@2.1.1':
     resolution: {integrity: sha512-KtOPaB+FiKJ6jcKm9UKyaM5fPURHGf+xcp+b4Mzoi81hOc6M1sIGpMZMAVbNzfa2lW5+RPGKq888Px0j76OZ/A==}
 
-  '@github/relative-time-element@4.5.0':
-    resolution: {integrity: sha512-zKC/tUHeDDdbODBuZh3CkT5pCy41M8mGuUplzhtBMuiEQ5+qY/l/iu0X1IBY/6QhNeP/xdQIVkLYKh2O5En4dg==}
+  '@github/relative-time-element@4.5.1':
+    resolution: {integrity: sha512-uxCxCwe9vdwUDmRmM84tN0UERlj8MosLV44+r/VDj7DZUVUSTP4vyWlE9mRK6vHelOmT8DS3RMlaMrLlg1h1PQ==}
 
   '@github/remote-input-element@0.4.0':
     resolution: {integrity: sha512-apsMwsFW24F+w2wzT8oKoBi9lpm6GeFOmtuL+1YwDVmIiwixfHOD3MnEsEOv0RwmHsMdWmIjP9mxWyTWPKZHGg==}
@@ -3775,8 +3775,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.260:
-    resolution: {integrity: sha512-ov8rBoOBhVawpzdre+Cmz4FB+y66Eqrk6Gwqd8NGxuhv99GQ8XqMAr351KEkOt7gukXWDg6gJWEMKgL2RLMPtA==}
+  electron-to-chromium@1.5.262:
+    resolution: {integrity: sha512-NlAsMteRHek05jRUxUR0a5jpjYq9ykk6+kO0yRaMi5moe7u0fVIOeQ3Y30A8dIiWFBNUoQGi1ljb1i5VtS9WQQ==}
 
   emoji-mart@5.6.0:
     resolution: {integrity: sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==}
@@ -8724,7 +8724,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.27.1
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
@@ -9572,7 +9572,7 @@ snapshots:
 
   '@github/mini-throttle@2.1.1': {}
 
-  '@github/relative-time-element@4.5.0': {}
+  '@github/relative-time-element@4.5.1': {}
 
   '@github/remote-input-element@0.4.0': {}
 
@@ -9808,7 +9808,7 @@ snapshots:
       '@github/details-menu-element': 1.0.13
       '@github/image-crop-element': 5.0.0
       '@github/include-fragment-element': 6.4.1
-      '@github/relative-time-element': 4.5.0
+      '@github/relative-time-element': 4.5.1
       '@github/remote-input-element': 0.4.0
       '@github/tab-container-element': 3.4.0
       '@oddbird/popover-polyfill': 0.5.2
@@ -9939,7 +9939,7 @@ snapshots:
       '@github/details-menu-element': 1.0.13
       '@github/image-crop-element': 5.0.0
       '@github/include-fragment-element': 6.4.1
-      '@github/relative-time-element': 4.5.0
+      '@github/relative-time-element': 4.5.1
       '@github/remote-input-element': 0.4.0
       '@github/tab-container-element': 3.4.0
       '@oddbird/popover-polyfill': 0.5.2
@@ -11303,7 +11303,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.31
       caniuse-lite: 1.0.30001757
-      electron-to-chromium: 1.5.260
+      electron-to-chromium: 1.5.262
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -11942,7 +11942,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.260: {}
+  electron-to-chromium@1.5.262: {}
 
   emoji-mart@5.6.0: {}
 
