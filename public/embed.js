@@ -38,6 +38,7 @@
     height: 43.75rem;
     max-height: calc(100vh - 6rem);
     border: none;
+    border-radius: 1rem;
     z-index: 2147483640;
     overflow: hidden;
     user-select: none;
@@ -55,13 +56,14 @@
     right: var(--${buttonId}-right, 1rem); /* Align with dify-chatbot-bubble-button. */
     bottom: var(--${buttonId}-bottom, 1rem); /* Align with dify-chatbot-bubble-button. */
     left: unset;
-    min-width: 32rem;
+    min-width: 48rem;
     width: 48%;
     max-width: 40rem; /* Match mobile breakpoint*/
     min-height: 43.75rem;
     height: 88%;
     max-height: calc(100vh - 6rem);
     border: none;
+    border-radius: 1rem;
     z-index: 2147483640;
     overflow: hidden;
     user-select: none;
