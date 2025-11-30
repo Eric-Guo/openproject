@@ -404,7 +404,7 @@ GEM
       airbrake-ruby (~> 6.0)
     airbrake-ruby (6.2.2)
       rbtree3 (~> 0.6)
-    airbrussh (1.5.3)
+    airbrussh (1.6.0)
       sshkit (>= 1.6.1, != 1.7.0)
     android_key_attestation (0.3.0)
     anyway_config (2.7.2)
@@ -1236,7 +1236,7 @@ GEM
       msgpack (>= 0.4.3)
       optimist (>= 3.0.0)
     rbtree3 (0.7.1)
-    rdoc (6.16.0)
+    rdoc (6.16.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -1317,7 +1317,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.34.1)
+    rubocop-rails (2.34.2)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
