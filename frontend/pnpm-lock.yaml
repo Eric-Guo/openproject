@@ -361,7 +361,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
       webpack:
-        specifier: ^5.102.1
+        specifier: ^5.103.0
         version: 5.103.0(esbuild@0.25.12)
       ws:
         specifier: ~8.18.3
@@ -8724,7 +8724,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
