@@ -1949,8 +1949,8 @@ packages:
     peerDependencies:
       prettier: '*'
 
-  '@primer/behaviors@1.8.4':
-    resolution: {integrity: sha512-+z7LNbijJqBnsz1u9Jcgrc9yPLwGmzYMnI+yBiS1oNuEW1zLH5ZE7Kp9UFRo7fqPgM/IZ8xbtdTAuBZq9DPs7g==}
+  '@primer/behaviors@1.9.0':
+    resolution: {integrity: sha512-MIVSZlQGJzas44DZDwo4Dqiev289K918oDl/AcA+zTpQAjp+PrJ0LUxEnrSOapyivLYpRpmSCeF0XPh7NgXpCA==}
 
   '@primer/css@21.5.1':
     resolution: {integrity: sha512-/dw7P2eHbLEq77E6WVhVPud/HtyzAzlQgX6f8HQ/i0l1r5EZeh9r7/THgMUt0MgdSlJb7t+WT+V+zN8EDkU9mw==}
@@ -3078,8 +3078,8 @@ packages:
     resolution: {integrity: sha512-5T6P4xPgpp0YDFvSWwEZ4NoE3aM4QBQXDzmVbraCkFj8zHM+mba8SyqB5DbZWyR7mYHo6Y7BdQo3MoA4m0TeQg==}
     engines: {node: '>=0.10.0'}
 
-  baseline-browser-mapping@2.9.2:
-    resolution: {integrity: sha512-PxSsosKQjI38iXkmb3d0Y32efqyA0uW4s41u4IVBsLlWLhCiYNpH/AfNOVWRqCQBlD8TFJTz6OUWNd4DFJCnmw==}
+  baseline-browser-mapping@2.9.3:
+    resolution: {integrity: sha512-8QdH6czo+G7uBsNo0GiUfouPN1lRzKdJTGnKXwe12gkFbnnOUaUKGN55dMkfy+mnxmvjwl9zcI4VncczcVXDhA==}
     hasBin: true
 
   basic-auth@1.1.0:
@@ -3775,8 +3775,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.265:
-    resolution: {integrity: sha512-B7IkLR1/AE+9jR2LtVF/1/6PFhY5TlnEHnlrKmGk7PvkJibg5jr+mLXLLzq3QYl6PA1T/vLDthQPqIPAlS/PPA==}
+  electron-to-chromium@1.5.266:
+    resolution: {integrity: sha512-kgWEglXvkEfMH7rxP5OSZZwnaDWT7J9EoZCujhnpLbfi0bbNtRkgdX2E3gt0Uer11c61qCYktB3hwkAS325sJg==}
 
   emoji-mart@5.6.0:
     resolution: {integrity: sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==}
@@ -7278,8 +7278,8 @@ packages:
     resolution: {integrity: sha512-yYrrsWnrXMcdsnu/7YMYAofM1ktpL5By7vZhf15CrXijWWrEYZks5AXBudalfSWJLlnen/QUJUB5aoB0kqZUGA==}
     engines: {node: '>=6.0.0'}
 
-  terser-webpack-plugin@5.3.14:
-    resolution: {integrity: sha512-vkZjpUjb6OMS7dhV+tILUW6BhpDR7P2L/aQSAv+Uwk+m8KATX9EccViHTJR2qDtACKPIYndLGCyl3FMo+r2LMw==}
+  terser-webpack-plugin@5.3.15:
+    resolution: {integrity: sha512-PGkOdpRFK+rb1TzVz+msVhw4YMRT9txLF4kRqvJhGhCM324xuR3REBSHALN+l+sAhKUmz0aotnjp5D+P83mLhQ==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       '@swc/core': '*'
@@ -9820,7 +9820,7 @@ snapshots:
       '@github/remote-input-element': 0.4.0
       '@github/tab-container-element': 3.4.0
       '@oddbird/popover-polyfill': 0.5.2
-      '@primer/behaviors': 1.8.4
+      '@primer/behaviors': 1.9.0
       '@primer/live-region-element': 0.8.0
       '@primer/primitives': 9.1.2
 
@@ -9951,7 +9951,7 @@ snapshots:
       '@github/remote-input-element': 0.4.0
       '@github/tab-container-element': 3.4.0
       '@oddbird/popover-polyfill': 0.5.2
-      '@primer/behaviors': 1.8.4
+      '@primer/behaviors': 1.9.0
       '@primer/live-region-element': 0.8.0
       '@primer/primitives': 9.1.2
 
@@ -9971,7 +9971,7 @@ snapshots:
       make-synchronized: 0.4.2
       prettier: 3.3.3
 
-  '@primer/behaviors@1.8.4': {}
+  '@primer/behaviors@1.9.0': {}
 
   '@primer/css@21.5.1(@primer/primitives@9.1.2)':
     dependencies:
@@ -11228,7 +11228,7 @@ snapshots:
       mixin-deep: 1.3.2
       pascalcase: 0.1.1
 
-  baseline-browser-mapping@2.9.2: {}
+  baseline-browser-mapping@2.9.3: {}
 
   basic-auth@1.1.0: {}
 
@@ -11309,9 +11309,9 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.9.2
+      baseline-browser-mapping: 2.9.3
       caniuse-lite: 1.0.30001759
-      electron-to-chromium: 1.5.265
+      electron-to-chromium: 1.5.266
       node-releases: 2.0.27
       update-browserslist-db: 1.2.2(browserslist@4.28.1)
 
@@ -11950,7 +11950,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.265: {}
+  electron-to-chromium@1.5.266: {}
 
   emoji-mart@5.6.0: {}
 
@@ -16401,7 +16401,7 @@ snapshots:
       mkdirp: 0.5.6
       rimraf: 2.6.3
 
-  terser-webpack-plugin@5.3.14(esbuild@0.25.12)(webpack@5.103.0(esbuild@0.25.12)):
+  terser-webpack-plugin@5.3.15(esbuild@0.25.12)(webpack@5.103.0(esbuild@0.25.12)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -17074,7 +17074,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(esbuild@0.25.12)(webpack@5.103.0(esbuild@0.25.12))
+      terser-webpack-plugin: 5.3.15(esbuild@0.25.12)(webpack@5.103.0(esbuild@0.25.12))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
