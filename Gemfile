@@ -107,7 +107,7 @@ gem "svg-graph", "~> 2.2.0"
 
 gem "date_validator", "~> 0.12.0"
 gem "email_validator", "~> 2.2.3"
-gem "json_schemer", "~> 2.4.0"
+gem "json_schemer", "~> 2.5.0"
 gem "ruby-duration", "~> 3.2.0"
 
 gem "mail"
@@ -433,7 +433,7 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.31.0"
-gem "openproject-octicons_helper", "~>19.31.0"
+gem "openproject-octicons", "~>19.32.0"
+gem "openproject-octicons_helper", "~>19.32.0"
 # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
 gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
