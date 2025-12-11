@@ -20,6 +20,7 @@ if Rails.env.production? && ENV["OPENPROJECT_HOST__NAME"] == "plm.thape.com.cn"
       Notifications::WorkflowJob
       ThProject::FillRealPmCodeJob
       LdapGroups::SynchronizationJob
+      TimeEntryWebhookJob
     ],
     ignore_exceptions: [],
     ignore_plugins: %w[
