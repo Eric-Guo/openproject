@@ -26,7 +26,7 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-source "https://gem.coop"
+source "https://rubygems.org"
 
 # TODO: Once packager.io and heroku buildpacks support bundler 2.4.22,
 # then we can use the new bundler syntax `ruby file: '.ruby-version'`.
