@@ -39,7 +39,7 @@ append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemo
 
 set :pnpm_flags, '--silent'
 set :rbenv_type, :user
-set :rbenv_ruby, "3.4.7"
+set :rbenv_ruby, "3.4.8"
 
 set :puma_init_active_record, true
 

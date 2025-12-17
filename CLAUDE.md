@@ -147,7 +147,7 @@ OpenProject uses both Rails-rendered pages and Angular SPA routes:
 - **Frontend Dev Server**: Angular CLI (proxied to Rails in development)
 
 ### Key Technologies
-- **Ruby**: 3.4.7
+- **Ruby**: 3.4.8
 - **Rails**: 8.0.1
 - **TypeScript**: 5.4.x
 - **Angular**: 17.3.x

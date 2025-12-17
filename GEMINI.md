@@ -15,7 +15,7 @@ OpenProject is a web-based project management software. This repository contains
 
 ### Prerequisites
 Ensure you have the following installed:
-- Ruby 3.4.7
+- Ruby 3.4.8
 - Node.js ^22.15.0
 - pnpm
 - PostgreSQL
