@@ -694,7 +694,7 @@ module WorkPackages
 
     # We're in a readonly status and did not move into that status right now.
     def already_in_readonly_status?
-      model.readonly_status? && !model.status_id_change
+      model.readonly_status? && !model.status_id_change && !user.admin?
     end
 
     def calculated_duration
