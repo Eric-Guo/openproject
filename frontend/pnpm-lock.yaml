@@ -5530,8 +5530,8 @@ packages:
     resolution: {integrity: sha512-cKTUFc/rbKUd/9meOvgrpJ2WrNzymt6jfRDdwg5UCnVzv9dTpEj9JS5m3wtziXVCjluIXyL8pcaukYqezIzZQA==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  make-plural@8.1.0:
-    resolution: {integrity: sha512-p8EfQ2LFxnU4KGc82hOYdUplQw0eoWJLzJVKyv2GR9sd4zkjA8bLSXLEmp/qE08c/cFTZOK8j6Ex80+Wey+4PA==}
+  make-plural@7.4.0:
+    resolution: {integrity: sha512-4/gC9KVNTV6pvYg2gFeQYTW3mWaoJt7WZE5vrp1KnQDgW92JtYZnzmZT81oj/dUTqAIu0ufI2x3dkgu3bB1tYg==}
 
   make-synchronized@0.4.2:
     resolution: {integrity: sha512-EwEJSg8gSGLicKXp/VzNi1tvzhdmNBxOzslkkJSoNUCQFZKH/NIUIp7xlfN+noaHrz4BJDN73gne8IHnjl/F/A==}
@@ -13336,7 +13336,7 @@ snapshots:
     dependencies:
       bignumber.js: 9.1.2
       lodash: 4.17.21
-      make-plural: 8.1.0
+      make-plural: 7.4.0
 
   iconv-lite@0.4.24:
     dependencies:
@@ -14173,7 +14173,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  make-plural@8.1.0: {}
+  make-plural@7.4.0: {}
 
   make-synchronized@0.4.2: {}
 
