@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 779dc4d75ffc7e23a5e7eeecc2d035114e4f95e8
+  revision: 33a01aafd7bf6c1d7e1fe3b824e796b5e6941f2d
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -1145,7 +1145,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (7.0.0)
+    public_suffix (7.0.1)
     puffing-billy (4.0.2)
       addressable (~> 2.5)
       em-http-request (~> 1.1, >= 1.1.0)
