@@ -113,6 +113,28 @@ RSpec.describe TypesController do
       it { expect(response).to render_template "new" }
     end
 
+    describe "GET edit" do
+      let(:type) { create(:type) }
+
+      it "redirects to settings when no tab is provided" do
+        get :edit, params: { id: type.id }
+
+        expect(response).to redirect_to(edit_type_settings_path(type_id: type.id))
+      end
+
+      it "redirects to form configuration for legacy tab routes" do
+        get :edit, params: { id: type.id, tab: "form_configuration" }
+
+        expect(response).to redirect_to(edit_type_form_configuration_path(type_id: type.id))
+      end
+
+      it "redirects to projects for legacy tab routes" do
+        get :edit, params: { id: type.id, tab: "projects" }
+
+        expect(response).to redirect_to(edit_type_projects_path(type_id: type.id))
+      end
+    end
+
     describe "POST create" do
       describe "WITH valid params" do
         let(:params) do

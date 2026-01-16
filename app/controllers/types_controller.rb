@@ -50,12 +50,11 @@ class TypesController < ApplicationController
   end
 
   def edit
-    if params[:tab].blank?
-      redirect_to tab: :settings
-    else
-      type = ::Type.includes(:projects, :custom_fields).find(params[:id])
-      render_edit_tab(type)
-    end
+    redirect_path = redirect_path_for_tab
+    return redirect_to redirect_path if redirect_path
+
+    type = ::Type.includes(:projects, :custom_fields).find(params[:id])
+    render_edit_tab(type)
   end
 
   def create
@@ -127,6 +126,23 @@ class TypesController < ApplicationController
   def redirect_to_type_tab_path(type, notice)
     tab = params["tab"] || "settings"
     redirect_to(edit_tab_type_path(type, tab:), notice:, status: :see_other)
+  end
+
+  def redirect_path_for_tab
+    tab = params[:tab].presence&.to_s
+
+    case tab
+    when nil, "settings"
+      edit_type_settings_path(type_id: params[:id])
+    when "form_configuration"
+      edit_type_form_configuration_path(type_id: params[:id])
+    when "projects"
+      edit_type_projects_path(type_id: params[:id])
+    when "subject_configuration", "export_configuration"
+      nil
+    else
+      edit_type_settings_path(type_id: params[:id])
+    end
   end
 
   def render_edit_tab(type, status: :ok)
