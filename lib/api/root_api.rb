@@ -156,7 +156,13 @@ module API
           user.allowed_in_project?(permission, project)
         end
 
-        authorize_by_with_raise(authorized, &)
+        return true if authorized
+
+        if project&.archived? && !block_given?
+          raise API::Errors::Unauthorized, message: I18n.t(:notice_not_authorized_archived_project)
+        end
+
+        authorize_by_with_raise(false, &)
       end
 
       # Checks that the current user has the given permission in any of the given projects or raise {API::Errors::Unauthorized}.
