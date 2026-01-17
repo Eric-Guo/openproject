@@ -357,7 +357,7 @@ group :development, :test do
   # https://github.com/puma/puma/issues/2835#issuecomment-2302133927
   gem "byebug"
 
-  gem "pry-byebug", "~> 3.11.0", platforms: [:mri]
+  gem "pry-byebug", "~> 3.12.0", platforms: [:mri]
   gem "pry-rails", "~> 0.3.6"
   gem "pry-rescue", "~> 1.6.0"
 
