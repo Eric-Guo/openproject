@@ -1,4 +1,4 @@
-if Rails.env.production? && ENV["OPENPROJECT_HOST__NAME"] == "plm.thape.com.cn"
+if Rails.env.production? && ENV["OPENPROJECT_HOST__NAME"] == "plm-disable.thape.com.cn"
   RorVsWild.start(
     api_key: Rails.application.credentials.rorvswild_api_key,
     ignore_requests: %w[
