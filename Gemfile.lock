@@ -418,7 +418,7 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1206.0)
+    aws-partitions (1.1209.0)
     aws-sdk-core (3.241.4)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -530,15 +530,14 @@ GEM
       descendants_tracker (~> 0.0.1)
     color_conversion (0.1.2)
     colored2 (4.0.3)
-    commonmarker (2.6.1)
+    commonmarker (2.6.3)
       rb_sys (~> 0.9)
-    commonmarker (2.6.1-aarch64-linux)
-    commonmarker (2.6.1-aarch64-linux-musl)
-    commonmarker (2.6.1-arm-linux)
-    commonmarker (2.6.1-arm64-darwin)
-    commonmarker (2.6.1-x86_64-darwin)
-    commonmarker (2.6.1-x86_64-linux)
-    commonmarker (2.6.1-x86_64-linux-musl)
+    commonmarker (2.6.3-aarch64-linux)
+    commonmarker (2.6.3-arm-linux)
+    commonmarker (2.6.3-arm64-darwin)
+    commonmarker (2.6.3-x86_64-darwin)
+    commonmarker (2.6.3-x86_64-linux)
+    commonmarker (2.6.3-x86_64-linux-musl)
     compare-xml (0.66)
       nokogiri (~> 1.8)
     concurrent-ruby (1.3.6)
@@ -1149,8 +1148,9 @@ GEM
       date
       stringio
     public_suffix (7.0.2)
-    puffing-billy (4.0.2)
+    puffing-billy (4.0.3)
       addressable (~> 2.5)
+      cgi
       em-http-request (~> 1.1, >= 1.1.0)
       em-synchrony
       eventmachine (~> 1.2)
@@ -1251,7 +1251,7 @@ GEM
     redcarpet (3.6.1)
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.26.3)
+    redis-client (0.26.4)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)
@@ -1341,7 +1341,7 @@ GEM
       activesupport (>= 3.0.0)
       i18n
       iso8601
-    ruby-lsp (0.26.4)
+    ruby-lsp (0.26.5)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
