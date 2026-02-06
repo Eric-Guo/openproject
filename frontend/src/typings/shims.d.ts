@@ -24,6 +24,7 @@ import { ErrorReporterBase } from 'core-app/core/errors/error-reporter-base';
 import { AnalyticsConfig } from 'th-analytics/dist/Analytics';
 import { I18n } from 'i18n-js';
 import '@hotwired/turbo';
+import type BigNumber from 'bignumber.js';
 
 declare module 'observable-array';
 declare module 'dom-autoscroller';
@@ -59,6 +60,7 @@ declare global {
   const _:typeof TLodash;
   const I18n:I18n;
   const dragula:Dragula;
+  type BigNumber = import('bignumber.js').default;
 }
 
 declare global {
