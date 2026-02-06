@@ -27,11 +27,18 @@
 #++
 module WorkPackages
   class MenusController < ApplicationController
-    before_action :load_and_authorize_in_optional_project
+    before_action :load_and_authorize_in_optional_project,
+                  unless: :allow_global_html_menu_shell_without_work_package_permissions?
 
     def show
       @sidebar_menu_items = WorkPackages::Menu.new(project: @project, params:).menu_items
       render layout: nil
+    end
+
+    private
+
+    def allow_global_html_menu_shell_without_work_package_permissions?
+      params[:project_id].blank? && request.format.html?
     end
   end
 end

@@ -37,7 +37,7 @@ class WorkPackagesController < ApplicationController
 
   before_action :authorize_on_work_package,
                 :project, only: %i[show generate_pdf_dialog generate_pdf]
-  before_action :load_and_authorize_in_optional_project,
+  before_action :load_and_authorize_for_index_scope,
                 :check_allowed_export,
                 :protect_from_unauthorized_export, only: %i[index default_view export_dialog]
 
@@ -187,6 +187,18 @@ class WorkPackagesController < ApplicationController
   end
 
   private
+
+  def load_and_authorize_for_index_scope
+    @project = Project.find(params[:project_id]) if params[:project_id].present?
+
+    return if allow_global_html_shell_without_work_package_permissions?
+
+    do_authorize({ controller: controller_path, action: action_name }, global: params[:project_id].blank?)
+  end
+
+  def allow_global_html_shell_without_work_package_permissions?
+    params[:project_id].blank? && request.format.html? && %w[index menu].include?(action_name)
+  end
 
   def save_export_settings
     # Saving export settings is only allowed for saved queries

@@ -145,6 +145,21 @@ RSpec.describe WorkPackagesController do
           end
         end
 
+        describe "without a project and without view_work_packages permission" do
+          let(:project) { nil }
+          let(:call_action) { get("index") }
+
+          before do
+            mock_permissions_for(current_user, &:forbid_everything)
+            call_action
+          end
+
+          it "renders the index template for the frontend shell" do
+            expect(response).to have_http_status(:ok)
+            expect(response).to render_template("work_packages/index")
+          end
+        end
+
         context "with a project" do
           it "renders the index template" do
             expect(response).to render_template("work_packages/index")
