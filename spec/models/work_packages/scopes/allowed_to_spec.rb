@@ -262,6 +262,18 @@ RSpec.describe WorkPackage, ".allowed_to" do
       it "returns work packages in the public project" do
         expect(subject).to contain_exactly(work_package_in_public_project)
       end
+
+      context "and non-member work package visibility is excluded for the project" do
+        before do
+          allow(Project)
+            .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                  .and_return([public_project.id])
+        end
+
+        it "is empty" do
+          expect(subject).to be_empty
+        end
+      end
     end
 
     context "with the non member role lacking the permission" do

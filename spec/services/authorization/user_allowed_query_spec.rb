@@ -162,6 +162,18 @@ RSpec.describe Authorization::UserAllowedQuery do
       it "returns the user" do
         expect(described_class.query(action, project)).to contain_exactly(user)
       end
+
+      context "with non-member work package visibility excluded for the project" do
+        before do
+          allow(Project)
+            .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                  .and_return([project.id])
+        end
+
+        it "is empty" do
+          expect(described_class.query(action, project)).to be_empty
+        end
+      end
     end
 
     context "with the project being public " \
@@ -179,6 +191,18 @@ RSpec.describe Authorization::UserAllowedQuery do
 
       it "returns the anonymous user" do
         expect(described_class.query(action, project)).to contain_exactly(anonymous)
+      end
+
+      context "with non-member work package visibility excluded for the project" do
+        before do
+          allow(Project)
+            .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                  .and_return([project.id])
+        end
+
+        it "is empty" do
+          expect(described_class.query(action, project)).to be_empty
+        end
       end
     end
 

@@ -158,6 +158,26 @@ RSpec.describe Authorization::UserPermissibleService do
             it { is_expected.to be_allowed_in_project(permission, project) }
           end
 
+          context "when requesting a work-package permission that is granted to the non-member role" do
+            before do
+              non_member = ProjectRole.non_member
+              non_member.add_permission! :view_work_packages
+              non_member.save!
+            end
+
+            it { is_expected.to be_allowed_in_project(permission, project) }
+
+            context "and non-member work package visibility is excluded for the project" do
+              before do
+                allow(Project)
+                  .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                        .and_return([project.id])
+              end
+
+              it { is_expected.not_to be_allowed_in_project(permission, project) }
+            end
+          end
+
           context "when an anonymous user is requesting a permission that is granted to the anonymous role" do
             let(:queried_user) { anonymous_user }
             let(:permission) { :view_meetings }
@@ -193,6 +213,17 @@ RSpec.describe Authorization::UserPermissibleService do
         let!(:project_member) { create(:member, user:, project:, roles: [role]) }
 
         it { is_expected.to be_allowed_in_project(permission, project) }
+
+        context "when non-member work package visibility is excluded for the project" do
+          before do
+            project.update!(public: true)
+            allow(Project)
+              .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                    .and_return([project.id])
+          end
+
+          it { is_expected.to be_allowed_in_project(permission, project) }
+        end
 
         context "with the project being archived" do
           before { project.update(active: false) }

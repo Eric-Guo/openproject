@@ -382,6 +382,16 @@ RSpec.describe Project, "allowed to" do
 
         it_behaves_like "is empty"
       end
+
+      context "with non-member work package visibility excluded for the project" do
+        before do
+          allow(described_class)
+            .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                  .and_return([project.id])
+        end
+
+        it_behaves_like "includes the project"
+      end
     end
 
     context "without the user being member" do
@@ -393,6 +403,16 @@ RSpec.describe Project, "allowed to" do
 
       context "with the non member role having the permission" do
         it_behaves_like "includes the project"
+      end
+
+      context "with non-member work package visibility excluded for the project" do
+        before do
+          allow(described_class)
+            .to receive(:non_member_work_package_visibility_excluded_project_ids)
+                  .and_return([project.id])
+        end
+
+        it_behaves_like "is empty"
       end
 
       context "with the non member role having the permission " \

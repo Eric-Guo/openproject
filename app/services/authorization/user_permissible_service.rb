@@ -146,10 +146,22 @@ module Authorization
     end
 
     def permissions_by_enabled_project_modules(project, permissions)
-      project
+      permissions_in_enabled_modules = project
         .allowed_permissions
         .intersection(permissions.map(&:name))
         .map { |perm| perm.name.to_sym }
+
+      reject_non_member_work_package_permissions(project, permissions_in_enabled_modules)
+    end
+
+    def reject_non_member_work_package_permissions(project, permission_names)
+      return permission_names unless project.public?
+      return permission_names if user.member_of?(project)
+      return permission_names unless project.excludes_non_member_work_package_visibility?
+
+      permission_names.reject do |permission_name|
+        OpenProject::AccessControl.permission(permission_name)&.project_module.to_s == "work_package_tracking"
+      end
     end
 
     def contextual_permissions(permission, context)

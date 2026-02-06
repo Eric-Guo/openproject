@@ -52,9 +52,15 @@ module Projects::Scopes
       private
 
       def allowed_to_non_member_relation(user, permissions)
-        joins(allowed_to_enabled_module_join(permissions))
-          .joins(allowed_to_builtin_roles_in_active_project_join(user))
-          .joins(allowed_to_role_permission_join(permissions))
+        scope = joins(allowed_to_enabled_module_join(permissions))
+                .joins(allowed_to_builtin_roles_in_active_project_join(user))
+                .joins(allowed_to_role_permission_join(permissions))
+
+        if work_package_module_included?(permissions)
+          scope.where(Project.non_member_work_package_visibility_exclusion_condition(table: arel_table))
+        else
+          scope
+        end
       end
 
       def allowed_to_builtin_roles_in_active_project_join(user)
@@ -180,6 +186,10 @@ module Projects::Scopes
         Authorization.contextual_permissions(permission,
                                              to_s.underscore.to_sym,
                                              raise_on_unknown: true)
+      end
+
+      def work_package_module_included?(permissions)
+        permissions.any? { |permission| permission.project_module.to_s == "work_package_tracking" }
       end
     end
   end

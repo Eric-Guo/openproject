@@ -29,6 +29,8 @@
 class Project < ApplicationRecord
   extend FriendlyId
 
+  NON_MEMBER_WORK_PACKAGE_VISIBILITY_EXCLUDED_PROJECT_IDS = [9277].freeze
+
   include Projects::Activity
   include Projects::AncestorsFromRoot
   include Projects::CustomFields
@@ -236,6 +238,28 @@ class Project < ApplicationRecord
 
   def self.selectable_projects
     Project.visible.select { |p| User.current.member_of? p }.sort_by(&:to_s)
+  end
+
+  def self.non_member_work_package_visibility_excluded_project_ids
+    ENV
+      .fetch(
+        "OPENPROJECT_NON_MEMBER_WORK_PACKAGE_VISIBILITY_EXCLUDED_PROJECT_IDS",
+        NON_MEMBER_WORK_PACKAGE_VISIBILITY_EXCLUDED_PROJECT_IDS.join(",")
+      )
+      .split(",")
+      .filter_map { |id| Integer(id, exception: false) }
+      .uniq
+  end
+
+  def self.non_member_work_package_visibility_exclusion_condition(table: arel_table)
+    excluded_project_ids = non_member_work_package_visibility_excluded_project_ids
+    return Arel::Nodes::Equality.new(1, 1) if excluded_project_ids.empty?
+
+    table[:id].not_in(excluded_project_ids)
+  end
+
+  def excludes_non_member_work_package_visibility?
+    self.class.non_member_work_package_visibility_excluded_project_ids.include?(id)
   end
 
   def project

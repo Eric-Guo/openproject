@@ -70,9 +70,9 @@ class Authorization::UserAllowedQuery < Authorization::AbstractUserQuery
 
   transformations.register :all,
                            :roles_join,
-                           after: [:member_roles_join] do |statement, _, project|
+                           after: [:member_roles_join] do |statement, action, project|
     statement.outer_join(roles_table)
-             .on(roles_member_roles_join(project))
+             .on(roles_member_roles_join(project, action))
   end
 
   transformations.register :all,
@@ -88,10 +88,10 @@ class Authorization::UserAllowedQuery < Authorization::AbstractUserQuery
     end
   end
 
-  def self.roles_member_roles_join(project)
+  def self.roles_member_roles_join(project, action)
     id_equal = roles_table[:id].eq(member_roles_table[:role_id])
 
-    if project.public?
+    if project.public? && non_member_public_access_allowed_for?(project, action)
       member_or_public_project_condition(id_equal)
     else
       id_equal
@@ -117,5 +117,17 @@ class Authorization::UserAllowedQuery < Authorization::AbstractUserQuery
                 .eq("User")
                 .and(id_equal.or(no_membership_and_non_member_role_condition)))
       .or(anonymous_user_condition)
+  end
+
+  def self.non_member_public_access_allowed_for?(project, action)
+    return true unless work_package_module_permission?(action)
+
+    !project.excludes_non_member_work_package_visibility?
+  end
+
+  def self.work_package_module_permission?(action)
+    Authorization
+      .permissions_for(action)
+      .any? { |permission| permission.project_module.to_s == "work_package_tracking" }
   end
 end
