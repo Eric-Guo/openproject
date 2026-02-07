@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: fd10cbec4a69be32c7ced8922ef50ac65a072a29
+  revision: 630e03ea6c9612892267d2491ea6bf5c1ed39b12
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -616,7 +616,7 @@ GEM
       dry-logic (~> 1.6)
       dry-types (~> 1.8)
       zeitwerk (~> 2.6)
-    dry-types (1.9.0)
+    dry-types (1.9.1)
       bigdecimal (>= 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
@@ -668,7 +668,7 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faraday (2.14.0)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -800,34 +800,34 @@ GEM
       grape
       rack
     gravatar_image_tag (1.2.0)
-    grpc (1.76.0)
+    grpc (1.78.0)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-aarch64-linux-gnu)
+    grpc (1.78.0-aarch64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-aarch64-linux-musl)
+    grpc (1.78.0-aarch64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-arm64-darwin)
+    grpc (1.78.0-arm64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-x86-linux-gnu)
+    grpc (1.78.0-x86-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-x86-linux-musl)
+    grpc (1.78.0-x86-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-x86_64-darwin)
+    grpc (1.78.0-x86_64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-x86_64-linux-gnu)
+    grpc (1.78.0-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.76.0-x86_64-linux-musl)
+    grpc (1.78.0-x86_64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc-tools (1.76.0)
+    grpc-tools (1.78.0)
     gruf (2.21.2)
       activesupport (> 4)
       concurrent-ruby (> 1)
@@ -849,7 +849,7 @@ GEM
     htmlbeautifier (1.4.3)
     htmldiff (0.0.1)
     htmlentities (4.3.4)
-    http-2 (1.1.1)
+    http-2 (1.1.2)
     http (5.3.1)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
@@ -1050,10 +1050,10 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.32.0)
-    openproject-octicons_helper (19.32.0)
+    openproject-octicons (19.32.1)
+    openproject-octicons_helper (19.32.1)
       actionview
-      openproject-octicons (= 19.32.0)
+      openproject-octicons (= 19.32.1)
       railties
     openproject-token (7.2.2)
       activemodel
