@@ -1,9 +1,10 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 630e03ea6c9612892267d2491ea6bf5c1ed39b12
+  revision: b2ba9c03d8dfc264d18f58d71adfcb701725b246
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
+      jbuilder
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
@@ -890,6 +891,9 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     iso8601 (0.13.0)
+    jbuilder (2.14.1)
+      actionview (>= 7.0.0)
+      activesupport (>= 7.0.0)
     jmespath (1.6.2)
     json (2.18.1)
     json-jwt (1.17.0)
@@ -1631,6 +1635,7 @@ DEPENDENCIES
   i18n-tasks (~> 1.0.13)
   ice_cube (~> 0.17.0)
   ice_nine
+  jbuilder
   json_schemer (~> 2.5.0)
   json_spec (~> 1.1.4)
   jwt

@@ -391,6 +391,7 @@ gem "bootsnap", "~> 1.18.0", require: false
 gem "grape", "~> 2.3.0"
 gem "grape_logging", "~> 1.8.4"
 gem "roar", "~> 1.2.0"
+gem "jbuilder"
 
 # CORS for API
 gem "rack-cors", "~> 2.0.2"
