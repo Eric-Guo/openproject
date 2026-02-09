@@ -136,8 +136,12 @@ export abstract class DialogPreviewController extends Controller {
     const formData = new FormData(form) as unknown as undefined;
     const formParams = new URLSearchParams(formData);
 
-    const wpParams = Array.from(formParams.entries())
-      .filter(([key, _]) => key.startsWith('work_package'));
+    const wpParams:[string, string][] = [];
+    formParams.forEach((value, key) => {
+      if (key.startsWith('work_package')) {
+        wpParams.push([key, value]);
+      }
+    });
     wpParams.push(['field', field?.name ?? '']);
 
     if (additionalData) {
