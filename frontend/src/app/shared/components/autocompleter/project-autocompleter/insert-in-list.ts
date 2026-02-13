@@ -5,41 +5,48 @@ import {
   IProjectAutocompleteItemTree,
 } from './project-autocomplete-item';
 
+const UNDISCLOSED_ANCESTOR = 'urn:openproject-org:api:v3:undisclosed';
+
 const insertProjectWithAncestors = (
   tree:IProjectAutocompleteItemTree[],
   project:IProjectAutocompleteItem,
   ancestors:IHalResourceLink[],
 ):IProjectAutocompleteItemTree[] => {
-  // The project has no ancestors, thus it can become a part of the tree right away.
-  if (!ancestors.length) {
-    return [
-      ...tree,
-      {
-        ...project,
+  const visibleAncestors = ancestors.filter((ancestor) => ancestor.href !== UNDISCLOSED_ANCESTOR);
+  const visitedHrefs = new Set<string>([project.href]);
+  let currentLevel = tree;
+
+  visibleAncestors.some((ancestor) => {
+    const ancestorHref = ancestor.href;
+
+    // Protect against malformed project hierarchies that contain cycles or repeated ancestors.
+    if (visitedHrefs.has(ancestorHref)) {
+      return true;
+    }
+    visitedHrefs.add(ancestorHref);
+
+    let ancestorInTree = currentLevel.find((leaf) => leaf.href === ancestorHref);
+    if (!ancestorInTree) {
+      ancestorInTree = {
+        id: idFromLink(ancestorHref),
+        name: ancestor.title,
+        href: ancestorHref,
+        disabled: true,
         children: [],
-      },
-    ];
-  }
+      };
+      currentLevel.push(ancestorInTree);
+    }
 
-  const ancestorToFind = ancestors[0];
-  const ancestorInTree = tree.find((leaf) => leaf.href === ancestorToFind.href);
+    currentLevel = ancestorInTree.children;
+    return false;
+  });
 
-  if (ancestorInTree) {
-    return tree.map((item) => (item === ancestorInTree
-      ? { ...item, children: insertProjectWithAncestors(item.children, project, ancestors.slice(1)) }
-      : { ...item }));
-  }
+  currentLevel.push({
+    ...project,
+    children: [],
+  });
 
-  return [
-    ...tree,
-    {
-      id: idFromLink(ancestorToFind.href),
-      name: ancestorToFind.title,
-      href: ancestorToFind.href,
-      disabled: true,
-      children: insertProjectWithAncestors([], project, ancestors.slice(1)),
-    },
-  ];
+  return tree;
 };
 
 export const buildTree = (
