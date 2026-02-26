@@ -217,7 +217,7 @@ module OpenProject::Bim
       Doorkeeper.configuration.scopes.add(:bcf_v2_1)
     end
 
-    config.before_initialize do
+    initializer "bim.bcf.configure_authentication" do
       unless defined? OpenProject::Authentication::Scope::BCF_V2_1
         OpenProject::Authentication::Scope::BCF_V2_1 = :bcf_v2_1
       end
