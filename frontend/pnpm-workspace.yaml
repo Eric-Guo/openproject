@@ -6,3 +6,4 @@ onlyBuiltDependencies:
   - esbuild
   - highlight.js
   - nice-napi
+  - th-analytics

@@ -31,7 +31,7 @@ module OpenProject
     class << self
       def fallback
         ActiveRecord::Base.connection.execute("SELECT 1")
-      rescue ActiveRecord::NoDatabaseError => e
+      rescue *fallback_errors => e
         Rails.logger.error "Database connection could not be established: #{e}. Falling back to NullDB."
         applied!
         ActiveRecord::Base.establish_connection adapter: :nulldb
@@ -57,6 +57,13 @@ module OpenProject
 
       def applied?
         !!applied
+      end
+
+      def fallback_errors
+        [
+          ActiveRecord::NoDatabaseError,
+          ActiveRecord::ConnectionNotEstablished
+        ]
       end
 
       def database_config
