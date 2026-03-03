@@ -113,7 +113,7 @@
     "@primer/live-region-element": "^0.8.0",
     "@primer/primitives": "^9.1.2",
     "@primer/view-components": "npm:@openproject/primer-view-components@^0.70.5",
-    "@types/hotwired__turbo": "^8.0.9",
+    "@types/hotwired__turbo": "8.0.6",
     "@uirouter/angular": "^13.0.0",
     "@uirouter/core": "^6.1.2",
     "@uirouter/rx": "^1.0.0",

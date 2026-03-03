@@ -175,8 +175,8 @@ importers:
         specifier: npm:@openproject/primer-view-components@^0.70.5
         version: '@openproject/primer-view-components@0.70.5(@primer/primitives@9.1.2)'
       '@types/hotwired__turbo':
-        specifier: ^8.0.9
-        version: 8.0.9
+        specifier: 8.0.6
+        version: 8.0.6
       '@uirouter/angular':
         specifier: ^13.0.0
         version: 13.0.0(@angular/common@17.3.12(@angular/core@17.3.12(rxjs@7.8.2)(zone.js@0.14.10))(rxjs@7.8.2))(@angular/core@17.3.12(rxjs@7.8.2)(zone.js@0.14.10))(@uirouter/core@6.1.2)(@uirouter/rx@1.0.0(@uirouter/core@6.1.2)(rxjs@7.8.2))
@@ -361,7 +361,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2
       webpack:
-        specifier: ^5.105.3
+        specifier: ^5.102.1
         version: 5.105.3(esbuild@0.25.12)
       ws:
         specifier: ~8.18.3
@@ -2337,8 +2337,8 @@ packages:
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
-  '@types/hotwired__turbo@8.0.9':
-    resolution: {integrity: sha512-q2XWdObf8J+3V8fESKkd452Iy1A9ZFemQVGzKmxmZ02Clo1D/HEiX8bMQRmJ432RQ4sp24R0f7XQjHWNQC26XA==}
+  '@types/hotwired__turbo@8.0.6':
+    resolution: {integrity: sha512-jqWRyXz+wAa7E3iB3WKcpXjVUgfLt2zGO68x3ANPtM4JSVDOT/q9GhPQzXf3EtPOkdiHfUp7JAC0EU5bSwluFA==}
 
   '@types/http-errors@2.0.5':
     resolution: {integrity: sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==}
@@ -8750,7 +8750,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.28.6
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
@@ -10351,7 +10351,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/hotwired__turbo@8.0.9': {}
+  '@types/hotwired__turbo@8.0.6': {}
 
   '@types/http-errors@2.0.5': {}
 
