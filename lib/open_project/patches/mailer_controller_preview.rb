@@ -41,6 +41,6 @@ module OpenProject::Patches::MailerControllerCsp
   end
 end
 
-OpenProject::Patches.patch_gem_version "rails", "8.0.4" do
+OpenProject::Patches.patch_gem_version "rails", "8.0.5" do
   Rails::MailersController.include OpenProject::Patches::MailerControllerCsp
 end

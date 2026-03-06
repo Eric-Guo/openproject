@@ -39,7 +39,7 @@ gem "activemodel-serializers-xml", "~> 1.0.1"
 gem "activerecord-import", "~> 2.2.0"
 gem "activerecord-session_store", "~> 2.2.0"
 gem "ox"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.0.5"
 gem "responders", "~> 3.0"
 
 gem "ffi", "~> 1.15"
