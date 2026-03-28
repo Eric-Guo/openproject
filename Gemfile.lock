@@ -517,7 +517,7 @@ GEM
     carrierwave_direct (2.1.0)
       carrierwave (>= 1.0.0)
       fog-aws
-    cbor (0.5.10.1)
+    cbor (0.5.10.2)
     cgi (0.5.1)
     childprocess (5.1.0)
       logger (~> 1.5)
@@ -1318,7 +1318,7 @@ GEM
     rubocop-factory_bot (2.28.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-openproject (0.3.0)
+    rubocop-openproject (0.4.0)
       rubocop
     rubocop-performance (1.26.1)
       lint_roller (~> 1.1)
