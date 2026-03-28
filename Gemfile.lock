@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 9237e058403493addfe49d5d13be2439cf2c3c05
+  revision: 39bfd1f18cfa9b18f3111113dd99d1c657fc1649
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 9ef9fcd4078abf2604a3d975f70c20ec70cbe342
+  revision: 5eeb3b039af95ffa6de5b1a3f694546123670091
   branch: thape
   specs:
     openproject-primer_view_components (0.78.0)
