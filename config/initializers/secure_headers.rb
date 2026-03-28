@@ -104,8 +104,8 @@ Rails.application.config.after_initialize do
     # Allow ANDI bookmarklet to run in development mode
     # https://www.ssa.gov/accessibility/andi/help/install.html
     if Rails.env.development?
-      script_src += ["https://www.ssa.gov"]
-      assets_src += ["https://www.ssa.gov"]
+      script_src += ["https://www.ssa.gov", "https://tidewave.ai"]
+      assets_src += ["https://www.ssa.gov", "https://tidewave.ai"]
     end
 
     config.csp = {
