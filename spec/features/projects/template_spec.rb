@@ -54,6 +54,7 @@ RSpec.describe "Project templates", :js, with_good_job_batches: [CopyProjectJob,
       # unset template
       page.find_test_selector("project-settings-more-menu").click
       page.find_test_selector("project-settings--mark-template", text: "Remove from templates").click
+      expect_and_dismiss_flash(message: "Successful update.")
 
       project.reload
       expect(project).not_to be_templated
