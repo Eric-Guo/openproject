@@ -104,8 +104,7 @@ module Components
       end
 
       def selected_tab(name)
-        page.find("#{selector} .op-tab-row--link_selected", text: name.upcase)
-        page.find("#{selector} .tab-content[data-tab-name='#{name}']")
+        page.find("#{selector} .tab-content[data-tab-name='#{name}']", wait: 10)
       end
 
       def switch_to(target)
@@ -114,13 +113,14 @@ module Components
         SeleniumHubWaiter.wait unless using_cuprite?
 
         retry_block do
-          find("#{selector} .op-tab-row--link", text: target.upcase, wait: 2).click
+          tab = find("#{selector} .op-tab-row--link", text: /\A#{Regexp.escape(target)}\z/i, wait: 10)
+          scroll_to_and_click(tab, block: :nearest, inline: :center)
           selected_tab(target)
         end
       end
 
       def selector
-        ".spot-modal"
+        ".wp-table--configuration-modal"
       end
 
       private
