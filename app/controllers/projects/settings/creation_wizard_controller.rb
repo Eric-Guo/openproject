@@ -83,8 +83,9 @@ class Projects::Settings::CreationWizardController < Projects::SettingsControlle
   def toggle_project_custom_field
     cf = ProjectCustomField.find(permitted_params.project_custom_field_project_mapping[:custom_field_id])
     mapping = cf.project_custom_field_project_mappings.find_by(project: @project)
+    value = ActiveModel::Type::Boolean.new.cast(permitted_params.project_custom_field_project_mapping[:value])
 
-    if custom_field_toggleable?(cf) && toggle_mapping(mapping)
+    if custom_field_toggleable?(cf) && update_mapping(mapping, value)
       render json: {}, status: :ok
     else
       render json: {}, status: :unprocessable_entity
@@ -160,8 +161,8 @@ class Projects::Settings::CreationWizardController < Projects::SettingsControlle
     toggleable_ids.include?(custom_field.id)
   end
 
-  def toggle_mapping(mapping)
-    mapping&.update(creation_wizard: !mapping.creation_wizard)
+  def update_mapping(mapping, value)
+    mapping&.update(creation_wizard: value)
   end
 
   def check_feature_flag
