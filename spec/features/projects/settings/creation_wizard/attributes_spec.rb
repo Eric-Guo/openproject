@@ -167,8 +167,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    string_mapping.reload
-    expect(string_mapping.creation_wizard).to be true
+    wait_for { string_mapping.reload.creation_wizard }.to be true
   end
 
   it "persists toggle state after page reload" do
@@ -192,8 +191,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    string_mapping.reload
-    expect(string_mapping.creation_wizard).to be true
+    wait_for { string_mapping.reload.creation_wizard }.to be true
   end
 
   it "can toggle a field off" do
@@ -209,8 +207,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    list_mapping.reload
-    expect(list_mapping.creation_wizard).to be false
+    wait_for { list_mapping.reload.creation_wizard }.to be false
   end
 
   it "cannot toggle a required field off" do
@@ -221,8 +218,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    required_int_mapping.reload
-    expect(required_int_mapping.creation_wizard).to be true
+    wait_for { required_int_mapping.reload.creation_wizard }.to be true
   end
 
   context "with a user custom field" do
@@ -283,8 +279,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
           end
         end
 
-        user_custom_field_mapping.reload
-        expect(user_custom_field_mapping.creation_wizard).to be true
+        wait_for { user_custom_field_mapping.reload.creation_wizard }.to be true
       end
     end
   end
@@ -322,8 +317,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    string_mapping.reload
-    expect(string_mapping.creation_wizard).to be true
+    wait_for { string_mapping.reload.creation_wizard }.to be true
   end
 
   it "can disable all fields in a section at once" do
@@ -339,8 +333,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    list_mapping.reload
-    expect(list_mapping.creation_wizard).to be false
+    wait_for { list_mapping.reload.creation_wizard }.to be false
   end
 
   it "excludes required fields from 'disable all' action" do
@@ -356,8 +349,7 @@ RSpec.describe "Project creation wizard settings - attributes tab",
       end
     end
 
-    required_int_mapping.reload
-    expect(required_int_mapping.creation_wizard).to be true
+    wait_for { required_int_mapping.reload.creation_wizard }.to be true
   end
 
   context "when a field is not mapped to the project" do
