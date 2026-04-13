@@ -12,8 +12,8 @@ RSpec.describe "Notification center date alert and mention",
     create(:user,
            member_with_permissions: { project => %w[view_work_packages] })
   end
-  let(:reference_time) { Time.zone.local(2025, 1, 8, 12, 0, 0) }
-  let(:work_package) { create(:work_package, project:, due_date: 1.day.ago.to_date) }
+  # Date alerts are rendered in the browser relative to the browser's local date.
+  let(:work_package) { create(:work_package, project:, due_date: Date.today - 1.day) }
   let!(:notification_mention) do
     create(:notification,
            reason: :mentioned,
@@ -32,14 +32,9 @@ RSpec.describe "Notification center date alert and mention",
   let(:center) { Pages::Notifications::Center.new }
 
   before do
-    travel_to(reference_time)
     login_as user
     visit notifications_center_path
     wait_for_reload
-  end
-
-  after do
-    travel_back
   end
 
   context "with date alerts ee", with_ee: %i[date_alerts] do
