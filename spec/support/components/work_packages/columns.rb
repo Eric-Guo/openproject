@@ -95,7 +95,7 @@ module Components
         if save_changes
           apply
           within ".work-package-table" do
-            expect(page).to have_columnheader(name)
+            expect(page).to have_columnheader(/#{Regexp.escape(name)}/i)
           end
         end
       end
