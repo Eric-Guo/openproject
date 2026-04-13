@@ -13,6 +13,7 @@ class AddUserNonWorkingTimes < ActiveRecord::Migration[8.1]
 
     reversible do |direction|
       direction.up do
+        execute "CREATE EXTENSION IF NOT EXISTS btree_gist WITH SCHEMA pg_catalog;"
         execute <<~SQL.squish
           ALTER TABLE user_non_working_times
           ADD CONSTRAINT no_overlapping_non_working_times
