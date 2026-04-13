@@ -44,6 +44,6 @@ RSpec.shared_examples_for "rendering Blank Slate" do |heading:, icon: nil|
   end
 
   it "renders Blank Slate heading" do
-    expect(rendered_component).to have_heading heading, class: "blankslate-heading"
+    expect(rendered_component).to have_css "h2.blankslate-heading", text: heading
   end
 end
