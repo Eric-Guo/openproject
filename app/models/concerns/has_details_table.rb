@@ -56,10 +56,14 @@ module HasDetailsTable
       detail_class = build_detail_class(foreign_key, &)
       association_name = detail_class.name.underscore.to_sym
 
-      setup_detail_association(association_name, detail_class, foreign_key)
-      setup_detail_aliases(association_name)
-      setup_detail_delegation(detail_class, foreign_key)
-      setup_detail_dup
+      if detail_class.table_exists?
+        setup_detail_association(association_name, detail_class, foreign_key)
+        setup_detail_aliases(association_name)
+        setup_detail_delegation(detail_class, foreign_key)
+        setup_detail_dup
+      else
+        setup_detail_fallback(association_name)
+      end
     end
 
     private
@@ -116,6 +120,15 @@ module HasDetailsTable
       alias_method :detail, association_name
       alias_method :detail=, :"#{association_name}="
       alias_method :build_detail, :"build_#{association_name}"
+    end
+
+    def setup_detail_fallback(association_name)
+      define_method(association_name) { nil }
+      alias_method :detail, association_name
+      define_method(:"build_#{association_name}") { nil }
+      alias_method :build_detail, :"build_#{association_name}"
+      define_method(:"#{association_name}=") { |*| }
+      alias_method :detail=, :"#{association_name}="
     end
 
     def setup_detail_delegation(detail_class, foreign_key)

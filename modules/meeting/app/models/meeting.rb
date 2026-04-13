@@ -140,6 +140,7 @@ class Meeting < ApplicationRecord
     closed: 5
   }
 
+  attribute :sharing, :string
   enum :sharing, {
     none: "none",
     descendants: "descendants",
