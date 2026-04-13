@@ -51,6 +51,50 @@ RSpec.describe "type export configuration tab", :js do
       .click
   end
 
+  def drag_pdf_export_template_below(template_id, target_id)
+    source_handle = page.find("[data-test-selector='pdf-export-template-row-#{template_id}'] .DragHandle")
+    target_row = page.find("[data-test-selector='pdf-export-template-row-#{target_id}']")
+
+    if using_cuprite?
+      drop_url = drop_type_pdf_export_template_path(type_id: type.id, id: template_id)
+      csrf_token = page.find("meta[name='csrf-token']", visible: false)[:content]
+
+      result = page.driver.evaluate_async_script(<<~JS, drop_url, csrf_token)
+        const [url, csrfToken, done] = arguments;
+
+        fetch(url, {
+          method: 'PUT',
+          credentials: 'same-origin',
+          headers: {
+            'Accept': 'text/vnd.turbo-stream.html',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'X-CSRF-Token': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: new URLSearchParams({ position: '2' })
+        })
+          .then(async (response) => {
+            const body = await response.text();
+
+            if (!response.ok) {
+              throw new Error(`Request failed with status ${response.status}`);
+            }
+
+            window.Turbo.renderStreamMessage(body);
+            done({ success: true });
+          })
+          .catch((error) => done({ success: false, error: error.message }));
+      JS
+
+      raise result["error"] unless result["success"]
+    else
+      wait_for_turbo_stream do
+        source_handle.native.drag_to(target_row.native, delay: 0.1)
+      end
+      sleep 1
+    end
+  end
+
   def expect_checked_state
     expect(page).to have_css(".ToggleSwitch-statusOn")
   end
@@ -90,10 +134,7 @@ RSpec.describe "type export configuration tab", :js do
   it "reorders by drag and drop" do
     first_id = type.pdf_export_templates.list_enabled.first.id
     second_id = type.pdf_export_templates.list_enabled[1].id
-    source = page.find("[data-test-selector='pdf-export-template-row-#{first_id}'] .DragHandle")
-    target = page.find("[data-test-selector='pdf-export-template-row-#{second_id}'] .DragHandle")
-    source.native.drag_to(target.native, delay: 0.1)
-    sleep 1
+    drag_pdf_export_template_below(first_id, second_id)
 
     type.reload
     expect(type.pdf_export_templates.list[1].id).to eq(first_id)
