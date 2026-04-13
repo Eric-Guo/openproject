@@ -30,7 +30,7 @@ See COPYRIGHT and LICENSE files for more details.
 <%= render(Primer::BaseComponent.new(tag: :section, mb: 4)) do %>
   <%=
     render(Primer::Beta::Subhead.new) do |component|
-      component.with_heading(tag: :h3, size: :medium) { I18n.t("projects.settings.header_details") }
+      component.with_heading(tag: :h3, size: :medium, role: :heading, aria: { level: 3 }) { I18n.t("projects.settings.header_details") }
     end
   %>
   <%=
@@ -72,7 +72,7 @@ See COPYRIGHT and LICENSE files for more details.
 <%= render(Primer::BaseComponent.new(tag: :section, mb: 4)) do %>
   <%=
     render(Primer::Beta::Subhead.new) do |component|
-      component.with_heading(tag: :h3, size: :medium) { I18n.t("projects.settings.header_status") }
+      component.with_heading(tag: :h3, size: :medium, role: :heading, aria: { level: 3 }) { I18n.t("projects.settings.header_status") }
     end
   %>
   <%=
@@ -92,7 +92,7 @@ See COPYRIGHT and LICENSE files for more details.
   <%= render(Primer::BaseComponent.new(tag: :section, mb: 4)) do %>
     <%=
       render(Primer::Beta::Subhead.new) do |component|
-        component.with_heading(tag: :h3, size: :medium) { I18n.t("projects.settings.header_relations") }
+        component.with_heading(tag: :h3, size: :medium, role: :heading, aria: { level: 3 }) { I18n.t("projects.settings.header_relations") }
       end
     %>
     <%=
