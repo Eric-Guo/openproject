@@ -100,6 +100,12 @@ module Pages
 
         private
 
+        def submit_and_wait(label)
+          click_button label
+          wait_for_network_idle
+          expect(page).to have_no_css("form[aria-busy]", wait: 10)
+        end
+
         def set_action_value(name, value)
           field = find("#custom-actions-form--active-actions .form--field", text: name, wait: 5)
 
