@@ -50,7 +50,7 @@ module Costs
       material_costs: {
         summable: ->(query, grouped) {
           scope = WorkPackage::MaterialCosts
-                  .new(user: User.current)
+                  .new(user: query.user)
                   .add_to_work_package_collection(WorkPackage.where(id: query.results.work_packages))
                   .except(:order, :select)
 
@@ -64,7 +64,7 @@ module Costs
       labor_costs: {
         summable: ->(query, grouped) {
           scope = WorkPackage::LaborCosts
-                  .new(user: User.current)
+                  .new(user: query.user)
                   .add_to_work_package_collection(WorkPackage.where(id: query.results.work_packages))
                   .except(:order, :select)
 
