@@ -48,7 +48,7 @@ module Pages
 
         def save
           sleep 2
-          click_button "Save"
+          submit_and_wait("Save")
         end
       end
     end
