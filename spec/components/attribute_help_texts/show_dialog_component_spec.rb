@@ -60,7 +60,10 @@ RSpec.describe AttributeHelpTexts::ShowDialogComponent, type: :component do
 
   describe "dialog heading" do
     it "renders the heading" do
-      expect(subject).to have_heading attribute_help_text.attribute_field_name
+      expect(subject).to have_css "h1.Overlay-title",
+                                  text: attribute_help_text.attribute_field_name,
+                                  exact_text: true,
+                                  normalize_ws: true
     end
   end
 
@@ -89,7 +92,10 @@ RSpec.describe AttributeHelpTexts::ShowDialogComponent, type: :component do
       let!(:attachments) { create_list(:attachment, 2, container: attribute_help_text) }
 
       it "renders the Attachments heading" do
-        expect(subject).to have_heading "Attachments"
+        expect(subject).to have_css "h4",
+                                  text: "Attachments",
+                                  exact_text: true,
+                                  normalize_ws: true
       end
 
       it "renders the opce-attachments component" do
