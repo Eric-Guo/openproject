@@ -105,7 +105,8 @@ RSpec.describe Settings::Definition, :settings_reset do
       end
 
       it "allows overriding configuration from ENV without OPENPROJECT_ prefix",
-         with_env: { "EDITION" => "bim" } do
+         with_env: { "EDITION" => "bim" },
+         without_env: ["OPENPROJECT_EDITION"] do
         reset(:edition)
         expect(all[:edition].value).to eql "bim"
       end
@@ -153,7 +154,8 @@ RSpec.describe Settings::Definition, :settings_reset do
       end
 
       it "logs a deprecation warning when overriding configuration from ENV without OPENPROJECT_ prefix",
-         with_env: { "EDITION" => "bim" } do
+         with_env: { "EDITION" => "bim" },
+         without_env: ["OPENPROJECT_EDITION"] do
         allow(Rails.logger).to receive(:warn)
 
         reset(:edition)
@@ -420,12 +422,14 @@ RSpec.describe Settings::Definition, :settings_reset do
 
       before { stub_configuration_yml }
 
-      it "overrides from file default" do
+      it "overrides from file default",
+         without_env: ["OPENPROJECT_EDITION"] do
         reset(:edition)
         expect(all[:edition].value).to eql "bim"
       end
 
-      it "marks the value overwritten from file default unwritable" do
+      it "marks the value overwritten from file default unwritable",
+         without_env: ["OPENPROJECT_EDITION"] do
         reset(:edition)
         expect(all[:edition]).not_to be_writable
       end
@@ -440,12 +444,14 @@ RSpec.describe Settings::Definition, :settings_reset do
         expect(all[:sendmail_location]).not_to be_writable
       end
 
-      it "overrides from file current env" do
+      it "overrides from file current env",
+         without_env: ["SMTP_ADDRESS"] do
         reset(:smtp_address)
         expect(all[:smtp_address].value).to eql "test address"
       end
 
-      it "marks the value overwritten from file current unwritable" do
+      it "marks the value overwritten from file current unwritable",
+         without_env: ["SMTP_ADDRESS"] do
         reset(:smtp_address)
         expect(all[:smtp_address]).not_to be_writable
       end
@@ -476,12 +482,14 @@ RSpec.describe Settings::Definition, :settings_reset do
           allow(Rails.env).to receive(:test?).and_return(true)
         end
 
-        it "does not override from file default" do
+        it "does not override from file default",
+           without_env: ["OPENPROJECT_EDITION"] do
           reset(:edition)
           expect(all[:edition].value).not_to eql "bim"
         end
 
-        it "overrides from file current env" do
+        it "overrides from file current env",
+           without_env: ["SMTP_ADDRESS"] do
           reset(:smtp_address)
           expect(all[:smtp_address].value).to eql "test address"
         end
