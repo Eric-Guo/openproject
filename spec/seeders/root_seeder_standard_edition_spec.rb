@@ -367,7 +367,9 @@ RSpec.describe RootSeeder,
     context "when run a second time in a different language", :settings_reset do
       before_all do
         with_locale_env("de") do
-          described_class.new.seed!
+          with_edition("standard") do
+            described_class.new.seed!
+          end
         end
       end
 
@@ -396,7 +398,9 @@ RSpec.describe RootSeeder,
           # Simulate a user having deleted the seeded colors.
           # Could also be the user changing the hexcode of the colors, making lookup by hexcode fail.
           Color.where(name: ["Grey", "Blue", "Black"]).delete_all
-          described_class.new.seed!
+          with_edition("standard") do
+            described_class.new.seed!
+          end
         end
       end
 
@@ -416,7 +420,9 @@ RSpec.describe RootSeeder,
         Project.destroy_all
         # destroying all statuses will destroy all workflows by cascade
         Status.where.not(id: new_status.id).destroy_all
-        described_class.new.seed!
+        with_edition("standard") do
+          described_class.new.seed!
+        end
       end
 
       it "does not create additional data and does not raise any errors" do
@@ -502,12 +508,14 @@ RSpec.describe RootSeeder,
     shared_let(:root_seeder) { described_class.new(seed_development_data: true) }
 
     before_all do
-      RSpec::Mocks.with_temporary_scope do
-        # opportunistic way to add a test for bug #53611 without extending the testing time
-        allow(Settings::Definition["default_projects_modules"])
-          .to receive(:writable?).and_return(false)
+      with_edition("standard") do
+        RSpec::Mocks.with_temporary_scope do
+          # opportunistic way to add a test for bug #53611 without extending the testing time
+          allow(Settings::Definition["default_projects_modules"])
+            .to receive(:writable?).and_return(false)
 
-        root_seeder.seed!
+          root_seeder.seed!
+        end
       end
     end
 
