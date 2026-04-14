@@ -45,7 +45,7 @@ module API
                  .call(params, valid_subset:)
 
         if update.success?
-          representer = results_to_representer(params)
+          representer = User.execute_as(current_user) { results_to_representer(params) }
 
           ServiceResult.success(result: representer)
         else

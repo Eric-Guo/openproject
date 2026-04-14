@@ -77,7 +77,7 @@ RSpec.describe API::V3::WorkPackageCollectionFromQueryParamsService,
     before do
       allow(Query)
         .to receive(:new_default)
-        .with(project:)
+        .with(project:, user:)
         .and_return(query)
     end
 

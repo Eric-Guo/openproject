@@ -30,7 +30,7 @@
 FactoryBot.define do
   factory :default_hourly_rate do
     principal factory: %i[user]
-    valid_from { Time.zone.today }
+    valid_from { Date.current }
     rate { 50.0 }
   end
 end
