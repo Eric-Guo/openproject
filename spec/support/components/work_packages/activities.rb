@@ -301,25 +301,29 @@ module Components
 
       def edit_comment(journal, text: nil, save: true)
         within_journal_entry(journal) do
-          page.find_test_selector("op-wp-journal-#{journal.id}-action-menu").click
-          page.find_test_selector("op-wp-journal-#{journal.id}-edit").click
+          open_journal_action_menu(journal)
+          page.find_test_selector("op-wp-journal-#{journal.id}-edit", wait: 10).click
 
           page.within_test_selector("op-work-package-journal-form-element") do
             get_editor_form_field_element.set_value(text)
             page.find_test_selector("op-submit-work-package-journal-form").click if save
           end
+        end
 
-          if save
-            # wait for the comment to be loaded
-            wait_for { page }.to have_test_selector("op-journal-notes-body", text:)
-          end
+        return unless save
+
+        wait_for_network_idle
+
+        within_journal_entry(journal) do
+          wait_for { page }.to have_test_selector("op-journal-notes-body", text:)
+          expect(page).to have_test_selector("op-wp-journal-#{journal.id}-action-menu", wait: 10)
         end
       end
 
       def type_comment_in_edit(journal, text)
         within_journal_entry(journal) do
-          page.find_test_selector("op-wp-journal-#{journal.id}-action-menu").click
-          page.find_test_selector("op-wp-journal-#{journal.id}-edit").click
+          open_journal_action_menu(journal)
+          page.find_test_selector("op-wp-journal-#{journal.id}-edit", wait: 10).click
 
           page.within_test_selector("op-work-package-journal-form-element") do
             editor = get_editor_form_field_element
@@ -332,8 +336,8 @@ module Components
 
       def quote_comment(journal)
         within_journal_entry(journal) do
-          page.find_test_selector("op-wp-journal-#{journal.id}-action-menu").click
-          page.find_test_selector("op-wp-journal-#{journal.id}-quote").click
+          open_journal_action_menu(journal)
+          page.find_test_selector("op-wp-journal-#{journal.id}-quote", wait: 10).click
         end
 
         expect(page).to have_test_selector("op-work-package-journal-form-element")
@@ -366,6 +370,12 @@ module Components
       def expect_comments_order(items)
         retry_block do
           expect(get_all_comments_as_array).to eq(items)
+        end
+      end
+
+      def open_journal_action_menu(journal)
+        page.within_test_selector("op-wp-journal-#{journal.id}-action-menu") do
+          page.find("button[id$='action-menu-button']", visible: :all, wait: 10).click
         end
       end
 

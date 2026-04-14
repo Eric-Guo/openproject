@@ -45,6 +45,7 @@ class TextEditorField < EditField
     target = field_container.find(control_link, wait: 10)
     scroll_to_element(target)
     target.click
+    wait_for_network_idle
   end
 
   def submit_by_keyboard

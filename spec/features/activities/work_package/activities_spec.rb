@@ -964,6 +964,7 @@ RSpec.describe "Work package activity", :js, :with_cuprite, with_ee: %i[internal
       wp_page.wait_for_activity_tab
 
       # expect the editor content to be rescued on the client side
+      expect(page).to have_no_css('[data-work-packages--activities-tab--editor-target="formRow"].d-none', wait: 10)
       within_test_selector("op-work-package-journal-form-element") do
         editor = FormFields::Primerized::EditorFormField.new("notes", selector: "#work-package-journal-form-element")
         # Wait for CKEditor to be fully initialized and have the rescued content
@@ -1029,6 +1030,7 @@ RSpec.describe "Work package activity", :js, :with_cuprite, with_ee: %i[internal
       wp_page.visit!
       wp_page.wait_for_activity_tab
       # expect the editor to be opened and content to be rescued for the correct user
+      expect(page).to have_no_css('[data-work-packages--activities-tab--editor-target="formRow"].d-none', wait: 10)
       within_test_selector("op-work-package-journal-form-element") do
         editor = FormFields::Primerized::EditorFormField.new("notes", selector: "#work-package-journal-form-element")
         editor.expect_value("First comment by admin")
