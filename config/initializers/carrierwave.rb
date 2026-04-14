@@ -32,6 +32,26 @@ require "fog/aws"
 require "carrierwave"
 require "carrierwave/storage/fog"
 
+module OpenProject
+  module CarrierWaveSanitizedFilePatch
+    private
+
+    # CarrierWave 2.x still uses String#mb_chars here, which is deprecated in Rails 8.1
+    # and removed in Rails 8.2. This matches CarrierWave's newer sanitizer behavior.
+    def sanitize(name)
+      name = name.scrub
+      name = name.tr("\\", "/") # work-around for IE
+      name = File.basename(name)
+      name = name.gsub(sanitize_regexp, "_")
+      name = "_#{name}" if name =~ /\A\.+\z/
+      name = "unnamed" if name.empty?
+      name.to_s
+    end
+  end
+end
+
+CarrierWave::SanitizedFile.prepend(OpenProject::CarrierWaveSanitizedFilePatch)
+
 module CarrierWave
   module Configuration
     def self.configure_fog!(credentials: OpenProject::Configuration.fog_credentials,
