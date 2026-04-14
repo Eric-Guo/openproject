@@ -85,6 +85,14 @@ RSpec.describe Attachments::PrepareUploadService,
     expect(attachment.status).to eq "prepared"
   end
 
+  it "does not emit a filename sanitization deprecation" do
+    expect(ActiveSupport.deprecator)
+      .not_to receive(:warn)
+      .with(include("String#mb_chars is deprecated"))
+
+    call
+  end
+
   context "with a special character in the filename" do
     let(:file_name) { "document=number 5.png" }
 
