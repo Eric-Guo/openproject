@@ -28,7 +28,7 @@
 
 FactoryBot.define do
   factory :rate do
-    valid_from { Date.today }
+    valid_from { Date.current }
     rate { 50.0 }
   end
 end
