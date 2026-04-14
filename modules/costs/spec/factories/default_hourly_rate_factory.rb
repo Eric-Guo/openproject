@@ -29,7 +29,7 @@
 FactoryBot.define do
   factory :default_hourly_rate do
     association :user
-    valid_from { Date.today }
+    valid_from { Date.current }
     rate { 50.0 }
   end
 end
