@@ -87,8 +87,8 @@ module API
           end
 
           def add_eager_loading(scope, current_user)
-            material_scope = work_package_material_scope(scope)
-            labor_scope = work_package_labor_scope(scope)
+            material_scope = work_package_material_scope(scope, current_user)
+            labor_scope = work_package_labor_scope(scope, current_user)
 
             # The eager loading on status is required for the readonly? check in the
             # work package schema
@@ -133,15 +133,15 @@ module API
               .on(wp_table[:id].eq(dates_scope.arel_table.alias("derived_dates")[:id]))
           end
 
-          def work_package_material_scope(scope)
+          def work_package_material_scope(scope, current_user)
             WorkPackage::MaterialCosts
-              .new
+              .new(user: current_user)
               .add_to_work_package_collection(scope.dup)
           end
 
-          def work_package_labor_scope(scope)
+          def work_package_labor_scope(scope, current_user)
             WorkPackage::LaborCosts
-              .new
+              .new(user: current_user)
               .add_to_work_package_collection(scope.dup)
           end
         end
