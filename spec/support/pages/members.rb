@@ -69,9 +69,13 @@ module Pages
     end
 
     def click_menu_item(text)
-      page.within("#menu-sidebar") do
-        click_on text
-      end
+      item = page.find("#menu-sidebar .op-submenu--item-action", text:)
+      href = item[:href]
+
+      item.click
+
+      expect(page).to have_current_path(href, url: true)
+      expect_menu_item(text, selected: true)
     end
 
     def in_user_row(user, &)
