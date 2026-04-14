@@ -90,6 +90,8 @@ export default class extends Controller {
       return true;
     }
 
+    const submitter = event.submitter;
+
     this.formTarget.dataset.confirmed = 'true';
     this.sectionTargets.forEach((section) => {
       if (section.hidden) {
@@ -98,7 +100,14 @@ export default class extends Controller {
     });
 
     event.preventDefault();
-    navigator.submitForm(this.formTarget, event?.submitter || undefined);
+
+    // Turbo disables the clicked submit button before this handler runs.
+    // Re-enable it for the second submit after hidden sections were stripped.
+    if (submitter instanceof HTMLButtonElement || submitter instanceof HTMLInputElement) {
+      submitter.disabled = false;
+    }
+
+    navigator.submitForm(this.formTarget, submitter || undefined);
     return false;
   }
 }
