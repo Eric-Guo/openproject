@@ -36,7 +36,7 @@ module Pages
     module Automations
       class New < Form
         def create
-          click_button "Create"
+          submit_and_wait("Create")
         end
 
         def path
