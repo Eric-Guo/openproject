@@ -51,17 +51,21 @@ RSpec.describe "Work package details toolbar", :js do
       within ".work-packages--details-toolbar" do
         click_on accessible_name: "Watch work package"
         expect(page).to have_button(accessible_name: "Unwatch work package")
-        expect(work_package.reload.watcher_users).to include(user)
+        wait_for { work_package.reload.watcher_users }.to include(user)
 
         click_on accessible_name: "Unwatch work package"
         expect(page).to have_button(accessible_name: "Watch work package")
-        expect(work_package.reload.watcher_users).not_to include(user)
+        wait_for { work_package.reload.watcher_users }.not_to include(user)
 
         click_on accessible_name: "Watch work package"
         expect(page).to have_button(accessible_name: "Unwatch work package")
       end
 
-      expect(work_package.reload.watcher_users).to include(user)
+      wait_for { work_package.reload.watcher_users }.to include(user)
+      work_packages_page.visit_index(work_package)
+      within ".work-packages--details-toolbar" do
+        expect(page).to have_button(accessible_name: "Unwatch work package")
+      end
       expect(page).to be_axe_clean.within(".work-packages--details-toolbar")
     end
   end
