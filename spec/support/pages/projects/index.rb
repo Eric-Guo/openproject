@@ -237,6 +237,14 @@ module Pages
         wait_for_reload
       end
 
+      def remove_filter(name)
+        wait_for_turbo_stream do
+          super
+        end
+
+        wait_for_network_idle
+      end
+
       def set_advanced_filter(name, human_name, human_operator = nil, values = [], send_keys: false)
         selected_filter = select_filter(name, human_name)
 
