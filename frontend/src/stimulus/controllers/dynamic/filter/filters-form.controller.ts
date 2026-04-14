@@ -96,6 +96,7 @@ export default class FiltersFormController extends Controller {
   declare hasFilterFormTarget:boolean;
 
   private formLoadedResolver:(() => void)|null = () => null;
+  private abortController:AbortController|null = null;
 
   filterFormLoaded = new Promise<void>((resolve) => {
     this.formLoadedResolver = resolve;
@@ -116,6 +117,8 @@ export default class FiltersFormController extends Controller {
   disconnect() {
     const clearButton = document.getElementById(this.clearButtonIdValue);
     clearButton?.removeEventListener('click', (event:MouseEvent) => this.clearInputWithButton(event));
+    this.abortController?.abort();
+    this.abortController = null;
   }
 
   addFilterSelectTargetConnected() {
@@ -409,19 +412,35 @@ export default class FiltersFormController extends Controller {
     const url = `${pathName}?${params.toString()}`;
 
     if (this.performTurboRequestsValue) {
+      this.abortController?.abort();
+      this.abortController = new AbortController();
+      const { signal } = this.abortController;
+
       fetch(url, {
         headers: {
           Accept: 'text/vnd.turbo-stream.html',
         },
+        signal,
       })
         .then((response:Response) => response.text())
         .then((html:string) => {
+          if (signal.aborted) { return; }
+
           renderStreamMessage(html);
           hideElement(loadingIndicator);
         })
         .catch((error:Error) => {
+          if (error instanceof DOMException && error.name === 'AbortError') {
+            return;
+          }
+
           console.error('Error:', error);
           hideElement(loadingIndicator);
+        })
+        .finally(() => {
+          if (this.abortController?.signal === signal) {
+            this.abortController = null;
+          }
         });
     } else {
       window.location.href = url;
@@ -551,26 +570,33 @@ export default class FiltersFormController extends Controller {
   }
 
   private parseDateFilterValue(valueContainer:HTMLElement, filterName:string) {
-    let value;
-
     if (valueContainer.classList.contains('days')) {
       const dateValue = this.findTargetByName(filterName, this.daysTargets)?.value;
+      const value = _.without([dateValue], '');
 
-      value = _.without([dateValue], '');
-    } else if (valueContainer.classList.contains('on-date')) {
+      return value.length > 0 ? value : null;
+    }
+
+    if (valueContainer.classList.contains('on-date')) {
       const dateValue = this.findTargetById(`on-date-value-${filterName}`, this.singleDayTargets)?.value;
 
-      value = _.without([dateValue], '');
-    } else if (valueContainer.classList.contains('between-dates')) {
+      return this.hasCompleteDateValue(dateValue) ? [dateValue] : null;
+    }
+
+    if (valueContainer.classList.contains('between-dates')) {
       const fromValue = this.findTargetById(`between-dates-from-value-${filterName}`, this.singleDayTargets)?.value;
       const toValue = this.findTargetById(`between-dates-to-value-${filterName}`, this.singleDayTargets)?.value;
 
-      value = [fromValue, toValue];
+      if (this.hasCompleteDateValue(fromValue) && this.hasCompleteDateValue(toValue)) {
+        return [fromValue, toValue];
+      }
     }
-    if (value && value.length > 0) {
-      return value;
-    }
+
     return null;
+  }
+
+  private hasCompleteDateValue(value:string|undefined) {
+    return !!value?.match(/^\d{4}-\d{2}-\d{2}$/);
   }
 
   private findTargetByName<T extends HTMLElement>(

@@ -73,6 +73,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
   let(:news) { create(:news, project:) }
   let(:projects_page) { Pages::Projects::Index.new }
+  let(:default_project_order) { [development_project, project, public_project] }
 
   def load_and_open_filters(user)
     login_as(user)
@@ -798,7 +799,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_any")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_any",
                                  "Project phase: Any",
@@ -809,7 +810,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_any")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_any",
                                  "Project phase: Any",
@@ -821,7 +822,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_any")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_any",
                                  "Project phase: Any",
@@ -832,7 +833,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_any")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_any",
                                  "Project phase: Any",
@@ -870,7 +871,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_#{stage.definition_id}")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_#{stage.definition_id}",
                                  "Project phase: #{stage.name}",
@@ -881,7 +882,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_#{stage.definition_id}")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_#{stage.definition_id}",
                                  "Project phase: #{stage.name}",
@@ -893,7 +894,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_#{stage.definition_id}")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_#{stage.definition_id}",
                                  "Project phase: #{stage.name}",
@@ -904,7 +905,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
         projects_page.remove_filter("project_phase_#{stage.definition_id}")
 
-        projects_page.expect_projects_in_order(development_project, project, public_project)
+        projects_page.expect_projects_in_order(*default_project_order)
 
         projects_page.set_filter("project_phase_#{stage.definition_id}",
                                  "Project phase: #{stage.name}",
@@ -941,7 +942,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
           projects_page.remove_filter("project_finish_gate_#{gate.definition_id}")
 
-          projects_page.expect_projects_in_order(development_project, project, public_project)
+          projects_page.expect_projects_in_order(*default_project_order)
 
           projects_page.set_filter("project_finish_gate_#{gate.definition_id}",
                                    "Project phase gate: #{gate.finish_gate_name}",
@@ -952,7 +953,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
           projects_page.remove_filter("project_finish_gate_#{gate.definition_id}")
 
-          projects_page.expect_projects_in_order(development_project, project, public_project)
+          projects_page.expect_projects_in_order(*default_project_order)
 
           projects_page.set_filter("project_finish_gate_#{gate.definition_id}",
                                    "Project phase gate: #{gate.finish_gate_name}",
@@ -964,7 +965,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
           projects_page.remove_filter("project_finish_gate_#{gate.definition_id}")
 
-          projects_page.expect_projects_in_order(development_project, project, public_project)
+          projects_page.expect_projects_in_order(*default_project_order)
 
           projects_page.set_filter("project_finish_gate_#{gate.definition_id}",
                                    "Project phase gate: #{gate.finish_gate_name}",
@@ -975,7 +976,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
 
           projects_page.remove_filter("project_finish_gate_#{gate.definition_id}")
 
-          projects_page.expect_projects_in_order(development_project, project, public_project)
+          projects_page.expect_projects_in_order(*default_project_order)
 
           projects_page.set_filter("project_finish_gate_#{gate.definition_id}",
                                    "Project phase gate: #{gate.finish_gate_name}",
