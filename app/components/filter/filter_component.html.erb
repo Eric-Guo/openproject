@@ -104,7 +104,7 @@
                 <div class="advanced-filters--remove-filter">
                   <a href=""
                      class="filter_rem"
-                     data-action="click->filter--filters-form#removeFilter"
+                     data-action="click->filter--filters-form#removeFilter:prevent"
                      data-filter--filters-form-filter-name-param="<%= filter.name %>">
                     <%= helpers.op_icon("icon-close advanced-filters--remove-filter-icon", title: I18n.t("js.button_delete")) %>
                   </a>
