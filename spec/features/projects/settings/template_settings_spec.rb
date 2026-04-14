@@ -50,9 +50,9 @@ RSpec.describe "Projects", "template settings", :js do
 
       find(".ToggleSwitch-track").click
 
-      expect(page).to have_css(".ToggleSwitch-statusOn")
-      expect(project.reload).to be_templated
       expect(page).to have_text("Roles to exclude when template is applied")
+      wait_for { project.reload.templated? }.to be true
+      expect(page).to have_css(".ToggleSwitch-statusOn")
     end
   end
 
