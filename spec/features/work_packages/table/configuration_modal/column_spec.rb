@@ -64,25 +64,51 @@ RSpec.describe "Work Package table configuration modal columns spec", :js do
         columns.expect_checked "Subject"
 
         # Drag subject left of project
-        subject_column = columns.column_item("Subject").find("span")
-        project_column = columns.column_item("Project").find("span")
+        subject_column = columns.column_item("Subject")
+        project_column = columns.column_item("Project")
+
+        scroll_to_element(subject_column)
+        subject_column.hover
 
         page
           .driver
           .browser
           .action
-          .drag_and_drop(subject_column.native, project_column.native)
+          .move_to(subject_column.native)
+          .click_and_hold(subject_column.native)
+          .perform
+
+        page.all(".op-draggable-autocomplete--item").each do |item|
+          next if item == subject_column
+
+          page
+            .driver
+            .browser
+            .action
+            .move_to(item.native)
+            .perform
+        end
+
+        page
+          .driver
+          .browser
+          .action
+          .move_to(project_column.native)
           .release
           .perform
 
-        sleep 1
+        within ".op-draggable-autocomplete--selected" do
+          expect(page).to have_css(".op-draggable-autocomplete--item:nth-child(2) .op-draggable-autocomplete--item-text",
+                                   text: "Subject")
+        end
 
         columns.apply
 
-        expect(page).to have_selector :columnheader, text: /.+/, count: 3
-        expect(page).to have_selector :columnheader, "ID"
-        expect(page).to have_selector :columnheader, "Subject"
-        expect(page).to have_selector :columnheader, "Project", colindex: 2
+        expect(page).to have_css(".wp-table--table-header a", count: 3)
+
+        header_names = page.all(".wp-table--table-header a").map { |element| element.text.downcase }
+
+        expect(header_names).to eq(%w[id subject project])
       end
     end
   end
