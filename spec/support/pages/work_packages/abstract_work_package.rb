@@ -101,7 +101,7 @@ module Pages
       wait_for { page }.to have_test_selector("op-wp-activity-tab")
       # ensure stimulus controller is mounted
       expect(page).to have_css('[data-stimulus-controller-connected="true"]')
-      expect(page).to have_no_css('turbo-frame#work-package-activities-tab-content[busy]', wait: 10)
+      expect(page).to have_no_css("turbo-frame#work-package-activities-tab-content[busy]", wait: 10)
       expect(page).to have_no_css("#work-package-activites-container op-content-loader", wait: 10)
     end
 
