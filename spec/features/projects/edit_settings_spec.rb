@@ -33,6 +33,20 @@ require "spec_helper"
 RSpec.describe "Projects", "editing settings", :js do
   include_context "ng-select-autocomplete helpers"
 
+  def open_change_identifier_dialog
+    link = page.find_link("Change identifier")
+
+    if using_cuprite?
+      page.execute_script("arguments[0].click()", link)
+    else
+      link.click
+    end
+
+    dialog = page.find("dialog#change-identifier-dialog[open]", visible: :all, wait: 10)
+    wait_for_size_animation_completion(dialog, wait: 10)
+    expect(dialog).to have_text "Change project identifier", wait: 10
+  end
+
   let(:permissions) { %i(edit_project view_project_attributes edit_project_attributes) }
   let(:project_memberships) { { project => permissions } }
 
@@ -55,11 +69,9 @@ RSpec.describe "Projects", "editing settings", :js do
       it "updates the project identifier via dialog" do
         visit project_settings_general_path(project)
 
-        click_on "Change identifier"
+        open_change_identifier_dialog
 
-        expect(page).to have_dialog "Change project identifier"
-
-        within "dialog" do
+        within "dialog#change-identifier-dialog" do
           expect(page).to have_text "This will permanently change identifiers and URLs"
           fill_in "project[identifier]", with: "foo-bar"
           click_on "Change identifier"
@@ -75,11 +87,9 @@ RSpec.describe "Projects", "editing settings", :js do
       it "updates the project identifier via dialog" do
         visit project_settings_general_path(project)
 
-        click_on "Change identifier"
+        open_change_identifier_dialog
 
-        expect(page).to have_dialog "Change project identifier"
-
-        within "dialog" do
+        within "dialog#change-identifier-dialog" do
           expect(page).to have_text "This will permanently change identifiers and URLs"
           fill_in "project[identifier]", with: "FOOBAR"
           click_on "Change identifier"
@@ -93,11 +103,9 @@ RSpec.describe "Projects", "editing settings", :js do
       it "displays an error when the identifier does not start with a letter" do
         visit project_settings_general_path(project)
 
-        click_on "Change identifier"
+        open_change_identifier_dialog
 
-        expect(page).to have_dialog "Change project identifier"
-
-        within "dialog" do
+        within "dialog#change-identifier-dialog" do
           fill_in "project[identifier]", with: "123ABC"
           click_on "Change identifier"
 
@@ -108,11 +116,9 @@ RSpec.describe "Projects", "editing settings", :js do
       it "displays an error when the identifier contains special characters" do
         visit project_settings_general_path(project)
 
-        click_on "Change identifier"
+        open_change_identifier_dialog
 
-        expect(page).to have_dialog "Change project identifier"
-
-        within "dialog" do
+        within "dialog#change-identifier-dialog" do
           fill_in "project[identifier]", with: "FOO@BAR"
           click_on "Change identifier"
 
