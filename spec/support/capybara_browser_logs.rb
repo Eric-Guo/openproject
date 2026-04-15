@@ -35,11 +35,15 @@ module Capybara::BrowserLogs
       end
 
       def selenium_driver?
-        Capybara.page.driver.browser.respond_to?(:manage)
+        Capybara.page.driver.browser.respond_to?(:logs)
       end
 
       def extract_selenium_logs
-        Capybara.page.driver.browser.manage.instance_variable_get(:@bridge).log("browser")
+        browser = Capybara.page.driver.browser
+        return unless browser.logs.respond_to?(:available_types)
+        return unless browser.logs.available_types.include?(:browser)
+
+        browser.logs.get(:browser)
       end
 
       def extract_cuprite_logs
