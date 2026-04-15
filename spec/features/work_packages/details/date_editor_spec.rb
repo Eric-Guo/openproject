@@ -69,6 +69,14 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
     wait_for_network_idle
   end
 
+  def open_show_relations_window(banner_selector)
+    window_opened_by do
+      page.within_test_selector banner_selector do
+        first("a[target='_blank']", visible: true).click
+      end
+    end
+  end
+
   it "can directly set the due date when activating it" do
     start_date.activate!
     start_date.expect_active!
@@ -143,9 +151,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
       start_date.datepicker.select_day "3"
 
       start_date.datepicker.expect_start_date "2016-01-03"
-
-      # The inputs have a debounce which we have to wait for before clicking the next field
-      sleep 0.25
+      start_date.datepicker.expect_due_highlighted
 
       # Since the focus shifts automatically, we can directly click again to modify the end date
       start_date.datepicker.select_day "21"
@@ -279,7 +285,9 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
 
   it "closes the date picker when moving away" do
     wp_table.visit!
-    wp_table.open_full_screen_by_doubleclick work_package
+    full_work_package = wp_table.open_full_screen_by_doubleclick work_package
+    full_work_package.ensure_page_loaded
+    start_date = full_work_package.edit_field(:combinedDate)
 
     start_date.activate!
     start_date.expect_active!
@@ -385,7 +393,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
         # Toggle back to see the banner again
         start_date.toggle_scheduling_mode
 
-        new_window = window_opened_by { click_on "Show relations" }
+        new_window = open_show_relations_window("op-modal-banner-warning")
         switch_to_window new_window
 
         wp_table.expect_work_package_listed parent
@@ -439,7 +447,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
         expect(page).to have_css(test_selector("op-modal-banner-info").to_s,
                                  text: "The dates are determined by child work packages.\nClick on \"Show relations\" for Gantt overview.")
 
-        new_window = window_opened_by { click_on "Show relations" }
+        new_window = open_show_relations_window("op-modal-banner-info")
         switch_to_window new_window
 
         wp_table.expect_work_package_listed child
@@ -461,7 +469,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
         expect(page).to have_css(test_selector("op-modal-banner-warning").to_s,
                                  text: "Manually scheduled. Dates not affected by relations.\nThis has child work packages but their start dates are ignored.")
 
-        new_window = window_opened_by { click_on "Show relations" }
+        new_window = open_show_relations_window("op-modal-banner-warning")
         switch_to_window new_window
 
         wp_table.expect_work_package_listed child
@@ -541,7 +549,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
         expect(page).to have_css(test_selector("op-modal-banner-info").to_s,
                                  text: "The start date is set by a predecessor.\nClick on \"Show relations\" for Gantt overview.")
 
-        new_window = window_opened_by { click_on "Show relations" }
+        new_window = open_show_relations_window("op-modal-banner-info")
         switch_to_window new_window
 
         wp_table.expect_work_package_listed preceding
@@ -637,7 +645,7 @@ RSpec.describe "date inplace editor", :js, :selenium, with_settings: { date_form
         # Toggle back to see the banner again
         start_date.toggle_scheduling_mode
 
-        new_window = window_opened_by { click_on "Show relations" }
+        new_window = open_show_relations_window("op-modal-banner-warning")
         switch_to_window new_window
 
         wp_table.expect_work_package_listed following
