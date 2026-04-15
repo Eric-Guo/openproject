@@ -36,6 +36,7 @@ RSpec.describe "Select work package row", :js, :selenium do
   let(:work_package_1) { create(:work_package, project:) }
   let(:work_package_2) { create(:work_package, project:) }
   let(:work_package_3) { create(:work_package, project:) }
+  let(:work_packages) { [work_package_1, work_package_2, work_package_3] }
   let(:wp_table) { Pages::WorkPackagesTable.new(project) }
 
   include_context "work package table helpers"
@@ -53,19 +54,23 @@ RSpec.describe "Select work package row", :js, :selenium do
     wp_table.expect_work_package_listed(work_package_3)
   end
 
+  def work_package_at(number)
+    work_packages.fetch(number - 1)
+  end
+
   def select_work_package_row(number, mouse_button_behavior = :left)
-    element = find(".work-package-table--container tr:nth-of-type(#{number}) .wp-table--cell-td.id")
-    loading_indicator_saveguard
+    work_package = work_package_at(number)
+
     case mouse_button_behavior
     when :right
-      element.right_click
+      wp_table.row(work_package).right_click
     else
-      element.click
+      wp_table.click_on_row(work_package)
     end
   end
 
   def select_work_package_row_with_shift(number)
-    element = find(".work-package-table--container tr:nth-of-type(#{number}) .wp-table--cell-td.id")
+    element = wp_table.row(work_package_at(number))
     loading_indicator_saveguard
 
     page.driver.browser.action.key_down(:shift)
@@ -75,7 +80,7 @@ RSpec.describe "Select work package row", :js, :selenium do
   end
 
   def select_work_package_row_with_ctrl(number)
-    element = find(".work-package-table--container tr:nth-of-type(#{number}) .wp-table--cell-td.id")
+    element = wp_table.row(work_package_at(number))
     loading_indicator_saveguard
 
     page.driver.browser.action.key_down(:meta)
@@ -97,10 +102,10 @@ RSpec.describe "Select work package row", :js, :selenium do
   end
 
   def check_row_selection_state(row_index, state = true)
-    selector = ".work-package-table--container tr:nth-of-type(#{row_index}).issue"
-    checked_selector = ".work-package-table--container tr:nth-of-type(#{row_index}).issue.-checked"
+    row_selector = wp_table.row_selector(work_package_at(row_index))
+    checked_selector = "#{row_selector}.-checked"
 
-    expect(page).to have_selector(selector)
+    expect(page).to have_selector(row_selector)
     expect(page).to (state ? have_selector(checked_selector) : have_no_selector(checked_selector))
   end
 

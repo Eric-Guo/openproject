@@ -52,8 +52,7 @@ module Pages
       raise "No path defined" unless path
 
       visit(path)
-
-      wait_for_reload
+      wait_for_reload if using_cuprite?
     end
 
     def reload!
