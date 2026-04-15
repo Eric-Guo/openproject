@@ -58,7 +58,9 @@ module Homescreen
           { path: :report_bug },
           { path: :roadmap },
           { path: :crowdin },
-          { path: :api_docs }
+          { path: :api_docs },
+          { path: :local_api_docs },
+          { path: :local_lookbook }
         ]
       end
 
