@@ -30,12 +30,18 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Queries
+          class OpenStorageQuery < Base
+            def call(auth_strategy:, **)
+              Authentication[auth_strategy].call(storage: @storage) do
+                Success(client.folder_url(@storage.root_folder_id))
+              end
+            rescue Client::Error => e
+              wrap_client_error(e)
+            end
+          end
         end
       end
     end
