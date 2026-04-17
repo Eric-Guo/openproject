@@ -30,12 +30,13 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        class StorageWizard < Wizard
+          step :general_information,
+               completed_if: ->(storage) do
+                 storage.name.present? && storage.host.present? && storage.root_folder_id.present? && storage.token.present?
+               end
         end
       end
     end

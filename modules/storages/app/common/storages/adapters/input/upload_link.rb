@@ -31,11 +31,15 @@
 module Storages
   module Adapters
     module Input
-      UploadLink = Data.define(:folder_id, :file_name) do
+      UploadLink = Data.define(:folder_id, :file_name, :project_id) do
         private_class_method :new
 
-        def self.build(folder_id:, file_name:, contract: UploadLinkContract.new)
-          contract.call(folder_id:, file_name:).to_monad.fmap { |result| new(**result.to_h) }
+        def initialize(folder_id:, file_name:, project_id: nil)
+          super
+        end
+
+        def self.build(folder_id:, file_name:, project_id: nil, contract: UploadLinkContract.new)
+          contract.call(folder_id:, file_name:, project_id:).to_monad.fmap { |result| new(**result.to_h) }
         end
       end
     end
