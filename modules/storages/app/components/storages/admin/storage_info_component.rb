@@ -52,6 +52,8 @@ module Storages::Admin
         configuration_check_label_for(:host_name_configured)
       elsif storage.provider_type_one_drive?
         configuration_check_label_for(:name_configured, :storage_tenant_drive_configured)
+      elsif storage.provider_type_edoc_dds?
+        configuration_check_label_for(:host_name_configured, :edoc_dds_root_folder_configured, :edoc_dds_token_configured)
       end
     end
 
