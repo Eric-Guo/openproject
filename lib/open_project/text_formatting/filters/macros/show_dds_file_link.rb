@@ -4,7 +4,7 @@ module OpenProject::TextFormatting::Filters::Macros
       include OpenProject::StaticRouting::UrlHelpers
     end
 
-    HTML_CLASS = 'show_dds_file_link'.freeze
+    HTML_CLASS = "show_dds_file_link".freeze
 
     module_function
 
@@ -17,12 +17,12 @@ module OpenProject::TextFormatting::Filters::Macros
     end
 
     def dds_file_link(macro, context)
-      file_info = macro['data-file'] || 'null'
-      class_name = macro['class'] || ''
+      file_info = macro["data-file"] || "null"
+      class_name = macro["class"] || ""
 
       file_obj = OpenStruct.new(JSON.parse(file_info))
 
-      if file_obj.type == 'publish_files'
+      if file_obj.type == "publish_files"
         create_outer_share_link(file_obj, class_name)
       else
         create_inner_share_link(file_obj, class_name)
@@ -31,14 +31,14 @@ module OpenProject::TextFormatting::Filters::Macros
 
     def create_inner_share_link(file_obj, class_name)
       ApplicationController.helpers.tag.div(class: class_name) do
-        content = ''
-        content << ApplicationController.helpers.tag.p(class: 'dds-file') do
+        content = ""
+        content << ApplicationController.helpers.tag.p(class: "dds-file") do
           ApplicationController.helpers.link_to(
             file_obj.name,
             file_obj.url,
-            class: 'dds-link',
-            target: '_blank',
-            rel: 'noreferrer',
+            class: "dds-link",
+            target: "_blank",
+            rel: "noreferrer",
             data: {
               is_folder: !!file_obj.isFolder
             }
@@ -46,7 +46,7 @@ module OpenProject::TextFormatting::Filters::Macros
         end
 
         if file_obj.parentFolderFullPath.present?
-          content << ApplicationController.helpers.tag.p(class: 'dds-description') do
+          content << ApplicationController.helpers.tag.p(class: "dds-description") do
             file_obj.parentFolderFullPath
           end
         end
@@ -57,16 +57,16 @@ module OpenProject::TextFormatting::Filters::Macros
 
     def create_outer_share_link(file_obj, class_name)
       ApplicationController.helpers.tag.div(class: class_name) do
-        content = ''
+        content = ""
         file_obj.files.each do |file|
           file = OpenStruct.new(file)
-          content << ApplicationController.helpers.tag.p(class: 'dds-file') do
+          content << ApplicationController.helpers.tag.p(class: "dds-file") do
             ApplicationController.helpers.link_to(
               file.name,
               file.url,
-              class: 'dds-link',
-              target: '_blank',
-              rel: 'noreferrer',
+              class: "dds-link",
+              target: "_blank",
+              rel: "noreferrer",
               data: {
                 is_folder: !!file.isFolder
               }
@@ -74,14 +74,14 @@ module OpenProject::TextFormatting::Filters::Macros
           end
         end
 
-        content << ApplicationController.helpers.tag.p(class: 'dds-description') do
-          text = '外链分享地址：'
+        content << ApplicationController.helpers.tag.p(class: "dds-description") do
+          text = "外链分享地址："
           text << ApplicationController.helpers.link_to(
             file_obj.url,
             file_obj.url,
-            class: 'dds-link',
-            target: '_blank',
-            rel: 'noreferrer',
+            class: "dds-link",
+            target: "_blank",
+            rel: "noreferrer",
           )
           text << "，验证码：【#{file_obj.pwd.presence || '无'}】，有效期：#{file_obj.expiredAt}"
 
