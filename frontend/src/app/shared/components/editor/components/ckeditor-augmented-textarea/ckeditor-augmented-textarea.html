@@ -10,26 +10,3 @@
                (editorFocus)="editorFocused()"
   />
 </div>
-
-@if (showAttachments && halResource?.attachments) {
-  @if (primerized) {
-    <div class="FormControl width-full FormControl--fullWidth op-ckeditor--attachments">
-      <span class="FormControl-label">{{ text.attachments }}</span>
-    </div>
-    <op-attachments
-      [resource]="halResource"
-      [destroyImmediately]="false"
-    />
-  } @else {
-    <fieldset
-      class="form--fieldset op-ckeditor--attachments"
-    >
-      <legend class="form--fieldset-legend">
-        {{ text.attachments }}
-      </legend>
-      <op-attachments [resource]="halResource"
-                      [destroyImmediately]="false"
-      />
-    </fieldset>
-  }
-}
