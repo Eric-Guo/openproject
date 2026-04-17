@@ -23,11 +23,6 @@
       if @meeting.onetime_template?
         panel.with_section(Meetings::SidePanel::SharingComponent.new(meeting: @meeting))
       end
-
-      panel.with_section(
-        Meetings::SidePanel::AttachmentsComponent.new(meeting: @meeting),
-        grid_row_arguments: desktop_grid_row_arguments
-      )
     end
   end
 %>
