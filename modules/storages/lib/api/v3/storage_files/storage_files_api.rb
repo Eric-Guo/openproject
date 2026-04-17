@@ -42,8 +42,9 @@ module API::V3::StorageFiles
 
         case body.transform_keys(&:to_sym)
         in { projectId: project_id, fileName: file_name, parent: parent }
-          authorize_in_project(:manage_file_links, project: Project.find(project_id))
-          ServiceResult.success(result: { folder_id: parent, file_name: })
+          project = Project.find(project_id)
+          authorize_in_project(:manage_file_links, project:)
+          ServiceResult.success(result: { folder_id: parent, file_name:, project_id: project.id })
         else
           raise API::Errors::BadRequest.new("Request body malformed!")
         end
@@ -54,6 +55,43 @@ module API::V3::StorageFiles
           Storages::UploadLinkService.call(storage: @storage, upload_data:, user: current_user)
         end
       end
+
+      def allowed_content_types
+        if request.env["REQUEST_METHOD"] == "POST" && request.path.end_with?("/files/upload")
+          Array(super) + %w[multipart/form-data]
+        else
+          super
+        end
+      end
+
+      def extract_uploaded_file
+        upload = params[:file]
+        raise API::Errors::BadRequest.new("Missing uploaded file!") if upload.blank?
+
+        tempfile = upload_attribute(upload, :tempfile)
+        filename = upload_attribute(upload, :original_filename, fallback_key: :filename)
+
+        raise API::Errors::BadRequest.new("Uploaded file malformed!") if tempfile.blank? || filename.blank?
+
+        { tempfile:, filename: }
+      end
+
+      def upload_attribute(upload, method_name, fallback_key: method_name)
+        return upload.public_send(method_name) if upload.respond_to?(method_name)
+
+        upload[fallback_key] || upload[fallback_key.to_s]
+      end
+
+      def validate_upload_project
+        project_id = params[:project_id]
+        raise API::Errors::BadRequest.new("Missing upload project!") if project_id.blank?
+
+        Project.find(project_id).tap { |project| authorize_in_project(:manage_file_links, project:) }
+      end
+
+      def validate_upload_storage
+        raise ::API::Errors::NotFound.new unless @storage.provider_type_edoc_dds?
+      end
     end
 
     resources :files do
@@ -63,6 +101,28 @@ module API::V3::StorageFiles
           .match(
             on_success: ->(files) { API::V3::StorageFiles::StorageFilesRepresenter.new(files, @storage, current_user:) },
             on_failure: ->(error) { raise_service_result_error(error) }
+          )
+      end
+
+      post :upload do
+        validate_upload_storage
+        validate_upload_project
+        upload = extract_uploaded_file
+        input_data = Storages::Adapters::Input::UploadFile.build(
+          parent_location: params[:parent].presence || "/",
+          file_name: upload[:filename],
+          io: upload[:tempfile]
+        ).value_or { raise API::Errors::BadRequest.new("Request body malformed!") }
+
+        Storages::Adapters::Registry["#{@storage}.commands.upload_file"]
+          .call(
+            storage: @storage,
+            auth_strategy: Storages::Adapters::Registry["#{@storage}.authentication.user_bound"].call(current_user, @storage),
+            input_data:
+          )
+          .either(
+            ->(storage_file) { API::V3::StorageFiles::StorageFileRepresenter.new(storage_file, @storage, current_user:) },
+            ->(error) { raise_error(error) }
           )
       end
 

@@ -28,16 +28,17 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Storages
-  module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
-        end
-      end
+module Storages::Admin
+  class ProviderRootFolderIdInputForm < ApplicationForm
+    form do |storage_form|
+      storage_form.text_field(
+        name: :root_folder_id,
+        label: I18n.t("activerecord.attributes.storages/edoc_dds_storage.root_folder_id"),
+        visually_hide_label: false,
+        required: true,
+        caption: I18n.t("storages.instructions.edoc_dds.root_folder_id"),
+        input_width: :large
+      )
     end
   end
 end

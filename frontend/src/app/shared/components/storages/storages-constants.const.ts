@@ -30,6 +30,7 @@
 export const nextcloud = 'urn:openproject-org:api:v3:storages:Nextcloud';
 export const oneDrive = 'urn:openproject-org:api:v3:storages:OneDrive';
 export const sharepoint = 'urn:openproject-org:api:v3:storages:Sharepoint';
+export const edocDds = 'urn:openproject-org:api:v3:storages:EdocDds';
 
 // Storage authorization state
 export const storageConnected = 'urn:openproject-org:api:v3:storages:authorization:Connected';
