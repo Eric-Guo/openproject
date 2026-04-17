@@ -30,12 +30,32 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Commands
+          class UploadFileCommand < Base
+            def call(auth_strategy:, input_data:)
+              Authentication[auth_strategy].call(storage: @storage) do
+                result = client.upload(
+                  input_data.io,
+                  folder_id: folder_identifier(input_data.parent_location),
+                  file_name: input_data.file_name
+                )
+                file = client.file_info(result[:file_id])
+                file_info = unwrap_result(transformer.transform_file_info(file))
+
+                file_info.to_storage_file
+              rescue Client::Error => e
+                wrap_client_error(e)
+              end
+            end
+
+            private
+
+            def transformer
+              @transformer ||= StorageFileTransformer.new(@storage)
+            end
+          end
         end
       end
     end

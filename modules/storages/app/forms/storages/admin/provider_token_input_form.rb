@@ -28,16 +28,26 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Storages
-  module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
-        end
-      end
+module Storages::Admin
+  class ProviderTokenInputForm < ApplicationForm
+    form do |storage_form|
+      storage_form.text_field(
+        name: :token,
+        label: I18n.t("activerecord.attributes.storages/edoc_dds_storage.token"),
+        visually_hide_label: false,
+        required: model.token.blank?,
+        type: :password,
+        value: nil,
+        placeholder: token_placeholder,
+        caption: I18n.t("storages.instructions.edoc_dds.token"),
+        input_width: :large
+      )
+    end
+
+    private
+
+    def token_placeholder
+      I18n.t("storages.instructions.edoc_dds.token_placeholder") if model.token.present?
     end
   end
 end

@@ -33,7 +33,7 @@ module Storages
     module Results
       class UploadLinkContract < DryApplicationContract
         params do
-          required(:destination).filled { uri?(:https) }
+          required(:destination).filled { uri?(:http) | uri?(:https) }
           required(:method).filled(AdapterTypes::HTTPVerb)
         end
       end
