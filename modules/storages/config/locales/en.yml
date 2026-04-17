@@ -27,6 +27,9 @@ en:
         library: Library ID
         name: Name
         site: Site ID
+      storages/edoc_dds_storage:
+        root_folder_id: Root folder ID
+        token: API token
       storages/storage:
         authentication_method: Authentication Method
         creator: Creator
@@ -433,6 +436,11 @@ en:
         integration: SharePoint Administration / OpenProject
         oauth_configuration: Copy these values from the desired application in the %{application_link_text}.
         provider_configuration: Please make sure you have administration privileges in the %{application_link_text} or contact your Microsoft administrator before doing the setup. In the portal, you also need to register an Azure application or use an existing one for authentication.
+      edoc_dds:
+        provider_configuration: Configure the Edoc DDS host, API token, and root folder that OpenProject should expose as a file storage.
+        root_folder_id: The DDS folder ID used as the storage root.
+        token: The DDS API token used by OpenProject for server-side requests.
+        token_placeholder: Stored token
       type: 'Please make sure you have administration privileges in your Nextcloud instance and have the following application installed before doing the setup:'
       type_link_text: "“Integration OpenProject”"
     label_active: Active
@@ -541,6 +549,9 @@ en:
         label_oauth_client_secret: Azure OAuth Client Secret Value
         name: SharePoint
         name_placeholder: e.g. SharePoint
+      edoc_dds:
+        name: Edoc DDS
+        name_placeholder: e.g. Edoc DDS
     show_attachments_toggle:
       description: Deactivating this option will hide the attachments list on the work packages files tab. The files attached in the description of a work package will still be uploaded in the internal attachments storage.
       label: Show attachments in the work packages files tab

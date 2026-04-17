@@ -266,6 +266,7 @@ module OpenProject::Storages
       Storages::OneDriveStorage
       Storages::NextcloudStorage
       Storages::SharepointStorage
+      Storages::EdocDdsStorage
 
       # Allow the browser to connect to external servers for direct file uploads.
       AppendStoragesHostsToCspHook
@@ -351,6 +352,10 @@ module OpenProject::Storages
 
     add_api_path :prepare_upload do |storage_id|
       "#{storage(storage_id)}/files/prepare_upload"
+    end
+
+    add_api_path :storage_upload do |storage_id|
+      "#{storage(storage_id)}/files/upload"
     end
 
     add_api_path :storage_oauth_client_credentials do |storage_id|

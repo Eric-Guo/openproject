@@ -30,12 +30,20 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        class EdocDdsContract < ::ModelContract
+          attribute :name
+          validates :name, presence: true, length: { maximum: 255 }
+
+          attribute :host
+          validates :host, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
+
+          attribute :root_folder_id
+          validates :root_folder_id, presence: true
+
+          attribute :token
+          validates :token, presence: true
         end
       end
     end

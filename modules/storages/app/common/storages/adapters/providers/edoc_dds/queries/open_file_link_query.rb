@@ -30,12 +30,31 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Queries
+          class OpenFileLinkQuery < Base
+            def call(auth_strategy:, input_data:)
+              Authentication[auth_strategy].call(storage: @storage) do
+                Success(open_url(input_data))
+              end
+            rescue Client::Error => e
+              wrap_client_error(e)
+            end
+
+            private
+
+            def open_url(input_data) # rubocop:disable Metrics/AbcSize
+              if input_data.file_id.to_s.delete_prefix("/").start_with?("folder:")
+                client.folder_url(folder_identifier(input_data.file_id))
+              elsif input_data.open_location
+                file = client.file_info(file_identifier(input_data.file_id))
+                client.folder_url(file[:parent_folder_id])
+              else
+                client.preview_url(file_identifier(input_data.file_id))
+              end
+            end
+          end
         end
       end
     end
