@@ -62,6 +62,7 @@ module Storages
       import Providers::Nextcloud::NextcloudRegistry
       import Providers::OneDrive::OneDriveRegistry
       import Providers::Sharepoint::SharepointRegistry
+      import Providers::EdocDds::EdocDdsRegistry
     end
   end
 end

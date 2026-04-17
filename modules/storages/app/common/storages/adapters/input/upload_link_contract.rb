@@ -34,6 +34,7 @@ module Storages
         params do
           required(:folder_id).filled(:string)
           required(:file_name).filled(:string)
+          optional(:project_id).maybe(:integer)
         end
       end
     end

@@ -61,6 +61,20 @@
             end
           end
 
+          if storage.provider_type_edoc_dds?
+            general_info_row.with_row(mb: 3) do
+              render(Storages::Admin::ProviderHostInputForm.new(form))
+            end
+
+            general_info_row.with_row(mb: 3) do
+              render(Storages::Admin::ProviderRootFolderIdInputForm.new(form))
+            end
+
+            general_info_row.with_row(mb: 3) do
+              render(Storages::Admin::ProviderTokenInputForm.new(form))
+            end
+          end
+
           general_info_row.with_row do
             render(
               Storages::Admin::SubmitOrCancelForm.new(

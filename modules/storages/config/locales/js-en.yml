@@ -100,6 +100,7 @@ en:
 
       types:
         default: "Storage"
+        edoc_dds: "Edoc DDS"
         nextcloud: "Nextcloud"
         one_drive: "OneDrive"
         sharepoint: "SharePoint"

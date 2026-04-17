@@ -80,6 +80,8 @@ module Storages::Admin::Forms
     end
 
     def provider_configuration_instructions
+      return I18n.t("storages.instructions.edoc_dds.provider_configuration") if storage.short_provider_type.to_s == "edoc_dds"
+
       helpers.link_translate(
         "storages.instructions.#{storage.short_provider_type}.provider_configuration_html",
         links: { application_link: [:storage_docs, :"#{storage.short_provider_type}_oauth_application"] }
