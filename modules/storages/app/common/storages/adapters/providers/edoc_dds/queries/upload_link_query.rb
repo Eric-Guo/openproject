@@ -30,12 +30,30 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Queries
+          class UploadLinkQuery < Base
+            def call(auth_strategy:, input_data:)
+              Authentication[auth_strategy].call(storage: @storage) do
+                Results::UploadLink.build(
+                  destination: upload_url(input_data),
+                  method: :post
+                )
+              end
+            end
+
+            private
+
+            def upload_url(input_data)
+              path = API::V3::Utilities::PathHelper.url_for(:storage_upload, @storage.id)
+              uri = URI(path)
+              query = Rack::Utils.parse_nested_query(uri.query)
+              query["project_id"] = input_data.project_id if input_data.respond_to?(:project_id) && input_data.project_id.present?
+              uri.query = URI.encode_www_form(query) if query.present?
+              uri.to_s
+            end
+          end
         end
       end
     end

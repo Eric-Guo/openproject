@@ -205,6 +205,10 @@ module Storages
       is_a?(SharepointStorage)
     end
 
+    def provider_type_edoc_dds?
+      is_a?(EdocDdsStorage)
+    end
+
     def health_reason_identifier
       @health_reason_identifier ||= self.class.extract_part_from_piped_string(health_reason, 0)
     end

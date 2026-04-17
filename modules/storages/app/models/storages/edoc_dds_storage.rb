@@ -29,15 +29,47 @@
 #++
 
 module Storages
-  module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
-        end
-      end
+  class EdocDdsStorage < Storage
+    PROVIDER_FIELDS_DEFAULTS = {
+      automatically_managed: false,
+      automatic_management_enabled: false
+    }.freeze
+
+    store_attribute :provider_fields, :root_folder_id, :string
+    store_attribute :provider_fields, :token, :string
+
+    def self.short_provider_name = :edoc_dds
+
+    def self.non_confidential_provider_fields
+      super + %i[root_folder_id]
+    end
+
+    def supports_oauth_redirect? = false
+
+    def oauth_access_granted?(_) = true
+
+    def audience = nil
+
+    def authenticate_via_idp? = false
+
+    def authenticate_via_storage? = false
+
+    def available_project_folder_modes = %w[inactive manual]
+
+    def oauth_configuration = nil
+
+    def automatic_management_new_record? = false
+
+    def provider_fields_defaults = PROVIDER_FIELDS_DEFAULTS
+
+    def configuration_checks
+      {
+        host_name_configured: host.present? && name.present?,
+        edoc_dds_root_folder_configured: root_folder_id.present?,
+        edoc_dds_token_configured: token.present?,
+        access_management_configured: true,
+        name_configured: name.present?
+      }
     end
   end
 end

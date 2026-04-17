@@ -41,11 +41,13 @@ module API::V3::Storages
   URN_STORAGE_TYPE_NEXTCLOUD = "#{::API::V3::URN_PREFIX}storages:Nextcloud".freeze
   URN_STORAGE_TYPE_ONE_DRIVE = "#{::API::V3::URN_PREFIX}storages:OneDrive".freeze
   URN_STORAGE_TYPE_SHARE_POINT = "#{::API::V3::URN_PREFIX}storages:Sharepoint".freeze
+  URN_STORAGE_TYPE_EDOC_DDS = "#{::API::V3::URN_PREFIX}storages:EdocDds".freeze
 
   STORAGE_TYPE_MAP = {
     URN_STORAGE_TYPE_NEXTCLOUD => Storages::NextcloudStorage.name,
     URN_STORAGE_TYPE_ONE_DRIVE => Storages::OneDriveStorage.name,
-    URN_STORAGE_TYPE_SHARE_POINT => Storages::SharepointStorage.name
+    URN_STORAGE_TYPE_SHARE_POINT => Storages::SharepointStorage.name,
+    URN_STORAGE_TYPE_EDOC_DDS => Storages::EdocDdsStorage.name
   }.freeze
 
   STORAGE_TYPE_URN_MAP = STORAGE_TYPE_MAP.invert.freeze

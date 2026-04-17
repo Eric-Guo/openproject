@@ -30,12 +30,35 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Queries
+          class FileInfoQuery < Base
+            def call(auth_strategy:, input_data:) # rubocop:disable Metrics/AbcSize
+              Authentication[auth_strategy].call(storage: @storage) do
+                if folder?(input_data.file_id)
+                  folder = client.folder_info(folder_identifier(input_data.file_id))
+                  transformer.transform_folder_info(folder)
+                else
+                  file = client.file_info(file_identifier(input_data.file_id))
+                  transformer.transform_file_info(file)
+                end
+              rescue Client::Error => e
+                wrap_client_error(e)
+              end
+            end
+
+            private
+
+            def folder?(id)
+              normalized = id.to_s.delete_prefix("/")
+              normalized.blank? || normalized == @storage.root_folder_id.to_s || normalized.start_with?("folder:")
+            end
+
+            def transformer
+              @transformer ||= StorageFileTransformer.new(@storage)
+            end
+          end
         end
       end
     end

@@ -99,6 +99,7 @@ zh-CN:
       select_location: 选择位置
       types:
         default: 存储
+        edoc_dds: Edoc DDS
         nextcloud: Nextcloud
         one_drive: OneDrive
         sharepoint: SharePoint

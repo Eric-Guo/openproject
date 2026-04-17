@@ -30,12 +30,12 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Validators
+          class ConnectionValidator < HealthReports::Validator
+            register_group StorageConfigurationValidator
+          end
         end
       end
     end

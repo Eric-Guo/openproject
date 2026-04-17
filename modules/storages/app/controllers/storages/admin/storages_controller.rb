@@ -254,22 +254,28 @@ module Storages
       # Called by create and update above in order to check if the
       # update parameters are correctly set.
       def permitted_storage_params(model_parameter_name = storage_provider_parameter_name)
-        params.expect(model_parameter_name =>
-                        %i[
-                          audience_configuration
-                          authentication_method
-                          automatic_management_enabled
-                          drive_id
-                          health_notifications_enabled
-                          host
-                          name
-                          oauth_client_id
-                          oauth_client_secret
-                          provider_type
-                          storage_audience
-                          tenant_id
-                          token_exchange_scope
-                        ])
+        permitted = params.expect(model_parameter_name =>
+                                    %i[
+                                      audience_configuration
+                                      authentication_method
+                                      automatic_management_enabled
+                                      drive_id
+                                      health_notifications_enabled
+                                      host
+                                      name
+                                      oauth_client_id
+                                      oauth_client_secret
+                                      provider_type
+                                      root_folder_id
+                                      storage_audience
+                                      tenant_id
+                                      token
+                                      token_exchange_scope
+                                    ])
+
+        permitted.delete(:token) if @storage&.provider_type_edoc_dds? && permitted[:token].blank?
+
+        permitted
       end
 
       def storage_provider_parameter_name
@@ -279,6 +285,8 @@ module Storages
           :storages_one_drive_storage
         elsif params.key?(:storages_sharepoint_storage)
           :storages_sharepoint_storage
+        elsif params.key?(:storages_edoc_dds_storage)
+          :storages_edoc_dds_storage
         else
           :storages_storage
         end
