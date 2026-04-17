@@ -30,12 +30,47 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Validators
+          class StorageConfigurationValidator < HealthReports::ValidatorGroup
+            def self.key = :base_configuration
+
+            private
+
+            def validate
+              register_checks :storage_configured, :diagnostic_request
+
+              storage_configuration_status
+              diagnostic_request
+            end
+
+            def storage_configuration_status
+              if subject.configured?
+                pass_check(:storage_configured)
+              else
+                fail_check(:storage_configured, :not_configured)
+              end
+            end
+
+            def diagnostic_request
+              if files_query.success?
+                pass_check(:diagnostic_request)
+              else
+                fail_check(:diagnostic_request, :unknown_error)
+              end
+            end
+
+            def files_query
+              @files_query ||= Input::Files.build(folder: "/").bind do |input_data|
+                Registry["#{subject}.queries.files"].call(storage: subject, auth_strategy:, input_data:)
+              end
+            end
+
+            def auth_strategy
+              Registry["#{subject}.authentication.userless"].call
+            end
+          end
         end
       end
     end

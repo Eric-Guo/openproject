@@ -30,12 +30,32 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Queries
+          class FilesInfoQuery < Base
+            def call(auth_strategy:, input_data:)
+              infos = input_data.file_ids.map do |id|
+                Input::FileInfo.build(file_id: id).bind do |file_data|
+                  FileInfoQuery.call(storage: @storage, auth_strategy:, input_data: file_data).value_or do |failure|
+                    wrap_storage_file_error(file_data.file_id, failure)
+                  end
+                end
+              end
+
+              Success(infos)
+            end
+
+            private
+
+            def wrap_storage_file_error(file_id, query_result)
+              Results::StorageFileInfo.new(
+                id: file_id,
+                status: query_result.code,
+                status_code: Rack::Utils::SYMBOL_TO_STATUS_CODE[query_result.code] || 500
+              )
+            end
+          end
         end
       end
     end

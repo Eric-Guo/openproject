@@ -84,6 +84,8 @@ module Storages::Admin::Forms
     end
 
     def caption_for_provider_type(provider_type)
+      return I18n.t("storages.instructions.edoc_dds.provider_configuration").html_safe if provider_type == "edoc_dds"
+
       I18n.t(
         "storages.instructions.#{provider_type}.provider_configuration",
         application_link_text: application_link_text_for(
