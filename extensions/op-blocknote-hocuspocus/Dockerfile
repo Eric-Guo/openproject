@@ -3,7 +3,7 @@ FROM node:24-trixie-slim AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN pnpm ci --omit=dev && pnpm cache clean --force
 
 COPY src/ ./src
 

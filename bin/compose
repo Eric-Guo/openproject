@@ -58,8 +58,8 @@ elif [[ "$@" = "run" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm -p ${PORT:-3000}:3000 --name rails backend # run backend in TTY so you can debug using pry for instance
 elif [[ "$1" = "setup" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm backend setup
-  yes no | $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm frontend npm install
-  $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm hocuspocus npm install
+  yes no | $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm frontend pnpm install
+  $DOCKER_COMPOSE -f $COMPOSE_FILE run --rm hocuspocus pnpm install
 elif [[ "$1" = "restart" ]]; then
   $DOCKER_COMPOSE -f $COMPOSE_FILE restart "${@:2}"
 elif [[ "$1" = "reset" ]]; then

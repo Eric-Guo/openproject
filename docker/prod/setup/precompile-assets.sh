@@ -7,7 +7,7 @@ if [ -f config/frontend_assets.manifest.json ]; then
   echo "Assets have already been precompiled. Reusing."
 else
   echo "Assets need to be compiled"
-  JOBS=8 npm install
+  JOBS=8 pnpm install --frozen-lockfile
 
   SECRET_KEY_BASE="$(openssl rand -hex 64)" RAILS_ENV=production DATABASE_URL=nulldb://db \
     bin/rails openproject:plugins:register_frontend assets:precompile
@@ -21,7 +21,7 @@ else
     # Remove angular cache
     rm -rf "$APP_PATH/frontend/.angular"
     # Clean cache in root
-    rm -rf /root/.npm
+    rm -rf /root/.local/share/pnpm /root/.pnpm-store
     rm -f "$APP_PATH/log/production.log"
   fi
 fi
