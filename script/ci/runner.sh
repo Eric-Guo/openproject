@@ -44,8 +44,8 @@ export CI_SEED=$(git rev-parse HEAD | tr -d 'a-z' | cut -b 1-5 | tr -d '0')
 export OPENPROJECT_CLI_PROXY=''
 
 case "$1" in
-        npm)
-            cd frontend && npm run test
+        pnpm)
+            cd frontend && pnpm run test
             ;;
         *)
             bundle exec rake parallel:$1 -- --group-number $2 --only-group $3 --seed $CI_SEED

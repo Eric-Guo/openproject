@@ -93,13 +93,13 @@ jobs:
           echo "✓ version: ${{ steps.extract_version.outputs.version }}"
           echo "✓ docker_tags: ${{ steps.extract_version.outputs.docker_tags }}"
           echo "✓ registry_image: ${{ steps.extract_version.outputs.registry_image }}"
-      - name: Cache NPM
+      - name: Cache Node
         uses: runs-on/cache@v4
         with:
           path: |
             frontend/node_modules
             node_modules
-          key: nodejs-x64-${{ hashFiles('**/package-lock.json') }}
+          key: nodejs-x64-${{ hashFiles('pnpm-lock.yaml', 'frontend/pnpm-lock.yaml') }}
           restore-keys: nodejs-x64-
       - name: Cache angular
         uses: runs-on/cache@v4
@@ -107,16 +107,20 @@ jobs:
           path: frontend/.angular
           key: angular-${{ github.ref }}
           restore-keys: angular-
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+          run_install: false
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - uses: actions/setup-node@v6
         with:
           node-version: 22.15
-          cache: npm
+          cache: pnpm
           cache-dependency-path: |
-            package-lock.json
-            frontend/package-lock.json
+            pnpm-lock.yaml
+            frontend/pnpm-lock.yaml
       - name: Precompile assets
         run: |
           ./docker/prod/setup/precompile-assets.sh
