@@ -58,9 +58,7 @@ fi
 must_rebuild=$(${CLI} config:get RECOMPILE_ANGULAR_ASSETS || echo "")
 if [ -n "$must_rebuild" ]; then
         echo "RECOMPILE_ANGULAR_ASSETS was set. Installing node dependencies..."
-        # Skip printing audit for installation
-        ${CLI} run npm set audit false
-        ${CLI} run bash -c "NODE_ENV=development npm install"
+        ${CLI} run bash -c "NODE_ENV=development pnpm install --frozen-lockfile"
 fi
 
 # Set execjs to node since that's installed
