@@ -26,7 +26,7 @@ OpenProject supports two development setups: **Local** and **Docker**. Choose on
 
 ```bash
 bundle install                    # Install Ruby gems
-cd frontend && npm ci && cd ..   # Install Node packages
+cd frontend && pnpm install && cd ..   # Install Node packages
 bundle exec rails db:migrate      # Setup database
 bin/dev                          # Start all services (Rails, frontend, Good Job worker)
 # Access at http://localhost:3000
@@ -105,7 +105,7 @@ bundle exec rubocop                              # Check all files
 bin/dirty-rubocop --uncommitted                  # Check only uncommitted changes
 
 # JavaScript/TypeScript
-cd frontend && npx eslint src/ && cd ..
+cd frontend && pnpm exec eslint src/ && cd ..
 
 # ERB Templates
 erb_lint {files}
@@ -191,11 +191,11 @@ bundle exec rails routes                 # List routes
 # Testing
 bundle exec rspec                        # Run RSpec tests
 bundle exec rails parallel:spec          # Parallel tests
-cd frontend && npm test                  # Frontend tests
+cd frontend && pnpm test                 # Frontend tests
 
 # Linting
 bundle exec rubocop                      # Ruby linting
-cd frontend && npx eslint src/           # JS/TS linting
+cd frontend && pnpm exec eslint src/     # JS/TS linting
 erb_lint {files}                         # ERB linting
 ```
 
