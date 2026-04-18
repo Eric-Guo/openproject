@@ -42,9 +42,9 @@ install_plugins() {
 		echo "Installing frontend dependencies..."
 		pushd $APP_PATH/frontend >/dev/null
 		if [ "$(id -u)" = '0' ]; then
-			su - $APP_USER -c "cd $APP_PATH/frontend && npm install"
+			su - $APP_USER -c "cd $APP_PATH/frontend && pnpm install --frozen-lockfile"
 		else
-			npm install
+			pnpm install --frozen-lockfile
 		fi
 		popd >/dev/null
 

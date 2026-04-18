@@ -22,6 +22,7 @@ RUN --mount=type=cache,target=/var/cache/apt export f="/tmp/chrome.deb" && \
   find /usr/share/locale/* -maxdepth 0 -type d ! -name 'en' -exec rm -rf {} \;
 
 RUN curl -L https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz -o - | tar xJf - -C /usr/local --strip=1 && node --version
+RUN npm install -g pnpm@11.3.0
 
 RUN rm -rf /usr/local/bundle && gem install bundler --no-document
 
