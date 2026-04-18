@@ -15,6 +15,7 @@ export PGPASSWORD=${PGPASSWORD:=p4ssw0rd}
 export DATABASE_URL="postgres://$PGUSER:$PGPASSWORD@$PGHOST/appdb"
 # Hocuspocus will not start without a secret and it needs to be the same in OpenProject
 export OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET=secret12345
+export PNPM_STORE_DIR=${PNPM_STORE_DIR:=/app/.pnpm-store}
 
 run_psql() {
 	psql -v ON_ERROR_STOP=1 "$@"
@@ -102,7 +103,7 @@ reset_dbs() {
 setup_hocuspocus() {
   if [ -d "extensions/op-blocknote-hocuspocus" ]; then
     cd extensions/op-blocknote-hocuspocus
-    npm install --omit=dev
+    pnpm install --frozen-lockfile --prod
     cd -
   else
     echo 'Could not find Hocuspocus in extensions/op-blocknote-hocuspocus!'
@@ -112,7 +113,7 @@ setup_hocuspocus() {
 start_hocuspocus() {
   if [ -d "extensions/op-blocknote-hocuspocus" ]; then
     cd extensions/op-blocknote-hocuspocus
-    execute "SECRET=$OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET npm run start"
+    execute "SECRET=$OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET pnpm run start"
     cd -
   else
     echo 'Could not find Hocuspocus in extensions/op-blocknote-hocuspocus!'
@@ -143,7 +144,7 @@ setup_tests() {
 	execute "gem install bundler --no-document"
 
 	run_background execute "BUNDLE_JOBS=8 bundle install --quiet && bundle clean --force && echo BUNDLE DONE"
-	run_background execute "JOBS=8 time npm install --quiet && npm prune --quiet && echo NPM DONE"
+	run_background execute "JOBS=8 time pnpm install --frozen-lockfile --quiet && echo PNPM DONE"
 	wait_for_background
 
 	setup_hocuspocus

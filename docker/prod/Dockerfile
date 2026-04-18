@@ -142,13 +142,14 @@ COPY --from=openproject/gosu /go/bin/gosu /usr/local/bin/gosu
 RUN chmod +x /usr/local/bin/gosu && gosu nobody true
 
 COPY --from=openproject/hocuspocus:17.5.1 --chown=$APP_USER:$APP_USER /app /opt/hocuspocus
-# Keep node/npm in all-in-one for bundled hocuspocus even when BIM support is disabled.
+# Keep node/npm/pnpm in all-in-one for bundled hocuspocus even when BIM support is disabled.
 COPY --from=build-base /usr/local/bin/node /usr/local/bin/node
 COPY --from=build-base /usr/local/lib/node_modules /usr/local/lib/node_modules
 
 RUN ./docker/prod/setup/postinstall-onprem.sh && \
   ln -sf ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
   ln -sf ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx && \
+  ln -sf ../lib/node_modules/pnpm/bin/pnpm.cjs /usr/local/bin/pnpm && \
   ln -sf ../lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack && \
   ln -s /app/docker/prod/setup/.irbrc /root/
 

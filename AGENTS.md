@@ -8,7 +8,7 @@
 
 - **Size**: Large monorepo (~840MB, ~1M+ lines of code)
 - **Backend**: Ruby 3.4.7, Rails ~8.0.3
-- **Frontend**: Node.js 22.21.0, npm 10.1.0+, TypeScript
+- **Frontend**: Node.js 22.21.0, pnpm 11.3.0+, TypeScript
 - **Database**: PostgreSQL (required)
 - **Architecture**: Server-rendered HTML with Hotwire (Turbo + Stimulus). Legacy Angular components exist and are being migrated to custom elements. Uses GitHub's Primer Design System via ViewComponent.
 - **Editions**: Community, Enterprise (SSO, LDAP, SCIM), and BIM (construction industry, code in `modules/bim/`)
@@ -24,7 +24,7 @@
 
 ```bash
 bundle install                    # Install Ruby gems
-cd frontend && npm ci && cd ..   # Install Node packages
+cd frontend && pnpm install && cd ..   # Install Node packages
 bundle exec rails db:migrate      # Setup database
 bin/dev                          # Start all services (Rails, frontend, Good Job worker)
 # Access at http://localhost:3000
@@ -66,7 +66,7 @@ bundle exec rubocop                              # Check all files
 bin/dirty-rubocop --uncommitted                  # Check only uncommitted changes
 
 # JavaScript/TypeScript
-cd frontend && npx eslint src/ && cd ..
+cd frontend && pnpm exec eslint src/ && cd ..
 
 # ERB Templates
 erb_lint {files}

@@ -2,7 +2,7 @@
 
 set -e
 
-npm install
+pnpm install --frozen-lockfile
 cd frontend
 
-exec $(npm bin)/webpack --colors --watch --progress
+exec $(pnpm bin)/webpack --colors --watch --progress
