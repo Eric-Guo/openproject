@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+pnpm install --frozen-lockfile
+cd frontend
+
+exec $(pnpm bin)/webpack --colors --watch --progress
