@@ -43,10 +43,6 @@ class Users::HoverCardComponent < ApplicationComponent
     @user&.visible?(User.current)
   end
 
-  def show_email?
-    (@user == User.current) || User.current.allowed_globally?(:view_user_email)
-  end
-
   # Constructs a string in the form of:
   # "Member of group4, group5"
   # or
