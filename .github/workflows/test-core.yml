@@ -53,18 +53,18 @@ jobs:
         key: gem-trixie-${{ hashFiles('.ruby-version') }}-${{ hashFiles('Gemfile.lock') }}
         restore-keys: |
           gem-trixie-${{ hashFiles('.ruby-version') }}-
-    - name: Cache NPM
+    - name: Cache Node
       uses: runs-on/cache@v4
       with:
         path: cache/node
-        key: node-${{ hashFiles('package.json', 'frontend/package-lock.json') }}
+        key: node-${{ hashFiles('pnpm-lock.yaml', 'frontend/pnpm-lock.yaml') }}
         restore-keys: |
           node-
     - name: Cache ANGULAR
       uses: runs-on/cache@v4
       with:
         path: cache/angular
-        key: angular-${{ hashFiles('package.json', 'frontend/package-lock.json') }}
+        key: angular-${{ hashFiles('pnpm-lock.yaml', 'frontend/pnpm-lock.yaml') }}
         restore-keys: |
           angular-
     - name: Cache TEST RUNTIME
