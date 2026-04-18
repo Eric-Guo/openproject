@@ -1,0 +1,14 @@
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: false
+  core-js-pure: false
+  es5-ext: true
+  esbuild: true
+  fsevents: true
+  lmdb: true
+  msgpackr-extract: true
+
+nodeLinker: hoisted
+
+overrides:
+  '@angular/build>piscina': 5.3.2

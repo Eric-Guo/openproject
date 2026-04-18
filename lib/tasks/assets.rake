@@ -61,7 +61,7 @@ namespace :assets do
 
     puts "Building angular frontend"
     Dir.chdir Rails.root.join("frontend") do
-      sh("npm run build -- --stats-json") do |ok, res|
+      sh("pnpm run build --stats-json") do |ok, res|
         raise "Failed to compile angular frontend: #{res.exitstatus}" if !ok
       end
     end

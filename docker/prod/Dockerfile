@@ -158,6 +158,7 @@ COPY --from=caddy /usr/bin/caddy /usr/bin/caddy
 RUN ./docker/prod/setup/postinstall-onprem.sh && \
   ln -sf ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
   ln -sf ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx && \
+  ln -sf ../lib/node_modules/pnpm/bin/pnpm.mjs /usr/local/bin/pnpm && \
   ln -sf ../lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack && \
   ln -s /app/docker/prod/setup/.irbrc /root/
 

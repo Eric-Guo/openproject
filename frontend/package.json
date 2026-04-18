@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "^24.22.1",
-    "npm": "^11.12.0"
+    "node": "^24.22.1 || ^26.13.1",
+    "pnpm": "^11.25.0"
   },
   "devDependencies": {
     "@angular-builders/custom-esbuild": "^22.0.1",
@@ -111,12 +111,12 @@
     "@hotwired/turbo": "^8.0.23",
     "@hotwired/turbo-rails": "^8.0.23",
     "@knowledgecode/delegate": "^0.10.5",
-    "@kolkov/ngx-gallery": "^2.0.1",
+    "@kolkov/ngx-gallery": "2.0.1",
     "@mantine/core": "^9.7.4",
     "@mantine/hooks": "^9.7.4",
     "@mantine/utils": "^6.0.22",
     "@mixtint/primer-view-components": "0.97.0",
-    "@ng-select/ng-select": "^24.2.1",
+    "@ng-select/ng-select": "24.2.1",
     "@ngneat/content-loader": "^7.0.0",
     "@openproject/blocknote-extensions": "^0.3.5",
     "@openproject/octicons-angular": "^19.38.0",
@@ -163,12 +163,12 @@
     "moment": "^2.31.0",
     "moment-timezone": "^0.6.4",
     "mousetrap": "~1.6.5",
-    "ng-dynamic-component": "^10.7.0",
+    "ng-dynamic-component": "10.7.0",
     "ng2-charts": "^10.0.0",
     "ng2-dragula": "^6.0.0",
     "ngx-cookie-service": "^22.0.0",
     "observable-array": "0.0.4",
-    "openapi-explorer": "^2.4.820",
+    "openapi-explorer": "2.4.820",
     "pako": "^2.2.0",
     "qr-creator": "^1.0.0",
     "react": "^19.3.1",
@@ -210,27 +210,10 @@
     "test:watch": "ng test --watch=true",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "typecheck": "npm run typecheck:app && npm run typecheck:spec",
+    "typecheck": "pnpm run typecheck:app && pnpm run typecheck:spec",
     "typecheck:app": "ngc -p tsconfig.app.json --noEmit",
     "typecheck:spec": "ngc -p tsconfig.spec.json --noEmit",
     "postinstall": "patch-package"
-  },
-  "overrides": {
-    "@angular/build": {
-      ".": "$@angular/build",
-      "piscina": "5.3.2"
-    }
-  },
-  "allowScripts": {
-    "@parcel/watcher@2.6.0": true,
-    "core-js-pure": false,
-    "core-js": false,
-    "es5-ext@0.10.64": true,
-    "esbuild@0.28.2": true,
-    "fsevents@2.3.2": true,
-    "fsevents@2.3.3": true,
-    "lmdb@3.5.6": true,
-    "msgpackr-extract@3.0.4": true
   },
   "packageManager": "pnpm@11.25.0"
 }

@@ -76,7 +76,7 @@ x-op-hocuspocus: &hocuspocus
     - SECRET=secret12345
     - NODE_TLS_REJECT_UNAUTHORIZED=0
   working_dir: /app
-  command: sh -c "npm run dev"
+  command: sh -c "corepack pnpm run dev"
   volumes:
     - ./extensions/op-blocknote-hocuspocus:/app
 services:
@@ -164,7 +164,7 @@ services:
   frontend-test:
     build:
       <<: *frontend-build
-    command: "npm run serve"
+    command: "pnpm run serve"
     volumes:
       - ".:/home/dev/openproject"
       - "fedata-test:/home/dev/openproject/public/assets/frontend"

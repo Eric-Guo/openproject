@@ -38,6 +38,9 @@ if ! command -v node > /dev/null || ! command -v npm > /dev/null; then
 fi
 
 npm install -g npm@${NPM_VERSION}
+if ! command -v pnpm > /dev/null; then
+  npm install -g pnpm@11.25.0
+fi
 
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 truncate -s 0 /var/log/*log

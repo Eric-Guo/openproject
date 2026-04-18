@@ -8,14 +8,14 @@
 
 - **Size**: Large monorepo (~840MB, ~1M+ lines of code)
 - **Backend**: Ruby on Rails
-- **Frontend**: Node.js, npm, TypeScript
+- **Frontend**: Node.js, pnpm, TypeScript
 - **Database**: PostgreSQL (required)
 - **Architecture**: New UI uses server-rendered HTML with Hotwire (Turbo + Stimulus) and GitHub's Primer Design System via ViewComponent. Remaining Angular components are being migrated to custom elements in the meantime.
 - **Editions**: Community, Enterprise (SSO, LDAP, SCIM), and BIM (construction industry, code in `modules/bim/`)
 
 ## Setup and Dependency Versions
 
-Before building or running checks, verify Ruby against [.ruby-version](.ruby-version), Node.js and npm against the engines in [package.json](package.json) and [frontend/package.json](frontend/package.json), and Bundler against `BUNDLED WITH` in [Gemfile.lock](Gemfile.lock). Rails and other gem requirements are defined in [Gemfile](Gemfile).
+Before building or running checks, verify Ruby against [.ruby-version](.ruby-version), Node.js and pnpm against the engines in [package.json](package.json) and [frontend/package.json](frontend/package.json), and Bundler against `BUNDLED WITH` in [Gemfile.lock](Gemfile.lock). Rails and other gem requirements are defined in [Gemfile](Gemfile).
 
 - For native setup, read the [development environment guide](docs/development/development-environment/README.md) and follow the instructions for your operating system.
 - For Docker setup and commands, read the [Docker development setup](docs/development/development-environment/docker/README.md).
