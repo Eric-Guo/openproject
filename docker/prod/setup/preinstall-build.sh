@@ -36,7 +36,9 @@ if ! command -v node > /dev/null || ! command -v npm > /dev/null; then
   curl -s https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-${ARCHITECTURE}.tar.gz | tar xzf - -C /usr/local --strip-components=1
 fi
 
-npm install -g npm@${NPM_VERSION}
+if ! command -v pnpm > /dev/null; then
+  npm install -g pnpm@11.20.0
+fi
 
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 truncate -s 0 /var/log/*log
