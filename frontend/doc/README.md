@@ -11,7 +11,7 @@ The OpenProject frontend is located at `frontend/src` and uses the Angular CLI (
 
 ## Angular frontend
 
-When developing, `npm run serve` starts the Angular CLI dev server (Vite) on `http://localhost:4200`, serving frontend assets from memory. It is not a general-purpose proxy: it forwards only `/api` and `/assets/frontend/media` to Rails, as configured in `frontend/src/proxy.conf.mjs`.
+When developing, `pnpm run serve` starts the Angular CLI dev server (Vite) on `http://localhost:4200`, serving frontend assets from memory. It is not a general-purpose proxy: it forwards only `/api` and `/assets/frontend/media` to Rails, as configured in `frontend/src/proxy.conf.mjs`.
 
 Application pages are reached through Rails at `http://localhost:3000`, which forwards frontend asset requests to the dev server unless `OPENPROJECT_CLI_PROXY=''` is passed to it.
 
@@ -23,13 +23,13 @@ To learn more about how this behavior works in detail, see the asset helper at `
 ### Production builds
 
 Production builds are triggered either through the `rake assets:precompile` rake task, which compiles
-the frontend along with the rest of the assets, or by running `npm run build` manually. That script
+the frontend along with the rest of the assets, or by running `pnpm run build` manually. That script
 builds with `--configuration production`, which enables ahead-of-time compilation.
 
 ## Tests
 
-Tests run with `npm run test`, which uses the Angular CLI's `ng test` to build the specs and
-[Vitest](https://vitest.dev/) to execute them in a real browser. Use `npm run test:watch` to watch.
+Tests run with `pnpm run test`, which uses the Angular CLI's `ng test` to build the specs and
+[Vitest](https://vitest.dev/) to execute them in a real browser. Use `pnpm run test:watch` to watch.
 Only files ending with `.spec.ts` are matched.
 
 For more information, see [TESTING](./TESTING.md).
@@ -52,13 +52,13 @@ Styles live under `frontend/src`: shared rules in `global_styles`, component sty
 
 ## Changing or updating Dependencies
 
-We use a `package-lock` to lock down dependencies, development ones included. When adding or removing dependencies, please use `npm install` to also update the lockfile.
-Please commit `package-lock.json` along with any changes to `package.json`.
+We use `pnpm-lock.yaml` to lock down dependencies, development ones included. When adding or removing dependencies, please use `pnpm install` to also update the lockfile.
+Please commit `pnpm-lock.yaml` along with any changes to `package.json`.
 
 If you want to install the packages from the lockfile without updating it, please use the following command:
 
 ```
-npm ci
+pnpm install --frozen-lockfile
 ```
 
 ## Topics

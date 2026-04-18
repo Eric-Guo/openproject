@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/opf/openproject/tree/dev/extensions/op-blocknote-hocuspocus#readme",
   "engines": {
-    "node": "^24.22.1"
+    "node": "^24.22.1 || ^26.13.1",
+    "pnpm": "^11.25.0"
   },
   "dependencies": {
     "@blocknote/server-util": "^0.55.0",
@@ -46,9 +47,5 @@
     "typescript-eslint": "^8.71.2",
     "vitest": "^5.0.5"
   },
-  "allowScripts": {
-    "esbuild@0.28.1": true,
-    "fsevents@2.3.3": true,
-    "msw@2.14.6": true
-  }
+  "packageManager": "pnpm@11.25.0"
 }

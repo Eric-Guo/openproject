@@ -11,7 +11,7 @@ Where a given module belongs is explained in [doc/README.md](./doc/README.md#dir
 
 ## Commands
 
-Check Node.js and npm against `engines` in [package.json](./package.json) and the repository root [package.json](../package.json). Lint, typecheck, and test commands: [frontend tests](../docs/development/testing/running-tests-locally/README.md#frontend-tests) and [code format](../docs/development/style-guide/frontend/README.md#code-format).
+Check Node.js and pnpm against `engines` in [package.json](./package.json) and the repository root [package.json](../package.json). Lint, typecheck, and test commands: [frontend tests](../docs/development/testing/running-tests-locally/README.md#frontend-tests) and [code format](../docs/development/style-guide/frontend/README.md#code-format).
 
 ## Code Style
 

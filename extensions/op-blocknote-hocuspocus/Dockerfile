@@ -2,8 +2,8 @@ FROM node:24-trixie-slim AS build
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN corepack pnpm install --prod --frozen-lockfile
 
 COPY src/ ./src
 
