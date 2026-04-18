@@ -18,7 +18,7 @@ begin
     file.puts full_spec
   end
 
-  system("npx @redocly/cli lint --config=.redocly.yaml #{openapi_yaml_spec_path}")
+  system("pnpm exec redocly lint --config=.redocly.yaml #{openapi_yaml_spec_path}")
 
   status = $?.exitstatus
 ensure
