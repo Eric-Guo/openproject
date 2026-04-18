@@ -4,7 +4,7 @@ The OpenProject frontend is located at `frontend/src` and uses the Angular CLI (
 
 ## Angular frontend
 
-When developing, `npm run serve` will open the Angular CLI dev server (Vite) as a proxy that serves assets from memory.
+When developing, `pnpm run serve` will open the Angular CLI dev server (Vite) as a proxy that serves assets from memory.
 That server is running on `http://localhost:4200` by default and will forward all requests it cannot handle to the Rails server
 which it expects to run at `http://localhost:3000`.
 
@@ -18,13 +18,13 @@ To learn more about how this behavior works in detail, see the asset helper at `
 
 ### Ahead-of-Time compilation (AOT)
 
-In development, by default AOT is disabled. You can force it in by running `npm run serve --aot`.
+In development, by default AOT is disabled. You can force it in by running `pnpm run serve --aot`.
 For production builds with `ng build --prod`, `--aot` is enabled by default as per the `frontend/angular.json` configuration.
 
 ### Production builds
 
 Production builds can be triggered either through the `rake assets:precompile` rake task (which will compile legacy and angular frontend)
-or by running `npm build --prod` manually.
+or by running `pnpm build --prod` manually.
 
 ## Tests
 
@@ -52,14 +52,14 @@ For more information on styling the application, see [STYLING](./STYLING.md).
 
 ## Changing or updating Dependencies
 
-We use a `package-lock` to lock down runtime (but not development)
-dependencies. When adding or removing dependencies, please use `npm install` to also update the lockfile.
-Please commit `package-lock.json` along with any changes to `package.json`.
+We use a `pnpm-lock.yaml` to lock down runtime (but not development)
+dependencies. When adding or removing dependencies, please use `pnpm install` to also update the lockfile.
+Please commit `pnpm-lock.yaml` along with any changes to `package.json`.
 
 If you want to install the packages from the lockfile without updating it, please use the following command:
 
 ```
-npm ci
+pnpm install --frozen-lockfile
 ```
 
 ## Topics
