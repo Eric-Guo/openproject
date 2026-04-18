@@ -69,7 +69,7 @@ See [AGENTS.md](../AGENTS.md) for all agent instructions.
 - Main test suite: 40 minutes timeout
 - Full Docker build: ~10-15 minutes (first time)
 - Bundle install: ~2-5 minutes
-- npm install: ~3-7 minutes
+- pnpm install: ~3-7 minutes
 
 ### Additional Commands
 
