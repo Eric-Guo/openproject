@@ -15,10 +15,10 @@ git clone https://github.com/opf/openproject.git
 cd openproject/extensions/op-blocknote-hocuspocus
 
 # Install dependencies
-npm install
+pnpm install
 
 # Start the server with the appropriate environment variables setup
-SECRET=secret12345 npm run start
+SECRET=secret12345 pnpm run start
 ```
 
 The `SECRET` environment variable is a shared value between this application and OpenProject. Make sure to configure the same value in OpenProject - Settings Hocuspocus secret and in the `SECRET` environment variable of this project.
@@ -78,19 +78,19 @@ OPENPROJECT_HTTPS=true
 
 ```bash
 # Development Mode (with hot reload):
-npm run dev
+pnpm run dev
 
 # Production Mode
-npm run start
+pnpm run start
 
 # Debug Mode (with Node.js inspector):
-npm run debug
+pnpm run debug
 
 # Run tests
-npm run test
+pnpm run test
 
 # Lint code
-npm run lint
+pnpm run lint
 ```
 
 ## Links

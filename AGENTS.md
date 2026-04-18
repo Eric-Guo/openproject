@@ -24,7 +24,7 @@
 
 ```bash
 bundle install                    # Install Ruby gems
-cd frontend && npm ci && cd ..   # Install Node packages
+cd frontend && pnpm install && cd ..   # Install Node packages
 bundle exec rails db:migrate      # Setup database
 bin/dev                          # Start all services (Rails, frontend, Good Job worker)
 # Access at http://localhost:3000
@@ -66,7 +66,7 @@ bundle exec rubocop                              # Check all files
 bin/dirty-rubocop --uncommitted                  # Check only uncommitted changes
 
 # JavaScript/TypeScript
-cd frontend && npx eslint src/ && cd ..
+cd frontend && pnpm exec eslint src/ && cd ..
 
 # ERB Templates
 erb_lint {files}

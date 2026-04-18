@@ -188,7 +188,7 @@
     "os": false
   },
   "scripts": {
-    "analyze": "ng build --configuration production --stats-json && npx esbuild-visualizer --metadata ../public/assets/frontend/stats.json",
+    "analyze": "ng build --configuration production --stats-json && pnpm exec esbuild-visualizer --metadata ../public/assets/frontend/stats.json",
     "build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration production --named-chunks --source-map",
     "build:watch": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --watch --named-chunks",
     "ci:plugins:register_frontend": "node ci-plugins-generator.js",
@@ -211,5 +211,6 @@
     "core-js": false,
     "core-js-pure": false,
     "es5-ext@0.10.64": true
-  }
+  },
+  "packageManager": "pnpm@11.14.0"
 }

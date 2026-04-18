@@ -19,10 +19,10 @@ try 'rm -rf public/assets >> log/setup_dev.log'
 try 'echo "{}" > config/frontend_assets.manifest.json'
 
 echo "Installing node_modules ... "
-try '(cd frontend && npm ci) >> log/setup_dev.log'
+try '(cd frontend && pnpm install --frozen-lockfile) >> log/setup_dev.log'
 
 echo "Installing hocuspocus dependencies..."
-try '(cd extensions/op-blocknote-hocuspocus && npm ci) >> log/setup_dev.log'
+try '(cd extensions/op-blocknote-hocuspocus && pnpm install --frozen-lockfile) >> log/setup_dev.log'
 
 echo "Linking plugin modules and exporting frontend locale files"
 try 'bundle exec rails openproject:plugins:register_frontend assets:export_locales >> log/setup_dev.log'
@@ -30,7 +30,7 @@ try 'bundle exec rails openproject:plugins:register_frontend assets:export_local
 echo "---------------------------------------"
 echo "Done. Now start the following services"
 echo '- Rails server `RAILS_ENV=development bin/rails server`'
-echo '- Angular CLI: `npm run serve`'
+echo '- Angular CLI: `pnpm run serve`'
 echo '- Good Job worker: `RAILS_ENV=development bundle exec good_job start`'
 echo ""
 echo 'You can also run `bin/dev` to run all the above on a single terminal.'
