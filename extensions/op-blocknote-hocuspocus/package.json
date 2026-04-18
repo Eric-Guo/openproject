@@ -49,5 +49,6 @@
     "esbuild@0.28.1": true,
     "fsevents@2.3.3": true,
     "msw@2.14.6": true
-  }
+  },
+  "packageManager": "pnpm@11.14.0"
 }
