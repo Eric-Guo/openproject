@@ -27,7 +27,7 @@
 //++
 
 import { OPContextMenuService } from 'core-app/shared/components/op-context-menu/op-context-menu.service';
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, inject } from '@angular/core';
 import { OpContextMenuTrigger } from 'core-app/shared/components/op-context-menu/handlers/op-context-menu-trigger.directive';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { WorkPackageViewCollapsedHierarchiesService } from 'core-app/features/work-packages/routing/wp-view-base/view-services/wp-view-collapsed-hierarchies.service';
@@ -36,13 +36,16 @@ import { WorkPackageViewCollapsedHierarchiesService } from 'core-app/features/wo
   selector: '[opHierarchyToggleDropdown]',
 })
 export class WorkPackageHierarchyToggleDropdownMenuDirective extends OpContextMenuTrigger {
-  constructor(
-    readonly elementRef:ElementRef,
-    readonly opContextMenu:OPContextMenuService,
-    readonly I18n:I18nService,
-    readonly wpViewCollapsedHierarchies:WorkPackageViewCollapsedHierarchiesService,
-  ) {
-    super(elementRef, opContextMenu);
+  readonly elementRef = inject(ElementRef);
+
+  readonly opContextMenu = inject(OPContextMenuService);
+
+  readonly I18n = inject(I18nService);
+
+  readonly wpViewCollapsedHierarchies = inject(WorkPackageViewCollapsedHierarchiesService);
+
+  constructor() {
+    super(inject(ElementRef), inject(OPContextMenuService));
   }
 
   protected open(evt:JQuery.TriggeredEvent) {
