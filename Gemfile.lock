@@ -494,10 +494,10 @@ GEM
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
-    capistrano3-puma (7.1.0)
+    capistrano3-puma (8.0.0)
       capistrano (~> 3.7)
       capistrano-bundler
-      puma (>= 6.1, < 8.0)
+      puma (>= 6.1, < 9.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -551,7 +551,7 @@ GEM
     cose (1.3.1)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
-    counter_culture (3.13.0)
+    counter_culture (3.13.1)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     crack (1.0.1)
@@ -695,7 +695,7 @@ GEM
     ffi (1.17.4-x86_64-linux-gnu)
     ffi (1.17.4-x86_64-linux-musl)
     flamegraph (0.9.5)
-    fog-aws (3.33.1)
+    fog-aws (3.33.2)
       base64 (>= 0.2, < 0.4)
       fog-core (~> 2.6)
       fog-json (~> 1.1)
@@ -740,7 +740,7 @@ GEM
       mini_mime (~> 1.1)
       representable (~> 3.0)
       retriable (~> 3.1)
-    google-apis-gmail_v1 (0.47.0)
+    google-apis-gmail_v1 (0.48.0)
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.3.1)
       base64 (~> 0.2)
@@ -832,10 +832,10 @@ GEM
     htmldiff (0.0.1)
     htmlentities (4.3.4)
     http-2 (1.1.3)
-    http (6.0.2)
+    http (6.0.3)
       http-cookie (~> 1.0)
       llhttp (~> 0.6.1)
-    http-cookie (1.1.5)
+    http-cookie (1.1.6)
       domain_name (~> 0.5)
     http_parser.rb (0.8.1)
     httpx (1.7.6)
@@ -974,7 +974,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (6.0.4)
+    minitest (6.0.5)
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -1230,7 +1230,7 @@ GEM
     optimist (3.2.1)
     os (1.1.4)
     ostruct (0.6.3)
-    ox (2.14.23)
+    ox (2.14.24)
       bigdecimal (>= 3.0)
     pagy (43.5.1)
       json
@@ -2034,7 +2034,7 @@ CHECKSUMS
   capistrano-pnpm (1.0.1) sha256=02f144239cb3352c08195539e5f96d56145ccec6e10f287c5518bdebab8ca0ef
   capistrano-rails (1.7.0) sha256=aca57455e8c5435785e0f938e16aa5b79c263694a755e1dca1c5d1743b40aae7
   capistrano-rbenv (2.2.0) sha256=3c8f39b7c624f3806630dcb475484bb3579aef07a40efe85089d83f64b0c35f5
-  capistrano3-puma (7.1.0) sha256=802ac32c70ea97604171973b487980e6ad04ea904c78360bcec29e7d78ee54bd
+  capistrano3-puma (8.0.0) sha256=af8bda5f4d6cd7e01df083bffd988837fc88d799fb9b2c27e061851e2d32dfaa
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
   capybara-screenshot (1.0.27) sha256=afa1896cc23df77be1774e8d3b3ce3953bf060aeaa04ff87607b5daf689174f2
   capybara_accessible_selectors (0.15.0)
@@ -2063,7 +2063,7 @@ CHECKSUMS
   cookiejar (0.3.4) sha256=11b16acfc4baf7a0f463c21a6212005e04e25f5554d4d9f24d97f3492dfda0df
   cose (1.3.1) sha256=d5d4dbcd6b035d513edc4e1ab9bc10e9ce13b4011c96e3d1b8fe5e6413fd6de5
   costs (1.0.0)
-  counter_culture (3.13.0) sha256=a2cde20642ddd27aec9ff0c09b73fa5b4fd729da368079e67c177bface3148bf
+  counter_culture (3.13.1) sha256=c297961933d9a9b96683fc298d68fde44039eca7c5876a2b05c3b180fe1c6328
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   css_parser (2.0.0) sha256=af5c759a127b125b635006a6c6c2e05b96a1ebdeec21b3c415fd5f09ec714a0a
@@ -2126,7 +2126,7 @@ CHECKSUMS
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   ffi (1.17.4-x86_64-linux-musl) sha256=3fdf9888483de005f8ef8d1cf2d3b20d86626af206cbf780f6a6a12439a9c49e
   flamegraph (0.9.5) sha256=a683020637ffa0e14a72640fa41babf14d926bfeaed87e31907cfd06ab2de8dc
-  fog-aws (3.33.1) sha256=20c7336ed978be6cbf2765844c53f30676288af98f1cb49945aa7b7b45a799a5
+  fog-aws (3.33.2) sha256=bd9c1b045f19daad8942d65d7e9c9c7c1cd144beeabde63e34df7c58a9bb0f5b
   fog-core (2.6.0) sha256=3fe08aa83a23cddce42f4ba412040c08f890d7ff04c175c0ee59119371245be6
   fog-json (1.2.0) sha256=dd4f5ab362dbc72b687240bba9d2dd841d5dfe888a285797533f85c03ea548fe
   fog-xml (0.1.5) sha256=52b9fea10701461dd3eaf9d9839702169b418dbbf50426786b9b74fade373bd6
@@ -2139,7 +2139,7 @@ CHECKSUMS
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   good_job (4.13.3) sha256=37478710dddd2630ed055f2159111ce6f7f14482d8ccb412142ee04674151e2e
   google-apis-core (1.0.2) sha256=ba4579aaadc902d6cc7bc8db88f566ab00f5e31ea87ab41e9f9a032c470f2629
-  google-apis-gmail_v1 (0.47.0) sha256=3064434b6da55b85e2828ce4bb0f4d04e8cfd187a4ab262ceb1dcb01f98e49ef
+  google-apis-gmail_v1 (0.48.0) sha256=561534bb3d93610032720d0459153c432dc8e47e7096a1250fbe0ee8dcc6540c
   google-cloud-env (2.3.1) sha256=0faac01eb27be78c2591d64433663b1a114f8f7af55a4f819755426cac9178e7
   google-logging-utils (0.2.0) sha256=675462b4ea5affa825a3442694ca2d75d0069455a1d0956127207498fca3df7b
   google-protobuf (4.34.1) sha256=347181542b8d659c60f028fa3791c9cccce651a91ad27782dbc5c5e374796cdc
@@ -2173,9 +2173,9 @@ CHECKSUMS
   htmlbeautifier (1.4.3) sha256=b43d08f7e2aa6ae1b5a6f0607b4ed8954c8d4a8e85fd2336f975dda1e4db385b
   htmldiff (0.0.1) sha256=a96d068c8b8ea96cca3154a61785365d83129f47f1df964c6b1666924ce113a1
   htmlentities (4.3.4) sha256=125a73c6c9f2d1b62100b7c3c401e3624441b663762afa7fe428476435a673da
-  http (6.0.2) sha256=be337816fb45cee712eeb0829a16d9300c9d2b87b38b771d177d7a59f77e8b83
+  http (6.0.3) sha256=0206e79131089ca9aae557c6791afd6bf9339af319d78a616af1477ae79614fa
   http-2 (1.1.3) sha256=1b2f379d35a11dbae94f8a1a52c053d8c161eb4a0c98b5d1605ff1b2bf171c9c
-  http-cookie (1.1.5) sha256=830308d86be82b635c2b66d73bf39d5f4ce96317f2b804e0b5388188ea0a34c2
+  http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   http_parser.rb (0.8.1) sha256=9ae8df145b39aa5398b2f90090d651c67bd8e2ebfe4507c966579f641e11097a
   httpx (1.7.6) sha256=82d825abc9876a132adc3492c56a0c528478ac238dd6f74d3422ab0036c6b5c8
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
@@ -2226,7 +2226,7 @@ CHECKSUMS
   mime-types-data (3.2026.0414) sha256=461c4c655373a44bd6c5fe54bcf5b7776026ea96e808144b1ec465c4b99148cc
   mini_magick (5.3.1) sha256=29395dfd76badcabb6403ee5aff6f681e867074f8f28ce08d78661e9e4a351c4
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
-  minitest (6.0.4) sha256=df1304664589d40f46089247fdc451f866b0ce0d7cae1457a15fc1eb7d48dca1
+  minitest (6.0.5) sha256=f007d7246bf4feea549502842cd7c6aba8851cdc9c90ba06de9c476c0d01155c
   msgpack (1.8.0) sha256=e64ce0212000d016809f5048b48eb3a65ffb169db22238fb4b72472fecb2d732
   multi_json (1.19.1) sha256=7aefeff8f2c854bf739931a238e4aea64592845e0c0395c8a7d2eea7fdd631b7
   mustermann (3.1.1) sha256=4c6170c7234d5499c345562ba7c7dfe73e1754286dcc1abb053064d66a127198
@@ -2356,7 +2356,7 @@ CHECKSUMS
   os (1.1.4) sha256=57816d6a334e7bd6aed048f4b0308226c5fb027433b67d90a9ab435f35108d3f
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   overviews (1.0.0)
-  ox (2.14.23) sha256=4a9aedb4d6c78c5ebac1d7287dc7cc6808e14a8831d7adb727438f6a1b461b66
+  ox (2.14.24) sha256=ac5bc1d1ef590c2681c21ff6999acf96d94c14be500da4c6c7ba9576f104b500
   pagy (43.5.1) sha256=ca5aaa6d65d21eee67a48fe8801d022d07ee72afbc5bea6a9e21b13a27b7c0b9
   paper_trail (17.0.0) sha256=1c2842061d3874ca7015908e821e2aa14f9b982af2acb2a7974713bf79021c85
   parallel (2.0.1) sha256=337782d3e39f4121e67563bf91dd8ece67f48923d90698614773a0ec9a5b2c7d
