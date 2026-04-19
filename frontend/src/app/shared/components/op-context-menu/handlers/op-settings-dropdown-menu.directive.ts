@@ -26,7 +26,7 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import { Directive, ElementRef, Injector, Input, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Injector, Input, AfterViewInit, inject } from '@angular/core';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { AuthorisationService } from 'core-app/core/model-auth/model-auth.service';
 import {
@@ -65,12 +65,39 @@ import {
 } from 'core-app/features/work-packages/components/wp-query/url-params-helper';
 import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
 
+interface MenuLink {
+  href:string;
+  name:string;
+}
+
 @Directive({
   selector: '[opSettingsContextMenu]',
   standalone: false,
 })
 export class OpSettingsMenuDirective extends OpContextMenuTrigger implements AfterViewInit {
-  @Input('opSettingsContextMenu-query') public query:QueryResource;
+  readonly opModalService = inject(OpModalService);
+
+  readonly wpListService = inject(WorkPackagesListService);
+
+  readonly authorisationService = inject(AuthorisationService);
+
+  readonly states = inject(States);
+
+  readonly injector = inject(Injector);
+
+  readonly querySpace = inject(IsolatedQuerySpace);
+
+  readonly wpTableColumns = inject(WorkPackageViewColumnsService);
+
+  readonly urlParamsHelper = inject(UrlParamsHelperService);
+
+  readonly opStaticQueries = inject(StaticQueriesService);
+
+  readonly turboRequests = inject(TurboRequestsService);
+
+  readonly I18n = inject(I18nService);
+
+  @Input() public query:QueryResource;
 
   @Input() public hideTableOptions:boolean;
 
@@ -78,26 +105,12 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
 
   private form:QueryFormResource;
 
-  private loadingPromise:PromiseLike<any>;
+  private loadingPromise:PromiseLike<QueryFormResource|undefined>;
 
   override readonly placement = 'bottom-end';
 
-  constructor(
-    readonly elementRef:ElementRef,
-    readonly opContextMenu:OPContextMenuService,
-    readonly opModalService:OpModalService,
-    readonly wpListService:WorkPackagesListService,
-    readonly authorisationService:AuthorisationService,
-    readonly states:States,
-    readonly injector:Injector,
-    readonly querySpace:IsolatedQuerySpace,
-    readonly wpTableColumns:WorkPackageViewColumnsService,
-    readonly urlParamsHelper:UrlParamsHelperService,
-    readonly opStaticQueries:StaticQueriesService,
-    readonly turboRequests:TurboRequestsService,
-    readonly I18n:I18nService,
-  ) {
-    super(elementRef, opContextMenu);
+  constructor() {
+    super(inject(ElementRef), inject(OPContextMenuService));
   }
 
   ngAfterViewInit():void {
@@ -122,7 +135,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
       });
   }
 
-  protected open(evt:Event) {
+  protected open(evt:Event):void {
     this.loadingPromise.then(() => {
       this.buildItems();
       this.opContextMenu.show(this, evt);
@@ -142,23 +155,23 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
     }
   }
 
-  private allowQueryAction(event:Event, action:any) {
+  private allowQueryAction(event:Event, action:string):boolean {
     return this.allowAction(event, 'query', action);
   }
 
-  private allowWorkPackageAction(event:Event, action:any) {
+  private allowWorkPackageAction(event:Event, action:string):boolean {
     return this.allowAction(event, 'work_packages', action);
   }
 
-  private allowFormAction(event:Event, action:string) {
-    if (this.form.$links[action]) {
+  private allowFormAction(event:Event, action:string):boolean {
+    if (this.formLinks[action]) {
       return true;
     }
     event.stopPropagation();
     return false;
   }
 
-  private allowAction(event:Event, modelName:string, action:any) {
+  private allowAction(event:Event, modelName:string, action:string):boolean {
     if (this.authorisationService.can(modelName, action)) {
       return true;
     }
@@ -181,7 +194,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
       params.query_id = queryId;
     }
     url.pathname = `${url.pathname}/export_dialog`;
-    url.search = this.urlParamsHelper.buildQueryString(params) || '';
+    url.search = this.urlParamsHelper.buildQueryString(params) ?? '';
     return url.toString();
   }
 
@@ -193,7 +206,25 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
     return this.opStaticQueries.getStaticName(query);
   }
 
-  private buildItems() {
+  private get formLinks():Record<string, unknown> {
+    return this.form.$links as Record<string, unknown>;
+  }
+
+  private get formCreateNewLink():unknown {
+    return this.formLinks.create_new;
+  }
+
+  private get configureFormLink():MenuLink|undefined {
+    const form = this.form as QueryFormResource & { configureForm?:MenuLink };
+    return form.configureForm;
+  }
+
+  private get queryCustomFieldsLink():MenuLink|undefined {
+    const results = this.query.results as typeof this.query.results & { customFields?:MenuLink };
+    return results.customFields;
+  }
+
+  private buildItems():void {
     this.items = [
       {
         // Configuration modal
@@ -201,7 +232,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
         linkText: this.I18n.t('js.toolbar.settings.configure_view'),
         hidden: this.hideTableOptions,
         icon: 'icon-settings',
-        onClick: (event:MouseEvent) => {
+        onClick: () => {
           this.opContextMenu.close();
           this.opModalService.show(WpTableConfigurationModalComponent, this.injector);
 
@@ -270,12 +301,12 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
         disabled: this.authorisationService.cannot('query', 'updateImmediately'),
         linkText: this.I18n.t('js.toolbar.settings.save'),
         icon: 'icon-save',
-        onClick: (event) => {
+        onClick: (event:MouseEvent) => {
           const { query } = this;
           if (!isPersistedResource(query) && this.allowQueryAction(event, 'updateImmediately')) {
             this.opModalService.show(SaveQueryModalComponent, this.injector);
           } else if (query.id && this.allowQueryAction(event, 'updateImmediately')) {
-            this.wpListService.save(query);
+            void this.wpListService.save(query);
           }
 
           return true;
@@ -283,10 +314,10 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
       },
       {
         // Query save as modal
-        disabled: this.form ? !this.form.$links.create_new : this.authorisationService.cannot('query', 'updateImmediately'),
+        disabled: this.form ? !this.formCreateNewLink : this.authorisationService.cannot('query', 'updateImmediately'),
         linkText: this.I18n.t('js.toolbar.settings.save_as'),
         icon: 'icon-save',
-        onClick: (event) => {
+        onClick: (event:MouseEvent) => {
           if (this.allowFormAction(event, 'create_new')) {
             this.opModalService.show(SaveQueryModalComponent, this.injector);
           }
@@ -299,10 +330,10 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
         disabled: this.authorisationService.cannot('query', 'delete'),
         linkText: this.I18n.t('js.toolbar.settings.delete'),
         icon: 'icon-delete',
-        onClick: (event) => {
+        onClick: (event:MouseEvent) => {
           if (this.allowQueryAction(event, 'delete')
             && window.confirm(this.I18n.t('js.text_query_destroy_confirmation'))) {
-            this.wpListService.delete();
+            void this.wpListService.delete();
           }
 
           return true;
@@ -328,7 +359,7 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
         linkText: this.I18n.t('js.toolbar.settings.export'),
         hidden: this.hideTableOptions,
         icon: 'icon-export',
-        onClick: (event) => {
+        onClick: (event:MouseEvent) => {
           if (this.allowWorkPackageAction(event, 'representations')) {
             const query = this.querySpace.query.value;
             if (query) {
@@ -378,13 +409,13 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
       },
       {
         divider: true,
-        hidden: !(this.query.results.customFields && this.form.configureForm),
+        hidden: !(this.queryCustomFieldsLink && this.configureFormLink),
       },
       {
         // Settings modal
-        hidden: !this.query.results.customFields || this.hideTableOptions,
-        href: this.query.results.customFields?.href,
-        linkText: this.query.results.customFields?.name,
+        hidden: !this.queryCustomFieldsLink || this.hideTableOptions,
+        href: this.queryCustomFieldsLink?.href,
+        linkText: this.queryCustomFieldsLink?.name,
         icon: 'icon-custom-fields',
         onClick: () => false,
       },
