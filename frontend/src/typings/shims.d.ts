@@ -27,11 +27,6 @@ declare module 'dom-autoscroller';
 declare module 'core-vendor/enjoyhint';
 
 declare module '@hotwired/turbo' {
-  interface BrowserAdapter {
-    formSubmissionStarted:() => void;
-    formSubmissionFinished:() => void;
-  }
-
   export const session:{
     drive:boolean;
     adapter:BrowserAdapter;

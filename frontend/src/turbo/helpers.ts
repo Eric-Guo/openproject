@@ -1,12 +1,22 @@
 import * as Turbo from '@hotwired/turbo';
 
+function hasProgressBar(adapter:Turbo.Adapter):adapter is Turbo.BrowserAdapter {
+  return 'progressBar' in adapter;
+}
+
 export namespace TurboHelpers {
   export function showProgressBar() {
-    Turbo.session.adapter.formSubmissionStarted();
+    const adapter = Turbo.navigator.delegate.adapter;
+    if (hasProgressBar(adapter)) {
+      adapter.progressBar.show();
+    }
   }
 
   export function hideProgressBar() {
-    Turbo.session.adapter.formSubmissionFinished();
+    const adapter = Turbo.navigator.delegate.adapter;
+    if (hasProgressBar(adapter)) {
+      adapter.progressBar.hide();
+    }
   }
 
   export function scrubScriptElements(element:HTMLElement|DocumentFragment) {
