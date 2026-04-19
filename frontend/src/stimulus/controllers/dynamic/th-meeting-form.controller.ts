@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import * as moment from 'moment';
+import moment, { Moment } from 'moment';
 
 export default class ThMeetingFormController extends Controller {
   static values = {
@@ -11,10 +11,8 @@ export default class ThMeetingFormController extends Controller {
 
   declare availableRoomsPathValue:string;
 
-  connect() {}
-
   getAvailableRooms(e:MouseEvent) {
-    const button = e.target as HTMLButtonElement;
+    const button = e.currentTarget as HTMLButtonElement;
     const buttonText = button.textContent;
 
     if (!this.availableRoomsPathValue) throw new Error('Available rooms path not found');
@@ -35,8 +33,8 @@ export default class ThMeetingFormController extends Controller {
 
     if (!meetingSelect) throw new Error('Meeting select not found');
 
-    const startDate = moment(`${startDateInput.value} ${startTimeInput.value}`, 'YYYY-MM-DD HH:mm');
-    const endDate = moment(startDate).add(durationInput.value, 'hour');
+    const startDate:Moment = moment(`${startDateInput.value} ${startTimeInput.value}`, 'YYYY-MM-DD HH:mm');
+    const endDate:Moment = startDate.clone().add(durationInput.value, 'hour');
     const thMeetingId = this.thMeetingIdValue;
 
     const startDateTime = startDate.format('YYYY-MM-DD HH:mm:ss');
