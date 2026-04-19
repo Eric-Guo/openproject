@@ -1,8 +1,12 @@
 nodeLinker: hoisted
 
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - core-js
+  - core-js-pure
   - es5-ext
   - esbuild
   - highlight.js
+  - lmdb
+  - msgpackr-extract
   - nice-napi
