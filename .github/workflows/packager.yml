@@ -23,6 +23,8 @@ jobs:
         with:
           ref: ${{ inputs.tag || github.ref }}
           persist-credentials: false
+      - uses: pnpm/action-setup@v6.1.1
+        if: hashFiles('pnpm-lock.yaml') != ''
       - uses: actions/setup-node@v7.1.0
         if: hashFiles('packaging/tests/teardown.sh') != ''
         with:

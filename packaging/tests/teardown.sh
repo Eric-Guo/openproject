@@ -41,6 +41,7 @@ cat > package.json <<'JSON'
 {
   "name": "packaging-cleanup-test",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.25.0",
   "dependencies": { "runtime": "file:dependencies/runtime" },
   "devDependencies": { "development": "file:dependencies/development" },
   "scripts": { "postinstall": "touch unexpected-postinstall" }
@@ -48,13 +49,12 @@ cat > package.json <<'JSON'
 JSON
 
 export NPM_CONFIG_PRODUCTION=false
-export npm_config_cache="$tmpdir/npm-cache"
-npm install --ignore-scripts --offline --no-audit --no-fund
+pnpm install --no-frozen-lockfile --ignore-scripts --offline
 test -e node_modules/development/package.json
 
 mkdir -p .heroku/node/bin host-bin
 ln -s "$(node -p 'process.execPath')" .heroku/node/bin/node
-ln -s "$(npm root --global)/npm/bin/npm-cli.js" .heroku/node/bin/npm
+ln -s "$(command -v pnpm)" .heroku/node/bin/pnpm
 for command in bash env find rm; do
   ln -s "$(command -v "$command")" "host-bin/$command"
 done

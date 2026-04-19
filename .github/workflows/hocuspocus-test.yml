@@ -24,17 +24,18 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - uses: pnpm/action-setup@v6.1.1
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: '24.22.1'
           package-manager-cache: false
-          cache: npm
-          cache-dependency-path: extensions/op-blocknote-hocuspocus/package-lock.json
+          cache: pnpm
+          cache-dependency-path: extensions/op-blocknote-hocuspocus/pnpm-lock.yaml
 
       - name: Install Dependencies
-        id: npm-ci
-        run: npm ci
+        id: pnpm-ci
+        run: pnpm install --frozen-lockfile
 
       - name: run tests
-        id: npm-test
-        run: CI=1 npm test
+        id: pnpm-test
+        run: CI=1 pnpm test

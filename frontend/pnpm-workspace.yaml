@@ -8,6 +8,9 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
 
+minimumReleaseAgeExclude:
+  - '@mixtint/primer-view-components@0.97.0'
+
 nodeLinker: hoisted
 
 overrides:

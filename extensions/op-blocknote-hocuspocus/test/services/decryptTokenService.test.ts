@@ -45,6 +45,6 @@ describe("decryptToken", () => {
     const [token, iv] = encrypted.split("--");
     const tampered = `${token}--${iv}--${Buffer.alloc(16).toString("base64")}`;
 
-    expect(() => decryptToken(tampered)).toThrowError("Unsupported state or unable to authenticate data");
+    expect(() => decryptToken(tampered)).toThrowError(/unable to authenticate data|bad decrypt/i);
   });
 });

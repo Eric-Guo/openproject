@@ -27,8 +27,7 @@
 
 import { Injectable, inject } from '@angular/core';
 import { NgSelectConfig } from '@ng-select/ng-select';
-import { I18n } from 'i18n-js';
-import { FormatNumberOptions, TranslateOptions } from 'i18n-js/src/typing';
+import { type FormatNumberOptions, I18n, type TranslateOptions } from 'i18n-js';
 import { getMetaValue } from '../setup/globals/global-helpers';
 
 @Injectable({ providedIn: 'root' })

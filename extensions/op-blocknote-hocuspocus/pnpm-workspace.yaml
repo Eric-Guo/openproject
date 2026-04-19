@@ -1,4 +1,6 @@
-nodeLinker: hoisted
+allowBuilds:
+  esbuild: true
+  fsevents: true
+  msw: true
 
-onlyBuiltDependencies:
-  - esbuild
+nodeLinker: hoisted
