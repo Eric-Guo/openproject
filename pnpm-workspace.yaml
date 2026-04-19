@@ -1,1 +1,4 @@
+allowBuilds:
+  core-js: true
+  protobufjs: true
 nodeLinker: hoisted

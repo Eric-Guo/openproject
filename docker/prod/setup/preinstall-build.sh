@@ -37,7 +37,7 @@ if ! command -v node > /dev/null || ! command -v npm > /dev/null; then
 fi
 
 if ! command -v pnpm > /dev/null; then
-  npm install -g pnpm@10.33.0
+  npm install -g pnpm@11.3.0
 fi
 
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

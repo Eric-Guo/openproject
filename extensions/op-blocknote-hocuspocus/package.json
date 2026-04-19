@@ -23,26 +23,26 @@
     "node": "^24.15.0"
   },
   "dependencies": {
-    "@blocknote/server-util": "^0.51.3",
-    "@hocuspocus/extension-logger": "^4.2.0",
-    "@hocuspocus/server": "^4.2.0",
+    "@blocknote/server-util": "^0.51.4",
+    "@hocuspocus/extension-logger": "^4.3.0",
+    "@hocuspocus/server": "^4.3.0",
     "op-blocknote-extensions": "https://github.com/opf/op-blocknote-extensions/releases/download/v0.1.5/op-blocknote-extensions-0.1.5.tgz",
-    "tsx": "^4.21.0"
+    "tsx": "^4.22.4"
   },
   "devDependencies": {
-    "@blocknote/core": "^0.51.3",
-    "@eslint/js": "^9.35.0",
+    "@blocknote/core": "^0.51.4",
+    "@eslint/js": "^9.39.4",
     "@eslint/json": "^1.2.0",
-    "@hocuspocus/provider": "^4.2.0",
-    "@hocuspocus/provider-prev-test-only": "npm:@hocuspocus/provider@^3",
-    "@stylistic/eslint-plugin": "^5.3.1",
-    "@types/node": "^25.0.2",
-    "eslint": "^9.35.0",
-    "globals": "^17.3.0",
-    "msw": "^2.12.7",
+    "@hocuspocus/provider": "^4.3.0",
+    "@hocuspocus/provider-prev-test-only": "npm:@hocuspocus/provider@^3.4.4",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^25.9.4",
+    "eslint": "^9.39.4",
+    "globals": "^17.7.0",
+    "msw": "^2.14.6",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.48.1",
-    "vitest": "^4.1.0"
+    "typescript-eslint": "^8.62.0",
+    "vitest": "^4.1.9"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@11.9.0"
 }
