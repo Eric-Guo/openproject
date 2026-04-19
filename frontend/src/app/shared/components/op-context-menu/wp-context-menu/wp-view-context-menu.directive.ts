@@ -31,10 +31,22 @@ import isNewResource from 'core-app/features/hal/helpers/is-new-resource';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
 import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
+import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
 
 import { Placement } from '@floating-ui/dom';
 
 export interface PositionArgs { placement?:Placement, reference?:HTMLElement }
+
+interface StateWithBaseRoute {
+  data?:{
+    baseRoute?:string|null;
+  };
+  name?:string|null;
+}
+
+interface WorkPackageProjectReference {
+  id?:string|null;
+}
 
 export class WorkPackageViewContextMenu extends OpContextMenuHandler {
   @InjectField() protected states!:States;
@@ -66,7 +78,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
   );
 
   // Get the base route for the current route to ensure we always link correctly
-  protected baseRoute = this.$state.current.data.baseRoute || this.$state.current.name;
+  protected baseRoute = this.currentState.data?.baseRoute ?? this.currentState.name ?? '';
 
   protected items = this.buildItems();
 
@@ -156,7 +168,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
     this.opModalService.show(WpDestroyModalComponent, this.injector, { workPackages: selected });
   }
 
-  private editSelectedWorkPackages(link:any) {
+  private editSelectedWorkPackages(link:string) {
     const selected = this.getSelectedWorkPackages();
 
     if (selected.length > 1) {
@@ -164,16 +176,18 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
     }
   }
 
-  private copySelectedWorkPackages(link:any) {
+  private copySelectedWorkPackages(link:string) {
     const selected = this.getSelectedWorkPackages();
+    const selectedWorkPackage = selected[0];
 
     if (selected.length > 1) {
       window.location.href = link;
       return;
     }
 
-    if (selected[0].id) {
-      window.location.href = this.pathHelper.workPackageCopyPath(selected[0].project.id, selected[0].id);
+    const projectId = selectedWorkPackage ? this.projectIdFrom(selectedWorkPackage) : null;
+    if (selectedWorkPackage?.id && projectId) {
+      window.location.href = this.pathHelper.workPackageCopyPath(projectId, selectedWorkPackage.id);
     }
   }
 
@@ -181,7 +195,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
     void this.turboRequests.request(this.pathHelper.timeEntryWorkPackageDialog(this.workPackage.id!), { method: 'GET' });
   }
 
-  private getSelectedWorkPackages() {
+  private getSelectedWorkPackages():WorkPackageResource[] {
     const selectedWorkPackages = this.wpTableSelection.getSelectedWorkPackages();
 
     if (selectedWorkPackages.length === 0) {
@@ -202,7 +216,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
       disabled: false,
       linkText: action.text,
       href: action.href,
-      icon: action.icon != null ? action.icon : `icon-${action.key}`,
+      icon: action.icon ?? `icon-${action.key}`,
       onClick: (event:MouseEvent) => {
         if (action.href && isClickedWithModifier(event)) {
           return false;
@@ -264,7 +278,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
               return false;
             }
 
-            this.$state.go(
+            void this.$state.go(
               `${splitViewRoute(this.$state)}.tabs`,
               { workPackageId: this.workPackageId, tabIdentifier: 'overview' },
             );
@@ -275,5 +289,14 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
     }
 
     return items;
+  }
+
+  private get currentState():StateWithBaseRoute {
+    return this.$state.current as StateWithBaseRoute;
+  }
+
+  private projectIdFrom(workPackage:WorkPackageResource):string|null {
+    const project = workPackage.project as WorkPackageProjectReference | null | undefined;
+    return project?.id ?? null;
   }
 }
