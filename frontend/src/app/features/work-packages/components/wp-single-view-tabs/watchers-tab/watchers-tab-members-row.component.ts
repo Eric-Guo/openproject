@@ -12,6 +12,7 @@ import { ToastService } from 'core-app/shared/components/toaster/toast.service';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'wp-watchers-tab-members-row',
   templateUrl: './watchers-tab-members-row.component.html',
+  standalone: false,
 })
 export class WorkPackageWatchersTabMembersRowComponent {
   @Input() member:MembershipResource;

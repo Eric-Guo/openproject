@@ -7,6 +7,7 @@ import { I18nService } from 'core-app/core/i18n/i18n.service';
   selector: 'op-edoc-files-tab',
   templateUrl: './op-edoc-files-tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class WorkPackageEdocFilesTabComponent {
   @Input() workPackage:WorkPackageResource;

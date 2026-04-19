@@ -234,8 +234,8 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
       class: 'import-wp',
       href: undefined,
       linkText: '导入工作集',
-      onClick: ($event:JQuery.TriggeredEvent) => {
-        if (isClickedWithModifier($event)) {
+      onClick: (event:MouseEvent) => {
+        if (isClickedWithModifier(event)) {
           return false;
         }
         this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.workPackage });
