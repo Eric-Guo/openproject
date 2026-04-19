@@ -375,8 +375,8 @@ export class OpSettingsMenuDirective extends OpContextMenuTrigger implements Aft
         disabled: false,
         linkText: '导出甘特图',
         icon: 'icon-export',
-        onClick: ($event:JQuery.TriggeredEvent) => {
-          if (this.allowWorkPackageAction($event, 'representations')) {
+        onClick: (event:MouseEvent) => {
+          if (this.allowWorkPackageAction(event, 'representations')) {
             this.opModalService.show(WpGanttExportModalComponent, this.injector);
           }
 

@@ -32,6 +32,7 @@ import {
   Input,
 } from '@angular/core';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
+import { QueryResource } from 'core-app/features/hal/resources/query-resource';
 
 @Component({
   templateUrl: './wp-settings-button.component.html',
@@ -39,6 +40,8 @@ import { I18nService } from 'core-app/core/i18n/i18n.service';
   standalone: false,
 })
 export class WorkPackageSettingsButtonComponent {
+  @Input() query?:QueryResource;
+
   @Input() hideTableOptions = false;
 
   @Input() showCalendarSharingOption = false;

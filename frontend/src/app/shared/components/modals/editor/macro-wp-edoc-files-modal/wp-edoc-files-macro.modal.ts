@@ -22,6 +22,7 @@ import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/wor
 @Component({
   templateUrl: './wp-edoc-files-macro.modal.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class WpEdocFilesMacroModalComponent extends OpModalComponent implements OnInit, OnDestroy {
   public showClose = true;
