@@ -41,5 +41,5 @@ npx eslint src/ && cd ..
 
 ```bash
 # Frontend (Jasmine/Karma)
-npm test && cd ..
+pnpm test && cd ..
 ```
