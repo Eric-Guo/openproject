@@ -1,3 +1,20 @@
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  core-js-pure: true
+  es5-ext: true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  th-analytics: true
+  th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79: true
+
+minimumReleaseAgeExclude:
+  - 'op-blocknote-extensions@0.1.0'
+  - '@mixtint/primer-view-components@0.86.2'
+  - '@mixtint/primer-view-components@0.88.0'
+  - '@openproject/primer-view-components@0.88.0'
+
 nodeLinker: hoisted
 
 onlyBuiltDependencies:
