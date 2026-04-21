@@ -1,7 +1,7 @@
 set :application, "open_project"
 set :user, "open_project"
 set :nginx_use_ssl, true
-set :branch, :new_dev
+set :branch, :ai_dev
 set :rails_env, "production"
 set :puma_service_unit_name, :puma_ppp
 set :puma_systemctl_user, :system
