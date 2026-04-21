@@ -17,6 +17,10 @@
           "builder": "@angular-builders/custom-esbuild:application",
           "options": {
             "plugins": ["./esbuild/plugins.ts"],
+            "externalDependencies": [
+              "fs",
+              "path"
+            ],
             "allowedCommonJsDependencies": [
               "dom-plane",
               "pako",
@@ -114,7 +118,13 @@
         "serve": {
           "builder": "@angular-builders/custom-esbuild:dev-server",
           "options": {
-            "servePath": "/assets/frontend"
+            "servePath": "/assets/frontend",
+            "prebundle": {
+              "exclude": [
+                "@xeokit/xeokit-bim-viewer",
+                "@xeokit/xeokit-sdk"
+              ]
+            }
           },
           "configurations": {
             "production": {
