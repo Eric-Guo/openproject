@@ -141,8 +141,8 @@ importers:
         specifier: ^6.0.22
         version: 6.0.22(react@19.2.5)
       '@mixtint/primer-view-components':
-        specifier: 0.74.1
-        version: 0.74.1(@primer/primitives@11.7.1)
+        specifier: 0.84.3
+        version: 0.84.3(@primer/primitives@11.7.1)
       '@ng-select/ng-option-highlight':
         specifier: ^21.8.2
         version: 21.8.2(@angular/common@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -155,9 +155,6 @@ importers:
       '@openproject/octicons-angular':
         specifier: ^19.34.0
         version: 19.34.0(@angular/common@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))
-      '@openproject/primer-view-components':
-        specifier: ^0.84.5
-        version: 0.84.5(@primer/primitives@11.7.1)
       '@openproject/reactivestates':
         specifier: ^3.0.1
         version: 3.0.1(rxjs@7.8.2)
@@ -171,8 +168,8 @@ importers:
         specifier: ^11.7.1
         version: 11.7.1
       '@primer/view-components':
-        specifier: npm:@openproject/primer-view-components@^0.84.5
-        version: '@openproject/primer-view-components@0.84.5(@primer/primitives@11.7.1)'
+        specifier: npm:@mixtint/primer-view-components@^0.84.3
+        version: '@mixtint/primer-view-components@0.84.3(@primer/primitives@11.7.1)'
       '@rails/request.js':
         specifier: ^0.0.13
         version: 0.0.13
@@ -1913,9 +1910,6 @@ packages:
   '@github/mini-throttle@2.1.1':
     resolution: {integrity: sha512-KtOPaB+FiKJ6jcKm9UKyaM5fPURHGf+xcp+b4Mzoi81hOc6M1sIGpMZMAVbNzfa2lW5+RPGKq888Px0j76OZ/A==}
 
-  '@github/relative-time-element@4.5.1':
-    resolution: {integrity: sha512-uxCxCwe9vdwUDmRmM84tN0UERlj8MosLV44+r/VDj7DZUVUSTP4vyWlE9mRK6vHelOmT8DS3RMlaMrLlg1h1PQ==}
-
   '@github/relative-time-element@5.0.0':
     resolution: {integrity: sha512-L/2r0DNR/rMbmHWcsdmhtOiy2gESoGOhItNFD4zJ3nZfHl79Dx3N18Vfx/pYr2lruMOdk1cJZb4wEumm+Dxm1w==}
 
@@ -2441,8 +2435,8 @@ packages:
   '@mdx-js/util@1.6.22':
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
 
-  '@mixtint/primer-view-components@0.74.1':
-    resolution: {integrity: sha512-09kxhv0V4EY7d5A6Hl3bVjaIpou0tWHx/ZGSWV7Kuy1228EEmcI6lpKLcn7GjSSZRVbd4puldR4d9STQD1dLLg==}
+  '@mixtint/primer-view-components@0.84.3':
+    resolution: {integrity: sha512-E1ujDWp6B9BgqlnNFA2wkjQjVEpM1I/+T2iTu7kugvRv2RFjq9bNkOYyxOAPgrLgyvqlLa/qtkV+++SkA39rAw==}
     peerDependencies:
       '@primer/primitives': 10.x || 11.x
 
@@ -2681,11 +2675,6 @@ packages:
     peerDependencies:
       '@angular/common': '>=19.0.0 <21.0.0'
       '@angular/core': '>=19.0.0 <21.0.0'
-
-  '@openproject/primer-view-components@0.84.5':
-    resolution: {integrity: sha512-Q2rliK0PC37nku6blaRvlqGuh3WJS5hr7sqdHDvdzUUBoerigRHrNsg3kNy4tUEduAcEaRpsGRGkF1z0LLo2Gw==}
-    peerDependencies:
-      '@primer/primitives': 10.x || 11.x
 
   '@openproject/reactivestates@3.0.1':
     resolution: {integrity: sha512-Ov9TyxGCDSPU6Uv83bUN7dEn8ntAZsFAioPtZ0F6ZBJ+OU7NS7raDz/5gGjbmk8ESRcmcZvWSmncRHG2rj74Fw==}
@@ -8788,7 +8777,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2102.9
-      '@angular-devkit/build-webpack': 0.2102.9(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3)))(webpack@5.105.2(esbuild@0.27.3))
+      '@angular-devkit/build-webpack': 0.2102.9(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.105.2))(webpack@5.105.2(esbuild@0.27.3))
       '@angular-devkit/core': 21.2.9
       '@angular/build': 21.2.9(@angular/compiler-cli@21.2.11(@angular/compiler@21.2.11)(typescript@5.9.3))(@angular/compiler@21.2.11)(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.11(@angular/animations@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(jiti@2.6.1)(karma@6.4.4)(less@4.4.2)(postcss@8.5.12)(terser@5.46.0)(tslib@2.8.1)(typescript@5.9.3)(vitest@4.1.4(@types/node@25.6.0)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)))
       '@angular/compiler-cli': 21.2.11(@angular/compiler@21.2.11)(typescript@5.9.3)
@@ -8838,7 +8827,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
       webpack: 5.105.2(esbuild@0.27.3)
-      webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3))
+      webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.105.2)
       webpack-dev-server: 5.2.3(tslib@2.4.1)(webpack@5.105.2)
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.105.2(esbuild@0.27.3))
@@ -8872,7 +8861,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@angular-devkit/build-webpack@0.2102.9(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3)))(webpack@5.105.2(esbuild@0.27.3))':
+  '@angular-devkit/build-webpack@0.2102.9(webpack-dev-server@5.2.3(tslib@2.8.1)(webpack@5.105.2))(webpack@5.105.2(esbuild@0.27.3))':
     dependencies:
       '@angular-devkit/architect': 0.2102.9
       rxjs: 7.8.2
@@ -10459,8 +10448,6 @@ snapshots:
 
   '@github/mini-throttle@2.1.1': {}
 
-  '@github/relative-time-element@4.5.1': {}
-
   '@github/relative-time-element@5.0.0': {}
 
   '@github/remote-input-element@0.4.0': {}
@@ -11036,7 +11023,7 @@ snapshots:
 
   '@mdx-js/util@1.6.22': {}
 
-  '@mixtint/primer-view-components@0.74.1(@primer/primitives@11.7.1)':
+  '@mixtint/primer-view-components@0.84.3(@primer/primitives@11.7.1)':
     dependencies:
       '@github/auto-check-element': 6.0.0
       '@github/auto-complete-element': 3.8.0
@@ -11045,7 +11032,7 @@ snapshots:
       '@github/details-menu-element': 1.0.13
       '@github/image-crop-element': 5.0.0
       '@github/include-fragment-element': 6.4.1
-      '@github/relative-time-element': 4.5.1
+      '@github/relative-time-element': 5.0.0
       '@github/remote-input-element': 0.4.0
       '@github/tab-container-element': 3.4.0
       '@oddbird/popover-polyfill': 0.5.2
@@ -11261,23 +11248,6 @@ snapshots:
       '@angular/common': 21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
-
-  '@openproject/primer-view-components@0.84.5(@primer/primitives@11.7.1)':
-    dependencies:
-      '@github/auto-check-element': 6.0.0
-      '@github/auto-complete-element': 3.8.0
-      '@github/catalyst': 1.8.1
-      '@github/clipboard-copy-element': 1.3.0
-      '@github/details-menu-element': 1.0.13
-      '@github/image-crop-element': 5.0.0
-      '@github/include-fragment-element': 6.4.1
-      '@github/relative-time-element': 5.0.0
-      '@github/remote-input-element': 0.4.0
-      '@github/tab-container-element': 3.4.0
-      '@oddbird/popover-polyfill': 0.5.2
-      '@primer/behaviors': 1.10.2
-      '@primer/live-region-element': 0.8.0
-      '@primer/primitives': 11.7.1
 
   '@openproject/reactivestates@3.0.1(rxjs@7.8.2)':
     dependencies:
@@ -17968,7 +17938,7 @@ snapshots:
 
   web-namespaces@2.0.1: {}
 
-  webpack-dev-middleware@7.4.5(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3)):
+  webpack-dev-middleware@7.4.5(tslib@2.8.1)(webpack@5.105.2):
     dependencies:
       colorette: 2.0.20
       memfs: 4.57.2(tslib@2.8.1)
@@ -18009,7 +17979,7 @@ snapshots:
       serve-index: 1.9.2
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3))
+      webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.105.2)
       ws: 8.20.0
     optionalDependencies:
       webpack: 5.105.2(esbuild@0.27.3)
