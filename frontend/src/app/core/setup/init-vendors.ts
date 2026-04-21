@@ -50,7 +50,7 @@ import 'mark.js/dist/jquery.mark.min';
 
 import 'moment-timezone/builds/moment-timezone-with-data.min';
 // eslint-disable-next-line import/extensions,import/no-extraneous-dependencies
-import '@openproject/primer-view-components/app/assets/javascripts/primer_view_components.js';
+import '@mixtint/primer-view-components/app/assets/javascripts/primer_view_components.js';
 
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
