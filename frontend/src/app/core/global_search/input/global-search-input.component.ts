@@ -61,6 +61,10 @@ interface SearchResultItems {
   term:string;
 }
 
+interface NgSelectSearchState {
+  set(searchTerm:string|null):void;
+}
+
 @Component({
   selector: 'opce-global-search',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -118,6 +122,7 @@ export class GlobalSearchInputComponent implements AfterViewInit, OnDestroy {
   public isFocusedDirectly = !!this.currentQuery && this.selectedItem instanceof HalResource;
 
   public liveMessage = '';
+  private searchTermValue = '';
 
   private unregisterGlobalListener:(() => unknown)|undefined;
 
@@ -149,8 +154,7 @@ export class GlobalSearchInputComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit():void {
     // check searchterm on init, expand / collapse search bar and set correct classes
-    this.searchTerm = this.currentQuery || '';
-    this.currentValue = '';
+    this.searchTerm = this.currentQuery ?? '';
     this.toggleTopMenuClass();
   }
 
@@ -159,11 +163,29 @@ export class GlobalSearchInputComponent implements AfterViewInit, OnDestroy {
   }
 
   public set searchTerm(searchTerm:string) {
-    this.ngSelectComponent.ngSelectInstance.filter(searchTerm);
+    const ngSelect = this.ngSelectComponent.ngSelectInstance;
+    const currentTerm = this.searchTerm;
+    if (currentTerm === searchTerm) {
+      return;
+    }
+
+    // Keep ng-select's search state in sync without calling filter(), which opens the dropdown.
+    this.searchTermValue = searchTerm;
+    this.currentValue = searchTerm;
+    const searchState = (ngSelect as unknown as { '_searchTerm'?:NgSelectSearchState })['_searchTerm'];
+    searchState?.set(searchTerm);
+
+    const searchInputRef = ngSelect.searchInput?.();
+    if (searchInputRef?.nativeElement) {
+      searchInputRef.nativeElement.value = searchTerm;
+    }
+
+    this.ngSelectComponent.typeahead?.next(searchTerm);
   }
 
   public get searchTerm():string {
-    return this.ngSelectComponent.ngSelectInstance.searchTerm;
+    const ngSelect = this.ngSelectComponent?.ngSelectInstance;
+    return ngSelect?.searchTerm ?? ngSelect?.searchInput?.()?.nativeElement?.value ?? this.searchTermValue;
   }
 
   public set markable(value:boolean) {
