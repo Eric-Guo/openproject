@@ -80,9 +80,7 @@ Rails.application.config.after_initialize do
         connect_src += ["https://appsignal-endpoint.net"]
       end
 
-      if ENV["CSP_CONNECT_SRC"].present?
-        connect_src << ENV["CSP_CONNECT_SRC"]
-      end
+      connect_src << "https://analytics.thape.com.cn"
 
       # Allow connections to S3 for BIM
       if OpenProject::Configuration.fog_directory.present?
