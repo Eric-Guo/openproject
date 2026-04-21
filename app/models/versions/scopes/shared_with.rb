@@ -56,7 +56,7 @@ module Versions::Scopes
       end
 
       def shared_versions_by_tree(project)
-        root = project.root? ? project : project.root
+        root = project.root || project
 
         includes(:project)
           .merge(Project.active)
