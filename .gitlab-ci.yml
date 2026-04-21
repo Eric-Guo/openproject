@@ -28,7 +28,7 @@ deploy_staging:
     name: staging
     url: https://plm-ppp.thape.com.cn
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "new_dev"'
+    - if: '$CI_COMMIT_REF_NAME == "ai_dev"'
 
 deploy_production:
   cache:
@@ -49,4 +49,4 @@ deploy_production:
     url: https://plm.thape.com.cn
   when: manual
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "new_prod"'
+    - if: '$CI_COMMIT_REF_NAME == "ai_prod"'
