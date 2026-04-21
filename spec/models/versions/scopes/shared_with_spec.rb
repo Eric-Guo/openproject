@@ -178,6 +178,13 @@ RSpec.describe Versions::Scopes::SharedWith do
             .to be_empty
         end
       end
+
+      it "falls back to the current project if the root cannot be resolved" do
+        allow(project).to receive(:root).and_return(nil)
+
+        expect(Version.shared_with(project))
+          .to contain_exactly(version)
+      end
     end
 
     context "with the version being shared with system" do
