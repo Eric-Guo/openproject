@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.19.0"
+lock "~> 3.20.1"
 
 set :repo_url, "https://git.thape.com.cn/rails/openproject.git"
 
@@ -39,7 +39,7 @@ append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemo
 
 set :pnpm_flags, "--silent"
 set :rbenv_type, :user
-set :rbenv_ruby, "3.4.7"
+set :rbenv_ruby, "4.0.2"
 
 set :puma_init_active_record, true
 
