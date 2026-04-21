@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 87e45cac59d6788e2ad59c3949dfd8570ad369d6
+  revision: 2daa4f468c8c0ae387cae8ed41c9384459ff2f01
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -8,14 +8,14 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
-  revision: 68b948dda98bd29ca50063e1dfdfccfe356fe959
+  revision: d041b2b56d23f27c59fbb4ee478d4a850fcb4cf6
   branch: main
   specs:
     openproject-th_meetings (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
-  revision: 3b01eccfba506a60dea8dd62460223f4fb854b20
+  revision: 6626e522f2cc61bd27f0b7c6a11000625d73fad2
   branch: main
   specs:
     openproject-th_notifications (1.0.0)
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 6f4f140b9f8b9bf41794388e7a2320d1822302ce
+  revision: 22bde43aced4e64d54c2efabda262cfd96ea37b4
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -33,28 +33,28 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: 3f13658c99aa042df39289cba6c6f7b016e4a062
+  revision: ea12ce49b08cdaff5b0f1cb97d12a1dd9b3db176
   branch: main
   specs:
     openproject-th_projects (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_queries.git
-  revision: 3da60b66a32a3069ba792c86df7f6a8ace6568f3
+  revision: 544ff82b5e3708ec6af675efe69536a179244fd3
   branch: main
   specs:
     openproject-th_queries (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_user_auth.git
-  revision: 3af285f4305f0b7cb0b22a1ba3922f5a8ac31566
+  revision: c1a33b24eafa6d3025a123d3076f2c1813e41e60
   branch: main
   specs:
     openproject-th_user_auth (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
-  revision: 5284513009ea7a97d15f136cced8200d0c72e5bc
+  revision: 8b16e7ca0abd00b88c4e01c30e41a23e1f0f1ebb
   branch: main
   specs:
     openproject-th_work_packages (1.0.0)
@@ -62,13 +62,13 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: b2cd695de07f58ccd2000bc6dd481aa8762636b3
+  revision: c20259932bebbf3ffbd67a8098a77e8d5d09bda4
   branch: thape
   specs:
-    openproject-primer_view_components (0.84.1)
+    openproject-primer_view_components (0.84.3)
       actionview (>= 7.2.0)
       activesupport (>= 7.2.0)
-      openproject-octicons (>= 19.30.1)
+      openproject-octicons (>= 19.33.0)
       view_component (>= 3.1, < 5.0)
 
 GIT
@@ -649,7 +649,7 @@ GEM
       activemodel
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
-    erb (6.0.3)
+    erb (6.0.4)
     erb_lint (0.9.0)
       activesupport
       better_html (>= 2.0.1)
@@ -872,7 +872,7 @@ GEM
       nokogiri (>= 1.6)
     interception (0.5)
     io-console (0.8.2)
-    irb (1.17.0)
+    irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
@@ -1042,10 +1042,10 @@ GEM
       validate_email
       validate_url
       webfinger (~> 2.0)
-    openproject-octicons (19.32.1)
-    openproject-octicons_helper (19.32.1)
+    openproject-octicons (19.34.0)
+    openproject-octicons_helper (19.34.0)
       actionview
-      openproject-octicons (= 19.32.1)
+      openproject-octicons (= 19.34.0)
       railties
     openproject-token (8.8.2)
       activemodel
@@ -1853,8 +1853,8 @@ DEPENDENCIES
   openproject-labour_tracking!
   openproject-ldap_groups!
   openproject-meeting!
-  openproject-octicons (~> 19.32.0)
-  openproject-octicons_helper (~> 19.32.0)
+  openproject-octicons (~> 19.34.0)
+  openproject-octicons_helper (~> 19.34.0)
   openproject-openid_connect!
   openproject-primer_view_components!
   openproject-recaptcha!
@@ -2101,7 +2101,7 @@ CHECKSUMS
   em-synchrony (1.0.6) sha256=6e7470a684d9bbc00d61d552911b65711540bd89e95c157156f5aacdd6f306ca
   email_validator (2.2.4) sha256=5ab238095bec7aef9389f230e9e0c64c5081cdf91f19d6c5cecee0a93af20604
   equivalent-xml (0.6.0) sha256=8919761efa848ad0846369ff8be1f646b17e5061698c4867b09829000cc3f487
-  erb (6.0.3) sha256=e43685a8a0a0ea6a924871b2162e8953ef73147ce46b75b36d1f6774fd286e91
+  erb (6.0.4) sha256=38e3803694be357fe2bfe312487c74beaf9fb4e5beb3e22498952fe1645b95d9
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
   erblint-github (1.0.1) sha256=9f28f7dc381a0dc68a0093ef7af3424ed9d2bb2b3e39bdc8e8cba86a0d31f2d0
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
@@ -2188,7 +2188,7 @@ CHECKSUMS
   inline_svg (1.10.0) sha256=5b652934236fd9f8adc61f3fd6e208b7ca3282698b19f28659971da84bf9a10f
   interception (0.5) sha256=a53818d636752a8df90d8c1bb2f7b6e13a7b828543cb02b50fbde98b849d7907
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
-  irb (1.17.0) sha256=168c4ddb93d8a361a045c41d92b2952c7a118fa73f23fe14e55609eb7a863aae
+  irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   iso8601 (0.13.0) sha256=298c2b15b7be5fa95a1372813d36a2257656cd8e906dfbc1f5cb409851425aa2
   jbuilder (2.14.1) sha256=4eb26376ff60ef100cb4fd6fd7533cd271f9998327e86adf20fd8c0e69fabb42
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
@@ -2275,10 +2275,10 @@ CHECKSUMS
   openproject-labour_tracking (0.0.2)
   openproject-ldap_groups (1.0.0)
   openproject-meeting (1.0.0)
-  openproject-octicons (19.32.1) sha256=32253f3256ad4e1aec36442558ce140623c01e5241d9b90f6eb6d317f462781e
-  openproject-octicons_helper (19.32.1) sha256=7676059927ae940170fb13d62f88b885985a3f0d483e1bb246475afcffd90f8f
+  openproject-octicons (19.34.0) sha256=4efe8a58a2d8051b79c94b37e9a7f04fd242a4da12b50f027c3c7f441a042adc
+  openproject-octicons_helper (19.34.0) sha256=12eb7af2214e21631369c76464ebaa30de788e1074c4b3bd0fcef7e74cb9edb4
   openproject-openid_connect (1.0.0)
-  openproject-primer_view_components (0.84.1)
+  openproject-primer_view_components (0.84.3)
   openproject-recaptcha (1.0.0)
   openproject-reporting (1.0.0)
   openproject-storages (1.0.0)
