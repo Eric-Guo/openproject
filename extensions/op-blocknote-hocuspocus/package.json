@@ -25,21 +25,21 @@
   "dependencies": {
     "@blocknote/server-util": "^0.44.2",
     "@hocuspocus/extension-logger": "^3.4.4",
-    "@hocuspocus/server": "^3.4.0",
+    "@hocuspocus/server": "^3.4.4",
     "op-blocknote-extensions": "https://github.com/opf/op-blocknote-extensions/releases/download/v0.0.18/op-blocknote-extensions-0.0.18.tgz",
     "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@blocknote/core": "^0.44.2",
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^9.39.4",
     "@eslint/json": "^0.14.0",
-    "@stylistic/eslint-plugin": "^5.3.1",
-    "@types/node": "^25.0.2",
-    "eslint": "^9.35.0",
-    "globals": "^17.3.0",
-    "msw": "^2.12.7",
-    "typescript-eslint": "^8.48.1",
-    "vitest": "^4.0.15"
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^25.6.2",
+    "eslint": "^9.39.4",
+    "globals": "^17.6.0",
+    "msw": "^2.14.5",
+    "typescript-eslint": "^8.59.2",
+    "vitest": "^4.1.5"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@11.0.9"
 }

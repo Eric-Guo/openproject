@@ -38,7 +38,7 @@ GEM
     net-ssh (7.3.2)
     nio4r (2.7.5)
     ostruct (0.6.3)
-    puma (8.0.0)
+    puma (8.0.1)
       nio4r (~> 2.0)
     rake (13.4.2)
     sshkit (1.25.0)
@@ -64,4 +64,4 @@ DEPENDENCIES
   ed25519
 
 BUNDLED WITH
-  4.0.10
+  4.0.11
