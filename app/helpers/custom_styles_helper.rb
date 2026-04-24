@@ -213,7 +213,7 @@ module CustomStylesHelper
   end
 
   def default_logo_urls
-    desktop_light = asset_path(I18n.locale == :ru ? "logo-white-bg-ua.png" : "logo_plm.png")
+    desktop_light = asset_path(I18n.locale == :ru ? "logo-white-bg-ua.png" : "logo_plm_white.png")
     desktop_light_high_contrast = asset_path(I18n.locale == :ru ? "logo-black-bg-ua.png" : "logo_plm.png")
     mobile_white = asset_path("icon_logo_white.svg")
 
