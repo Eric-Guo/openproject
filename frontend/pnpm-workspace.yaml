@@ -6,6 +6,7 @@ allowBuilds:
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+  th-analytics: true
 
 nodeLinker: hoisted
 
