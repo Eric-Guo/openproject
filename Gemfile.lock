@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
-  revision: 3b01eccfba506a60dea8dd62460223f4fb854b20
+  revision: 19eb825f3923e1a620e30db4ce70ae7d034198bc
   branch: main
   specs:
     openproject-th_notifications (1.0.0)
