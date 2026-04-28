@@ -47,8 +47,7 @@ class McpConfigurationSeeder < Seeder
   def seed_server_config
     McpConfiguration.create!(
       identifier: McpConfiguration::SERVER_CONFIGURATION_IDENTIFIER,
-      title: Setting.app_title,
-      description: "Performs project management tasks on the given installation of OpenProject.",
+      **McpConfiguration.server_config_defaults,
       enabled: true
     )
   end

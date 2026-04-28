@@ -30,10 +30,20 @@
 
 class McpConfiguration < ApplicationRecord
   SERVER_CONFIGURATION_IDENTIFIER = "mcp_server"
+  SERVER_CONFIGURATION_DESCRIPTION = "Performs project management tasks on the given installation of OpenProject."
 
   class << self
     def server_config
-      McpConfiguration.find_or_initialize_by(identifier: SERVER_CONFIGURATION_IDENTIFIER)
+      McpConfiguration.find_or_initialize_by(identifier: SERVER_CONFIGURATION_IDENTIFIER) do |config|
+        config.assign_attributes(server_config_defaults)
+      end
+    end
+
+    def server_config_defaults
+      {
+        title: Setting.app_title,
+        description: SERVER_CONFIGURATION_DESCRIPTION
+      }
     end
   end
 end
