@@ -46,6 +46,10 @@ module Projects
           @project = project
           @current_user = current_user
         end
+
+        def project_profile_available?
+          project.respond_to?(:profile) && project.module_enabled?("th_projects")
+        end
       end
     end
   end
