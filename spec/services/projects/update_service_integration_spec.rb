@@ -59,6 +59,33 @@ RSpec.describe Projects::UpdateService, "integration", type: :model do
   end
 
   describe "#call" do
+    context "with project profile attributes" do
+      let(:user) { create(:admin) }
+      let(:profile_code) { "TH#{project.id}PROFILE" }
+      let(:attributes) do
+        {
+          profile_attributes: {
+            type_id: 3,
+            name: "TH Project",
+            code: profile_code,
+            doc_link: "https://example.com/doc"
+          }
+        }
+      end
+
+      current_user { user }
+
+      it "creates the project profile" do
+        expect(service_result).to be_success
+
+        profile = project.reload.profile
+        expect(profile.type_id).to eq(3)
+        expect(profile.name).to eq("TH Project")
+        expect(profile.code).to eq(profile_code)
+        expect(profile.doc_link).to eq("https://example.com/doc")
+      end
+    end
+
     context "if only a custom field is updated" do
       let(:attributes) do
         { custom_field.attribute_name => 8 }
