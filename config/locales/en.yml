@@ -2043,6 +2043,9 @@ en:
           title: "No labels match your search"
 
     mcp_configurations:
+      create:
+        failure: "MCP configuration could not be updated."
+        success: "MCP configuration was updated successfully."
       index:
         description: "The model context protocol allows AI agents to provide its users with tools and resources exposed by this OpenProject instance. This feature is still in beta."
         resources_description: "OpenProject implements the following resources. Each can be enabled, renamed and described as you want. For more information, please refer to the [documentation on MCP resources](docs_url)."
