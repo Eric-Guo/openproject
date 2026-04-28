@@ -61,9 +61,36 @@ RSpec.describe Projects::Settings::General::ShowComponent, type: :component do
     it_behaves_like "section with heading", "Basic details"
 
     it "renders fields" do
-      expect(render_component).to have_field "Name", required: true
+      expect(render_component).to have_field Project.human_attribute_name(:name), required: true
       expect(render_component).to have_element "opce-ckeditor-augmented-textarea",
                                                "data-test-selector": "augmented-text-area-description"
+    end
+
+    context "with the TH projects module enabled" do
+      let(:project) do
+        build_stubbed(:project, enabled_module_names: %w[th_projects]).tap do |project|
+          allow(project)
+            .to receive(:profile)
+            .and_return(ProjectProfile.new(type_id: 2,
+                                           name: "TH Project",
+                                           code: "TH12345",
+                                           doc_link: "https://example.com/doc"))
+        end
+      end
+
+      it "renders project profile fields" do
+        render_component
+
+        expect(page).to have_select ProjectProfile.human_attribute_name(:type_id),
+                                    selected: I18n.t("activerecord.attributes.project_profile.type_id_list.2")
+        expect(page).to have_field ProjectProfile.human_attribute_name(:name), with: "TH Project"
+        expect(page).to have_field ProjectProfile.human_attribute_name(:code), with: "TH12345"
+        expect(page).to have_field ProjectProfile.human_attribute_name(:doc_link), with: "https://example.com/doc"
+        expect(page).to have_select nil, name: "project[profile_attributes][type_id]"
+        expect(page).to have_field nil, name: "project[profile_attributes][name]"
+        expect(page).to have_field nil, name: "project[profile_attributes][code]"
+        expect(page).to have_field nil, name: "project[profile_attributes][doc_link]"
+      end
     end
   end
 
@@ -81,7 +108,7 @@ RSpec.describe Projects::Settings::General::ShowComponent, type: :component do
 
     it "renders a Change identifier button" do
       render_component
-      expect(page.find(:section, "Identifier")).to have_link "Change identifier"
+      expect(page.find(:section, I18n.t(:label_identifier))).to have_link I18n.t("projects.settings.change_identifier")
     end
   end
 
