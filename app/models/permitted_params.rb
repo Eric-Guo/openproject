@@ -297,6 +297,7 @@ class PermittedParams
                                                 :status_code,
                                                 :status_explanation,
                                                 enabled_module_names: [],
+                                                profile_attributes: %i[type_id name code doc_link],
                                                 custom_comments: {})
 
     whitelist
