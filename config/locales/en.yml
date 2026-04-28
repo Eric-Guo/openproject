@@ -364,6 +364,9 @@ en:
         tools_submit: "Update tools"
       multi_update:
         success: "MCP configurations were updated successfully."
+      create:
+        failure: "MCP configuration could not be updated."
+        success: "MCP configuration was updated successfully."
       server_form:
         description_caption: "How the MCP server will be described to other applications who connect to it."
         title_caption: "A short title shown to applications that connect to the MCP server."
