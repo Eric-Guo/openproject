@@ -317,6 +317,33 @@ RSpec.describe PermittedParams do
 
       it_behaves_like "allows params"
     end
+
+    describe "project profile attributes" do
+      let(:hash) do
+        {
+          "profile_attributes" => {
+            "type_id" => "3",
+            "name" => "TH Project",
+            "code" => "TH12345",
+            "doc_link" => "https://example.com/doc",
+            "evil" => "true"
+          }
+        }
+      end
+
+      let(:expected_permitted) do
+        {
+          "profile_attributes" => {
+            "type_id" => "3",
+            "name" => "TH Project",
+            "code" => "TH12345",
+            "doc_link" => "https://example.com/doc"
+          }
+        }
+      end
+
+      it_behaves_like "allows params"
+    end
   end
 
   describe "#new_project" do

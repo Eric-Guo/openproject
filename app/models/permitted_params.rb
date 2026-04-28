@@ -318,6 +318,7 @@ class PermittedParams
                                                 :status_explanation,
                                                 work_package_custom_field_ids: [],
                                                 enabled_module_names: [],
+                                                profile_attributes: %i[type_id name code doc_link],
                                                 custom_comments: {})
 
     whitelist
