@@ -23,27 +23,43 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-class McpConfiguration < ApplicationRecord
-  SERVER_CONFIGURATION_IDENTIFIER = "mcp_server"
-  SERVER_CONFIGURATION_DESCRIPTION = "Performs project management tasks on the given installation of OpenProject."
+require "spec_helper"
 
-  class << self
-    def server_config
-      McpConfiguration.find_or_initialize_by(identifier: SERVER_CONFIGURATION_IDENTIFIER) do |config|
-        config.assign_attributes(server_config_defaults)
-      end
+RSpec.describe "MCP configurations",
+               :skip_csrf,
+               type: :rails_request do
+  shared_let(:admin) { create(:admin) }
+
+  before do
+    login_as admin
+  end
+
+  describe "POST /admin/mcp_configurations" do
+    before do
+      McpConfiguration.where(identifier: McpConfiguration::SERVER_CONFIGURATION_IDENTIFIER).delete_all
     end
 
-    def server_config_defaults
-      {
-        title: Setting.app_title,
-        description: SERVER_CONFIGURATION_DESCRIPTION
-      }
+    it "creates the missing server configuration from the server form" do
+      expect do
+        post "/admin/mcp_configurations",
+             params: {
+               mcp_configuration: {
+                 enabled: "1"
+               }
+             }
+      end.to change(McpConfiguration, :count).by(1)
+
+      expect(response).to redirect_to(mcp_configurations_path)
+
+      server_config = McpConfiguration.find_by!(identifier: McpConfiguration::SERVER_CONFIGURATION_IDENTIFIER)
+      expect(server_config).to be_enabled
+      expect(server_config.title).to eq(Setting.app_title)
+      expect(server_config.description).to eq(McpConfiguration::SERVER_CONFIGURATION_DESCRIPTION)
     end
   end
 end

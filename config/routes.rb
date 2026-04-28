@@ -720,7 +720,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :mcp_configurations, only: %i[index update], controller: "admin/mcp_configurations" do
+    resources :mcp_configurations, only: %i[index create update], controller: "admin/mcp_configurations" do
       collection do
         post :multi_update
       end
