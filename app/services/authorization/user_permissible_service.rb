@@ -48,8 +48,8 @@ module Authorization
       permissions = contextual_permissions(permission, :project)
       return false if projects_to_check.blank?
       return false unless authorizable_user?
-      return true if perms.any? { |p| p.name == :view_members } && user.allowed_globally?(:view_all_project_info)
-      return true if perms.any? { |p| p.name == :view_project } && user.allowed_globally?(:view_all_project_info)
+      return true if permissions.any? { |p| p.name == :view_members } && user.allowed_globally?(:view_all_project_info)
+      return true if permissions.any? { |p| p.name == :view_project } && user.allowed_globally?(:view_all_project_info)
 
       Array(projects_to_check).all? do |project|
         allowed_in_single_project?(permissions, project)
