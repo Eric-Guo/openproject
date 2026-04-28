@@ -319,6 +319,7 @@ class PermittedParams
                                                 work_package_custom_field_ids: [],
                                                 type_ids: [],
                                                 enabled_module_names: [],
+                                                profile_attributes: %i[type_id name code doc_link],
                                                 custom_comments: {})
 
     whitelist
