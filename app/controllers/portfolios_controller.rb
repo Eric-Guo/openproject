@@ -33,6 +33,9 @@
 # Note that _some_ actions (such as #new) are handled by the project controller since portfolios behave mostly like
 # projects in these cases.
 class PortfoliosController < ProjectsController
+  skip_before_action :authorize_global, only: %i[index]
+  authorization_checked! :index
+
   before_action :authorize_portfolio_access, only: %i[index]
 
   skip_before_action :load_query_or_deny_access # skip using the superclass's before action because the next must be called first
