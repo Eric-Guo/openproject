@@ -45,6 +45,18 @@ module Admin
       @resource_configs = McpConfiguration.where(identifier: McpResources.resources_by_name.keys).order(identifier: :asc)
     end
 
+    def create
+      config = McpConfiguration.server_config
+      if config.update(mcp_config_params)
+        update_tool_response_format
+        flash[:notice] = t(".success")
+      else
+        flash[:error] = t(".failure")
+      end
+
+      redirect_to action: :index
+    end
+
     def update
       config = McpConfiguration.find(params[:id])
       if config.update(mcp_config_params)
