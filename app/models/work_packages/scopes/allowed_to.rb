@@ -44,7 +44,7 @@ module WorkPackages::Scopes
 
         if user.admin? && permissions.all?(&:grant_to_admin?)
           admin_allowed_to(permissions)
-        elsif user.allowed_globally?(:view_all_project_info)
+        elsif user.allowed_globally?(:view_all_project_info) && permissions.all?(&:grant_to_admin?)
           all
         elsif user.anonymous?
           anonymous_allowed_to(user, permissions)
