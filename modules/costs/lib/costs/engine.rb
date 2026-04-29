@@ -263,6 +263,27 @@ module Costs
         }
       end
 
+      link :showSpentTime,
+           cache_if: -> { spent_time_report_visible? } do
+        next unless represented.persisted? && represented.project&.costs_enabled?
+
+        {
+          href: cost_reports_path(represented.project_id,
+                                  fields: %w[WorkPackageId ProjectId],
+                                  operators: {
+                                    WorkPackageId: "=_child_work_packages",
+                                    ProjectId: "="
+                                  },
+                                  values: {
+                                    WorkPackageId: represented.id,
+                                    ProjectId: represented.project_id
+                                  },
+                                  set_filter: 1),
+          type: "text/html",
+          title: "Show spent time"
+        }
+      end
+
       property :labor_costs,
                exec_context: :decorator,
                if: ->(*) { labor_costs_visible? },
