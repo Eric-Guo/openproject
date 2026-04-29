@@ -77,6 +77,12 @@ module API::V3::CostsApiUserPermissionCheck
         current_user.allowed_in_work_package?(:log_own_time, represented)
   end
 
+  def spent_time_report_visible?
+    current_user.admin? ||
+      current_user.allowed_globally?(:view_all_project_info) ||
+      current_user.allowed_in_project?(:view_th_budget, represented.project)
+  end
+
   private
 
   # Unit costs (material, overall total and costs by type) are meaningless without

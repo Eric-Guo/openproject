@@ -26,23 +26,19 @@
 //++
 
 import { withTooltip } from 'core-app/shared/helpers/tooltip-helper';
-import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
-import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
-import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
-import URI from 'urijs';
-import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
+import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
 import { WorkDisplayField } from 'core-app/shared/components/fields/display/field-types/work-display-field.module';
+import { CallableHalLink } from 'core-app/features/hal/hal-link/hal-link';
+
+type WorkPackageWithSpentTimeLink = WorkPackageResource&{
+  showSpentTime?:CallableHalLink;
+};
 
 export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
   public text = {
     linkTitle: this.I18n.t('js.work_packages.message_view_spent_time'),
     logTime: this.I18n.t('js.button_log_time'),
   };
-
-  @LazyInject() PathHelper:PathHelperService;
-
-  @LazyInject() apiV3Service:ApiV3Service;
-
 
   public render(element:HTMLElement, displayText:string):void {
     if (!this.value) {
@@ -61,25 +57,9 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
       link.setAttribute('class', 'time-logging--value');
     }
 
-    if (this.resource.project && this.resource.id) {
-      const wpID = this.resource.id.toString();
-      this.apiV3Service.projects
-        .id(this.resource.project as ProjectResource)
-        .get()
-        .subscribe((project:ProjectResource) => {
-          // Link to the cost report having the work package filter preselected. No grouping.
-          const href = URI(
-            this.PathHelper.projectTimeEntriesPath(
-              project.identifier,
-            ),
-          )
-            .search(
-              `fields[]=WorkPackageId&operators[WorkPackageId]=%3D_child_work_packages&values[WorkPackageId]=${wpID}&fields[]=ProjectId&operators[ProjectId]=%3D&values[ProjectId]=${project.id}&set_filter=1`,
-            )
-            .toString();
-
-          link.href = href;
-        });
+    const showSpentTime = (this.resource as WorkPackageWithSpentTimeLink).showSpentTime;
+    if (showSpentTime?.href) {
+      link.href = showSpentTime.href;
     }
 
     element.innerHTML = '';
@@ -96,7 +76,6 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
       timelogElement.setAttribute('target', 'th_keyin');
 
       element.appendChild(withTooltip(timelogElement, this.text.logTime, 'label'));
-
     }
   }
 }
