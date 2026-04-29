@@ -141,8 +141,8 @@ importers:
         specifier: ^6.0.22
         version: 6.0.22(react@19.2.5)
       '@mixtint/primer-view-components':
-        specifier: 0.84.3
-        version: 0.84.3(@primer/primitives@11.7.1)
+        specifier: 0.84.5
+        version: 0.84.5(@primer/primitives@11.7.1)
       '@ng-select/ng-option-highlight':
         specifier: ^21.8.2
         version: 21.8.2(@angular/common@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -168,8 +168,8 @@ importers:
         specifier: ^11.7.1
         version: 11.7.1
       '@primer/view-components':
-        specifier: npm:@mixtint/primer-view-components@^0.84.3
-        version: '@mixtint/primer-view-components@0.84.3(@primer/primitives@11.7.1)'
+        specifier: npm:@mixtint/primer-view-components@^0.84.5
+        version: '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)'
       '@rails/request.js':
         specifier: ^0.0.13
         version: 0.0.13
@@ -2435,8 +2435,8 @@ packages:
   '@mdx-js/util@1.6.22':
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
 
-  '@mixtint/primer-view-components@0.84.3':
-    resolution: {integrity: sha512-E1ujDWp6B9BgqlnNFA2wkjQjVEpM1I/+T2iTu7kugvRv2RFjq9bNkOYyxOAPgrLgyvqlLa/qtkV+++SkA39rAw==}
+  '@mixtint/primer-view-components@0.84.5':
+    resolution: {integrity: sha512-7OGohXRT7jBTU8SZEhXWsLIEaUcmJY7pqaWdCp5IoMoHVc8IlkruMt9IVJBSmOGV5Vs4s9Lc5gtLVw66I3ku5g==}
     peerDependencies:
       '@primer/primitives': 10.x || 11.x
 
@@ -11023,7 +11023,7 @@ snapshots:
 
   '@mdx-js/util@1.6.22': {}
 
-  '@mixtint/primer-view-components@0.84.3(@primer/primitives@11.7.1)':
+  '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)':
     dependencies:
       '@github/auto-check-element': 6.0.0
       '@github/auto-complete-element': 3.8.0
