@@ -5,7 +5,7 @@
     [disabled]="loading"
     (click)="syncParentWatchers()"
   >
-    <span class="spot-icon spot-icon_redo" [ngClass]="{ 'loading': loading }"></span>
+    <svg redo-icon size="small" [ngClass]="{ loading: loading }" />
     同步父级
   </button>
   <button
@@ -13,7 +13,7 @@
     [disabled]="loading"
     (click)="openMembersModal()"
   >
-    <span class="spot-icon spot-icon_add"></span>
+    <svg plus-icon size="small" />
     按项目成员添加
   </button>
 </div>
