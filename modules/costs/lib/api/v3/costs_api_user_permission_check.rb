@@ -20,6 +20,12 @@ module API::V3::CostsApiUserPermissionCheck
     view_time_entries_allowed?
   end
 
+  def spent_time_report_visible?
+    current_user.admin? ||
+      current_user.allowed_globally?(:view_all_project_info) ||
+      current_user.allowed_in_project?(:view_th_budget, represented.project)
+  end
+
   private
 
   def user_has_hourly_rate_permissions?
