@@ -27,14 +27,17 @@
 //++
 
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
-import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
-import URI from 'urijs';
 import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
 import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { WorkDisplayField } from 'core-app/shared/components/fields/display/field-types/work-display-field.module';
 import moment from 'moment-timezone';
 import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
+import { CallableHalLink } from 'core-app/features/hal/hal-link/hal-link';
+
+type WorkPackageWithSpentTimeLink = WorkPackageResource&{
+  showSpentTime?:CallableHalLink;
+};
 
 export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
   public text = {
@@ -69,25 +72,9 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
       link.setAttribute('class', 'time-logging--value');
     }
 
-    if (this.resource.project && this.resource.id) {
-      const wpID = this.resource.id.toString();
-      this.apiV3Service.projects
-        .id(this.resource.project as ProjectResource)
-        .get()
-        .subscribe((project:ProjectResource) => {
-          // Link to the cost report having the work package filter preselected. No grouping.
-          const href = URI(
-            this.PathHelper.projectTimeEntriesPath(
-              project.identifier,
-            ),
-          )
-            .search(
-              `fields[]=WorkPackageId&operators[WorkPackageId]=%3D_child_work_packages&values[WorkPackageId]=${wpID}&fields[]=ProjectId&operators[ProjectId]=%3D&values[ProjectId]=${project.id}&set_filter=1`,
-            )
-            .toString();
-
-          link.href = href;
-        });
+    const showSpentTime = (this.resource as WorkPackageWithSpentTimeLink).showSpentTime;
+    if (showSpentTime?.href) {
+      link.href = showSpentTime.href;
     }
 
     element.innerHTML = '';

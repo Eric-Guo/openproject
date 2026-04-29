@@ -338,6 +338,64 @@ RSpec.describe API::V3::WorkPackages::WorkPackageRepresenter do
         end
       end
     end
+
+    describe "showSpentTime" do
+      let(:href) do
+        cost_reports_path(work_package.project_id,
+                          fields: %w[WorkPackageId ProjectId],
+                          operators: {
+                            WorkPackageId: "=_child_work_packages",
+                            ProjectId: "="
+                          },
+                          values: {
+                            WorkPackageId: work_package.id,
+                            ProjectId: work_package.project_id
+                          },
+                          set_filter: 1)
+      end
+
+      context "with a regular time entries permission" do
+        let(:additional_permissions) { %i[view_time_entries] }
+
+        it "has no showSpentTime link" do
+          expect(subject).not_to have_json_path("_links/showSpentTime/href")
+        end
+      end
+
+      context "with the global view all project info permission" do
+        let(:user) do
+          create(:user,
+                 global_permissions: %i[view_all_project_info],
+                 member_with_permissions: { project => %i[view_work_packages] })
+        end
+
+        it "has a showSpentTime link" do
+          expect(subject).to be_json_eql(href.to_json).at_path("_links/showSpentTime/href")
+        end
+      end
+
+      context "with an admin user" do
+        let(:user) { create(:admin) }
+
+        it "has a showSpentTime link" do
+          expect(subject).to be_json_eql(href.to_json).at_path("_links/showSpentTime/href")
+        end
+      end
+
+      context "with the view_th_budget permission" do
+        before do
+          allow(user).to receive(:allowed_in_project?).and_call_original
+          allow(user)
+            .to receive(:allowed_in_project?)
+            .with(:view_th_budget, work_package.project)
+            .and_return(true)
+        end
+
+        it "has a showSpentTime link" do
+          expect(subject).to be_json_eql(href.to_json).at_path("_links/showSpentTime/href")
+        end
+      end
+    end
   end
 
   describe "costs module disabled" do
