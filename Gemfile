@@ -189,7 +189,7 @@ gem "puma", "~> 6.5"
 gem "puma-plugin-statsd", "~> 2.0"
 gem "rack-timeout", "~> 0.7.0", require: "rack/timeout/base"
 
-gem "nokogiri", "~> 1.18.8"
+gem "nokogiri", "~> 1.19.3"
 
 gem "carrierwave", "~> 1.3.4"
 gem "carrierwave_direct", "~> 2.1.0"
@@ -436,7 +436,7 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.32.0"
-gem "openproject-octicons_helper", "~>19.32.0"
+gem "openproject-octicons", "~>19.34.0"
+gem "openproject-octicons_helper", "~>19.34.0"
 # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
 gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
