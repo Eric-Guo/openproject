@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
-  revision: e204122d3949530828ba8ea52e33409d86f72679
+  revision: d518ee5271f60e18a555434160ae02b74e534046
   branch: main
   specs:
     capybara_accessible_selectors (0.15.0)
@@ -339,7 +339,7 @@ GEM
     awesome_nested_set (3.8.0)
       activerecord (>= 4.0.0, < 8.1)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1242.0)
+    aws-partitions (1.1244.0)
     aws-sdk-core (3.246.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -360,12 +360,12 @@ GEM
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.11.2)
+    axe-core-api (4.11.3)
       dumb_delegator
       ostruct
       virtus
-    axe-core-rspec (4.11.2)
-      axe-core-api (= 4.11.2)
+    axe-core-rspec (4.11.3)
+      axe-core-api (= 4.11.3)
       dumb_delegator
       ostruct
       virtus
@@ -630,7 +630,7 @@ GEM
       mini_mime (~> 1.1)
       representable (~> 3.0)
       retriable (~> 3.1)
-    google-apis-gmail_v1 (0.48.0)
+    google-apis-gmail_v1 (0.49.0)
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.3.1)
       base64 (~> 0.2)
@@ -733,7 +733,7 @@ GEM
       reline (>= 0.4.2)
     iso8601 (0.13.0)
     jmespath (1.6.2)
-    json (2.19.4)
+    json (2.19.5)
     json-jwt (1.17.0)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -819,7 +819,7 @@ GEM
       logger
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.5)
+    minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -1401,7 +1401,7 @@ GEM
       bigdecimal
       logger
       ruby-ole
-    spring (4.4.2)
+    spring (4.5.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     spring-commands-rubocop (0.4.0)
@@ -1796,14 +1796,14 @@ CHECKSUMS
   auto_strip_attributes (2.6.0) sha256=a7e2e0cf744de2bcd947fd68014220702bcc88c81274c1cd9ce6f7316aae39b0
   awesome_nested_set (3.8.0) sha256=469daff411d80291dbb80d1973133e498048a7afc2519c545f62d2cdebc60eda
   aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
-  aws-partitions (1.1242.0) sha256=58886ab5484ccf9287a8d55e603c3c0fb004241dfb4c0c7690b67d18e4c39352
+  aws-partitions (1.1244.0) sha256=e6e5ded095e3bd775db3b64f84533e1ddf7c74f070b3d0373f08dc77c8c3592b
   aws-sdk-core (3.246.0) sha256=393864ec8948560e69fcccc2e4d256b40c7028eb98930608dd295279e3c4ddcc
   aws-sdk-kms (1.124.0) sha256=40d00ab706d7e49fd620270bd0dcb546f266295abdd49b54fec2611e2a41f37c
   aws-sdk-s3 (1.220.0) sha256=237fda5e6ac7ecdd9c848e27187bfdc370edad5c5a141aeec389fb450fa28c7c
   aws-sdk-sns (1.107.0) sha256=a897b4cad6640da987bfca3b2a366808dd392aa3de7c621ec94896be675ead4c
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
-  axe-core-api (4.11.2) sha256=c05c342941e0c29f17b00268302457da9e7b644f753c8bbab274d0083319344f
-  axe-core-rspec (4.11.2) sha256=50c5a5f1b4b991da6857c5df4d6645dfac285a84c7f7f904a6ef23e53f4895eb
+  axe-core-api (4.11.3) sha256=f5f6e802743644a50e2d8ef24c22aefbb6df49dd169024ff0144b47f37e652ba
+  axe-core-rspec (4.11.3) sha256=246c8d443517354e9a9962a10a8cc456bcef4c617516c0924b051a9af9d7da99
   axiom-types (0.1.1) sha256=c1ff113f3de516fa195b2db7e0a9a95fd1b08475a502ff660d04507a09980383
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.22) sha256=1f0072e88c2d705d94aff7f2c5cb02eb3f1ec4b8368671e19112527489f29032
@@ -1922,7 +1922,7 @@ CHECKSUMS
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   good_job (3.99.1) sha256=7d3869d8a8ee8ef7048fee5d746f41c21987b7822c20038a2f773036bef0830a
   google-apis-core (1.0.2) sha256=ba4579aaadc902d6cc7bc8db88f566ab00f5e31ea87ab41e9f9a032c470f2629
-  google-apis-gmail_v1 (0.48.0) sha256=561534bb3d93610032720d0459153c432dc8e47e7096a1250fbe0ee8dcc6540c
+  google-apis-gmail_v1 (0.49.0) sha256=f5b5e597c8018d9e4b8df37fb06a8df429bd2de5f0fc94fb21a4d32b139f6ff1
   google-cloud-env (2.3.1) sha256=0faac01eb27be78c2591d64433663b1a114f8f7af55a4f819755426cac9178e7
   google-logging-utils (0.2.0) sha256=675462b4ea5affa825a3442694ca2d75d0069455a1d0956127207498fca3df7b
   google-protobuf (4.34.1) sha256=347181542b8d659c60f028fa3791c9cccce651a91ad27782dbc5c5e374796cdc
@@ -1963,7 +1963,7 @@ CHECKSUMS
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   iso8601 (0.13.0) sha256=298c2b15b7be5fa95a1372813d36a2257656cd8e906dfbc1f5cb409851425aa2
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
-  json (2.19.4) sha256=670a7d333fb3b18ca5b29cb255eb7bef099e40d88c02c80bd42a3f30fe5239ac
+  json (2.19.5) sha256=218a18553e4801d579ca7e0f5bc72bafd776d7397238a1fb4e74db5b0a812c59
   json-jwt (1.17.0) sha256=6ff99026b4c54281a9431179f76ceb81faa14772d710ef6169785199caadc4cc
   json-schema (6.2.0) sha256=e8bff46ed845a22c1ab2bd0d7eccf831c01fe23bb3920caa4c74db4306813666
   json_schemer (2.4.0) sha256=56cb6117bb5748d925b33ad3f415b513d41d25d0bbf57fe63c0a78ff05597c24
@@ -1995,7 +1995,7 @@ CHECKSUMS
   mini_magick (5.3.1) sha256=29395dfd76badcabb6403ee5aff6f681e867074f8f28ce08d78661e9e4a351c4
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   mini_portile2 (2.8.9) sha256=0cd7c7f824e010c072e33f68bc02d85a00aeb6fce05bb4819c03dfd3c140c289
-  minitest (6.0.5) sha256=f007d7246bf4feea549502842cd7c6aba8851cdc9c90ba06de9c476c0d01155c
+  minitest (6.0.6) sha256=153ea36d1d987a62942382b61075745042a2b3123b1cd48f4c3675af9cc7d6f1
   msgpack (1.8.0) sha256=e64ce0212000d016809f5048b48eb3a65ffb169db22238fb4b72472fecb2d732
   multi_json (1.17.0) sha256=76581f6c96aebf2e85f8a8b9854829e0988f335e8671cd1a56a1036eb75e4a1b
   mustermann (4.0.0) sha256=91f67411bb208d1d93c41e6128cb3b0f8ddd9ec7c45966f1007e1c43c08040d7
@@ -2233,7 +2233,7 @@ CHECKSUMS
   simpleidn (0.2.3) sha256=08ce96f03fa1605286be22651ba0fc9c0b2d6272c9b27a260bc88be05b0d2c29
   smart_properties (1.17.0) sha256=f9323f8122e932341756ddec8e0ac9ec6e238408a7661508be99439ca6d6384b
   spreadsheet (1.3.5) sha256=cd83ea66803d9cae4ac258dfe16cd8c2b85da33eec18a6d7b48fd4a45840ab7d
-  spring (4.4.2) sha256=22f61bacd8dc8595cedcdc738de46d7fc18be4d7a770986760344c924f485ce7
+  spring (4.5.0) sha256=9124b954f6d079cb9aa610d7069cbada7c146c9368599557806a9ff7067b2e1b
   spring-commands-rspec (1.0.4) sha256=6202e54fa4767452e3641461a83347645af478bf45dddcca9737b43af0dd1a2c
   spring-commands-rubocop (0.4.0) sha256=3e677a2c8a27ae8a986f04bfb69e66d5d55b017541e8be93bf0dc48a7f5690c1
   sprockets (3.7.5) sha256=72c20f256548f8a37fe7db41d96be86c3262fddaf4ebe9d69ec8317394fed383
