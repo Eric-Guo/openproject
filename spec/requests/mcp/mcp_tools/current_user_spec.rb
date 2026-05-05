@@ -32,12 +32,13 @@ require "spec_helper"
 
 RSpec.describe McpTools::CurrentUser do
   subject(:mcp_request) do
-    header "Authorization", "Bearer #{access_token.plaintext_token}"
+    header "Authorization", "Bearer #{bearer_token}"
     header "Content-Type", "application/json"
     post "/mcp", request_body.to_json
   end
 
   let(:access_token) { create(:oauth_access_token, scopes: "mcp", resource_owner: user) }
+  let(:bearer_token) { access_token.plaintext_token }
   let(:user) { create(:user) }
   let(:request_body) do
     {
@@ -72,6 +73,31 @@ RSpec.describe McpTools::CurrentUser do
     it "responds with the current user" do
       mcp_request
       expect(parsed_results.dig("structuredContent", "id")).to eq(user.id)
+    end
+
+    context "with shared secret JWT authentication" do
+      let(:jwt_secret) { "secret" }
+      let(:bearer_token) do
+        JWT.encode(
+          {
+            sub: user.mail,
+            scp: "user",
+            exp: 1.hour.from_now.to_i,
+            aud: "opencode"
+          },
+          jwt_secret,
+          "HS256"
+        )
+      end
+
+      before do
+        allow(Rails.application.credentials).to receive(:devise_jwt_secret_key).and_return(jwt_secret)
+      end
+
+      it "responds with the current user" do
+        mcp_request
+        expect(parsed_results.dig("structuredContent", "id")).to eq(user.id)
+      end
     end
   end
 
