@@ -1813,6 +1813,7 @@ DEPENDENCIES
   ice_cube (~> 0.17.0)
   ice_nine
   inline_svg (~> 1.10.0)
+  jbuilder
   job-iteration
   json_schemer (~> 2.5.0)
   json_spec (~> 1.1.4)

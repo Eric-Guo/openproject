@@ -125,6 +125,7 @@ gem "bcrypt", "~> 3.1.22"
 
 gem "multi_json", "~> 1.20.0"
 gem "oj", "~> 3.16.16"
+gem "jbuilder" # Must here for http://localhost:3000/my_todo.json?clerk_code=015454&first_name=guochunzhong
 
 gem "daemons"
 gem "good_job", "~> 4.14.2" # update should be done manually in sync with saas-openproject version.
