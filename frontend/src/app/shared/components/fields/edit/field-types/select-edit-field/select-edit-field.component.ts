@@ -81,7 +81,7 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
     onKeydown: (event:KeyboardEvent) => this.handler.handleUserKeydown(event, true),
     onOpen: () => this.onOpen(),
     onClose: () => this.onClose(),
-    onAfterViewInit: (component:CreateAutocompleterComponent) => this._autocompleterComponent = component,
+    onAfterViewInit: (component:CreateAutocompleterComponent) => this.onAutocompleterReady(component),
   };
 
   public get selectedOption() {
@@ -103,7 +103,9 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
 
   protected valuesLoaded = false;
 
-  protected _autocompleterComponent:CreateAutocompleterComponent;
+  protected _autocompleterComponent?:CreateAutocompleterComponent;
+
+  private openAutocompleterWhenReady = false;
 
   private hiddenOverflowContainer = '.__hidden_overflow_container';
 
@@ -124,7 +126,7 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
       .subscribe(() => {
         void this.valuesLoadingPromise
           .then(() => {
-            this._autocompleterComponent.openDirectly = true;
+            this.openAutocompleterDirectly();
           });
       });
 
@@ -150,6 +152,24 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
   public autocompleterComponent() {
     const { type } = this.schema;
     return this.selectAutocompleterRegister.getAutocompleterOfAttribute(type) || CreateAutocompleterComponent;
+  }
+
+  private onAutocompleterReady(component:CreateAutocompleterComponent) {
+    this._autocompleterComponent = component;
+
+    if (this.openAutocompleterWhenReady) {
+      this.openAutocompleterDirectly();
+    }
+  }
+
+  private openAutocompleterDirectly() {
+    if (!this._autocompleterComponent) {
+      this.openAutocompleterWhenReady = true;
+      return;
+    }
+
+    this.openAutocompleterWhenReady = false;
+    this._autocompleterComponent.openDirectly = true;
   }
 
   private setValues(availableValues:HalResource[]) {
@@ -230,7 +250,7 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
 
   public onOpen() {
     document.querySelector(this.hiddenOverflowContainer)!.addEventListener('scroll', () => {
-      this._autocompleterComponent.closeSelect();
+      this._autocompleterComponent?.closeSelect();
     }, { once: true });
   }
 
