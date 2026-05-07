@@ -87,6 +87,8 @@ export class CreateAutocompleterComponent extends UntilDestroyedMixin implements
 
   @Output() public onAfterViewInit = new EventEmitter<this>();
 
+  @Output() public onCreate = new EventEmitter<HalResource>();
+
   @Output() public onAddNew = new EventEmitter<HalResource>();
 
   @ViewChild(NgSelectComponent) public ngSelectComponent:NgSelectComponent;
