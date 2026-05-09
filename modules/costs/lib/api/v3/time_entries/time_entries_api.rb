@@ -43,10 +43,20 @@ module API
 
           route_param :id, type: Integer, desc: "Time entry ID" do
             after_validation do
-              @time_entry = TimeEntry
-                            .visible
-                            .or(TimeEntry.where(id: TimeEntry.visible_ongoing.select(:id)))
-                            .find(params[:id])
+              @time_entry = TimeEntry.find(params[:id])
+
+              next if TimeEntry
+                        .visible(current_user)
+                        .or(TimeEntry.where(id: TimeEntry.visible_ongoing(current_user).select(:id)))
+                        .exists?(@time_entry.id)
+
+              if request.patch?
+                raise ::API::Errors::Unauthorized.new(
+                  message: I18n.t("api_v3.errors.time_entry_not_visible")
+                )
+              end
+
+              raise ::API::Errors::NotFound.new
             end
 
             get &::API::V3::Utilities::Endpoints::Show.new(model: TimeEntry).mount
