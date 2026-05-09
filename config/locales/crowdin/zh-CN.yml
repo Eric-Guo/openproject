@@ -5930,6 +5930,7 @@ zh-CN:
       code_500: 发生了内部错误。
       code_500_outbound_request_failure: 对另一个资源的出站请求存在失败状态代码 %{status_code} 。
       code_500_missing_enterprise_token: 由于企业令牌是无效的或缺失的，故无法处理该请求。
+      time_entry_not_visible: 该用户无权查看时间记录。
       bad_request:
         emoji_reactions_activity_type_not_supported: 此活动类型不支持表情符号回应。
         invalid_link: 密钥 '%{key}' 下的链接无效。
