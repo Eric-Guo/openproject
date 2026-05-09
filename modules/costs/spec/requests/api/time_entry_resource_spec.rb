@@ -715,6 +715,19 @@ RSpec.describe "API v3 time_entry resource" do
       end
     end
 
+    context "when the time entry exists but is not visible" do
+      let(:time_entry) { invisible_time_entry }
+
+      it "returns 403 and explains the visibility issue" do
+        expect(subject.status)
+          .to be(403)
+
+        expect(subject.body)
+          .to be_json_eql("This user is not allowed to see the time entry.".to_json)
+          .at_path("message")
+      end
+    end
+
     context "if sending an activity the project disables" do
       let(:disable_activity) do
         TimeEntryActivitiesProject.insert({ activity_id: activity.id, project_id: project.id, active: false })
