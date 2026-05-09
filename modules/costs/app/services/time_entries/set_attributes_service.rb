@@ -51,12 +51,14 @@ module TimeEntries
       # Set start time for ongoing time entries
       ensure_start_time_for_onging_entries
 
+      set_logged_by if model.new_record?
+
       if model.approved_hours_changed?
         set_approved_by
       elsif model.sz_approved_hours_changed?
         set_approved_by_sz
       else
-        set_logged_by
+        set_logged_by unless model.new_record?
       end
 
       # Set custom_values_to_validate for customizable models
