@@ -520,6 +520,40 @@ RSpec.describe "API v3 time_entry resource" do
         .to eql "some cf text"
     end
 
+    context "with approved hours" do
+      let(:params) do
+        super().merge(approvedHours: "PT2H30M")
+      end
+
+      it "stores approved_hours and records the approver" do
+        expect(subject.status).to eq(201)
+
+        new_entry = TimeEntry.first
+
+        expect(new_entry.approved_hours).to eq(2.5)
+        expect(new_entry.approved_by_id).to eq(current_user.id)
+        expect(new_entry.sz_approved_hours).to be_nil
+        expect(new_entry.approved_by_sz_id).to be_nil
+      end
+    end
+
+    context "with SZ approved hours" do
+      let(:params) do
+        super().merge(szApprovedHours: "PT1H45M")
+      end
+
+      it "stores sz_approved_hours and records the SZ approver" do
+        expect(subject.status).to eq(201)
+
+        new_entry = TimeEntry.first
+
+        expect(new_entry.sz_approved_hours).to eq(1.75)
+        expect(new_entry.approved_by_sz_id).to eq(current_user.id)
+        expect(new_entry.approved_hours).to be_nil
+        expect(new_entry.approved_by_id).to be_nil
+      end
+    end
+
     context "when lacking permissions" do
       let(:permissions) { %i(view_time_entries view_work_packages) }
 
@@ -632,6 +666,44 @@ RSpec.describe "API v3 time_entry resource" do
       expect(time_entry.hours).to eq 10
 
       expect(time_entry.activity).to eq activity
+    end
+
+    context "with approved hours" do
+      let(:params) do
+        {
+          approvedHours: "PT2H30M"
+        }
+      end
+
+      it "stores approved_hours and records the approver" do
+        expect(subject.status).to eq(200)
+
+        time_entry.reload
+
+        expect(time_entry.approved_hours).to eq(2.5)
+        expect(time_entry.approved_by_id).to eq(current_user.id)
+        expect(time_entry.sz_approved_hours).to be_nil
+        expect(time_entry.approved_by_sz_id).to be_nil
+      end
+    end
+
+    context "with SZ approved hours" do
+      let(:params) do
+        {
+          szApprovedHours: "PT1H45M"
+        }
+      end
+
+      it "stores sz_approved_hours and records the SZ approver" do
+        expect(subject.status).to eq(200)
+
+        time_entry.reload
+
+        expect(time_entry.sz_approved_hours).to eq(1.75)
+        expect(time_entry.approved_by_sz_id).to eq(current_user.id)
+        expect(time_entry.approved_hours).to be_nil
+        expect(time_entry.approved_by_id).to be_nil
+      end
     end
 
     context "when lacking permissions" do
