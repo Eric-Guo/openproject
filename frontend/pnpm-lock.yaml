@@ -142,7 +142,7 @@ importers:
         version: 6.0.22(react@19.2.6)
       '@mixtint/primer-view-components':
         specifier: 0.84.5
-        version: 0.84.5(@primer/primitives@11.8.0)
+        version: 0.84.5(@primer/primitives@11.7.1)
       '@ng-select/ng-option-highlight':
         specifier: ^21.8.2
         version: 21.8.2(@angular/common@21.2.12(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.12(@angular/compiler@21.2.12)(rxjs@7.8.2))
@@ -160,16 +160,16 @@ importers:
         version: 3.0.1(rxjs@7.8.2)
       '@primer/css':
         specifier: ^22.1.1
-        version: 22.1.1(@primer/primitives@11.8.0)
+        version: 22.1.1(@primer/primitives@11.7.1)
       '@primer/live-region-element':
         specifier: ^0.8.0
         version: 0.8.0
       '@primer/primitives':
-        specifier: ^11.8.0
-        version: 11.8.0
+        specifier: 11.7.1
+        version: 11.7.1
       '@primer/view-components':
         specifier: npm:@mixtint/primer-view-components@^0.84.5
-        version: '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.8.0)'
+        version: '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)'
       '@rails/request.js':
         specifier: ^0.0.13
         version: 0.0.13
@@ -2827,8 +2827,8 @@ packages:
     peerDependencies:
       react: '>=16.3'
 
-  '@primer/primitives@11.8.0':
-    resolution: {integrity: sha512-Cwx71YyNt48F9dWKH5x8tqAAS56mxlNogw2Etj/WB4IwxvEtT5EEfEzy5+/yNR8VZ1Kjm5V0XRqpKtnrNSMCUw==}
+  '@primer/primitives@11.7.1':
+    resolution: {integrity: sha512-+ch43fCGwMHe22AOvgVEg9UTCbqU3XevnnMzxk7J+jajPA0GouIJPrLFLN00uV7Fp6ZxqTj3F3vxigumEIg6Kw==}
 
   '@probe.gl/env@4.1.1':
     resolution: {integrity: sha512-+68seNDMVsEegRB47pFA/Ws1Fjy8agcFYXxzorKToyPcD6zd+gZ5uhwoLd7TzsSw6Ydns//2KEszWn+EnNHTbA==}
@@ -9562,7 +9562,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.28.6
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
@@ -10183,17 +10183,17 @@ snapshots:
   '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emnapi/runtime@1.10.0':
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emnapi/wasi-threads@1.2.1':
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emoji-mart/data@1.2.1': {}
@@ -11061,7 +11061,7 @@ snapshots:
 
   '@mdx-js/util@1.6.22': {}
 
-  '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.8.0)':
+  '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)':
     dependencies:
       '@github/auto-check-element': 6.0.0
       '@github/auto-complete-element': 3.8.0
@@ -11076,7 +11076,7 @@ snapshots:
       '@oddbird/popover-polyfill': 0.5.2
       '@primer/behaviors': 1.10.2
       '@primer/live-region-element': 0.8.0
-      '@primer/primitives': 11.8.0
+      '@primer/primitives': 11.7.1
 
   '@modelcontextprotocol/sdk@1.26.0(zod@4.3.6)':
     dependencies:
@@ -11450,9 +11450,9 @@ snapshots:
 
   '@primer/behaviors@1.10.2': {}
 
-  '@primer/css@22.1.1(@primer/primitives@11.8.0)':
+  '@primer/css@22.1.1(@primer/primitives@11.7.1)':
     dependencies:
-      '@primer/primitives': 11.8.0
+      '@primer/primitives': 11.7.1
 
   '@primer/live-region-element@0.8.0':
     dependencies:
@@ -11462,7 +11462,7 @@ snapshots:
     dependencies:
       react: 19.2.6
 
-  '@primer/primitives@11.8.0': {}
+  '@primer/primitives@11.7.1': {}
 
   '@probe.gl/env@4.1.1': {}
 

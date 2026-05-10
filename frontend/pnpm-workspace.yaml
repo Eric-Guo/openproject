@@ -1,6 +1,5 @@
 allowBuilds:
   '@parcel/watcher': true
-  '@primer/primitives': true
   core-js: true
   core-js-pure: true
   es5-ext: true
