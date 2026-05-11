@@ -4024,8 +4024,8 @@ packages:
     resolution: {integrity: sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==}
     engines: {node: '>=6.0.0'}
 
-  baseline-browser-mapping@2.10.28:
-    resolution: {integrity: sha512-Ic44hnOtFIgravCunj1ifSoQPSUrkNiJuH9Mf6jr2jjoA74icqV8wU0KuadXeOR8zuIJMOoTv0GuQjZ9ZYNMeA==}
+  baseline-browser-mapping@2.10.29:
+    resolution: {integrity: sha512-Asa2krT+XTPZINCS+2QcyS8WTkObE77RwkydwF7h6DmnKqbvlalz93m/dnphUyCa6SWSP51VgtEUf2FN+gelFQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -6714,8 +6714,8 @@ packages:
     resolution: {integrity: sha512-6dT+8tKRPKFtfeYsyr5Jkq20H04eZKBXA6t93kofym0DLnpK4Mr/JT7Bv2aGFd5h3MyFOjrLpfNvq7x6oHvNaA==}
     engines: {node: '>=16'}
 
-  openapi-resolver@4.2.19:
-    resolution: {integrity: sha512-AK4eAMSJrsw07bMdUEmjKwSzOZ5/Qoh6se9E8ugdiwysIIOcgWxq6MX3TtFZDVAWJlJDPEX9tJabllOBQLkdRw==}
+  openapi-resolver@4.2.21:
+    resolution: {integrity: sha512-OCvBN0YcHbRFc3RYIBqCZS0Vxkoyh1fC5KJRURAGu2ULvHvUxryBjJGxzpRx90VEjfqblPoclVAab5JSq6c84Q==}
     engines: {node: '>=20'}
 
   opener@1.5.2:
@@ -9562,7 +9562,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.28.6
+      '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.27.7(@babel/core@7.12.9)
 
@@ -10183,17 +10183,17 @@ snapshots:
   '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
-      tslib: 2.8.1
+      tslib: 2.4.1
     optional: true
 
   '@emnapi/runtime@1.10.0':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.4.1
     optional: true
 
   '@emnapi/wasi-threads@1.2.1':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.4.1
     optional: true
 
   '@emoji-mart/data@1.2.1': {}
@@ -12757,7 +12757,7 @@ snapshots:
 
   base64url@3.0.1: {}
 
-  baseline-browser-mapping@2.10.28: {}
+  baseline-browser-mapping@2.10.29: {}
 
   basic-auth@1.1.0: {}
 
@@ -12853,7 +12853,7 @@ snapshots:
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.28
+      baseline-browser-mapping: 2.10.29
       caniuse-lite: 1.0.30001792
       electron-to-chromium: 1.5.353
       node-releases: 2.0.38
@@ -16107,7 +16107,7 @@ snapshots:
       lodash.merge: 4.6.2
       marked: 4.3.0
       openapi-data-validator: 2.0.54
-      openapi-resolver: 4.2.19(@types/json-schema@7.0.15)
+      openapi-resolver: 4.2.21(@types/json-schema@7.0.15)
       prismjs: 1.30.0
       randexp: 0.5.3
       toposort: 2.0.2
@@ -16115,7 +16115,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/json-schema'
 
-  openapi-resolver@4.2.19(@types/json-schema@7.0.15):
+  openapi-resolver@4.2.21(@types/json-schema@7.0.15):
     dependencies:
       '@apidevtools/json-schema-ref-parser': 15.3.5(@types/json-schema@7.0.15)
       '@babel/runtime-corejs3': 7.29.2
