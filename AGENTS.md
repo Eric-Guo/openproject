@@ -16,7 +16,7 @@
 ## Critical Setup Requirements
 
 **ALWAYS verify versions before building:**
-- Ruby: `4.0.3` (see `.ruby-version`)
+- Ruby: `4.0.5` (see `.ruby-version`)
 - Node: `^22.21.0` (see `package.json` engines)
 - Bundler: Latest 2.x
 
