@@ -23,13 +23,13 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 123a48dfc3d33d15526e04c7cdd7e8370053c7fc
+  revision: 45a908bd68365a533fb8ec06cbeec4e0c828a543
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
       gruf
       mysql2
-      rails (~> 8.0)
+      rails (~> 8.1)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
