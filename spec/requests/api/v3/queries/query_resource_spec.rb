@@ -284,6 +284,33 @@ RSpec.describe "API v3 Query resource",
         it_behaves_like "unauthorized access"
       end
     end
+
+    context "when requesting the spent time column" do
+      let(:path) { "#{base_path}?columns[]=subject&columns[]=spentTime" }
+      let(:column_ids) do
+        JSON.parse(last_response.body)
+            .dig("_embedded", "columns")
+            .pluck("id")
+      end
+
+      before do
+        get path
+      end
+
+      it "does not display it to non-admin users" do
+        expect(last_response).to have_http_status(:ok)
+        expect(column_ids).to contain_exactly("subject")
+      end
+
+      context "when the current user is an admin" do
+        let(:current_user) { create(:admin, member_with_roles: { project => role }) }
+
+        it "displays the column" do
+          expect(last_response).to have_http_status(:ok)
+          expect(column_ids).to contain_exactly("subject", "spentTime")
+        end
+      end
+    end
   end
 
   describe "#delete queries/:id" do
