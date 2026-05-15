@@ -482,6 +482,24 @@ RSpec.describe Query,
       expect(query.displayable_columns.detect { |c| c.name == :typeahead })
         .to be_nil
     end
+
+    context "when the current user is an admin" do
+      current_user { build_stubbed(:admin) }
+
+      it "includes the spent time column" do
+        expect(query.displayable_columns.map(&:name))
+          .to include(:spent_hours)
+      end
+    end
+
+    context "when the current user is not an admin" do
+      current_user { build_stubbed(:user) }
+
+      it "excludes the spent time column" do
+        expect(query.displayable_columns.map(&:name))
+          .not_to include(:spent_hours)
+      end
+    end
   end
 
   describe ".available_columns", with_settings: { work_package_multiple_versions: false } do
@@ -571,6 +589,23 @@ RSpec.describe Query,
 
       it "is not valid" do
         expect(query).not_to be_valid
+      end
+    end
+
+    context "with the admin-only spent time column for a non-admin" do
+      current_user { build_stubbed(:user) }
+
+      before do
+        query.column_names = %i[subject spent_hours]
+      end
+
+      it "remains valid" do
+        expect(query).to be_valid
+      end
+
+      it "does not display the spent time column" do
+        expect(query.columns.map(&:name))
+          .to contain_exactly(:subject)
       end
     end
   end
@@ -732,6 +767,19 @@ RSpec.describe Query,
 
           expect(query.column_names)
             .to contain_exactly(:status)
+        end
+      end
+
+      context "when containing the admin-only spent time column for a non-admin" do
+        current_user { build_stubbed(:user) }
+
+        let(:columns) { %i(subject spent_hours) }
+
+        it "removes spent time" do
+          query.valid_subset!
+
+          expect(query.column_names)
+            .to contain_exactly(:subject)
         end
       end
     end
