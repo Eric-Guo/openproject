@@ -29,6 +29,8 @@
 #++
 
 class Query < ApplicationRecord
+  ADMIN_ONLY_COLUMN_NAMES = %i[spent_hours].freeze
+
   include Timelines
   include Timestamps
   include Highlighting
@@ -120,7 +122,7 @@ class Query < ApplicationRecord
   end
 
   def validate_columns
-    available_names = displayable_columns.map { |c| c.name.to_sym }
+    available_names = valid_column_names
 
     (column_names - available_names).each do |name|
       errors.add :column_names,
@@ -234,7 +236,13 @@ class Query < ApplicationRecord
   end
 
   def self.displayable_columns
-    available_columns.select(&:displayable?)
+    without_admin_only_columns(available_columns.select(&:displayable?))
+  end
+
+  def self.without_admin_only_columns(columns)
+    return columns if User.current&.admin?
+
+    columns.reject { |column| ADMIN_ONLY_COLUMN_NAMES.include?(column.name.to_sym) }
   end
 
   def self.groupable_columns
@@ -246,7 +254,7 @@ class Query < ApplicationRecord
   end
 
   def displayable_columns
-    available_columns.select(&:displayable?)
+    self.class.without_admin_only_columns(available_columns.select(&:displayable?))
   end
 
   # Returns an array of columns that can be used to group the results
@@ -486,6 +494,10 @@ class Query < ApplicationRecord
     available_names = displayable_columns.map(&:name).map(&:to_sym)
 
     self.column_names &= available_names
+  end
+
+  def valid_column_names
+    available_columns.select(&:displayable?).map { |column| column.name.to_sym }
   end
 
   def valid_timestamps_subset!
