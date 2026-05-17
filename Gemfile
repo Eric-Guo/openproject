@@ -403,7 +403,7 @@ group :development, :test do
   gem "active_record_doctor", "~> 2.0.1"
 end
 
-gem "bootsnap", "~> 1.23.0", require: false
+gem "bootsnap", "~> 1.24.4", require: false
 
 # API gems
 gem "grape", "~> 3.2.0"
@@ -452,7 +452,7 @@ gemfiles.each do |file|
   send(:eval_gemfile, file) if File.readable?(file)
 end
 
-gem "openproject-octicons", "~>19.34.0"
-gem "openproject-octicons_helper", "~>19.34.0"
+gem "openproject-octicons", "~>19.35.0"
+gem "openproject-octicons_helper", "~>19.35.0"
 # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
 gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
