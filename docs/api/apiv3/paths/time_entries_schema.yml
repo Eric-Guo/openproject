@@ -56,7 +56,28 @@ get:
                   options: {}
                   required: false
                   type: Boolean
-                  writable: true                  
+                  writable: true
+                rejectReason:
+                  hasDefault: false
+                  name: Reject reason
+                  options: {}
+                  required: false
+                  type: String
+                  writable: true
+                rejectedAt:
+                  hasDefault: false
+                  name: Rejected at
+                  options: {}
+                  required: false
+                  type: DateTime
+                  writable: true
+                rejectedButNowPass:
+                  hasDefault: false
+                  name: Rejected but now pass
+                  options: {}
+                  required: false
+                  type: Boolean
+                  writable: true
                 id:
                   hasDefault: false
                   name: ID
