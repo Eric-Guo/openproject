@@ -134,10 +134,10 @@ You should now have an active ruby and node installation. Verify that it works w
 
 ```shell
 $ ruby --version
-ruby 4.0.2 (2026-03-17 revision d3da9fec82) +PRISM [arm64-darwin25]
+ruby 4.0.5 (2026-03-17 revision d3da9fec82) +PRISM [arm64-darwin25]
 
 $ bundler --version
-4.0.4
+4.0.12
 
 node --version
 v22.21.0
