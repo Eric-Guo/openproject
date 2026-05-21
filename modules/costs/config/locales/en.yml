@@ -67,6 +67,7 @@ en:
         subject: Subject
         hours: Hours
         approved_hours: Approved hours
+        sz_approved_hours: SZ approved hours
         comments: Comment
         activity: Activity
         spent_on: Date
@@ -74,6 +75,9 @@ en:
         end_time: Finish time
         time: Time
         from_th_keyin: From TH keyin
+        reject_reason: Reject reason
+        rejected_at: Rejected at
+        rejected_but_now_pass: Rejected but now pass
         entity: Logged for
         entity_id: Logged for
         entity_gid: Logged for
