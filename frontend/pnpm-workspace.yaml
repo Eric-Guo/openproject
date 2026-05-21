@@ -8,6 +8,11 @@ allowBuilds:
   msgpackr-extract: true
   th-analytics: true
 
+minimumReleaseAgeExclude:
+  - '@angular-devkit/core@21.2.12'
+  - '@angular-devkit/schematics@21.2.12'
+  - '@schematics/angular@21.2.12'
+
 nodeLinker: hoisted
 
 onlyBuiltDependencies:
