@@ -26,7 +26,9 @@ append :linked_files, *%w[config/configuration.yml config/database.yml config/se
 append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemono tmp/pids tmp/cache tmp/sockets]
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, fetch(:default_env, {}).merge(
+  "PNPM_CONFIG_MINIMUM_RELEASE_AGE" => "0"
+)
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
