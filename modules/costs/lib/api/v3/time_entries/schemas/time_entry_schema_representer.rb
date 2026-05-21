@@ -75,6 +75,18 @@ module API
                  type: 'Boolean',
                  required: false
 
+          schema :reject_reason,
+                 type: "String",
+                 required: false
+
+          schema :rejected_at,
+                 type: "DateTime",
+                 required: false
+
+          schema :rejected_but_now_pass,
+                 type: "Boolean",
+                 required: false
+
           schema :comment,
                  type: "Formattable",
                  required: false
