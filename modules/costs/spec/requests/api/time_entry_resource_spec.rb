@@ -554,6 +554,26 @@ RSpec.describe "API v3 time_entry resource" do
       end
     end
 
+    context "with rejection fields" do
+      let(:params) do
+        super().merge(
+          rejectReason: "Missing weekly summary",
+          rejectedAt: "2026-05-20T08:45:00Z",
+          rejectedButNowPass: true
+        )
+      end
+
+      it "stores the rejection fields" do
+        expect(subject.status).to eq(201)
+
+        new_entry = TimeEntry.first
+
+        expect(new_entry.reject_reason).to eq("Missing weekly summary")
+        expect(new_entry.rejected_at).to eq(DateTime.parse("2026-05-20T08:45:00Z"))
+        expect(new_entry.rejected_but_now_pass).to be(true)
+      end
+    end
+
     context "when lacking permissions" do
       let(:permissions) { %i(view_time_entries view_work_packages) }
 
@@ -703,6 +723,26 @@ RSpec.describe "API v3 time_entry resource" do
         expect(time_entry.approved_by_sz_id).to eq(current_user.id)
         expect(time_entry.approved_hours).to be_nil
         expect(time_entry.approved_by_id).to be_nil
+      end
+    end
+
+    context "with rejection fields" do
+      let(:params) do
+        {
+          rejectReason: "Missing weekly summary",
+          rejectedAt: "2026-05-20T08:45:00Z",
+          rejectedButNowPass: true
+        }
+      end
+
+      it "stores the rejection fields" do
+        expect(subject.status).to eq(200)
+
+        time_entry.reload
+
+        expect(time_entry.reject_reason).to eq("Missing weekly summary")
+        expect(time_entry.rejected_at).to eq(DateTime.parse("2026-05-20T08:45:00Z"))
+        expect(time_entry.rejected_but_now_pass).to be(true)
       end
     end
 
