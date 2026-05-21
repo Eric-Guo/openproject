@@ -30,6 +30,20 @@ allOf:
       fromThKeyin:
         type: boolean
         description: From TH keyin or not
+      rejectReason:
+        type:
+          - string
+          - "null"
+        description: The reason the time entry was rejected
+      rejectedAt:
+        type:
+          - string
+          - "null"
+        format: date-time
+        description: The time the time entry was rejected
+      rejectedButNowPass:
+        type: boolean
+        description: Whether the rejected time entry now passes
       createdAt:
         type: string
         format: date-time
