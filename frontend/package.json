@@ -122,7 +122,7 @@
     "@rails/request.js": "^0.0.13",
     "@stimulus-components/auto-submit": "^6.0.0",
     "@stimulus-components/reveal": "^5.0.0",
-    "@tiptap/extensions": "^3.23.5",
+    "@tiptap/extensions": "^3.23.6",
     "@types/jquery.cookie": "^1.4.36",
     "@uirouter/angular": "^17.0.1",
     "@uirouter/core": "^6.1.2",
