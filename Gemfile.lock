@@ -748,7 +748,7 @@ GEM
       mini_mime (~> 1.1)
       representable (~> 3.0)
       retriable (~> 3.1)
-    google-apis-gmail_v1 (0.49.0)
+    google-apis-gmail_v1 (0.50.0)
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.3.1)
       base64 (~> 0.2)
@@ -1240,7 +1240,7 @@ GEM
     ostruct (0.6.3)
     ox (2.14.26)
       bigdecimal (>= 3.0)
-    pagy (43.5.4)
+    pagy (43.5.5)
       json
       uri
       yaml
@@ -2145,7 +2145,7 @@ CHECKSUMS
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   good_job (4.14.2) sha256=f38f164346aee724bbfbdaed73e1a0bd382cc6354146029e0adcc619245ab6d1
   google-apis-core (1.0.2) sha256=ba4579aaadc902d6cc7bc8db88f566ab00f5e31ea87ab41e9f9a032c470f2629
-  google-apis-gmail_v1 (0.49.0) sha256=f5b5e597c8018d9e4b8df37fb06a8df429bd2de5f0fc94fb21a4d32b139f6ff1
+  google-apis-gmail_v1 (0.50.0) sha256=4feb5e6766c2243f86142b603a22359c36401d51786e2a6cbed63a42173a17c1
   google-cloud-env (2.3.1) sha256=0faac01eb27be78c2591d64433663b1a114f8f7af55a4f819755426cac9178e7
   google-logging-utils (0.2.0) sha256=675462b4ea5affa825a3442694ca2d75d0069455a1d0956127207498fca3df7b
   google-protobuf (4.35.0) sha256=95346162c792ed78c9a28cbf2d937a53f706de6df36a27471582f63f03c30c0d
@@ -2363,7 +2363,7 @@ CHECKSUMS
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   overviews (1.0.0)
   ox (2.14.26) sha256=d4a9cb49fb55751631d469623cfb2e7dad7cea89119c93749c1e31a3fb2f4896
-  pagy (43.5.4) sha256=2bdf3fa6b1e0cac5bbafe5d077fb24eb971f72f3194f8c6863a0f3867261ce59
+  pagy (43.5.5) sha256=86790336da3a1966e3503c226989577f1f56e3353dad10353445e8c988412548
   paper_trail (17.0.0) sha256=1c2842061d3874ca7015908e821e2aa14f9b982af2acb2a7974713bf79021c85
   parallel (2.1.0) sha256=b35258865c2e31134c5ecb708beaaf6772adf9d5efae28e93e99260877b09356
   parallel_tests (4.10.1) sha256=df05458c691462b210f7a41fc2651d4e4e8a881e8190e6d1e122c92c07735d70
