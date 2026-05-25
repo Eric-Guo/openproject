@@ -93,7 +93,7 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
   readonly configuration = inject(ConfigurationService);
 
   constructor(public injector:Injector, readonly cdr:ChangeDetectorRef) {
-    super(injector);
+    super();
   }
 
   text:Record<string, string> = {
