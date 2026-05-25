@@ -83,8 +83,8 @@ export class TimelineCellRenderer {
   }
 
   public isEmpty(wp:WorkPackageResource) {
-    const start = moment(wp.startDate as any);
-    const due = moment(wp.dueDate as any);
+    const start = moment(wp.startDate);
+    const due = moment(wp.dueDate);
     const noStartAndDueValues = _.isNaN(start.valueOf()) && _.isNaN(due.valueOf());
     return noStartAndDueValues;
   }
@@ -240,7 +240,7 @@ export class TimelineCellRenderer {
    */
   public update(element:HTMLDivElement, labels:WorkPackageCellLabels|null, renderInfo:RenderInfo):boolean {
     const { change } = renderInfo;
-    const bar = element.querySelector(`.${timelineBackgroundElementClass}`) as HTMLElement;
+    const bar = element.querySelector(`.${timelineBackgroundElementClass}`)!;
     let start = moment(change.projectedResource.startDate);
     let due = moment(change.projectedResource.dueDate);
 

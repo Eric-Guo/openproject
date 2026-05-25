@@ -58,7 +58,7 @@ describe('EditForm', () => {
   it('does not require visibility twice for newly erroneous inactive fields', async () => {
     const tick = vi.fn();
     const requireVisible = vi.fn().mockResolvedValue(undefined);
-    const activateField = vi.fn().mockResolvedValue({} as EditFieldHandler);
+    const activateField = vi.fn().mockResolvedValue({});
     const reset = vi.fn();
     const injector = {
       get: vi.fn().mockImplementation((token:unknown) => {
@@ -68,7 +68,7 @@ describe('EditForm', () => {
 
         throw new Error(`Unexpected token: ${String(token)}`);
       }),
-    } as unknown as Injector;
+    };
 
     const form = new TestEditForm(injector, requireVisible, activateField, reset);
     const change = {
@@ -77,7 +77,7 @@ describe('EditForm', () => {
         ofProperty: vi.fn().mockReturnValue({
           writable: true,
           name: 'Foo',
-        } as IFieldSchema),
+        }),
       },
       getForm: vi.fn().mockResolvedValue(undefined),
     };

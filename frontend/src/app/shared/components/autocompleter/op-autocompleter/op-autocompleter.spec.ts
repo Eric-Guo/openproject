@@ -95,9 +95,9 @@ describe('autocompleter', () => {
     fixture = TestBed.createComponent(OpAutocompleterComponent);
     getOptionsFnSpy = vi.fn().mockImplementation((searchTerm:string) => {
       return of(workPackagesStub).pipe(map((wps) => wps.filter((wp) => searchTerm !== '' && wp.subject.includes(searchTerm))));
-    }) as unknown as Mock;
+    });
 
-    fixture.componentInstance.resource = 'work_packages' as TOpAutocompleterResource;
+    fixture.componentInstance.resource = 'work_packages';
     fixture.componentInstance.filters = [];
     fixture.componentInstance.searchKey = 'typeahead';
     fixture.componentInstance.appendTo = 'body';

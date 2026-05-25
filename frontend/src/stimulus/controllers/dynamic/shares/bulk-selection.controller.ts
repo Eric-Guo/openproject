@@ -218,7 +218,7 @@ export default class BulkSelectionController extends Controller {
       const label = button.querySelector('.Button-label')!;
 
       return label.textContent;
-    }) as string[];
+    });
   }
 
   private get selectedRoleButtons() {

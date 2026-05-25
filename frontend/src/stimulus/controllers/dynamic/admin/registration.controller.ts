@@ -65,7 +65,7 @@ export default class RegistrationController extends Controller {
   }
 
   getSelectedOption() {
-    const checkedRadio = this.selfRegistrationRadioGroupTarget.querySelector('input[type="radio"]:checked') as HTMLInputElement;
+    const checkedRadio = this.selfRegistrationRadioGroupTarget.querySelector('input[type="radio"]:checked')!;
     return checkedRadio?.value || '';
   }
 }

@@ -12,7 +12,7 @@ describe('AttributeHelpTextModalService', () => {
   let dialog:HTMLDialogElement|null;
 
   beforeEach(() => {
-    fetchSpy = vi.spyOn(window, 'fetch') as unknown as Mock<Window['fetch']>;
+    fetchSpy = vi.spyOn(window, 'fetch');
   });
 
   beforeEach(async () => {

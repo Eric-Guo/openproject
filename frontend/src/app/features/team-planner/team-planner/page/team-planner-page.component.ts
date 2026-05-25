@@ -84,7 +84,7 @@ export class TeamPlannerPageComponent extends PartitionedQuerySpacePageComponent
     },
     {
       component: ProjectListButton,
-      show: () => !!(this.currentQuery && this.currentQuery.includeAllMembersAssignedProjects),
+      show: () => !!(this.currentQuery?.includeAllMembersAssignedProjects),
     },
     {
       component: WorkPackageFilterButtonComponent,

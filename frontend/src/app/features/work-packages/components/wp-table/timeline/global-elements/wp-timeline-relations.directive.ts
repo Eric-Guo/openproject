@@ -131,7 +131,7 @@ export class WorkPackageTableTimelineRelations extends UntilDestroyedMixin imple
       )
       .subscribe((list) => {
         // ... make sure that the corresponding relations are loaded ...
-        const wps = _.compact(list.map((row) => row.workPackageId) as string[]);
+        const wps = _.compact(list.map((row) => row.workPackageId));
         void this.wpRelations.requireAll(wps);
       });
 

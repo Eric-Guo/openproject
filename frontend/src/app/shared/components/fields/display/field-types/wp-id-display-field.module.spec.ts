@@ -37,7 +37,7 @@ describe('WorkPackageIdDisplayField', () => {
 
     const mockInjector = {
       get: (token:unknown, notFoundValue?:unknown) => serviceMap.get(token) ?? notFoundValue ?? {},
-    } as unknown as Injector;
+    };
 
     field = new WorkPackageIdDisplayField('id', {
       injector: mockInjector,

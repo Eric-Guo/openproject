@@ -29,7 +29,7 @@ export class ApiV3WorkPackageEdocFolderCachedSubresource extends ApiV3GettableRe
 
   private updateSchemas(schemas:CollectionResource<SchemaResource>) {
     schemas.elements.forEach((schema) => {
-      this.states.schemas.get(schema.href as string).putValue(schema);
+      this.states.schemas.get(schema.href!).putValue(schema);
     });
   }
 }

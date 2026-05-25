@@ -9,7 +9,7 @@ import { MembershipResource } from 'core-app/features/hal/resources/membership-r
 import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { ApiV3FilterBuilder } from 'core-app/shared/helpers/api-v3/api-v3-filter-builder';
 
-type GroupMembersItemGroup = {
+interface GroupMembersItemGroup {
   type:'group',
   title:string;
   total:number;
@@ -17,13 +17,13 @@ type GroupMembersItemGroup = {
   checkedMemberIds:string[]
   checked:boolean;
   indeterminate:boolean;
-};
+}
 
-type GroupMembersItemMember = {
+interface GroupMembersItemMember {
   type:'member';
   member:MembershipResource;
   checked:boolean;
-};
+}
 
 @Component({
   templateUrl: './watchers-tab-members.component.html',
@@ -144,9 +144,9 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
 
   get companies() {
     if (!this.members) return [];
-    const companies:Set<string> = new Set();
+    const companies = new Set<string>();
     this.members.forEach((member) => {
-      if (member.profile && member.profile.company) {
+      if (member.profile?.company) {
         companies.add(member.profile.company.trim());
       }
     });
@@ -155,9 +155,9 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
 
   get departments() {
     if (!this.members || !this.selectedCompany) return [];
-    const departments:Set<string> = new Set();
+    const departments = new Set<string>();
     this.members.forEach((member) => {
-      if (member.profile && member.profile.department && member.profile.company === this.selectedCompany) {
+      if (member.profile?.department && member.profile.company === this.selectedCompany) {
         departments.add(member.profile.department.trim());
       }
     });
@@ -166,9 +166,9 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
 
   get majors() {
     if (!this.members) return [];
-    const majors:Set<string> = new Set();
+    const majors = new Set<string>();
     this.members.forEach((member) => {
-      if (member.profile && member.profile.major) {
+      if (member.profile?.major) {
         majors.add(member.profile.major.trim());
       }
     });
@@ -188,7 +188,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
       }
       const last = groups[groups.length - 1];
       const groupTitle = this.getGroupName(member);
-      const lastGroupTitle = last && last.type === 'member' ? this.getGroupName(last.member) : '';
+      const lastGroupTitle = last?.type === 'member' ? this.getGroupName(last.member) : '';
       if (groupTitle !== lastGroupTitle) {
         currentGroup = {
           type: 'group',
@@ -202,7 +202,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
         groups.push(currentGroup);
       }
       currentGroup.total += 1;
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+       
       currentGroup.memberIds.push(member.id!);
       groups.push({ type: 'member', member, checked: false });
       return groups;
@@ -237,7 +237,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
     this.currentGroupMembers = this.currentGroupMembers.map((item) => {
       if (item.type === 'group' && item.title === groupName) {
         if (checked) {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+           
           item.checkedMemberIds = Array.from(new Set([...item.checkedMemberIds, member.id!]));
         } else {
           item.checkedMemberIds = item.checkedMemberIds.filter((it) => it !== member.id);

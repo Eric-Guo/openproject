@@ -61,7 +61,7 @@ export class CKEditorSetupService {
     wrapper.classList.add(`ckeditor-type-${type}`);
 
     const toolbarWrapper = wrapper.querySelector('.document-editor__toolbar')!;
-    const contentWrapper = wrapper.querySelector('.document-editor__editable') as HTMLElement;
+    const contentWrapper = wrapper.querySelector('.document-editor__editable')!;
     const config = this.createConfig(context, initialData);
 
     return this

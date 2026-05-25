@@ -7,12 +7,12 @@ type Task<T=unknown> = (
 // 0: 初始化, 1: running, 2: completed, -1: error
 type Status = -1 | 0 | 1 | 2;
 
-export type ProgressInfo = {
+export interface ProgressInfo {
   total:number;
   current:number;
   result:unknown;
   task:Task;
-};
+}
 
 export class PromiseTaskQueue {
   private tasks:Task[] = [];

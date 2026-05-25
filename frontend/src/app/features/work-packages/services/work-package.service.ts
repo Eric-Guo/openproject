@@ -69,7 +69,7 @@ export class WorkPackageService {
         .then(() => {
           this.toastService.addSuccess(this.text.successful_delete);
 
-          ids.forEach((id) => this.halEvents.push({ _type: 'WorkPackage', id }, { eventType: 'deleted' } as HalDeletedEvent));
+          ids.forEach((id) => this.halEvents.push({ _type: 'WorkPackage', id }, { eventType: 'deleted' }));
 
           const routeWpId = this.$state.params.workPackageId as string;
           const numericId = resolveNumericId(this.states, routeWpId);

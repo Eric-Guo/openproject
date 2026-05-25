@@ -48,7 +48,7 @@ export class WorkPackageEdocFolderCache extends StateCacheService<WorkPackageEdo
       // so that no consumer needs to call schema#$load manually
       void this.schemaCacheService.ensureLoaded(folder).then(() => {
         // Check if the work package has changed
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-non-null-assertion
+         
         if (skipOnIdentical && state.hasValue() && _.isEqual(state.value!.$source, folder.$source)) {
           debugLog('Skipping identical work package from updating');
           return;

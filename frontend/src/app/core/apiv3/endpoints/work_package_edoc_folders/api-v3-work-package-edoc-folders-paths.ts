@@ -37,22 +37,22 @@ export class ApiV3WorkPackageEdocFoldersPaths extends ApiV3Collection<WorkPackag
 
     return new Promise<undefined>((resolve, reject) => {
       this
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+         
         .loadCollectionsFor(_.uniq(ids))
         .then((pagedResults:WorkPackageEdocFolderCollectionResource[]) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+           
           _.each(pagedResults, (results) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+             
             if (results.schemas) {
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               _.each(results.schemas.elements, (schema:SchemaResource) => {
-                this.states.schemas.get(schema.href as string).putValue(schema);
+                this.states.schemas.get(schema.href!).putValue(schema);
               });
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+             
             if (results.elements) {
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+               
               this.cache.updateWorkPackageList(results.elements);
             }
           });
@@ -62,7 +62,7 @@ export class ApiV3WorkPackageEdocFoldersPaths extends ApiV3Collection<WorkPackag
     });
   }
 
-  filtered<R = ApiV3GettableResource<WorkPackageEdocFolderCollectionResource>>(filters:ApiV3FilterBuilder, params:{ [p:string]:string } = {}):R {
+  filtered<R = ApiV3GettableResource<WorkPackageEdocFolderCollectionResource>>(filters:ApiV3FilterBuilder, params:Record<string, string> = {}):R {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
     return super.filtered(filters, params, ApiV3WorkPackageEdocFolderCachedSubresource) as any;
   }
@@ -73,7 +73,7 @@ export class ApiV3WorkPackageEdocFoldersPaths extends ApiV3Collection<WorkPackag
    * @param idOnly
    * @param additionalParams Additional set of params to the API
    */
-  public filterByTypeaheadOrId(term:string, idOnly = false, additionalParams:{ [key:string]:string } = {}):ApiV3WorkPackageEdocFolderCachedSubresource {
+  public filterByTypeaheadOrId(term:string, idOnly = false, additionalParams:Record<string, string> = {}):ApiV3WorkPackageEdocFolderCachedSubresource {
     const filters:ApiV3FilterBuilder = new ApiV3FilterBuilder();
 
     if (idOnly) {

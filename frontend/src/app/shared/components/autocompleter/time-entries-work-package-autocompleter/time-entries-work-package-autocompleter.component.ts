@@ -124,7 +124,7 @@ export class TimeEntriesWorkPackageAutocompleterComponent extends OpAutocomplete
     const base = this.filters ?? [];
     const isRecent = this.mode === 'recent';
     if (isRecent && this.recentWorkPackageIds.length > 0) {
-      return [...base, { name: 'id', operator: '=', values: this.recentWorkPackageIds } as IAPIFilter];
+      return [...base, { name: 'id', operator: '=', values: this.recentWorkPackageIds }];
     }
 
     return base;

@@ -65,7 +65,7 @@ export class FilterDateTimeValueComponent extends AbstractDateTimeValueControlle
   }
 
   public set value(val) {
-    this.filter.values = [val as string];
+    this.filter.values = [val];
     this.filterChanged.emit(this.filter);
   }
 

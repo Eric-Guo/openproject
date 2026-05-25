@@ -122,8 +122,8 @@ export class WorkPackageEdocFileUploadService {
 
     chunks.forEach((chunk, index) => {
       queue.add((lastResult:WorkPackageEdocFileResource|undefined, setComplete, setError) => {
-        if (lastResult && lastResult.status === 1) return Promise.resolve(setComplete());
-        if (lastResult && lastResult.status === -1) return Promise.reject(setError());
+        if (lastResult?.status === 1) return Promise.resolve(setComplete());
+        if (lastResult?.status === -1) return Promise.reject(setError());
         return this.uploadChunk(resource, chunk, index);
       });
     });

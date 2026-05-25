@@ -96,7 +96,7 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
     },
     {
       component: ProjectListButton,
-      show: () => !!(this.currentQuery && this.currentQuery.includeAllMembersAssignedProjects),
+      show: () => !!(this.currentQuery?.includeAllMembersAssignedProjects),
     },
     {
       component: OpBaselineModalComponent,
@@ -111,7 +111,7 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
     },
     {
       component: WorkPackageHierarchiesToggleButtonComponent,
-      show: () => !!(this.currentQuery && this.currentQuery.showHierarchies),
+      show: () => !!(this.currentQuery?.showHierarchies),
     },
     {
       component: WorkPackageDetailsViewButtonComponent,

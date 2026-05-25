@@ -69,7 +69,7 @@ export class WpTableConfigurationRelationSelectorComponent implements OnInit {
 
   private async initializeRelationFilters():Promise<void> {
     await this.wpTableFilters.onReady();
-    this.availableRelationFilters = this.relationFiltersOf(this.wpTableFilters.availableFilters) as QueryFilterResource[];
+    this.availableRelationFilters = this.relationFiltersOf(this.wpTableFilters.availableFilters);
     this.setSelectedRelationFilter();
     this.cdRef.markForCheck();
   }

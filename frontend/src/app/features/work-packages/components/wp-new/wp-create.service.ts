@@ -371,7 +371,7 @@ export class WorkPackageCreateService extends UntilDestroyedMixin {
       } else if (!value) {
         payload._links[attribute] = { href: null };
       } else {
-        payload._links[attribute] = value as unknown as HalSourceLink;
+        payload._links[attribute] = value;
       }
       delete payload[attribute];
     });

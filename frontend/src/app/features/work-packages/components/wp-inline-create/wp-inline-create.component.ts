@@ -195,7 +195,7 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
         this.untilDestroyed(),
       )
       .subscribe((wp:WorkPackageResource) => {
-        if (this.currentWorkPackage && this.currentWorkPackage.__initialized_at === wp.__initialized_at) {
+        if (this.currentWorkPackage?.__initialized_at === wp.__initialized_at) {
           // Remove row and focus
           this.resetRow();
 
@@ -225,7 +225,7 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
   public handleImportRowClick() {
     this.wpCreate
       .createOrContinueWorkPackage(this.projectIdentifier)
-      .then((change: WorkPackageChangeset) => {
+      .then((change:WorkPackageChangeset) => {
         this.currentWorkPackage = change.projectedResource;
         this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.currentWorkPackage });
       });

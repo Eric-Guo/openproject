@@ -534,12 +534,12 @@ export default class PreviewController extends DialogPreviewController {
   }
 
   private focusOnOpen() {
-    const banner = document.querySelector('.wp-datepicker--banner') as HTMLElement;
+    const banner = document.querySelector('.wp-datepicker--banner')!;
     if (banner) {
       banner.setAttribute('tabindex', '-1');
       banner.focus();
     } else {
-      const tabs = document.querySelector('.wp-datepicker-dialog--UnderlineNav') as HTMLElement;
+      const tabs = document.querySelector('.wp-datepicker-dialog--UnderlineNav')!;
       tabs.setAttribute('tabindex', '-1');
       tabs.focus();
     }

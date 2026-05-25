@@ -100,7 +100,7 @@ export class CurrentProjectService {
     const reg = /^https?:\/\/edoc\.thape\.com\.cn:8022\/index\.html#doc\/enterprise\/(\d+)/;
 
     if (!this.thDocLink || !reg.test(this.thDocLink)) return null;
-    const match = this.thDocLink.match(reg);
+    const match = reg.exec(this.thDocLink);
     return Number(match![1]);
   }
 
@@ -113,9 +113,9 @@ export class CurrentProjectService {
       this.currentId = element.dataset.projectId!;
       this.currentName = element.dataset.projectName!;
       this.currentIdentifier = element.dataset.projectIdentifier!;
-      this.currentThCode = element.dataset.projectThCode as string;
-      this.currentThName = element.dataset.projectThName as string;
-      this.currentThDocLink = element.dataset.projectThDocLink as string;
+      this.currentThCode = element.dataset.projectThCode!;
+      this.currentThName = element.dataset.projectThName!;
+      this.currentThDocLink = element.dataset.projectThDocLink!;
       this.currentThTypeId = element.dataset.projectThTypeId ? Number(element.dataset.projectThTypeId) : null;
     } else {
       this.currentId = null;

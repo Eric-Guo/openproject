@@ -137,11 +137,11 @@ export class ModalWithTurboContentDirective implements AfterViewInit, OnDestroy 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     if (fetchResponse.succeeded) {
       this.halEvents.push(
-        this.resource as WorkPackageResource,
+        this.resource,
         { eventType: 'updated' },
       );
 
-      void this.apiV3Service.work_packages.id(this.resource as WorkPackageResource).refresh();
+      void this.apiV3Service.work_packages.id(this.resource).refresh();
 
       this.successfulUpdate.emit();
 

@@ -56,7 +56,7 @@ export class WorkPackageEdocFilesResourceService {
       this.fetchCollection(wpId);
     }
     const folder = this.folders.get(wpId);
-    if (folder && folder.publishCode) {
+    if (folder?.publishCode) {
       ob.next(folder);
       ob.complete();
     } else {
@@ -135,7 +135,7 @@ export class WorkPackageEdocFilesResourceService {
   public removeAttachment(wpId:number, resource:WorkPackageEdocFileResource) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    if (!resource.remove || !resource.remove.href) throw new Error('删除url不存在');
+    if (!resource.remove?.href) throw new Error('删除url不存在');
 
     this.http
       .delete<void>(resource.remove.href, { withCredentials: true, headers })

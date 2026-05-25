@@ -220,7 +220,7 @@ export class OpBasicSingleDatePickerComponent implements ControlValueAccessor, O
 
   private appendToBodyOrDialog():HTMLElement|undefined {
     if (this.inDialog) {
-      return document.querySelector(`#${this.inDialog}`) as HTMLElement;
+      return document.querySelector(`#${this.inDialog}`)!;
     }
 
     return undefined;

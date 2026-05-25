@@ -358,7 +358,7 @@ export default class PageController extends Controller {
       select.html(html);
       jQuery(`select[data-filter-name='${filterName}']`).prop('disabled', false);
 
-      if (tagName && tagName.toLowerCase() === 'select') {
+      if (tagName?.toLowerCase() === 'select') {
         if (!postSelectValues || postSelectValues.length === 0) {
           (select[0] as HTMLSelectElement).selectedIndex = 0;
         } else {
@@ -491,7 +491,7 @@ export default class PageController extends Controller {
   }
 
   private setActiveState(selector:string, active:boolean) {
-    const input = document.querySelector(selector) as HTMLElement;
+    const input = document.querySelector(selector)!;
 
     if (!input) {
       return;

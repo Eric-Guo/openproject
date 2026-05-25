@@ -83,7 +83,7 @@ export default class ProgressTrackingController extends Controller {
   }
 
   getSelectedMode() {
-    const checkedRadio = this.progressCalculationModeRadioGroupTarget.querySelector('input:checked') as HTMLInputElement;
+    const checkedRadio = this.progressCalculationModeRadioGroupTarget.querySelector('input:checked')!;
     return checkedRadio?.value || '';
   }
 

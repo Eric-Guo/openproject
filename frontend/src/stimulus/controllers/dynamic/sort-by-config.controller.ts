@@ -116,7 +116,7 @@ export default class SortByConfigController extends Controller {
 
   fieldChanged(event:Event):void {
     const target = event.target as HTMLElement;
-    const row = target.closest('div[data-sort-by-config-target="inputRow"]') as HTMLElement;
+    const row = target.closest('div[data-sort-by-config-target="inputRow"]')!;
 
     this.manageRow(row);
 
@@ -208,7 +208,7 @@ export default class SortByConfigController extends Controller {
   }
 
   getSelectedField(row:HTMLElement):string|null {
-    const selectedField = row.querySelector('select[name="sort_field"]') as HTMLSelectElement;
+    const selectedField = row.querySelector('select[name="sort_field"]')!;
     return selectedField?.value || null;
   }
 
@@ -218,7 +218,7 @@ export default class SortByConfigController extends Controller {
   }
 
   unsetField(row:HTMLElement):void {
-    const select = row.querySelector('select[name="sort_field"]') as HTMLSelectElement;
+    const select = row.querySelector('select[name="sort_field"]')!;
     select.value = '';
   }
 
