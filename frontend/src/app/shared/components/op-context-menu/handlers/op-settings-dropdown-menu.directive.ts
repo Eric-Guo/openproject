@@ -316,7 +316,7 @@ export class OpSettingsMenuDirective extends OpActionMenuItems implements AfterV
         disabled: false,
         linkText: '导出甘特图',
         icon: 'icon-export',
-        onClick: ($event:JQuery.TriggeredEvent) => {
+        onClick: ($event:MouseEvent) => {
           if (this.allowWorkPackageAction($event, 'representations')) {
             this.opModalService.show(WpGanttExportModalComponent, this.injector);
           }

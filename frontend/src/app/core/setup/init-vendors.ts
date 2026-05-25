@@ -32,7 +32,8 @@
 import moment from 'moment-timezone';
 import './init-moment-locales';
 
-import '@openproject/primer-view-components/app/assets/javascripts/primer_view_components.js';
+// eslint-disable-next-line import/extensions,import/no-extraneous-dependencies
+import '@mixtint/primer-view-components/app/assets/javascripts/primer_view_components.js';
 
 import URI from 'urijs';
 import 'urijs/src/URITemplate';

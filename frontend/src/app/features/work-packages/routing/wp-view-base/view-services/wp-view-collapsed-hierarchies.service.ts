@@ -41,7 +41,7 @@ export class WorkPackageViewCollapsedHierarchiesService extends WorkPackageViewB
     protected readonly querySpace:IsolatedQuerySpace,
     readonly workPackageViewHierarchiesService:WorkPackageViewHierarchiesService,
   ) {
-    super(querySpace);
+    super();
   }
 
   get allHierarchiesAreCollapsed():boolean {
