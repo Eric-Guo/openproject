@@ -34,6 +34,7 @@ import { WorkPackageViewCollapsedHierarchiesService } from 'core-app/features/wo
 
 @Directive({
   selector: '[opHierarchyToggleDropdown]',
+  standalone: false,
 })
 export class WorkPackageHierarchyToggleDropdownMenuDirective extends OpContextMenuTrigger {
   constructor(
@@ -42,10 +43,10 @@ export class WorkPackageHierarchyToggleDropdownMenuDirective extends OpContextMe
     readonly I18n:I18nService,
     readonly wpViewCollapsedHierarchies:WorkPackageViewCollapsedHierarchiesService,
   ) {
-    super(elementRef, opContextMenu);
+    super();
   }
 
-  protected open(evt:JQuery.TriggeredEvent) {
+  protected override open(evt:Event):void {
     this.buildItems();
     this.opContextMenu.show(this, evt);
   }
@@ -63,7 +64,7 @@ export class WorkPackageHierarchyToggleDropdownMenuDirective extends OpContextMe
         disabled: this.wpViewCollapsedHierarchies.allHierarchiesAreCollapsed,
         linkText: this.I18n.t('js.button_collapse_all'),
         icon: 'icon-minus2',
-        onClick: (_evt:JQuery.TriggeredEvent) => {
+        onClick: (_evt:MouseEvent) => {
           this.wpViewCollapsedHierarchies.setAllHierarchiesCollapseStateTo(true);
 
           return true;
@@ -73,7 +74,7 @@ export class WorkPackageHierarchyToggleDropdownMenuDirective extends OpContextMe
         disabled: this.wpViewCollapsedHierarchies.allHierarchiesAreExpanded,
         linkText: this.I18n.t('js.button_expand_all'),
         icon: 'icon-plus',
-        onClick: (_evt:JQuery.TriggeredEvent) => {
+        onClick: (_evt:MouseEvent) => {
           this.wpViewCollapsedHierarchies.setAllHierarchiesCollapseStateTo(false);
 
           return true;
