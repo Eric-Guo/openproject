@@ -31,6 +31,7 @@ type GroupMembersItemMember = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'wp-watchers-tab-members',
+  standalone: false,
 })
 export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterViewInit {
   @Input() onUsersChange:(users:unknown[]) => void;
