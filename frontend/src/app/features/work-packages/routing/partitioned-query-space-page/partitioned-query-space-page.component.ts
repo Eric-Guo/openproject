@@ -96,7 +96,7 @@ export class PartitionedQuerySpacePageComponent extends WorkPackagesViewBase imp
   @InjectField() configuration:ConfigurationService;
 
   constructor(public injector:Injector, readonly cdr:ChangeDetectorRef) {
-    super(injector);
+    super();
   }
 
   text:Record<string, string> = {

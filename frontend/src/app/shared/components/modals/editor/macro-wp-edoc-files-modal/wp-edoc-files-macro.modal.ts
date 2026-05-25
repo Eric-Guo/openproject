@@ -22,6 +22,7 @@ import { WorkPackageEdocFileResource } from 'core-app/features/hal/resources/wor
 @Component({
   templateUrl: './wp-edoc-files-macro.modal.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class WpEdocFilesMacroModalComponent extends OpModalComponent implements OnInit, OnDestroy {
   public showClose = true;
@@ -50,7 +51,7 @@ export class WpEdocFilesMacroModalComponent extends OpModalComponent implements 
     protected readonly toastService:ToastService,
     private readonly halResourceService:HalResourceService,
   ) {
-    super(locals, cdRef, elementRef);
+    super();
     this.resource = this.halResourceService.createHalResource({ id: this.locals.wpId as string, _type: 'WorkPackage' });
   }
 
