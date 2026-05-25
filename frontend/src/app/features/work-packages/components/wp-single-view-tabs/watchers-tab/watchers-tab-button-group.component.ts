@@ -12,6 +12,7 @@ import { ProjectResource } from 'core-app/features/hal/resources/project-resourc
   styleUrls: ['./watchers-tab-button-group.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'wp-watchers-tab-button-group',
+  standalone: false,
 })
 export class WorkPackageWatchersTabButtonGroupComponent implements OnInit, AfterViewInit {
   @Input() addWatchers:(users:any[]) => void;
