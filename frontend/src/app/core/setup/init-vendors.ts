@@ -34,7 +34,8 @@ import moment from 'moment';
 import './init-moment-locales';
 
 import 'moment-timezone/builds/moment-timezone-with-data.min';
-import '@openproject/primer-view-components/app/assets/javascripts/primer_view_components.js';
+// eslint-disable-next-line import/extensions,import/no-extraneous-dependencies
+import '@mixtint/primer-view-components/app/assets/javascripts/primer_view_components.js';
 
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
