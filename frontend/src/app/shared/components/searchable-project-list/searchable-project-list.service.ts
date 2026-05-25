@@ -299,7 +299,7 @@ export class SearchableProjectListService {
 
     const listParent = findSearchableListParent(event.currentTarget as HTMLElement);
     const focused = document.activeElement;
-    (listParent?.querySelector('.spot-list--item-action_active')!)?.click();
+    listParent?.querySelector<HTMLElement>('.spot-list--item-action_active')?.click();
     (focused as HTMLElement)?.focus();
   }
 

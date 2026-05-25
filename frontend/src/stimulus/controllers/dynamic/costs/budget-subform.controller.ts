@@ -129,7 +129,7 @@ export default class BudgetSubformController extends Controller {
     const row = this.element.querySelector(`#${row_identifier}`)!;
     const body = new FormData();
     body.append('element_id', row_identifier);
-    body.append('fixed_date', (document.querySelector('#budget_fixed_date')!).value);
+    body.append('fixed_date', document.querySelector<HTMLInputElement>('#budget_fixed_date')!.value);
 
     row.querySelectorAll('.budget-item-value').forEach((itemValue:HTMLInputElement|HTMLSelectElement) => {
       body.append(itemValue.dataset.requestKey!, (itemValue.value || '0'));

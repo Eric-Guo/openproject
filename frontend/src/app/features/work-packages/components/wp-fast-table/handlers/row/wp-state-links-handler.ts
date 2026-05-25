@@ -50,7 +50,7 @@ export class WorkPackageStateLinksHandler implements TableEventHandler {
 
     // Locate the details link from event
     const target = evt.target as HTMLElement;
-    const element = target.closest(this.SELECTOR)!;
+    const element = target.closest<HTMLElement>(this.SELECTOR)!;
     const state = element.dataset.wpState;
     const workPackageId = element.dataset.workPackageId;
 
@@ -66,7 +66,7 @@ export class WorkPackageStateLinksHandler implements TableEventHandler {
     // not matter what other rows are (de-)selected below.
     // Thus save that row for the details view button.
     // Locate the row from event
-    const row = target.closest(`.${tableRowClassName}`)!;
+    const row = target.closest<HTMLElement>(`.${tableRowClassName}`)!;
     const classIdentifier = row.dataset.classIdentifier!;
     const [index] = view.workPackageTable.findRenderedRow(classIdentifier);
 

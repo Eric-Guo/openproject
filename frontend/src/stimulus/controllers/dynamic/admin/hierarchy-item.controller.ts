@@ -85,7 +85,7 @@ export default class HierarchyItemController extends Controller {
 
     if (event.dataTransfer) {
       const origin = event.dataTransfer.getData('application/dragkey');
-      const originElement = document.querySelector(`[data-hierarchy-item-id='${origin}']`)!;
+      const originElement = document.querySelector<HTMLElement>(`[data-hierarchy-item-id='${origin}']`)!;
       originElement.style.opacity = '1';
 
       if (targetElement.dataset.hierarchyItemId === (originElement).dataset.hierarchyItemId) {
@@ -122,5 +122,5 @@ export default class HierarchyItemController extends Controller {
 function dataNode(node:EventTarget | null):HTMLElement {
   if (!(node instanceof Element)) throw new Error('Cannot handle drag and drop of non HTML element');
 
-  return node.closest('[data-hierarchy-item-id]')!;
+  return node.closest<HTMLElement>('[data-hierarchy-item-id]')!;
 }

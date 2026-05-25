@@ -119,7 +119,7 @@ export default class CustomFieldsController extends Controller {
     const last = this.customOptionRowTargets[count - 1];
     const dup = last.cloneNode(true) as HTMLElement;
 
-    const input = dup.querySelector('.custom-option-value input')!;
+    const input = dup.querySelector<HTMLInputElement>('.custom-option-value input')!;
 
     input.setAttribute('name', `custom_field[custom_options_attributes][${count}][value]`);
     input.setAttribute('id', `custom_field_custom_options_attributes_${count}_value`);
@@ -129,8 +129,8 @@ export default class CustomFieldsController extends Controller {
       .querySelector('.custom-option-id')
       ?.remove();
 
-    const defaultValueCheckbox = dup.querySelector('input[type="checkbox"]')!;
-    const defaultValueHidden = dup.querySelector('input[type="hidden"]')!;
+    const defaultValueCheckbox = dup.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
+    const defaultValueHidden = dup.querySelector<HTMLInputElement>('input[type="hidden"]')!;
 
     defaultValueHidden.setAttribute('name', `custom_field[custom_options_attributes][${count}][default_value]`);
     defaultValueHidden.removeAttribute('id');

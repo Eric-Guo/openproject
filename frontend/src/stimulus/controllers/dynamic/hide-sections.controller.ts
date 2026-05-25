@@ -36,7 +36,7 @@ export default class extends Controller {
   }
 
   hide(event:MouseEvent) {
-    const section = (event.target as HTMLElement).closest('.hide-section')!;
+    const section = (event.target as HTMLElement).closest<HTMLElement>('.hide-section')!;
     if (section) {
       section.hidden = true;
     }

@@ -40,7 +40,8 @@ export class WorkPackageViewHighlightingService extends WorkPackageQueryStateSer
   }
 
   public get current():WorkPackageViewHighlight {
-    const value = this.lastUpdatedState.getValueOr({ mode: 'inline' });
+    const fallback:WorkPackageViewHighlight = { mode: 'inline' };
+    const value = this.lastUpdatedState.getValueOr(fallback);
     return this.filteredValue(value);
   }
 

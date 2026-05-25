@@ -240,7 +240,7 @@ export class TimelineCellRenderer {
    */
   public update(element:HTMLDivElement, labels:WorkPackageCellLabels|null, renderInfo:RenderInfo):boolean {
     const { change } = renderInfo;
-    const bar = element.querySelector(`.${timelineBackgroundElementClass}`)!;
+    const bar = element.querySelector<HTMLElement>(`.${timelineBackgroundElementClass}`)!;
     let start = moment(change.projectedResource.startDate);
     let due = moment(change.projectedResource.dueDate);
 

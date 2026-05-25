@@ -491,7 +491,7 @@ export default class PageController extends Controller {
   }
 
   private setActiveState(selector:string, active:boolean) {
-    const input = document.querySelector(selector)!;
+    const input = document.querySelector<HTMLElement>(selector)!;
 
     if (!input) {
       return;

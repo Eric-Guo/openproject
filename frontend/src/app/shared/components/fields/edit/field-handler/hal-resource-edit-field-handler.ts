@@ -98,7 +98,7 @@ export class HalResourceEditFieldHandler extends EditFieldHandler {
   }
 
   public focus(setClickOffset?:number) {
-    const target = this.element.querySelector('.inline-edit--field')!;
+    const target = this.element.querySelector<HTMLElement>('.inline-edit--field')!;
 
     if (!target) {
       debugLog(`Tried to focus on ${this.fieldName}, but element does not (yet) exist.`);

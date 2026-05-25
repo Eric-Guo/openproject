@@ -118,11 +118,11 @@ export class DomAutoscrollService {
   }
 
   public getElementsUnderPoint():HTMLElement[] {
-    const underPoint = [];
+    const underPoint:HTMLElement[] = [];
 
     for (let i = 0; i < this.elements.length; i++) {
       if (this.inside(this.point, this.elements[i])) {
-        underPoint.push(this.elements[i]);
+        underPoint.push(this.elements[i] as HTMLElement);
       }
     }
 

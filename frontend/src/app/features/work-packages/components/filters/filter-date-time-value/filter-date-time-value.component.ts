@@ -60,13 +60,13 @@ export class FilterDateTimeValueComponent extends AbstractDateTimeValueControlle
     return this.filter.values[0];
   }
 
-  public get valueString() {
-    return this.filter.values[0].toString();
+  public set value(val:HalResource|string) {
+    this.filter.values = [val] as QueryFilterInstanceResource['values'];
+    this.filterChanged.emit(this.filter);
   }
 
-  public set value(val) {
-    this.filter.values = [val];
-    this.filterChanged.emit(this.filter);
+  public get valueString() {
+    return this.filter.values[0].toString();
   }
 
   public get lowerBoundary():Moment|null {
