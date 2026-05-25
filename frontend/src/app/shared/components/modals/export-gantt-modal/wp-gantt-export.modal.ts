@@ -31,6 +31,7 @@ import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 @Component({
   templateUrl: './wp-gantt-export.modal.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class WpGanttExportModalComponent extends OpModalComponent implements OnInit {
   public text = {
@@ -61,7 +62,7 @@ export class WpGanttExportModalComponent extends OpModalComponent implements OnI
     readonly currentProject:CurrentProjectService,
     readonly apiV3Service:ApiV3Service,
   ) {
-    super(locals, cdRef, elementRef);
+    super();
   }
 
   ngOnInit():void {
