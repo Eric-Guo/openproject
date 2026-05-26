@@ -8,6 +8,9 @@ allowBuilds:
   msgpackr-extract: true
   th-analytics: true
 
+minimumReleaseAgeExclude:
+  - '@mixtint/primer-view-components@0.86.1'
+
 nodeLinker: hoisted
 
 onlyBuiltDependencies:

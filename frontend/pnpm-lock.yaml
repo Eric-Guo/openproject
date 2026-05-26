@@ -141,8 +141,8 @@ importers:
         specifier: ^6.0.22
         version: 6.0.22(react@19.2.6)
       '@mixtint/primer-view-components':
-        specifier: 0.84.5
-        version: 0.84.5(@primer/primitives@11.7.1)
+        specifier: 0.86.1
+        version: 0.86.1(@primer/primitives@11.7.1)
       '@ng-select/ng-option-highlight':
         specifier: ^21.8.2
         version: 21.8.2(@angular/common@21.2.14(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.14(@angular/compiler@21.2.14)(rxjs@7.8.2))
@@ -168,8 +168,8 @@ importers:
         specifier: 11.7.1
         version: 11.7.1
       '@primer/view-components':
-        specifier: npm:@mixtint/primer-view-components@^0.84.5
-        version: '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)'
+        specifier: npm:@mixtint/primer-view-components@^0.86.1
+        version: '@mixtint/primer-view-components@0.86.1(@primer/primitives@11.7.1)'
       '@rails/request.js':
         specifier: ^0.0.13
         version: 0.0.13
@@ -2497,8 +2497,8 @@ packages:
   '@mdx-js/util@1.6.22':
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
 
-  '@mixtint/primer-view-components@0.84.5':
-    resolution: {integrity: sha512-7OGohXRT7jBTU8SZEhXWsLIEaUcmJY7pqaWdCp5IoMoHVc8IlkruMt9IVJBSmOGV5Vs4s9Lc5gtLVw66I3ku5g==}
+  '@mixtint/primer-view-components@0.86.1':
+    resolution: {integrity: sha512-vBPnlugLhNw0GqC3qm4wY+Jgt/ZzVageIFh7TwGwCZxKT6qq7aNz1z+gl9QDvbcKCNQbbCy5VQDzD0Dr4I+DIw==}
     peerDependencies:
       '@primer/primitives': 10.x || 11.x
 
@@ -9658,7 +9658,7 @@ snapshots:
   '@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9)':
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.28.6
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.12.9)
       '@babel/plugin-transform-parameters': 7.29.7(@babel/core@7.12.9)
 
@@ -10311,17 +10311,17 @@ snapshots:
   '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emnapi/runtime@1.10.0':
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emnapi/wasi-threads@1.2.1':
     dependencies:
-      tslib: 2.4.1
+      tslib: 2.8.1
     optional: true
 
   '@emoji-mart/data@1.2.1': {}
@@ -11181,7 +11181,7 @@ snapshots:
 
   '@mdx-js/util@1.6.22': {}
 
-  '@mixtint/primer-view-components@0.84.5(@primer/primitives@11.7.1)':
+  '@mixtint/primer-view-components@0.86.1(@primer/primitives@11.7.1)':
     dependencies:
       '@github/auto-check-element': 6.0.0
       '@github/auto-complete-element': 3.8.0
