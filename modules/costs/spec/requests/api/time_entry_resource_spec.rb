@@ -726,6 +726,34 @@ RSpec.describe "API v3 time_entry resource" do
       end
     end
 
+    context "with admin audit user ID overrides" do
+      let(:current_user) { create(:admin) }
+      let(:logged_by_user) { create(:user) }
+      let(:approved_by_user) { create(:user) }
+      let(:approved_by_sz_user) { create(:user) }
+      let(:params) do
+        {
+          approvedHours: "PT2H30M",
+          szApprovedHours: "PT1H45M",
+          approvedById: approved_by_user.id,
+          approvedBySzId: approved_by_sz_user.id,
+          loggedById: logged_by_user.id
+        }
+      end
+
+      it "stores the provided audit user IDs" do
+        expect(subject.status).to eq(200)
+
+        time_entry.reload
+
+        expect(time_entry.approved_hours).to eq(2.5)
+        expect(time_entry.sz_approved_hours).to eq(1.75)
+        expect(time_entry.approved_by_id).to eq(approved_by_user.id)
+        expect(time_entry.approved_by_sz_id).to eq(approved_by_sz_user.id)
+        expect(time_entry.logged_by_id).to eq(logged_by_user.id)
+      end
+    end
+
     context "with rejection fields" do
       let(:params) do
         {
