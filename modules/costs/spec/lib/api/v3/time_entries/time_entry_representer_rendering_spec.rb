@@ -40,9 +40,6 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "rendering" do
                   hours:,
                   approved_hours:,
                   from_th_keyin:,
-                  reject_reason:,
-                  rejected_at:,
-                  rejected_but_now_pass:,
                   activity:,
                   project: workspace,
                   entity: work_package,
@@ -61,9 +58,6 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "rendering" do
   let(:hours) { 5 }
   let(:approved_hours) { 3 }
   let(:from_th_keyin) { true }
-  let(:reject_reason) { "Missing weekly summary" }
-  let(:rejected_at) { DateTime.parse("2026-05-20T08:45:00Z") }
-  let(:rejected_but_now_pass) { false }
   let(:embed_links) { true }
   let(:permissions) do
     [:edit_time_entries]
@@ -353,18 +347,6 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "rendering" do
 
     it_behaves_like "property", :fromThKeyin do
       let(:value) { true }
-    end
-
-    it_behaves_like "property", :rejectReason do
-      let(:value) { "Missing weekly summary" }
-    end
-
-    it_behaves_like "datetime property", :rejectedAt do
-      let(:value) { rejected_at }
-    end
-
-    it_behaves_like "property", :rejectedButNowPass do
-      let(:value) { false }
     end
 
     it_behaves_like "datetime property", :createdAt do

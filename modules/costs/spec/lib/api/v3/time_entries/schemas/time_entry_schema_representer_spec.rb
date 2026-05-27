@@ -41,9 +41,7 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
   let(:assigned_project) { nil }
   let(:activity) { build_stubbed(:time_entry_activity) }
   let(:time_entry) { build_stubbed(:time_entry) }
-  let(:writable_attributes) do
-    %w(spent_on hours approved_hours from_th_keyin reject_reason rejected_at rejected_but_now_pass project entity activity comment user)
-  end
+  let(:writable_attributes) { %w(spent_on hours approved_hours from_th_keyin project entity activity comment user) }
 
   let(:contract) do
     contract = instance_double(new_record ? TimeEntries::CreateContract : TimeEntries::UpdateContract,
@@ -163,7 +161,7 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
       it_behaves_like "has basic schema properties" do
         let(:type) { "Duration" }
         let(:name) { TimeEntry.human_attribute_name("hours") }
-        let(:required) { false }
+        let(:required) { true }
         let(:writable) { true }
       end
     end
@@ -185,39 +183,6 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
       it_behaves_like "has basic schema properties" do
         let(:type) { "Boolean" }
         let(:name) { TimeEntry.human_attribute_name("from_th_keyin") }
-        let(:required) { false }
-        let(:writable) { true }
-      end
-    end
-
-    describe "rejectReason" do
-      let(:path) { "rejectReason" }
-
-      it_behaves_like "has basic schema properties" do
-        let(:type) { "String" }
-        let(:name) { TimeEntry.human_attribute_name("reject_reason") }
-        let(:required) { false }
-        let(:writable) { true }
-      end
-    end
-
-    describe "rejectedAt" do
-      let(:path) { "rejectedAt" }
-
-      it_behaves_like "has basic schema properties" do
-        let(:type) { "DateTime" }
-        let(:name) { TimeEntry.human_attribute_name("rejected_at") }
-        let(:required) { false }
-        let(:writable) { true }
-      end
-    end
-
-    describe "rejectedButNowPass" do
-      let(:path) { "rejectedButNowPass" }
-
-      it_behaves_like "has basic schema properties" do
-        let(:type) { "Boolean" }
-        let(:name) { TimeEntry.human_attribute_name("rejected_but_now_pass") }
         let(:required) { false }
         let(:writable) { true }
       end
