@@ -69,9 +69,6 @@ module TimeEntries
     attribute :approved_hours
     attribute :sz_approved_hours
     attribute :from_th_keyin
-    attribute :reject_reason
-    attribute :rejected_at
-    attribute :rejected_but_now_pass
     attribute :comments
     attribute_alias :comments, :comment
 

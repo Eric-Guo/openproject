@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -28,16 +26,4 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-class TimeEntries::UpdateService < BaseServices::Update
-  protected
-
-  def set_attributes(params)
-    attributes_service_class
-      .new(user:,
-           model: instance(params),
-           contract_class:,
-           contract_options:)
-      .with_state(state)
-      .call(set_attributes_params(params))
-  end
-end
+class TimeEntries::UpdateService < BaseServices::Update; end

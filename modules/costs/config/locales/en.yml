@@ -58,13 +58,9 @@ en:
         from_th_keyin: From TH keyin
         hours: Hours
         project: Project
-        reject_reason: Reject reason
-        rejected_at: Rejected at
-        rejected_but_now_pass: Rejected but now pass
         spent_on: Date
         start_time: Start time
         subject: Subject
-        sz_approved_hours: SZ approved hours
         time: Time
         user: User
         work_package: Work package
