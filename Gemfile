@@ -353,6 +353,8 @@ group :development do
   # Support cursor / vs code
   gem "ruby-lsp", require: false
   gem "ruby-lsp-rails", require: false
+
+  gem "tidewave"
 end
 
 group :development, :test do
