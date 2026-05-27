@@ -105,12 +105,6 @@ module API
                  exec_context: :decorator,
                  getter: ->(*) { represented.from_th_keyin }
 
-        property :reject_reason
-
-        date_time_property :rejected_at
-
-        property :rejected_but_now_pass
-
         date_time_property :created_at
         date_time_property :updated_at
 
@@ -215,18 +209,12 @@ module API
 
         def sz_approved_hours=(value)
           represented.sz_approved_hours = datetime_formatter.parse_duration_to_hours(value,
-                                                                                     "szApprovedHours",
-                                                                                     allow_nil: true)
+                                                                                  "szApprovedHours",
+                                                                                  allow_nil: true)
         end
 
         def from_th_keyin=(value)
           represented.from_th_keyin = value
-        end
-
-        def rejected_at=(value)
-          represented.rejected_at = datetime_formatter.parse_datetime(value,
-                                                                      "rejectedAt",
-                                                                      allow_nil: true)
         end
 
         self.to_eager_load = [:user, :activity, { project: :enabled_modules }, { custom_values: :custom_field }]

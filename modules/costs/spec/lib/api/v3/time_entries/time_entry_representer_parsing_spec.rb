@@ -86,9 +86,6 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "parsing" do
         "raw" => "some comment"
       },
       "fromThKeyin" => true,
-      "rejectReason" => "Missing weekly summary",
-      "rejectedAt" => "2026-05-20T08:45:00Z",
-      "rejectedButNowPass" => true,
       "spentOn" => "2017-07-28",
       "startTime" => "2017-07-28T12:30:00Z",
       text_custom_field.attribute_name(:camel_case) => {
@@ -252,33 +249,6 @@ RSpec.describe API::V3::TimeEntries::TimeEntryRepresenter, "parsing" do
         time_entry = representer.from_hash(hash)
 
         expect(time_entry.from_th_keyin)
-          .to be(true)
-      end
-    end
-
-    describe "rejectReason" do
-      it "updates reject_reason" do
-        time_entry = representer.from_hash(hash)
-
-        expect(time_entry.reject_reason)
-          .to eq("Missing weekly summary")
-      end
-    end
-
-    describe "rejectedAt" do
-      it "updates rejected_at" do
-        time_entry = representer.from_hash(hash)
-
-        expect(time_entry.rejected_at)
-          .to eq(DateTime.parse("2026-05-20T08:45:00Z"))
-      end
-    end
-
-    describe "rejectedButNowPass" do
-      it "updates rejected_but_now_pass" do
-        time_entry = representer.from_hash(hash)
-
-        expect(time_entry.rejected_but_now_pass)
           .to be(true)
       end
     end
