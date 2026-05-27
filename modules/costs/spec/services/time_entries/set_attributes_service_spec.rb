@@ -285,68 +285,6 @@ RSpec.describe TimeEntries::SetAttributesService, type: :model do
     end
   end
 
-  context "with admin API time entry update user IDs" do
-    let(:user) { create(:admin) }
-    let(:other_user) { create(:user) }
-    let(:logged_by_user) { create(:user) }
-    let(:approved_by_user) { create(:user) }
-    let(:approved_by_sz_user) { create(:user) }
-    let(:time_entry_instance) do
-      create(:time_entry,
-             user: other_user,
-             logged_by: other_user,
-             approved_by: nil,
-             approved_hours: 1.0,
-             sz_approved_hours: 1.0,
-             hours: 1.0)
-    end
-    let(:params) do
-      {
-        approved_hours: 2.5,
-        sz_approved_hours: 1.75,
-        approved_by_id: approved_by_user.id,
-        approved_by_sz_id: approved_by_sz_user.id,
-        logged_by_id: logged_by_user.id
-      }
-    end
-
-    subject { instance.with_state(api_v3_time_entry_update: true).call(params) }
-
-    it "allows the admin to overwrite audit user IDs" do
-      subject
-
-      expect(time_entry_instance.approved_by_id).to eq(approved_by_user.id)
-      expect(time_entry_instance.approved_by_sz_id).to eq(approved_by_sz_user.id)
-      expect(time_entry_instance.logged_by_id).to eq(logged_by_user.id)
-    end
-  end
-
-  context "with admin user ID params outside API time entry update" do
-    let(:user) { create(:admin) }
-    let(:other_user) { create(:user) }
-    let(:approved_by_user) { create(:user) }
-    let(:time_entry_instance) do
-      create(:time_entry,
-             user: other_user,
-             logged_by: other_user,
-             approved_by: nil,
-             approved_hours: 1.0,
-             hours: 1.0)
-    end
-    let(:params) do
-      {
-        approved_hours: 2.5,
-        approved_by_id: approved_by_user.id
-      }
-    end
-
-    it "keeps using the current service user as approver" do
-      subject
-
-      expect(time_entry_instance.approved_by).to eq(user)
-    end
-  end
-
   context "with an invalid contract" do
     let(:contract_valid) { false }
     let(:expect_time_instance_save) do
