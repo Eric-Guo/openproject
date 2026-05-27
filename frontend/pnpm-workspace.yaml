@@ -9,7 +9,8 @@ allowBuilds:
   th-analytics: true
 
 minimumReleaseAgeExclude:
-  - '@mixtint/primer-view-components@0.86.1'
+  - 'op-blocknote-extensions@0.0.26'
+  - '@mixtint/primer-view-components@0.86.2'
 
 nodeLinker: hoisted
 

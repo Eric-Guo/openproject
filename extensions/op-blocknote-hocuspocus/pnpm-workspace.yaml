@@ -2,6 +2,9 @@ allowBuilds:
   esbuild: true
   msw: true
 
+minimumReleaseAgeExclude:
+  - 'op-blocknote-extensions@0.0.18'
+
 nodeLinker: hoisted
 
 onlyBuiltDependencies:
