@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -62,10 +60,7 @@ module API
             end
 
             get &::API::V3::Utilities::Endpoints::Show.new(model: TimeEntry).mount
-            patch &::API::V3::Utilities::Endpoints::Update
-                     .new(model: TimeEntry,
-                          process_state: ->(**) { { api_v3_time_entry_update: true } })
-                     .mount
+            patch &::API::V3::Utilities::Endpoints::Update.new(model: TimeEntry).mount
             delete &::API::V3::Utilities::Endpoints::Delete.new(model: TimeEntry).mount
 
             mount ::API::V3::TimeEntries::UpdateFormAPI
