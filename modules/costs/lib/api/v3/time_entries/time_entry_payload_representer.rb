@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -33,10 +31,6 @@ module API
     module TimeEntries
       class TimeEntryPayloadRepresenter < TimeEntryRepresenter
         include ::API::Utilities::PayloadRepresenter
-
-        property :approved_by_id
-        property :approved_by_sz_id
-        property :logged_by_id
       end
     end
   end

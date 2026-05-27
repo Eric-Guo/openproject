@@ -30,12 +30,10 @@
 
 module TimeEntries
   class SetAttributesService < ::BaseServices::SetAttributes
-    ADMIN_API_USER_ID_ATTRIBUTES = %i[approved_by_id approved_by_sz_id logged_by_id].freeze
-
     private
 
-    def set_attributes(_attributes) # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
-      model.attributes = params.except(*ADMIN_API_USER_ID_ATTRIBUTES)
+    def set_attributes(_attributes) # rubocop:disable Metrics/AbcSize
+      model.attributes = params
 
       ##
       # Update project context if moving time entry
@@ -63,8 +61,6 @@ module TimeEntries
         set_logged_by unless model.new_record?
       end
 
-      set_admin_api_user_id_attributes
-
       # Set custom_values_to_validate for customizable models
       set_custom_values_to_validate(params)
     end
@@ -89,17 +85,6 @@ module TimeEntries
     def set_approved_by_sz
       model.change_by_system do
         model.approved_by_sz = user
-      end
-    end
-
-    def set_admin_api_user_id_attributes
-      return unless state.api_v3_time_entry_update && user.admin?
-
-      attributes = params.slice(*ADMIN_API_USER_ID_ATTRIBUTES)
-      return if attributes.empty?
-
-      model.change_by_system do
-        model.attributes = attributes
       end
     end
 
