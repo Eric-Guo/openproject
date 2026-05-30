@@ -40,8 +40,7 @@ module Storages::Admin
         input_width: :large
       ) do |list|
         ::Storages::NextcloudStorage::AUTHENTICATION_METHODS.each do |m|
-          disabled = !EnterpriseToken.allows_to?(:nextcloud_sso) &&
-                       m != ::Storages::NextcloudStorage::AUTHENTICATION_METHOD_TWO_WAY_OAUTH2
+          disabled = m != ::Storages::NextcloudStorage::AUTHENTICATION_METHOD_TWO_WAY_OAUTH2
           list.option label: I18n.t("activerecord.attributes.storages/nextcloud_storage.authentication_methods.#{m}"),
                       value: m,
                       disabled:
