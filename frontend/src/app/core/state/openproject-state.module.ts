@@ -34,7 +34,6 @@ import { PrincipalsResourceService } from './principals/principals.service';
 import { CapabilitiesResourceService } from 'core-app/core/state/capabilities/capabilities.service';
 import { DayResourceService } from 'core-app/core/state/days/day.service';
 import { WeekdayResourceService } from 'core-app/core/state/days/weekday.service';
-import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-package-edoc-files/work-package-edoc-files.service';
 
 @NgModule({
   providers: [
@@ -45,7 +44,6 @@ import { WorkPackageEdocFilesResourceService } from 'core-app/core/state/work-pa
     CapabilitiesResourceService,
     DayResourceService,
     WeekdayResourceService,
-    WorkPackageEdocFilesResourceService,
   ],
 })
 export class OpenProjectStateModule {}

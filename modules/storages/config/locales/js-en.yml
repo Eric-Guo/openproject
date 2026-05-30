@@ -17,6 +17,7 @@ en:
       new_folder: "New folder"
 
       types:
+        edoc_dds: "Edoc DDS"
         nextcloud: "Nextcloud"
         one_drive: "OneDrive"
         sharepoint: "SharePoint"

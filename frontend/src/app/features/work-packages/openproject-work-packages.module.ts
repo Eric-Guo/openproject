@@ -92,7 +92,6 @@ import {
   WorkPackageActivityTabComponent,
 } from 'core-app/features/work-packages/components/wp-single-view-tabs/activity-panel/activity-tab.component';
 import { OpenprojectAttachmentsModule } from 'core-app/shared/components/attachments/openproject-attachments.module';
-import { OpenprojectWorkPackageEdocFilesModule } from 'core-app/features/plugins/linked/openproject-th_work_packages/work-package-edoc-files/openproject-work-package-edoc-files.module';
 import {
   WpCustomActionComponent,
 } from 'core-app/features/work-packages/components/wp-custom-actions/wp-custom-actions/wp-custom-action.component';
@@ -279,7 +278,6 @@ import {
 import {
   WpButtonMacroModalComponent,
 } from 'core-app/shared/components/modals/editor/macro-wp-button-modal/wp-button-macro.modal';
-import { WpEdocFilesMacroModalComponent } from 'core-app/shared/components/modals/editor/macro-wp-edoc-files-modal/wp-edoc-files-macro.modal';
 import { QuerySharingModalComponent } from 'core-app/shared/components/modals/share-modal/query-sharing.modal';
 import { SaveQueryModalComponent } from 'core-app/shared/components/modals/save-modal/save-query.modal';
 import { QuerySharingFormComponent } from 'core-app/shared/components/modals/share-modal/query-sharing-form.component';
@@ -319,7 +317,9 @@ import {
 } from 'core-app/features/work-packages/components/wp-copy/wp-copy-full-view.component';
 import { OpenprojectTabsModule } from 'core-app/shared/components/tabs/openproject-tabs.module';
 import { TimeEntryChangeset } from 'core-app/features/work-packages/helpers/time-entries/time-entry-changeset';
-import { WorkPackageEdocFilesTabComponent } from 'core-app/features/work-packages/components/wp-single-view-tabs/edoc-files-tab/op-edoc-files-tab.component';
+import {
+  WorkPackageFilesTabComponent,
+} from 'core-app/features/work-packages/components/wp-single-view-tabs/files-tab/op-files-tab.component';
 import { OpAttachmentsComponent } from 'core-app/shared/components/attachments/attachments.component';
 import {
   QueryFiltersComponent,
@@ -432,8 +432,6 @@ import {
     OpenprojectEditorModule,
 
     OpenprojectAttachmentsModule,
-
-    OpenprojectWorkPackageEdocFilesModule,
 
     OpenprojectBcfModule,
 
@@ -604,8 +602,8 @@ import {
     WorkPackageRelationsAutocompleteComponent,
     WorkPackageBreadcrumbParentComponent,
 
-    // Edoc Files tab
-    WorkPackageEdocFilesTabComponent,
+    // Files tab
+    WorkPackageFilesTabComponent,
 
     // Split view
     WorkPackageDetailsViewButtonComponent,
@@ -651,7 +649,6 @@ import {
     // editor module to avoid circular dependencies
     EmbeddedTablesMacroComponent,
     WpButtonMacroModalComponent,
-    WpEdocFilesMacroModalComponent,
 
     // Card view
     WorkPackageCardViewComponent,

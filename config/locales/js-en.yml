@@ -218,8 +218,6 @@ en:
           text: "[Placeholder] Embedded calendar"
         dds:
           button: 'DDS file'
-        wp_edoc_files:
-          button: 'Insert files'
     admin:
       type_form:
         edit_query: "Edit query"

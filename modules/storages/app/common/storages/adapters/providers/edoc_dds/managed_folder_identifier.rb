@@ -30,12 +30,18 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        class ManagedFolderIdentifier
+          def initialize(project_storage)
+            @project_storage = project_storage
+          end
+
+          def name = path
+
+          def path = @project_storage.project_folder_id
+
+          def location = @project_storage.project_folder_id
         end
       end
     end

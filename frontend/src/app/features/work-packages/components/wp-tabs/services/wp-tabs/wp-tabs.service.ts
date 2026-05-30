@@ -44,8 +44,8 @@ import {
   WorkPackageWatchersTabComponent,
 } from 'core-app/features/work-packages/components/wp-single-view-tabs/watchers-tab/watchers-tab.component';
 import {
-  WorkPackageEdocFilesTabComponent,
-} from 'core-app/features/work-packages/components/wp-single-view-tabs/edoc-files-tab/op-edoc-files-tab.component';
+  WorkPackageFilesTabComponent,
+} from 'core-app/features/work-packages/components/wp-single-view-tabs/files-tab/op-files-tab.component';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import {
   workPackageWatchersCount,
@@ -56,7 +56,9 @@ import {
 import {
   workPackageNotificationsCount,
 } from 'core-app/features/work-packages/components/wp-tabs/services/wp-tabs/wp-notifications-count.function';
-import { workPackageEdocFilesCount } from 'core-app/features/work-packages/components/wp-tabs/services/wp-tabs/wp-edoc-files-count.function';
+import {
+  workPackageFilesCount,
+} from 'core-app/features/work-packages/components/wp-tabs/services/wp-tabs/wp-files-count.function';
 
 @Injectable({
   providedIn: 'root',
@@ -145,10 +147,10 @@ export class WorkPackageTabsService {
         showCountAsBubble: true,
       },
       {
-        id: 'edoc_files',
-        component: WorkPackageEdocFilesTabComponent,
+        id: 'files',
+        component: WorkPackageFilesTabComponent,
         name: I18n.t('js.work_packages.tabs.files'),
-        count: workPackageEdocFilesCount,
+        count: workPackageFilesCount,
       },
       {
         id: 'relations',

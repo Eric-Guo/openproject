@@ -30,12 +30,19 @@
 
 module Storages
   module Adapters
-    module Input
-      class UploadLinkContract < DryApplicationContract
-        params do
-          required(:folder_id).filled(:string)
-          required(:file_name).filled(:string)
-          optional(:project_id).maybe(:integer)
+    module Providers
+      module EdocDds
+        module Commands
+          class DeleteFolderCommand < Base
+            def call(auth_strategy:, input_data:)
+              Authentication[auth_strategy].call(storage: @storage) do
+                client.remove_folder(folder_identifier(input_data.location))
+                Success()
+              rescue Client::Error => e
+                wrap_client_error(e)
+              end
+            end
+          end
         end
       end
     end
