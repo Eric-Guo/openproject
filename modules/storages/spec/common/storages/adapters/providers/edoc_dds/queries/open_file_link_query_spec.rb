@@ -28,31 +28,32 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
+require "spec_helper"
+require_module_spec_helper
+
 module Storages
   module Adapters
     module Providers
       module EdocDds
         module Queries
-          class OpenFileLinkQuery < Base
-            def call(auth_strategy:, input_data:)
-              Authentication[auth_strategy].call(storage: @storage) do
-                Success(open_url(input_data))
-              end
-            rescue Client::Error => e
-              wrap_client_error(e)
+          RSpec.describe OpenFileLinkQuery do
+            let(:storage) { build(:edoc_dds_storage) }
+            let(:auth_strategy) { Registry["edoc_dds.authentication.userless"].call }
+
+            it_behaves_like "storage adapter: query call signature", "open_file_link"
+
+            context "with a file link" do
+              let(:input_data) { Input::OpenFileLink.build(file_id: "file:306").value! }
+              let(:open_file_link) { "https://annotator.thape.com.cn/?file_id=306" }
+
+              it_behaves_like "adapter open_file_link_query: successful link response"
             end
 
-            private
+            context "with a folder link" do
+              let(:input_data) { Input::OpenFileLink.build(file_id: "folder:200").value! }
+              let(:open_file_link) { "https://dds.example.com/index.html#doc/enterprise/200" }
 
-            def open_url(input_data) # rubocop:disable Metrics/AbcSize
-              if input_data.file_id.to_s.delete_prefix("/").start_with?("folder:")
-                client.folder_url(folder_identifier(input_data.file_id))
-              elsif input_data.open_location
-                file = client.file_info(file_identifier(input_data.file_id))
-                client.folder_url(file[:parent_folder_id])
-              else
-                client.annotator_url(file_identifier(input_data.file_id))
-              end
+              it_behaves_like "adapter open_file_link_query: successful link response"
             end
           end
         end
