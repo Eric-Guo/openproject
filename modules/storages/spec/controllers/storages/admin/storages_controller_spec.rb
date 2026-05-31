@@ -37,6 +37,28 @@ RSpec.describe Storages::Admin::StoragesController do
     login_as user
   end
 
+  describe "GET #new" do
+    render_views
+
+    context "with an Edoc DDS storage provider" do
+      before do
+        allow(OpenProject::Static::Links).to receive(:url_for).and_call_original
+        allow(OpenProject::Static::Links)
+          .to receive(:url_for)
+                .with(:storage_docs, :edoc_dds_setup)
+                .and_return(nil)
+      end
+
+      it "renders the provider docs link with a fallback URL" do
+        get :new, params: { provider: "edoc_dds" }
+
+        expect(response).to be_successful
+        expect(response.body)
+          .to include("https://www.openproject.org/docs/system-admin-guide/files/external-file-storages/")
+      end
+    end
+  end
+
   describe "GET #upsell" do
     it "renders the upsell page" do
       get :upsell
