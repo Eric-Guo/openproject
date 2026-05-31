@@ -66,7 +66,9 @@ module Storages
                 id: @project_storage.storage.id,
                 _links: {
                   self: { href: api_v3_paths.storage(@project_storage.storage.id) },
-                  type: { href: API::V3::Storages::URN_STORAGE_TYPE_NEXTCLOUD }
+                  type: {
+                    href: API::V3::Storages::STORAGE_TYPE_URN_MAP.fetch(@project_storage.storage.provider_type)
+                  }
                 }
               }
             }
