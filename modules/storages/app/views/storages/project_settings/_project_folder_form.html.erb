@@ -50,7 +50,9 @@ See COPYRIGHT and LICENSE files for more details.
               id: storage.id,
               _links: {
                 self: { href: api_v3_paths.storage(storage.id) },
-                type: { href: API::V3::Storages::URN_STORAGE_TYPE_NEXTCLOUD }
+                type: {
+                  href: API::V3::Storages::STORAGE_TYPE_URN_MAP.fetch(storage.provider_type)
+                }
               }
             }
           }
