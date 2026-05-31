@@ -167,6 +167,8 @@ wiki_docs:
   xwiki_setup:
     href: https://www.openproject.org/docs/system-admin-guide/integrations/xwiki/
 storage_docs:
+  edoc_dds_setup:
+    href: https://www.openproject.org/docs/system-admin-guide/files/external-file-storages/
   health_status:
     href: https://www.openproject.org/docs/system-admin-guide/files/external-file-storages/health-status/
   nextcloud_oauth_application:
