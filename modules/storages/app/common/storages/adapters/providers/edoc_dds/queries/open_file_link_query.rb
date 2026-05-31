@@ -51,7 +51,7 @@ module Storages
                 file = client.file_info(file_identifier(input_data.file_id))
                 client.folder_url(file[:parent_folder_id])
               else
-                client.preview_url(file_identifier(input_data.file_id))
+                client.annotator_url(file_identifier(input_data.file_id))
               end
             end
           end
