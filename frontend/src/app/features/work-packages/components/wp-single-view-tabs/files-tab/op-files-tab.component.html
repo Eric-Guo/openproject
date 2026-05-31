@@ -16,6 +16,7 @@
         </div>
       }
       <op-attachments [resource]="workPackage"
+        [allowUploading]="false"
         (attachmentRemoved)="attachmentRemoved()"
         (attachmentAdded)="attachmentAdded()"
        />
