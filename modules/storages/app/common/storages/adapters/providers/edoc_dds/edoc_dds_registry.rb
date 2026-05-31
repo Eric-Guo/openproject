@@ -34,7 +34,7 @@ module Storages
       module EdocDds
         EdocDdsRegistry = Dry::Core::Container::Namespace.new("edoc_dds") do
           namespace("authentication") do
-            register(:userless, -> { Input::Strategy.build(key: :noop) })
+            register(:userless, ->(*) { Input::Strategy.build(key: :noop) })
             register(:user_bound, ->(user, storage = nil) { Input::Strategy.build(key: :noop, user:, storage:) })
           end
 
