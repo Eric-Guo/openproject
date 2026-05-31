@@ -281,4 +281,13 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :edoc_dds_storage,
+          parent: :storage,
+          class: "::Storages::EdocDdsStorage" do
+    host { "https://dds.example.com" }
+    root_folder_id { "100" }
+    token { "secret-token" }
+    annotator_host { "https://annotator.thape.com.cn" }
+  end
 end
