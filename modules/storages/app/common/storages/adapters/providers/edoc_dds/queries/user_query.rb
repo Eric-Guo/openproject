@@ -34,6 +34,10 @@ module Storages
       module EdocDds
         module Queries
           class UserQuery < Base
+            def self.call(storage:, auth_strategy:)
+              new(storage).call(auth_strategy:)
+            end
+
             def call(auth_strategy:, **)
               Authentication[auth_strategy].call(storage: @storage) do
                 Success(id: "edoc-dds")
