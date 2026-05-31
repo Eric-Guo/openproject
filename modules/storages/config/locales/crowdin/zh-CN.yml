@@ -27,6 +27,9 @@ zh-CN:
         library: 库 ID
         name: 名称
         site: 站点 ID
+      storages/edoc_dds_storage:
+        root_folder_id: 根文件夹 ID
+        token: API 令牌
       storages/storage:
         authentication_method: 身份验证方式
         creator: 创建者
@@ -433,6 +436,11 @@ zh-CN:
         integration: SharePoint 管理 / OpenProject
         oauth_configuration: 从 %{application_link_text} 中的所需应用程序复制这些值。
         provider_configuration: 请确保您在%{application_link_text}具有管理权限，或在进行设置之前与您的 Microsoft 管理员联系。在门户中，您还需要注册一个 Azure 应用程序或使用现有的应用程序进行身份验证。
+      edoc_dds:
+        provider_configuration: 配置 Edoc DDS 主机、API 令牌和 OpenProject 应作为文件存储公开的根文件夹。
+        root_folder_id: 用作存储根目录的 DDS 文件夹 ID。
+        token: OpenProject 用于服务器端请求的 DDS API 令牌。
+        token_placeholder: 已存储的令牌
       type: 请确保您在 Nextcloud 实例中具有管理权限，并在进行设置之前安装了以下应用程序：
       type_link_text: "“集成 OpenProject”"
     label_active: 有效
@@ -539,6 +547,9 @@ zh-CN:
         label_oauth_client_secret: Azure OAuth 客户端密钥值
         name: SharePoint
         name_placeholder: 例如 SharePoint
+      edoc_dds:
+        name: Edoc DDS
+        name_placeholder: 例如 Edoc DDS
     show_attachments_toggle:
       description: 禁用此选项将隐藏工作包文件选项卡上的附件列表。 工作包描述中的文件仍将上传到内部附件存储。
       label: 在工作包文件选项卡中显示附件
