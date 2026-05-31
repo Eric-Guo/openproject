@@ -39,6 +39,8 @@ module Storages
     module Providers
       module EdocDds
         class Client
+          DEFAULT_ANNOTATOR_HOST = "https://annotator.thape.com.cn"
+          ANNOTATOR_HOST_ENV = "TH_ANNOTATOR_HOST"
           MAX_CHUNK_SIZE = 5.megabytes
 
           class Error < StandardError
@@ -175,6 +177,10 @@ module Storages
 
           def preview_url(file_id)
             build_url("preview.html", fileid: file_id)
+          end
+
+          def annotator_url(file_id)
+            build_url("/", { file_id: }, host: annotator_host)
           end
 
           def folder_url(folder_id)
@@ -349,6 +355,14 @@ module Storages
 
           def normalized_host(host)
             "#{host.to_s.delete_suffix('/')}/"
+          end
+
+          def annotator_host
+            configured_annotator_host.presence || ENV.fetch(ANNOTATOR_HOST_ENV, DEFAULT_ANNOTATOR_HOST)
+          end
+
+          def configured_annotator_host
+            @storage.annotator_host if @storage.respond_to?(:annotator_host)
           end
 
           def token_param(key = :token)
