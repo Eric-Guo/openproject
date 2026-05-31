@@ -27,12 +27,12 @@
     [attr.aria-label]="text.uploadLabel"
     data-test-selector="op-attachments--drop-box"
     [ngClass]="{
-    'hide-when-print': true,
-    'op-file-section--drop-box': true,
-    'op-file-section--drop-box_dragging': dragging > 0,
-    'op-file-section--drop-box_dragging-over': draggingOverDropZone,
-    'op-file-section--drop-box_float': (attachments$ | async).length
-  }"
+      'hide-when-print': true,
+      'op-file-section--drop-box': true,
+      'op-file-section--drop-box_dragging': dragging > 0,
+      'op-file-section--drop-box_dragging-over': draggingOverDropZone,
+      'op-file-section--drop-box_float': (attachments$ | async).length
+    }"
     type="button"
     (click)="triggerFileInput()"
     (dragover)="onDragOver($event)"
