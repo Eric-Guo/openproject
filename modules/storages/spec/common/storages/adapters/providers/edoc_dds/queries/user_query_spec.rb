@@ -28,20 +28,36 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
+require "spec_helper"
+require_module_spec_helper
+
 module Storages
   module Adapters
     module Providers
       module EdocDds
         module Queries
-          class UserQuery < Base
-            def self.call(storage:, auth_strategy:)
-              new(storage).call(auth_strategy:)
+          RSpec.describe UserQuery do
+            let(:user) { build_stubbed(:user) }
+            let(:storage) { build_stubbed(:edoc_dds_storage) }
+            let(:auth_strategy) { Registry["edoc_dds.authentication.user_bound"].call(user, storage) }
+
+            it "is registered" do
+              expect(Registry.resolve("#{storage}.queries.user")).to eq(described_class)
             end
 
-            def call(auth_strategy:, **)
-              Authentication[auth_strategy].call(storage: @storage) do
-                Success(id: "edoc-dds")
-              end
+            it "responds to #call with correct parameters" do
+              expect(described_class).to respond_to(:call)
+
+              method = described_class.method(:call)
+              expect(method.parameters).to contain_exactly(%i[keyreq storage],
+                                                           %i[keyreq auth_strategy])
+            end
+
+            it "responds with success" do
+              result = described_class.call(storage:, auth_strategy:)
+
+              expect(result).to be_success
+              expect(result.value!).to eq(id: "edoc-dds")
             end
           end
         end
