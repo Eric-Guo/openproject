@@ -3,7 +3,7 @@ allowBuilds:
   msw: true
 
 minimumReleaseAgeExclude:
-  - 'op-blocknote-extensions@0.0.18'
+  - 'op-blocknote-extensions@0.1.0'
 
 nodeLinker: hoisted
 

@@ -14,10 +14,10 @@
     "npm": "^10.1.0"
   },
   "devDependencies": {
-    "@redocly/cli": "^2.31.6"
+    "@redocly/cli": "^2.32.2"
   },
   "dependencies": {
     "@xeokit/xeokit-gltf-to-xkt": "^1.3.6"
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.7.0"
 }
