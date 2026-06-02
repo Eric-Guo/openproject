@@ -1,0 +1,222 @@
+# /api/v3/time_entries/th_keyin
+---
+post:
+  summary: Submit TH key-in time entries
+  operationId: submit_time_entries_th_keyin
+  tags:
+    - Time entries
+  description: |-
+    Submits Tianhua key-in time entries for the authenticated user.
+
+    The request must contain at least one entry type:
+
+    - `projectTimeEntries` to submit time on assigned work packages.
+    - `nonProjectTimeEntries` to submit non-project activities.
+    - Both arrays can be submitted together, matching the TH key-in form behavior.
+
+    The submitted `date` must be today or one of the eight previous eligible key-in days.
+    When `keyinUserId` is provided, entries belong to that user while `logged_by_id` remains the authenticated user's ID.
+    Set `rejectReKeying` to `true` only when re-keying rejected entries outside that normal date window.
+    Project entries require the authenticated user to have permission to log own time on each submitted work package.
+    Project time entries created by this endpoint are stored with `time_entries.new_split_keyin` set to `true`.
+    Non-project entries support writable TH activities only; `take_vacation` is read-only.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - date
+          properties:
+            date:
+              type: string
+              format: date
+              description: ISO 8601 date to submit.
+              example: "2026-03-17"
+            keyinUserId:
+              type: integer
+              description: User ID that owns the submitted entries. Defaults to the authenticated user.
+              example: 294
+            rejectReKeying:
+              type: boolean
+              description: Set to `true` to allow rejected-entry re-keying outside the normal key-in date window.
+              default: false
+              example: true
+            projectTimeEntries:
+              type: array
+              description: Project time entries.
+              items:
+                type: object
+                required:
+                  - workPackageId
+                properties:
+                  workPackageId:
+                    type: integer
+                    description: Assigned work package ID.
+                    example: 1528
+                  statusId:
+                    type: integer
+                    description: Optional new status ID. Defaults to the work package's current status.
+                    example: 1
+                  drawingHours:
+                    type: number
+                    format: float
+                    description: Design or drawing hours.
+                    example: 4.5
+                  discussingHours:
+                    type: number
+                    format: float
+                    description: External communication hours.
+                    example: 1
+                  travelHours:
+                    type: number
+                    format: float
+                    description: Travel hours.
+                    example: 0.5
+                  comments:
+                    type: string
+                    description: Optional comment stored on the submitted time entries.
+                    example: Daily update
+            nonProjectTimeEntries:
+              type: array
+              description: Non-project time entries.
+              items:
+                type: object
+                required:
+                  - activity
+                properties:
+                  activity:
+                    type: string
+                    enum:
+                      - leave_in_lieu
+                      - training
+                      - research
+                      - marketing
+                      - department_manage
+                    description: Non-project activity name. `take_vacation` is read-only and cannot be submitted.
+                    example: training
+                  hours:
+                    type: number
+                    format: float
+                    example: 3.5
+                  comments:
+                    type: string
+                    example: Internal workshop
+          anyOf:
+            - required:
+                - projectTimeEntries
+            - required:
+                - nonProjectTimeEntries
+        examples:
+          project:
+            value:
+              date: "2026-03-17"
+              projectTimeEntries:
+                - workPackageId: 1528
+                  drawingHours: 4.5
+                  discussingHours: 1
+                  travelHours: 0.5
+                  comments: Daily update
+          nonProject:
+            value:
+              date: "2026-03-17"
+              nonProjectTimeEntries:
+                - activity: training
+                  hours: 3.5
+                  comments: Internal workshop
+          mixed:
+            value:
+              date: "2026-03-17"
+              projectTimeEntries:
+                - workPackageId: 1528
+                  drawingHours: 4.5
+                  comments: Daily update
+              nonProjectTimeEntries:
+                - activity: training
+                  hours: 1
+                  comments: Internal workshop
+  responses:
+    "200":
+      description: Submitted
+      content:
+        application/hal+json:
+          schema:
+            type: object
+            required:
+              - _type
+              - isSuccess
+              - entryType
+              - fillingDay
+              - submittedCount
+            properties:
+              _type:
+                type: string
+                enum:
+                  - ThKeyinSubmission
+              isSuccess:
+                type: boolean
+                example: true
+              entryType:
+                type: string
+                enum:
+                  - project
+                  - non_project
+                  - mixed
+              fillingDay:
+                type: string
+                format: date
+                example: "2026-03-17"
+              submittedCount:
+                type: integer
+                example: 1
+          example:
+            _type: ThKeyinSubmission
+            isSuccess: true
+            entryType: project
+            fillingDay: "2026-03-17"
+            submittedCount: 1
+    "400":
+      description: Returned if the request body is missing required key-in data or contains invalid date/hour formats.
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:BadRequest
+            message: "Bad request: date is required"
+    "401":
+      description: Returned if the client is not authenticated.
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:Unauthenticated
+            message: You need to be authenticated to access this resource.
+    "403":
+      description: Returned if the client does not have sufficient permissions.
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:MissingPermission
+            message: You are not authorized to access this resource.
+    "406":
+      $ref: "../components/responses/missing_content_type.yml"
+    "415":
+      $ref: "../components/responses/unsupported_media_type.yml"
+    "422":
+      description: Returned if the key-in payload violates a submission rule.
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:UnprocessableContent
+            message: The total non-project hours for one day cannot exceed 24 hours
