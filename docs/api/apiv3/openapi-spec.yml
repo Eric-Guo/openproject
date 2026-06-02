@@ -513,6 +513,8 @@ paths:
     "$ref": "./paths/storage_open.yml"
   "/api/v3/time_entries":
     "$ref": "./paths/time_entries.yml"
+  "/api/v3/time_entries/th_keyin":
+    "$ref": "./paths/time_entries_th_keyin.yml"
   "/api/v3/time_entries/{id}/form":
     "$ref": "./paths/time_entries_id_form.yml"
   "/api/v3/time_entries/activity/{id}":
