@@ -42,6 +42,7 @@ module Storages
             register(:add_user_to_group, Commands::AddUserToGroupCommand)
             register(:copy_template_folder, Commands::CopyTemplateFolderCommand)
             register(:create_folder, Commands::CreateFolderCommand)
+            register(:delete_file, Commands::DeleteFileCommand)
             register(:delete_folder, Commands::DeleteFolderCommand)
             register(:remove_user_from_group, Commands::RemoveUserFromGroupCommand)
             register(:rename_file, Commands::RenameFileCommand)
