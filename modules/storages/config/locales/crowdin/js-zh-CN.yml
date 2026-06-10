@@ -9,6 +9,10 @@ zh-CN:
       file_links:
         already_linked_directory: 此目录已连接到该工作包。
         already_linked_file: 此文件已链接到该工作包。
+        delete: 删除文件
+        delete_confirmation: |
+          确定要从存储中删除此文件并取消其与此工作包的链接吗？此操作无法撤销。
+        delete_short: 删除文件
         download: 下载 %{fileName}
         empty: '当前的工作包没有链接的文件。请用下面操作或在%{storageType}内开始链接文件。
 
