@@ -47,6 +47,7 @@
             [disabled]="disabled | async"
             [allowEditing]="allowLinking"
             (removeFileLink)="removeFileLink(fileLink)"
+            (deleteFileLink)="deleteFileLink(fileLink)"
           ></li>
         }
       </ul>

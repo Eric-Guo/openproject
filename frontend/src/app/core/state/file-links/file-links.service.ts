@@ -117,6 +117,19 @@ export class FileLinksResourceService extends ResourceStoreService<IFileLink> {
       );
   }
 
+  deleteOrigin(collectionKey:string, fileLink:IFileLink):Observable<void> {
+    if (!fileLink._links.deleteOrigin) {
+      return of();
+    }
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http
+      .delete<void>(fileLink._links.deleteOrigin.href, { withCredentials: true, headers })
+      .pipe(
+        tap(() => removeEntityFromCollectionAndState(this.store, fileLink.id, collectionKey)),
+      );
+  }
+
   addFileLinks(
     collectionKey:string,
     addFileLinksHref:string,
