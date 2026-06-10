@@ -157,6 +157,15 @@ module Storages
             result[:data]
           end
 
+          def remove_file(file_id)
+            result = post_json(
+              "/api/services/Doc/RemoveFolderListAndFileList",
+              token_param.merge(FileIdList: [file_id])
+            )
+            assert_result!(result)
+            result[:data]
+          end
+
           def upload(input_io, folder_id:, file_name:)
             with_file_path(input_io) do |path|
               start_result = start_upload(path, folder_id:, file_name:)

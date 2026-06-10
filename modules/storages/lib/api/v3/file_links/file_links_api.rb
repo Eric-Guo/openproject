@@ -72,6 +72,7 @@ class API::V3::FileLinks::FileLinksAPI < API::OpenProjectAPI
       # appended to /api/v3/file_links/:file_link_id/...
       mount ::API::V3::FileLinks::FileLinksOpenAPI
       mount ::API::V3::FileLinks::FileLinksDownloadAPI
+      mount ::API::V3::FileLinks::FileLinksDeleteOriginAPI
     end
   end
 end

@@ -9,6 +9,10 @@ en:
       file_links:
         already_linked_directory: "This directory is already linked to this work package."
         already_linked_file: "This file is already linked to this work package."
+        delete: "Delete file"
+        delete_confirmation: |
+          Are you sure you want to delete this file from the storage and unlink it from this work package? This action cannot be undone.
+        delete_short: "Delete file"
         download: "Download %{fileName}"
         empty: >
           Currently there are no linked files to this work package. Start linking files with the action below or from

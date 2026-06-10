@@ -82,6 +82,15 @@ module API::V3::FileLinks
       }
     end
 
+    link :deleteOrigin, cache_if: -> { user_allowed_to_manage?(represented) } do
+      next unless represented.storage&.provider_type_edoc_dds?
+
+      {
+        href: "#{api_v3_paths.file_link(represented.id)}/origin",
+        method: :delete
+      }
+    end
+
     link :creator do
       {
         href: api_v3_paths.user(represented.creator_id),
