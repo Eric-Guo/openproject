@@ -28,31 +28,30 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
+require "spec_helper"
+require_module_spec_helper
+
 module Storages
   module Adapters
     module Providers
       module EdocDds
         module Queries
-          class UploadLinkQuery < Base
-            def call(auth_strategy:, input_data:)
-              Authentication[auth_strategy].call(storage: @storage) do
-                Results::UploadLink.build(
-                  destination: upload_url(input_data),
-                  method: :post
-                )
-              end
+          RSpec.describe UploadLinkQuery do
+            let(:storage) { build_stubbed(:edoc_dds_storage, id: 1) }
+            let(:auth_strategy) { Registry["edoc_dds.authentication.user_bound"].call(build_stubbed(:user), storage) }
+            let(:input_data) do
+              Input::UploadLink.build(folder_id: "folder:12339535",
+                                      file_name: "G6ltS4qbYAANxtF.jpeg",
+                                      project_id: 9277).value!
             end
 
-            private
-
-            def upload_url(input_data)
-              path = API::V3::Utilities::PathHelper::ApiV3Path.url_for(:storage_upload, @storage.id)
-              uri = URI(path)
-              query = Rack::Utils.parse_nested_query(uri.query)
-              query["project_id"] = input_data.project_id if input_data.respond_to?(:project_id) && input_data.project_id.present?
-              uri.query = URI.encode_www_form(query) if query.present?
-              uri.to_s
+            let(:upload_url) do
+              "#{API::V3::Utilities::PathHelper::ApiV3Path.url_for(:storage_upload, storage.id)}?project_id=9277"
             end
+            let(:upload_method) { :post }
+
+            it_behaves_like "storage adapter: query call signature", "upload_link"
+            it_behaves_like "adapter upload_link_query: successful upload link response"
           end
         end
       end
