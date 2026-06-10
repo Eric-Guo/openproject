@@ -308,7 +308,7 @@ module Storages
             request = Net::HTTP::Post.new(uri)
 
             File.open(payload.fetch(:file), "rb") do |file|
-              form_payload = payload.except(:file).transform_keys(&:to_s).merge("file" => file)
+              form_payload = payload.except(:file).transform_keys(&:to_s).transform_values(&:to_s).merge("file" => file)
               request.set_form(form_payload.to_a, "multipart/form-data")
               parse_response perform_request(uri, request)
             end
