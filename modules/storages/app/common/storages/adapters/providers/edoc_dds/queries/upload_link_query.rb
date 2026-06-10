@@ -46,7 +46,7 @@ module Storages
             private
 
             def upload_url(input_data)
-              path = API::V3::Utilities::PathHelper.url_for(:storage_upload, @storage.id)
+              path = API::V3::Utilities::PathHelper::ApiV3Path.url_for(:storage_upload, @storage.id)
               uri = URI(path)
               query = Rack::Utils.parse_nested_query(uri.query)
               query["project_id"] = input_data.project_id if input_data.respond_to?(:project_id) && input_data.project_id.present?
