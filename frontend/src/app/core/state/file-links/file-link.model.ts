@@ -37,6 +37,7 @@ export interface IFileLinkHalResourceLinks extends IHalResourceLinks {
   container:IHalResourceLink;
   creator:IHalResourceLink;
   delete?:IHalResourceLink;
+  deleteOrigin?:IHalResourceLink;
   status?:IHalResourceLink;
   originOpen:IHalResourceLink;
   staticOriginOpen:IHalResourceLink;

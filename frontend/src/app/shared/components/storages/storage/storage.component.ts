@@ -293,6 +293,17 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
       });
   }
 
+  public deleteFileLink(fileLink:IFileLink):void {
+    this.collectionKey()
+      .pipe(
+        switchMap((key) => this.fileLinkResourceService.deleteOrigin(key, fileLink)),
+      )
+      .subscribe({
+        next: () => { this.fileRemoved.emit(); },
+        error: (error:HttpErrorResponse) => this.toastService.addError(error),
+      });
+  }
+
   public openLinkFilesDialog():void {
     combineLatest([
       this.storage,
