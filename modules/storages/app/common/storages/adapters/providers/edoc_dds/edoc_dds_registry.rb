@@ -40,6 +40,7 @@ module Storages
 
           namespace("commands") do
             register(:create_folder, Commands::CreateFolderCommand)
+            register(:delete_file, Commands::DeleteFileCommand)
             register(:delete_folder, Commands::DeleteFolderCommand)
             register(:upload_file, Commands::UploadFileCommand)
           end
