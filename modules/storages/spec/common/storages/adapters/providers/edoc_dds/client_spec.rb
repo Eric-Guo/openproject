@@ -51,6 +51,37 @@ module Storages
             file.unlink
           end
 
+          describe "#post_multipart" do
+            it "casts multipart field names and scalar values to strings" do
+              response = instance_double(Net::HTTPSuccess, body: { status: "Ok" }.to_json)
+              body_data = nil
+
+              allow(client).to receive(:perform_request) do |_uri, request|
+                body_data = request.instance_variable_get(:@body_data)
+                response
+              end
+
+              client.send(
+                :post_multipart,
+                "https://dds.example.com/document/upload?token=secret-token",
+                uploadId: "upload-id",
+                chunkSize: 5.megabytes,
+                chunk: 0,
+                blockSize: 12_345,
+                file: file.path
+              )
+
+              expect(body_data).to include(
+                ["uploadId", "upload-id"],
+                ["chunkSize", "5242880"],
+                ["chunk", "0"],
+                ["blockSize", "12345"]
+              )
+              expect(body_data.last.first).to eq("file")
+              expect(body_data.last.second).to be_a(File)
+            end
+          end
+
           describe "#upload" do
             before do
               stub_request(:post, %r{\Ahttps://dds\.example\.com/WebCore})
