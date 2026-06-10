@@ -65,6 +65,8 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
 
   @Output() public removeFileLink = new EventEmitter<void>();
 
+  @Output() public deleteFileLink = new EventEmitter<void>();
+
   @ViewChild('avatar') avatar:ElementRef<HTMLElement>;
 
   infoTimestampText:string;
@@ -82,11 +84,15 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
       openFile: this.i18n.t('js.storages.file_links.open'),
       openFileLocation: this.i18n.t('js.storages.file_links.open_location'),
       removeFileLink: this.i18n.t('js.storages.file_links.remove'),
+      deleteFileLink: this.i18n.t('js.storages.file_links.delete'),
       downloadFileLink: '',
     },
     removalTitle: this.i18n.t('js.storages.file_links.remove'),
     removalButtonLabel: this.i18n.t('js.storages.file_links.remove_short'),
     removalConfirmation: this.i18n.t('js.storages.file_links.remove_confirmation'),
+    deleteTitle: this.i18n.t('js.storages.file_links.delete'),
+    deleteButtonLabel: this.i18n.t('js.storages.file_links.delete_short'),
+    deleteConfirmation: this.i18n.t('js.storages.file_links.delete_confirmation'),
     notLoggedInTooltipText: this.i18n.t('js.storages.file_links.tooltip.not_logged_in'),
     viewNotAllowedTooltipText: this.i18n.t('js.storages.file_links.tooltip.view_not_allowed'),
     notFoundTooltipText: this.i18n.t('js.storages.file_links.tooltip.not_found'),
@@ -168,6 +174,23 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
       .catch(() => { /* confirmation rejected */ });
   }
 
+  public confirmDeleteFileLink():void {
+    const options:ConfirmDialogOptions = {
+      text: {
+        text: this.text.deleteConfirmation,
+        title: this.text.deleteTitle,
+        button_continue: this.text.deleteButtonLabel,
+      },
+      icon: {
+        continue: 'trash',
+      },
+    };
+    void this.confirmDialogService
+      .confirm(options)
+      .then(() => { this.deleteFileLink.emit(); })
+      .catch(() => { /* confirmation rejected */ });
+  }
+
   private toolTipText():string {
     if (this.disabled) {
       return this.text.notLoggedInTooltipText;
@@ -211,10 +234,22 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
     actions.push(this.openInLocationAction());
 
     if (this.allowEditing) {
+      if (this.fileLink._links.deleteOrigin && !isDirectory(this.originData)) {
+        actions.push(this.deleteAction());
+      }
+
       actions.push(this.removeAction());
     }
 
     return actions;
+  }
+
+  private deleteAction():FloatingAction {
+    return new FloatingAction(
+      'delete',
+      this.text.title.deleteFileLink,
+      () => this.confirmDeleteFileLink(),
+    );
   }
 
   private removeAction():FloatingAction {
