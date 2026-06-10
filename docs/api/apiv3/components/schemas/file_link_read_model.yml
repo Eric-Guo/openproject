@@ -67,6 +67,13 @@ properties:
               The uri to delete the file link.
 
               **Resource**: N/A
+      deleteOrigin:
+        allOf:
+          - $ref: './link.yml'
+          - description: |-
+              The uri to delete the origin file on the storage and remove this file link.
+
+              **Resource**: N/A
       status:
         allOf:
           - $ref: './link.yml'
