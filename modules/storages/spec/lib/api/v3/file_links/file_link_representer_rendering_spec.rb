@@ -102,6 +102,35 @@ RSpec.describe API::V3::FileLinks::FileLinkRepresenter, "rendering" do
       end
     end
 
+    describe "deleteOrigin" do
+      let(:permission) { :manage_file_links }
+      let(:link) { "deleteOrigin" }
+
+      it_behaves_like "has no link"
+
+      context "with an Edoc DDS storage" do
+        let(:storage) { build_stubbed(:edoc_dds_storage) }
+        let(:href) { "/api/v3/file_links/#{file_link.id}/origin" }
+        let(:method) { :delete }
+
+        it_behaves_like "has an untitled action link"
+
+        context "when there is no associated container" do
+          before do
+            file_link.container = nil
+          end
+
+          it_behaves_like "has no link"
+
+          context "and the current user is creator of the file link" do
+            let(:user) { file_link.creator }
+
+            it { is_expected.to have_json_path("_links/#{link}") }
+          end
+        end
+      end
+    end
+
     describe "status" do
       context "with permission" do
         it_behaves_like "has a titled link" do
