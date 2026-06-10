@@ -68,6 +68,11 @@ en:
         download: "Download %{fileName}"
         open: "Open file on storage"
         open_location: "Open file in location"
+        delete: "Delete file"
+        delete_confirmation: >
+          Are you sure you want to delete this file from the storage and unlink it from this work package? This action
+          cannot be undone.
+        delete_short: "Delete file"
         remove: "Remove file link"
         remove_confirmation: >
           Are you sure you want to unlink the file from this work package? Unlinking does not affect the original file

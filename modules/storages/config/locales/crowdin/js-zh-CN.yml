@@ -67,6 +67,11 @@ zh-CN:
         download: 下载 %{fileName}
         open: 在存储上打开文件
         open_location: 在位置打开文件
+        delete: 删除文件
+        delete_confirmation: '确定要从存储中删除此文件并取消其与此工作包的链接吗？此操作无法撤销。
+
+          '
+        delete_short: 删除文件
         remove: 移除文件链接
         remove_confirmation: '确定要取消文件与此工作包的链接吗？取消链接不会影响原始文件，只会移除与此工作包的关联。
 
