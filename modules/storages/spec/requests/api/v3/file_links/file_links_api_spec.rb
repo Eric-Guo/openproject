@@ -569,6 +569,47 @@ RSpec.describe "API v3 file links resource" do
     end
   end
 
+  describe "DELETE /api/v3/file_links/:file_link_id/origin" do
+    let(:storage) { create(:edoc_dds_storage, creator: current_user) }
+    let!(:edoc_project_storage) { create(:project_storage, project:, storage:) }
+    let(:path) { "#{api_v3_paths.file_link(file_link.id)}/origin" }
+    let(:auth_strategy) { Storages::Adapters::Input::Strategy.build(key: :basic_auth).value! }
+    let(:file_info) do
+      Storages::Adapters::Results::StorageFileInfo.new(
+        status: "ok",
+        status_code: 200,
+        id: file_link.origin_id,
+        name: file_link.origin_name,
+        location: "/folder/file.txt"
+      )
+    end
+    let(:file_info_query) { class_double(Storages::Adapters::Providers::EdocDds::Queries::FileInfoQuery) }
+    let(:delete_file_command) { class_double(Storages::Adapters::Providers::EdocDds::Commands::DeleteFileCommand) }
+    let(:manage_file_links) { true }
+
+    before do
+      add_permissions(current_user, :manage_file_links) if manage_file_links
+      Storages::Adapters::Registry.stub("#{storage}.authentication.user_bound", ->(*) { auth_strategy })
+      Storages::Adapters::Registry.stub("#{storage}.queries.file_info", file_info_query)
+      Storages::Adapters::Registry.stub("#{storage}.commands.delete_file", delete_file_command)
+      allow(file_info_query).to receive(:call).and_return(Dry::Monads::Success(file_info))
+      allow(delete_file_command).to receive(:call).and_return(Dry::Monads::Success())
+
+      header "Content-Type", "application/json"
+      delete path
+    end
+
+    after do
+      remove_permissions(current_user, :manage_file_links) if manage_file_links
+    end
+
+    it "is successful" do
+      expect(subject.status).to be 204
+      expect(delete_file_command).to have_received(:call)
+      expect(Storages::FileLink.exists?(id: file_link.id)).to be false
+    end
+  end
+
   describe "GET /api/v3/file_links/:file_link_id/open" do
     let(:path) { api_v3_paths.file_link_open(file_link.id) }
 
