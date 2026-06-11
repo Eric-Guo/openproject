@@ -29,6 +29,7 @@ import { Directive, OnDestroy, OnInit, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   BehaviorSubject,
+  iif,
   Observable,
   of,
   Subscription,
@@ -50,6 +51,7 @@ import {
   getIconForStorageType,
   makeFilesCollectionLink,
 } from 'core-app/shared/components/storages/functions/storages.functions';
+import { edocDds } from 'core-app/shared/components/storages/storages-constants.const';
 import {
   IHalErrorBase,
   v3ErrorIdentifierOutboundRequestForbidden,
@@ -75,7 +77,7 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
   public breadcrumbs:BreadcrumbsContent = new BreadcrumbsContent([{
     text: this.storage.name,
     icon: getIconForStorageType(this.storage._links.type.href),
-    navigate: () => {},
+    navigate: () => undefined,
   }]);
 
   public showAlert = new BehaviorSubject<Alert>('none');
@@ -92,10 +94,10 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
   ngOnInit():void {
     super.ngOnInit();
 
-    this.entryLocation()
+    this.entryFilesCollectionLink()
       .pipe(
         this.untilDestroyed(),
-        switchMap((location:string) => this.storageFilesResourceService.files(makeFilesCollectionLink(this.storage._links.self, location))),
+        switchMap((link) => this.storageFilesResourceService.files(link)),
       )
       .subscribe({
         next: (storageFiles) => {
@@ -127,7 +129,7 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
 
   protected enterDirectoryCallback(directory:IStorageFile):() => void {
     if (!isDirectory(directory)) {
-      return () => {};
+      return () => undefined;
     }
 
     return () => this.changeLevel(directory);
@@ -185,6 +187,18 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
           return of('/');
         }),
       );
+  }
+
+  private entryFilesCollectionLink():Observable<ReturnType<typeof makeFilesCollectionLink>> {
+    return iif(
+      () => this.shouldOpenEdocWorkPackageFolder(),
+      of(makeFilesCollectionLink(this.storage._links.self, '/', this.locals.workPackageId as string)),
+      this.entryLocation().pipe(map((location) => makeFilesCollectionLink(this.storage._links.self, location))),
+    );
+  }
+
+  private shouldOpenEdocWorkPackageFolder():boolean {
+    return this.storage._links.type.href === edocDds && !!this.locals.workPackageId;
   }
 
   private cancelCurrentLoading():void {

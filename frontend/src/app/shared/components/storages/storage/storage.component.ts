@@ -314,6 +314,7 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
           addFileLinksHref: this.addFileLinksHref,
           projectFolderHref: this.projectStorage._links.projectFolder?.href ?? null,
           projectFolderMode: this.projectStorage.projectFolderMode,
+          workPackageId: this.resource.id,
           storage,
           collectionKey,
           fileLinks,
