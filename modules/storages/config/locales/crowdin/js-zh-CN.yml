@@ -93,7 +93,7 @@ zh-CN:
           '
         suggest_logout: 您可以尝试重新登录修复这个问题。
         suggest_relink: 您可以尝试通过下面的登录按钮重新链接您的帐户来解决这个问题。
-      link_existing_files: 链接已有文件
+      link_existing_files: 链接DDS已有文件
       link_files_in_storage: 链接 %{storageType} 中的文件
       login: "%{storageType} 登录"
       login_to: 登录 %{storageType}
