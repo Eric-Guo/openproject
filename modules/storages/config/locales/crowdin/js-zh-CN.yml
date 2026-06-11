@@ -5,7 +5,7 @@ zh-CN:
     storages:
       authentication_error: "%{storageType} 认证失败"
       link_files_in_storage: 链接 %{storageType} 中的文件
-      link_existing_files: 链接已有文件
+      link_existing_files: 链接DDS已有文件
       upload_files: 上传文件
       drop_files: 将文件放置到此处以上传 %{name}
       drop_or_click_files: 将文件拖到此处或单击以将其上传到 %{name}。
