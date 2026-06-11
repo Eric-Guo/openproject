@@ -92,12 +92,40 @@ module API::V3::StorageFiles
       def validate_upload_storage
         raise ::API::Errors::NotFound.new unless @storage.provider_type_edoc_dds?
       end
+
+      def validate_work_package_folder
+        return if params[:workPackageId].blank?
+
+        work_package = visible_work_package(params[:workPackageId])
+        validate_work_package_storage!(work_package)
+
+        authorize_in_project(:manage_file_links, project: work_package.project)
+
+        work_package.id
+      end
+
+      def visible_work_package(work_package_id)
+        WorkPackage.visible(current_user).find_by(id: work_package_id).tap do |work_package|
+          raise ::API::Errors::NotFound.new if work_package.blank?
+        end
+      end
+
+      def validate_work_package_storage!(work_package)
+        return if Storages::ProjectStorage.exists?(
+          project: work_package.project,
+          storage: @storage
+        )
+
+        raise ::API::Errors::NotFound.new
+      end
     end
 
     resources :files do
       get do
+        work_package_id = validate_work_package_folder
+
         Storages::StorageFilesService
-          .call(storage: @storage, user: current_user, folder: params.fetch(:parent, "/"))
+          .call(storage: @storage, user: current_user, folder: params.fetch(:parent, "/"), work_package_id:)
           .match(
             on_success: ->(files) { API::V3::StorageFiles::StorageFilesRepresenter.new(files, @storage, current_user:) },
             on_failure: ->(error) { raise_service_result_error(error) }
