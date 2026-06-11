@@ -64,8 +64,15 @@ export function getIconForStorageType(storageType?:string):string {
   return storageIconMappings.default;
 }
 
-export function makeFilesCollectionLink(storageLink:IHalResourceLink, location:string):IHalResourceLink {
-  const query = location !== '/' ? `?parent=${location}` : '';
+export function makeFilesCollectionLink(storageLink:IHalResourceLink, location:string, workPackageId?:string):IHalResourceLink {
+  const queryParts = [];
+  if (location !== '/') {
+    queryParts.push(`parent=${location}`);
+  }
+  if (workPackageId) {
+    queryParts.push(`workPackageId=${encodeURIComponent(workPackageId)}`);
+  }
+  const query = queryParts.length > 0 ? `?${queryParts.join('&')}` : '';
 
   return {
     href: `${storageLink.href}/files${query}`,
