@@ -28,14 +28,20 @@
 
 import { ChangeDetectorRef, Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Observable, config, throwError } from 'rxjs';
+import {
+  Observable,
+  config,
+  of,
+  throwError,
+} from 'rxjs';
 import { OpModalLocalsToken } from 'core-app/shared/components/modal/modal.service';
 import { SortFilesPipe } from 'core-app/shared/components/storages/pipes/sort-files.pipe';
 import { StorageFilesResourceService } from 'core-app/core/state/storage-files/storage-files.service';
 import { IStorageFile } from 'core-app/core/state/storage-files/storage-file.model';
 import { FilePickerBaseModalComponent, } from 'core-app/shared/components/storages/file-picker-base-modal/file-picker-base-modal.component';
 import { StorageFileListItem } from 'core-app/shared/components/storages/storage-file-list-item/storage-file-list-item';
-import type { Mock } from 'vitest';
+import { type Mock, vi } from 'vitest';
+import { edocDds } from 'core-app/shared/components/storages/storages-constants.const';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -63,7 +69,7 @@ describe('FilePickerBaseModalComponent', () => {
     reset:Mock;
   }
 
-  function buildComponent(spies:Spies) {
+  function buildComponent(spies:Spies, localsOverride:Record<string, unknown> = {}) {
     const locals = {
       service: { close: spies.close },
       storage: {
@@ -74,6 +80,7 @@ describe('FilePickerBaseModalComponent', () => {
         },
       },
       projectFolderMode: 'inactive',
+      ...localsOverride,
     };
 
     TestBed.configureTestingModule({
@@ -94,6 +101,44 @@ describe('FilePickerBaseModalComponent', () => {
   }
 
   afterEach(() => TestBed.resetTestingModule());
+
+  it('loads the Edoc DDS work package folder on initial open', () => {
+    const storageFiles = {
+      files: [],
+      parent: {
+        id: 'folder:450344',
+        name: '工作包#450344',
+        location: '/folder%3A450344',
+        mimeType: 'application/x-op-directory',
+        permissions: ['readable', 'writeable'],
+      },
+      ancestors: [],
+      _type: 'StorageFiles',
+      _links: {},
+    };
+    const files = vi.fn().mockReturnValue(of(storageFiles));
+
+    buildComponent({
+      detectChanges: vi.fn(),
+      close: vi.fn(),
+      files,
+      reset: vi.fn(),
+    }, {
+      workPackageId: '450344',
+      storage: {
+        name: 'Storage',
+        _links: {
+          type: { href: edocDds },
+          self: { href: '/api/v3/storages/1' },
+        },
+      },
+    });
+
+    expect(files).toHaveBeenCalledWith({
+      href: '/api/v3/storages/1/files?workPackageId=450344',
+      title: 'Storage files',
+    });
+  });
 
   it('cancels pending directory loading on destroy', () => {
     const teardown = vi.fn();
