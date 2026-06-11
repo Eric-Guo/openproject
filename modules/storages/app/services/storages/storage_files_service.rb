@@ -30,21 +30,16 @@
 
 module Storages
   class StorageFilesService < BaseService
-    def self.call(storage:, user:, folder:)
-      new.call(storage:, user:, folder:)
+    def self.call(storage:, user:, folder:, work_package_id: nil)
+      new.call(storage:, user:, folder:, work_package_id:)
     end
 
-    def call(user:, storage:, folder:)
+    def call(user:, storage:, folder:, work_package_id: nil)
       with_tagged_logger do
         auth_strategy = strategy(storage, user)
-
-        info "Requesting all the files under folder #{folder} for #{storage.name}"
-
-        input_data = Adapters::Input::Files.build(folder:).value_or { return add_validation_error(it) }
-
-        files = Adapters::Registry
-                  .resolve("#{storage}.queries.files").call(storage:, auth_strategy:, input_data:)
-                  .value_or { return add_error(:base, it, options: { storage_name: storage.name, folder: }) }
+        files = storage_files(storage:, auth_strategy:, folder:, work_package_id:).value_or do |error|
+          return add_error(:base, error, options: { storage_name: storage.name, folder: })
+        end
 
         @result.result = files
         @result
@@ -55,6 +50,49 @@ module Storages
 
     def strategy(storage, user)
       Adapters::Registry.resolve("#{storage}.authentication.user_bound").call(user, storage)
+    end
+
+    def request_folder(storage:, auth_strategy:, folder:, work_package_id:)
+      return Success(folder) unless storage.provider_type_edoc_dds? && work_package_id.present? && folder == "/"
+
+      edoc_dds_work_package_folder(storage:, auth_strategy:, work_package_id:).fmap(&:location)
+    end
+
+    def storage_files(storage:, auth_strategy:, folder:, work_package_id:)
+      request_folder(storage:, auth_strategy:, folder:, work_package_id:).bind do |resolved_folder|
+        info "Requesting all the files under folder #{resolved_folder} for #{storage.name}"
+        fetch_files(storage:, auth_strategy:, folder: resolved_folder)
+      end
+    end
+
+    def edoc_dds_work_package_folder(storage:, auth_strategy:, work_package_id:)
+      folder_name = edoc_dds_work_package_folder_name(work_package_id)
+
+      fetch_files(storage:, auth_strategy:, folder: "/").bind do |root_files|
+        existing_folder = find_folder(root_files, folder_name)
+        next Success(existing_folder) if existing_folder.present?
+
+        create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:)
+      end
+    end
+
+    def fetch_files(storage:, auth_strategy:, folder:)
+      input_data = Adapters::Input::Files.build(folder:).value!
+      Adapters::Registry
+        .resolve("#{storage}.queries.files").call(storage:, auth_strategy:, input_data:)
+    end
+
+    def create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:)
+      input_data = Adapters::Input::CreateFolder.build(folder_name:, parent_location: "/").value!
+      Adapters::Registry["#{storage}.commands.create_folder"].call(storage:, auth_strategy:, input_data:)
+    end
+
+    def find_folder(files, folder_name)
+      files.files.find { |file| file.folder? && file.name == folder_name }
+    end
+
+    def edoc_dds_work_package_folder_name(work_package_id)
+      "工作包##{work_package_id}"
     end
   end
 end
