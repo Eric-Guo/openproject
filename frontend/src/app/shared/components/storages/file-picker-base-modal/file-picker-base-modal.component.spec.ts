@@ -134,6 +134,45 @@ describe('FilePickerBaseModalComponent', () => {
     });
   });
 
+  it('loads the configured initial folder before the Edoc DDS work package folder', () => {
+    const storageFiles = {
+      files: [],
+      parent: {
+        id: 'folder:16785093',
+        name: 'Project docs',
+        location: '/folder%3A16785093',
+        mimeType: 'application/x-op-directory',
+        permissions: ['readable', 'writeable'],
+      },
+      ancestors: [],
+      _type: 'StorageFiles',
+      _links: {},
+    };
+    const files = vi.fn().mockReturnValue(of(storageFiles));
+
+    buildComponent({
+      detectChanges: vi.fn(),
+      close: vi.fn(),
+      files,
+      reset: vi.fn(),
+    }, {
+      initialFolderLocation: '/folder:16785093',
+      workPackageId: '450344',
+      storage: {
+        name: 'Storage',
+        _links: {
+          type: { href: edocDds },
+          self: { href: '/api/v3/storages/1' },
+        },
+      },
+    });
+
+    expect(files).toHaveBeenCalledWith({
+      href: '/api/v3/storages/1/files?parent=/folder:16785093',
+      title: 'Storage files',
+    });
+  });
+
   it('cancels pending directory loading on destroy', () => {
     const teardown = vi.fn();
     const files$ = new Observable(() => teardown);

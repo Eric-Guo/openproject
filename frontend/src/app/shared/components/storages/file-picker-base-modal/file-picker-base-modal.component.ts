@@ -191,6 +191,10 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
   }
 
   private entryFilesCollectionLink():Observable<ReturnType<typeof makeFilesCollectionLink>> {
+    if (this.locals.initialFolderLocation) {
+      return of(makeFilesCollectionLink(this.storage._links.self, this.locals.initialFolderLocation as string));
+    }
+
     return iif(
       () => this.shouldOpenEdocWorkPackageFolder(),
       of(makeFilesCollectionLink(this.storage._links.self, '/', this.locals.workPackageId as string)),

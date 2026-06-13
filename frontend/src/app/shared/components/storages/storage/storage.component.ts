@@ -49,6 +49,7 @@ import { IPrepareUploadLink, IStorage } from 'core-app/core/state/storages/stora
 import { IProjectStorage } from 'core-app/core/state/project-storages/project-storage.model';
 import { FileLinksResourceService } from 'core-app/core/state/file-links/file-links.service';
 import {
+  edocDds,
   fileLinkStatusError,
   nextcloud,
   storageConnected,
@@ -74,6 +75,7 @@ import { IStorageFile } from 'core-app/core/state/storage-files/storage-file.mod
 import { TimezoneService } from 'core-app/core/datetime/timezone.service';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import {
   UploadConflictModalComponent,
 } from 'core-app/shared/components/storages/upload-conflict-modal/upload-conflict-modal.component';
@@ -109,6 +111,7 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
   private readonly opModalService = inject(OpModalService);
   private readonly timezoneService = inject(TimezoneService);
   private readonly pathHelperService = inject(PathHelperService);
+  private readonly currentProject = inject(CurrentProjectService);
   private readonly storagesResourceService = inject(StoragesResourceService);
   private readonly fileLinkResourceService = inject(FileLinksResourceService);
   private readonly storageInformationService = inject(StorageInformationService);
@@ -319,6 +322,7 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
           storage,
           collectionKey,
           fileLinks,
+          initialFolderLocation: this.initialFileLinkFolderLocation(storage),
         };
 
         this.opModalService.show<FilePickerModalComponent>(FilePickerModalComponent, 'global', locals);
@@ -365,6 +369,14 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
         first(),
         map((modal) => ({ location: modal.location.id as string, files: modal.filesAtLocation })),
       );
+  }
+
+  private initialFileLinkFolderLocation(storage:IStorage):string|undefined {
+    if (storage._links.type.href !== edocDds || !this.currentProject.ddsFolderId) {
+      return undefined;
+    }
+
+    return `/folder:${this.currentProject.ddsFolderId}`;
   }
 
   private resolveUploadConflicts(file:File, storageFiles:IStorageFile[], location:string):Observable<UploadData> {
