@@ -38,6 +38,8 @@ FactoryBot.define do
     origin_updated_at { Time.zone.now }
     origin_created_by_name { "Peter Pan" }
     origin_last_modified_by_name { "Petra Panadera" }
+    origin_location { "/folder:123" }
+    origin_location_name { "Project docs" }
     storage_url { "https://nextcloud.example.com" }
 
     trait :invalid do

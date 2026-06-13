@@ -231,6 +231,14 @@ RSpec.describe API::V3::FileLinks::FileLinkRepresenter, "rendering" do
         let(:value) { file_link.origin_mime_type }
       end
 
+      it_behaves_like "property", "originData/location" do
+        let(:value) { file_link.origin_location }
+      end
+
+      it_behaves_like "property", "originData/locationName" do
+        let(:value) { file_link.origin_location_name }
+      end
+
       it_behaves_like "datetime property", "originData/createdAt" do
         let(:value) { file_link.origin_created_at }
       end
