@@ -32,6 +32,7 @@ import { TimezoneService } from 'core-app/core/datetime/timezone.service';
 import { IFileIcon } from 'core-app/shared/components/storages/icons.mapping';
 import { IFileLink, IFileLinkOriginData } from 'core-app/core/state/file-links/file-link.model';
 import {
+  edocDds,
   fileLinkStatusError, fileLinkStatusNotFound,
   fileLinkViewAllowed,
   fileLinkViewNotAllowed,
@@ -61,6 +62,8 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
   @Input() public allowEditing = false;
 
   @Input() public disabled = true;
+
+  @Input() public storageTypeHref:string|undefined;
 
   @Output() public removeFileLink = new EventEmitter<void>();
 
@@ -227,14 +230,44 @@ export class FileLinkListItemComponent implements OnInit, OnChanges, AfterViewIn
     actions.push(this.openInLocationAction());
 
     if (this.allowEditing) {
-      if (this.fileLink._links.deleteOrigin && !isDirectory(this.originData)) {
+      if (this.shouldShowDeleteAction()) {
         actions.push(this.deleteAction());
       }
 
-      actions.push(this.removeAction());
+      if (this.shouldShowRemoveAction()) {
+        actions.push(this.removeAction());
+      }
     }
 
     return actions;
+  }
+
+  private shouldShowDeleteAction():boolean {
+    if (!this.fileLink._links.deleteOrigin || isDirectory(this.originData)) {
+      return false;
+    }
+
+    if (this.storageTypeHref !== edocDds) {
+      return true;
+    }
+
+    return this.originData.locationName === this.edocWorkPackageFolderName();
+  }
+
+  private shouldShowRemoveAction():boolean {
+    if (this.storageTypeHref !== edocDds) {
+      return true;
+    }
+
+    return this.originData.locationName !== this.edocWorkPackageFolderName();
+  }
+
+  private edocWorkPackageFolderName():string {
+    return `工作包#${this.fileLinkContainerId()}`;
+  }
+
+  private fileLinkContainerId():string|undefined {
+    return this.fileLink._links.container?.href.split('/').at(-1);
   }
 
   private deleteAction():FloatingAction {

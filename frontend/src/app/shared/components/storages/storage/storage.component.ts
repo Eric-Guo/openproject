@@ -341,7 +341,7 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
     this.storage
       .pipe(
         switchMap((storage) => this.selectUploadLocation(storage)),
-        switchMap((data) => this.resolveUploadConflicts(file, data.files, data.location)),
+        switchMap((data) => this.resolveUploadConflicts(file, data.files, data.location, data.locationName)),
       )
       .subscribe((data) => {
         this.uploadAndCreateFileLink(data);
@@ -362,14 +362,20 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
         switchMap((modal) => modal.closingEvent),
         filter((modal) => modal.submitted),
         first(),
-        map((modal) => ({ location: modal.location.id as string, files: modal.filesAtLocation })),
+        map((modal) => ({
+          location: modal.location.id as string,
+          locationName: modal.location.name,
+          files: modal.filesAtLocation,
+        })),
       );
   }
 
-  private resolveUploadConflicts(file:File, storageFiles:IStorageFile[], location:string):Observable<UploadData> {
+  private resolveUploadConflicts(file:File, storageFiles:IStorageFile[], location:string, locationName:string):Observable<UploadData> {
     const conflict = storageFiles.find((f) => f.name === file.name);
     if (!conflict) {
-      return of({ file, location, overwrite: null });
+      return of({
+        file, location, locationName, overwrite: null,
+      });
     }
 
     return this.opModalService.show<UploadConflictModalComponent>(UploadConflictModalComponent, 'global', { fileName: file.name })
@@ -377,7 +383,9 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
         switchMap((modal) => modal.closingEvent),
         filter((modal) => modal.overwrite !== null),
         take(1),
-        map((modal) => ({ file, location, overwrite: modal.overwrite })),
+        map((modal) => ({
+          file, location, locationName, overwrite: modal.overwrite,
+        })),
       );
   }
 
@@ -391,11 +399,12 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
           return this.storageFilesResourceService.uploadLink(link);
         }),
         switchMap((link) => this.uploadAndNotify(link, data.file, data.location, data.overwrite)),
-        catchError((error) => {
+        catchError((error:unknown):Observable<never> => {
           isUploadError = true;
-          return throwError(error);
+          return throwError(() => error);
         }),
-        switchMap((uploadResponse) => this.createFileLinkData(uploadResponse)),
+        switchMap((uploadResponse:IStorageFileUploadResponse) =>
+          this.createFileLinkData(uploadResponse, data.location, data.locationName)),
         tap((fileLinkCreationData) => {
           // Update the file link list of this storage only in case of a linked file got updated
           if (fileLinkCreationData === null) {
@@ -488,7 +497,11 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
       );
   }
 
-  private createFileLinkData(response:IStorageFileUploadResponse):Observable<IFileLinkOriginData|null> {
+  private createFileLinkData(
+    response:IStorageFileUploadResponse,
+    location:string,
+    locationName:string,
+  ):Observable<IFileLinkOriginData|null> {
     return this.fileLinks
       .pipe(
         take(1),
@@ -502,6 +515,8 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
           return ({
             id: response.id,
             name: response.name,
+            location,
+            locationName,
             mimeType: response.mimeType,
             size: response.size,
             createdAt: now,
