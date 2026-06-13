@@ -41,6 +41,8 @@ class Storages::FileLinks::CreateContract < ModelContract
   attribute :origin_created_by_name
   attribute :origin_last_modified_by_name
   attribute :origin_mime_type
+  attribute :origin_location
+  attribute :origin_location_name
   validates :origin_mime_type, length: { maximum: 255 }
   attribute :origin_created_at
   attribute :origin_updated_at
