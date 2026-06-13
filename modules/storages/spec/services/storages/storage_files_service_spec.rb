@@ -37,6 +37,7 @@ module Storages
     let(:storage) { create(:edoc_dds_storage, root_folder_id: "100") }
     let(:files_query) { class_double(Adapters::Providers::EdocDds::Queries::FilesQuery) }
     let(:create_folder_command) { class_double(Adapters::Providers::EdocDds::Commands::CreateFolderCommand) }
+    let(:work_package_parent_location) { "/folder:11571310" }
 
     let(:root_folder) do
       Adapters::Results::StorageFile.new(
@@ -58,7 +59,7 @@ module Storages
       )
     end
 
-    let(:root_files) do
+    let(:work_package_parent_files) do
       Adapters::Results::StorageFileCollection.new([work_package_folder], root_folder, [])
     end
 
@@ -72,8 +73,12 @@ module Storages
       allow(create_folder_command).to receive(:call)
     end
 
+    around do |example|
+      with_env("EDOC_WP_FOLDER" => "11571310") { example.run }
+    end
+
     it "opens an existing Edoc DDS work package folder directly" do
-      allow(files_query).to receive(:call).and_return(Success(root_files), Success(work_package_folder_files))
+      allow(files_query).to receive(:call).and_return(Success(work_package_parent_files), Success(work_package_folder_files))
 
       result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
 
@@ -82,7 +87,7 @@ module Storages
       expect(files_query).to have_received(:call).with(
         storage:,
         auth_strategy: anything,
-        input_data: Adapters::Input::Files.build(folder: "/").value!
+        input_data: Adapters::Input::Files.build(folder: work_package_parent_location).value!
       )
       expect(files_query).to have_received(:call).with(
         storage:,
@@ -93,9 +98,9 @@ module Storages
     end
 
     it "creates a missing Edoc DDS work package folder before opening it" do
-      root_files_without_work_package_folder = Adapters::Results::StorageFileCollection.new([], root_folder, [])
+      parent_files_without_work_package_folder = Adapters::Results::StorageFileCollection.new([], root_folder, [])
       allow(files_query).to receive(:call).and_return(
-        Success(root_files_without_work_package_folder),
+        Success(parent_files_without_work_package_folder),
         Success(work_package_folder_files)
       )
       allow(create_folder_command).to receive(:call).and_return(Success(work_package_folder))
@@ -107,7 +112,10 @@ module Storages
       expect(create_folder_command).to have_received(:call).with(
         storage:,
         auth_strategy: anything,
-        input_data: Adapters::Input::CreateFolder.build(folder_name: "工作包#450344", parent_location: "/").value!
+        input_data: Adapters::Input::CreateFolder.build(
+          folder_name: "工作包#450344",
+          parent_location: work_package_parent_location
+        ).value!
       )
       expect(files_query).to have_received(:call).with(
         storage:,
