@@ -124,7 +124,11 @@ export class FilePickerModalComponent extends FilePickerBaseModalComponent {
   }
 
   public createSelectedFileLinks():void {
-    const files = Array.from(this.selection).map((id) => this.fileMap[id]);
+    const files = Array.from(this.selection).map((id) => ({
+      ...this.fileMap[id],
+      location: this.currentDirectory.location,
+      locationName: this.currentDirectory.name,
+    }));
     this.fileLinksResourceService.addFileLinks(
       this.locals.collectionKey as string,
       this.locals.addFileLinksHref as string,
