@@ -52,7 +52,7 @@ module API::V3::ProjectStorages
     link :open do
       next unless show_open_storage_links
 
-      { href: api_v3_paths.project_storage_open(represented.id) }
+      { href: project_profile_doc_link || api_v3_paths.project_storage_open(represented.id) }
     end
 
     link :openWithConnectionEnsured do
@@ -81,6 +81,13 @@ module API::V3::ProjectStorages
       end
 
       true
+    end
+
+    def project_profile_doc_link
+      project = represented.project
+      return unless project.respond_to?(:profile)
+
+      project.profile&.doc_link.presence
     end
   end
 end
