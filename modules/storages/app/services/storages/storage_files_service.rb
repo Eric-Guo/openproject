@@ -30,6 +30,8 @@
 
 module Storages
   class StorageFilesService < BaseService
+    EDOC_DDS_WORK_PACKAGE_PARENT_FOLDER_ENV = "EDOC_WP_FOLDER"
+
     def self.call(storage:, user:, folder:, work_package_id: nil)
       new.call(storage:, user:, folder:, work_package_id:)
     end
@@ -67,12 +69,13 @@ module Storages
 
     def edoc_dds_work_package_folder(storage:, auth_strategy:, work_package_id:)
       folder_name = edoc_dds_work_package_folder_name(work_package_id)
+      parent_location = edoc_dds_work_package_parent_location(storage)
 
-      fetch_files(storage:, auth_strategy:, folder: "/").bind do |root_files|
-        existing_folder = find_folder(root_files, folder_name)
+      fetch_files(storage:, auth_strategy:, folder: parent_location).bind do |parent_files|
+        existing_folder = find_folder(parent_files, folder_name)
         next Success(existing_folder) if existing_folder.present?
 
-        create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:)
+        create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:, parent_location:)
       end
     end
 
@@ -82,8 +85,8 @@ module Storages
         .resolve("#{storage}.queries.files").call(storage:, auth_strategy:, input_data:)
     end
 
-    def create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:)
-      input_data = Adapters::Input::CreateFolder.build(folder_name:, parent_location: "/").value!
+    def create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:, parent_location:)
+      input_data = Adapters::Input::CreateFolder.build(folder_name:, parent_location:).value!
       Adapters::Registry["#{storage}.commands.create_folder"].call(storage:, auth_strategy:, input_data:)
     end
 
@@ -93,6 +96,12 @@ module Storages
 
     def edoc_dds_work_package_folder_name(work_package_id)
       "工作包##{work_package_id}"
+    end
+
+    def edoc_dds_work_package_parent_location(storage)
+      folder_id = ENV.fetch(EDOC_DDS_WORK_PACKAGE_PARENT_FOLDER_ENV)
+
+      folder_id.to_s == storage.root_folder_id.to_s ? "/" : "/folder:#{folder_id}"
     end
   end
 end
