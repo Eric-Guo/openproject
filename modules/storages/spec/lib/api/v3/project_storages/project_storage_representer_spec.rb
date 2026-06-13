@@ -98,6 +98,20 @@ RSpec.describe API::V3::ProjectStorages::ProjectStorageRepresenter do
       let(:href) { api_v3_paths.project_storage_open(project_storage.id) }
     end
 
+    context "when the project profile has a documentation link" do
+      let(:doc_link) { "https://example.com/project-docs" }
+      let(:project_profile) { double("ProjectProfile", doc_link:) }
+
+      before do
+        allow(workspace).to receive(:profile).and_return(project_profile)
+      end
+
+      it_behaves_like "has an untitled link" do
+        let(:link) { "open" }
+        let(:href) { doc_link }
+      end
+    end
+
     it_behaves_like "has an untitled link" do
       let(:link) { "openWithConnectionEnsured" }
       let(:href) { api_v3_paths.project_storage_open(project_storage.id) }
