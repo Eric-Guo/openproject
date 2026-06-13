@@ -31,10 +31,12 @@ import { IStorageFile } from 'core-app/core/state/storage-files/storage-file.mod
 export interface UploadData {
   file:File;
   location:string;
+  locationName:string;
   overwrite:boolean|null;
 }
 
 export interface LocationData {
   location:string;
+  locationName:string;
   files:IStorageFile[];
 }
