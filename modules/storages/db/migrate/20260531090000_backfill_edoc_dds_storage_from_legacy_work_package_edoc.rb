@@ -36,6 +36,8 @@ class BackfillEdocDdsStorageFromLegacyWorkPackageEdoc < ActiveRecord::Migration[
   DEFAULT_ANNOTATOR_HOST = "https://annotator.thape.com.cn"
 
   def up
+    ensure_file_link_origin_location_columns
+
     return unless legacy_tables_available?
     return unless edoc_configured?
 
@@ -122,11 +124,16 @@ class BackfillEdocDdsStorageFromLegacyWorkPackageEdoc < ActiveRecord::Migration[
     SQL
   end
 
+  def ensure_file_link_origin_location_columns
+    add_column :file_links, :origin_location, :string unless column_exists?(:file_links, :origin_location)
+    add_column :file_links, :origin_location_name, :string unless column_exists?(:file_links, :origin_location_name)
+  end
+
   def ensure_file_links(storage_id)
     execute <<~SQL.squish
       INSERT INTO file_links
         (storage_id, creator_id, container_id, container_type, origin_id, origin_name, origin_mime_type,
-         origin_created_at, origin_updated_at, created_at, updated_at)
+         origin_location, origin_location_name, origin_created_at, origin_updated_at, created_at, updated_at)
       SELECT #{storage_id},
              COALESCE(users.id, #{system_user_id}),
              #{LEGACY_FOLDER_TABLE}.work_package_id,
@@ -134,6 +141,8 @@ class BackfillEdocDdsStorageFromLegacyWorkPackageEdoc < ActiveRecord::Migration[
              CONCAT('file:', #{LEGACY_FILE_TABLE}.file_id),
              #{LEGACY_FILE_TABLE}.file_name,
              #{legacy_file_mime_type_expression},
+             CONCAT('/folder:', #{LEGACY_FOLDER_TABLE}.folder_id),
+             #{legacy_folder_name_expression},
              #{LEGACY_FILE_TABLE}.created_at,
              #{LEGACY_FILE_TABLE}.updated_at,
              CURRENT_TIMESTAMP,
@@ -196,6 +205,14 @@ class BackfillEdocDdsStorageFromLegacyWorkPackageEdoc < ActiveRecord::Migration[
       "NULLIF(#{LEGACY_FILE_TABLE}.content_type, '')"
     else
       "NULL"
+    end
+  end
+
+  def legacy_folder_name_expression
+    if column_exists?(LEGACY_FOLDER_TABLE, :folder_name)
+      "NULLIF(#{LEGACY_FOLDER_TABLE}.folder_name, '')"
+    else
+      "CONCAT('工作包#', #{LEGACY_FOLDER_TABLE}.work_package_id)"
     end
   end
 

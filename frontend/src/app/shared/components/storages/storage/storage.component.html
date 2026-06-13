@@ -46,6 +46,7 @@
             [fileLink]="fileLink"
             [disabled]="disabled | async"
             [allowEditing]="allowLinking"
+            [storageTypeHref]="(storage | async)?._links.type.href"
             (removeFileLink)="removeFileLink(fileLink)"
             (deleteFileLink)="deleteFileLink(fileLink)"
           ></li>
