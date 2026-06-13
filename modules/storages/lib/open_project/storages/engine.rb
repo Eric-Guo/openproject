@@ -243,9 +243,12 @@ module OpenProject::Storages
             next if hide_from_menu
 
             icon = storage.provider_type_nextcloud? ? "op-mark-nextcloud" : "file-directory"
+            project_profile = prj.profile if prj.respond_to?(:profile)
+            storage_url = project_profile&.doc_link.presence || prj_storage.open_project_storage_url
+
             menu.push(
               :"storage_#{storage.id}",
-              prj_storage.open_project_storage_url,
+              storage_url,
               caption: storage.name,
               before: :members,
               icon:,
