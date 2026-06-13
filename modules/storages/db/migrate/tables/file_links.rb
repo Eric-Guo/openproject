@@ -46,6 +46,8 @@ class Tables::FileLinks < Tables::Base
       t.string :origin_created_by_name
       t.string :origin_last_modified_by_name
       t.string :origin_mime_type
+      t.string :origin_location
+      t.string :origin_location_name
       t.datetime :origin_created_at, precision: nil
       t.datetime :origin_updated_at, precision: nil
 
