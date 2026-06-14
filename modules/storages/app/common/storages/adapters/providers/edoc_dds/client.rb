@@ -347,7 +347,16 @@ module Storages
           def assert_result!(result)
             return if result[:result].to_i.zero?
 
-            raise Error.new(result.inspect, code: :error, payload: result)
+            raise Error.new(result.inspect, code: error_code(result), payload: result)
+          end
+
+          def error_code(result)
+            case result[:result].to_i
+            when 610
+              :conflict
+            else
+              :error
+            end
           end
 
           def build_url(path, params = {}, fragment: nil, host: @storage.host)
