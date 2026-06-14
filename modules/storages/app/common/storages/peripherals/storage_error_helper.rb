@@ -65,17 +65,23 @@ module Storages::Peripherals
 
       # FIXME: messages were removed we need to deal with it - 2025-04-14 @mereghost
 
+      raise api_error(error)
+    end
+
+    def api_error(error)
       case error.code
       when :not_found
-        raise API::Errors::OutboundRequestNotFound.new
+        API::Errors::OutboundRequestNotFound.new
       when :bad_request
-        raise API::Errors::BadRequest.new(error.code)
+        API::Errors::BadRequest.new(error.code)
       when :forbidden
-        raise API::Errors::OutboundRequestForbidden.new
+        API::Errors::OutboundRequestForbidden.new
+      when :conflict
+        API::Errors::Conflict.new
       when :missing_ee_token_for_one_drive
-        raise API::Errors::EnterpriseTokenMissing.new
+        API::Errors::EnterpriseTokenMissing.new
       else
-        raise API::Errors::SafeInternalError.new(error.code)
+        API::Errors::SafeInternalError.new(error.code)
       end
     end
   end
