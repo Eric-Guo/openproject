@@ -119,6 +119,26 @@ module Storages
 
               expect(WebMock).to have_requested(:post, %r{\Ahttps://dds\.example\.com/document/upload})
             end
+
+            context "when a file with the same name already exists" do
+              before do
+                stub_request(:post, %r{\Ahttps://dds\.example\.com/WebCore})
+                  .to_return_json(
+                    status: 200,
+                    body: {
+                      availableSizes: 0,
+                      result: 610,
+                      reason: "存在同名文件",
+                      errorInfo: { ExistedFileId: 48_519_133 }.to_json
+                    }
+                  )
+              end
+
+              it "raises a conflict error" do
+                expect { client.upload(file, folder_id: "11619178", file_name: "G6ltS4qbYAANxtF.jpeg") }
+                  .to raise_error(Client::Error) { |error| expect(error.code).to eq(:conflict) }
+              end
+            end
           end
         end
       end
