@@ -269,13 +269,13 @@ class ApplicationController < ActionController::Base
   # Find project of id params[:id]
   # Note: find() is Project.friendly.find()
   def find_project
-    @project = Project.visible.find(params[:id])
+    @project = visible_project_from_identifier_or_profile_code(params[:id])
   end
 
   # Find project of id params[:project_id]
   # Note: find() is Project.friendly.find()
   def find_project_by_project_id
-    @project = Project.visible.find(params[:project_id])
+    @project = visible_project_from_identifier_or_profile_code(params[:project_id])
   end
 
   # Find project by project_id if given
@@ -283,6 +283,20 @@ class ApplicationController < ActionController::Base
     @project = Project.visible.find(params[:project_id]) if params[:project_id].present?
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def visible_project_from_identifier_or_profile_code(identifier)
+    Project.visible.find(identifier)
+  rescue ActiveRecord::RecordNotFound
+    project_id = project_profile_project_id_for_code(identifier)
+
+    project_id ? Project.visible.find(project_id) : raise
+  end
+
+  def project_profile_project_id_for_code(code)
+    return unless defined?(ProjectProfile)
+
+    ProjectProfile.where(code:).pick(:project_id)
   end
 
   # Finds and sets @project based on @object.project
