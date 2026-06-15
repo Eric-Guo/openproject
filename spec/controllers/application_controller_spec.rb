@@ -247,4 +247,32 @@ RSpec.describe ApplicationController do
       end
     end
   end
+
+  describe "#visible_project_from_identifier_or_profile_code" do
+    let(:admin) { create(:admin) }
+    let(:project) { create(:project, public: false) }
+    let(:profile_code) { "TH21012808" }
+
+    before do
+      User.execute_as(admin) do
+        ProjectProfile.create!(project:, type_id: 1, code: profile_code)
+      end
+    end
+
+    it "finds a visible project by project profile code" do
+      project_by_profile_code = User.execute_as(admin) do
+        controller.send(:visible_project_from_identifier_or_profile_code, profile_code)
+      end
+
+      expect(project_by_profile_code).to eq(project)
+    end
+
+    it "does not bypass project visibility" do
+      expect do
+        User.execute_as(create(:user)) do
+          controller.send(:visible_project_from_identifier_or_profile_code, profile_code)
+        end
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
