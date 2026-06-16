@@ -13,6 +13,7 @@
         type="button"
         class="spot-link spot-breadcrumbs--crumb-action-item"
         [title]="crumb.text"
+        [disabled]="isDisabledCloudRootCrumb(crumb, first)"
         (click)="crumb.navigate()"
       >
         @if (crumb.icon) {
