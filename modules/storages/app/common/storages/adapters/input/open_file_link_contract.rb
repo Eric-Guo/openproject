@@ -35,6 +35,7 @@ module Storages
         params do
           required(:file_id).filled(:string)
           required(:open_location).maybe(:bool)
+          optional(:file_link_id).maybe(:integer)
         end
       end
     end
