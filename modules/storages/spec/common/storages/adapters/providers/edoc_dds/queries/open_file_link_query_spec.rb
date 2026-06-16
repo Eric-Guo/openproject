@@ -43,8 +43,17 @@ module Storages
             it_behaves_like "storage adapter: query call signature", "open_file_link"
 
             context "with a file link" do
+              let(:input_data) { Input::OpenFileLink.build(file_id: "file:306", file_link_id: 1113).value! }
+              let(:open_file_link) do
+                "#{Setting.protocol}://#{Setting.host_name}/th_work_packages/edoc_files/1113/annotation_document"
+              end
+
+              it_behaves_like "adapter open_file_link_query: successful link response"
+            end
+
+            context "with a file id without a file link" do
               let(:input_data) { Input::OpenFileLink.build(file_id: "file:306").value! }
-              let(:open_file_link) { "https://annotator.thape.com.cn/?file_id=306" }
+              let(:open_file_link) { "https://dds.example.com/preview.html?fileid=306" }
 
               it_behaves_like "adapter open_file_link_query: successful link response"
             end
