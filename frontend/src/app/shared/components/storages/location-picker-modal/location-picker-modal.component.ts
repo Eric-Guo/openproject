@@ -102,11 +102,7 @@ export class LocationPickerModalComponent extends FilePickerBaseModalComponent {
   }
 
   public get canCreateFolder():boolean {
-    if (!this.currentDirectory) {
-      return false;
-    }
-
-    return this.currentDirectory.permissions.some((value) => value === 'writeable');
+    return false;
   }
 
   public get alertText():Observable<string> {
