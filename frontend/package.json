@@ -40,8 +40,8 @@
     "@types/webpack-env": "^1.18.8",
     "@typescript-eslint/eslint-plugin": "8.53.0",
     "@typescript-eslint/parser": "8.53.1",
-    "@vitest/browser-playwright": "^4.1.8",
-    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9",
     "@vitest/eslint-plugin": "^1.6.20",
     "angular-eslint": "^21.4.0",
     "browserslist": "^4.28.2",
@@ -57,7 +57,7 @@
     "ts-node": "~10.9.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.61.0",
-    "vitest": "^4.1.8",
+    "vitest": "^4.1.9",
     "wscat": "^6.1.0"
   },
   "dependencies": {
@@ -162,7 +162,7 @@
     "ngx-cookie-service": "^21.3.1",
     "observable-array": "0.0.4",
     "op-blocknote-extensions": "https://github.com/opf/op-blocknote-extensions/releases/download/v0.1.2/op-blocknote-extensions-0.1.2.tgz",
-    "openapi-explorer": "^2.4.799",
+    "openapi-explorer": "^2.4.801",
     "pako": "^2.1.0",
     "qr-creator": "^1.0.0",
     "react": "^19.2.7",

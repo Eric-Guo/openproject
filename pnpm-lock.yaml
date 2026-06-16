@@ -535,8 +535,8 @@ packages:
   fast-xml-builder@1.2.0:
     resolution: {integrity: sha512-00aAWieqff+ZJhsXA4g1g7M8k+7AYoMUUHF+/zFb5U6Uv/P0Vl4QZo84/IcufzYalLuEj9928bXN9PbbFzMF0Q==}
 
-  fast-xml-parser@5.8.0:
-    resolution: {integrity: sha512-6bIM7fsJxeo3uXv7OncQYsBAMPJ7V16Slahl/6M98C/i2q+vB1+4a0MtrvYwDFEUrwDSbAmeLDRXsOBwrL7yAg==}
+  fast-xml-parser@5.9.0:
+    resolution: {integrity: sha512-duBuXbyIhEeNO4GjFuVqr0nF047oNwr18aum+zJyqo0MUG/n7Afgs3Qv3D6VN3ONedUKxiuFlPiMGIa0Z11chA==}
     hasBin: true
 
   find-replace@3.0.0:
@@ -637,6 +637,9 @@ packages:
 
   is-typedarray@1.0.0:
     resolution: {integrity: sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==}
+
+  is-unsafe@1.0.1:
+    resolution: {integrity: sha512-CLK2+VdgERgD96EYm5lUQssZYlRg2tkZnbsxZoacmSiRxiFJ4Nk4SzjCl+Ur+v3kXIY9dTIdb3IH22y1mZ56LA==}
 
   isarray@0.0.1:
     resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
@@ -1894,10 +1897,11 @@ snapshots:
       path-expression-matcher: 1.5.0
       xml-naming: 0.1.0
 
-  fast-xml-parser@5.8.0:
+  fast-xml-parser@5.9.0:
     dependencies:
       '@nodable/entities': 2.2.0
       fast-xml-builder: 1.2.0
+      is-unsafe: 1.0.1
       path-expression-matcher: 1.5.0
       strnum: 2.4.0
       xml-naming: 0.1.0
@@ -2002,6 +2006,8 @@ snapshots:
   is-fullwidth-code-point@3.0.0: {}
 
   is-typedarray@1.0.0: {}
+
+  is-unsafe@1.0.1: {}
 
   isarray@0.0.1: {}
 
@@ -2202,7 +2208,7 @@ snapshots:
   openapi-sampler@1.7.4:
     dependencies:
       '@types/json-schema': 7.0.15
-      fast-xml-parser: 5.8.0
+      fast-xml-parser: 5.9.0
       json-pointer: 0.6.2
 
   outdent@0.8.0: {}
