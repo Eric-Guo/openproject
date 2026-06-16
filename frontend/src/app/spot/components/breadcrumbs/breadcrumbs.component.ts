@@ -33,7 +33,10 @@ import {
   Input,
 } from '@angular/core';
 
-import { BreadcrumbsContent } from 'core-app/spot/components/breadcrumbs/breadcrumbs-content';
+import {
+  type Breadcrumb,
+  BreadcrumbsContent,
+} from 'core-app/spot/components/breadcrumbs/breadcrumbs-content';
 
 @Component({
   selector: 'spot-breadcrumbs',
@@ -45,4 +48,8 @@ export class SpotBreadcrumbsComponent {
   @HostBinding('class.spot-breadcrumbs') className = true;
 
   @Input() content:BreadcrumbsContent;
+
+  public isDisabledCloudRootCrumb(crumb:Breadcrumb, first:boolean):boolean {
+    return first && crumb.icon === 'cloud';
+  }
 }
