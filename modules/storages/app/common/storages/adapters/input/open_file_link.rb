@@ -31,11 +31,11 @@
 module Storages
   module Adapters
     module Input
-      OpenFileLink = Data.define(:file_id, :open_location) do
+      OpenFileLink = Data.define(:file_id, :open_location, :file_link_id) do
         private_class_method :new
 
-        def self.build(file_id:, open_location: false, contract: OpenFileLinkContract.new)
-          contract.call(file_id:, open_location:).to_monad.fmap { new(**it.to_h) }
+        def self.build(file_id:, open_location: false, file_link_id: nil, contract: OpenFileLinkContract.new)
+          contract.call(file_id:, open_location:, file_link_id:).to_monad.fmap { new(**it.to_h) }
         end
       end
     end

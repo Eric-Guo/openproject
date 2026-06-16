@@ -50,8 +50,10 @@ module Storages
               elsif input_data.open_location
                 file = client.file_info(file_identifier(input_data.file_id))
                 client.folder_url(file[:parent_folder_id])
+              elsif input_data.file_link_id
+                client.annotator_url(input_data.file_link_id)
               else
-                client.annotator_url(file_identifier(input_data.file_id))
+                client.preview_url(file_identifier(input_data.file_id))
               end
             end
           end
