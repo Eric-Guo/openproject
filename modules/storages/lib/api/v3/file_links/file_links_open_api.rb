@@ -41,7 +41,9 @@ class API::V3::FileLinks::FileLinksOpenAPI < API::OpenProjectAPI
   resources :open do
     get do
       input_data = Storages::Adapters::Input::OpenFileLink
-                     .build(file_id: @file_link.origin_id, open_location: params[:location])
+                     .build(file_id: @file_link.origin_id,
+                            open_location: params[:location],
+                            file_link_id: @file_link.id)
                      .value_or { raise_error(it) }
 
       Storages::Adapters::Registry.resolve("#{@file_link.storage}.queries.open_file_link")
