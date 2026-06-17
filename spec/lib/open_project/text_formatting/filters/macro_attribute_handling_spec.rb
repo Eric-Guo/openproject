@@ -85,10 +85,35 @@ RSpec.describe "macro element attribute handling" do # rubocop:disable RSpec/Des
         html = '<macro class="macro-placeholder" data-macro-name="toc">placeholder</macro>'
         expect(sanitize(html)).to include('data-macro-name="toc"')
       end
+
+      it "preserves data-file on macro elements (used by show_dds_file_link macro)" do
+        html = '<macro class="show_dds_file_link" data-file="{&quot;name&quot;:&quot;file&quot;,&quot;url&quot;:&quot;https://example.com&quot;}">.</macro>'
+        expect(sanitize(html)).to include("data-file=")
+      end
     end
   end
 
   describe OpenProject::TextFormatting::Filters::MacroFilter do
+    describe "DDS file link macro elements" do
+      it "renders the DDS link after sanitization preserves its file payload" do
+        file = {
+          name: "20250514文保结构提资天华",
+          isFolder: true,
+          url: "https://edoc.thape.com.cn:8022/index.html#doc/enterprise/15110763",
+          parentFolderFullPath: "企业内容库\\01-项目工作区"
+        }
+        html = '<macro class="show_dds_file_link op-macro-dds-file-box" ' \
+               "data-file=\"#{ERB::Util.html_escape(file.to_json)}\">&nbsp;</macro>"
+
+        output = apply_macro_filter(sanitize(html))
+
+        expect(output).to include("op-macro-dds-file-box")
+        expect(output).to include("20250514文保结构提资天华")
+        expect(output).to include("企业内容库\\01-项目工作区")
+        expect(output).not_to include("macro-unavailable")
+      end
+    end
+
     describe "unrecognized macro elements" do
       it "replaces macro elements whose class does not match any registered macro with an unavailable placeholder" do
         html = '<p><macro class="x">.</macro></p>'
