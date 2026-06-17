@@ -53,7 +53,18 @@ module OpenProject::TextFormatting
 
           attributes: base_attrs.deep_merge(
             # Explicit allowlist of data-* attributes used by registered macros.
-            "macro" => %w[class data-type data-classes data-page data-include-parent data-macro-name data-query-props data-pull-request-id data-pull-request-state],
+            "macro" => %w[
+              class
+              data-type
+              data-classes
+              data-file
+              data-page
+              data-include-parent
+              data-macro-name
+              data-query-props
+              data-pull-request-id
+              data-pull-request-state
+            ],
             # mentions
             "mention" => %w[data-type data-text data-id class],
             # add styles to tables
