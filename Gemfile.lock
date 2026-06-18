@@ -729,7 +729,7 @@ GEM
     http_parser.rb (0.8.1)
     httpx (1.7.8)
       http-2 (>= 1.1.3)
-    i18n (1.15.0)
+    i18n (1.15.1)
       concurrent-ruby (~> 1.0)
     i18n-js (4.2.4)
       glob (>= 0.4.0)
@@ -865,7 +865,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.3)
-    multi_json (1.20.1)
+    multi_json (1.21.1)
     mustermann (4.0.0)
     mustermann-grape (1.1.0)
       mustermann (>= 1.0.0)
@@ -1290,7 +1290,7 @@ GEM
       ffi (~> 1.0)
     rb_sys (0.9.128)
       rake-compiler-dock (= 1.12.0)
-    rbtrace (0.5.3)
+    rbtrace (0.5.4)
       ffi (>= 1.0.6)
       msgpack (>= 0.4.3)
       optimist (>= 3.0.0)
@@ -1677,7 +1677,7 @@ DEPENDENCIES
   meta-tags (~> 2.23.0)
   mini_magick (~> 5.3.0)
   msgpack (~> 1.8.0)
-  multi_json (~> 1.20.0)
+  multi_json (~> 1.21.1)
   my_page!
   net-ldap (~> 0.20.0)
   nokogiri (~> 1.19.2)
@@ -1995,7 +1995,7 @@ CHECKSUMS
   http-2 (1.2.0) sha256=5bed923379ae67895d3bde440502219543da2885104b46ed7d604f5990efad1c
   http_parser.rb (0.8.1) sha256=9ae8df145b39aa5398b2f90090d651c67bd8e2ebfe4507c966579f641e11097a
   httpx (1.7.8) sha256=6d769465ed608287a272ba0e4700fc22cee6f0335d80bd5c2effaf7fb7bd2a3a
-  i18n (1.15.0) sha256=ed20037ed7ca75dd36ec486b5fb9696e8e0cfe48f4f80980017932d93e70527f
+  i18n (1.15.1) sha256=505ec5de1f4e6c8a2cb028ef9700ca495f117911643455721dee5abdca797255
   i18n-js (4.2.4) sha256=61390d372f8fa68c495c5907d577657e8cc3a7031f4945db1e91f935e1391355
   i18n-tasks (1.1.2) sha256=4dcfba49e52a623f30661cb316cb80d84fbba5cb8c6d88ef5e02545fffa3637a
   icalendar (2.12.3) sha256=37dea76c36f5b21dd745bcd3cb53e7bacfbb4ad0a8d9c2a1c0aa9d39af83c850
@@ -2043,7 +2043,7 @@ CHECKSUMS
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.6) sha256=153ea36d1d987a62942382b61075745042a2b3123b1cd48f4c3675af9cc7d6f1
   msgpack (1.8.3) sha256=8bda4a6428d3244e50d6bd55854d354edbada88a4e1f4f5731a39a0f86bee6a1
-  multi_json (1.20.1) sha256=2f3934e805cc45ef91b551a1f89d0e9191abd06a5e04a2ef09a6a036c452ca6d
+  multi_json (1.21.1) sha256=e6126a31808e3b4d19f483c775ceac34df190dffa62adfb63a165ee14ba68080
   mustermann (4.0.0) sha256=91f67411bb208d1d93c41e6128cb3b0f8ddd9ec7c45966f1007e1c43c08040d7
   mustermann-grape (1.1.0) sha256=8d258a986004c8f01ce4c023c0b037c168a9ed889cf5778068ad54398fa458c5
   my_page (1.0.0)
@@ -2224,7 +2224,7 @@ CHECKSUMS
   rb-fsevent (0.11.2) sha256=43900b972e7301d6570f64b850a5aa67833ee7d87b458ee92805d56b7318aefe
   rb-inotify (0.11.1) sha256=a0a700441239b0ff18eb65e3866236cd78613d6b9f78fea1f9ac47a85e47be6e
   rb_sys (0.9.128) sha256=9ab81f4d6d4e1895de18762232362d1264475aa7035756b50441e442130538fd
-  rbtrace (0.5.3) sha256=c432292f305d9ab12fd47d9722e0d5210d983758a951fe6107c36cc955cb923f
+  rbtrace (0.5.4) sha256=8279e40076530f0301e255d0669cfe0d7d31ef872d1ae475c486e5a1199b757b
   rbtree3 (0.7.1) sha256=ab60ead728a5491b70df4f4065e180b18dbab5319f817ce1dbf5dd906f26d8ba
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
   recaptcha (5.21.2) sha256=8f7bb6cc9f04c523fff3f38126b7c5f1314c35fcb3691fc8e70d2b464533c12a
