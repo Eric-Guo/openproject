@@ -34,7 +34,7 @@
     "@eslint/js": "^9.39.4",
     "@eslint/json": "^1.2.0",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^25.9.3",
+    "@types/node": "^25.9.4",
     "eslint": "^9.39.4",
     "globals": "^17.6.0",
     "msw": "^2.14.6",
