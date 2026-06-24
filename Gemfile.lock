@@ -457,19 +457,10 @@ GEM
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.11.3)
+    axe-core-api (4.12.0)
       dumb_delegator
-      ostruct
-      virtus
-    axe-core-rspec (4.11.3)
-      axe-core-api (= 4.11.3)
-      dumb_delegator
-      ostruct
-      virtus
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
+    axe-core-rspec (4.12.0)
+      axe-core-api (= 4.12.0)
     base64 (0.3.0)
     bcrypt (3.1.22)
     bcrypt_pbkdf (1.1.2)
@@ -546,8 +537,6 @@ GEM
       with_advisory_lock (>= 7.5.0)
       zeitwerk (~> 2.7)
     coderay (1.1.3)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
     color_conversion (0.1.2)
     colored2 (4.0.3)
     commonmarker (2.8.2-aarch64-linux)
@@ -592,8 +581,6 @@ GEM
     dentaku (3.5.7)
       bigdecimal
       concurrent-ruby
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.6.2)
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
@@ -735,7 +722,7 @@ GEM
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
     glob (0.5.0)
-    globalid (1.3.0)
+    globalid (1.4.0)
       activesupport (>= 6.1)
     good_job (4.18.2)
       activejob (>= 6.1.0)
@@ -1583,7 +1570,7 @@ GEM
       bigdecimal
       logger
       ruby-ole
-    spring (4.6.0)
+    spring (4.7.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     spring-commands-rubocop (0.4.0)
@@ -1625,7 +1612,6 @@ GEM
     test-prof (1.6.1)
     text-hyphen (1.5.0)
     thor (1.5.0)
-    thread_safe (0.3.6)
     tidewave (0.5.1)
       rack (>= 2.0)
     timecop (0.9.11)
@@ -1664,10 +1650,6 @@ GEM
       actionview (>= 7.1.0)
       activesupport (>= 7.1.0)
       concurrent-ruby (~> 1)
-    virtus (2.0.0)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-basic_auth (0.2.1)
@@ -2028,9 +2010,8 @@ CHECKSUMS
   aws-sdk-s3 (1.226.0) sha256=e599f431e006ec9b92c61ee0f14d3f658a1f6c8a1d623d2160be927ac958e2bf
   aws-sdk-sns (1.113.0) sha256=15fe37d010e86f4c28b4c2f2133c463ce5c14189ec3673a1f43c30dfee511b0f
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
-  axe-core-api (4.11.3) sha256=f5f6e802743644a50e2d8ef24c22aefbb6df49dd169024ff0144b47f37e652ba
-  axe-core-rspec (4.11.3) sha256=246c8d443517354e9a9962a10a8cc456bcef4c617516c0924b051a9af9d7da99
-  axiom-types (0.1.1) sha256=c1ff113f3de516fa195b2db7e0a9a95fd1b08475a502ff660d04507a09980383
+  axe-core-api (4.12.0) sha256=9d0284681faacfc0d8609f13da389483814e9ab545b01e99909a6d8fdc312d72
+  axe-core-rspec (4.12.0) sha256=0ddd7af16b2959bfa24562bc8ebdcbbe4d7aa2e3b495591f3cd9969033f01021
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.22) sha256=1f0072e88c2d705d94aff7f2c5cb02eb3f1ec4b8368671e19112527489f29032
   bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
@@ -2043,7 +2024,7 @@ CHECKSUMS
   browser (6.2.0) sha256=281d5295788825c9396427c292c2d2be0a5c91875c93c390fde6e5d61a5ace2d
   budgets (1.0.0)
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
-  bundler (4.0.14) sha256=d09a0a965cf772266a7e49e83610be7c2f4e49e61134c42a56804bb383cc24b8
+  bundler (4.0.15) sha256=a4ceb882fe94a0e0ac63cd0813932bbfd631a14e5ac0b7975189b19a4d28d9e7
   byebug (13.0.0) sha256=d2263efe751941ca520fa29744b71972d39cbc41839496706f5d9b22e92ae05d
   capistrano (3.20.1) sha256=b0d54ba5cf49bb194998bf6b427e889aa36ed05f545ecf7cc37acb9d529e9ae9
   capistrano-bundler (2.2.0) sha256=47b4cf2ea17ea132bb0a5cabc5663443f5190a54f4da5b322d04e1558ff1468c
@@ -2064,7 +2045,6 @@ CHECKSUMS
   climate_control (1.2.0) sha256=36b21896193fa8c8536fa1cd843a07cf8ddbd03aaba43665e26c53ec1bd70aa5
   closure_tree (9.7.0) sha256=54403254741e70b5da35eefffc6b8172505da71c004ff75635f4e1299e6ba44c
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
-  coercible (1.0.0) sha256=5081ad24352cc8435ce5472bc2faa30260c7ea7f2102cc6a9f167c4d9bffaadc
   color_conversion (0.1.2) sha256=99bea5fa412e1527a11389975aa6ad445ff8528ebae202c11d08c45ea2b94c96
   colored2 (4.0.3) sha256=63e1038183976287efc43034f5cca17fb180b4deef207da8ba78d051cbce2b37
   commonmarker (2.8.2-aarch64-linux) sha256=715a5df28e5c1ec7b520e6441466062e9717b82193d2a5bd11a9c94f2f1e15f0
@@ -2093,7 +2073,6 @@ CHECKSUMS
   deckar01-task_list (2.3.4) sha256=66abdc7e009ea759732bb53867e1ea42de550e2aa03ac30a015cbf42a04c1667
   declarative (0.0.20) sha256=8021dd6cb17ab2b61233c56903d3f5a259c5cf43c80ff332d447d395b17d9ff9
   dentaku (3.5.7) sha256=8d15a4a801ac8e1491dd2842bb76e38dd2794e9c8aa0f6e06f59d7ec62727db0
-  descendants_tracker (0.0.4) sha256=e9c41dd4cfbb85829a9301ea7e7c48c2a03b26f09319db230e6479ccdc780897
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
   disposable (0.6.3) sha256=7f2a3fb251bff6cd83f25b164043d4ec3531209b51b066ed476a9df9c2d384cc
   domain_name (0.6.20240107) sha256=5f693b2215708476517479bf2b3802e49068ad82167bcd2286f899536a17d933
@@ -2151,7 +2130,7 @@ CHECKSUMS
   fugit (1.12.2) sha256=643f2bf28db263bd400cbf8e0dd8b76b2c9b94bdb130e12d2394de04d9c20e5e
   fuubar (2.5.1) sha256=b272a7804b282661c7fab583a3764f92543cb482c365ae39c685cd218fdd4880
   glob (0.5.0) sha256=6397ae620b2f71b00424ec6c880c92d5ddcf6c44e6035c0b610a59efe16418fd
-  globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
+  globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
   good_job (4.18.2) sha256=7e557a15865fc7b7ad4ab71644cf1d4189a2a1869d3b381e5e88741c540beca6
   google-apis-core (1.2.3) sha256=2ce34c17c144e24d966ecb0efa5d46aaba3e3e3721ba1faa1ed80db2389e7b08
   google-apis-gmail_v1 (0.52.0) sha256=94efe9b6f323e5e5e58ba126fb2c0105642874906b3375cf7e887562398652ff
@@ -2498,7 +2477,7 @@ CHECKSUMS
   slop (4.10.1) sha256=844322b5ffcf17ed4815fdb173b04a20dd82b4fd93e3744c88c8fafea696d9c7
   smart_properties (1.17.0) sha256=f9323f8122e932341756ddec8e0ac9ec6e238408a7661508be99439ca6d6384b
   spreadsheet (1.3.5) sha256=cd83ea66803d9cae4ac258dfe16cd8c2b85da33eec18a6d7b48fd4a45840ab7d
-  spring (4.6.0) sha256=e9e41f9a56fa5f111df7c85110a7d606ca731dc116c906ba395fd74c9fd474e3
+  spring (4.7.0) sha256=f81bf6d41f05518ed5d0128ce5c75fb6dd9c6153f158129c8b85c4461ca0b72c
   spring-commands-rspec (1.0.4) sha256=6202e54fa4767452e3641461a83347645af478bf45dddcca9737b43af0dd1a2c
   spring-commands-rubocop (0.4.0) sha256=3e677a2c8a27ae8a986f04bfb69e66d5d55b017541e8be93bf0dc48a7f5690c1
   sprockets (3.7.5) sha256=72c20f256548f8a37fe7db41d96be86c3262fddaf4ebe9d69ec8317394fed383
@@ -2519,7 +2498,6 @@ CHECKSUMS
   test-prof (1.6.1) sha256=0332d9c39a7c118ed942b2db582f055d9f24964d150004ec6b964d2fa262499e
   text-hyphen (1.5.0) sha256=c44a4533b8a554e7ff7c955e131bcccc78a0b4c56ce1d73f2c8c11f43b075a06
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
-  thread_safe (0.3.6) sha256=9ed7072821b51c57e8d6b7011a8e282e25aeea3a4065eab326e43f66f063b05a
   tidewave (0.5.1) sha256=0827c329ddd27eef36abaff5539810d39f0b0a65ffe0d607d61bea526a84bc1c
   timecop (0.9.11) sha256=41284dc6e5041f2184f781ace766f942108c842f8d8c1386a26e6343decc7542
   timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb
@@ -2542,7 +2520,6 @@ CHECKSUMS
   vcr (6.4.0) sha256=077ac92cc16efc5904eb90492a18153b5e6ca5398046d8a249a7c96a9ea24ae6
   vernier (1.10.1) sha256=f2ab2e163b75ac3ef4e3173262d27d27da6219cf04b1b4a7171e4798114275ce
   view_component (4.10.0) sha256=9e86960ee7ea4da3d1d07f65b1a66e4a9fb656be5434f1a649eb6fce6ac9baf9
-  virtus (2.0.0) sha256=8841dae4eb7fcc097320ba5ea516bf1839e5d056c61ee27138aa4bddd6e3d1c2
   warden (1.2.9) sha256=46684f885d35a69dbb883deabf85a222c8e427a957804719e143005df7a1efd0
   warden-basic_auth (0.2.1) sha256=bfc752e0109c0182c3e69e930284c5e1e81e7b4a354aeb2b5914ead1391f3c6e
   webauthn (3.4.3) sha256=9be6f5f838f3405b0226e560aa40b67cc8c15ec9154509b997caa7ec9a05e1fc
@@ -2568,4 +2545,4 @@ RUBY VERSION
   ruby 4.0.5
 
 BUNDLED WITH
-  4.0.14
+  4.0.15

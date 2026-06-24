@@ -50,13 +50,13 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.6.0",
+    "globals": "^17.7.0",
     "jsdom": "^29.1.1",
     "playwright": "^1.61.0",
     "source-map-explorer": "^2.5.3",
     "ts-node": "~10.9.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.61.1",
+    "typescript-eslint": "^8.62.0",
     "vitest": "^4.1.9",
     "wscat": "^6.1.0"
   },
@@ -163,7 +163,7 @@
     "observable-array": "0.0.4",
     "op-blocknote-extensions": "https://github.com/opf/op-blocknote-extensions/releases/download/v0.1.2/op-blocknote-extensions-0.1.2.tgz",
     "openapi-explorer": "^2.4.801",
-    "pako": "^2.1.0",
+    "pako": "^2.2.0",
     "qr-creator": "^1.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -202,5 +202,5 @@
     "lint:fix": "ng lint --fix",
     "generate-typings": "tsc -d -p tsconfig.app.json"
   },
-  "packageManager": "pnpm@11.8.0"
+  "packageManager": "pnpm@11.9.0"
 }

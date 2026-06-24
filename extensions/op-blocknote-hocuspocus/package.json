@@ -36,10 +36,10 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^25.9.4",
     "eslint": "^9.39.4",
-    "globals": "^17.6.0",
+    "globals": "^17.7.0",
     "msw": "^2.14.6",
-    "typescript-eslint": "^8.61.1",
+    "typescript-eslint": "^8.62.0",
     "vitest": "^4.1.9"
   },
-  "packageManager": "pnpm@11.8.0"
+  "packageManager": "pnpm@11.9.0"
 }
