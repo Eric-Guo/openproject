@@ -15,7 +15,7 @@ post:
     - Both arrays can be submitted together, matching the TH key-in form behavior.
 
     The submitted `date` must be today or one of the eight previous eligible key-in days.
-    When `keyin_user_id` is provided, it is stored as `logged_by_id`; otherwise `logged_by_id` defaults to the authenticated user's ID.
+    When `keyinUserId` is provided, entries belong to that user while `logged_by_id` remains the authenticated user's ID.
     Set `rejectReKeying` to `true` only when re-keying rejected entries outside that normal date window.
     Project entries require the authenticated user to have permission to log own time on each submitted work package.
     Project time entries created by this endpoint are stored with `time_entries.new_split_keyin` set to `true`.
@@ -34,10 +34,10 @@ post:
               format: date
               description: ISO 8601 date to submit.
               example: "2026-03-17"
-            keyin_user_id:
+            keyinUserId:
               type: integer
-              description: User ID stored as `logged_by_id`. Defaults to the authenticated user.
-              example: 3469
+              description: User ID that owns the submitted entries. Defaults to the authenticated user.
+              example: 294
             rejectReKeying:
               type: boolean
               description: Set to `true` to allow rejected-entry re-keying outside the normal key-in date window.
