@@ -6,7 +6,7 @@ post:
   tags:
     - Time entries
   description: |-
-    Submits Tianhua key-in time entries for the authenticated user, or for the user selected by `keyin_user_id`.
+    Submits Tianhua key-in time entries for the authenticated user.
 
     The request must contain at least one entry type:
 
@@ -15,9 +15,9 @@ post:
     - Both arrays can be submitted together, matching the TH key-in form behavior.
 
     The submitted `date` must be today or one of the eight previous eligible key-in days.
-    When `keyin_user_id` is provided, entries belong to that user and retain the authenticated user as `logged_by_id`.
+    When `keyin_user_id` is provided, it is stored as `logged_by_id`; otherwise `logged_by_id` defaults to the authenticated user's ID.
     Set `rejectReKeying` to `true` only when re-keying rejected entries outside that normal date window.
-    Project entries require the selected key-in user to have permission to log own time on each submitted work package.
+    Project entries require the authenticated user to have permission to log own time on each submitted work package.
     Project time entries created by this endpoint are stored with `time_entries.new_split_keyin` set to `true`.
     Non-project entries support writable TH activities only; `take_vacation` is read-only.
   requestBody:
@@ -36,7 +36,7 @@ post:
               example: "2026-03-17"
             keyin_user_id:
               type: integer
-              description: User ID to key in entries for. Defaults to the authenticated user.
+              description: User ID stored as `logged_by_id`. Defaults to the authenticated user.
               example: 3469
             rejectReKeying:
               type: boolean
