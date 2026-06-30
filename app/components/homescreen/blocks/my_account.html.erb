@@ -25,7 +25,9 @@
 
   <ul class="widget-box--arrow-links">
     <li>
-      <%= link_to t(:label_th_keyin), th_keyin_path, title: t(:label_th_keyin) %>
+      <%= link_to t(:label_th_keyin),
+                  'https://ith-workspace.thape.com.cn/workbenchApi/auth/sso-login?redirect_uri=https%3A%2F%2Fith-workspace.thape.com.cn%2Fith-worktime%2Fday',
+                  title: t(:label_th_keyin) %>
     </li>
     <li>
       <%= link_to t(:label_th_keyin_check), 'https://ith-workspace.thape.com.cn/worktime/', title: t(:label_th_keyin_check), target: '_ith' %>
