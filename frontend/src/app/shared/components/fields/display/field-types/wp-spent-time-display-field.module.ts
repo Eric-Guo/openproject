@@ -87,7 +87,7 @@ export class WorkPackageSpentTimeDisplayField extends WorkDisplayField {
     if (this.resource.logTime) {
       const timelogElement = document.createElement('a');
       timelogElement.setAttribute('class', 'icon icon-time');
-      timelogElement.setAttribute('href', '/th_keyin');
+      timelogElement.setAttribute('href', 'https://ith-workspace.thape.com.cn/workbenchApi/auth/sso-login?redirect_uri=https%3A%2F%2Fith-workspace.thape.com.cn%2Fith-worktime%2Fday');
       timelogElement.setAttribute('target', 'th_keyin');
       timelogElement.setAttribute('title', this.text.logTime);
 
