@@ -62,10 +62,10 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: 7783c0cd1695874fb4182221adb79bd87c8b000c
+  revision: 6ab8b01bd190bbbfd194b2c6f04c1079f0e64293
   branch: thape
   specs:
-    openproject-primer_view_components (0.89.0)
+    openproject-primer_view_components (0.89.1)
       actionview (>= 7.2.0)
       activesupport (>= 7.2.0)
       openproject-octicons (>= 19.34.0)
@@ -2269,7 +2269,7 @@ CHECKSUMS
   openproject-octicons (19.35.0) sha256=a5033550d0961b4a8cb0993512a899716d633e17c2b5147bc6a9ed74f3952b38
   openproject-octicons_helper (19.35.0) sha256=c32d142a4bb7fda739b16768aa8846fd88ffc1750509d8056f516056e8767361
   openproject-openid_connect (1.0.0)
-  openproject-primer_view_components (0.89.0)
+  openproject-primer_view_components (0.89.1)
   openproject-recaptcha (1.0.0)
   openproject-reporting (1.0.0)
   openproject-resource_management (1.0.0)
