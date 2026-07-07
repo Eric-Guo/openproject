@@ -39,7 +39,7 @@
     "globals": "^17.7.0",
     "msw": "^2.14.6",
     "typescript-eslint": "^8.62.1",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@11.10.0"
 }
