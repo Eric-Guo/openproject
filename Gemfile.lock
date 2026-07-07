@@ -436,7 +436,7 @@ GEM
     awesome_nested_set (3.9.0)
       activerecord (>= 4.0.0, < 8.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1265.0)
+    aws-partitions (1.1266.0)
     aws-sdk-core (3.252.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -539,13 +539,13 @@ GEM
     coderay (1.1.3)
     color_conversion (0.1.2)
     colored2 (4.0.3)
-    commonmarker (2.8.2-aarch64-linux)
-    commonmarker (2.8.2-aarch64-linux-musl)
-    commonmarker (2.8.2-arm-linux)
-    commonmarker (2.8.2-arm64-darwin)
-    commonmarker (2.8.2-x86_64-darwin)
-    commonmarker (2.8.2-x86_64-linux)
-    commonmarker (2.8.2-x86_64-linux-musl)
+    commonmarker (2.8.3-aarch64-linux)
+    commonmarker (2.8.3-aarch64-linux-musl)
+    commonmarker (2.8.3-arm-linux)
+    commonmarker (2.8.3-arm64-darwin)
+    commonmarker (2.8.3-x86_64-darwin)
+    commonmarker (2.8.3-x86_64-linux)
+    commonmarker (2.8.3-x86_64-linux-musl)
     compare-xml (0.66)
       nokogiri (~> 1.8)
     concurrent-ruby (1.3.7)
@@ -788,28 +788,28 @@ GEM
       grape (>= 2.4.0)
       rack
     gravatar_image_tag (1.2.0)
-    grpc (1.81.1)
+    grpc (1.82.0)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-aarch64-linux-gnu)
+    grpc (1.82.0-aarch64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-aarch64-linux-musl)
+    grpc (1.82.0-aarch64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-arm64-darwin)
+    grpc (1.82.0-arm64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-x86_64-darwin)
+    grpc (1.82.0-x86_64-darwin)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-x86_64-linux-gnu)
+    grpc (1.82.0-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.81.1-x86_64-linux-musl)
+    grpc (1.82.0-x86_64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    grpc-tools (1.81.1)
+    grpc-tools (1.82.0)
     gruf (2.22.0)
       activesupport (> 4)
       concurrent-ruby (> 1)
@@ -831,7 +831,7 @@ GEM
     htmlbeautifier (1.4.3)
     htmldiff (0.0.1)
     htmlentities (4.3.4)
-    http-2 (1.2.0)
+    http-2 (1.2.1)
     http (6.0.3)
       http-cookie (~> 1.0)
       llhttp (~> 0.6.1)
@@ -907,7 +907,7 @@ GEM
       base64
     ladle (1.0.1)
       open4 (~> 1.0)
-    language_server-protocol (3.17.0.5)
+    language_server-protocol (3.17.0.6)
     launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -1482,7 +1482,7 @@ GEM
       rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.49.1)
+    rubocop-ast (1.50.0)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
     rubocop-capybara (3.0.0)
@@ -2001,7 +2001,7 @@ CHECKSUMS
   auto_strip_attributes (2.6.0) sha256=a7e2e0cf744de2bcd947fd68014220702bcc88c81274c1cd9ce6f7316aae39b0
   awesome_nested_set (3.9.0) sha256=3ce99e816550f97f4de118e621630070aacf24928b920fe4a68846578a8daaed
   aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
-  aws-partitions (1.1265.0) sha256=591a4e4ba0bfde0a37fcfed1b0f57c8915c44d0564c4c332606bc9926d6f65d1
+  aws-partitions (1.1266.0) sha256=4e4e99f856904991e656899c77fbf06653b04868fdda2731fe5bdc7e211bde68
   aws-sdk-core (3.252.0) sha256=09c042cbfc2acf2239441cc9b982ebab2a999bed2ef6bdc51849e7b3d6e48a1c
   aws-sdk-kms (1.129.0) sha256=363f548df321f4a4fcfd05523384e591060b400f8e65133ed7ef0793155a3343
   aws-sdk-s3 (1.226.0) sha256=e599f431e006ec9b92c61ee0f14d3f658a1f6c8a1d623d2160be927ac958e2bf
@@ -2044,13 +2044,13 @@ CHECKSUMS
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
   color_conversion (0.1.2) sha256=99bea5fa412e1527a11389975aa6ad445ff8528ebae202c11d08c45ea2b94c96
   colored2 (4.0.3) sha256=63e1038183976287efc43034f5cca17fb180b4deef207da8ba78d051cbce2b37
-  commonmarker (2.8.2-aarch64-linux) sha256=715a5df28e5c1ec7b520e6441466062e9717b82193d2a5bd11a9c94f2f1e15f0
-  commonmarker (2.8.2-aarch64-linux-musl) sha256=c7d587bd7978416978e84d0de7488906b8f29b3f67ce8424942f0ca9aa6899db
-  commonmarker (2.8.2-arm-linux) sha256=da9da5c08d5133ad429ece13f2e93d3a30e1b23621ffac9040e185d7ea29bde6
-  commonmarker (2.8.2-arm64-darwin) sha256=cd7364f1fb9735d60218e4af0a4afbbeedbc465eb81cccca56f29a4efe2b5013
-  commonmarker (2.8.2-x86_64-darwin) sha256=fb946e0bb01f0e5742aef75cc972b51ffe099e5b983ce9cd792b4a78c5d2c297
-  commonmarker (2.8.2-x86_64-linux) sha256=42cfb6532b15dd5821ce99e47397923255f32dcfc81024ef4c17e01e66ac7d75
-  commonmarker (2.8.2-x86_64-linux-musl) sha256=66568dce1c6f265e85d57ea7f749a148446527c7dd599c6ded4cdc819997c43e
+  commonmarker (2.8.3-aarch64-linux) sha256=e1dc00363acc6795cdbf4f5131d9daef4e3ca08102f9a7577ea47d9ba4d4b7d6
+  commonmarker (2.8.3-aarch64-linux-musl) sha256=362302bf9b7520e9c0527f4c1a428c6c14d530361b982ae86ad670c29a2cb0dc
+  commonmarker (2.8.3-arm-linux) sha256=63903a4d8cd82b6681e88f2bdf6df7d51d0a241009a80fdc7ac6cf9c784f6cab
+  commonmarker (2.8.3-arm64-darwin) sha256=ee2e8b00530f7c95acdee7717d8c47f419f3eab78127ea0ef19b6739a148d5ba
+  commonmarker (2.8.3-x86_64-darwin) sha256=8ecfee9d2c4768b9f66eafcf9fba82b91495f90f7d4242d0a85f6266684591f3
+  commonmarker (2.8.3-x86_64-linux) sha256=8b78d99ed454346a488988b2ac530e88a98b44f116fb9db19a5b2d5c46c67f83
+  commonmarker (2.8.3-x86_64-linux-musl) sha256=0a42f71205697edf8a488b50b6209b9cee882c39f8b18ac0a323be83ff17b250
   compare-xml (0.66) sha256=e21aa5c0f69ef1177eced997c688fd4df989084e74a1b612257af32e1dd05319
   concurrent-ruby (1.3.7) sha256=4412caec3a5ea2e5fdc52076724c071a81f2c0593d83b2ac8cbb8ca63b3151b0
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
@@ -2146,14 +2146,14 @@ CHECKSUMS
   grape_logging (3.0.0) sha256=7b62d984ce96df15d120508668debe307e6a59ac1c511f1d9b5f3b4bea793e13
   gravatar_image_tag (1.2.0) sha256=eb5630fea846b711e713b934a0178fb9785f02f4eb9ced8d6faa4d537c40fdcf
   grids (1.0.0)
-  grpc (1.81.1) sha256=9e5772153fe13a389654e9d397a90400f0077307fb4369f79f941d96c72e89cb
-  grpc (1.81.1-aarch64-linux-gnu) sha256=aa24d7253a2b15d2c3570265a2f58bb8aca0ecd2e1116b7a259d633ebf582445
-  grpc (1.81.1-aarch64-linux-musl) sha256=36af13b712e33b323878096ddcab7ec75d107d2e03ffce4aa2fcb70835747c8c
-  grpc (1.81.1-arm64-darwin) sha256=6def610da088597e1a94bafbb36a92f19c456cb7df7bbe9618aeb63e8805ae9a
-  grpc (1.81.1-x86_64-darwin) sha256=f8c44cdfc26270247f2beb49ecbc983d0c184b6c24ac4670d1d24f0efba811ed
-  grpc (1.81.1-x86_64-linux-gnu) sha256=cf1053a594d026d2ec560457111258cd207bc67847aab24f96e04e2fbeddc4dd
-  grpc (1.81.1-x86_64-linux-musl) sha256=c4e2d53566dedfb7e76b2226c18f92f6378b29fefb80879b2dabe17480faa555
-  grpc-tools (1.81.1) sha256=5084f9cbb1b48d21509a555afdc65406405049cb69b2094db4fc3d7f71f0a16b
+  grpc (1.82.0) sha256=9f7e6fca1b84c6b38687648bf22b096bf379a694d6f6829e181916d87ed507cc
+  grpc (1.82.0-aarch64-linux-gnu) sha256=cadab07ba458603492dabbdd4aea8ed69e7e1b6f88c4d82ebdfa290d225c1bd5
+  grpc (1.82.0-aarch64-linux-musl) sha256=202e01b51335abc33e0701324d161522c706915c0f0e1fd8d6f4145a68e9f5da
+  grpc (1.82.0-arm64-darwin) sha256=c5b142a3d715cdc635df16a756bf357b1dc24739833387ba00b76d5e462f9b0a
+  grpc (1.82.0-x86_64-darwin) sha256=e364496220953964304b4c2caca07a33dae021d1f01e3125f60551a1d46703d8
+  grpc (1.82.0-x86_64-linux-gnu) sha256=f12d54f47e96c34778dbca89b9955a8b2d662c1631ac1b4e47dd5f2dd8fadea2
+  grpc (1.82.0-x86_64-linux-musl) sha256=d90e43052603d4afcdaca7225bde1b7cd8100a0866e93493da1dc730821474a5
+  grpc-tools (1.82.0) sha256=23acf881e3e88160b90c415d9e7e9bbbf0ef20a1c7f1c42ee860a114405f413f
   gruf (2.22.0) sha256=60b27a80f040d1349c73319b2f3bd46f4f0a66d9b11a5f133db503e23d1212f1
   hana (1.3.7) sha256=5425db42d651fea08859811c29d20446f16af196308162894db208cac5ce9b0d
   hashdiff (1.2.1) sha256=9c079dbc513dfc8833ab59c0c2d8f230fa28499cc5efb4b8dd276cf931457cd1
@@ -2165,7 +2165,7 @@ CHECKSUMS
   htmldiff (0.0.1) sha256=a96d068c8b8ea96cca3154a61785365d83129f47f1df964c6b1666924ce113a1
   htmlentities (4.3.4) sha256=125a73c6c9f2d1b62100b7c3c401e3624441b663762afa7fe428476435a673da
   http (6.0.3) sha256=0206e79131089ca9aae557c6791afd6bf9339af319d78a616af1477ae79614fa
-  http-2 (1.2.0) sha256=5bed923379ae67895d3bde440502219543da2885104b46ed7d604f5990efad1c
+  http-2 (1.2.1) sha256=d290f3b7daa70b8be8cd2260306c01243c73ec4df9d598feadaf0ed26e00b9b7
   http-cookie (1.1.6) sha256=ba4b82be64de61dc281243dac70e3c382c45142f20268ed9276a3670c93feaa9
   http_parser.rb (0.8.1) sha256=9ae8df145b39aa5398b2f90090d651c67bd8e2ebfe4507c966579f641e11097a
   httpx (1.7.8) sha256=6d769465ed608287a272ba0e4700fc22cee6f0335d80bd5c2effaf7fb7bd2a3a
@@ -2191,7 +2191,7 @@ CHECKSUMS
   json_spec (1.1.5) sha256=7a77b97a92c787e2aa3fbc4a1239afc3342c781151dc98cfb81461b3b7cad10f
   jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   ladle (1.0.1) sha256=e8586964108c798d48bf57d2a65bd5602e8e5223a176b6602a0fb36c0bda90dc
-  language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
+  language_server-protocol (3.17.0.6) sha256=5ef2c0c138f8267e1bc631d3328347d354f96724b0af22f2c79516120443b7f0
   launchy (3.1.1) sha256=72b847b5cc961589dde2c395af0108c86ff0119f42d4648d25b5440ebb10059e
   lefthook (2.1.9) sha256=2d4d2e028d4ac4b265675c1180fe1f7c50230200630e65c3aff7d3ed90a1a334
   letter_opener (1.10.0) sha256=2ff33f2e3b5c3c26d1959be54b395c086ca6d44826e8bf41a14ff96fdf1bdbb2
@@ -2439,7 +2439,7 @@ CHECKSUMS
   rspec-support (3.13.7) sha256=0640e5570872aafefd79867901deeeeb40b0c9875a36b983d85f54fb7381c47c
   rspec-wait (1.0.2) sha256=865f921239325d3d26fc10ded4bdd485d8b58bcaaad1a28dd85ed15266b5a912
   rubocop (1.88.1) sha256=726af773d6bc169ed3ff852f3ca020b7c58d39c34e7a8d879a8e0147cc994f26
-  rubocop-ast (1.49.1) sha256=4412f3ee70f6fe4546cc489548e0f6fcf76cafcfa80fa03af67098ffed755035
+  rubocop-ast (1.50.0) sha256=b9ca88300da0803ee222ad20cdb30494c0a784eed06fdc35d254b06d662788db
   rubocop-capybara (3.0.0) sha256=7a64655238acda7f8f3c87e37ac825a64c615a79c17c253f1a28270dc3768c4b
   rubocop-factory_bot (2.28.0) sha256=4b17fc02124444173317e131759d195b0d762844a71a29fe8139c1105d92f0cb
   rubocop-openproject (0.5.0) sha256=564d4a0d240bec8543c96d1cb38facba9afd3fbe7e91ff28d254d3ebf329c323
