@@ -44,7 +44,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "@vitest/eslint-plugin": "^1.6.21",
     "angular-eslint": "^21.4.0",
-    "browserslist": "^4.28.4",
+    "browserslist": "^4.28.5",
     "eslint": "^9.39.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -56,7 +56,7 @@
     "source-map-explorer": "^2.5.3",
     "ts-node": "~10.9.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.62.1",
+    "typescript-eslint": "^8.63.0",
     "vitest": "^4.1.10",
     "wscat": "^6.1.0"
   },
