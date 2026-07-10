@@ -219,9 +219,11 @@ export class CKEditorSetupService {
   }
 
   private async loadLocale():Promise<void> {
+    const locale = I18n.locale.toLowerCase();
+
     try {
-      await import(`../../../../../../vendor/ckeditor/translations/${I18n.locale}.js`);
-      this.loadedLocale = I18n.locale;
+      await import(`../../../../../../vendor/ckeditor/translations/${locale}.js`);
+      this.loadedLocale = locale;
     } catch (e:unknown) {
       console.warn(`Failed to load translation for CKEditor: ${e as string}`);
     }
