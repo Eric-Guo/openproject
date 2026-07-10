@@ -94,7 +94,10 @@ export class WorkPackagesFullViewComponent extends WorkPackageSingleViewBase imp
   }
 
   ngOnInit():void {
-    this.observeWorkPackage();
+    // Full-page links can originate from long-lived cached views such as the
+    // team planner. Refresh before rendering details so permission-backed HAL
+    // links reflect project module changes made while that view remained open.
+    this.observeWorkPackage(true);
   }
 
   protected init() {
