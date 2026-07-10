@@ -95,7 +95,10 @@ export class WorkPackageSplitViewComponent extends WorkPackageSingleViewBase imp
   }
 
   ngOnInit():void {
-    this.observeWorkPackage();
+    // The table can keep work packages in its cache for up to an hour. Refresh
+    // before rendering the details tabs so permission-backed HAL links reflect
+    // project module changes made while the list page remained open.
+    this.observeWorkPackage(true);
 
     this.wpTableFocus.whenNavigationRequested()
       .pipe(

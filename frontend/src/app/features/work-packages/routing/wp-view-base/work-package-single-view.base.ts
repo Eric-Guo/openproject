@@ -143,12 +143,12 @@ export abstract class WorkPackageSingleViewBase extends UntilDestroyedMixin {
    * (route param == numeric PK) no parallel subscription is opened, so
    * the emission count is unchanged from the original behavior.
    */
-  protected observeWorkPackage():void {
+  protected observeWorkPackage(force = false):void {
     this
       .apiV3Service
       .work_packages
       .id(this.workPackageId)
-      .requireAndStream()
+      .requireAndStream(force)
       .pipe(this.untilDestroyed())
       .subscribe((wp:WorkPackageResource) => {
         if (wp.id && this.workPackageId !== wp.id) {
