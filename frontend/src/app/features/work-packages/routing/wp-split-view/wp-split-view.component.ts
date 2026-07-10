@@ -77,7 +77,7 @@ export class WorkPackageSplitViewComponent extends WorkPackageSingleViewBase imp
   }
 
   ngOnInit():void {
-    this.observeWorkPackage();
+    this.observeWorkPackage(true);
   }
 
   /**
