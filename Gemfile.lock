@@ -437,7 +437,7 @@ GEM
       activerecord (>= 4.0.0, < 8.2)
     aws-eventstream (1.4.0)
     aws-partitions (1.1267.0)
-    aws-sdk-core (3.253.0)
+    aws-sdk-core (3.254.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -445,11 +445,11 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.129.0)
-      aws-sdk-core (~> 3, >= 3.248.0)
+    aws-sdk-kms (1.130.0)
+      aws-sdk-core (~> 3, >= 3.254.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.226.0)
-      aws-sdk-core (~> 3, >= 3.248.0)
+    aws-sdk-s3 (1.227.0)
+      aws-sdk-core (~> 3, >= 3.254.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sdk-sns (1.113.0)
@@ -715,7 +715,7 @@ GEM
     friendly_id (5.7.0)
       activerecord (>= 4.0.0)
     front_matter_parser (1.0.1)
-    fugit (1.12.3)
+    fugit (1.13.0)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
     fuubar (2.5.1)
@@ -1627,7 +1627,7 @@ GEM
       turbo-rails (>= 1.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2026.2)
+    tzinfo-data (1.2026.3)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
     unicode-display_width (3.2.0)
@@ -2002,9 +2002,9 @@ CHECKSUMS
   awesome_nested_set (3.9.0) sha256=3ce99e816550f97f4de118e621630070aacf24928b920fe4a68846578a8daaed
   aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
   aws-partitions (1.1267.0) sha256=15a4c6bef8c303b09a1452c675cecb1ace0238dc91e26fe4646c5d761cb2221e
-  aws-sdk-core (3.253.0) sha256=b3fca1fbdfff3a92d371e4b4244bcd3806d861947eda7e06237031e4060d6821
-  aws-sdk-kms (1.129.0) sha256=363f548df321f4a4fcfd05523384e591060b400f8e65133ed7ef0793155a3343
-  aws-sdk-s3 (1.226.0) sha256=e599f431e006ec9b92c61ee0f14d3f658a1f6c8a1d623d2160be927ac958e2bf
+  aws-sdk-core (3.254.0) sha256=ee3e3220b8468a3c9e59daba18e6ec897bf5c7ce8adcc0670cfa2f1f092112fe
+  aws-sdk-kms (1.130.0) sha256=a2e83662ca31b77a2a19c9aa2f40a98165a67270c18c718fe1c70d0cbd7cd749
+  aws-sdk-s3 (1.227.0) sha256=552b23bf9a37c7db4957e9291543e61c8de886cf31d1d45ea3b429df0feea939
   aws-sdk-sns (1.113.0) sha256=15fe37d010e86f4c28b4c2f2133c463ce5c14189ec3673a1f43c30dfee511b0f
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   axe-core-api (4.12.0) sha256=9d0284681faacfc0d8609f13da389483814e9ab545b01e99909a6d8fdc312d72
@@ -2124,7 +2124,7 @@ CHECKSUMS
   formatador (1.2.3) sha256=19fa898133c2c26cdbb5d09f6998c1e137ad9427a046663e55adfe18b950d894
   friendly_id (5.7.0) sha256=b8994416ebaceebc7c60bc556e84ef32a3a663e2e582eb04c429216cc98de4c4
   front_matter_parser (1.0.1) sha256=bae298bda01db95788a4d6452f1670a3d198c6716c8d3727db9a95533deb7b7b
-  fugit (1.12.3) sha256=826d77739086482a6ac2805bc32693845395da688f637890cb4ca457dede2ec2
+  fugit (1.13.0) sha256=a4f093fce740da52f216740a5041e2a594ea763cdb89e8b2754ca4399634ab18
   fuubar (2.5.1) sha256=b272a7804b282661c7fab583a3764f92543cb482c365ae39c685cd218fdd4880
   glob (0.5.0) sha256=6397ae620b2f71b00424ec6c880c92d5ddcf6c44e6035c0b610a59efe16418fd
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
@@ -2504,7 +2504,7 @@ CHECKSUMS
   turbo_power (0.7.0) sha256=ad95d147e0fa761d0023ad9ca00528c7b7ddf6bba8ca2e23755d5b21b290d967
   turbo_tests (2.2.5)
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
-  tzinfo-data (1.2026.2) sha256=7db0d3d3d53b8d7601fc183fccc8c6d056a3004e14eb59ea995bf6aec4ae10bc
+  tzinfo-data (1.2026.3) sha256=478fbc5356f13c1004cf8372b1336f3dad4055c96340fc4c881a3738da8cf7f9
   uber (0.1.0) sha256=5beeb407ff807b5db994f82fa9ee07cfceaa561dad8af20be880bc67eba935dc
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
