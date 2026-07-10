@@ -48,7 +48,7 @@ import { UntilDestroyedMixin } from 'core-app/shared/helpers/angular/until-destr
 import { SchemaCacheService } from 'core-app/core/schemas/schema-cache.service';
 import { WpImportModalComponent } from 'core-app/features/plugins/linked/openproject-th_work_packages/wp-import-modal/wp-import.modal';
 import { OpModalService } from 'core-app/shared/components/modal/modal.service';
-import { InjectField } from 'core-app/shared/helpers/angular/inject-field.decorator';
+import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
 import {
   inlineCreateCancelClassName,
   InlineCreateRowBuilder,
@@ -93,7 +93,7 @@ export class WorkPackageInlineCreateComponent extends UntilDestroyedMixin implem
 
   @Output() showing = new EventEmitter<boolean>();
 
-  @InjectField() protected opModalService:OpModalService;
+  @LazyInject() protected opModalService:OpModalService;
 
   // inner state
   public canAdd = false;
