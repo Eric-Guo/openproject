@@ -48,6 +48,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { SchemaCacheService } from 'core-app/core/schemas/schema-cache.service';
 import { WpImportModalComponent } from 'core-app/features/plugins/linked/openproject-th_work_packages/wp-import-modal/wp-import.modal';
 import { OpModalService } from 'core-app/shared/components/modal/modal.service';
+import { LazyInject } from 'core-app/shared/helpers/angular/lazy-inject.decorator';
 import { InlineCreateRowBuilder, inlineCreateRowClassName } from './inline-create-row-builder';
 import { InlineCreateCancelButton } from './inline-create-cancel-button';
 import { WorkPackageCreateService } from '../wp-new/wp-create.service';
@@ -90,7 +91,7 @@ export class WorkPackageInlineCreateComponent implements AfterViewInit {
   readonly showing = output<boolean>();
 
   private readonly destroyRef = inject(DestroyRef);
-  protected readonly opModalService = inject(OpModalService);
+  @LazyInject() protected opModalService:OpModalService;
 
   private readonly viewReady = signal(false);
 
