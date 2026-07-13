@@ -61,6 +61,15 @@ RSpec.describe API::V3::Users::UsersAPI do
 
     it_behaves_like "create user request flow"
 
+    it "creates a default API token for the user" do
+      parameters[:password] = "admin!admin!"
+      send_request
+
+      expect(last_response).to have_http_status(:created), last_response.body
+      user = User.find_by!(login: parameters[:login])
+      expect(user.api_tokens.pluck(:data)).to include("token_name" => "Default")
+    end
+
     context "with auth_source" do
       let(:ldap_auth_source_id) { "some_ldap" }
       let(:auth_source) { create(:ldap_auth_source, name: ldap_auth_source_id) }
