@@ -42,7 +42,13 @@ module Redmine::MenuManager::TopMenu::ModuleMenu
                                 test_selector: "op-app-header--modules-menu-button",
                                 "aria-controls": "op-app-header--modules-menu-list",
                                 "aria-label": I18n.t("label_global_modules"))
-        dialog.with_header(classes: "op-app-header--modules-menu-header") do
+        dialog.with_header(
+          classes: "op-app-header--modules-menu-header",
+          data: {
+            controller: "electron-header-spacing",
+            "electron-header-spacing-windows-electron-class": "op-app-header--modules-menu-header_windows-electron"
+          }
+        ) do
           render_waffle_menu_logo_icon if show_waffle_icon?
         end
 
