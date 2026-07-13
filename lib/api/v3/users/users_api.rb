@@ -59,7 +59,9 @@ module API
               authorize_globally(:create_user)
             end
 
-            post &::API::V3::Utilities::Endpoints::Create.new(model: User).mount
+            post &::API::V3::Utilities::Endpoints::Create
+              .new(model: User, process_service: ::Users::CreateWithDefaultApiTokenService)
+              .mount
           end
 
           # The namespace only exists to add the after_validation callback
