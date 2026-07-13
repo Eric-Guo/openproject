@@ -84,7 +84,9 @@ See COPYRIGHT and LICENSE files for more details.
       <div class="op-app-header--center op-app-header--center_mobile-end">
         <%= render_top_menu_center %>
       </div>
-      <div class="op-app-header--end" data-controller="electron-header-spacing">
+      <div class="op-app-header--end"
+           data-controller="electron-header-spacing"
+           data-electron-header-spacing-windows-electron-class="op-app-header--end_windows-electron">
         <%= call_hook :view_layouts_base_top_menu %>
         <%= render_top_menu_right %>
       </div>
