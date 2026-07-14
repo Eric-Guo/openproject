@@ -181,9 +181,18 @@ module Projects
                             :calculated_value_errors)
       end
 
-      scope
-        .includes(:enabled_modules)
-        .paginate(page: helpers.page_param(params), per_page: helpers.per_page_param(params))
+      paginate(scope.includes(:enabled_modules))
+    end
+
+    def paginate(scope)
+      per_page = helpers.per_page_param(params)
+      projects = scope.paginate(page: helpers.page_param(params), per_page:)
+
+      if projects.total_pages.positive? && projects.current_page > projects.total_pages
+        projects = scope.paginate(page: projects.total_pages, per_page:)
+      end
+
+      projects
     end
 
     def projects_with_levels_order_sensitive(projects, &)
