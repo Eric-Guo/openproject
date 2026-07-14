@@ -115,7 +115,7 @@ gem "json_schemer", "~> 2.5.0"
 gem "ruby-duration", "~> 3.2.0"
 gem "msgpack", "~> 1.8.0"
 
-gem "mail", "2.9.0"
+gem "mail", "2.9.1"
 
 gem "csv", "~> 3.3"
 
@@ -242,7 +242,7 @@ gem "opentelemetry-exporter-otlp", "~> 0.34.0", require: false
 gem "opentelemetry-instrumentation-all", "~> 0.94.0", require: false
 gem "opentelemetry-sdk", "~> 1.12", require: false
 
-gem "view_component", "~> 4.11.0"
+gem "view_component", "~> 4.12.0"
 # Lookbook
 gem "lookbook", "2.3.14"
 
