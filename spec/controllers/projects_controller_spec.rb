@@ -448,12 +448,14 @@ RSpec.describe ProjectsController do
     shared_let(:project_c) { create(:project, name: "Project C", public: true, active: true) }
     shared_let(:project_d) { create(:project, name: "Project D", public: true, active: false) }
 
+    let(:request_params) { {} }
+
     before do
       ProjectRole.anonymous
       ProjectRole.non_member
 
       login_as(user)
-      get "index"
+      get "index", params: request_params
     end
 
     shared_examples_for "successful index" do
@@ -467,6 +469,20 @@ RSpec.describe ProjectsController do
     end
 
     it_behaves_like "successful index"
+
+    context "when an anonymous user requests a page exceeding the available pages",
+            with_settings: { login_required: false } do
+      render_views
+
+      let(:user) { User.anonymous }
+      let(:request_params) { { page: 2 } }
+
+      it "renders the last available page" do
+        expect(response).to be_successful
+        expect(response.body).to include("Project C")
+        expect(response.body).not_to include("Project A", "Project B")
+      end
+    end
 
     context "when the user is anonymous" do
       let(:user) { User.anonymous }
