@@ -56,14 +56,15 @@ RSpec.describe "layouts/base" do
   describe "7777 agent pane" do
     let(:current_user) { user }
 
-    it "renders the persistent direct agent mount for the Electron controller to reveal" do
+    it "renders the Stimulus agent mount for the Electron controller to reveal" do
       render
 
       expect(rendered).to have_css(
         "#main[data-controller~='electron-header-spacing']" \
         "[data-electron-header-spacing-electron-class='with-agent7777'] " \
-        "> #agent7777-pane[data-turbo-permanent] " \
-        "> #oc-agent[data-entrypoint='/agent7777/index.html']"
+        "> #agent7777-pane:not([data-turbo-permanent]) " \
+        "> #oc-agent[data-controller~='agent7777']" \
+        "[data-agent7777-entrypoint-value='/agent7777/index.html']"
       )
       expect(rendered).to have_no_css("#agent7777-pane iframe")
       expect(rendered).to have_no_css("#main.with-agent7777")
@@ -74,7 +75,10 @@ RSpec.describe "layouts/base" do
 
       render
 
-      expect(rendered).to have_css("#agent7777-pane[data-turbo-permanent]")
+      expect(rendered).to have_css(
+        "#agent7777-pane:not([data-turbo-permanent]) " \
+        "> #oc-agent[data-controller~='agent7777']"
+      )
     end
   end
 
