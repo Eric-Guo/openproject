@@ -94,7 +94,8 @@ See COPYRIGHT and LICENSE files for more details.
   <% end %>
   <div id="main"
        class="<%= initial_classes %>"
-       data-controller="menus--main-toggle">
+       data-controller="menus--main-toggle electron-header-spacing"
+       data-electron-header-spacing-electron-class="with-agent7777">
     <% if (side_displayed && show_decoration) %>
       <nav
         id="main-menu"
@@ -189,6 +190,9 @@ See COPYRIGHT and LICENSE files for more details.
         <% end %>
       <% end %>
     <% end %>
+    <aside id="agent7777-pane" class="agent7777-pane" data-turbo-permanent>
+      <iframe src="<%= File.join(root_path, "agent7777/index.html") %>" title="7777"></iframe>
+    </aside>
   </div>
   <%= render Primer::Beta::Spinner.new(
         size: :large,
