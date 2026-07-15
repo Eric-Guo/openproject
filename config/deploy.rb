@@ -23,7 +23,7 @@ set :pty, false
 append :linked_files, *%w[config/configuration.yml config/database.yml config/secrets.yml config/master.key .env config/puma.rb]
 
 # Default value for linked_dirs is []
-append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemono tmp/pids tmp/cache tmp/sockets]
+append :linked_dirs, *%w[vendor files log public/fonts/noto public/fonts/spacemono public/agent7777 tmp/pids tmp/cache tmp/sockets]
 
 # Default value for default_env is {}
 set :default_env, fetch(:default_env, {}).merge(
