@@ -43,6 +43,7 @@ import 'core-app/core/setup/init-vendors';
 import 'core-app/core/setup/init-globals';
 import './stimulus/setup';
 import './turbo/setup';
+import './agent7777';
 import { platformBrowser } from '@angular/platform-browser';
 
 if (window.TA_CONFIG) {
