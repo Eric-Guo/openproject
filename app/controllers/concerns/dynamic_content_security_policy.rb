@@ -33,6 +33,7 @@ module DynamicContentSecurityPolicy
 
   included do
     before_action :add_hocuspocus_host_to_csp
+    before_action :add_agent7777_loopback_host_to_csp
   end
 
   ##
@@ -55,6 +56,12 @@ module DynamicContentSecurityPolicy
   end
 
   private
+
+  def add_agent7777_loopback_host_to_csp
+    return unless request.user_agent.to_s.include?("Electron")
+
+    append_content_security_policy_directives(connect_src: ["http://127.0.0.1:*"])
+  end
 
   def add_hocuspocus_host_to_csp
     hocuspocus_url = Setting.collaborative_editing_hocuspocus_url
