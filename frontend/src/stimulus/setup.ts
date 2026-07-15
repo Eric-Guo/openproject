@@ -82,6 +82,7 @@ import CheckAllController from 'core-stimulus/controllers/check-all.controller';
 import CheckableController from 'core-stimulus/controllers/checkable.controller';
 import ExpandableTextController from 'core-stimulus/controllers/expandable-text.controller';
 import { installElements } from '@openproject/stimulus-elements';
+import Agent7777Controller from '../agent7777';
 
 declare global {
   interface Window {
@@ -141,6 +142,7 @@ OpenProjectStimulusApplication.preregister('check-all', CheckAllController);
 OpenProjectStimulusApplication.preregister('header-project-select', HeaderProjectSelectController);
 OpenProjectStimulusApplication.preregister('checkable', CheckableController);
 OpenProjectStimulusApplication.preregister('expandable-text', ExpandableTextController);
+OpenProjectStimulusApplication.preregister('agent7777', Agent7777Controller);
 
 installElements();
 
