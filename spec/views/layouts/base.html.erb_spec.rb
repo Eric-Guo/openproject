@@ -56,15 +56,16 @@ RSpec.describe "layouts/base" do
   describe "7777 agent pane" do
     let(:current_user) { user }
 
-    it "renders the persistent static agent for the Electron controller to reveal" do
+    it "renders the persistent direct agent mount for the Electron controller to reveal" do
       render
 
       expect(rendered).to have_css(
         "#main[data-controller~='electron-header-spacing']" \
         "[data-electron-header-spacing-electron-class='with-agent7777'] " \
         "> #agent7777-pane[data-turbo-permanent] " \
-        "iframe[src='/agent7777/index.html'][title='7777']"
+        "> #oc-agent[data-entrypoint='/agent7777/index.html']"
       )
+      expect(rendered).to have_no_css("#agent7777-pane iframe")
       expect(rendered).to have_no_css("#main.with-agent7777")
     end
 
