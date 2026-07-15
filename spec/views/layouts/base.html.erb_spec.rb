@@ -53,6 +53,30 @@ RSpec.describe "layouts/base" do
     allow(User).to receive(:current).and_return current_user
   end
 
+  describe "7777 agent pane" do
+    let(:current_user) { user }
+
+    it "renders the persistent static agent for the Electron controller to reveal" do
+      render
+
+      expect(rendered).to have_css(
+        "#main[data-controller~='electron-header-spacing']" \
+        "[data-electron-header-spacing-electron-class='with-agent7777'] " \
+        "> #agent7777-pane[data-turbo-permanent] " \
+        "iframe[src='/agent7777/index.html'][title='7777']"
+      )
+      expect(rendered).to have_no_css("#main.with-agent7777")
+    end
+
+    it "renders the agent pane without layout decoration" do
+      allow(view).to receive(:params).and_return("layout" => "modal")
+
+      render
+
+      expect(rendered).to have_css("#agent7777-pane[data-turbo-permanent]")
+    end
+  end
+
   describe "Sign in button" do
     let(:current_user) { anonymous }
 
