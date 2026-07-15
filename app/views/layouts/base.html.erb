@@ -191,7 +191,8 @@ See COPYRIGHT and LICENSE files for more details.
       <% end %>
     <% end %>
     <aside id="agent7777-pane" class="agent7777-pane" data-turbo-permanent>
-      <iframe src="<%= File.join(root_path, "agent7777/index.html") %>" title="7777"></iframe>
+      <div id="oc-agent"
+           data-entrypoint="<%= File.join(root_path, "agent7777/index.html") %>"></div>
     </aside>
   </div>
   <%= render Primer::Beta::Spinner.new(
