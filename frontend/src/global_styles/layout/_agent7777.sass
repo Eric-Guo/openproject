@@ -1,0 +1,34 @@
+#main.with-agent7777
+  --agent7777-pane-width: 360px
+  grid-template-columns: auto minmax(0, 1fr) var(--agent7777-pane-width)
+
+  &.nosidebar
+    grid-template-columns: minmax(0, 1fr) var(--agent7777-pane-width)
+
+  > .agent7777-pane
+    display: block
+
+.agent7777-pane
+  display: none
+  min-width: 0
+  height: calc(100dvh - var(--header-height))
+  overflow: hidden
+  border-left: var(--borderWidth-thin) solid var(--borderColor-muted)
+  background: var(--body-background)
+
+  iframe
+    display: block
+    width: 100%
+    height: 100%
+    border: 0
+
+@media screen and (max-width: $breakpoint-lg)
+  #main.with-agent7777
+    grid-template-columns: minmax(0, 1fr) var(--agent7777-pane-width)
+
+@media screen and (max-width: $breakpoint-sm)
+  #main.with-agent7777
+    grid-template-columns: minmax(0, 1fr)
+
+  .agent7777-pane
+    display: none
