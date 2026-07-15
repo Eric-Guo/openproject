@@ -36,6 +36,29 @@ RSpec.describe "" do
   current_user { create(:user) }
 
   describe "GET /" do
+    context "when requested from Electron" do
+      before do
+        header "User-Agent", "Mozilla/5.0 Electron/39.0.0"
+      end
+
+      it "allows Agent7777 to connect to its dynamic loopback port" do
+        get "/"
+
+        expect(last_response).to have_http_status(200)
+        csp = parse_csp(last_response.headers["Content-Security-Policy"])
+        expect(csp["connect-src"]).to include("http://127.0.0.1:*")
+      end
+    end
+
+    context "when requested from a regular browser" do
+      it "does not allow connections to arbitrary loopback ports" do
+        get "/"
+
+        csp = parse_csp(last_response.headers["Content-Security-Policy"])
+        expect(csp["connect-src"]).not_to include("http://127.0.0.1:*")
+      end
+    end
+
     context "when collaborative_editing_hocuspocus_url is set as a valid URI" do
       it "responds with 200 and appends storage host to the connect-src CSP",
          with_settings: { collaborative_editing_hocuspocus_url: "wss://hocuspocus.local" } do
