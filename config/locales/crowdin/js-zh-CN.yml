@@ -333,6 +333,7 @@ zh-CN:
     label_collapse: 折叠
     label_collapsed: 折叠
     label_collapse_all: 全部折叠
+    label_collapse_agent7777_pane: 折叠 7777 智能助手面板
     label_collapse_text: 收起文本
     label_comment: 评论
     label_committed_at: 在 %{date} %{committed_revision_link}
@@ -344,6 +345,7 @@ zh-CN:
     label_email: 电子邮件
     label_equals: 是
     label_expand: 展开
+    label_expand_agent7777_pane: 展开 7777 智能助手面板
     label_expanded: 展开
     label_expand_all: 全部展开
     label_expand_text: 显示完整文本
