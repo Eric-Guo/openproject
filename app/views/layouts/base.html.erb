@@ -70,7 +70,7 @@ See COPYRIGHT and LICENSE files for more details.
 <opce-modal-overlay></opce-modal-overlay>
 <live-region></live-region>
 <opce-spot-drop-modal-portal></opce-spot-drop-modal-portal>
-<div id="wrapper" class="<%= initial_classes %>">
+<div id="wrapper" class="<%= initial_classes %>" data-controller="agent7777-pane-toggle">
   <%# Classic (non-module) so it runs before first paint on full loads and Turbo visits alike. %>
   <%= nonced_javascript_tag do %>
     if (<%= ApplicationHelper::SMALL_DESKTOP_WIDTH_THRESHOLD %> > window.innerWidth) {
@@ -103,6 +103,7 @@ See COPYRIGHT and LICENSE files for more details.
   <div id="main"
        class="<%= initial_classes %>"
        data-controller="menus--main-toggle electron-header-spacing"
+       data-agent7777-pane-toggle-target="main"
        data-electron-header-spacing-electron-class="with-agent7777">
     <% if (side_displayed && show_decoration) %>
       <nav
@@ -198,7 +199,9 @@ See COPYRIGHT and LICENSE files for more details.
         <% end %>
       <% end %>
     <% end %>
-    <aside id="agent7777-pane" class="agent7777-pane">
+    <aside id="agent7777-pane"
+           class="agent7777-pane"
+           data-agent7777-pane-toggle-target="pane">
       <opce-agent7777-pane-resizer></opce-agent7777-pane-resizer>
       <div id="oc-agent"
            data-controller="agent7777"
@@ -218,6 +221,10 @@ See COPYRIGHT and LICENSE files for more details.
   if (savedAgent7777PaneWidth >= 0) {
     document.documentElement.style.setProperty('--agent7777-pane-width', savedAgent7777PaneWidth + 'px');
   }
+
+  const agent7777PaneCollapsed =
+    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneCollapsed') === 'true';
+  document.getElementById('main')?.classList.toggle('agent7777-pane-collapsed', agent7777PaneCollapsed);
 
   // Wrapper for page-specific JS from deprecated inline functions
   // no longer available with CSP.
