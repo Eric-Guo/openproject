@@ -69,6 +69,24 @@ RSpec.describe "layouts/base" do
       expect(rendered).to have_css(
         "#agent7777-pane > opce-agent7777-pane-resizer + #oc-agent"
       )
+      expect(rendered).to have_css(
+        "#wrapper[data-controller~='agent7777-pane-toggle'] " \
+        "#main[data-agent7777-pane-toggle-target='main'] " \
+        "> #agent7777-pane[data-agent7777-pane-toggle-target='pane']"
+      )
+      expect(rendered).to have_css(
+        "#agent7777-pane-toggle-button[hidden]" \
+        "[aria-controls='agent7777-pane'][aria-expanded='true']" \
+        "[data-action='click->agent7777-pane-toggle#toggle']",
+        visible: :all
+      )
+      expect(rendered).to have_css(
+        "tool-tip[for='agent7777-pane-toggle-button']",
+        text: I18n.t("js.label_collapse_agent7777_pane"),
+        visible: :all
+      )
+      expect(rendered.index("op-app-header--help-menu-button"))
+        .to be < rendered.index("agent7777-pane-toggle-button")
       expect(rendered).to have_no_css("#agent7777-pane iframe")
       expect(rendered).to have_no_css("#main.with-agent7777")
     end
