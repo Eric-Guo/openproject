@@ -191,6 +191,7 @@ See COPYRIGHT and LICENSE files for more details.
       <% end %>
     <% end %>
     <aside id="agent7777-pane" class="agent7777-pane">
+      <opce-agent7777-pane-resizer></opce-agent7777-pane-resizer>
       <div id="oc-agent"
            data-controller="agent7777"
            data-agent7777-entrypoint-value="<%= File.join(root_path, "agent7777/index.html") %>"></div>
@@ -223,6 +224,14 @@ See COPYRIGHT and LICENSE files for more details.
 
   if (savedMainMenuWidth >= 0) {
     document.documentElement.style.setProperty('--main-menu-width', savedMainMenuWidth + 'px');
+  }
+
+  const savedAgent7777PaneWidth = parseInt(
+    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneWidth'),
+    10
+  );
+  if (savedAgent7777PaneWidth >= 0) {
+    document.documentElement.style.setProperty('--agent7777-pane-width', savedAgent7777PaneWidth + 'px');
   }
 
   wrapper.style.display = '';
