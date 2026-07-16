@@ -116,11 +116,32 @@ module Redmine::MenuManager::TopMenuHelper
       concat render_quick_add_menu
       concat render_notification_top_menu_node
       concat render_help_top_menu_node
+      concat render_agent7777_pane_toggle
       concat render_user_top_menu_node
     end
   end
 
   private
+
+  def render_agent7777_pane_toggle
+    render(Primer::Beta::IconButton.new(icon: :"sidebar-collapse",
+                                        id: "agent7777-pane-toggle-button",
+                                        classes: "op-app-header--primer-button op-app-menu--item hidden-for-mobile",
+                                        scheme: :invisible,
+                                        hidden: true,
+                                        test_selector: "agent7777-pane-toggle-button",
+                                        aria: {
+                                          controls: "agent7777-pane",
+                                          expanded: true,
+                                          label: I18n.t("js.label_collapse_agent7777_pane")
+                                        },
+                                        data: {
+                                          action: "click->agent7777-pane-toggle#toggle",
+                                          "agent7777-pane-toggle-target": "button",
+                                          expanded_label: I18n.t("js.label_collapse_agent7777_pane"),
+                                          collapsed_label: I18n.t("js.label_expand_agent7777_pane")
+                                        }))
+  end
 
   def render_notification_top_menu_node
     return "".html_safe unless User.current.logged?
