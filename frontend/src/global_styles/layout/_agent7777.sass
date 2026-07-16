@@ -7,6 +7,22 @@
   > .agent7777-pane
     display: block
 
+  &.agent7777-pane-collapsed
+    grid-template-columns: auto minmax(0, 1fr)
+
+    &.nosidebar
+      grid-template-columns: minmax(0, 1fr)
+
+    > .agent7777-pane
+      display: none
+
+#agent7777-pane-toggle-button
+  .Button-visual
+    transition: transform 0.15s ease
+
+  &[aria-expanded="false"] .Button-visual
+    transform: rotate(180deg)
+
 .agent7777-pane
   display: none
   position: relative
@@ -47,6 +63,9 @@
 @media screen and (max-width: $breakpoint-lg)
   #main.with-agent7777
     grid-template-columns: minmax(0, 1fr) var(--agent7777-pane-width)
+
+    &.agent7777-pane-collapsed
+      grid-template-columns: minmax(0, 1fr)
 
 @media screen and (max-width: $breakpoint-sm)
   #main.with-agent7777
