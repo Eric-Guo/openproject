@@ -66,6 +66,9 @@ RSpec.describe "layouts/base" do
         "> #oc-agent[data-controller~='agent7777']" \
         "[data-agent7777-entrypoint-value='/agent7777/index.html']"
       )
+      expect(rendered).to have_css(
+        "#agent7777-pane > opce-agent7777-pane-resizer + #oc-agent"
+      )
       expect(rendered).to have_no_css("#agent7777-pane iframe")
       expect(rendered).to have_no_css("#main.with-agent7777")
     end
