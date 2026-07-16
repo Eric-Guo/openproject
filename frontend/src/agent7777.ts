@@ -27,7 +27,7 @@ export default class Agent7777Controller extends Controller<HTMLElement> {
 
   private async mountAgent(signal:AbortSignal):Promise<void> {
     try {
-      const response = await fetch(this.entrypointValue, { signal });
+      const response = await fetch(this.entrypointValue, { signal, cache: 'no-store' });
 
       if (!response.ok) {
         throw new Error(`Unable to load Agent7777 entrypoint: ${response.status}`);
