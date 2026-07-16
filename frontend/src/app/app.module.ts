@@ -66,6 +66,9 @@ import { ConfirmDialogModalComponent } from 'core-app/shared/components/modals/c
 import { DynamicContentModalComponent } from 'core-app/shared/components/modals/modal-wrapper/dynamic-content.modal';
 import { PaginationService } from 'core-app/shared/components/table-pagination/pagination-service';
 import { MainMenuResizerComponent } from 'core-app/shared/components/resizer/resizer/main-menu-resizer.component';
+import {
+  Agent7777PaneResizerComponent,
+} from 'core-app/shared/components/resizer/resizer/agent7777-pane-resizer.component';
 import { OpenprojectTabsModule } from 'core-app/shared/components/tabs/openproject-tabs.module';
 import { OpenprojectAdminModule } from 'core-app/features/admin/openproject-admin.module';
 import { OpenprojectHalModule } from 'core-app/features/hal/openproject-hal.module';
@@ -258,6 +261,7 @@ export function initializeServices(injector:Injector) {
 
     // Main menu
     MainMenuResizerComponent,
+    Agent7777PaneResizerComponent,
 
     // Form configuration
     OpDragScrollDirective,
@@ -414,6 +418,7 @@ export class OpenProjectModule implements DoBootstrap {
     registerCustomElement('opce-wp-overview-graph', WorkPackageOverviewGraphComponent, { injector });
     registerCustomElement('opce-non-working-days-list', OpNonWorkingDaysListComponent, { injector });
     registerCustomElement('opce-main-menu-resizer', MainMenuResizerComponent, { injector });
+    registerCustomElement('opce-agent7777-pane-resizer', Agent7777PaneResizerComponent, { injector });
     registerCustomElement('opce-persistent-toggle', PersistentToggleComponent, { injector });
     registerCustomElement('opce-toasts-container', ToastsContainerComponent, { injector });
     registerCustomElement('opce-global-search-work-packages', GlobalSearchWorkPackagesComponent, { injector });

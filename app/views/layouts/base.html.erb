@@ -199,6 +199,7 @@ See COPYRIGHT and LICENSE files for more details.
       <% end %>
     <% end %>
     <aside id="agent7777-pane" class="agent7777-pane">
+      <opce-agent7777-pane-resizer></opce-agent7777-pane-resizer>
       <div id="oc-agent"
            data-controller="agent7777"
            data-agent7777-entrypoint-value="<%= File.join(root_path, "agent7777/index.html") %>"></div>
@@ -211,6 +212,13 @@ See COPYRIGHT and LICENSE files for more details.
       ) %>
 </div>
 <%= nonced_javascript_tag type: "module" do %>
+  const savedAgent7777PaneWidth = parseInt(
+    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneWidth'), 10
+  );
+  if (savedAgent7777PaneWidth >= 0) {
+    document.documentElement.style.setProperty('--agent7777-pane-width', savedAgent7777PaneWidth + 'px');
+  }
+
   // Wrapper for page-specific JS from deprecated inline functions
   // no longer available with CSP.
   <%= content_for :additional_js_dom_ready %>
