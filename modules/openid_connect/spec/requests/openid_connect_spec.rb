@@ -73,6 +73,28 @@ RSpec.describe "OpenID Connect", :skip_2fa_stage, # Prevent redirects to 2FA sta
     )
   end
 
+  describe "callback state validation" do
+    let!(:provider) { create(:oidc_provider, slug: "keycloak") }
+
+    it "redirects to the home page when the state does not match the session" do
+      click_on_signin("keycloak")
+
+      get "/auth/keycloak/callback", params: { code: "foobar", state: "invalid-state" }
+
+      expect(response).to redirect_to("/")
+      expect(session["omniauth.state"]).to be_nil
+    end
+
+    it "redirects to the home page when the state is missing" do
+      click_on_signin("keycloak")
+
+      get "/auth/keycloak/callback", params: { code: "foobar" }
+
+      expect(response).to redirect_to("/")
+      expect(session["omniauth.state"]).to be_nil
+    end
+  end
+
   describe "sign-up and login" do
     let(:limit_self_registration) { false }
     let!(:provider) { create(:oidc_provider, slug: "keycloak", limit_self_registration:) }
