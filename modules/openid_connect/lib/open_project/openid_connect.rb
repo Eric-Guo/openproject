@@ -67,3 +67,7 @@ module OpenProject
     end
   end
 end
+
+require "open_project/openid_connect/invalid_state_redirect"
+
+OmniAuth::Strategies::OpenIDConnect.prepend OpenProject::OpenIDConnect::InvalidStateRedirect
