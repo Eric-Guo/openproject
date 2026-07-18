@@ -38,7 +38,7 @@ import { setCustomNativeDragPreview } from '@atlaskit/pragmatic-drag-and-drop/el
 import { preventUnhandled } from '@atlaskit/pragmatic-drag-and-drop/prevent-unhandled';
 import { type Input } from '@atlaskit/pragmatic-drag-and-drop/types';
 import { Controller, type ActionEvent } from '@hotwired/stimulus';
-import type { ActionMenuElement } from '@openproject/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
+import type { ActionMenuElement } from '@mixtint/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
 import { suspendDraggableWhileEditing } from 'core-common/drag-and-drop/suspend-draggable-while-editing';
 import { platformBadgesMultiUrlDrags } from 'core-common/platform';
 import { closestDragBlockingElement } from 'core-stimulus/helpers/interactive-element-helper';
