@@ -91,7 +91,7 @@ updates:
       - dependency-name: "@angular-eslint/*"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@openproject/octicons"
-      - dependency-name: "@openproject/primer-view-components"
+      - dependency-name: "@mixtint/primer-view-components"
       - dependency-name: "@primer/primitives"
       - dependency-name: "@primer/css"
 
