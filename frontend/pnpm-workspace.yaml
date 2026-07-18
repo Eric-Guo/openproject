@@ -10,9 +10,7 @@ allowBuilds:
   th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79: true
 
 minimumReleaseAgeExclude:
-  - 'op-blocknote-extensions@0.1.0'
-  - '@mixtint/primer-view-components@0.86.2 || 0.88.0 || 0.90.1'
-  - '@openproject/primer-view-components@0.88.0'
+  - '@mixtint/primer-view-components@0.90.1'
 
 nodeLinker: hoisted
 
