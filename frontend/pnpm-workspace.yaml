@@ -11,8 +11,7 @@ allowBuilds:
 
 minimumReleaseAgeExclude:
   - 'op-blocknote-extensions@0.1.0'
-  - '@mixtint/primer-view-components@0.86.2'
-  - '@mixtint/primer-view-components@0.88.0'
+  - '@mixtint/primer-view-components@0.86.2 || 0.88.0 || 0.90.1'
   - '@openproject/primer-view-components@0.88.0'
 
 nodeLinker: hoisted
