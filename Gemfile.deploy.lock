@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    airbrussh (1.6.1)
+    airbrussh (1.6.2)
       sshkit (>= 1.6.1, != 1.7.0)
     base64 (0.3.0)
     bcrypt_pbkdf (1.1.2)
@@ -64,4 +64,4 @@ DEPENDENCIES
   ed25519
 
 BUNDLED WITH
-  4.0.15
+  4.0.16
