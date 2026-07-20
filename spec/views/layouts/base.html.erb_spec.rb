@@ -53,6 +53,19 @@ RSpec.describe "layouts/base" do
     allow(User).to receive(:current).and_return current_user
   end
 
+  describe "Electron header" do
+    let(:current_user) { user }
+
+    it "marks the start area as draggable in Windows Electron" do
+      render
+
+      expect(rendered).to have_css(
+        ".op-app-header--start[data-controller~='electron-header-spacing']" \
+        "[data-electron-header-spacing-windows-electron-class='op-app-header--start_windows-electron']"
+      )
+    end
+  end
+
   describe "7777 agent pane" do
     let(:current_user) { user }
 
