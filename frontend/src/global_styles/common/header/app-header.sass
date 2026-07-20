@@ -41,6 +41,22 @@
     justify-content: flex-start
     padding-left: 4px
 
+    &_windows-electron
+      // Electron drag regions do not receive pointer events. Keep the header's
+      // launcher, logo, and other controls interactive while empty space drags.
+      -webkit-app-region: drag
+      app-region: drag
+      user-select: none
+
+      a,
+      button,
+      input,
+      select,
+      textarea,
+      [role="button"]
+        -webkit-app-region: no-drag
+        app-region: no-drag
+
   &--center
     grid-area: center
     justify-content: center
