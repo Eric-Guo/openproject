@@ -76,7 +76,9 @@ See COPYRIGHT and LICENSE files for more details.
      data-controller="agent7777-pane-toggle">
   <% if show_decoration %>
     <header class="op-app-header<%= " op-app-header_development" if OpenProject::Configuration.development_highlight_enabled? %>">
-      <div class="op-app-header--start">
+      <div class="op-app-header--start"
+           data-controller="electron-header-spacing"
+           data-electron-header-spacing-windows-electron-class="op-app-header--start_windows-electron">
         <a href="" class="sr-only skip-navigation-link"
            id="skip-navigation--content"
            aria-label="<%= I18n.t("js.work_packages.jump_marks.label_content") %>">
