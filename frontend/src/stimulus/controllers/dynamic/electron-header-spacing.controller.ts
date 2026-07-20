@@ -1,5 +1,12 @@
 import { Controller } from '@hotwired/stimulus';
 
+export function isElectronUserAgent(userAgent:string):boolean {
+  const normalizedUserAgent = userAgent.toLowerCase();
+  const isWxWork = normalizedUserAgent.includes('wxwork') || normalizedUserAgent.includes('micromessenger');
+
+  return normalizedUserAgent.includes('electron') && !isWxWork;
+}
+
 export default class ElectronHeaderSpacingController extends Controller<HTMLElement> {
   static classes = ['electron', 'windowsElectron'];
 
@@ -9,7 +16,7 @@ export default class ElectronHeaderSpacingController extends Controller<HTMLElem
   declare readonly hasWindowsElectronClass:boolean;
 
   connect():void {
-    const electron = navigator.userAgent.includes('Electron');
+    const electron = isElectronUserAgent(navigator.userAgent);
     const windowsElectron = electron && navigator.platform.toLowerCase().startsWith('win');
 
     if (this.hasElectronClass) {
