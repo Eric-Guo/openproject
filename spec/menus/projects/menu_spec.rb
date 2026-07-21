@@ -176,7 +176,7 @@ RSpec.describe Projects::Menu do
             ["Active projects", "My projects", "Favorite projects"],
             ["Another current user query", "Current user query"],
             ["Another public query",  "Another shared query", "Public query", "Shared query"],
-            ["On track", "Off track", "At risk"]
+            ["On track", "Off track", "On pause", "At risk"]
           ]
         )
       end
@@ -197,7 +197,7 @@ RSpec.describe Projects::Menu do
             ["Active projects", "My projects", "Favorite projects"],
             ["Current user query", "Another current user query"],
             ["Public query", "Shared query", "Another public query", "Another shared query"],
-            ["On track", "Off track", "At risk"]
+            ["On track", "Off track", "On pause", "At risk"]
           ]
         )
       end
@@ -221,7 +221,7 @@ RSpec.describe Projects::Menu do
             ["Active projects", "My projects", "Favorite projects"],
             ["Another current user query", "Current user query"],
             ["Another public query",  "Another shared query", "Public query", "Shared query"],
-            ["On track", "Off track", "At risk"]
+            ["On track", "Off track", "On pause", "At risk"]
           ]
         )
       end
