@@ -120,9 +120,8 @@ class ProjectQueries::Static
     end
 
     def static_query_status_on_pause
-      list_with(:"activerecord.attributes.project.status_codes.on_pause") do |query|
-        query.where("project_status_code", "=", Project.status_codes[:on_pause])
-      end
+      static_query("project_status_code", "=", Project.status_codes[:on_pause],
+                   name: :"activerecord.attributes.project.status_codes.on_pause")
     end
 
     def static_query_status_at_risk
