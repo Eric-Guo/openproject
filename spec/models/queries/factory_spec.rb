@@ -276,6 +276,37 @@ RSpec.describe Queries::Factory,
       it { is_expected.not_to be_changed }
     end
 
+    context "with the 'on_pause' id" do
+      let(:id) { "on_pause" }
+
+      it "returns a project query" do
+        expect(find)
+          .to be_a(ProjectQuery)
+      end
+
+      it "has a name" do
+        expect(find.name)
+          .to eql(I18n.t("activerecord.attributes.project.status_codes.on_pause"))
+      end
+
+      it 'has a filter for projects that are "on pause"' do
+        expect(find.filters.map { |filter| [filter.field, filter.operator, filter.values] })
+          .to eq([[:project_status_code, "=", [Project.status_codes[:on_pause].to_s]]])
+      end
+
+      it "is ordered by name desc" do
+        expect(find.orders.map { |order| [order.attribute, order.direction] })
+          .to eq([%i[name desc]])
+      end
+
+      it "has the enabled_project_columns columns as selects" do
+        expect(find.selects.map(&:attribute))
+          .to eq(default_selects)
+      end
+
+      it { is_expected.not_to be_changed }
+    end
+
     context "with the 'at_risk' id" do
       let(:id) { "at_risk" }
 
