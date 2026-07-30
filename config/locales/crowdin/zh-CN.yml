@@ -6432,7 +6432,7 @@ zh-CN:
   work_packages:
     bulk:
       copy_failed: 无法复制工作包。
-      could_not_be_deleted: 以下工作包无法删除：
+      could_not_be_deleted: 无法删除以下工作包：
       could_not_be_saved: 无法保存以下工作包：
       deletion_successful:
         other: 成功删除 %{count} 个工作包。
@@ -6503,7 +6503,7 @@ zh-CN:
         successors: 后置项
       update_inputs_aria_live_message: 日期选择器已更新。 %{message}
     delete_dialog:
-      confirm_deletion: 我确认此工作包和所有相关数据都将被删除。
+      confirm_deletion: 我确认该工作包及所有关联数据将被删除。
       confirm_descendants_deletion: 我确认上述所有后代也将被删除。
       cross_project_warning_html: 将删除以下项目中的工作包：%{projects}
       description: 确定要删除“%{name}”吗？
