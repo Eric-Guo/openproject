@@ -448,7 +448,7 @@ Rails.application.reloader.to_prepare do
       wpt.permission :delete_my_create_work_packages,
                      {
                        work_packages: :destroy,
-                       "work_packages/bulk": :destroy
+                       "work_packages/bulk": %i[delete_dialog destroy]
                      },
                      require: :member,
                      permissible_on: :project,
