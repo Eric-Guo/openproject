@@ -6225,10 +6225,10 @@ zh-CN:
   work_packages:
     bulk:
       copy_failed: 无法复制工作包。
-      could_not_be_deleted: 'The following work packages could not be deleted:'
+      could_not_be_deleted: 无法删除以下工作包：
       could_not_be_saved: 无法保存以下工作包：
       deletion_successful:
-        other: Successfully deleted %{count} work packages.
+        other: 成功删除 %{count} 个工作包。
       descendant: 所选项的子工作包
       move_failed: 无法移动工作包。
       none_could_be_saved: "%{total} 个工作包全部无法更新。"
@@ -6236,7 +6236,7 @@ zh-CN:
       x_out_of_y_could_be_saved: 在 %{total} 个工作包中，%{failing} 个无法更新，%{success} 个可以更新。
     bulk_delete_dialog:
       children_label: 'The following descendants will also be deleted:'
-      confirm_deletion: I confirm that the selected work packages and all associated data will be deleted.
+      confirm_deletion: 我确认所选工作包及所有关联数据将被删除。
       confirm_descendants_deletion: I confirm that all descendants listed above will also be deleted.
       cross_project_warning_html: 'These work packages span multiple projects: %{projects}'
       description: Are you sure you want to delete the selected work packages and all associated data?
@@ -6296,7 +6296,7 @@ zh-CN:
         successors: 后置项
       update_inputs_aria_live_message: 日期选择器已更新。 %{message}
     delete_dialog:
-      confirm_deletion: I confirm that the work package and all associated data will be deleted.
+      confirm_deletion: 我确认该工作包及所有关联数据将被删除。
       confirm_descendants_deletion: I confirm that all descendants listed above will also be deleted.
       cross_project_warning_html: 'Work packages from the following projects will be deleted: %{projects}'
       description: Are you sure you want to delete "%{name}"?
