@@ -151,6 +151,24 @@ RSpec.describe WorkPackages::BulkController, with_settings: { journal_aggregatio
         expect(response).to be_successful
       end
     end
+
+    context "with only permission to delete work packages created by the user" do
+      let(:delete_own_role) do
+        create(:project_role, permissions: %i[delete_my_create_work_packages view_work_packages])
+      end
+      let(:delete_own_user) { create(:user, member_with_roles: { project1 => [delete_own_role] }) }
+      let(:own_work_package) { create(:work_package, author: delete_own_user, project: project1, type:, status:) }
+
+      before do
+        allow(User).to receive(:current).and_return delete_own_user
+
+        get :delete_dialog, params: { ids: [own_work_package.id] }, format: :turbo_stream
+      end
+
+      it "renders the dialog" do
+        expect(response).to be_successful
+      end
+    end
   end
 
   describe "#edit" do
