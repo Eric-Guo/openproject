@@ -62,10 +62,10 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: e858228eba9f1052464603cd3302ba4cf74de70f
+  revision: 69f5949f8c00ab39f337d142f2daa587e183cd58
   branch: thape
   specs:
-    openproject-primer_view_components (0.90.1)
+    openproject-primer_view_components (0.91.1)
       actionview (>= 7.2.0)
       activesupport (>= 7.2.0)
       openproject-octicons (>= 19.36.0)
@@ -1619,7 +1619,7 @@ GEM
       logger
     text-hyphen (1.5.0)
     thor (1.5.0)
-    tidewave (0.8.0)
+    tidewave (0.8.1)
       rack (>= 2.0)
     timecop (0.9.11)
     timeout (0.6.1)
@@ -2281,7 +2281,7 @@ CHECKSUMS
   openproject-octicons (19.36.0) sha256=7a1beef93d3d93df0c4c68de3708be481ce3d8a7c9f56c72a94d17d150559792
   openproject-octicons_helper (19.36.0) sha256=e4c737107fec97d2c1511a84aa7d351327a33fdb4afbe150600fc5c1caf7c3c2
   openproject-openid_connect (1.0.0)
-  openproject-primer_view_components (0.90.1)
+  openproject-primer_view_components (0.91.1)
   openproject-recaptcha (1.0.0)
   openproject-reporting (1.0.0)
   openproject-resource_management (1.0.0)
@@ -2505,7 +2505,7 @@ CHECKSUMS
   test-prof (1.6.3) sha256=027aea17612b2776069820e4209f6b446ece7ad6dc693f4aed0b742bcb3817a1
   text-hyphen (1.5.0) sha256=c44a4533b8a554e7ff7c955e131bcccc78a0b4c56ce1d73f2c8c11f43b075a06
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
-  tidewave (0.8.0) sha256=0414570816088188822a5ae0cfdfa72539d64347c877ea1d442c2f4323bec314
+  tidewave (0.8.1) sha256=bf39eb78c4e95335e686b7b39db8e92b5831104199f355a878945c420fcbb63b
   timecop (0.9.11) sha256=41284dc6e5041f2184f781ace766f942108c842f8d8c1386a26e6343decc7542
   timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb
   tpm-key_attestation (0.14.1) sha256=7fd4e4653a7afd0a386632ddfb05d10ecfdd47678299c5e69165bc9ae111193f

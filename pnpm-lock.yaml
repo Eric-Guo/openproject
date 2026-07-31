@@ -13,8 +13,8 @@ importers:
         version: 1.3.6
     devDependencies:
       '@redocly/cli':
-        specifier: ^2.41.1
-        version: 2.41.1
+        specifier: ^2.43.1
+        version: 2.43.1
 
 packages:
 
@@ -76,8 +76,8 @@ packages:
   '@probe.gl/stats@3.6.0':
     resolution: {integrity: sha512-JdALQXB44OP4kUBN/UrQgzbJe4qokbVF4Y8lkIA8iVCFnjVowWIgkD/z/0QO65yELT54tTrtepw1jScjKB+rhQ==}
 
-  '@redocly/cli@2.41.1':
-    resolution: {integrity: sha512-Rde/CpjSMxTBWUCbkECtR4S1YTF8NE+tQgnI1Y7M4wxMLGy8yhmUmTHRUDlKSha97bfBfvjryYuEuZfocD2UNw==}
+  '@redocly/cli@2.43.1':
+    resolution: {integrity: sha512-UGQkgd0Dgjt35p1cbOfC1Y8GEz7rCpktbhwCGh04mzD6yyKW9EnpKIa+NRh/CSORDeW7iqaRGjxu3ISjSx6gPQ==}
     engines: {node: '>=22.12.0 || >=20.19.0 <21.0.0', npm: '>=10'}
     hasBin: true
 
@@ -663,7 +663,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.29.7
 
-  '@redocly/cli@2.41.1': {}
+  '@redocly/cli@2.43.1': {}
 
   '@types/flatbuffers@1.10.3': {}
 
