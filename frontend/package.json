@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "8.62.1",
     "@vitest/browser-playwright": "^4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
-    "@vitest/eslint-plugin": "^1.6.24",
+    "@vitest/eslint-plugin": "^1.6.25",
     "angular-eslint": "^22.1.0",
     "browserslist": "^4.28.7",
     "eslint": "^10.8.0",
@@ -44,7 +44,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.8.0",
+    "globals": "^17.9.0",
     "jsdom": "^29.1.1",
     "patch-package": "^8.0.1",
     "playwright": "^1.62.1",
@@ -100,8 +100,8 @@
     "@hotwired/turbo-rails": "^8.0.23",
     "@knowledgecode/delegate": "^0.10.5",
     "@kolkov/ngx-gallery": "^2.0.1",
-    "@mantine/core": "^9.5.0",
-    "@mantine/hooks": "^9.5.0",
+    "@mantine/core": "^9.5.1",
+    "@mantine/hooks": "^9.5.1",
     "@mantine/utils": "^6.0.22",
     "@mixtint/primer-view-components": "^0.90.1",
     "@ng-select/ng-option-highlight": "^23.5.1",
@@ -215,5 +215,5 @@
     "core-js-pure": false,
     "es5-ext@0.10.64": true
   },
-  "packageManager": "pnpm@11.18.0"
+  "packageManager": "pnpm@11.20.0"
 }
