@@ -12,11 +12,11 @@ importers:
         specifier: ^0.51.4
         version: 0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@hocuspocus/extension-logger':
-        specifier: ^4.4.0
-        version: 4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
+        specifier: ^4.5.0
+        version: 4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
       '@hocuspocus/server':
-        specifier: ^4.4.0
-        version: 4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
+        specifier: ^4.5.0
+        version: 4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
       op-blocknote-extensions:
         specifier: https://github.com/opf/op-blocknote-extensions/releases/download/v0.2.1/op-blocknote-extensions-0.2.1.tgz
         version: https://github.com/opf/op-blocknote-extensions/releases/download/v0.2.1/op-blocknote-extensions-0.2.1.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
@@ -34,11 +34,11 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1
       '@hocuspocus/provider':
-        specifier: ^4.4.0
-        version: 4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
+        specifier: ^4.5.0
+        version: 4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
       '@hocuspocus/provider-prev-test-only':
         specifier: npm:@hocuspocus/provider@^3.4.4
-        version: '@hocuspocus/provider@3.4.4(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)'
+        version: '@hocuspocus/provider@3.4.4(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)'
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@10.8.0)
@@ -364,11 +364,11 @@ packages:
   '@hocuspocus/common@3.4.4':
     resolution: {integrity: sha512-RykIJ0tsHHMP4Xk+4UCbc7SO5LgGxGUSTdbh6anJEsaALAyqinf1Nn5HYuMjLPolAmsar1v++m9zufR09NLpXA==}
 
-  '@hocuspocus/common@4.4.0':
-    resolution: {integrity: sha512-cPSlPu/ws2JzBHW6OzctyaQMyDCq/YUS4nhXSbyMdkQwJzhjCkvfmmRnVtcmgLR3TBLaNwToNDwR/mNaJFOYsg==}
+  '@hocuspocus/common@4.5.0':
+    resolution: {integrity: sha512-hz6IBLLNKOWrWf+8r236CFFhpkcjEVXtZH1XRrkY0b5dYoQgR5gmuV5/5dJm1Vvyc8I70D+SHCvOch2AsRXonA==}
 
-  '@hocuspocus/extension-logger@4.4.0':
-    resolution: {integrity: sha512-GYyt2AgO/PBJeVGGk2VcfeA9BKi9SnZ2s8DaBPYm4KhHSzoYlEIL3wiPie0oE9H9cX+8NXbrGXPwW6kU075sOQ==}
+  '@hocuspocus/extension-logger@4.5.0':
+    resolution: {integrity: sha512-g4hTrpY9ZrNP/CQlmsWBW/9mVVtEyTaYqQ5WstfH5F2lbuBbYSVYUoFIYxxdUqHOH5nhkiT0ev7vnRl8E4dQnw==}
 
   '@hocuspocus/provider@3.4.4':
     resolution: {integrity: sha512-KbsMAfdYcIJD8eMU/5QnpXcSOvIWAcCNI33FSRSaKCIpYBFtAwkYIwWnZJmPZ8a1BMAtqQc+uvy9+UQf7GHnGQ==}
@@ -376,14 +376,14 @@ packages:
       y-protocols: ^1.0.6
       yjs: ^13.6.8
 
-  '@hocuspocus/provider@4.4.0':
-    resolution: {integrity: sha512-A83ROMFqU2bgjTTQ1YMteY9v2cIhDHj4S6XgzjPaqYEgOFr2XvBYGnK+NXzZ6DgldKTnlN7qqvWvZplPvltgyw==}
+  '@hocuspocus/provider@4.5.0':
+    resolution: {integrity: sha512-zpu68EIVZCzem1aCRjXeeeRVgaJHZa+p2rpherneUpwTnrb3WInL4IJ7cgMk0yP1/I2KPzve6meGODl1JPNTZQ==}
     peerDependencies:
       y-protocols: ^1.0.6
       yjs: ^13.6.8
 
-  '@hocuspocus/server@4.4.0':
-    resolution: {integrity: sha512-eVSnx+76CN81vaRol+OlT8FyyGFOBF9Z+kdJQhjVXRpj3kIAI1TzuRHKiZN1vkUogdHfmOAN5Bhs5v7V/qhMkQ==}
+  '@hocuspocus/server@4.5.0':
+    resolution: {integrity: sha512-obRjLJmBi+EsQgP/Q7nZHC4ZvuBSROQCiLBLmIvib0IG3mu4vJfWiMiAmmrfMKM05denjbfK2BVKMmDVj9AGig==}
     engines: {node: '>=22'}
     peerDependencies:
       y-protocols: ^1.0.6
@@ -479,8 +479,8 @@ packages:
   '@oxc-project/types@0.133.0':
     resolution: {integrity: sha512-KzkdCd6Uxqnf6l3HOw1xfatAlUURA0g14cvBYFyJ5SaNOQbOUvBr9PKArcPcrNIeRsBdgcUzOGrhKveVpvOIGA==}
 
-  '@primer/octicons-react@19.32.0':
-    resolution: {integrity: sha512-BMFi+6rdP4rB0Ex97OKQF1RnCo4OmDGi0NVAYyGjPs7DbHe/KbU5BhxDTjBCfrcLJNXXldh+bbxYm7RS0+RF/Q==}
+  '@primer/octicons-react@19.33.0':
+    resolution: {integrity: sha512-7VL8WuLXXZvUV/DP895ESFXPl/FJq816amCT3KZcmpQgxM1uv6lJGCcsEFpLX3K6SE+3qcmsftPpxn3ctr06+g==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.3'
@@ -1636,8 +1636,8 @@ packages:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
 
-  styled-components@6.4.4:
-    resolution: {integrity: sha512-tJk5CmKUPMDoTsZQ8m0hHInBk9HFKUPSusqmbBuefDX+yUbMBWea2Ob/wdXFyHW8XZqXkprJscysAdKeGWNqlA==}
+  styled-components@6.5.0:
+    resolution: {integrity: sha512-WLnTRAIRJsmCQfPXoEDDd1YMML+ImxQ8YGVVg60FALxsn/rpWiQWSJCZDNfu/buAcBFnTUr8ev6CBR8rb7xLiQ==}
     engines: {node: '>= 16'}
     peerDependencies:
       css-to-react-native: '>= 3.2.0'
@@ -1884,18 +1884,6 @@ packages:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
     engines: {node: '>=10'}
 
-  ws@8.21.1:
-    resolution: {integrity: sha512-+0NTnW77fFN/DjQi6k/Sq/Yvk4Sgajw7urW8V+asjXnRgDs9gyGkdb7EzgfhA4goXsRIZKE28fzIXBHEzhuiWw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.21.2:
     resolution: {integrity: sha512-54dMVAo4WIe6SKy3vBgN+9bJZqqQ8IMRevAkOLQALhi49qkkQDQfWdAZ8KQlXiEabw88ARXXdUrlvtbKQX+aKw==}
     engines: {node: '>=10.0.0'}
@@ -1943,8 +1931,8 @@ packages:
     resolution: {integrity: sha512-GZtjxm/J/4TSxuL3FNYjCmLktBTnIw/rVmKSIyKeYAZpmJB2ig9VauCC5xsa82GNKVKDAqpOn3KVzNt0zmrU0g==}
     engines: {node: '>=12'}
 
-  yjs@13.6.31:
-    resolution: {integrity: sha512-Eq+5BRfbeGyqGVrTJL3bEcr8gKkxPuyuoHmAwpk52fDb8kOVMrfVSTRPd6yiGgX5Fskb96qCRjzjbRjrL4YEnw==}
+  yjs@13.6.32:
+    resolution: {integrity: sha512-lfiJIIC4Xayt5ItynE407ehlE03pCjeOc4hkR4yxxvvNJ4kuiN25B0g+Qp8XagYz361LLL7DCzR5bvFJ81QKtQ==}
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
 
   yocto-queue@0.1.0:
@@ -1989,9 +1977,9 @@ snapshots:
       prosemirror-tables: 1.8.5
       prosemirror-transform: 1.12.0
       prosemirror-view: 1.42.2
-      y-prosemirror: 1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-prosemirror: 1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
     transitivePeerDependencies:
       - '@lezer/common'
       - '@lezer/highlight'
@@ -2040,9 +2028,9 @@ snapshots:
       jsdom: 25.0.1
       react: 19.2.7
       react-dom: 19.2.7(react@19.2.7)
-      y-prosemirror: 1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-prosemirror: 1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
     transitivePeerDependencies:
       - '@floating-ui/dom'
       - '@lezer/common'
@@ -2262,47 +2250,47 @@ snapshots:
     dependencies:
       lib0: 0.2.117
 
-  '@hocuspocus/common@4.4.0':
+  '@hocuspocus/common@4.5.0':
     dependencies:
       lib0: 0.2.117
 
-  '@hocuspocus/extension-logger@4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)':
+  '@hocuspocus/extension-logger@4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)':
     dependencies:
-      '@hocuspocus/server': 4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)
+      '@hocuspocus/server': 4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
     transitivePeerDependencies:
       - srvx
       - y-protocols
       - yjs
 
-  '@hocuspocus/provider@3.4.4(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)':
+  '@hocuspocus/provider@3.4.4(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)':
     dependencies:
       '@hocuspocus/common': 3.4.4
       '@lifeomic/attempt': 3.1.0
       lib0: 0.2.117
       ws: 8.21.2
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@hocuspocus/provider@4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)':
+  '@hocuspocus/provider@4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)':
     dependencies:
-      '@hocuspocus/common': 4.4.0
+      '@hocuspocus/common': 4.5.0
       '@lifeomic/attempt': 3.1.0
       lib0: 0.2.117
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
 
-  '@hocuspocus/server@4.4.0(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31)':
+  '@hocuspocus/server@4.5.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)':
     dependencies:
-      '@hocuspocus/common': 4.4.0
+      '@hocuspocus/common': 4.5.0
       async-mutex: 0.5.0
       crossws: 0.4.10
       kleur: 4.1.5
       lib0: 0.2.117
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
     transitivePeerDependencies:
       - srvx
 
@@ -2384,7 +2372,7 @@ snapshots:
 
   '@oxc-project/types@0.133.0': {}
 
-  '@primer/octicons-react@19.32.0(react@19.2.7)':
+  '@primer/octicons-react@19.33.0(react@19.2.7)':
     dependencies:
       react: 19.2.7
 
@@ -3142,7 +3130,7 @@ snapshots:
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.2.0
-      ws: 8.21.1
+      ws: 8.21.2
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -3283,10 +3271,10 @@ snapshots:
   op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.2.1/op-blocknote-extensions-0.2.1.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3):
     dependencies:
       '@blocknote/core': 0.51.4(@types/hast@3.0.5)
-      '@primer/octicons-react': 19.32.0(react@19.2.7)
+      '@primer/octicons-react': 19.33.0(react@19.2.7)
       i18next: 25.10.10(typescript@6.0.3)
       react-i18next: 16.6.6(i18next@25.10.10(typescript@6.0.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
-      styled-components: 6.4.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      styled-components: 6.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
     optionalDependencies:
       '@blocknote/react': 0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
     transitivePeerDependencies:
@@ -3521,7 +3509,7 @@ snapshots:
     dependencies:
       ansi-regex: 5.0.1
 
-  styled-components@6.4.4(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+  styled-components@6.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
     dependencies:
       '@emotion/is-prop-valid': 1.4.0
       csstype: 3.2.3
@@ -3697,27 +3685,25 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  ws@8.21.1: {}
-
   ws@8.21.2: {}
 
   xml-name-validator@5.0.0: {}
 
   xmlchars@2.2.0: {}
 
-  y-prosemirror@1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.31))(yjs@13.6.31):
+  y-prosemirror@1.3.7(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.42.2)(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32):
     dependencies:
       lib0: 0.2.117
       prosemirror-model: 1.25.11
       prosemirror-state: 1.4.4
       prosemirror-view: 1.42.2
-      y-protocols: 1.0.7(yjs@13.6.31)
-      yjs: 13.6.31
+      y-protocols: 1.0.7(yjs@13.6.32)
+      yjs: 13.6.32
 
-  y-protocols@1.0.7(yjs@13.6.31):
+  y-protocols@1.0.7(yjs@13.6.32):
     dependencies:
       lib0: 0.2.117
-      yjs: 13.6.31
+      yjs: 13.6.32
 
   y18n@5.0.8: {}
 
@@ -3733,7 +3719,7 @@ snapshots:
       y18n: 5.0.8
       yargs-parser: 21.1.1
 
-  yjs@13.6.31:
+  yjs@13.6.32:
     dependencies:
       lib0: 0.2.117
 
