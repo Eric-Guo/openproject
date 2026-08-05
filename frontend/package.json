@@ -51,7 +51,7 @@
     "source-map-explorer": "^2.5.3",
     "ts-node": "~10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0",
+    "typescript-eslint": "^8.66.0",
     "vitest": "^4.1.10",
     "wscat": "^6.1.0"
   },
