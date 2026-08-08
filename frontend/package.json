@@ -179,7 +179,7 @@
     "urijs": "^1.19.11",
     "url-template": "^3.1.1",
     "uuid": "^14.0.1",
-    "vis-data": "^8.0.4",
+    "vis-data": "^8.0.5",
     "vis-timeline": "^8.5.3"
   },
   "optionalDependencies": {
