@@ -153,11 +153,11 @@ importers:
         specifier: ^0.90.1
         version: 0.90.1(@primer/primitives@11.10.0)
       '@ng-select/ng-option-highlight':
-        specifier: ^23.5.1
-        version: 23.5.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: ^23.6.0
+        version: 23.6.0(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))
       '@ng-select/ng-select':
-        specifier: ^23.5.1
-        version: 23.5.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@22.1.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@22.1.1(@angular/animations@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))
+        specifier: ^23.6.0
+        version: 23.6.0(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@22.1.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@22.1.1(@angular/animations@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))
       '@ngneat/content-loader':
         specifier: ^7.0.0
         version: 7.0.0(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -478,8 +478,8 @@ importers:
         specifier: ^4.1.10
         version: 4.1.10(@vitest/browser@4.1.10)(vitest@4.1.10)
       '@vitest/eslint-plugin':
-        specifier: ^1.6.26
-        version: 1.6.26(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@4.1.10)
+        specifier: ^1.6.27
+        version: 1.6.27(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@4.1.10)
       angular-eslint:
         specifier: ^22.1.0
         version: 22.1.0(@angular/cli@22.1.3(@types/node@25.9.5)(chokidar@5.0.0)(supports-color@7.2.0))(chokidar@5.0.0)(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript-eslint@8.66.0(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(typescript@6.0.3)
@@ -818,8 +818,8 @@ packages:
   '@atlaskit/pragmatic-drag-and-drop@2.0.2':
     resolution: {integrity: sha512-ou1j+lBqutK7p2S80lMresJeKu9qAL1zr1K+N0OyCTzbMpD6pXRHray8VkRoHgJICI7Wp1fk5ScJh6EctyAuPw==}
 
-  '@authress/login@2.6.475':
-    resolution: {integrity: sha512-dOalns/hN60OMEM44Z2Mwl27zHZSrdEgOl7oNjADPU6Apjx8ycUekcO1fiNVNhq42LJLlqv4eFhwuhurVag8Zw==}
+  '@authress/login@2.6.476':
+    resolution: {integrity: sha512-EkqusKRPbcDHBQXjqXPWcQnz5pAv1kJx5HvzjYNRoKbpP63pyGLvAA5hclhLseamtjXyQy3FR5dy+G2TqpyUlA==}
     engines: {node: '>=20'}
 
   '@babel/code-frame@7.29.7':
@@ -2021,14 +2021,14 @@ packages:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.3
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.3
 
-  '@ng-select/ng-option-highlight@23.5.1':
-    resolution: {integrity: sha512-JS1J6av4L8G2NT4faU8AuetjUgR7GfFwwSoA3r02qXVdpsW0x95ybLhAJ1wHiLM1mqq1rHzxcim4be+hj6suqw==}
+  '@ng-select/ng-option-highlight@23.6.0':
+    resolution: {integrity: sha512-TW3wmFzqsW4Nfe9cXacTU5/pHlNL4z90PrtXs0vB6fL4YnufhGKlTQ+nhvZzv1lFWco7Nq4KQAF0GV5grVRtOQ==}
     peerDependencies:
       '@angular/common': ^22.0.0
       '@angular/core': ^22.0.0
 
-  '@ng-select/ng-select@23.5.1':
-    resolution: {integrity: sha512-gYnZNpSBPy4ZzYShx1CyvZ31dkc8t7KI7OZEfXWCw1pHrWbe/H1OKIguX6JEJjnOu2WH7toCvycA1Dtjp7Gnvg==}
+  '@ng-select/ng-select@23.6.0':
+    resolution: {integrity: sha512-0I84OZ9gncphNR26zuqOwpB/XWhPav+IP+EfJd9lDNeu3UT9Y0JhTBburCXEXcbltwQkiN6bMCKdRF93hrFHxw==}
     engines: {node: ^22.12.0 || ^24.0.0 || ^26.0.0}
     peerDependencies:
       '@angular/common': ^22.0.0
@@ -3114,8 +3114,8 @@ packages:
       '@vitest/browser':
         optional: true
 
-  '@vitest/eslint-plugin@1.6.26':
-    resolution: {integrity: sha512-2eawZk4MZvkEtMZFdScmCE0R1Rti85uRZpmbe9eAv5Q3blDZ5OxlrC9IHlSnxhDCqOO2xKNaD3oufl9BUlI0yA==}
+  '@vitest/eslint-plugin@1.6.27':
+    resolution: {integrity: sha512-X1RCAfwbatG4GFbJ/1PIHP9MSZMt0JJThqbYID+vS4L783k6QGlLPe421wQE8dHXuGCcenVLsydiM4qzsYWxhg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
@@ -3922,8 +3922,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.402:
-    resolution: {integrity: sha512-/oOpMaPT6Yg+6/1XQhyIPlzgj7Ye9zf+nNM2Uh6OcE2G2oNptWazFa+qB2Pdqqbsc9KnIDzgAntoYN0dbwOXwA==}
+  electron-to-chromium@1.5.403:
+    resolution: {integrity: sha512-MQsYmdaLzvaCX5j+ZZBr5Fm6uCCnPQcRtlvmvRlWqrXy+BH2O4ffXIAScF+JQznQWB9brWp4lSD9Z4yNmaf2BA==}
 
   emoji-mart@5.6.0:
     resolution: {integrity: sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==}
@@ -7435,7 +7435,7 @@ snapshots:
       bind-event-listener: 3.0.0
       raf-schd: 4.0.3
 
-  '@authress/login@2.6.475':
+  '@authress/login@2.6.476':
     dependencies:
       cookie: 0.7.2
       lodash.take: 4.1.1
@@ -8725,13 +8725,13 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@ng-select/ng-option-highlight@23.5.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@ng-select/ng-option-highlight@23.6.0(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/common': 22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
 
-  '@ng-select/ng-select@23.5.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@22.1.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@22.1.1(@angular/animations@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))':
+  '@ng-select/ng-select@23.6.0(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@22.1.1(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@22.1.1(@angular/animations@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))':
     dependencies:
       '@angular/common': 22.1.1(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.15.1)
@@ -9644,7 +9644,7 @@ snapshots:
     optionalDependencies:
       '@vitest/browser': 4.1.10(vite@8.1.5(@types/node@25.9.5)(esbuild@0.28.1)(jiti@2.7.0)(less@4.4.2)(sass@1.101.0)(terser@5.46.1)(yaml@2.9.0))(vitest@4.1.10)
 
-  '@vitest/eslint-plugin@1.6.26(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@4.1.10)':
+  '@vitest/eslint-plugin@1.6.27(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@4.1.10)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.66.0
       '@typescript-eslint/utils': 8.66.0(eslint@10.8.1(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
@@ -10086,7 +10086,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.11.13
       caniuse-lite: 1.0.30001809
-      electron-to-chromium: 1.5.402
+      electron-to-chromium: 1.5.403
       node-releases: 2.0.53
       update-browserslist-db: 1.3.0(browserslist@4.28.8)
 
@@ -10533,7 +10533,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.402: {}
+  electron-to-chromium@1.5.403: {}
 
   emoji-mart@5.6.0: {}
 
@@ -12466,7 +12466,7 @@ snapshots:
 
   openapi-explorer@2.4.820(@types/json-schema@7.0.15):
     dependencies:
-      '@authress/login': 2.6.475
+      '@authress/login': 2.6.476
       base64url: 3.0.1
       buffer: 6.0.3
       color: 4.2.3
