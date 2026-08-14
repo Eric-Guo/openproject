@@ -38,7 +38,7 @@ See COPYRIGHT and LICENSE files for more details.
       form_items = [
         Projects::Settings::NameForm.new(f),
         Projects::Settings::DescriptionForm.new(f),
-        (Projects::Settings::ProjectProfileForm.new(f) if project_profile_available?),
+        (Projects::Settings::ProjectProfileForm.new(f, current_user:) if project_profile_available?),
         Projects::Settings::Submit.new(f, label: I18n.t("projects.settings.button_update_details"))
       ].compact
 
