@@ -85,11 +85,23 @@ RSpec.describe Projects::Settings::General::ShowComponent, type: :component do
                                     selected: I18n.t("activerecord.attributes.project_profile.type_id_list.2")
         expect(page).to have_field ProjectProfile.human_attribute_name(:name), with: "TH Project"
         expect(page).to have_field ProjectProfile.human_attribute_name(:code), with: "TH12345"
-        expect(page).to have_field ProjectProfile.human_attribute_name(:doc_link), with: "https://example.com/doc"
+        expect(page).to have_field ProjectProfile.human_attribute_name(:doc_link),
+                                   with: "https://example.com/doc",
+                                   disabled: true
         expect(page).to have_select nil, name: "project[profile_attributes][type_id]"
         expect(page).to have_field nil, name: "project[profile_attributes][name]"
         expect(page).to have_field nil, name: "project[profile_attributes][code]"
-        expect(page).to have_field nil, name: "project[profile_attributes][doc_link]"
+        expect(page).to have_field nil, name: "project[profile_attributes][doc_link]", disabled: true
+      end
+
+      context "when the user is a global admin" do
+        let(:user) { build_stubbed(:admin) }
+
+        it "enables the project document link field" do
+          expect(render_component).to have_field ProjectProfile.human_attribute_name(:doc_link),
+                                                 with: "https://example.com/doc",
+                                                 disabled: false
+        end
       end
     end
   end
