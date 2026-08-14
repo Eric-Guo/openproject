@@ -34,9 +34,15 @@ module Projects
       DEFAULT_TYPE_ID = 3
       TYPE_IDS = [1, 2, 3].freeze
 
+      def initialize(current_user:)
+        super()
+
+        @current_user = current_user
+      end
+
       form do |f|
         f.fields_for(:profile, project_profile) do |builder|
-          ProfileFieldsForm.new(builder)
+          ProfileFieldsForm.new(builder, current_user: @current_user)
         end
       end
 
@@ -47,6 +53,12 @@ module Projects
       end
 
       class ProfileFieldsForm < ApplicationForm
+        def initialize(current_user:)
+          super()
+
+          @current_user = current_user
+        end
+
         form do |f|
           f.select_list(
             name: :type_id,
@@ -80,7 +92,8 @@ module Projects
           f.text_field(
             name: :doc_link,
             label: attribute_name(:doc_link),
-            input_width: :large
+            input_width: :large,
+            disabled: !@current_user.admin?
           )
         end
       end
