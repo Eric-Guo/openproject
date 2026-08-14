@@ -86,6 +86,35 @@ RSpec.describe Projects::UpdateService, "integration", type: :model do
       end
     end
 
+    context "when a non-admin updates project profile attributes" do
+      let!(:profile) do
+        project.create_profile!(
+          type_id: 3,
+          name: "Original project",
+          code: "",
+          doc_link: "https://example.com/original"
+        )
+      end
+      let(:attributes) do
+        {
+          profile_attributes: {
+            name: "Updated project",
+            doc_link: "https://example.com/forged"
+          }
+        }
+      end
+
+      current_user { user }
+
+      it "updates allowed attributes without changing the project document link" do
+        expect(service_result).to be_success
+
+        profile.reload
+        expect(profile.name).to eq("Updated project")
+        expect(profile.doc_link).to eq("https://example.com/original")
+      end
+    end
+
     context "if only a custom field is updated" do
       let(:attributes) do
         { custom_field.attribute_name => 8 }
