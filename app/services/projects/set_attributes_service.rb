@@ -151,16 +151,30 @@ module Projects
     end
 
     def set_profile_attributes(params)
-      unless model.present? && model.respond_to?(:profile) && params[:profile_attributes].present?
+      profile_attributes = params[:profile_attributes]
+      unless profile_attributes_applicable?(profile_attributes)
         params.delete(:profile_attributes)
         return
       end
 
+      remove_admin_only_profile_attributes(profile_attributes)
+      associate_profile(profile_attributes)
+    end
+
+    def profile_attributes_applicable?(profile_attributes)
+      model.present? && model.respond_to?(:profile) && profile_attributes.present?
+    end
+
+    def associate_profile(profile_attributes)
       if model.profile.present?
-        params[:profile_attributes][:id] = model.profile.id
+        profile_attributes[:id] = model.profile.id
       else
-        params[:profile_attributes][:project_id] = model.id
+        profile_attributes[:project_id] = model.id
       end
+    end
+
+    def remove_admin_only_profile_attributes(profile_attributes)
+      profile_attributes.delete(:doc_link) unless user.admin?
     end
   end
 end
