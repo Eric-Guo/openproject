@@ -107,8 +107,8 @@ packages:
     engines: {node: '>=10.0.0'}
     deprecated: this version has critical issues, please update to the latest version
 
-  '@zip.js/zip.js@2.8.51':
-    resolution: {integrity: sha512-xCEMRBwBh6JPMQKy5D/RE0Ra9NJvrvjcCHNXo+NzMYCdZy3R0oAX9zJKRb1c393HNMbLYfoD2MRSPgB8L6Jskw==}
+  '@zip.js/zip.js@2.8.52':
+    resolution: {integrity: sha512-ZVXpmXRROrjz/0Glm9homDpSUAiavgpdnR+0tGlTtvtIsqs/d7f7qqbkOxrRKfUaNML68YXb4reIA3vZjul3uQ==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   ajv@6.15.0:
@@ -681,7 +681,7 @@ snapshots:
       '@loaders.gl/obj': 3.4.15
       '@loaders.gl/ply': 3.4.15
       '@loaders.gl/polyfills': 3.4.15
-      '@zip.js/zip.js': 2.8.51
+      '@zip.js/zip.js': 2.8.52
       earcut: 2.2.4
       fs: 0.0.1-security
       jszip: 3.10.1
@@ -698,7 +698,7 @@ snapshots:
 
   '@xmldom/xmldom@0.7.13': {}
 
-  '@zip.js/zip.js@2.8.51': {}
+  '@zip.js/zip.js@2.8.52': {}
 
   ajv@6.15.0:
     dependencies:

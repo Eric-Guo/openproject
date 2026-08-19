@@ -239,7 +239,7 @@ gem "yabeda-rails"
 
 # opentelemetry
 gem "opentelemetry-exporter-otlp", "~> 0.34.0", require: false
-gem "opentelemetry-instrumentation-all", "~> 0.94.0", require: false
+gem "opentelemetry-instrumentation-all", "~> 0.96.0", require: false
 gem "opentelemetry-sdk", "~> 1.12", require: false
 
 gem "view_component", "~> 4.12.0"
@@ -354,7 +354,7 @@ group :development do
   gem "ruby-lsp", require: false
   gem "ruby-lsp-rails", require: false
 
-  gem "tidewave", "~> 0.8.0"
+  gem "tidewave", "~> 0.9.0"
 end
 
 group :development, :test do
@@ -457,8 +457,8 @@ end
 
 # Set cooldown 0 for our own gems
 source "https://rubygems.org", cooldown: 0 do
-  gem "openproject-octicons", "~>19.36.0"
-  gem "openproject-octicons_helper", "~>19.36.0"
+  gem "openproject-octicons", "~>19.37.0"
+  gem "openproject-octicons_helper", "~>19.37.0"
   # bundle config local.openproject-primer_view_components /Users/guochunzhong/git/sso/primer_view_components/
   gem "openproject-primer_view_components", git: "https://git.thape.com.cn/rails/primer_view_components.git", branch: :thape
 end
