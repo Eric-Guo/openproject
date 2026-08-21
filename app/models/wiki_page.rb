@@ -134,7 +134,7 @@ class WikiPage < ApplicationRecord
       # Remove redirects for the new title
       wiki.redirects.where(title: slug).find_each(&:destroy)
       # Create a redirect to the new title
-      wiki.redirects << WikiRedirect.new(title: previous_slug, redirects_to: slug) unless redirect_existing_links == '0'
+      wiki.redirects << WikiRedirect.new(title: previous_slug, redirects_to: slug) unless redirect_existing_links == "0"
 
       # Change title of dependent wiki menu item
       dependent_item = MenuItems::WikiMenuItem.find_by(navigatable_id: wiki.id, name: previous_slug)
