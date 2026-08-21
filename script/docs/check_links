@@ -143,7 +143,7 @@ class DocsChecker
       { path: "#{@root_path}/docs/api/v3/spec.json", anchors: [], links: [] },
       { path: "#{@root_path}/docs/api/v3/spec.yml", anchors: [], links: [] },
       { path: "#{@root_path}/docs/installation-and-operations/installation/docker-compose", anchors: [], links: [] },
-      { path: "#{@root_path}/docs/installation-and-operations/installation/helm-chart", anchors: ['secrets'], links: [] },
+      { path: "#{@root_path}/docs/installation-and-operations/installation/helm-chart", anchors: ["secrets"], links: [] },
       { path: "#{@root_path}/docs/development/security", anchors: [], links: [] },
       { path: "#{@root_path}/docs/development/translate-openproject/fair-language", anchors: [], links: [] }
     )
