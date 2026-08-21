@@ -99,7 +99,7 @@ module API
         property :profile,
                   writable: true,
                   getter: ->(*) {
-                    next unless project.module_enabled?('th_members') && profile.present?
+                    next unless project.module_enabled?("th_members") && profile.present?
                     ::API::Decorators::MembershipProfile.new(profile)
                   },
                   setter: ->(fragment:, represented:, **args) {
