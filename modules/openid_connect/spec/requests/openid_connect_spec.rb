@@ -179,7 +179,7 @@ RSpec.describe "OpenID Connect", :skip_2fa_stage, # Prevent redirects to 2FA sta
         redirect_from_provider("keycloak")
 
         expect(response).to have_http_status :found
-        expect(response.location).to eq "http://#{Setting.host_name}/"
+        expect(response.location).to eq my_page_url
       end
 
       context "when synchronizing groups, but the groups-claim is empty" do

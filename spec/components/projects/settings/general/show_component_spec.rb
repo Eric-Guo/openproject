@@ -120,7 +120,8 @@ RSpec.describe Projects::Settings::General::ShowComponent, type: :component do
 
     it "renders a Change identifier button" do
       render_component
-      expect(page.find(:section, I18n.t(:label_identifier))).to have_link I18n.t("projects.settings.change_identifier")
+      expect(page.find(:section, I18n.t("projects.settings.header_identifier")))
+        .to have_link I18n.t("projects.settings.change_identifier")
     end
   end
 

@@ -33,14 +33,7 @@ RSpec.describe "MCP endpoint" do
       expect(last_response).to have_http_status(:method_not_allowed)
       expect(last_response.media_type).to eq("application/json")
       expect(last_response.body).to be_json_eql(
-        {
-          jsonrpc: "2.0",
-          error: {
-            code: API::Mcp::ErrorRepresenter::INVALID_REQUEST,
-            message: "405 Not Allowed",
-            data: nil
-          }
-        }.to_json
+        { error: "405 Not Allowed" }.to_json
       )
     end
   end

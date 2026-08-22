@@ -34,7 +34,7 @@ module Storages
       module EdocDds
         class Base
           include TaggedLogging
-          include Dry::Monads::Result(Results::Error)
+          include Dry::Monads::Result(SimpleError)
 
           def self.call(storage:, auth_strategy:, input_data:)
             new(storage).call(auth_strategy:, input_data:)
@@ -91,7 +91,7 @@ module Storages
           end
 
           def wrap_client_error(error)
-            Failure(Results::Error.new(source: self.class, code: error.code, payload: error.payload || error))
+            Failure(SimpleError.new(source: self.class, code: error.code, payload: error.payload || error))
           end
 
           def unwrap_result(result)

@@ -78,7 +78,7 @@ RSpec.describe Storages::FileLinks::DeleteOriginService, type: :model do
   it "keeps the file link when the origin file could not be deleted" do
     allow(delete_file_command)
       .to receive(:call)
-      .and_return(Dry::Monads::Failure(Storages::Adapters::Results::Error.new(source: self.class, code: :error)))
+      .and_return(Dry::Monads::Failure(SimpleError.new(source: self.class, code: :error)))
 
     result = described_class.new(model: file_link, user:, contract_class: Storages::FileLinks::DeleteContract).call
 

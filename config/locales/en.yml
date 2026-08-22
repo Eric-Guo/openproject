@@ -348,6 +348,7 @@ en:
         activity: "Activity"
         hours: "Hours"
         ongoing: "Ongoing"
+        reject_re_keyined_at: "Re-keyed at after rejection"
         spent_on: "Date"
         type: "Type"
       token/ical:

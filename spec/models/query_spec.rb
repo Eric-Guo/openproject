@@ -233,10 +233,7 @@ RSpec.describe Query,
         context "when the '#{timestamp_date_keyword}' value is provided" do
           let(:timestamps) { ["#{timestamp_date_keyword}@12:00+00:00"] }
 
-          it "is invalid" do
-            expect(subject).not_to be_valid
-            expect(subject.errors.symbols_for(:timestamps)).to eq [:forbidden]
-          end
+          it { is_expected.to be_valid }
         end
       end
 
@@ -247,28 +244,19 @@ RSpec.describe Query,
           allow(Day).to receive(:last_working) { Day.new(date: 7.days.ago) }
         end
 
-        it "is invalid" do
-          expect(subject).not_to be_valid
-          expect(subject.errors.symbols_for(:timestamps)).to eq [:forbidden]
-        end
+        it { is_expected.to be_valid }
       end
 
       context "when a duration value older than yesterday is provided" do
         let(:timestamps) { ["P-2D"] }
 
-        it "is invalid" do
-          expect(subject).not_to be_valid
-          expect(subject.errors.symbols_for(:timestamps)).to eq [:forbidden]
-        end
+        it { is_expected.to be_valid }
       end
 
       context "when an iso8601 datetime value older than yesterday is provided" do
         let(:timestamps) { [2.days.ago.end_of_day.iso8601] }
 
-        it "is invalid" do
-          expect(subject).not_to be_valid
-          expect(subject.errors.symbols_for(:timestamps)).to eq [:forbidden]
-        end
+        it { is_expected.to be_valid }
       end
     end
   end
@@ -810,9 +798,9 @@ RSpec.describe Query,
       end
 
       context "without EE", with_ee: false do
-        it "removes the forbidden values" do
+        it "allows all valid values" do
           expect(query.timestamps)
-            .to match_array %w{oneDayAgo@12:00+00:00 PT0S}
+            .to match_array timestamps
         end
       end
 

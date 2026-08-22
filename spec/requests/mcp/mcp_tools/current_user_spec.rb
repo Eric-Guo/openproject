@@ -102,9 +102,10 @@ RSpec.describe McpTools::CurrentUser do
   end
 
   context "when the mcp_server enterprise feature is disabled" do
-    it "responds in a 404" do
+    it "still responds with the current user" do
       mcp_request
-      expect(last_response).to have_http_status(404)
+      expect(last_response).to have_http_status(:ok)
+      expect(parsed_results.dig("structuredContent", "id")).to eq(user.id)
     end
   end
 end

@@ -92,9 +92,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:active, "=", ["t"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -139,9 +139,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:active, "=", ["t"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -170,9 +170,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:member_of, "=", ["t"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -201,9 +201,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:active, "=", ["f"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -232,9 +232,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:project_status_code, "=", [Project.status_codes[:on_track].to_s]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -263,9 +263,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:project_status_code, "=", [Project.status_codes[:off_track].to_s]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -325,9 +325,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:project_status_code, "=", [Project.status_codes[:at_risk].to_s]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -356,7 +356,7 @@ RSpec.describe Queries::Factory,
           .to eq([[:project_status_code, "=", [Project.status_codes[:on_track].to_s]]])
       end
 
-      it "is ordered by lft asc" do
+      it "keeps the persisted order" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
           .to eq([%i[id asc]])
       end
@@ -458,9 +458,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:active, "=", ["t"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -552,7 +552,7 @@ RSpec.describe Queries::Factory,
 
       it "has the orders of the default 'active' query applied" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -599,7 +599,7 @@ RSpec.describe Queries::Factory,
 
       it "has the orders of the default 'active' query applied" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
@@ -689,7 +689,7 @@ RSpec.describe Queries::Factory,
 
       it "has the orders of the default 'active' query applied" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the selects overwritten" do
@@ -721,9 +721,9 @@ RSpec.describe Queries::Factory,
           .to eq([[:active, "=", ["t"]]])
       end
 
-      it "is ordered by lft asc" do
+      it "is ordered by name desc" do
         expect(find.orders.map { |order| [order.attribute, order.direction] })
-          .to eq([%i[lft asc]])
+          .to eq([%i[name desc]])
       end
 
       it "has the enabled_project_columns columns as selects" do
