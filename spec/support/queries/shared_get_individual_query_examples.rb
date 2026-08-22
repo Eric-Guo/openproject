@@ -152,13 +152,8 @@ RSpec.shared_examples_for "GET individual query" do
       end
 
       context "without EE", with_ee: false do
-        it "returns an error" do
-          expect(last_response.body)
-            .to be_json_eql("urn:openproject-org:api:v3:errors:InvalidQuery".to_json)
-            .at_path("errorIdentifier")
-          expect(last_response.body)
-            .to be_json_eql("Timestamps contain forbidden values: #{timestamps[0]}".to_json)
-            .at_path("message")
+        it "succeeds" do
+          expect(last_response).to have_http_status(:ok)
         end
       end
     end

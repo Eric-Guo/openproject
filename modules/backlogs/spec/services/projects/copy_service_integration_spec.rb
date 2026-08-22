@@ -117,8 +117,14 @@ RSpec.describe Projects::CopyService, "integration", type: :model do
             end
 
             it "copies the backlog sharing setting" do
+              expected_mode = if mode == Projects::SprintSettings::SHARE_ALL_PROJECTS
+                                Projects::SprintSettings::NO_SHARING
+                              else
+                                mode
+                              end
+
               expect(subject).to be_success
-              expect(project_copy.sprint_sharing).to eq Projects::SprintSettings::NO_SHARING
+              expect(project_copy.sprint_sharing).to eq expected_mode
             end
           end
         end

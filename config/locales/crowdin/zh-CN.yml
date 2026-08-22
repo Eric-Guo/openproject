@@ -337,6 +337,7 @@ zh-CN:
         activity: 活动
         hours: 小时
         ongoing: 正在进行的
+        reject_re_keyined_at: 驳回后重填时间
         spent_on: 日期
         type: 类型
       token/ical:

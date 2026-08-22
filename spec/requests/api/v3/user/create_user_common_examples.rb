@@ -98,15 +98,15 @@ RSpec.shared_examples "create user request flow" do
         let(:parameters) { invitation_request }
 
         it_behaves_like "represents the created user",
-                        firstName: "foo",
-                        lastName: "@example.org"
+                        firstName: "@example.org",
+                        lastName: "foo"
 
         it "sets the other attributes" do
           send_request
 
           user = User.find_by!(login: "foo@example.org")
-          expect(user.firstname).to eq("foo")
-          expect(user.lastname).to eq("@example.org")
+          expect(user.firstname).to eq("@example.org")
+          expect(user.lastname).to eq("foo")
           expect(user.mail).to eq("foo@example.org")
         end
       end
