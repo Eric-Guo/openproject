@@ -25,8 +25,8 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import type { ActionMenuElement } from '@openproject/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import type { ActionMenuElement } from '@mixtint/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 
 export type ActionMenuAlign = 'start'|'end';
 
