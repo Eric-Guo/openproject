@@ -72,7 +72,7 @@ module API
                  required: false
 
           schema :from_th_keyin,
-                 type: 'Boolean',
+                 type: "Boolean",
                  required: false
 
           schema :comment,
