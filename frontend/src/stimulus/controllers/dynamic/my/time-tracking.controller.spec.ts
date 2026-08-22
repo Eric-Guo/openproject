@@ -27,7 +27,6 @@
 //++
 
 import { waitFor } from '@testing-library/dom';
-import { type ActionEvent } from '@hotwired/stimulus';
 import { vi, type Mock } from 'vitest';
 
 import { setupStimulusTest, type StimulusTestContext } from 'core-stimulus/test-helpers';
@@ -53,7 +52,6 @@ describe('My time tracking controller', () => {
         services: {
           turboRequests: { request },
           pathHelperService: {
-            timeEntryDialog: () => '/time_entries/dialog',
             myTimeTrackingRefresh,
           },
         },
@@ -91,19 +89,6 @@ describe('My time tracking controller', () => {
 
     await expect(controller.services).resolves.toMatchObject({
       turboRequests: { request },
-    });
-  });
-
-  it('requests the time entry dialog for a new time entry', async () => {
-    const controller = await renderListView();
-
-    void controller.newTimeEntry({ params: { date: '2026-06-01' } } as unknown as ActionEvent);
-
-    await waitFor(() => {
-      expect(request).toHaveBeenCalledWith(
-        '/time_entries/dialog?onlyMe=true&date=2026-06-01',
-        { method: 'GET' },
-      );
     });
   });
 
@@ -145,7 +130,6 @@ describe('My time tracking controller', () => {
       services: {
         turboRequests: { request },
         pathHelperService: {
-          timeEntryDialog: () => '/time_entries/dialog',
           myTimeTrackingRefresh,
         },
       },

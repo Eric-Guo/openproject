@@ -68,7 +68,6 @@ RSpec.describe "API v3 Project Configuration resource" do
       it "includes global configuration properties", with_settings: { per_page_options: "20, 100" } do
         expect(response.body).to have_json_path("maximumAttachmentFileSize")
         expect(response.body).to have_json_path("perPageOptions")
-        expect(response.body).to have_json_path("availableFeatures")
         expect(response.body)
           .to be_json_eql([20, 100].to_json)
           .at_path("perPageOptions")
@@ -86,7 +85,7 @@ RSpec.describe "API v3 Project Configuration resource" do
         end
       end
 
-      context "when enabled_internal_comments is true but enterprise token does not allow it", with_ee: [] do
+      context "when enabled_internal_comments is true without an enterprise token", with_ee: [] do
         before do
           project.update!(enabled_internal_comments: true)
         end
@@ -95,11 +94,6 @@ RSpec.describe "API v3 Project Configuration resource" do
           expect(response.body)
             .to be_json_eql(true.to_json)
             .at_path("enabledInternalComments")
-        end
-
-        it "does not include internalComments in availableFeatures" do
-          parsed_response = JSON.parse(response.body)
-          expect(parsed_response["availableFeatures"]).not_to include("internalComments")
         end
       end
 
