@@ -44,7 +44,7 @@ get:
                   type: Duration
                   writable: true
                 approvedHours:
-                  hasDefault: false                  
+                  hasDefault: false
                   name: Approved Hours
                   options: {}
                   required: false
