@@ -57,7 +57,7 @@ RSpec.describe Backlogs::Projects::BacklogSettingsContract, type: :model, with_e
       end
     end
 
-    context "when the `sprint_sharing` is not part of the current EE token", with_ee: [] do
+    context "when `sprint_sharing` is not part of the current EE token", with_ee: [] do
       context "when sprint sharing is set to 'no_sharing'" do
         before { project.sprint_sharing = Project::NO_SHARING }
 
@@ -67,22 +67,19 @@ RSpec.describe Backlogs::Projects::BacklogSettingsContract, type: :model, with_e
       context "when sprint sharing is set to 'share_all_projects'" do
         before { project.sprint_sharing = Project::SHARE_ALL_PROJECTS }
 
-        it_behaves_like "contract is invalid",
-                        sprint_sharing: { error: :enterprise_plan_required, plan_name: "basic enterprise plan" }
+        it_behaves_like "contract is valid"
       end
 
       context "when sprint sharing is set to 'share_subprojects'" do
         before { project.sprint_sharing = Project::SHARE_SUBPROJECTS }
 
-        it_behaves_like "contract is invalid",
-                        sprint_sharing: { error: :enterprise_plan_required, plan_name: "basic enterprise plan" }
+        it_behaves_like "contract is valid"
       end
 
       context "when sprint sharing is set to 'receive_shared'" do
         before { project.sprint_sharing = Project::RECEIVE_SHARED }
 
-        it_behaves_like "contract is invalid",
-                        sprint_sharing: { error: :enterprise_plan_required, plan_name: "basic enterprise plan" }
+        it_behaves_like "contract is valid"
       end
 
       context "when sprint sharing remains on 'share_all_projects'" do
@@ -159,8 +156,7 @@ RSpec.describe Backlogs::Projects::BacklogSettingsContract, type: :model, with_e
         context "when enabling the setting" do
           before { project.allow_multiple_active_sprints = true }
 
-          it_behaves_like "contract is invalid",
-                          allow_multiple_active_sprints: { error: :enterprise_plan_required, plan_name: "basic enterprise plan" }
+          it_behaves_like "contract is valid"
         end
 
         context "when disabling the setting" do

@@ -109,6 +109,9 @@ Rails.application.configure do
   config.assets.debug = false
 
   # Raises error for missing translations.
+  # Keep the test suite's static translation expectations deterministic even
+  # when the application default locale is customized for deployment.
+  config.i18n.default_locale = :en
   config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
