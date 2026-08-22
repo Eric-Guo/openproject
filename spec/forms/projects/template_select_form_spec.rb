@@ -172,8 +172,8 @@ RSpec.describe Projects::TemplateSelectForm, type: :forms do
         create(:template_project, name: "Alpha", workspace_type: "project", members: { user => copy_project_role })
       end
 
-      it "defaults to the first created template" do
-        expect(rendered_form).to have_checked_field "Zulu", type: :radio
+      it "keeps the earliest available template selected" do
+        expect(rendered_form).to have_checked_field "Agile", type: :radio
       end
     end
   end
