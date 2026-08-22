@@ -161,7 +161,7 @@ RSpec.describe API::V3::TimeEntries::Schemas::TimeEntrySchemaRepresenter do
       it_behaves_like "has basic schema properties" do
         let(:type) { "Duration" }
         let(:name) { TimeEntry.human_attribute_name("hours") }
-        let(:required) { true }
+        let(:required) { false }
         let(:writable) { true }
       end
     end
