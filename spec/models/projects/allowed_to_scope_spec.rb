@@ -299,8 +299,8 @@ RSpec.describe Project, "allowed to" do
       end
 
       context "with the anonymous role having the permission" do
-        it "is empty" do
-          expect(described_class.allowed_to(anonymous, action)).to be_empty
+        it "includes the project" do
+          expect(described_class.allowed_to(anonymous, action)).to contain_exactly(project)
         end
       end
 
@@ -339,8 +339,8 @@ RSpec.describe Project, "allowed to" do
       end
 
       context "with the permission being public" do
-        it "is empty" do
-          expect(described_class.allowed_to(anonymous, public_action)).to be_empty
+        it "includes the project" do
+          expect(described_class.allowed_to(anonymous, public_action)).to contain_exactly(project)
         end
       end
 
@@ -361,8 +361,8 @@ RSpec.describe Project, "allowed to" do
           project.enabled_modules = []
         end
 
-        it "is empty" do
-          expect(described_class.allowed_to(anonymous, public_non_module_action)).to be_empty
+        it "includes the project" do
+          expect(described_class.allowed_to(anonymous, public_non_module_action)).to contain_exactly(project)
         end
       end
     end
