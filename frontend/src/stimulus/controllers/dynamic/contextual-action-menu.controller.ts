@@ -27,7 +27,7 @@
 //++
 
 import { Controller } from '@hotwired/stimulus';
-import type { ActionMenuElement } from '@openproject/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
+import type { ActionMenuElement } from '@mixtint/primer-view-components/app/components/primer/alpha/action_menu/action_menu_element';
 import { ContextualActionMenu } from 'core-common/contextual-action-menu';
 // The strict variant: a drag-gating one treats far more of the card as
 // interactive and would hand most right-clicks back to the browser.
