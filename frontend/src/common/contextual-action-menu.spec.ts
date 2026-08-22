@@ -33,10 +33,10 @@ import type { MockInstance } from 'vitest';
 // teeth: `anchorOffset` reads its attribute as an enum (only `spacious`/`8`
 // mean 8), so an arbitrary pixel offset can only reach `getAnchoredPosition` as
 // a property shadowing the prototype accessor.
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 // Side-effect import: the type-only import above is elided, and it is loading
 // the module that registers `<anchored-position>`.
-import '@openproject/primer-view-components/app/components/primer/anchored_position';
+import '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { CONTEXTUAL_ALIGN, CONTEXTUAL_SIDE, ContextualActionMenu } from './contextual-action-menu';
 
 // The real <action-menu> custom element is registered by the Primer bundle,
