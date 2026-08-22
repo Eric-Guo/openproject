@@ -735,7 +735,7 @@ Redmine::MenuManager.map :project_menu do |menu|
   menu.push :members,
             { controller: "/members", action: "index" },
             caption: :label_member_plural,
-            if: ->(project) { !project.module_enabled?('th_members_module') || User.current.allowed_globally?(:view_all_project_info) },
+            if: ->(project) { !project.module_enabled?("th_members_module") || User.current.allowed_globally?(:view_all_project_info) },
             before: :settings,
             icon: "people"
 
