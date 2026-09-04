@@ -62,7 +62,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/primer_view_components.git
-  revision: ce6023fd6cf1f8ba66262d97d8ea6cb6d15ae486
+  revision: 1d3e64352f4c0e792bebb629f84c27689df203ac
   branch: thape
   specs:
     openproject-primer_view_components (0.91.1)
@@ -82,7 +82,7 @@ GIT
 
 GIT
   remote: https://github.com/citizensadvice/capybara_accessible_selectors
-  revision: d518ee5271f60e18a555434160ae02b74e534046
+  revision: ee0453da9755e32752ddf1b20135dcb355a34708
   branch: main
   specs:
     capybara_accessible_selectors (0.15.0)
