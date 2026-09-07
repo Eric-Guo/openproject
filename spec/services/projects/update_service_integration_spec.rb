@@ -75,7 +75,7 @@ RSpec.describe Projects::UpdateService, "integration", type: :model do
 
       current_user { user }
 
-      it "creates the project profile" do
+      it "updates the default project profile" do
         expect(service_result).to be_success
 
         profile = project.reload.profile
@@ -88,12 +88,14 @@ RSpec.describe Projects::UpdateService, "integration", type: :model do
 
     context "when a non-admin updates project profile attributes" do
       let!(:profile) do
-        project.create_profile!(
-          type_id: 3,
-          name: "Original project",
-          code: "",
-          doc_link: "https://example.com/original"
-        )
+        project.profile.tap do |profile|
+          profile.update!(
+            type_id: 3,
+            name: "Original project",
+            code: "",
+            doc_link: "https://example.com/original"
+          )
+        end
       end
       let(:attributes) do
         {
