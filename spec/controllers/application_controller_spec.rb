@@ -255,7 +255,7 @@ RSpec.describe ApplicationController do
 
     before do
       User.execute_as(admin) do
-        ProjectProfile.create!(project:, type_id: 1, code: profile_code)
+        project.profile.update!(type_id: 1, code: profile_code)
       end
     end
 
