@@ -107,8 +107,8 @@ packages:
     engines: {node: '>=10.0.0'}
     deprecated: this version has critical issues, please update to the latest version
 
-  '@zip.js/zip.js@2.12.0':
-    resolution: {integrity: sha512-ceDzrSN6tYXLJa5KSWnptaKVJRFKMC+MROTlLYHj0WId2cNWhVt+5Y4dzEN1jXckRw3ZqtPlWBkwnLfHSgMQ5A==}
+  '@zip.js/zip.js@2.13.1':
+    resolution: {integrity: sha512-D+iRyi2/uBCXPDQBhz2Z+Emcj2Cd8K/FG0y0l8WFeZJAZiP46m7cCajsGW3ktSq1HWov3nogZxyQ3FBisxOQSQ==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=18.0.0'}
 
   ajv@6.15.0:
@@ -348,8 +348,8 @@ packages:
   jszip-sync@3.2.1-sync:
     resolution: {integrity: sha512-wkBtxyEw0i9Q/jAurjvXGtUzEt73whWxcjcv+Vc2fPNb1aN09vQjkWy2oDRmw7a2qRY9hKnIV0ydSeaOwgrkYw==}
 
-  jszip@3.10.1:
-    resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
+  jszip@3.10.2:
+    resolution: {integrity: sha512-3l+rb15IOWtUhU0H5MFqES/T6Kh7abYwjosBey/vD6hDt8zoEffkSC5Ws5SGtgVw3gBx2NEbhTeSW1+kWkpyTQ==}
 
   lie@3.3.0:
     resolution: {integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==}
@@ -681,10 +681,10 @@ snapshots:
       '@loaders.gl/obj': 3.4.15
       '@loaders.gl/ply': 3.4.15
       '@loaders.gl/polyfills': 3.4.15
-      '@zip.js/zip.js': 2.12.0
+      '@zip.js/zip.js': 2.13.1
       earcut: 2.2.4
       fs: 0.0.1-security
-      jszip: 3.10.1
+      jszip: 3.10.2
       jszip-sync: 3.2.1-sync
       path: 0.12.7
       request: 2.88.2
@@ -698,7 +698,7 @@ snapshots:
 
   '@xmldom/xmldom@0.7.13': {}
 
-  '@zip.js/zip.js@2.12.0': {}
+  '@zip.js/zip.js@2.13.1': {}
 
   ajv@6.15.0:
     dependencies:
@@ -933,7 +933,7 @@ snapshots:
       readable-stream: 2.3.8
       set-immediate-shim: 1.0.1
 
-  jszip@3.10.1:
+  jszip@3.10.2:
     dependencies:
       lie: 3.3.0
       pako: 1.0.11
