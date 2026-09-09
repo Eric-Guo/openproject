@@ -1,6 +1,6 @@
 GIT
   remote: https://git.thape.com.cn/rails/openproject-labour_tracking.git
-  revision: 9424da3e628b3453de8889243ad4b17ff0c12bef
+  revision: 4cc94be9f770abd8d8f7ac7a15658306aef9f10d
   branch: main
   specs:
     openproject-labour_tracking (0.0.2)
@@ -8,14 +8,14 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
-  revision: 69fd8d59d4c77bd813e7356f7686a49688d00946
+  revision: daf2cf5d5392b2b999ca8c95aba0e5c6daca28dc
   branch: main
   specs:
     openproject-th_meetings (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_notifications.git
-  revision: dfbcb9e1d859501292a054bb1772b0d850c31ec3
+  revision: 39c0ea92a5cffb6ee07b822a991635bdf8537651
   branch: main
   specs:
     openproject-th_notifications (1.0.0)
@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_plugin.git
-  revision: 13e44bab34305d06ab30216b35a9e10e89b47dfe
+  revision: b357520763d61177bd7dd866697bd3cf25ec37ba
   branch: th_plugins
   specs:
     openproject-th_plugin (7.1.0)
@@ -33,28 +33,28 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_projects.git
-  revision: 1019e1a2e2440a930ec5fd42c8327cfa95eb193d
+  revision: afc0cfc70bcc2ed8f3d0fcc9b08ae0c6bec1ae7f
   branch: main
   specs:
     openproject-th_projects (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_queries.git
-  revision: db420710793008b1c0f405f389f450da344b4e40
+  revision: 37596843d3f241689cf31e1b530c6b21714d5f2c
   branch: main
   specs:
     openproject-th_queries (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_user_auth.git
-  revision: 4b516682fca5373f4831b777191d280c5c6f0dfd
+  revision: 132e57e84960193f90d0864d0120a29f3c74fd97
   branch: main
   specs:
     openproject-th_user_auth (1.0.0)
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
-  revision: cfef2d981a44f355c1c2119c649b7ebce9e6d262
+  revision: 6a2d3a08f56e5cdb2fff3331a03b2feee58642f6
   branch: main
   specs:
     openproject-th_work_packages (1.0.0)
