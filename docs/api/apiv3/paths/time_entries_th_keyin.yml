@@ -20,6 +20,9 @@ post:
     Project entries require the authenticated user to have permission to log own time on each submitted work package.
     Project time entries created by this endpoint are stored with `time_entries.new_split_keyin` set to `true`.
     Non-project entries support writable TH activities only; `take_vacation` is read-only.
+    The owner's combined project and non-project hours for the date, including saved entries
+    that are not replaced by this request and read-only vacation hours, must not exceed 24.
+    Exactly 24 hours is allowed. A submission exceeding the limit returns 422 and saves no changes.
   requestBody:
     required: true
     content:
