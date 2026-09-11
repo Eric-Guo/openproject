@@ -238,8 +238,8 @@ gem "yabeda-puma-plugin"
 gem "yabeda-rails"
 
 # opentelemetry
-gem "opentelemetry-exporter-otlp", "~> 0.34.0", require: false
-gem "opentelemetry-instrumentation-all", "~> 0.94.0", require: false
+gem "opentelemetry-exporter-otlp", "~> 0.36.0", require: false
+gem "opentelemetry-instrumentation-all", "~> 0.96.0", require: false
 gem "opentelemetry-sdk", "~> 1.12", require: false
 
 gem "view_component", "~> 4.12.0"
