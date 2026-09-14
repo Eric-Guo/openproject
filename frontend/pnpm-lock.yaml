@@ -150,8 +150,8 @@ importers:
         specifier: ^6.0.22
         version: 6.0.22(react@19.3.0)
       '@mixtint/primer-view-components':
-        specifier: ^0.90.1
-        version: 0.90.1(@primer/primitives@11.10.0)
+        specifier: ^0.91.2
+        version: 0.91.2(@primer/primitives@11.10.0)
       '@ng-select/ng-option-highlight':
         specifier: ^23.6.0
         version: 23.6.0(@angular/common@22.1.6(@angular/core@22.1.6(@angular/compiler@22.1.6)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@22.1.6(@angular/compiler@22.1.6)(rxjs@7.8.2)(zone.js@0.15.1))
@@ -180,8 +180,8 @@ importers:
         specifier: ^11.10.0
         version: 11.10.0
       '@primer/view-components':
-        specifier: npm:@mixtint/primer-view-components@^0.91.1
-        version: '@mixtint/primer-view-components@0.91.1(@primer/primitives@11.10.0)'
+        specifier: npm:@mixtint/primer-view-components@^0.91.2
+        version: '@mixtint/primer-view-components@0.91.2(@primer/primitives@11.10.0)'
       '@rails/request.js':
         specifier: ^0.0.13
         version: 0.0.13
@@ -1891,13 +1891,8 @@ packages:
   '@mdx-js/util@1.6.22':
     resolution: {integrity: sha512-H1rQc1ZOHANWBvPcW+JpGwr+juXSxM8Q8YCkm3GhZd8REu1fHR3z99CErO1p9pkcfcxZnMdIZdIsXkOHY0NilA==}
 
-  '@mixtint/primer-view-components@0.90.1':
-    resolution: {integrity: sha512-kBDGBhRVtoxszxUB2MEbwyBCWHz2OEO6O0YdyPsUkXEmjNBLNHXchAa1O34CTa6I9ENbPf8q+MgtEUXBItns6Q==}
-    peerDependencies:
-      '@primer/primitives': 10.x || 11.x
-
-  '@mixtint/primer-view-components@0.91.1':
-    resolution: {integrity: sha512-StuRH0R+545oInNpE/y4Bgkbq1CAdHeTKNaTaUSWKo7Y0hu0qUVa1LLnX1CMjwHpK8ZMhNSsdlHs23UlyR/pyA==}
+  '@mixtint/primer-view-components@0.91.2':
+    resolution: {integrity: sha512-TAF+2o6kenf4oYGOoYYvCkTJSFtoVDiqxCHPDwqo4TsEGp5oeE/ed3LK1gljWJRAUCHIcCcbgsvRcliE1n0FjA==}
     peerDependencies:
       '@primer/primitives': 10.x || 11.x
 
@@ -6106,6 +6101,11 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
+  rimraf@2.7.1:
+    resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
+    hasBin: true
+
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     deprecated: Rimraf versions prior to v4 are no longer supported
@@ -8706,24 +8706,7 @@ snapshots:
 
   '@mdx-js/util@1.6.22': {}
 
-  '@mixtint/primer-view-components@0.90.1(@primer/primitives@11.10.0)':
-    dependencies:
-      '@github/auto-check-element': 6.0.0
-      '@github/auto-complete-element': 3.8.0
-      '@github/catalyst': 1.8.1
-      '@github/clipboard-copy-element': 1.3.2
-      '@github/details-menu-element': 1.0.13
-      '@github/image-crop-element': 5.0.0
-      '@github/include-fragment-element': 6.4.1
-      '@github/relative-time-element': 5.3.1
-      '@github/remote-input-element': 0.4.0
-      '@github/tab-container-element': 3.4.0
-      '@oddbird/popover-polyfill': 0.5.2
-      '@primer/behaviors': 1.10.3
-      '@primer/live-region-element': 0.8.0
-      '@primer/primitives': 11.10.0
-
-  '@mixtint/primer-view-components@0.91.1(@primer/primitives@11.10.0)':
+  '@mixtint/primer-view-components@0.91.2(@primer/primitives@11.10.0)':
     dependencies:
       '@github/auto-check-element': 6.0.0
       '@github/auto-complete-element': 3.8.0
@@ -11342,7 +11325,7 @@ snapshots:
       graceful-fs: 4.2.11
       inherits: 2.0.4
       mkdirp: 0.5.6
-      rimraf: 2.6.3
+      rimraf: 2.7.1
 
   function-bind@1.1.2: {}
 
@@ -13209,6 +13192,10 @@ snapshots:
     optional: true
 
   rimraf@2.6.3:
+    dependencies:
+      glob: 7.2.3
+
+  rimraf@2.7.1:
     dependencies:
       glob: 7.2.3
 
