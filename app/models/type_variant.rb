@@ -123,6 +123,7 @@ class TypeVariant < ApplicationRecord
   }
 
   delegate :name, :color, :color_id, :is_milestone, :is_milestone?, :is_in_roadmap, :is_in_roadmap?,
+           :is_admin_only, :is_admin_only?,
            to: :type
 
   def self.statuses(variants, role: nil, tab: nil) # rubocop:disable Metrics/AbcSize
