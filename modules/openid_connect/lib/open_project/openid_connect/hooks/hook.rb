@@ -31,6 +31,19 @@
 module OpenProject::OpenIDConnect
   module Hooks
     class Hook < OpenProject::Hook::Listener
+      def application_controller_before_action(context)
+        authorization_origins = OpenProject::OpenIDConnect.providers.map do |provider|
+          client_options = ::OmniAuth::Strategies::OpenIDConnect.default_options[:client_options].merge(provider.client_options)
+          client = ::OpenIDConnect::Client.new(client_options)
+
+          Addressable::URI.parse(client.authorization_uri).origin
+        end
+
+        if authorization_origins.any?
+          context.fetch(:controller).append_content_security_policy_directives(form_action: authorization_origins)
+        end
+      end
+
       ##
       # Once the user has signed in and has an oidc session
       # we want to map that to the internal session
