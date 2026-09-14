@@ -114,6 +114,14 @@ $arrow-left-width: 36px
     &, &:visited, &:hover, &:focus, &:active
       text-decoration: none
 
+  .op-sidemenu-filterable-tree .TreeViewRootUlStyles
+    --control-fgColor-rest: var(--main-menu-font-color)
+    --fgColor-default: var(--main-menu-font-color)
+    --fgColor-muted: var(--main-menu-font-color)
+
+    .TreeViewItemContent[aria-current="true"]
+      --control-fgColor-rest: var(--main-menu-selected-font-color)
+
   .toggler
     width: $arrow-left-width
     height: var(--main-menu-item-height)
