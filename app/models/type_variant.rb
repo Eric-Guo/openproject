@@ -112,6 +112,7 @@ class TypeVariant < ApplicationRecord
   }
 
   delegate :name, :color, :color_id, :is_milestone, :is_milestone?, :is_in_roadmap, :is_in_roadmap?,
+           :is_admin_only, :is_admin_only?,
            to: :type
 
   # The base configuration every type has, as opposed to one of its named variants.

@@ -50,4 +50,10 @@ RSpec.describe WorkPackageTypes::DetailsComponent, type: :component do
 
     expect(page).to have_no_field(checkbox_label)
   end
+
+  it "shows the type's admin-only setting as inherited on a variant" do
+    bug.update!(is_admin_only: true)
+    render_inline(described_class.new(create(:type_variant, type: bug, variant_name: "Hardware")))
+    expect(page).to have_field("Only admins can change", checked: true, disabled: true)
+  end
 end
