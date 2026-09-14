@@ -27,7 +27,7 @@
 //++
 
 import { Controller } from '@hotwired/stimulus';
-import type { CollapsibleElement } from '@openproject/primer-view-components/app/components/primer/open_project/collapsible';
+import type { CollapsibleElement } from '@mixtint/primer-view-components/app/components/primer/open_project/collapsible';
 import { useMutation } from 'stimulus-use';
 
 const COLLAPSED_ATTRIBUTE = 'data-collapsed';
