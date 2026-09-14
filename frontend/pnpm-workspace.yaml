@@ -6,5 +6,7 @@ allowBuilds:
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+  th-analytics: true
+  th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79: true
 
 nodeLinker: hoisted
