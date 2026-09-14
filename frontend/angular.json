@@ -111,6 +111,9 @@
               "extractLicenses": false,
               "sourceMap": true,
               "define": { "process.env.NODE_ENV": "'development'" }
+            },
+            "test": {
+              "polyfills": []
             }
           },
           "defaultConfiguration": "production"
@@ -150,10 +153,10 @@
           "builder": "@angular-builders/custom-esbuild:unit-test",
           "options": {
             "tsConfig": "tsconfig.spec.json",
-            "buildTarget": "OpenProject:build",
+            "buildTarget": "OpenProject:build:development,test",
             "runnerConfig": true,
             "providersFile": "src/test-providers.ts",
-            "setupFiles": ["src/test-browser-polyfills.ts", "src/test-setup.ts"],
+            "setupFiles": ["src/test-browser-polyfills.ts", "src/polyfills.ts", "src/test-setup.ts"],
             "browsers": ["chromium"],
             "reporters": ["dot"]
           }
