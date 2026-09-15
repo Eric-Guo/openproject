@@ -1,0 +1,29 @@
+# User based systemd unit file
+# /home/open_project/.config/systemd/user/open_project_good_job_staging.service
+[Unit]
+Description=GoodJob background job
+After=network.target
+
+[Service]
+Type=simple
+
+WorkingDirectory=/var/www/open_project/current
+ExecStart=/home/open_project/.rbenv/bin/rbenv exec bundle exec good_job start
+EnvironmentFile=/etc/environment
+EnvironmentFile=/var/www/open_project/shared/.env
+Environment='RAILS_ENV=production'
+
+ExecReload=/bin/kill -s USR2 $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+# if we crash, restart
+RestartSec=5
+Restart=on-failure
+
+StandardOutput=append:/var/www/open_project/shared/log/good_job_staging.log
+StandardError=append:/var/www/open_project/shared/log/good_job_staging_error.log
+
+SyslogIdentifier=open_project_good_job_staging
+
+[Install]
+WantedBy=default.target
