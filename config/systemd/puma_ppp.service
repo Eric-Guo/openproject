@@ -1,0 +1,35 @@
+# This file tells systemd how to run Puma as a 24/7 long-running daemon.
+#
+# Customize this file based on your bundler location, app directory, etc.
+# Customize and copy this into /etc/systemd/system (Rocky Linux) or /lib/systemd/system (Ubuntu).
+# Then run:
+#   - systemctl enable puma_ppm
+#   - systemctl {start,stop,restart} puma_ppm
+#
+#
+# Use `journalctl -u puma_ppm -rn 100` to view the last 100 lines of log output.
+#
+[Unit]
+Description=Puma HTTP Server for open_project (staging)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WatchdogSec=30
+User=open_project
+EnvironmentFile=/etc/environment
+EnvironmentFile=/var/www/open_project/shared/.env
+WorkingDirectory=/var/www/open_project/current
+ExecStart=/home/open_project/.rbenv/bin/rbenv exec bundle exec puma -e production
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+
+# if we crash, restart
+RestartSec=30
+Restart=on-failure
+
+StandardOutput=append:/var/www/open_project/shared/log/puma_std_out.log
+StandardError=append:/var/www/open_project/shared/log/puma_std_error.log
+
+SyslogIdentifier=puma_ppp
+[Install]
+WantedBy=multi-user.target
