@@ -1,0 +1,23 @@
+[Unit]
+Description=Hocuspocus collaborative editing server for OpenProject PPP
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=open_project
+WorkingDirectory=/var/www/open_project/current/extensions/op-blocknote-hocuspocus
+Environment=NODE_ENV=production
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+EnvironmentFile=/etc/environment
+EnvironmentFile=/var/www/open_project/shared/.env
+ExecStart=/bin/sh -c 'export SECRET="$${OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET:?Hocuspocus secret is required}"; exec /usr/bin/env node --import tsx src/index.ts'
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=60
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hocuspocus_ppp
+
+[Install]
+WantedBy=multi-user.target
