@@ -47,8 +47,8 @@ import { HalResourceNotificationService } from 'core-app/features/hal/services/h
 import { OpCalendarService } from 'core-app/features/calendar/op-calendar.service';
 import { ColorsService } from 'core-app/shared/components/colors/colors.service';
 import { HalResourceEditingService } from 'core-app/shared/components/fields/edit/services/hal-resource-editing.service';
-import '@openproject/primer-view-components/app/components/primer/anchored_position';
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import '@mixtint/primer-view-components/app/components/primer/anchored_position';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { TimeEntryCalendarComponent } from './te-calendar.component';
 
 describe('TimeEntryCalendarComponent', () => {

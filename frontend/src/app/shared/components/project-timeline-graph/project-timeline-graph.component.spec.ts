@@ -36,7 +36,7 @@ import { ProjectTimelineTooltipBuilder } from './project-timeline-tooltip.builde
 import type { TooltipView } from './project-timeline-tooltip.builder';
 import { render } from 'lit-html';
 import type { TemplateResult } from 'lit-html';
-import '@openproject/primer-view-components/app/components/primer/anchored_position';
+import '@mixtint/primer-view-components/app/components/primer/anchored_position';
 
 describe('ProjectTimelineGraphComponent', () => {
   const i18nStub = {
