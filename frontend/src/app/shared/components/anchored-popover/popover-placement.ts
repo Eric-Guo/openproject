@@ -27,7 +27,7 @@
 //++
 
 import { getAnchoredPosition } from '@primer/behaviors';
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { caretPlacement } from './caret-placement';
 import type { CaretPlacement } from './caret-placement';
 
