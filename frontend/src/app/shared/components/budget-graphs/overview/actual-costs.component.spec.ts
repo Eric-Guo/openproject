@@ -26,7 +26,7 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import '@openproject/primer-view-components/app/components/primer/anchored_position';
+import '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { within } from '@testing-library/dom';
