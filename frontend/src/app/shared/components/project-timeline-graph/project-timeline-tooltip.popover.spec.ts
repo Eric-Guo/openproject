@@ -26,7 +26,7 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import '@openproject/primer-view-components/app/components/primer/anchored_position';
+import '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { html } from 'lit-html';
 import type { Timeline } from 'vis-timeline/standalone';
 import { ProjectTimelineTooltipPopover } from './project-timeline-tooltip.popover';

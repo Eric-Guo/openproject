@@ -26,7 +26,7 @@
 // See COPYRIGHT and LICENSE files for more details.
 //++
 
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { render } from 'lit-html';
 import type { Timeline } from 'vis-timeline/standalone';
 import { placePopover } from 'core-app/shared/components/anchored-popover/popover-placement';
