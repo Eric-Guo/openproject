@@ -68,7 +68,7 @@ import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { ensureId, generateId } from 'core-app/shared/helpers/dom-helpers';
 import { target } from 'core-app/shared/helpers/event-helpers';
-import type AnchoredPositionElement from '@openproject/primer-view-components/app/components/primer/anchored_position';
+import type AnchoredPositionElement from '@mixtint/primer-view-components/app/components/primer/anchored_position';
 import { placePopover } from 'core-app/shared/components/anchored-popover/popover-placement';
 import { liveRect } from 'core-app/shared/components/anchored-popover/live-rect';
 import { visibleRect } from 'core-app/shared/components/anchored-popover/visible-rect';
