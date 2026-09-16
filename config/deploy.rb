@@ -41,7 +41,7 @@ set :default_env, fetch(:default_env, {}).merge(
 
 set :pnpm_flags, "--silent"
 set :rbenv_type, :user
-set :rbenv_ruby, "4.0.6"
+set :rbenv_ruby, "4.0.7"
 
 set :puma_init_active_record, true
 
