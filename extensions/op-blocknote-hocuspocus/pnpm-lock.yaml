@@ -497,8 +497,8 @@ packages:
   '@oxc-project/types@0.133.0':
     resolution: {integrity: sha512-KzkdCd6Uxqnf6l3HOw1xfatAlUURA0g14cvBYFyJ5SaNOQbOUvBr9PKArcPcrNIeRsBdgcUzOGrhKveVpvOIGA==}
 
-  '@primer/octicons-react@19.35.0':
-    resolution: {integrity: sha512-HrNykL6EuWjffgONUx+qT5amdhKgVBPcU73Z1ppWve0n/DnZpAcxIDUKWn3hfSe/L9nXv+pKyY/i5Yu99ECHwQ==}
+  '@primer/octicons-react@19.37.0':
+    resolution: {integrity: sha512-S4HJZEo2ERuBWHHijryF7/Px0OqavESGEXK+YEn0E4ExAGMXjwSH92NJT/oLkKbZiDcfqgG03MG2jkD5wfPhrg==}
     peerDependencies:
       react: '>=16.3'
 
@@ -1474,8 +1474,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prosemirror-changeset@2.4.2:
-    resolution: {integrity: sha512-ViYrjMSg3YFiXwIhKaluu+/mi3Yrxt6AR8ri14ulTaGcZtXO1CThl7A2gv79qx5fQnOw8woKwyBU2u+9PVCm3w==}
+  prosemirror-changeset@2.4.3:
+    resolution: {integrity: sha512-J8jqUZ1xybXKY44v3K0c8m8ZTIqJPVT34t2UVyxv4VEWoNd5C9t5Y52GNuMriRJ3IpNxOSE2R60vN4qBrTMcyQ==}
 
   prosemirror-commands@1.7.2:
     resolution: {integrity: sha512-q6Q6szxqdu9Xd6EcdKsqXghu5nQdZTpB4Q9yd04WRc7/jt763e/rT60Owh0L1GYY+T46o5rD+9lEN36dZS43tw==}
@@ -1759,8 +1759,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  type-fest@5.9.0:
-    resolution: {integrity: sha512-yANm3Jr3GiJ1qgJlxGAVxTOIcEOk1rhQHamlXtnrCK7EHP4HeM9OGxtMg/W7HFdrVzw/ZWJKGVIJusVH85sLtw==}
+  type-fest@5.10.0:
+    resolution: {integrity: sha512-NoSdpq/WEiAg5sjmBkmV/hfxv6HJH4NqPNrqjtSO5CwRmpsDfaf4begxW34KdJykH/l1yHtwBWQkCRdoXO8mPA==}
     engines: {node: '>=20'}
 
   typescript-eslint@8.70.0:
@@ -2428,7 +2428,7 @@ snapshots:
 
   '@oxc-project/types@0.133.0': {}
 
-  '@primer/octicons-react@19.35.0(react@19.2.7)':
+  '@primer/octicons-react@19.37.0(react@19.2.7)':
     dependencies:
       react: 19.2.7
 
@@ -2569,7 +2569,7 @@ snapshots:
 
   '@tiptap/pm@3.31.3':
     dependencies:
-      prosemirror-changeset: 2.4.2
+      prosemirror-changeset: 2.4.3
       prosemirror-commands: 1.7.2
       prosemirror-dropcursor: 1.8.3
       prosemirror-gapcursor: 1.4.1
@@ -3321,7 +3321,7 @@ snapshots:
       statuses: 2.0.2
       strict-event-emitter: 0.5.1
       tough-cookie: 6.0.2
-      type-fest: 5.9.0
+      type-fest: 5.10.0
       until-async: 3.0.2
       yargs: 17.7.3
     optionalDependencies:
@@ -3342,7 +3342,7 @@ snapshots:
   op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3):
     dependencies:
       '@blocknote/core': 0.51.4(@types/hast@3.0.5)
-      '@primer/octicons-react': 19.35.0(react@19.2.7)
+      '@primer/octicons-react': 19.37.0(react@19.2.7)
       i18next: 26.4.2(typescript@6.0.3)
       react-i18next: 17.0.14(i18next@26.4.2(typescript@6.0.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       styled-components: 6.5.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -3401,7 +3401,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prosemirror-changeset@2.4.2:
+  prosemirror-changeset@2.4.3:
     dependencies:
       prosemirror-transform: 1.12.1
 
@@ -3653,7 +3653,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  type-fest@5.9.0:
+  type-fest@5.10.0:
     dependencies:
       tagged-tag: 1.0.0
 
