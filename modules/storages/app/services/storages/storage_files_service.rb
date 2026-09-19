@@ -71,12 +71,7 @@ module Storages
       folder_name = edoc_dds_work_package_folder_name(work_package_id)
       parent_location = edoc_dds_work_package_parent_location(storage)
 
-      fetch_files(storage:, auth_strategy:, folder: parent_location).bind do |parent_files|
-        existing_folder = find_folder(parent_files, folder_name)
-        next Success(existing_folder) if existing_folder.present?
-
-        create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:, parent_location:)
-      end
+      create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:, parent_location:)
     end
 
     def fetch_files(storage:, auth_strategy:, folder:)
@@ -88,10 +83,6 @@ module Storages
     def create_edoc_dds_work_package_folder(storage:, auth_strategy:, folder_name:, parent_location:)
       input_data = Adapters::Input::CreateFolder.build(folder_name:, parent_location:).value!
       Adapters::Registry["#{storage}.commands.create_folder"].call(storage:, auth_strategy:, input_data:)
-    end
-
-    def find_folder(files, folder_name)
-      files.files.find { |file| file.folder? && file.name == folder_name }
     end
 
     def edoc_dds_work_package_folder_name(work_package_id)
