@@ -41,7 +41,7 @@ import { IStorageFile } from 'core-app/core/state/storage-files/storage-file.mod
 import { FilePickerBaseModalComponent, } from 'core-app/shared/components/storages/file-picker-base-modal/file-picker-base-modal.component';
 import { StorageFileListItem } from 'core-app/shared/components/storages/storage-file-list-item/storage-file-list-item';
 import { type Mock, vi } from 'vitest';
-import { edocDds } from 'core-app/shared/components/storages/storages-constants.const';
+import { edocDds, nextcloud } from 'core-app/shared/components/storages/storages-constants.const';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -65,6 +65,7 @@ describe('FilePickerBaseModalComponent', () => {
   interface Spies {
     detectChanges:Mock;
     close:Mock;
+    file?:Mock;
     files:Mock;
     reset:Mock;
   }
@@ -90,7 +91,7 @@ describe('FilePickerBaseModalComponent', () => {
         { provide: ChangeDetectorRef, useValue: { detectChanges: spies.detectChanges } },
         { provide: ElementRef, useValue: { nativeElement: document.createElement('div') } },
         { provide: SortFilesPipe, useValue: { transform: (files:IStorageFile[]) => files } },
-        { provide: StorageFilesResourceService, useValue: { files: spies.files, reset: spies.reset } },
+        { provide: StorageFilesResourceService, useValue: { file: spies.file, files: spies.files, reset: spies.reset } },
       ],
     });
 
@@ -101,6 +102,120 @@ describe('FilePickerBaseModalComponent', () => {
   }
 
   afterEach(() => TestBed.resetTestingModule());
+
+  function directory(name:string, location:string):IStorageFile {
+    return {
+      id: location,
+      name,
+      location,
+      mimeType: 'application/x-op-directory',
+      permissions: ['readable', 'writeable'],
+    };
+  }
+
+  it.each([
+    {
+      dialog: 'link existing files',
+      locals: { projectFolderMode: 'manual', projectFolderHref: '/api/v3/storages/1/files/folder:100' },
+    },
+    { dialog: 'upload a new file', locals: { workPackageId: '450344' } },
+  ])('keeps $dialog navigation within the opening DDS folder', ({ locals }) => {
+    const root = directory('DDS', '/');
+    const entry = directory('Opening folder', '/folder:100');
+    const child = directory('Child', '/folder:200');
+    const grandchild = directory('Grandchild', '/folder:300');
+    const sibling = directory('Sibling', '/folder:400');
+    const collection = (parent:IStorageFile, children:IStorageFile[]) => of({
+      files: children,
+      parent,
+      ancestors: [root],
+      _type: 'StorageFiles',
+      _links: {},
+    });
+    const files = vi.fn()
+      .mockReturnValueOnce(collection(entry, [child, sibling]))
+      .mockReturnValueOnce(collection(child, [grandchild]))
+      .mockReturnValueOnce(collection(grandchild, []))
+      .mockReturnValueOnce(collection(child, [grandchild]))
+      .mockReturnValueOnce(collection(entry, [child, sibling]))
+      .mockReturnValueOnce(collection(sibling, []));
+    const { component } = buildComponent({
+      detectChanges: vi.fn(),
+      close: vi.fn(),
+      file: vi.fn().mockReturnValue(of(entry)),
+      files,
+      reset: vi.fn(),
+    }, {
+      ...locals,
+      storage: {
+        name: 'DDS',
+        _links: {
+          type: { href: edocDds },
+          self: { href: '/api/v3/storages/1' },
+        },
+      },
+    });
+    const breadcrumbNames = () => component.breadcrumbs.crumbs.map((crumb) => crumb.text);
+
+    expect(breadcrumbNames()).toEqual(['Opening folder']);
+
+    component.loadDirectory(child);
+    expect(breadcrumbNames()).toEqual(['Opening folder', 'Child']);
+
+    component.loadDirectory(grandchild);
+    expect(breadcrumbNames()).toEqual(['Opening folder', 'Child', 'Grandchild']);
+
+    component.breadcrumbs.crumbs[1].navigate?.();
+    expect(files).toHaveBeenLastCalledWith({
+      href: '/api/v3/storages/1/files?parent=/folder:200',
+      title: 'Storage files',
+    });
+    expect(breadcrumbNames()).toEqual(['Opening folder', 'Child']);
+
+    component.breadcrumbs.crumbs[0].navigate?.();
+    expect(files).toHaveBeenLastCalledWith({
+      href: '/api/v3/storages/1/files?parent=/folder:100',
+      title: 'Storage files',
+    });
+    expect(breadcrumbNames()).toEqual(['Opening folder']);
+
+    component.loadDirectory(sibling);
+    expect(breadcrumbNames()).toEqual(['Opening folder', 'Sibling']);
+  });
+
+  it('preserves ancestor navigation for other storage providers', () => {
+    const root = directory('Root', '/');
+    const entry = directory('Project folder', '/project');
+    const files = vi.fn().mockReturnValue(of({
+      files: [],
+      parent: entry,
+      ancestors: [root],
+      _type: 'StorageFiles',
+      _links: {},
+    }));
+    const { component } = buildComponent({
+      detectChanges: vi.fn(),
+      close: vi.fn(),
+      file: vi.fn().mockReturnValue(of(entry)),
+      files,
+      reset: vi.fn(),
+    }, {
+      projectFolderMode: 'manual',
+      projectFolderHref: '/api/v3/storages/1/files/project',
+      storage: {
+        name: 'Nextcloud',
+        _links: {
+          type: { href: nextcloud },
+          self: { href: '/api/v3/storages/1' },
+        },
+      },
+    });
+
+    expect(component.breadcrumbs.crumbs.map((crumb) => crumb.text)).toEqual(['Nextcloud', 'Project folder']);
+
+    component.breadcrumbs.crumbs[0].navigate?.();
+    expect(files).toHaveBeenLastCalledWith({ href: '/api/v3/storages/1/files', title: 'Storage files' });
+  });
 
   it('loads the Edoc DDS work package folder on initial open', () => {
     const storageFiles = {
