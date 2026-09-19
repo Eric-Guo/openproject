@@ -311,11 +311,11 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
       this.collectionKey(),
     ]).pipe(first())
       .subscribe(([storage, fileLinks, collectionKey]) => {
+        const projectDocumentFolderHref = this.projectStorage._links.projectDocumentFolder?.href;
         const locals = {
           addFileLinksHref: this.addFileLinksHref,
-          projectFolderHref: this.projectStorage._links.projectFolder?.href ?? null,
-          projectFolderMode: this.projectStorage.projectFolderMode,
-          workPackageId: this.resource.id,
+          projectFolderHref: projectDocumentFolderHref ?? this.projectStorage._links.projectFolder?.href ?? null,
+          projectFolderMode: projectDocumentFolderHref ? 'manual' : this.projectStorage.projectFolderMode,
           storage,
           collectionKey,
           fileLinks,
