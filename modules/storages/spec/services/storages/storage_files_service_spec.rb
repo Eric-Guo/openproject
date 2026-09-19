@@ -32,12 +32,19 @@ require "spec_helper"
 require_module_spec_helper
 
 module Storages
-  RSpec.describe StorageFilesService do
+  RSpec.describe StorageFilesService, :webmock do
     let(:user) { create(:user) }
     let(:storage) { create(:edoc_dds_storage, root_folder_id: "100") }
     let(:files_query) { class_double(Adapters::Providers::EdocDds::Queries::FilesQuery) }
-    let(:create_folder_command) { class_double(Adapters::Providers::EdocDds::Commands::CreateFolderCommand) }
-    let(:work_package_parent_location) { "/folder:11571310" }
+    let(:create_folder_result) { 0 }
+    let(:create_folder_request) do
+      stub_request(:post, "#{storage.uri}api/services/Folder/CreateFolder")
+        .with(body: hash_including("ParentFolderId" => "11571310", "Name" => "工作包#450344"))
+        .to_return_json(
+          status: 200,
+          body: { result: create_folder_result, data: { FolderId: "987654", Name: "工作包#450344" } }
+        )
+    end
 
     let(:root_folder) do
       Adapters::Results::StorageFile.new(
@@ -51,16 +58,12 @@ module Storages
 
     let(:work_package_folder) do
       Adapters::Results::StorageFile.new(
-        id: "folder:450344",
+        id: "folder:987654",
         name: "工作包#450344",
         mime_type: "application/x-op-directory",
-        location: "/folder:450344",
+        location: "/folder:987654",
         permissions: %i[readable writeable]
       )
-    end
-
-    let(:work_package_parent_files) do
-      Adapters::Results::StorageFileCollection.new([work_package_folder], root_folder, [])
     end
 
     let(:work_package_folder_files) do
@@ -69,59 +72,55 @@ module Storages
 
     before do
       Adapters::Registry.stub("edoc_dds.queries.files", files_query)
-      Adapters::Registry.stub("edoc_dds.commands.create_folder", create_folder_command)
-      allow(create_folder_command).to receive(:call)
+      create_folder_request
+      allow(files_query).to receive(:call)
+        .with(
+          storage:,
+          auth_strategy: anything,
+          input_data: Adapters::Input::Files.build(folder: work_package_folder.location).value!
+        )
+        .and_return(Success(work_package_folder_files))
     end
 
     around do |example|
       with_env("EDOC_WP_FOLDER" => "11571310") { example.run }
     end
 
-    it "opens an existing Edoc DDS work package folder directly" do
-      allow(files_query).to receive(:call).and_return(Success(work_package_parent_files), Success(work_package_folder_files))
+    shared_examples "opening the returned work package folder" do
+      it "fetches only the returned folder without listing the parent" do
+        result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
 
-      result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
-
-      expect(result).to be_success
-      expect(result.result).to eq(work_package_folder_files)
-      expect(files_query).to have_received(:call).with(
-        storage:,
-        auth_strategy: anything,
-        input_data: Adapters::Input::Files.build(folder: work_package_parent_location).value!
-      )
-      expect(files_query).to have_received(:call).with(
-        storage:,
-        auth_strategy: anything,
-        input_data: Adapters::Input::Files.build(folder: work_package_folder.location).value!
-      )
-      expect(create_folder_command).not_to have_received(:call)
+        expect(result).to be_success
+        expect(result.result).to eq(work_package_folder_files)
+        expect(create_folder_request).to have_been_requested.once
+        expect(files_query).to have_received(:call).once.with(
+          storage:,
+          auth_strategy: anything,
+          input_data: Adapters::Input::Files.build(folder: work_package_folder.location).value!
+        )
+      end
     end
 
-    it "creates a missing Edoc DDS work package folder before opening it" do
-      parent_files_without_work_package_folder = Adapters::Results::StorageFileCollection.new([], root_folder, [])
-      allow(files_query).to receive(:call).and_return(
-        Success(parent_files_without_work_package_folder),
-        Success(work_package_folder_files)
-      )
-      allow(create_folder_command).to receive(:call).and_return(Success(work_package_folder))
+    context "when DDS creates the work package folder" do
+      it_behaves_like "opening the returned work package folder"
+    end
 
-      result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
+    context "when the work package folder already exists" do
+      let(:create_folder_result) { 806 }
 
-      expect(result).to be_success
-      expect(result.result).to eq(work_package_folder_files)
-      expect(create_folder_command).to have_received(:call).with(
-        storage:,
-        auth_strategy: anything,
-        input_data: Adapters::Input::CreateFolder.build(
-          folder_name: "工作包#450344",
-          parent_location: work_package_parent_location
-        ).value!
-      )
-      expect(files_query).to have_received(:call).with(
-        storage:,
-        auth_strategy: anything,
-        input_data: Adapters::Input::Files.build(folder: work_package_folder.location).value!
-      )
+      it_behaves_like "opening the returned work package folder"
+    end
+
+    context "when DDS rejects the folder creation" do
+      let(:create_folder_result) { 1 }
+
+      it "returns the failure without fetching files" do
+        result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
+
+        expect(result).to be_failure
+        expect(result.errors.symbols_for(:base)).to contain_exactly(:conflict)
+        expect(files_query).not_to have_received(:call)
+      end
     end
   end
 end
