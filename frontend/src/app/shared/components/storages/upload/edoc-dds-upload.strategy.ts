@@ -52,6 +52,7 @@ export class EdocDdsUploadStrategy implements IUploadStrategy {
   }
 
   private uploadSingle<T>(href:string, uploadFile:IUploadFile):Observable<HttpEvent<T>> {
+    const url = new URL(href, window.location.origin);
     const body = new FormData();
     body.append('file', uploadFile.file, uploadFile.file.name);
 
@@ -61,7 +62,7 @@ export class EdocDdsUploadStrategy implements IUploadStrategy {
 
     return this.http.request<EdocDdsFileUploadResponse>(
       'post',
-      href,
+      url.pathname + url.search,
       {
         body,
         observe: 'events',
