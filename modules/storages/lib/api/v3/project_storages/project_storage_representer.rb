@@ -49,14 +49,21 @@ module API::V3::ProjectStorages
       { href: api_v3_paths.storage_file(represented.storage.id, represented.project_folder_id) }
     end
 
+    link :projectDocumentFolder do
+      folder_id = project_document_folder_id
+      next if folder_id.blank?
+
+      { href: api_v3_paths.storage_file(represented.storage.id, "folder:#{folder_id}") }
+    end
+
     link :open do
-      next unless show_open_storage_links
+      next unless show_open_storage_links?
 
       { href: api_v3_paths.project_storage_open(represented.id) }
     end
 
     link :openWithConnectionEnsured do
-      next unless show_open_storage_links
+      next unless show_open_storage_links?
 
       { href: api_v3_paths.project_storage_open(represented.id) }
     end
@@ -75,7 +82,18 @@ module API::V3::ProjectStorages
 
     private
 
-    def show_open_storage_links
+    def project_document_folder_id
+      return unless represented.storage.provider_type_edoc_dds?
+
+      doc_link = represented.project.try(:profile)&.doc_link
+      return if doc_link.blank?
+
+      URI.parse(doc_link).fragment.to_s[%r{\A/?doc/enterprise/(\d+)/?\z}, 1]
+    rescue URI::InvalidURIError
+      nil
+    end
+
+    def show_open_storage_links?
       if represented.project_folder_automatic?
         return current_user.allowed_in_project?(:read_files, represented.project)
       end
