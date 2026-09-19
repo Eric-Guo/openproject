@@ -93,6 +93,54 @@ RSpec.describe API::V3::ProjectStorages::ProjectStorageRepresenter do
       let(:href) { api_v3_paths.storage_file(project_storage.storage.id, project_storage.project_folder_id) }
     end
 
+    describe "projectDocumentFolder" do
+      let(:link) { "projectDocumentFolder" }
+
+      it_behaves_like "has no link"
+
+      context "with an Edoc DDS storage" do
+        let(:storage) { build_stubbed(:edoc_dds_storage) }
+        let(:project_storage) do
+          build_stubbed(:project_storage, project: workspace, storage:, project_folder_mode: "inactive")
+        end
+        let(:doc_link) { "https://edoc.thape.com.cn:8022/index.html#doc/enterprise/11422810" }
+
+        before do
+          allow(workspace).to receive(:profile).and_return(Struct.new(:doc_link).new(doc_link))
+        end
+
+        it_behaves_like "has an untitled link" do
+          let(:href) { api_v3_paths.storage_file(storage.id, "folder:11422810") }
+        end
+
+        context "without a document link" do
+          let(:doc_link) { "" }
+
+          it_behaves_like "has no link"
+        end
+
+        context "with an invalid document link" do
+          let(:doc_link) { "not a valid URI" }
+
+          it_behaves_like "has no link"
+        end
+
+        context "with a link to a file instead of a folder" do
+          let(:doc_link) { "https://edoc.thape.com.cn:8022/index.html#file/11422810" }
+
+          it_behaves_like "has no link"
+        end
+
+        context "without a project profile" do
+          before do
+            allow(workspace).to receive(:profile).and_return(nil)
+          end
+
+          it_behaves_like "has no link"
+        end
+      end
+    end
+
     it_behaves_like "has an untitled link" do
       let(:link) { "open" }
       let(:href) { api_v3_paths.project_storage_open(project_storage.id) }
