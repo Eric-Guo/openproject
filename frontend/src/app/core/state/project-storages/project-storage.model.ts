@@ -33,6 +33,7 @@ export interface IProjectStorageHalResourceLinks extends IHalResourceLinks {
   project:IHalResourceLink;
   creator:IHalResourceLink;
   projectFolder?:IHalOptionalTitledLink;
+  projectDocumentFolder?:IHalOptionalTitledLink;
   open?:IHalResourceLink;
 }
 
