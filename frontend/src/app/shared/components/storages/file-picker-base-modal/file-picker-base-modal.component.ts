@@ -67,6 +67,8 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
 
   private loadingSubscription:Subscription;
 
+  private directoryPath:IStorageFile[] = [];
+
   protected readonly storageFiles$ = new BehaviorSubject<IStorageFile[]>([]);
 
   protected currentDirectory:IStorageFile;
@@ -207,7 +209,16 @@ export abstract class FilePickerBaseModalComponent extends OpModalComponent impl
   }
 
   private makeBreadcrumbs(ancestors:IStorageFile[], parent:IStorageFile):BreadcrumbsContent {
-    const crumbs = ancestors.concat(parent).map((ancestor):Breadcrumb => {
+    if (this.storage._links.type.href === edocDds) {
+      const parentIndex = this.directoryPath.findIndex((directory) => directory.location === parent.location);
+      this.directoryPath = parentIndex === -1
+        ? this.directoryPath.concat(parent)
+        : this.directoryPath.slice(0, parentIndex + 1);
+    } else {
+      this.directoryPath = ancestors.concat(parent);
+    }
+
+    const crumbs = this.directoryPath.map((ancestor):Breadcrumb => {
       const isRoot = ancestor.location === '/';
       const icon = isRoot ? getIconForStorageType(this.storage._links.type.href) : undefined;
       const text = isRoot ? this.storage.name : ancestor.name;
