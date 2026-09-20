@@ -166,6 +166,62 @@ module Storages
       let(:project_storage) { build(:project_storage, storage:, project_folder_mode:, project_folder_id:, project:) }
       let(:project_folder_id) { nil }
 
+      context "with an Edoc DDS storage" do
+        let(:storage) { create(:edoc_dds_storage) }
+        let(:project_folder_mode) { "inactive" }
+        let(:doc_link) { "https://edoc.thape.com.cn:8022/index.html#doc/enterprise/7612553" }
+
+        before do
+          allow(project).to receive(:profile).and_return(Struct.new(:doc_link).new(doc_link))
+        end
+
+        it "opens the project document link" do
+          expect(project_storage.open(user).result).to eq(doc_link)
+        end
+
+        it "links directly to the project documents in the sidebar" do
+          expect(project_storage.open_project_storage_url).to eq(doc_link)
+        end
+
+        context "with a manually configured folder" do
+          let(:project_folder_mode) { "manual" }
+          let(:project_folder_id) { "folder:123" }
+
+          it "opens the project document link" do
+            expect(project_storage.open(user).result).to eq(doc_link)
+          end
+        end
+
+        context "without a document link" do
+          let(:doc_link) { "" }
+
+          it "opens the storage root" do
+            expect(project_storage.open(user).result)
+              .to eq("#{storage.host}/index.html#doc/enterprise/#{storage.root_folder_id}")
+          end
+        end
+
+        context "without a project profile" do
+          before do
+            allow(project).to receive(:profile).and_return(nil)
+          end
+
+          it "opens the storage root" do
+            expect(project_storage.open(user).result)
+              .to eq("#{storage.host}/index.html#doc/enterprise/#{storage.root_folder_id}")
+          end
+        end
+
+        context "with an unsafe document link" do
+          let(:doc_link) { "javascript:alert(1)" }
+
+          it "falls back to the storage route" do
+            project_storage.save!
+            expect(project_storage.open_project_storage_url).to include("/project_storages/")
+          end
+        end
+      end
+
       context "when inactive" do
         let(:project_folder_mode) { "inactive" }
 

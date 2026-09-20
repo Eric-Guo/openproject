@@ -83,6 +83,32 @@ module Storages
     end
 
     def open(user)
+      doc_link = project_document_link
+      return ServiceResult.success(result: doc_link) if doc_link.present?
+
+      open_storage(user)
+    end
+
+    def open_project_storage_url
+      project_document_link.presence ||
+        OpenProject::StaticRouting::StaticRouter.new.url_helpers.open_project_storage_url(project_id: project.identifier, id:)
+    end
+
+    def project_document_link
+      return unless storage.provider_type_edoc_dds?
+
+      doc_link = project.try(:profile)&.doc_link
+      return if doc_link.blank?
+
+      uri = URI.parse(doc_link)
+      doc_link if uri.is_a?(URI::HTTP) && uri.host.present?
+    rescue URI::InvalidURIError
+      nil
+    end
+
+    private
+
+    def open_storage(user)
       auth_strategy = Adapters::Registry.resolve("#{storage}.authentication.user_bound").call(user, storage)
 
       result = if project_folder_not_accessible?(user)
@@ -95,12 +121,6 @@ module Storages
       #   so errors can be more descriptive. 2025-05-05 @mereghost
       result.either(-> { ServiceResult.success(result: it) }, -> { ServiceResult.failure(errors: it) })
     end
-
-    def open_project_storage_url
-      OpenProject::StaticRouting::StaticRouter.new.url_helpers.open_project_storage_url(project_id: project.identifier, id:)
-    end
-
-    private
 
     def open_file_link(auth_strategy)
       Adapters::Input::OpenFileLink.build(file_id: project_folder_id).bind do |input_data|
