@@ -151,6 +151,37 @@ RSpec.describe API::V3::ProjectStorages::ProjectStorageRepresenter do
       let(:href) { api_v3_paths.project_storage_open(project_storage.id) }
     end
 
+    %w[open openWithConnectionEnsured].each do |link_name|
+      describe link_name do
+        let(:link) { link_name }
+        let(:storage) { build_stubbed(:edoc_dds_storage) }
+        let(:project_storage) do
+          build_stubbed(:project_storage, project: workspace, storage:, project_folder_mode: "inactive")
+        end
+        let(:doc_link) { "https://edoc.thape.com.cn:8022/index.html#doc/enterprise/7612553" }
+
+        before do
+          allow(workspace).to receive(:profile).and_return(Struct.new(:doc_link).new(doc_link))
+        end
+
+        it_behaves_like "has an untitled link" do
+          let(:href) { doc_link }
+        end
+
+        context "without a document link" do
+          let(:doc_link) { "" }
+
+          it_behaves_like "has no link"
+        end
+
+        context "with an unsafe document link" do
+          let(:doc_link) { "javascript:alert(1)" }
+
+          it_behaves_like "has no link"
+        end
+      end
+    end
+
     context "when user does not have read_files permission" do
       let(:project_storage) { build_stubbed(:project_storage, project_folder_mode: "automatic", project_folder_id: "1337") }
       let(:user_allowed_in_project) { false }
