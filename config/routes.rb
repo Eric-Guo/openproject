@@ -69,10 +69,9 @@ Rails.application.routes.draw do
     "#{rails_relative_url_root}/work_packages/#{URI::RFC2396_Parser.new.escape(params[:rest])}"
   }, as: :work_package_short
 
-  # Add catch method for Rack OmniAuth to allow route helpers
-  # Note: This renders a 404 in rails but is caught by omniauth in Rack before
   get "/auth/failure", to: "omni_auth_login#failure", as: "omni_auth_failure"
-  match "/auth/:provider", to: proc { [404, {}, [""]] }, as: "omni_auth_start", via: %i[get post]
+  get "/auth/:provider", to: "omni_auth_start#show", as: "omni_auth_start"
+  post "/auth/:provider", to: proc { [404, {}, [""]] }
   match "/auth/:provider/callback", to: "omni_auth_login#callback", as: "omni_auth_callback", via: %i[get post]
 
   scope ".well-known" do
