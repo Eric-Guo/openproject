@@ -120,6 +120,16 @@ module Storages
               expect(WebMock).to have_requested(:post, %r{\Ahttps://dds\.example\.com/document/upload})
             end
 
+            it "skips chunks when the legacy endpoint reports an instant upload" do
+              stub_request(:post, %r{\Ahttps://dds\.example\.com/WebCore})
+                .to_return_json(body: { result: 0, secondPass: "true",
+                                        data: { FileId: "123", FileVerId: "456", ParentFolderId: "11619178" } })
+
+              expect(client.upload(file, folder_id: "11619178", file_name: "image.jpeg"))
+                .to include(file_id: "123", file_ver_id: "456", folder_id: "11619178")
+              expect(WebMock).not_to have_requested(:post, %r{\Ahttps://dds\.example\.com/document/upload})
+            end
+
             context "when a file with the same name already exists" do
               before do
                 stub_request(:post, %r{\Ahttps://dds\.example\.com/WebCore})
