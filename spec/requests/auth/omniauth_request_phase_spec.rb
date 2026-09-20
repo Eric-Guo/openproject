@@ -32,8 +32,49 @@ require "spec_helper"
 
 RSpec.describe "OmniAuth request phase", type: :rails_request do
   describe "GET /auth/developer" do
-    it "does not start authentication" do
+    it "renders a CSRF-protected POST form without starting authentication" do
       get "/auth/developer"
+
+      expect(response).to have_http_status(:ok)
+      form = response.parsed_body.at_css('form[action="/auth/developer"]')
+      expect(form["method"]).to eq("post")
+      expect(form["data-controller"]).to eq("omniauth-direct-login")
+      expect(form.at_css('input[name="authenticity_token"]')["value"]).to be_present
+      expect(response.body).not_to include('name="first_name"')
+    end
+  end
+
+  describe "GET /auth/unknown-provider" do
+    it "returns 404" do
+      get "/auth/unknown-provider"
+
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  context "with an OpenID Connect provider" do
+    let!(:provider) do
+      create(:oidc_provider, slug: "openid_connect", authorization_endpoint: "https://sso.thape.com.cn/oauth/authorize")
+    end
+
+    it "supports legacy portal links through the CSRF-protected POST flow" do
+      get "/auth/openid_connect"
+
+      expect(response).to have_http_status(:ok)
+      form = response.parsed_body.at_css('form[action="/auth/openid_connect"]')
+      expect(form["method"]).to eq("post")
+      expect(form["data-controller"]).to eq("omniauth-direct-login")
+
+      post form["action"], params: { authenticity_token: form.at_css('input[name="authenticity_token"]')["value"] }
+
+      expect(response).to have_http_status(:found)
+      expect(response.location).to start_with("https://sso.thape.com.cn/oauth/authorize?")
+    end
+
+    it "returns 404 for an unavailable provider" do
+      provider.update!(available: false)
+
+      get "/auth/openid_connect"
 
       expect(response).to have_http_status(:not_found)
     end
