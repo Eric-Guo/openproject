@@ -241,6 +241,7 @@ module OpenProject::Storages
               # otherwise polls backend until eternity
               (prj_storage.project_folder_automatic? && !u.allowed_in_project?(:read_files, prj))
             next if hide_from_menu
+            next if storage.provider_type_edoc_dds? && prj.try(:profile)&.doc_link.blank?
 
             icon = storage.provider_type_nextcloud? ? "op-mark-nextcloud" : "file-directory"
             menu.push(
