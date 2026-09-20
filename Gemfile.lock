@@ -54,7 +54,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_work_packages.git
-  revision: 6a2d3a08f56e5cdb2fff3331a03b2feee58642f6
+  revision: 5fda19a8ae157fc2a97da419ac7ed988dc776274
   branch: main
   specs:
     openproject-th_work_packages (1.0.0)
