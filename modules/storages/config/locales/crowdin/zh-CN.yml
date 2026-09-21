@@ -229,6 +229,29 @@ zh-CN:
         upload_link_service:
           not_found: "%{storage_name} 上找不到目标文件夹 %{folder} 。"
   storages:
+    external_shares:
+      title: "创建外发链接 · 1/2"
+      result_title: "外发链接 · 2/2"
+      snapshot_hint: "请选择需要外发的文件。DDS 将复制文件到独立的外发文件夹，原文件后续修改不会影响本次快照。客户可以查看和下载这些副本。"
+      select_files: "选择外发文件"
+      no_files: "暂无可外发的文件。"
+      expiration: "链接有效期"
+      expirations:
+        day: "1 天"
+        week: "7 天"
+        month: "1 个月"
+      next: "下一步：创建链接"
+      creating: "正在创建链接…"
+      ready: "外发链接已创建，请复制链接发送给客户。"
+      link: "外发链接"
+      expires_at: "到期时间：%{time}"
+      share_name: "工作包#%{id}外发文件"
+      errors:
+        not_allowed: "您没有外发这些文件的权限。"
+        invalid_expiration: "请选择 1 天、7 天或 1 个月的有效期。"
+        invalid_selection: "请至少选择一个当前工作包中关联的 DDS 文件，此处不支持外发文件夹。"
+        configuration_error: "DDS 外发连接与当前存储不匹配，请联系管理员。"
+        creation_failed: "DDS 未能创建外发链接，已保留您的文件选择，请重试。"
     admin:
       side_panel:
         health_notifications_component:

@@ -43,6 +43,13 @@ module API::V3::ProjectStorages
     date_time_property :updated_at
     property :project_folder_mode
 
+    link :createExternalShare do
+      next unless ::Storages::FileLinks::CreateExternalShareService.available?(represented.storage)
+      next unless current_user.allowed_in_project?(:manage_file_links, represented.project)
+
+      { href: ::OpenProject::StaticRouting::StaticRouter.new.url_helpers.new_storage_external_share_path(represented.id) }
+    end
+
     link :projectFolder do
       next if represented.project_folder_id.blank?
 

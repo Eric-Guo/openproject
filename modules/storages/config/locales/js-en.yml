@@ -94,6 +94,7 @@ en:
         suggest_relink: You can try whether re-linking your account via the login button below fixes this problem.
 
       link_existing_files: "Link existing files"
+      create_external_share: "Create external share link"
       link_files_in_storage: "Link files in %{storageType}"
       login: "%{storageType} login"
       login_to: "Login to %{storageType}"
