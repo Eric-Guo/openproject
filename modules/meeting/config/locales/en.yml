@@ -238,6 +238,7 @@ en:
   label_meeting_delete: "Delete meeting"
   label_meeting_details: "Meeting details"
   label_meeting_details_edit: "Edit meeting details"
+  label_meeting_select_room: "Select meeting room"
   label_meeting_diff: "Diff"
   label_meeting_duplicate: "Duplicate meeting"
   label_meeting_edit: "Edit Meeting"
