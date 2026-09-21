@@ -126,6 +126,18 @@
             <span [textContent]="text.actions.linkExisting"></span>
           </button>
         }
+        @if (canCreateExternalShare) {
+          <button
+            type="button"
+            class="spot-link"
+            data-test-selector="op-storage--create-external-share-button"
+            [disabled]="(disabled | async) || !(fileLinks | async)?.length"
+            (click)="openExternalShareDialog()"
+          >
+            <svg link-external-icon size="small" class="octicon"></svg>
+            <span [textContent]="text.actions.createExternalShare"></span>
+          </button>
+        }
       </div>
     }
   </div>
