@@ -207,6 +207,7 @@ zh-CN:
   label_meeting_delete: 删除会议
   label_meeting_details: 会议详情
   label_meeting_details_edit: 编辑会议详情
+  label_meeting_select_room: 选择会议室
   label_meeting_diff: 比较
   label_meeting_duplicate: 复制会议
   label_meeting_edit: 编辑会议
