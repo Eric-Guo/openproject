@@ -29,6 +29,11 @@
 #++
 
 Rails.application.routes.draw do
+  resources :storage_external_shares,
+            path: "storages/project_storages/:project_storage_id/external_shares",
+            controller: "storages/external_shares",
+            only: %i[new create]
+
   namespace :admin do
     namespace :settings do
       resources :storages, controller: "/storages/admin/storages", except: [:show] do
