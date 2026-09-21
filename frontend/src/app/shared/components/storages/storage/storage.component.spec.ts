@@ -33,6 +33,7 @@ import { vi } from 'vitest';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { TimezoneService } from 'core-app/core/datetime/timezone.service';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
+import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
 import { FileLinksResourceService } from 'core-app/core/state/file-links/file-links.service';
 import { IProjectStorage } from 'core-app/core/state/project-storages/project-storage.model';
 import { StorageFilesResourceService } from 'core-app/core/state/storage-files/storage-files.service';
@@ -50,13 +51,16 @@ import { StorageComponent } from './storage.component';
 describe('StorageComponent', () => {
   let component:StorageComponent;
   const show = vi.fn();
+  const requestStream = vi.fn();
 
   beforeEach(() => {
     show.mockReset();
+    requestStream.mockReset().mockResolvedValue({});
     TestBed.configureTestingModule({
       providers: [
         { provide: I18nService, useValue: { t: (key:string) => key } },
         { provide: OpModalService, useValue: { show } },
+        { provide: TurboRequestsService, useValue: { requestStream } },
         ...[
           ChangeDetectorRef,
           ToastService,
@@ -88,6 +92,25 @@ describe('StorageComponent', () => {
   });
 
   afterEach(() => TestBed.resetTestingModule());
+
+  it('opens the server dialog for the current work package when DDS sharing is available', () => {
+    component.projectStorage._links.createExternalShare = { href: '/storages/project_storages/7/external_shares/new' };
+
+    expect(component.canCreateExternalShare).toBe(true);
+    component.openExternalShareDialog();
+
+    expect(requestStream).toHaveBeenCalledWith('/storages/project_storages/7/external_shares/new?work_package_id=450344');
+  });
+
+  it('does not offer sharing without the capability or editing permission', () => {
+    expect(component.canCreateExternalShare).toBe(false);
+    component.openExternalShareDialog();
+    component.projectStorage._links.createExternalShare = { href: '/share' };
+    component.allowLinking = false;
+    expect(component.canCreateExternalShare).toBe(false);
+    component.openExternalShareDialog();
+    expect(requestStream).not.toHaveBeenCalled();
+  });
 
   it('links existing files from the project document folder without requesting a work package folder', () => {
     component.openLinkFilesDialog();
