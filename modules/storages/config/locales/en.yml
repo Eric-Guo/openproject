@@ -235,6 +235,29 @@ en:
         upload_link_service:
           not_found: The destination folder %{folder} could not be found on %{storage_name}.
   storages:
+    external_shares:
+      title: "Create external share link · 1/2"
+      result_title: "External share link · 2/2"
+      snapshot_hint: "Select the files to share. DDS will copy them into a separate share folder; later edits to the originals will not change this snapshot. Customers can view and download the copies."
+      select_files: "Files to share"
+      no_files: "There are no files available to share."
+      expiration: "Link expires after"
+      expirations:
+        day: "1 day"
+        week: "7 days"
+        month: "1 month"
+      next: "Next: create link"
+      creating: "Creating link…"
+      ready: "The share link is ready. Copy it and send it to your customer."
+      link: "Share link"
+      expires_at: "Expires at %{time}"
+      share_name: "Work package #%{id} — shared files"
+      errors:
+        not_allowed: "You do not have permission to share these files."
+        invalid_expiration: "Choose an expiry of 1 day, 7 days, or 1 month."
+        invalid_selection: "Select at least one file from this work package and DDS storage. Folders cannot be shared here."
+        configuration_error: "The DDS publishing connection does not match this storage. Contact your administrator."
+        creation_failed: "DDS could not create the share link. Your file selection has been kept. Please try again."
     admin:
       side_panel:
         health_notifications_component:
