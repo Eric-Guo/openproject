@@ -444,8 +444,10 @@ class MeetingsController < ApplicationController
 
       respond_with_turbo_streams
     else
-      @meeting = call.result
-      render action: :edit, status: :unprocessable_entity
+      close_dialog_via_turbo_stream("exit-draft-mode-dialog")
+      render_error_flash_message_via_turbo_stream(message: join_flash_messages(call.errors.full_messages))
+
+      respond_with_turbo_streams(status: :unprocessable_entity)
     end
   end
 
