@@ -122,6 +122,19 @@
               end
             end
           end
+        elsif @meeting.editable? && !@meeting.template?
+          details.with_row(mt: 2, classes: "hide-when-print") do
+            render_meeting_attribute_row(:location) do
+              render(
+                Primer::Beta::Link.new(
+                  href: details_dialog_project_meeting_path(@project, @meeting),
+                  data: { controller: "async-dialog" }
+                )
+              ) do
+                t(:label_meeting_select_room)
+              end
+            end
+          end
         end
 
         details.with_row(mt: 2, classes: "meeting-detail-participants hide-when-print", display: [nil, nil, :none]) do
