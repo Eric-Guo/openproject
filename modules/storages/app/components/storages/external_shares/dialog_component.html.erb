@@ -1,0 +1,48 @@
+<%= render(Primer::Alpha::Dialog.new(id: DIALOG_ID, title:, size: :large)) do |dialog| %>
+  <% dialog.with_body do %>
+    <% if share %>
+      <p><%= t("storages.external_shares.ready") %></p>
+      <div class="form-group">
+        <%= label_tag "dds-external-share-url", t("storages.external_shares.link") %>
+        <%= text_field_tag :share_url, share[:url], id: "dds-external-share-url", readonly: true, autocomplete: "off", class: "form-control width-full" %>
+      </div>
+      <p><%= t("storages.external_shares.expires_at", time: helpers.format_time(share[:expires_at])) %></p>
+      <%= render(Primer::Beta::ClipboardCopy.new(value: share[:url], "aria-label": t(:button_copy_to_clipboard))) do %>
+        <%= t(:button_copy_to_clipboard) %>
+      <% end %>
+    <% else %>
+      <% if error %>
+        <%= render(Primer::Alpha::Banner.new(scheme: :danger, role: :alert, mb: 3)) { error } %>
+      <% end %>
+      <p><%= t("storages.external_shares.snapshot_hint") %></p>
+      <%= form_with(url: storage_external_shares_path(project_storage.id), id: FORM_ID, data: { turbo: true }) do %>
+        <%= hidden_field_tag :work_package_id, work_package.id %>
+        <fieldset class="mb-3">
+          <legend class="text-bold"><%= t("storages.external_shares.select_files") %></legend>
+          <% if file_links.empty? %>
+            <p><%= t("storages.external_shares.no_files") %></p>
+          <% end %>
+          <% file_links.each do |file_link| %>
+            <div class="form-checkbox">
+              <%= check_box_tag "file_link_ids[]", file_link.id, selected_ids.include?(file_link.id.to_s), id: "share-file-#{file_link.id}" %>
+              <%= label_tag "share-file-#{file_link.id}" do %>
+                <%= file_link.origin_name %>
+                <span class="color-fg-muted">(<%= file_link.origin_location_name %>)</span>
+              <% end %>
+            </div>
+          <% end %>
+        </fieldset>
+        <div class="form-group">
+          <%= label_tag :expiration, t("storages.external_shares.expiration") %>
+          <%= select_tag :expiration, options_for_select(expiration_options, expiration), class: "form-select", required: true %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% dialog.with_footer do %>
+    <%= render(Primer::Beta::Button.new(data: { "close-dialog-id": DIALOG_ID })) { t(share ? :button_close : :button_cancel) } %>
+    <% unless share %>
+      <%= render(Primer::Beta::Button.new(scheme: :primary, type: :submit, form: FORM_ID, disabled: file_links.empty?, data: { turbo_submits_with: t("storages.external_shares.creating") })) { t("storages.external_shares.next") } %>
+    <% end %>
+  <% end %>
+<% end %>
