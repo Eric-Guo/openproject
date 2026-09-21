@@ -44,6 +44,32 @@ RSpec.describe Meetings::SidePanel::DetailsComponent,
     login_as(user)
   end
 
+  context "with no meeting room" do
+    let(:meeting) { build_stubbed(:meeting, location: nil) }
+
+    before do
+      allow(meeting).to receive_messages(location: "", editable?: editable)
+    end
+
+    context "when editable" do
+      let(:editable) { true }
+
+      it "offers a direct link to select a room" do
+        path = Rails.application.routes.url_helpers.details_dialog_project_meeting_path(meeting.project, meeting)
+
+        expect(subject).to have_link("Select meeting room", href: path)
+      end
+    end
+
+    context "when not editable" do
+      let(:editable) { false }
+
+      it "does not offer room selection" do
+        expect(subject).to have_no_link("Select meeting room")
+      end
+    end
+  end
+
   context "with templated meeting and working_days frequency" do
     let(:series) do
       build_stubbed(:recurring_meeting,
