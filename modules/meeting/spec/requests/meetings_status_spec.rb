@@ -35,13 +35,14 @@ RSpec.describe "Meeting requests",
                type: :rails_request do
   shared_let(:project) { create(:project, enabled_module_names: %i[meetings]) }
   shared_let(:user) { create(:user, member_with_permissions: { project => %i[view_meetings edit_meetings] }) }
-  shared_let(:meeting) { create(:meeting, project:, author: user, state: :open) }
 
   before do
     login_as user
   end
 
   describe "Update meeting state" do
+    shared_let(:meeting) { create(:meeting, project:, author: user, state: :open) }
+
     it "allows to update the state with edit_meetings permission (Regression #63745)" do
       put change_state_project_meeting_path(project, meeting, state: "in_progress"),
           as: :turbo_stream
@@ -59,6 +60,29 @@ RSpec.describe "Meeting requests",
 
       expect(response).to have_http_status(:ok)
       expect(meeting.reload).to be_open
+    end
+  end
+
+  describe "Exit draft mode" do
+    shared_let(:meeting) do
+      build(:meeting, project:, author: user, state: :draft, title: "", start_time: 1.day.ago).tap do |meeting|
+        meeting.save!(validate: false)
+      end
+    end
+
+    it "shows validation errors and keeps the meeting in draft" do
+      expect do
+        post exit_draft_mode_project_meeting_path(project, meeting),
+             params: { meeting: { notify: "1" } },
+             as: :turbo_stream
+      end.not_to change { meeting.reload.attributes.slice("state", "notify") }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.media_type).to eq("text/vnd.turbo-stream.html")
+      expect(response.body).to have_css('turbo-stream[action="closeDialog"][target="exit-draft-mode-dialog"]')
+      flash = Nokogiri::HTML.fragment(response.body).at_css('turbo-stream[action="flash"]')
+      expect(flash.text).to include("Title can't be blank")
+      expect(enqueued_jobs).to be_empty
     end
   end
 end
