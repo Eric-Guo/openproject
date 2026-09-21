@@ -28,6 +28,7 @@
 
 import { Controller } from '@hotwired/stimulus';
 import moment, { Moment } from 'moment';
+import { durationStringToSeconds } from 'core-stimulus/helpers/chronic-duration-helper';
 
 export default class ThMeetingFormController extends Controller {
   static values = {
@@ -39,7 +40,7 @@ export default class ThMeetingFormController extends Controller {
 
   declare availableRoomsPathValue:string;
 
-  getAvailableRooms(e:MouseEvent) {
+  async getAvailableRooms(e:MouseEvent):Promise<void> {
     const button = e.currentTarget as HTMLButtonElement;
     const buttonText = button.textContent;
 
@@ -62,7 +63,7 @@ export default class ThMeetingFormController extends Controller {
     if (!meetingSelect) throw new Error('Meeting select not found');
 
     const startDate:Moment = moment(`${startDateInput.value} ${startTimeInput.value}`, 'YYYY-MM-DD HH:mm');
-    const endDate:Moment = startDate.clone().add(durationInput.value, 'hour');
+    const endDate:Moment = startDate.clone().add(durationStringToSeconds(durationInput.value), 'seconds');
     const thMeetingId = this.thMeetingIdValue;
 
     const startDateTime = startDate.format('YYYY-MM-DD HH:mm:ss');
@@ -77,41 +78,32 @@ export default class ThMeetingFormController extends Controller {
       url.searchParams.append('th_meeting_id', thMeetingId);
     }
 
-    void jQuery.ajax({
-      method: 'get',
-      url: url.toString(),
-      dataType: 'json',
-      beforeSend: () => {
-        button.disabled = true;
-        button.textContent = '数据获取中...';
-      },
-      success: (data:{ id:string;name:string }[]) => {
-        let value = meetingSelect.value;
-        const existed = data.some((item) => item.id === value);
-        if (!existed) value = '';
-        Array.from(meetingSelect.children).forEach((option:HTMLOptionElement) => {
-          if (option.value) {
-            option.remove();
-          }
-        });
-        data.forEach((item) => {
-          const option = document.createElement('option');
-          option.value = item.id;
-          option.text = item.name;
-          meetingSelect.append(option);
-        });
-        meetingSelect.value = value;
-        button.textContent = '数据获取成功！';
-      },
-      error: () => {
-        button.textContent = '数据获取失败！';
-      },
-      complete: () => {
-        setTimeout(() => {
-          button.disabled = false;
-          button.textContent = buttonText;
-        }, 1000);
-      },
-    });
+    button.disabled = true;
+    button.textContent = '数据获取中...';
+
+    try {
+      const response = await fetch(url, { headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error(`Room availability request failed: ${response.status}`);
+
+      const data = await response.json() as { id:string;name:string }[];
+      const selectedValue = meetingSelect.value;
+      const value = data.some((item) => item.id === selectedValue) ? selectedValue : '';
+
+      Array.from(meetingSelect.options).forEach((option) => {
+        if (option.value) option.remove();
+      });
+      data.forEach((item) => {
+        meetingSelect.add(new Option(item.name, item.id));
+      });
+      meetingSelect.value = value;
+      button.textContent = '数据获取成功！';
+    } catch {
+      button.textContent = '数据获取失败！';
+    } finally {
+      setTimeout(() => {
+        button.disabled = false;
+        button.textContent = buttonText;
+      }, 1000);
+    }
   }
 }
