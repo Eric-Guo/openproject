@@ -28,6 +28,7 @@
 
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TurboRequestsService } from 'core-app/core/turbo/turbo-requests.service';
 import {
   combineLatest,
   Observable,
@@ -103,6 +104,7 @@ import {
 })
 export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnDestroy {
   private readonly i18n = inject(I18nService);
+  private readonly turboRequests = inject(TurboRequestsService);
   private readonly cdRef = inject(ChangeDetectorRef);
   private readonly toastService = inject(ToastService);
   private readonly uploadService = inject(OpUploadService);
@@ -149,6 +151,7 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
   text = {
     actions: {
       linkExisting: this.i18n.t('js.storages.link_existing_files'),
+      createExternalShare: this.i18n.t('js.storages.create_external_share'),
       uploadFile: this.i18n.t('js.storages.upload_files'),
     },
     toast: {
@@ -217,6 +220,18 @@ export class StorageComponent extends UntilDestroyedMixin implements OnInit, OnD
 
   public get openStorageLink() {
     return this.projectStorage._links.open?.href;
+  }
+
+  public get canCreateExternalShare():boolean {
+    return this.allowLinking && !isNewResource(this.resource) && !!this.projectStorage._links.createExternalShare;
+  }
+
+  public openExternalShareDialog():void {
+    const href = this.projectStorage._links.createExternalShare?.href;
+    if (!this.canCreateExternalShare || !href || !this.resource.id) return;
+
+    const params = new URLSearchParams({ work_package_id: this.resource.id.toString() });
+    void this.turboRequests.requestStream(`${href}?${params.toString()}`).catch(() => undefined);
   }
 
   ngOnInit():void {
