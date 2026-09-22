@@ -151,8 +151,21 @@ module Storages
             build_url("preview.html", { fileid: file_id })
           end
 
-          def annotator_url(file_link_id)
-            build_url("/th_work_packages/edoc_files/#{file_link_id}/annotation_document", {}, host: openproject_host)
+          def published_preview_url(file_id)
+            file = file_info(file_id)
+            code = ::Edoc::FolderPublishes.create(
+              [file.fetch(:parent_folder_id)],
+              name: "#{file.fetch(:file_name)}-PLM预览",
+              end_time: 2.hours.from_now.strftime("%Y-%m-%d %H:%M:%S"),
+              auth_type: 1,
+              can_download: true,
+              host: @storage.host,
+              token: @storage.token
+            )
+
+            build_url("preview.html", { fileid: file_id, ispublish: true, code: })
+          rescue ::Edoc::Error => e
+            raise Error, e.message
           end
 
           def folder_url(folder_id)
@@ -389,10 +402,6 @@ module Storages
 
           def normalized_host(host)
             "#{host.to_s.delete_suffix('/')}/"
-          end
-
-          def openproject_host
-            "#{Setting.protocol}://#{Setting.host_name}"
           end
 
           def token_param
