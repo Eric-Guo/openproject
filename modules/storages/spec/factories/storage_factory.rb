@@ -288,6 +288,5 @@ FactoryBot.define do
     host { "https://dds.example.com" }
     root_folder_id { "100" }
     token { "secret-token" }
-    annotator_host { "https://annotator.thape.com.cn" }
   end
 end
