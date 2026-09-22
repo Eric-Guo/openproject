@@ -85,6 +85,20 @@ RSpec.describe "Meeting room selection", :skip_csrf, type: :rails_request do
     expect(ThMeetingBooking::Apis::Booking).not_to have_received(:sync_meetings)
   end
 
+  { "1" => true, "0" => false }.each do |submitted_value, enabled|
+    it "opens a meeting with email updates #{enabled ? 'enabled' : 'disabled'}" do
+      meeting.update!(th_meeting_upstream_room_id: room.id, notify: !enabled)
+
+      post exit_draft_mode_project_meeting_path(project, meeting),
+           params: { meeting: { notify: submitted_value } },
+           as: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      expect(meeting.reload).to be_open
+      expect(meeting.notify?).to eq(enabled)
+    end
+  end
+
   it "still creates an external booking for a future meeting" do
     meeting.update_column(:start_time, 1.day.from_now)
     allow(ThMeetingBooking::Apis::Booking).to receive(:sync_meetings).and_return(Struct.new(:id).new("booking-1"))
