@@ -71,11 +71,11 @@ describe('ThMeetingFormController', () => {
     expect(url.searchParams.get('start_date_time')).toEqual('2026-09-08 14:00:00');
     expect(url.searchParams.get('end_date_time')).toEqual('2026-09-08 16:00:00');
     expect(url.searchParams.get('th_meeting_id')).toEqual('booking-1');
-    expect((ctx.screen.getByRole('combobox')).value).toEqual('room-1');
+    expect(ctx.screen.getByRole<HTMLSelectElement>('combobox').value).toEqual('room-1');
   });
 
   it('clears a selection that is no longer available', async () => {
-    const select = ctx.screen.getByRole('combobox');
+    const select = ctx.screen.getByRole<HTMLSelectElement>('combobox');
     select.value = 'room-2';
     ctx.screen.getByRole('button', { name: 'Refresh rooms' }).click();
 
@@ -90,6 +90,6 @@ describe('ThMeetingFormController', () => {
 
     await vi.waitFor(() => expect(button.textContent).toEqual('数据获取失败！'));
     expect(ctx.screen.getByRole('option', { name: 'Shanghai - Room 2' })).toBeTruthy();
-    expect((ctx.screen.getByRole('combobox')).value).toEqual('room-1');
+    expect(ctx.screen.getByRole<HTMLSelectElement>('combobox').value).toEqual('room-1');
   });
 });
