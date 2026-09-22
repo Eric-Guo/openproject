@@ -37,12 +37,11 @@ module Storages
 
     store_attribute :provider_fields, :root_folder_id, :string
     store_attribute :provider_fields, :token, :string
-    store_attribute :provider_fields, :annotator_host, :string
 
     def self.short_provider_name = :edoc_dds
 
     def self.non_confidential_provider_fields
-      super + %i[root_folder_id annotator_host]
+      super + %i[root_folder_id]
     end
 
     def supports_oauth_redirect? = false

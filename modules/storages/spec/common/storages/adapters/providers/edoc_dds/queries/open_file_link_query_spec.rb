@@ -36,7 +36,7 @@ module Storages
     module Providers
       module EdocDds
         module Queries
-          RSpec.describe OpenFileLinkQuery do
+          RSpec.describe OpenFileLinkQuery, :webmock do
             let(:storage) { build(:edoc_dds_storage) }
             let(:auth_strategy) { Registry["edoc_dds.authentication.userless"].call }
 
@@ -44,11 +44,56 @@ module Storages
 
             context "with a file link" do
               let(:input_data) { Input::OpenFileLink.build(file_id: "file:306", file_link_id: 1113).value! }
-              let(:open_file_link) do
-                "#{Setting.protocol}://#{Setting.host_name}/th_work_packages/edoc_files/1113/annotation_document"
+              let(:open_file_link) { "https://dds.example.com/preview.html?fileid=306&ispublish=true&code=preview-code" }
+
+              before do
+                stub_request(:get, "https://dds.example.com/api/services/File/GetFileInfoById")
+                  .with(query: { token: storage.token, fileId: "306" })
+                  .to_return(status: 200, body: { result: 0, data: { fileName: "plan.pdf", parentFolderId: 200 } }.to_json)
+
+                stub_request(:post, "https://dds.example.com/WebCore")
+                  .with(body: hash_including(module: "PublishManager", fun: "CreateFolderPublish",
+                                             token: storage.token, folderIdList: "200", outpublishName: "plan.pdf-PLM预览",
+                                             outpublishAuthType: "1", canDownload: "true"))
+                  .to_return(status: 200, body: { code: "preview-code" }.to_json)
               end
 
               it_behaves_like "adapter open_file_link_query: successful link response"
+
+              context "when publishing fails" do
+                before do
+                  stub_request(:post, "https://dds.example.com/WebCore")
+                    .to_return(status: 200, body: { errorCode: 1, message: "Publishing failed" }.to_json)
+                end
+
+                it "returns a storage error" do
+                  result = described_class.call(storage:, auth_strategy:, input_data:)
+
+                  expect(result).to be_failure
+                  expect(result.failure.code).to eq(:error)
+                end
+              end
+
+              context "with a slash-prefixed file id" do
+                let(:input_data) { Input::OpenFileLink.build(file_id: "/file:306", file_link_id: 1113).value! }
+
+                it_behaves_like "adapter open_file_link_query: successful link response"
+              end
+
+              context "when opening the containing folder" do
+                let(:input_data) do
+                  Input::OpenFileLink.build(file_id: "file:306", file_link_id: 1113, open_location: true).value!
+                end
+                let(:open_file_link) { "https://dds.example.com/index.html#doc/enterprise/200" }
+
+                it_behaves_like "adapter open_file_link_query: successful link response"
+
+                it "does not publish the folder" do
+                  described_class.call(storage:, auth_strategy:, input_data:)
+
+                  expect(WebMock).not_to have_requested(:post, "https://dds.example.com/WebCore")
+                end
+              end
             end
 
             context "with a file id without a file link" do
