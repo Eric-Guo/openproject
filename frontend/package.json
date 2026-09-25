@@ -187,6 +187,10 @@
   "optionalDependencies": {
     "fsevents": "^2.3.3"
   },
+  "resolutions": {
+    "prosemirror-state": "1.25.11",
+    "prosemirror-view": "1.42.4"
+  },
   "browser": {
     "fs": false,
     "path": false,
