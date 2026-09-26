@@ -10,6 +10,6 @@ allowBuilds:
   th-analytics@git+https://git.thape.com.cn/plugins/th-analytics.git#f23ff516cec20f526cb4aa70571add93bd5eed79: true
 
 minimumReleaseAgeExclude:
-  - '@mixtint/primer-view-components@0.91.3'
+  - '@mixtint/primer-view-components@0.91.4'
 
 nodeLinker: hoisted
