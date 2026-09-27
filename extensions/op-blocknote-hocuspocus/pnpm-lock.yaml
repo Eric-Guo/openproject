@@ -18,8 +18,8 @@ importers:
         specifier: ^4.7.0
         version: 4.7.0(y-protocols@1.0.7(yjs@13.6.32))(yjs@13.6.32)
       op-blocknote-extensions:
-        specifier: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz
-        version: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        specifier: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.1/op-blocknote-extensions-0.3.1.tgz
+        version: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.1/op-blocknote-extensions-0.3.1.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       tsx:
         specifier: ^4.23.15
         version: 4.23.15
@@ -1411,9 +1411,9 @@ packages:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
 
-  op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz:
-    resolution: {integrity: sha512-ikgQ1iXUe4+TB5hpMJD7B1esPuyPlYPafZ5pwtxEYu1ziYOuxhFWvBm2zSIpsKXRFEkaDO0DBh4tU+vcDfEXog==, tarball: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz}
-    version: 0.3.0
+  op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.1/op-blocknote-extensions-0.3.1.tgz:
+    resolution: {integrity: sha512-9zk9dyNtMzC4MT5OmCu8qVOoT2JRTuv5ERVvR3qNMDQ6qQWWKeIW3LCc0sSYFlusefOx93z6pfYcr0jxJU7wGQ==, tarball: https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.1/op-blocknote-extensions-0.3.1.tgz}
+    version: 0.3.1
     peerDependencies:
       '@blocknote/core': '>=0.51.3'
       '@blocknote/mantine': '>=0.51.3'
@@ -3339,7 +3339,7 @@ snapshots:
 
   obug@2.2.1: {}
 
-  op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.0/op-blocknote-extensions-0.3.0.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3):
+  op-blocknote-extensions@https://github.com/opf/op-blocknote-extensions/releases/download/v0.3.1/op-blocknote-extensions-0.3.1.tgz(@blocknote/core@0.51.4(@types/hast@3.0.5))(@blocknote/react@0.51.4(@floating-ui/dom@1.8.0)(@types/hast@3.0.5)(@types/react-dom@19.2.3(@types/react@19.2.16))(@types/react@19.2.16)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3):
     dependencies:
       '@blocknote/core': 0.51.4(@types/hast@3.0.5)
       '@primer/octicons-react': 19.38.0(react@19.2.7)
