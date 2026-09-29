@@ -394,6 +394,74 @@ RSpec.describe "API V3 Authentication" do
     end
   end
 
+  describe "shared secret JWT" do
+    let(:jwt_secret) { "secret" }
+    let(:token_secret) { jwt_secret }
+    let(:token_expiration) { 1.hour.from_now.to_i }
+    let(:token_audience) { "opencode" }
+    let(:bearer_token) do
+      JWT.encode(
+        {
+          sub: user.mail,
+          scp: "user",
+          exp: token_expiration,
+          aud: token_audience
+        },
+        token_secret,
+        "HS256"
+      )
+    end
+    let(:expected_message) { "You did not provide the correct credentials." }
+
+    before do
+      user
+      allow(Rails.application.credentials).to receive(:devise_jwt_secret_key).and_return(jwt_secret)
+      header "Authorization", "Bearer #{bearer_token}"
+
+      get resource
+    end
+
+    context "with a valid token" do
+      it "authenticates successfully" do
+        expect(last_response).to have_http_status :ok
+      end
+    end
+
+    context "with an invalid signature" do
+      let(:token_secret) { "invalid-secret" }
+      let(:expected_www_auth_header) do
+        %{Bearer realm="OpenProject API", #{resource_metadata}, scope="api_v3", error="invalid_token"}
+      end
+
+      it "returns unauthorized" do
+        expect(last_response).to have_http_status :unauthorized
+        expect(last_response.header["WWW-Authenticate"]).to eq(expected_www_auth_header)
+        expect(JSON.parse(last_response.body)).to eq(error_response_body)
+      end
+    end
+
+    context "with an expired token" do
+      let(:token_expiration) { 1.minute.ago.to_i }
+      let(:expected_www_auth_header) do
+        %{Bearer realm="OpenProject API", #{resource_metadata}, scope="api_v3", error="invalid_token"}
+      end
+
+      it "returns unauthorized" do
+        expect(last_response).to have_http_status :unauthorized
+        expect(last_response.header["WWW-Authenticate"]).to eq(expected_www_auth_header)
+        expect(JSON.parse(last_response.body)).to eq(error_response_body)
+      end
+    end
+
+    context "with an invalid audience" do
+      let(:token_audience) { "another-application" }
+
+      it "returns unauthorized" do
+        expect(last_response).to have_http_status :unauthorized
+      end
+    end
+  end
+
   describe "basic auth" do
     let(:expected_message) { "You need to be authenticated to access this resource." }
 

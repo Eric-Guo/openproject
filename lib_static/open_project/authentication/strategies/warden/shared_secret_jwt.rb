@@ -35,6 +35,8 @@ module OpenProject
         class SharedSecretJwt < ::Warden::Strategies::Base
           include FailWithHeader
 
+          AUDIENCE = "opencode"
+
           def valid?
             @access_token = ::Doorkeeper::OAuth::Token.from_bearer_authorization(
               ::Doorkeeper::Grape::AuthorizationDecorator.new(request)
@@ -43,7 +45,9 @@ module OpenProject
             return false if shared_secret.blank?
 
             unverified_payload, unverified_header = JWT.decode(@access_token, nil, false)
-            unverified_payload.present? && unverified_header["alg"] == "HS256"
+            unverified_payload["iss"].blank? &&
+              unverified_header["alg"] == "HS256" &&
+              Array(unverified_payload["aud"]).include?(AUDIENCE)
           rescue JWT::DecodeError
             false
           end
@@ -69,6 +73,8 @@ module OpenProject
               jwt_secret,
               true,
               algorithm: "HS256",
+              aud: AUDIENCE,
+              verify_aud: true,
               verify_expiration:,
               required_claims: ["exp"]
             ).first
