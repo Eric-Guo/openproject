@@ -45,6 +45,7 @@ OpenProject::Authentication.update_strategies(OpenProject::Authentication::Scope
      user_basic_auth
      basic_auth_failure
      user_api_token
+     shared_secret_jwt
      oauth
      jwt_oidc
      session
