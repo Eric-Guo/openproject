@@ -28,6 +28,8 @@ get:
       description: OK
       content:
         application/hal+json:
+          schema:
+            $ref: "../components/schemas/work_package_schema_collection_model.yml"
           examples:
             response:
               value:

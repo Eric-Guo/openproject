@@ -1,0 +1,25 @@
+# Schema: WorkPackageSchemaCollectionModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./collection_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "elements": {
+              "type": "array",
+              "items": {
+                "$ref": "./work_package_schema_model.yml"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
