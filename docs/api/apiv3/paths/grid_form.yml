@@ -1,6 +1,12 @@
 # /api/v3/grids/{id}/form
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/grid_write_model.yml"
   parameters:
   - description: ID of the grid being modified
     example: 1

@@ -105,6 +105,10 @@ post:
       type: boolean
   responses:
     '201':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/activity_model.yml"
       description: Created
       headers: {}
     '400':

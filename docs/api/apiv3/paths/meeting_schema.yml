@@ -10,6 +10,10 @@ get:
     their types, and constraints.
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/schema_model.yml"
       description: OK
       headers: {}
     '403':
