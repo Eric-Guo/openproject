@@ -108,13 +108,11 @@ post:
 
     You can use the form and schema to be retrieve the valid attribute values and by that be guided towards successful creation.
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/project_model.yml'
-        examples:
-          'with custom fields':
-            $ref: '../components/examples/project_body.yml'
+          $ref: "../components/schemas/project_write_model.yml"
   responses:
     '201':
       description: Created

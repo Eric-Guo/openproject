@@ -1,0 +1,22 @@
+# Schema: MeetingFormModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./form_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "payload": {
+              "$ref": "./meeting_write_model.yml"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

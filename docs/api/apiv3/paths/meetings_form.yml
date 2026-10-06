@@ -1,6 +1,12 @@
 # /api/v3/meetings/form
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/meeting_write_model.yml"
   summary: Meeting create form
   operationId: meeting_create_form
   tags:
@@ -8,6 +14,10 @@ post:
   description: ''
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/meeting_form_model.yml"
       description: OK
       headers: {}
     '400':

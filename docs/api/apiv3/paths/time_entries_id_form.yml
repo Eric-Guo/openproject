@@ -11,6 +11,10 @@ post:
         type: integer
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/time_entry_form_model.yml"
       description: OK
       headers: {}
     '400':
@@ -56,10 +60,9 @@ post:
   description: ''
   operationId: Time_entry_update_form
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          type: integer
-    description: Time entries activity id
-    required: true
+          $ref: "../components/schemas/time_entry_write_model.yml"
   summary: Time entry update form

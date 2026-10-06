@@ -21,5 +21,9 @@ post:
           $ref: '../components/schemas/query_update_form.yml'
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/query_form_model.yml"
       description: OK
       headers: {}

@@ -1,0 +1,27 @@
+# Schema: ProjectCopyWriteModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./project_write_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_meta": {
+          "type": "object",
+          "properties": {
+            "sendNotifications": {
+              "type": "boolean"
+            }
+          },
+          "patternProperties": {
+            "^copy[A-Z].*$": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
