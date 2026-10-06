@@ -101,10 +101,11 @@ post:
     a time entries' attributes and are accepted by the endpoint.
   operationId: create_time_entry
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: "../components/schemas/time_entry_model.yml"
+          $ref: "../components/schemas/time_entry_write_model.yml"
   responses:
     "201":
       description: Created

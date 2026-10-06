@@ -1,0 +1,55 @@
+# Schema: ViewModel
+---
+{
+  "type": "object",
+  "properties": {
+    "_type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "starred": {
+      "type": "boolean"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "_links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "./link.yml"
+        },
+        "query": {
+          "$ref": "./link.yml"
+        },
+        "project": {
+          "$ref": "./link.yml"
+        }
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "$ref": "./query_model.yml"
+        },
+        "project": {
+          "$ref": "./project_model.yml"
+        }
+      }
+    }
+  }
+}

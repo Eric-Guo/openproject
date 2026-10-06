@@ -22,6 +22,10 @@ post:
             value: {}
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/project_form_model.yml"
       description: OK
       headers: {}
     '400':

@@ -11,6 +11,10 @@ post:
       type: integer
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/work_package_model.yml"
       description: OK
       headers: {}
     '400':
