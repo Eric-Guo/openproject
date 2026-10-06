@@ -1,0 +1,41 @@
+# Schema: UserUpdateModel
+---
+{
+  "type": "object",
+  "properties": {
+    "admin": {
+      "type": "boolean"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "login": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "password": {
+      "type": "string",
+      "description": "The user's password.\n\n*Conditions:*\n\nWritable on create.\n\nWritable on update only when:\n- the caller updates their own account\n- `currentPassword` is provided and valid"
+    },
+    "currentPassword": {
+      "type": "string",
+      "description": "The user's current password.\n\n*Conditions:*\n\nRequired when changing `password` for a self update (`PATCH /api/v3/users/me` or `PATCH /api/v3/users/{id}` where `id` is the caller).\n\nIgnored for non-self updates (for example, administrators updating other users)."
+    },
+    "firstName": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "status": {
+      "type": "string",
+      "description": "The current activation status of the user.\n\n*Conditions:*\n\nOnly writable on creation, not on update."
+    },
+    "language": {
+      "type": "string"
+    }
+  }
+}

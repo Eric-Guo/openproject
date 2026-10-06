@@ -1,0 +1,22 @@
+# Schema: UserFormModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./form_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "payload": {
+              "$ref": "./user_update_model.yml"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

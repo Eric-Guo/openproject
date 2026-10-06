@@ -1,6 +1,12 @@
 # /api/v3/users/{id}/form
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/user_update_model.yml"
   parameters:
   - description: User id. Use `me` to reference current user, if any.
     example: '1'
@@ -11,6 +17,10 @@ post:
       type: string
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/user_form_model.yml"
       description: OK
       headers: {}
     '400':
