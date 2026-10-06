@@ -1,8 +1,18 @@
 # /api/v3/time_entries/form
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/time_entry_write_model.yml"
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/time_entry_form_model.yml"
       description: OK
       headers: {}
     '400':

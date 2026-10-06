@@ -1,0 +1,22 @@
+# Schema: QueryFormModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./form_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "payload": {
+              "$ref": "./query_create_form.yml"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

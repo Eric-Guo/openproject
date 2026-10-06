@@ -52,13 +52,11 @@ patch:
       schema:
         type: integer
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/program_model.yml'
-        examples:
-          "with custom fields":
-            "$ref": "../components/examples/program_body.yml"
+          $ref: "../components/schemas/project_write_model.yml"
   responses:
     '200':
       content:
