@@ -1,0 +1,55 @@
+# Schema: TimeEntryWriteModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./custom_field_properties.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "$ref": "./formattable.yml"
+        },
+        "spentOn": {
+          "type": "string",
+          "format": "date"
+        },
+        "hours": {
+          "type": "string",
+          "format": "duration"
+        },
+        "ongoing": {
+          "type": "boolean"
+        },
+        "startTime": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "_links": {
+          "type": "object",
+          "properties": {
+            "project": {
+              "$ref": "./link.yml"
+            },
+            "entity": {
+              "$ref": "./link.yml"
+            },
+            "workPackage": {
+              "$ref": "./link.yml"
+            },
+            "user": {
+              "$ref": "./link.yml"
+            },
+            "activity": {
+              "$ref": "./link.yml"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

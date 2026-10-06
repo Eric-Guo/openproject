@@ -55,6 +55,10 @@ get:
       description: OK
       headers: {}
     '404':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
       description: |-
         Returned if the version does not exist or the client does not have sufficient permissions
         to see it.

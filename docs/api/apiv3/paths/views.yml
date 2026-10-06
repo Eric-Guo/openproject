@@ -21,6 +21,8 @@ get:
     '200':
       content:
         application/hal+json:
+          schema:
+            $ref: "../components/schemas/view_collection_model.yml"
           examples:
             Queries:
               "$ref": "../components/examples/views.yml"

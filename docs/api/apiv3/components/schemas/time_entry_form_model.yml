@@ -1,0 +1,22 @@
+# Schema: TimeEntryFormModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./form_model.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "payload": {
+              "$ref": "./time_entry_write_model.yml"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -121,10 +121,11 @@ post:
     are required, in the body. The required fields of a WorkPackage can be found in its schema, which is embedded in
     the respective form. Note that it is only allowed to provide properties or links supporting the write operation.
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/work_package_model.yml'
+          $ref: "../components/schemas/work_package_write_model.yml"
   parameters:
     - description: Project id
       example: 1

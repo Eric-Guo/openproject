@@ -105,10 +105,11 @@ patch:
       schema:
         type: string
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/user_create_model.yml'
+          $ref: "../components/schemas/user_update_model.yml"
   responses:
     '200':
       content:
