@@ -806,6 +806,26 @@ components:
       "$ref": "./components/responses/unsupported_media_type.yml"
 
   schemas:
+    VersionFormModel:
+      $ref: "./components/schemas/version_form_model.yml"
+    UserFormModel:
+      $ref: "./components/schemas/user_form_model.yml"
+    TimeEntryFormModel:
+      $ref: "./components/schemas/time_entry_form_model.yml"
+    QueryFormModel:
+      $ref: "./components/schemas/query_form_model.yml"
+    ProjectCopyFormModel:
+      $ref: "./components/schemas/project_copy_form_model.yml"
+    ProjectFormModel:
+      $ref: "./components/schemas/project_form_model.yml"
+    MeetingFormModel:
+      $ref: "./components/schemas/meeting_form_model.yml"
+    GridFormModel:
+      $ref: "./components/schemas/grid_form_model.yml"
+    FormModel:
+      $ref: "./components/schemas/form_model.yml"
+    ProjectWriteModel:
+      $ref: "./components/schemas/project_write_model.yml"
     ActivityModel:
       "$ref": "./components/schemas/activity_model.yml"
     ActivityCommentWriteModel:
@@ -1202,7 +1222,22 @@ components:
       "$ref": "./components/schemas/workspace_collection_model.yml"
     Workspaces_schemaModel:
       "$ref": "./components/schemas/workspaces_schema_model.yml"
+    ViewModel:
+      $ref: "./components/schemas/view_model.yml"
+    ViewCollectionModel:
+      $ref: "./components/schemas/view_collection_model.yml"
+    WorkPackageSchemaCollectionModel:
+      $ref: "./components/schemas/work_package_schema_collection_model.yml"
+    TimeEntryWriteModel:
+      $ref: "./components/schemas/time_entry_write_model.yml"
+    UserUpdateModel:
+      $ref: "./components/schemas/user_update_model.yml"
+    ProjectCopyWriteModel:
+      $ref: "./components/schemas/project_copy_write_model.yml"
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
     BasicAuth:
       type: http
       scheme: basic
@@ -1268,3 +1303,4 @@ tags:
   - "$ref": "./tags/workspaces.yml"
 security:
   - BasicAuth: []
+  - BearerAuth: []

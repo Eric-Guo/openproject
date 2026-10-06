@@ -1,0 +1,67 @@
+# Schema: ProjectWriteModel
+---
+{
+  "allOf": [
+    {
+      "$ref": "./custom_field_properties.yml"
+    },
+    {
+      "$ref": "./custom_comment_properties.yml"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Indicates whether the project is currently active or already archived"
+        },
+        "public": {
+          "type": "boolean",
+          "description": "Indicates whether the project is accessible for everybody"
+        },
+        "description": {
+          "$ref": "./formattable.yml"
+        },
+        "statusExplanation": {
+          "allOf": [
+            {
+              "$ref": "./formattable.yml"
+            },
+            {
+              "description": "A text detailing and explaining why the project has the reported status"
+            }
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of creation. Can be writable by admins with the `apiv3_write_readonly_attributes` setting enabled."
+        },
+        "_links": {
+          "allOf": [
+            {
+              "$ref": "./custom_field_linked_properties.yml"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "parent": {
+                  "$ref": "./link.yml"
+                },
+                "status": {
+                  "$ref": "./link.yml"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

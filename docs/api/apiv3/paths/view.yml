@@ -13,6 +13,8 @@ get:
     '200':
       content:
         application/hal+json:
+          schema:
+            $ref: "../components/schemas/view_model.yml"
           examples:
             ViewWorkPackagesTable:
               "$ref": "../components/examples/view_work_packages_table.yml"

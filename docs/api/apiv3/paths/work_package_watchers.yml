@@ -121,9 +121,17 @@ post:
         type: integer
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/user_model.yml"
       description: OK
       headers: { }
     '201':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/user_model.yml"
       description: Created
       headers: { }
     '400':
@@ -187,6 +195,10 @@ post:
     '415':
       $ref: "../components/responses/unsupported_media_type.yml"
     '422':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
       description: |-
         Returned if:
 

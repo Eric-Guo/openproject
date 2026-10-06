@@ -50,10 +50,7 @@ get:
       content:
         application/hal+json:
           schema:
-            "$ref": "../components/schemas/sprint_collection_model.yml"
-          examples:
-            response:
-              $ref: "../components/examples/sprint_collection.yml"
+            "$ref": "../components/schemas/error_response.yml"
       description: |-
         Returned if the user lacks permission to list sprints in the queried for project.
 

@@ -65,6 +65,10 @@ post:
 
         **Required permission:** view meetings in the recurring meeting's project
     '422':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
       description: |-
         Returned if:
 

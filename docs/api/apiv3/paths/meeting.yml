@@ -110,6 +110,10 @@ patch:
     '415':
       $ref: "../components/responses/unsupported_media_type.yml"
     '422':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/error_response.yml"
       description: |-
         Returned if:
 

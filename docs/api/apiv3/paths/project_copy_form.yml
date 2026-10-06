@@ -1,6 +1,12 @@
 # /api/v3/projects/{id}/copy/form
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/project_copy_write_model.yml"
   parameters:
   - description: Project id
     example: 1
@@ -11,6 +17,10 @@ post:
       type: integer
   responses:
     '200':
+      content:
+        application/hal+json:
+          schema:
+            $ref: "../components/schemas/project_copy_form_model.yml"
       description: OK
       headers: {}
     '400':
