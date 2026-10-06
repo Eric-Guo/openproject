@@ -1,0 +1,43 @@
+# Schema: FormModel
+---
+{
+  "type": "object",
+  "required": [
+    "_type",
+    "_links",
+    "_embedded"
+  ],
+  "properties": {
+    "_type": {
+      "const": "Form"
+    },
+    "_links": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "./link.yml"
+      }
+    },
+    "_embedded": {
+      "type": "object",
+      "required": [
+        "payload",
+        "schema",
+        "validationErrors"
+      ],
+      "properties": {
+        "payload": {
+          "type": "object"
+        },
+        "schema": {
+          "$ref": "./schema_model.yml"
+        },
+        "validationErrors": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "./error_response.yml"
+          }
+        }
+      }
+    }
+  }
+}

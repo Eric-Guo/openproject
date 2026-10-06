@@ -83,6 +83,12 @@ get:
             message: The requested resource could not be found.
 
 patch:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/time_entry_write_model.yml"
   summary: update time entry
   tags:
     - Time Entries
