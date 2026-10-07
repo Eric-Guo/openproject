@@ -106,6 +106,7 @@ RSpec.describe "POST /api/v3/queries/form",
   end
 
   it "is of type form" do
+    expect(last_response.body).to match_json_schema.from_docs("query_form_model")
     expect(form["_type"]).to eq "Form"
   end
 

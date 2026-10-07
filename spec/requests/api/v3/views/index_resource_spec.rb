@@ -109,6 +109,10 @@ RSpec.describe API::V3::Views::ViewsAPI,
   end
 
   context "without any filter" do
+    it "matches the documented schema" do
+      expect(last_response.body).to match_json_schema.from_docs("view_collection_model")
+    end
+
     it_behaves_like "API V3 collection response", 3, 3, "Views::WorkPackagesTable" do
       let(:elements) do
         [
