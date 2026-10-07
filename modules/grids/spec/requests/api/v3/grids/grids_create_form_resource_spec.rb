@@ -57,6 +57,7 @@ RSpec.describe "POST /api/v3/grids/form", content_type: :json do
     end
 
     it "is of type form" do
+      expect(response.body).to match_json_schema.from_docs("grid_form_model")
       expect(subject.body)
         .to be_json_eql("Form".to_json)
         .at_path("_type")
