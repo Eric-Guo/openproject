@@ -1,0 +1,8 @@
+---
+zh-CN:
+  activerecord:
+    attributes:
+      time_entry:
+        approved_hours: 审批工时
+        sz_approved_hours: SZ 审批小时
+        from_th_keyin: 来自 TH 工时填报

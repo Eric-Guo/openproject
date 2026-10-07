@@ -30,18 +30,11 @@ module API
   module V3
     module Projects
       module Copy
-        class ProjectCopyPayloadRepresenter < ::API::V3::Projects::ProjectRepresenter
-          include ::API::Utilities::PayloadRepresenter
+        class ProjectCopyPayloadRepresenter < ::API::V3::Projects::ProjectPayloadRepresenter
           include ::API::Utilities::MetaProperty
-
-          cached_representer disabled: true
 
           def meta_representer_class
             ProjectCopyMetaRepresenter
-          end
-
-          def writable_attributes
-            super + %w[status]
           end
         end
       end

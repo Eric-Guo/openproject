@@ -146,12 +146,12 @@ post:
         default: true
         type: boolean
   responses:
-    '200':
+    '201':
       content:
         application/hal+json:
           schema:
             $ref: '../components/schemas/work_package_model.yml'
-      description: OK
+      description: Created
     '400':
       $ref: "../components/responses/invalid_request_body.yml"
     '403':
