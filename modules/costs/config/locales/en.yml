@@ -60,6 +60,7 @@ en:
         project: Project
         spent_on: Date
         start_time: Start time
+        sz_approved_hours: SZ approved hours
         subject: Subject
         time: Time
         user: User

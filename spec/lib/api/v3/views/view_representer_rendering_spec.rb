@@ -49,6 +49,18 @@ RSpec.describe API::V3::Views::ViewRepresenter, "rendering" do
                            embed_links:
   end
 
+  it "matches the documented schema" do
+    expect(generated).to match_json_schema.from_docs("view_model")
+  end
+
+  context "with a global query" do
+    let(:query) { build_stubbed(:query, project: nil) }
+
+    it "matches the documented schema" do
+      expect(generated).to match_json_schema.from_docs("view_model")
+    end
+  end
+
   describe "properties" do
     describe "_type" do
       it_behaves_like "property", :_type do
