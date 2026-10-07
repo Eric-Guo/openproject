@@ -34,6 +34,10 @@ module API
 
         cached_representer disabled: true
 
+        property :identifier,
+                 inherit: true,
+                 render_nil: false
+
         def writable_attributes
           super + %w[status]
         end
