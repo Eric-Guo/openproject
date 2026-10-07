@@ -70,6 +70,7 @@ RSpec.describe API::V3::Users::UpdateFormAPI, content_type: :json do
     describe "empty payload" do
       it "returns a valid form", :aggregate_failures do
         expect(response).to have_http_status(:ok)
+        expect(response.body).to match_json_schema.from_docs("user_form_model")
         expect(response.body).to be_json_eql("Form".to_json).at_path("_type")
 
         expect(body)

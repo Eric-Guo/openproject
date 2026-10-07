@@ -127,10 +127,11 @@ post:
 
     This endpoint is deprecated and replaced by [`/api/v3/workspaces/{id}/work_packages`](https://www.openproject.org/docs/api/endpoints/work-packages/#create-work-package-in-workspace)
   requestBody:
+    required: false
     content:
       application/json:
         schema:
-          $ref: '../components/schemas/work_package_model.yml'
+          $ref: '../components/schemas/work_package_write_model.yml'
   parameters:
     - description: Project id
       example: 1
@@ -151,7 +152,7 @@ post:
         default: true
         type: boolean
   responses:
-    '200':
+    '201':
       content:
         application/hal+json:
           schema:
@@ -159,7 +160,7 @@ post:
           examples:
             response:
               $ref: "../components/examples/work_package_simple_response.yml"
-      description: OK
+      description: Created
     '400':
       $ref: "../components/responses/invalid_request_body.yml"
     '403':
