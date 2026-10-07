@@ -39,6 +39,14 @@ module API
     error_representer ::API::V3::Errors::ErrorRepresenter, "application/hal+json; charset=utf-8"
     authentication_scope OpenProject::Authentication::Scope::API_V3
 
+    helpers do
+      def enforce_content_type
+        return if request.content_type.blank? && request.content_length.to_i.zero? && env["api.request.input"].to_s.empty?
+
+        super
+      end
+    end
+
     OpenProject::Authentication.handle_failure(scope: API_V3) do |warden, opts|
       e = grape_error_for(warden.env, self)
       error_message = I18n.t("api_v3.errors.code_401_wrong_credentials")

@@ -69,6 +69,7 @@ RSpec.describe API::V3::Projects::CreateFormAPI, content_type: :json do
     end
 
     it "returns a form" do
+      expect(response.body).to match_json_schema.from_docs("project_form_model")
       expect(response.body)
         .to be_json_eql("Form".to_json)
         .at_path("_type")

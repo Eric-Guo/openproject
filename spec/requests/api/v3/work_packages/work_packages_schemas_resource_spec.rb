@@ -65,6 +65,7 @@ RSpec.describe API::V3::WorkPackages::Schema::WorkPackageSchemasAPI do
         end
 
         it "returns a collection of schemas" do
+          expect(last_response.body).to match_json_schema.from_docs("work_package_schema_collection_model")
           expect(last_response.body)
             .to be_json_eql(api_v3_paths.work_package_schema(project.id, type.id).to_json)
             .at_path("_embedded/elements/0/_links/self/href")

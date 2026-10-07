@@ -31,6 +31,14 @@ module API
     module TimeEntries
       class TimeEntryPayloadRepresenter < TimeEntryRepresenter
         include ::API::Utilities::PayloadRepresenter
+
+        property :spent_on,
+                 inherit: true,
+                 render_nil: false
+
+        property :hours,
+                 inherit: true,
+                 render_nil: false
       end
     end
   end
