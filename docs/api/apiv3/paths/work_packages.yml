@@ -203,8 +203,8 @@ post:
         default: true
         type: boolean
   responses:
-    '200':
-      description: OK
+    '201':
+      description: Created
       content:
         application/hal+json:
           schema:
