@@ -69,6 +69,7 @@ RSpec.describe API::V3::Projects::Copy::CreateFormAPI, content_type: :json do
 
   it "returns 200 FORM response", :aggregate_failures do
     expect(response).to have_http_status(:ok)
+    expect(response.body).to match_json_schema.from_docs("project_copy_form_model")
 
     expect(response.body)
       .to be_json_eql("Form".to_json)

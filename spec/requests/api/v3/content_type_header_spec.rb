@@ -63,11 +63,34 @@ RSpec.describe "API v3 Content-Type header" do
       end
     end
 
-    context "on any other HTTP method" do
+    context "on a request with a body" do
       it "responds with a 406 status and a missing Content-Type header message" do
-        patch api_v3_paths.work_package(work_package.id), {}
+        patch api_v3_paths.work_package(work_package.id), {}.to_json
         expect(last_response).to have_http_status(:not_acceptable)
         expect(last_response.body).to include("Missing content-type header")
+      end
+    end
+
+    context "on a request without a body" do
+      it "returns the project form" do
+        post api_v3_paths.create_project_form
+
+        expect(last_response).to have_http_status(:ok)
+        expect(last_response.body).to match_json_schema.from_docs("project_form_model")
+      end
+
+      it "accepts an update without attributes" do
+        patch api_v3_paths.project(project.id)
+
+        expect(last_response).to have_http_status(:ok)
+        expect(last_response.body).to match_json_schema.from_docs("project_model")
+      end
+
+      it "returns validation errors for creation without attributes" do
+        post api_v3_paths.projects
+
+        expect(last_response).to have_http_status(:unprocessable_entity)
+        expect(last_response.body).to match_json_schema.from_docs("error_response")
       end
     end
   end

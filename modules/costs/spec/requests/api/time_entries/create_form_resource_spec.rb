@@ -42,6 +42,7 @@ RSpec.describe API::V3::TimeEntries::CreateFormAPI, content_type: :json do
   let(:custom_field) { create(:time_entry_custom_field) }
   let(:user) do
     create(:user,
+           language:,
            member_with_permissions: { project => permissions })
   end
   let(:work_package) do
@@ -49,6 +50,7 @@ RSpec.describe API::V3::TimeEntries::CreateFormAPI, content_type: :json do
   end
   let(:other_user) { create(:user) }
   let(:permissions) { %i[log_time view_work_packages] }
+  let(:language) { "en" }
 
   let(:path) { api_v3_paths.create_time_entry_form }
   let(:parameters) { {} }
@@ -67,6 +69,7 @@ RSpec.describe API::V3::TimeEntries::CreateFormAPI, content_type: :json do
     end
 
     it "returns a form" do
+      expect(response.body).to match_json_schema.from_docs("time_entry_form_model")
       expect(response.body)
         .to be_json_eql("Form".to_json)
         .at_path("_type")
@@ -97,6 +100,17 @@ RSpec.describe API::V3::TimeEntries::CreateFormAPI, content_type: :json do
       it "has no commit link" do
         expect(subject.body)
           .not_to have_json_path("_links/commit")
+      end
+
+      context "with a Chinese locale" do
+        let(:language) { "zh-CN" }
+
+        it "returns a form with translated approval fields" do
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to match_json_schema.from_docs("time_entry_form_model")
+          expect(response.body).to be_json_eql("审批工时".to_json).at_path("_embedded/schema/approvedHours/name")
+          expect(response.body).to be_json_eql("SZ 审批小时".to_json).at_path("_embedded/schema/szApprovedHours/name")
+        end
       end
     end
 
