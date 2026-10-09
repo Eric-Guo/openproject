@@ -259,6 +259,8 @@ post:
 
         * Omitting one of the required parts (`metadata` or `file`)
 
+        * Sending metadata or file parts in an invalid format
+
         * Omitting the file name (`fileName` property of metadata part)
 
         * Sending a file that is too large
