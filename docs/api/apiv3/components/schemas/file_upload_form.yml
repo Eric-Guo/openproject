@@ -1,12 +1,34 @@
 # Schema: FileUploadForm
 ---
 type: object
+required:
+  - metadata
+  - file
 properties:
   metadata:
     type: object
+    description: |-
+      A single JSON object sent as the `metadata` part, without a filename in its
+      Content-Disposition header. Do not split its properties into separate form fields.
+    required:
+      - fileName
     properties:
       fileName:
         type: string
+        minLength: 1
+        description: The name the file will be stored under.
+      description:
+        allOf:
+          - $ref: './formattable.yml'
+          - description: A user provided description of the file, interpreted as plain text.
+    example:
+      fileName: cat.png
+      description:
+        format: plain
+        raw: A picture of a cute cat
   file:
     type: string
     format: binary
+    description: |-
+      The raw file content. This part must include a filename in its Content-Disposition
+      header; the stored filename is taken from `metadata.fileName` instead.
