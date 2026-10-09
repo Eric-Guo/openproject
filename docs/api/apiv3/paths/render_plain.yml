@@ -1,6 +1,13 @@
 # /api/v3/render/plain
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      text/plain:
+        schema:
+          type: string
+        example: 'Hello world! This *is* plain text!'
   responses:
     '200':
       content:
@@ -27,6 +34,6 @@ post:
       headers: {}
   tags:
   - Previewing
-  description: ''
+  description: Renders the plain text supplied in the request body into HTML.
   operationId: Preview_plain_document
   summary: Preview plain document
