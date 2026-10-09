@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -63,10 +65,38 @@ module API
 
         def self.parse_multipart(request)
           request.params.tap do |params|
-            params[:metadata] = JSON.parse(params[:metadata]) if params.key?(:metadata)
+            params[:metadata] = parse_metadata(params[:metadata]) if params.key?(:metadata)
+            validate_file(params[:file]) if params.key?(:file)
           end
         rescue JSON::ParserError
           raise ::API::Errors::InvalidRequestBody.new(I18n.t("api_v3.errors.invalid_json"))
+        end
+
+        def self.parse_metadata(value)
+          validate_type("metadata", value, String)
+          metadata = JSON.parse(value)
+          validate_type("metadata", metadata, Hash)
+          validate_type("fileName", metadata["fileName"], String) unless metadata["fileName"].nil?
+
+          if metadata.key?("description")
+            validate_type("description", metadata["description"], Hash)
+            raw = metadata["description"]["raw"]
+            validate_type("description.raw", raw, String) unless raw.nil?
+          end
+
+          metadata
+        end
+
+        def self.validate_type(property, value, type)
+          return if value.is_a?(type)
+
+          raise ::API::Errors::PropertyFormatError.new(property, type.name, value.class.name)
+        end
+
+        def self.validate_file(file)
+          return if file.is_a?(Hash) && file[:tempfile].is_a?(Tempfile) && file[:filename].present?
+
+          raise ::API::Errors::PropertyFormatError.new("file", "file upload with a filename", file.class.name)
         end
 
         def self.read
