@@ -976,10 +976,6 @@ components:
       $ref: "./components/schemas/emoji_reactions_model.yml"
     ErrorResponse:
       $ref: "./components/schemas/error_response.yml"
-    Example_FormModel:
-      $ref: "./components/schemas/example_form_model.yml"
-    Example_SchemaModel:
-      $ref: "./components/schemas/example_schema_model.yml"
     FileLinkCollectionReadModel:
       $ref: "./components/schemas/file_link_collection_read_model.yml"
     FileLinkCollectionWriteModel:

@@ -60,24 +60,26 @@ post:
         type: integer
       example: 1
   requestBody:
+    required: true
     content:
       multipart/form-data:
         schema:
           $ref: '../components/schemas/file_upload_form.yml'
+        encoding:
+          metadata:
+            contentType: application/json
+          file:
+            contentType: '*/*'
   responses:
-    '200':
-      description: OK
+    '201':
+      description: Created
       content:
         application/hal+json:
           schema:
             $ref: '../components/schemas/attachment_model.yml'
     '400':
       description: |-
-        Returned if the client sends a not understandable request. Reasons include:
-
-        * Omitting one of the required parts (metadata and file)
-
-        * sending unparsable JSON in the metadata part
+        Returned if the `metadata` part contains unparsable JSON.
       content:
         application/hal+json:
           schema:
@@ -132,6 +134,8 @@ post:
       description: |-
         Returned if the client tries to send an invalid attachment.
         Reasons are:
+
+        * Omitting one of the required parts (`metadata` or `file`)
 
         * Omitting the file name (`fileName` property of metadata part)
 
