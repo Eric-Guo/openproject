@@ -39,6 +39,17 @@ get:
   operationId: list_work_package_attachments
   summary: List attachments by work package
 post:
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../components/schemas/file_upload_form.yml'
+        encoding:
+          metadata:
+            contentType: application/json
+          file:
+            contentType: '*/*'
   parameters:
   - description: ID of the work package to receive the attachment
     example: 1
@@ -48,12 +59,12 @@ post:
     schema:
       type: integer
   responses:
-    '200':
+    '201':
       content:
         application/hal+json:
           schema:
             $ref: "../components/schemas/attachment_model.yml"
-      description: OK
+      description: Created
     '400':
       content:
         application/hal+json:
@@ -64,11 +75,7 @@ post:
             errorIdentifier: urn:openproject-org:api:v3:errors:InvalidRequestBody
             message: The request could not be parsed as JSON.
       description: |-
-        Returned if the client sends a not understandable request. Reasons include:
-
-        * Omitting one of the required parts (metadata and file)
-
-        * sending unparsable JSON in the metadata part
+        Returned if the `metadata` part contains unparsable JSON.
     '403':
       content:
         application/hal+json:
@@ -117,6 +124,8 @@ post:
       description: |-
         Returned if the client tries to send an invalid attachment.
         Reasons are:
+
+        * Omitting one of the required parts (`metadata` or `file`)
 
         * Omitting the file name (`fileName` property of metadata part)
 

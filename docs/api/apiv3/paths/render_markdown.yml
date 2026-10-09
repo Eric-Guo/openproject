@@ -1,6 +1,13 @@
 # /api/v3/render/markdown
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      text/plain:
+        schema:
+          type: string
+        example: 'Hello world! [This](http://example.com) **is** markdown!'
   parameters:
   - description: |-
       API-Link to the context in which the rendering occurs, for example a specific work package.
@@ -61,6 +68,6 @@ post:
       headers: {}
   tags:
   - Previewing
-  description: ''
+  description: Renders the Markdown document supplied as plain text in the request body into HTML.
   operationId: Preview_Markdown_document
   summary: Preview Markdown document
