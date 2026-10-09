@@ -85,4 +85,85 @@ description: |-
   performed with the API request can be sent.
 
   Each individual endpoint will describe their meta properties, if available.
+
+  ## Example form
+
+  This example illustrates the resource structure. The `/api/v3/example/form` URL
+  is fictitious and is not a callable endpoint.
+
+  ```yaml
+  _embedded:
+    payload:
+      _links:
+        status:
+          href: "/api/v3/statuses/1"
+      _type: Example
+      lockVersion: 5
+      subject: An example title
+    schema:
+      _links:
+        self:
+          href: "/api/v3/example/schema"
+      _type: Schema
+      lockVersion:
+        type: Integer
+        writable: false
+      status:
+        _embedded:
+          allowedValues:
+          - _links:
+              self:
+                href: "/api/v3/statuses/1"
+            _type: Status
+            createdAt: '2014-05-21T08:51:20.396Z'
+            defaultDoneRatio: 0
+            id: 1
+            isClosed: false
+            isDefault: true
+            name: New
+            position: 1
+            updatedAt: '2014-05-21T09:12:00.647Z'
+          - _links:
+              self:
+                href: "/api/v3/statuses/2"
+            _type: Status
+            createdAt: '2014-05-21T08:51:20.396Z'
+            defaultDoneRatio: 100
+            id: 2
+            isClosed: true
+            isDefault: false
+            name: Closed
+            position: 2
+            updatedAt: '2014-05-21T09:12:00.647Z'
+        _links:
+          allowedValues:
+          - href: "/api/v3/statuses/1"
+            title: New
+          - href: "/api/v3/statuses/2"
+            title: Closed
+        type: Status
+      subject:
+        maxLength: 255
+        minLength: 1
+        type: String
+    validationErrors:
+      subject:
+        _type: Error
+        errorIdentifier: urn:openproject-org:api:v3:errors:BadExampleError
+        message: For the purpose of this example we need a validation error. The remainder
+          of the response pretends there were no errors.
+  _links:
+    commit:
+      href: "/api/v3/example"
+      method: PATCH
+    previewMarkup:
+      href: "/api/v3/render/markdown"
+      method: POST
+    self:
+      href: "/api/v3/example/form"
+    validate:
+      href: "/api/v3/example/form"
+      method: POST
+  _type: Form
+  ```
 name: Forms

@@ -1,6 +1,19 @@
 # /api/v3/projects/{id}/copy
 ---
 post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/project_copy_write_model.yml"
+        example:
+          name: My copied project
+          identifier: my-copied-project
+          _meta:
+            copyWorkPackages: true
+            copyWiki: false
+            sendNotifications: false
   parameters:
   - description: Project id
     example: 1
@@ -14,7 +27,13 @@ post:
       description: Returned if the request is successful. It will redirect to the
         job statuses API with the backend job that got created. You can query that
         endpoint to check the status of the copy, and eventually get the created project.
-      headers: {}
+      headers:
+        Location:
+          description: The relative URL of the background job's status resource.
+          schema:
+            type: string
+            format: uri-reference
+          example: /api/v3/job_statuses/6d0b09f0-1fbe-4e4c-a59e-748e08c263a7
     '400':
       $ref: "../components/responses/invalid_request_body.yml"
     '403':
@@ -58,6 +77,8 @@ post:
       headers: {}
   tags:
   - Projects
-  description: ''
+  description: |-
+    Copies the source project using the supplied attributes for the new project.
+    The `_meta` properties select which associated resources to copy and whether to send notifications.
   operationId: Create_project_copy
   summary: Create project copy
