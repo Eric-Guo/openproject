@@ -48,6 +48,12 @@ module API
                  type: "String",
                  required: false
 
+          schema :th_meeting_upstream_room_id,
+                 as: "thMeetingUpstreamRoom",
+                 type: "String",
+                 required: false,
+                 has_default: true
+
           schema :duration,
                  type: "Duration"
 

@@ -1,9 +1,9 @@
 # Example: Meeting create request
 ---
-description: Request to create a basic meeting
+description: Request to create an online meeting
 value:
   title: "Weekly Standup"
-  location: "Conference Room A"
+  thMeetingUpstreamRoom: "线上会议"
   startTime: "2026-06-01T10:00:00Z"
   duration: "PT1H"
   _links:
