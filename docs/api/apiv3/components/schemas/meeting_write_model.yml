@@ -8,6 +8,12 @@ properties:
   location:
     type: string
     description: The meeting's location
+  thMeetingUpstreamRoom:
+    type: string
+    default: "线上会议"
+    description: |-
+      The THAPE room ID (`th_meeting_upstream_room_id`). Defaults to `线上会议` for new meetings.
+      Omit on updates to keep the existing room. Location is derived from the selected room.
   startTime:
     type: string
     format: date-time
