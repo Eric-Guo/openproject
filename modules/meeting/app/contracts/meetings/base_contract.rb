@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -37,6 +38,7 @@ module Meetings
     attribute :author_id
     attribute :project_id
     attribute :location
+    attribute :th_meeting_upstream_room_id
     attribute :duration
     attribute :state
     attribute :start_date
