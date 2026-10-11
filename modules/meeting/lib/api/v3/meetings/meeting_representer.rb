@@ -38,10 +38,10 @@ module API
         include API::V3::Attachments::AttachableRepresenterMixin
         include API::Decorators::DateProperty
 
-        self.to_eager_load = [:author, { project: :enabled_modules }, { participants: :user }]
+        self.to_eager_load = [:author, :th_meeting, { project: :enabled_modules }, { participants: :user }]
 
         cached_representer key_parts: %i(project participants),
-                           dependencies: ->(*) { represented.notify? }
+                           dependencies: ->(*) { [represented.notify?, represented.th_meeting_upstream_room_id] }
 
         self_link title_getter: ->(*) { represented.title }
 
@@ -98,6 +98,8 @@ module API
         property :id
         property :title
         property :location
+        property :th_meeting_upstream_room_id,
+                 as: "thMeetingUpstreamRoom"
 
         property :lock_version,
                  render_nil: true,

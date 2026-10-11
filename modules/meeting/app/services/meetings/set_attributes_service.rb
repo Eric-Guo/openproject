@@ -42,10 +42,11 @@ module Meetings
       end
     end
 
-    def set_default_attributes(_params) # rubocop:disable Metrics/AbcSize
+    def set_default_attributes(_params) # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
       model.change_by_system do
         model.author = user
         model.duration ||= 1
+        model.th_meeting_upstream_room_id ||= "线上会议"
         model.state = "draft" if !model.recurring? || model.template?
         model.notify = false
         model.sharing = "none" if model.onetime_template?
