@@ -36,6 +36,7 @@ module Meetings
     attribute :title
     attribute :agenda_sorting_mode
     attribute :location
+    attribute :th_meeting_upstream_room_id
     attribute :duration
     attribute :state
     attribute :start_date
