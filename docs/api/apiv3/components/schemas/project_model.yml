@@ -23,6 +23,16 @@ allOf:
       favorited:
         type: boolean
         description: Indicates whether the project is favorited by the current user
+      showEstimateButton:
+        type: boolean
+        readOnly: true
+        description: |-
+          Whether the caller is an administrator, has the global `view_all_project_info` permission,
+          or has `view_th_budget` permission in this project.
+      profile:
+        allOf:
+          - $ref: './project_profile_attributes_model.yml'
+          - description: Present when the project has a profile and the `th_projects` module is enabled.
       statusExplanation:
         allOf:
           - $ref: './formattable.yml'

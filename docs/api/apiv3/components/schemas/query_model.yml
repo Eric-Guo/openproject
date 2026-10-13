@@ -25,6 +25,12 @@ properties:
     type: boolean
     description: Should sums (of supported properties) be shown?
     readOnly: true
+  includeSubprojects:
+    type: boolean
+    description: Whether the query includes work packages from subprojects.
+  includeAllMembersAssignedProjects:
+    type: boolean
+    description: Whether the query includes projects with work assigned to members of its project.
   timelineVisible:
     type: boolean
     description: Should the timeline mode be shown?

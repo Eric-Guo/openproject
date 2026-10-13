@@ -64,6 +64,15 @@ allOf:
           # Conditions
 
           - `admin`
+      company:
+        type: string
+        description: User's company, supplied by the TH plugin. Omitted when unset.
+      th_department:
+        type: string
+        description: User's department. This property uses snake_case and is omitted when unset.
+      title:
+        type: string
+        description: User's job title, supplied by the TH plugin. Omitted when unset.
       status:
         type: string
         description: |-

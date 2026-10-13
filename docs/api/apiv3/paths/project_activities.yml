@@ -1,0 +1,63 @@
+# /api/v3/projects/{id}/activities
+---
+get:
+  summary: List project work package activities
+  operationId: list_project_activities
+  tags:
+    - Activities
+  description: |-
+    Returns an unpaginated collection of work package journals for the project. This includes
+    changes and comments; it is not a feed of all project resource types.
+
+    The parent project must be accessible to the caller. The endpoint does not apply an additional
+    work package visibility filter to the project's journals. Both date bounds are optional and
+    inclusive; `to_date` is implemented as a cutoff before the start of the following day.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Project ID or identifier.
+      schema:
+        type: string
+      example: '42'
+    - name: from_date
+      in: query
+      required: false
+      description: Include activities created on or after this date. An empty value is ignored.
+      schema:
+        type: string
+        format: date
+      example: '2030-06-01'
+    - name: to_date
+      in: query
+      required: false
+      description: Include activities created on or before this date. An empty value is ignored.
+      schema:
+        type: string
+        format: date
+      example: '2030-06-30'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/activity_collection_model.yml'
+    '401':
+      description: Returned if authentication is required and the client is not authenticated, or credentials are invalid.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '404':
+      description: Returned if the project does not exist or is not accessible to the caller.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '422':
+      description: Returned if a non-empty date is malformed (`PropertyFormatError`).
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
