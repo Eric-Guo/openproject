@@ -3,6 +3,23 @@
 {
   "type": "object",
   "properties": {
+    "company": {
+      "type": ["string", "null"],
+      "description": "User's company, supplied by the TH plugin."
+    },
+    "th_department": {
+      "type": ["string", "null"],
+      "description": "User's department. The property name uses snake_case."
+    },
+    "title": {
+      "type": ["string", "null"],
+      "description": "User's job title, supplied by the TH plugin."
+    },
+    "mobile": {
+      "type": ["string", "null"],
+      "writeOnly": true,
+      "description": "User's mobile phone number. Accepted on writes but not returned by the user representer."
+    },
     "admin": {
       "type": "boolean"
     },
