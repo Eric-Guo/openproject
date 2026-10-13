@@ -24,6 +24,10 @@ properties:
     type: string
     format: date-time
     description: The time the membership was last updated.
+  profile:
+    allOf:
+      - $ref: './membership_profile_model.yml'
+      - description: Present when the membership has a profile and the project's `th_members_module` module is enabled.
   _embedded:
     type: object
     properties:

@@ -1,0 +1,20 @@
+# Schema: ProjectProfileAttributesModel
+---
+type: object
+description: TH project profile embedded in a project. This is distinct from the standalone project code lookup response.
+properties:
+  typeId:
+    type: integer
+    description: PLM space type. A profile requires a nonzero type.
+  name:
+    type: string
+    description: Upstream project name.
+  code:
+    type: string
+    description: Upstream project code. Changing an existing code requires an administrator.
+  docLink:
+    type: string
+    description: Project document link, or an empty string if unset.
+  thBudgetStatus:
+    type: integer
+    description: TH project budget status code.

@@ -25,6 +25,10 @@ properties:
       - subscribed
       - scheduled
       - watched
+  reasonName:
+    type: string
+    readOnly: true
+    description: Localized display name of the notification reason, supplied by the TH plugin.
   readIAN:
     type: boolean
     description: Whether the notification is marked as read

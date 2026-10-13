@@ -379,6 +379,8 @@ paths:
     "$ref": "./paths/project_phase_definitions.yml"
   "/api/v3/project_phase_definitions/{id}":
     "$ref": "./paths/project_phase_definition.yml"
+  "/api/v3/project_profiles/{code}":
+    "$ref": "./paths/project_profile.yml"
   "/api/v3/project_storages":
     "$ref": "./paths/project_storages.yml"
   "/api/v3/project_storages/{id}":
@@ -405,12 +407,18 @@ paths:
     "$ref": "./paths/projects_available_parent_projects.yml"
   "/api/v3/projects/{id}/budgets":
     "$ref": "./paths/project_budgets.yml"
+  "/api/v3/projects/{id}/activities":
+    "$ref": "./paths/project_activities.yml"
+  "/api/v3/projects/{id}/all_members_assigned_projects":
+    "$ref": "./paths/project_all_members_assigned_projects.yml"
   "/api/v3/projects/{id}/queries/default":
     "$ref": "./paths/project_queries_default.yml"
   "/api/v3/projects/{id}/queries/filter_instance_schemas":
     "$ref": "./paths/project_queries_filter_instance_schemas.yml"
   "/api/v3/projects/{id}/queries/schema":
     "$ref": "./paths/project_queries_schema.yml"
+  "/api/v3/projects/{id}/th_queries/default":
+    "$ref": "./paths/project_th_queries_default.yml"
   "/api/v3/projects/{id}/work_packages":
     "$ref": "./paths/project_work_packages.yml"
   "/api/v3/projects/{id}/work_packages/form":
@@ -519,6 +527,8 @@ paths:
     "$ref": "./paths/storage_oauth_client_credentials.yml"
   "/api/v3/storages/{id}/open":
     "$ref": "./paths/storage_open.yml"
+  "/api/v3/th_queries/{id}":
+    "$ref": "./paths/th_query.yml"
   "/api/v3/time_entries":
     "$ref": "./paths/time_entries.yml"
   "/api/v3/time_entries/th_keyin":
@@ -822,6 +832,8 @@ components:
       $ref: "./components/schemas/form_model.yml"
     ProjectWriteModel:
       $ref: "./components/schemas/project_write_model.yml"
+    ActivityCollectionModel:
+      "$ref": "./components/schemas/activity_collection_model.yml"
     ActivityModel:
       "$ref": "./components/schemas/activity_model.yml"
     ActivityCommentWriteModel:
@@ -976,6 +988,8 @@ components:
       "$ref": "./components/schemas/membership_collection_model.yml"
     MembershipFormModel:
       "$ref": "./components/schemas/membership_form_model.yml"
+    MembershipProfileModel:
+      "$ref": "./components/schemas/membership_profile_model.yml"
     MembershipReadModel:
       "$ref": "./components/schemas/membership_read_model.yml"
     MembershipSchemaModel:
@@ -1042,6 +1056,10 @@ components:
       "$ref": "./components/schemas/project_phase_definition_model.yml"
     ProjectPhaseDefinitionCollectionModel:
       "$ref": "./components/schemas/project_phase_definition_collection_model.yml"
+    ProjectProfileAttributesModel:
+      "$ref": "./components/schemas/project_profile_attributes_model.yml"
+    ProjectProfileModel:
+      "$ref": "./components/schemas/project_profile_model.yml"
     ProjectStorageCollectionModel:
       "$ref": "./components/schemas/project_storage_collection_model.yml"
     ProjectStorageModel:
@@ -1270,6 +1288,7 @@ tags:
   - "$ref": "./tags/programs.yml"
   - "$ref": "./tags/project_phases.yml"
   - "$ref": "./tags/project_phase_definitions.yml"
+  - "$ref": "./tags/project_profiles.yml"
   - "$ref": "./tags/projects.yml"
   - "$ref": "./tags/queries.yml"
   - "$ref": "./tags/query_columns.yml"
@@ -1285,6 +1304,7 @@ tags:
   - "$ref": "./tags/schemas.yml"
   - "$ref": "./tags/sprints.yml"
   - "$ref": "./tags/statuses.yml"
+  - "$ref": "./tags/th_queries.yml"
   - "$ref": "./tags/time_entries.yml"
   - "$ref": "./tags/time_entry_activities.yml"
   - "$ref": "./tags/types.yml"
