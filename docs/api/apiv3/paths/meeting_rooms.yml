@@ -1,0 +1,89 @@
+# /api/v3/meeting_rooms
+---
+get:
+  summary: List available meeting rooms
+  operationId: list_meeting_rooms
+  tags:
+    - Meeting Rooms
+  description: |-
+    Lists enabled THAPE meeting rooms as an unpaginated collection. The authenticated user must have
+    the `create_meetings` permission in at least one project with meetings enabled.
+
+    Without a time range, all enabled rooms are returned without checking occupancy. Supply both
+    `startTime` and `endTime` to list rooms available for that range. Overlapping bookings exclude
+    physical rooms, while online rooms remain available. Availability is checked again when creating
+    a meeting; listing a room does not reserve it.
+
+    Use a returned room's `id` as `thMeetingUpstreamRoom` when creating or updating a meeting.
+  parameters:
+    - name: startTime
+      in: query
+      required: false
+      description: |-
+        Start of the meeting in ISO 8601 format. Must be supplied together with `endTime`.
+        Timestamp offsets are interpreted in the application's time zone.
+      schema:
+        type: string
+        format: date-time
+      example: '2030-06-02T14:00:00+08:00'
+    - name: endTime
+      in: query
+      required: false
+      description: |-
+        End of the meeting in ISO 8601 format. Must be supplied together with `startTime` and be later
+        than `startTime`. Timestamp offsets are interpreted in the application's time zone.
+      schema:
+        type: string
+        format: date-time
+      example: '2030-06-02T15:00:00+08:00'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/meeting_room_collection_model.yml'
+          example:
+            _type: Collection
+            total: 1
+            count: 1
+            _links:
+              self:
+                href: '/api/v3/meeting_rooms?endTime=2030-06-02T15%3A00%3A00%2B08%3A00&startTime=2030-06-02T14%3A00%3A00%2B08%3A00'
+            _embedded:
+              elements:
+                - _type: MeetingRoom
+                  id: room-1
+                  name: Room 1
+                  shortName: R1
+                  officeAreaId: office-1
+                  officeArea: Shanghai
+                  location: Floor 2
+    '400':
+      description: |-
+        Returned if only one timestamp is supplied, a timestamp is blank, or `endTime` is not later
+        than `startTime`.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '401':
+      description: Returned if the client is not authenticated.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '403':
+      description: |-
+        Returned if the authenticated user does not have the `create_meetings` permission in any
+        project with meetings enabled.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '422':
+      description: Returned if a timestamp is malformed (`PropertyFormatError`).
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
