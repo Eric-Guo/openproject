@@ -19,6 +19,58 @@
           "type": "string",
           "format": "duration"
         },
+        "rejectReason": {
+          "type": ["string", "null"],
+          "description": "Reason for rejecting the time entry."
+        },
+        "approvedHours": {
+          "type": ["string", "null"],
+          "format": "duration",
+          "description": "Approved hours in ISO 8601 duration format, for example PT4H."
+        },
+        "szApprovedHours": {
+          "type": ["string", "null"],
+          "format": "duration",
+          "description": "Hours approved by the department head in ISO 8601 duration format, for example PT4H."
+        },
+        "fromThKeyin": {
+          "type": "boolean",
+          "description": "Whether the entry originated from the TH key-in workflow."
+        },
+        "rejectedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Time the entry was rejected. Set to null to clear it."
+        },
+        "rejectReKeyinedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Time the rejected entry was submitted again. Set to null to clear it."
+        },
+        "rejectedButNowPass": {
+          "type": "boolean",
+          "description": "Whether a previously rejected entry has subsequently passed review."
+        },
+        "approvedById": {
+          "type": ["integer", "null"],
+          "writeOnly": true,
+          "description": "Approving user's ID. Only applied for API v3 updates by an administrator; ignored on creation and for non-administrators."
+        },
+        "approvedBySzId": {
+          "type": ["integer", "null"],
+          "writeOnly": true,
+          "description": "Approving department head's ID. Only applied for API v3 updates by an administrator; ignored on creation and for non-administrators."
+        },
+        "loggedById": {
+          "type": ["integer", "null"],
+          "writeOnly": true,
+          "description": "Logging user's ID. Only applied for API v3 updates by an administrator; ignored on creation and for non-administrators."
+        },
+        "rejectedById": {
+          "type": ["integer", "null"],
+          "writeOnly": true,
+          "description": "Rejecting user's ID. Only applied for API v3 updates by an administrator; ignored on creation and for non-administrators."
+        },
         "ongoing": {
           "type": "boolean"
         },

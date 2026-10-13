@@ -1,0 +1,9 @@
+name: Project Profiles
+description: |-
+  The TH projects extension exposes project profiles by upstream project code through
+  `GET /api/v3/project_profiles/{code}?type_id=...`. The lookup returns a `ProjectProfile` with its
+  associated OpenProject project ID and name, or an empty profile when no code matches.
+
+  Projects also expose a writable `profile` object when the `th_projects` module is enabled.
+  That nested object contains `typeId`, `name`, `code`, `docLink`, and `thBudgetStatus`; its structure
+  differs from the standalone code lookup response.

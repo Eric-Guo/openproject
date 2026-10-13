@@ -1,0 +1,26 @@
+# Schema: MembershipProfileModel
+---
+type: object
+description: TH membership profile. Blank identity fields are populated from the principal when available on save.
+properties:
+  name:
+    type: [string, 'null']
+    description: Member's display name.
+  company:
+    type: [string, 'null']
+    description: Member's company.
+  department:
+    type: [string, 'null']
+    description: Member's department.
+  position:
+    type: [string, 'null']
+    description: Member's position.
+  major:
+    type: [string, 'null']
+    description: Member's professional discipline.
+  mobile:
+    type: [string, 'null']
+    description: Member's mobile phone number.
+  remark:
+    type: [string, 'null']
+    description: Additional remarks.

@@ -24,6 +24,24 @@ allOf:
         type: string
         format: duration
         description: The approved time quantifying the expenditure
+      szApprovedHours:
+        type: string
+        format: duration
+        description: Hours approved by the department head in the TH labour tracking workflow.
+      rejectReason:
+        type: string
+        description: Reason for rejecting the time entry. Omitted when unset.
+      rejectedAt:
+        type: [string, 'null']
+        format: date-time
+        description: Time the entry was rejected, or null if it has not been rejected.
+      rejectReKeyinedAt:
+        type: [string, 'null']
+        format: date-time
+        description: Time the rejected entry was submitted again, or null if it has not been resubmitted.
+      rejectedButNowPass:
+        type: boolean
+        description: Whether a previously rejected entry has subsequently passed review.
       ongoing:
         type: boolean
         description: Whether the time entry is actively tracking time
