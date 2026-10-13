@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://git.thape.com.cn/rails/openproject-th_meetings.git
-  revision: ce97b72bc871c8aee711bba668bd0c14b08a9e9e
+  revision: fbd07066efb0d7d33aba4a2cc0dd2a526b4e43ec
   branch: main
   specs:
     openproject-th_meetings (1.0.0)
