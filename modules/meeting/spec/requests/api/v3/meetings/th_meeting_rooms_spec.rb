@@ -41,9 +41,12 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
   end
 
   let(:api_url) { "http://meeting-booking.example/openapi/v1" }
+  let(:online_room_id) { "online-room-42" }
   let(:rooms) do
     [
-      { id: "线上会议", name: "线上会议", officeArea: "线上会议", officeAreaId: "online", showOrder: 1 },
+      { id: "disabled-online-room", name: "Unavailable online room", officeArea: "线上会议", officeAreaId: "online",
+        showOrder: 0, disabled: true },
+      { id: online_room_id, name: "线上会议", officeArea: "线上会议", officeAreaId: "online", showOrder: 1 },
       { id: "room-1", name: "Room 1", officeArea: "Shanghai", officeAreaId: "office-1", showOrder: 2 }
     ]
   end
@@ -79,19 +82,19 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
 
     expect(last_response).to have_http_status(:created)
     meeting = Meeting.find(JSON.parse(last_response.body).fetch("id"))
-    expect(meeting.th_meeting_upstream_room_id).to eq("线上会议")
+    expect(meeting.th_meeting_upstream_room_id).to eq(online_room_id)
     expect(meeting.start_time).to eq(Time.iso8601("2030-06-02T06:00:00Z"))
     expect(meeting.duration).to eq(1)
-    expect(booking_request.with(body: hash_including("upstreamRoomId" => "线上会议"))).to have_been_requested.once
+    expect(booking_request.with(body: hash_including("upstreamRoomId" => online_room_id))).to have_been_requested.once
 
     get api_v3_paths.meeting(meeting.id)
 
     expect(last_response).to have_http_status(:ok)
-    expect(last_response.body).to be_json_eql("线上会议".to_json).at_path("thMeetingUpstreamRoom")
+    expect(last_response.body).to be_json_eql(online_room_id.to_json).at_path("thMeetingUpstreamRoom")
     expect(last_response.body).to be_json_eql("线上会议 - 线上会议".to_json).at_path("location")
   end
 
-  ["线上会议", "room-1"].each do |room_id|
+  %w[online-room-42 room-1].each do |room_id|
     it "accepts the explicit room #{room_id} on creation" do
       post api_v3_paths.meetings, parameters.merge(thMeetingUpstreamRoom: room_id).to_json
 
@@ -106,7 +109,7 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
 
     expect(last_response).to have_http_status(:ok)
     expect(last_response.body).to have_json_size(0).at_path("_embedded/validationErrors")
-    expect(last_response.body).to be_json_eql("线上会议".to_json).at_path("_embedded/payload/thMeetingUpstreamRoom")
+    expect(last_response.body).to be_json_eql(online_room_id.to_json).at_path("_embedded/payload/thMeetingUpstreamRoom")
     expect(last_response.body).to be_json_eql(true.to_json).at_path("_embedded/schema/thMeetingUpstreamRoom/writable")
     expect(last_response.body).to be_json_eql(true.to_json).at_path("_embedded/schema/thMeetingUpstreamRoom/hasDefault")
     expect(Meeting.count).to eq(0)
@@ -130,6 +133,57 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
     expect(booking_request).not_to have_been_requested
   end
 
+  context "when the booking API changes the online room ID" do
+    let(:online_room_id) { "replacement-online-room" }
+
+    it "uses the returned ID as the default" do
+      post api_v3_paths.meetings, parameters.to_json
+
+      expect(last_response).to have_http_status(:created)
+      expect(last_response.body).to be_json_eql(online_room_id.to_json).at_path("thMeetingUpstreamRoom")
+      expect(booking_request.with(body: hash_including("upstreamRoomId" => online_room_id))).to have_been_requested.once
+    end
+  end
+
+  shared_examples "no default online room" do
+    it "rejects creation without creating a meeting or booking" do
+      post api_v3_paths.meetings, parameters.to_json
+
+      expect(last_response).to have_http_status(:unprocessable_entity)
+      expect(Meeting.count).to eq(0)
+      expect(booking_request).not_to have_been_requested
+    end
+
+    it "reports the missing room in the create form without booking" do
+      post api_v3_paths.create_meeting_form, parameters.to_json
+
+      expect(last_response).to have_http_status(:ok)
+      expect(JSON.parse(last_response.body).dig("_embedded", "validationErrors")).to have_key("thMeetingUpstreamRoom")
+      expect(Meeting.count).to eq(0)
+      expect(booking_request).not_to have_been_requested
+    end
+
+    it "still accepts an explicit physical room" do
+      post api_v3_paths.meetings, parameters.merge(thMeetingUpstreamRoom: "room-1").to_json
+
+      expect(last_response).to have_http_status(:created)
+      expect(last_response.body).to be_json_eql("room-1".to_json).at_path("thMeetingUpstreamRoom")
+      expect(booking_request.with(body: hash_including("upstreamRoomId" => "room-1"))).to have_been_requested.once
+    end
+  end
+
+  context "when the booking API has no online rooms" do
+    let(:rooms) { super().reject { |room| room[:officeArea] == "线上会议" } }
+
+    include_examples "no default online room"
+  end
+
+  context "when all online rooms are disabled" do
+    let(:rooms) { super().map { |room| room[:officeArea] == "线上会议" ? room.merge(disabled: true) : room } }
+
+    include_examples "no default online room"
+  end
+
   context "with an existing physical meeting" do
     let(:meeting) do
       post api_v3_paths.meetings, parameters.merge(thMeetingUpstreamRoom: "room-1").to_json
@@ -146,11 +200,11 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
 
     it "validates an online room in the update form without changing the booking" do
       post api_v3_paths.meeting_form(meeting.id),
-           { lockVersion: meeting.lock_version, thMeetingUpstreamRoom: "线上会议" }.to_json
+           { lockVersion: meeting.lock_version, thMeetingUpstreamRoom: online_room_id }.to_json
 
       expect(last_response).to have_http_status(:ok)
       expect(last_response.body).to have_json_size(0).at_path("_embedded/validationErrors")
-      expect(last_response.body).to be_json_eql("线上会议".to_json).at_path("_embedded/payload/thMeetingUpstreamRoom")
+      expect(last_response.body).to be_json_eql(online_room_id.to_json).at_path("_embedded/payload/thMeetingUpstreamRoom")
       expect(meeting.reload.th_meeting_upstream_room_id).to eq("room-1")
       expect(booking_request).to have_been_requested.once
     end
@@ -160,15 +214,15 @@ RSpec.describe "API v3 THAPE meeting rooms", :webmock, content_type: :json do
       expect(last_response.body).to be_json_eql("room-1".to_json).at_path("thMeetingUpstreamRoom")
 
       patch api_v3_paths.meeting(meeting.id),
-            { lockVersion: meeting.lock_version, thMeetingUpstreamRoom: "线上会议" }.to_json
+            { lockVersion: meeting.lock_version, thMeetingUpstreamRoom: online_room_id }.to_json
 
       expect(last_response).to have_http_status(:ok)
-      expect(meeting.reload.th_meeting_upstream_room_id).to eq("线上会议")
-      expect(booking_request.with(body: hash_including("upstreamRoomId" => "线上会议"))).to have_been_requested.once
+      expect(meeting.reload.th_meeting_upstream_room_id).to eq(online_room_id)
+      expect(booking_request.with(body: hash_including("upstreamRoomId" => online_room_id))).to have_been_requested.once
 
       get api_v3_paths.meeting(meeting.id)
 
-      expect(last_response.body).to be_json_eql("线上会议".to_json).at_path("thMeetingUpstreamRoom")
+      expect(last_response.body).to be_json_eql(online_room_id.to_json).at_path("thMeetingUpstreamRoom")
       expect(last_response.body).to be_json_eql("线上会议 - 线上会议".to_json).at_path("location")
     end
   end
