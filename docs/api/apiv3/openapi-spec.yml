@@ -283,6 +283,8 @@ paths:
     $ref: "./paths/labels.yml"
   "/api/v3/labels/{id}":
     $ref: "./paths/label.yml"
+  "/api/v3/meeting_rooms":
+    "$ref": "./paths/meeting_rooms.yml"
   "/api/v3/meetings":
     $ref: "./paths/meetings.yml"
   "/api/v3/meetings/{id}":
@@ -1050,6 +1052,10 @@ components:
       $ref: "./components/schemas/meeting_collection_model.yml"
     MeetingModel:
       $ref: "./components/schemas/meeting_model.yml"
+    MeetingRoomCollectionModel:
+      "$ref": "./components/schemas/meeting_room_collection_model.yml"
+    MeetingRoomModel:
+      "$ref": "./components/schemas/meeting_room_model.yml"
     MeetingSectionModel:
       $ref: "./components/schemas/meeting_section_model.yml"
     MeetingSectionWriteModel:
@@ -1371,6 +1377,7 @@ tags:
   - $ref: "./tags/help_texts.yml"
   - $ref: "./tags/hourly_rates.yml"
   - $ref: "./tags/labels.yml"
+  - $ref: "./tags/meeting_rooms.yml"
   - $ref: "./tags/memberships.yml"
   - $ref: "./tags/news.yml"
   - $ref: "./tags/notifications.yml"
