@@ -1,0 +1,10 @@
+name: Meeting Rooms
+description: |-
+  Enabled THAPE meeting rooms can be discovered through `GET /api/v3/meeting_rooms`. The caller must
+  have the `create_meetings` permission in at least one project with meetings enabled. The API root
+  exposes the collection through `_links.meetingRooms` when the caller has that permission.
+
+  Supply both `startTime` and `endTime` to check availability for a time range. Use a returned room's
+  `id` as `thMeetingUpstreamRoom` when creating or updating a meeting. New meetings without an explicit
+  room resolve their default from the first enabled online room in the booking service; if no enabled
+  online room exists, an explicit room ID is required. Omitting the field on updates keeps the room.
