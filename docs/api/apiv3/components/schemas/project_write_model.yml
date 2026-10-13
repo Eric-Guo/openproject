@@ -11,6 +11,9 @@
     {
       "type": "object",
       "properties": {
+        "profile": {
+          "$ref": "./project_profile_attributes_model.yml"
+        },
         "name": {
           "type": "string"
         },

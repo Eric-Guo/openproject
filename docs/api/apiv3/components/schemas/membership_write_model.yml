@@ -4,6 +4,8 @@ type: object
 required:
   - _links
 properties:
+  profile:
+    $ref: './membership_profile_model.yml'
   _links:
     type: object
     properties:
