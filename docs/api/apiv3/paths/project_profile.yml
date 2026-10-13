@@ -1,0 +1,76 @@
+# /api/v3/project_profiles/{code}
+---
+get:
+  summary: Find a project profile by code
+  operationId: get_project_profile_by_code
+  tags:
+    - Project Profiles
+  description: |-
+    Looks up a TH project profile joined to an existing project. The `type_id` query parameter is
+    required, but the current implementation matches only `code`; it does not filter by `type_id`.
+    If multiple profiles share a code, the first matching record is returned.
+
+    A code with no matching profile returns an empty, unpersisted profile with HTTP 200, empty `code` and `name`,
+    and `typeId: 0`. Its `id`, `projectId`, and `projectName` are omitted.
+
+    This endpoint applies the API's authentication rules without an additional project visibility
+    or project-profile permission check. The generated self link uses the profile's numeric ID,
+    while this endpoint looks up a code; use the requested code and `type_id` for subsequent lookups.
+  parameters:
+    - name: code
+      in: path
+      required: true
+      description: Project code in the upstream PLM system.
+      schema:
+        type: string
+      example: P-2030-001
+    - name: type_id
+      in: query
+      required: true
+      description: PLM space type. Required by parameter validation, but currently not used to filter profiles.
+      schema:
+        type: integer
+      example: 2
+  responses:
+    '200':
+      description: A matching profile, or an empty profile if no match exists.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/project_profile_model.yml'
+          examples:
+            found:
+              value:
+                _type: ProjectProfile
+                id: 7
+                code: P-2030-001
+                name: Example project
+                typeId: 2
+                projectId: 42
+                projectName: Example project
+                _links:
+                  self:
+                    href: /api/v3/project_profiles/7
+                    title: Example project
+            notFound:
+              value:
+                _type: ProjectProfile
+                code: ''
+                name: ''
+                typeId: 0
+                _links:
+                  self:
+                    href: /api/v3/project_profiles/
+                    title: ''
+    '400':
+      description: Returned if the required `type_id` parameter is missing.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '401':
+      description: Returned if authentication is required and the client is not authenticated, or credentials are invalid.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
