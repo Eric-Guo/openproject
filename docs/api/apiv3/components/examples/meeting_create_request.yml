@@ -1,9 +1,8 @@
 # Example: Meeting create request
 ---
-description: Request to create an online meeting
+description: Request to create an online meeting using the room ID resolved from the booking API
 value:
   title: "Weekly Standup"
-  thMeetingUpstreamRoom: "线上会议"
   startTime: "2026-06-01T10:00:00Z"
   duration: "PT1H"
   _links:

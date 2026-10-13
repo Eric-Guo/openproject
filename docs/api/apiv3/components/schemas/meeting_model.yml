@@ -28,7 +28,7 @@ properties:
     description: The meeting's location
   thMeetingUpstreamRoom:
     type: string
-    description: The THAPE room ID (`th_meeting_upstream_room_id`). `线上会议` identifies the online meeting room.
+    description: The THAPE room ID (`th_meeting_upstream_room_id`), available from `GET /api/v3/meeting_rooms`.
   lockVersion:
     type: integer
     description: The version of the item as used for optimistic locking

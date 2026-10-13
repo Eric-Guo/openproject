@@ -46,7 +46,7 @@ module Meetings
       model.change_by_system do
         model.author = user
         model.duration ||= 1
-        model.th_meeting_upstream_room_id ||= "线上会议"
+        model.th_meeting_upstream_room_id ||= default_online_room_id
         model.state = "draft" if !model.recurring? || model.template?
         model.notify = false
         model.sharing = "none" if model.onetime_template?
@@ -55,6 +55,10 @@ module Meetings
     end
 
     private
+
+    def default_online_room_id
+      ThMeetingBooking::Apis::Resource.meeting_rooms.data.find { |room| room.online? && !room.disabled }&.id
+    end
 
     def set_participants(participants_attributes)
       if model.new_record?
