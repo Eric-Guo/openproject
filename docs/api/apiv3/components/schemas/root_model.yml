@@ -50,6 +50,15 @@ properties:
               The configuration resource.
               
               **Resource**: Configuration
+      meetingRooms:
+        allOf:
+          - $ref: './link.yml'
+          - description: |-
+              The collection of enabled THAPE meeting rooms.
+
+              **Resource**: Collection
+
+              **Permission**: create meetings in at least one project with meetings enabled
       memberships:
         allOf:
           - $ref: './link.yml'

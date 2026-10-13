@@ -1,0 +1,30 @@
+# Schema: MeetingRoomModel
+---
+type: object
+required:
+  - _type
+  - id
+  - name
+properties:
+  _type:
+    type: string
+    enum:
+      - MeetingRoom
+  id:
+    type: string
+    description: The THAPE room ID to use as `thMeetingUpstreamRoom` when creating or updating a meeting.
+  name:
+    type: string
+    description: The room's name.
+  shortName:
+    type: [string, 'null']
+    description: The room's short name, if provided by the booking service.
+  officeAreaId:
+    type: [string, 'null']
+    description: Identifier of the office area containing the room, if provided by the booking service.
+  officeArea:
+    type: [string, 'null']
+    description: The office area's name. Online rooms have the value `线上会议`.
+  location:
+    type: [string, 'null']
+    description: The room's location, if provided by the booking service.
