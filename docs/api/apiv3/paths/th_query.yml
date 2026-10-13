@@ -1,0 +1,210 @@
+# /api/v3/th_queries/{id}
+---
+get:
+  summary: View a TH query with results
+  operationId: get_th_query
+  tags:
+  - TH Queries
+  description: |-
+    Returns a saved query with work package results in `_embedded.results`. Overrides apply only
+    to this response and are not saved. Invalid parts of the stored query are removed before applying
+    request parameters. Invalid client overrides produce an error unless `valid_subset=true`.
+
+    The query is loaded by ID without a separate ownership or public-query check. The result work
+    packages remain scoped to the caller's visibility. Response links use the standard query and
+    work package endpoints, including `/api/v3/queries/{id}` for the query self link.
+  parameters:
+  - name: id
+    in: path
+    required: true
+    description: Saved query ID.
+    schema:
+      type: integer
+    example: 7
+  - name: filters
+    description: >-
+      JSON filter conditions replacing the query filters for this request. Use [] to remove all filters. Accepts
+      the same filters as the work packages endpoint.
+    example: '[{ "assignee": { "operator": "=", "values": ["1", "5"] } }]'
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: offset
+    description: Page number inside the queries' result collection of work packages.
+    example: 25
+    in: query
+    required: false
+    schema:
+      default: 1
+      type: integer
+  - name: pageSize
+    description: Number of elements to display per page for the queries' result collection of work packages.
+    example: 25
+    in: query
+    required: false
+    schema:
+      type: integer
+  - name: columns[]
+    description: |-
+      Selected columns for the table view. Repeat the parameter for every column,
+      e.g. `columns[]=type&columns[]=priority`.
+    example:
+    - type
+    - priority
+    in: query
+    required: false
+    explode: true
+    schema:
+      type: array
+      items:
+        type: string
+  - name: sortBy
+    description: JSON sort criteria for the result work packages, overriding the query configuration for this request.
+    example: '[["status", "asc"]]'
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: groupBy
+    description: Column used to group the result work packages. An empty value clears the grouping.
+    example: status
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: showSums
+    description: Whether to calculate sums for properties that support them.
+    example: true
+    in: query
+    required: false
+    schema:
+      type: boolean
+  - name: timestamps
+    description: >
+      Indicates the timestamps to filter by when showing changed attributes on work packages. Values can be either
+      ISO8601 dates, ISO8601 durations and the following relative date keywords: "oneDayAgo@HH:MM+HH:MM", "lastWorkingDay@HH:MM+HH:MM",
+      "oneWeekAgo@HH:MM+HH:MM", "oneMonthAgo@HH:MM+HH:MM". The first "HH:MM" part represents the zero paded hours
+      and minutes. The last "+HH:MM" part represents the timezone offset from UTC associated with the time, the
+      offset can be positive or negative e.g."oneDayAgo@01:00+01:00", "oneDayAgo@01:00-01:00". Values older than
+      1 day are accepted only with valid Enterprise Token available.
+    example: 2023-01-01,P-1Y,PT0S,lastWorkingDay@12:00
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: timelineVisible
+    description: Indicates whether the timeline should be shown.
+    example: true
+    in: query
+    required: false
+    schema:
+      type: boolean
+  - name: timelineLabels
+    description: Overridden labels in the timeline view
+    example: "{}"
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: highlightingMode
+    description: Highlighting mode for the table view.
+    example: inline
+    in: query
+    required: false
+    schema:
+      type: string
+  - name: highlightedAttributes[]
+    description: |-
+      Highlighted attributes mode for the table view when `highlightingMode` is `inline`.
+      Repeat the parameter for every attribute, e.g.
+      `highlightedAttributes[]=type&highlightedAttributes[]=priority`.
+      When omitted, all highlightable attributes will be returned as `highlightedAttributes`.
+    example:
+    - type
+    - priority
+    in: query
+    required: false
+    explode: true
+    schema:
+      type: array
+      items:
+        type: string
+  - name: showHierarchies
+    description: Indicates whether the hierarchy mode should be enabled.
+    example: true
+    in: query
+    required: false
+    schema:
+      type: boolean
+  - in: query
+    required: false
+    name: includeSubprojects
+    description: Include work packages from subprojects of the query project.
+    schema:
+      type: boolean
+  - in: query
+    required: false
+    name: includeAllMembersAssignedProjects
+    description: Include projects with work assigned to members of the query project. Work package visibility still
+      applies.
+    schema:
+      type: boolean
+  - in: query
+    required: false
+    name: timelineZoomLevel
+    description: Override the timeline zoom level.
+    schema:
+      type: string
+    example: days
+  - in: query
+    required: false
+    name: displayRepresentation
+    description: Override the query display representation.
+    schema:
+      type: string
+    example: table
+  - in: query
+    required: false
+    name: select
+    description: >-
+      Comma-separated properties to include in the embedded work package results. Nested properties use slash-separated
+      paths.
+    schema:
+      type: string
+    example: id,subject
+  - name: valid_subset
+    in: query
+    required: false
+    description: >-
+      Remove invalid parts of client query overrides instead of returning an invalid-query error. Does not bypass
+      work package visibility.
+    schema:
+      type: boolean
+      default: false
+  responses:
+    '200':
+      description: OK
+      content:
+        application/hal+json:
+          schema:
+            "$ref": "../components/schemas/query_model.yml"
+    '400':
+      description: Returned if query parameters are malformed or the resulting query is invalid.
+      content:
+        application/hal+json:
+          schema:
+            "$ref": "../components/schemas/error_response.yml"
+    '401':
+      description: Returned if authentication is required and the client is not authenticated, or credentials are
+        invalid.
+      content:
+        application/hal+json:
+          schema:
+            "$ref": "../components/schemas/error_response.yml"
+    '404':
+      description: Returned if the query does not exist.
+      content:
+        application/hal+json:
+          schema:
+            "$ref": "../components/schemas/error_response.yml"

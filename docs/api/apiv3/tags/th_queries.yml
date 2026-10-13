@@ -1,0 +1,11 @@
+name: TH Queries
+description: |-
+  The TH queries extension exposes saved queries through `GET /api/v3/th_queries/{id}` and a
+  project's default query through `GET /api/v3/projects/{id}/th_queries/default`.
+  Both return the standard query representation with work package results embedded. Query
+  parameters override the configuration for this request without persisting changes.
+
+  These endpoints use the standard query and work package links in their responses. The project
+  default endpoint requires `view_work_packages` in that project. The saved-query endpoint looks
+  up the query directly and does not perform a separate query ownership or public-query check;
+  result work packages are still filtered by the caller's visibility.

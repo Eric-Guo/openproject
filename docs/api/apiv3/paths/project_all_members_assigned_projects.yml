@@ -1,0 +1,44 @@
+# /api/v3/projects/{id}/all_members_assigned_projects
+---
+get:
+  summary: List projects with work assigned to project members
+  operationId: list_all_members_assigned_projects
+  tags:
+    - Projects
+  description: |-
+    Finds projects containing work packages assigned to any member of the given project.
+    Returned projects must allow the caller to view work packages or contain work packages visible
+    to the caller. Only projects with status `on_track`, `at_risk`, `off_track`, `not_started`,
+    `on_pause`, or no status are included.
+
+    The parent project must be accessible to the caller. The response uses the paginated project
+    collection format but always requests the first page with 200 entries, capped by the configured
+    API maximum page size. Query parameters such as `offset`, `pageSize`, `filters`, and `sortBy`
+    are not forwarded to the collection. Generated pagination links do not change that behavior.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID or identifier of the project whose members' assignments are examined.
+      schema:
+        type: string
+      example: '42'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/project_collection_model.yml'
+    '401':
+      description: Returned if authentication is required and the client is not authenticated, or credentials are invalid.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '404':
+      description: Returned if the parent project does not exist or is not accessible to the caller.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'

@@ -1,0 +1,43 @@
+# Schema: ProjectProfileModel
+---
+type: object
+required:
+  - _type
+  - code
+  - name
+  - typeId
+  - _links
+properties:
+  _type:
+    type: string
+    enum:
+      - ProjectProfile
+  id:
+    type: integer
+    description: Profile ID. Omitted if no matching profile exists.
+  code:
+    type: string
+    description: Upstream project code, or an empty string if no match exists.
+  name:
+    type: string
+    description: Profile name, or an empty string if no match exists.
+  typeId:
+    type: integer
+    description: PLM space type, or 0 if no match exists.
+  projectId:
+    type: integer
+    description: Associated OpenProject project ID. Omitted if no match exists.
+  projectName:
+    type: string
+    description: Associated OpenProject project name. Omitted if no match exists.
+  _links:
+    type: object
+    required:
+      - self
+    properties:
+      self:
+        allOf:
+          - $ref: './link.yml'
+          - description: |-
+              Generated using the profile ID, not its code, and without `type_id`.
+              It is not a code lookup URL. For an empty profile the href ends in `/project_profiles/`.
