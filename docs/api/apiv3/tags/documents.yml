@@ -1,12 +1,10 @@
 ---
 description: |-
-  A document is a file containing a list of attachments.
-
-  *Please note, that the endpoint is only a stub for now.*
+  A document belongs to a project and can contain text and attachments.
 
   ## Actions
 
-  None yet
+  Documents can be listed, viewed, created, and updated.
 
   ## Linked Properties
 
@@ -21,7 +19,8 @@ description: |-
   | Property     | Description                                               | Type     | Constraints                                          | Supported operations | Condition                                                   |
   | :----------: | --------------------------------------------------------- | -------- | ---------------------------------------------------- | -------------------- | ----------------------------------------------------------- |
   | id           | Document's id                                             | Integer  | x > 0                                                | READ                 |                                                             |
-  | title        | The title chosen for the collection of documents          | String   | max 60 characters                                    | READ                 |                                                             |
-  | description  | A text describing the documents                           | String   |                                                      | READ                 |                                                             |
+  | title        | The title chosen for the document                         | String   | required, max 255 characters                          | READ / WRITE         |                                                             |
+  | description  | A text describing the document                            | Formattable |                                                   | READ / WRITE         |                                                             |
+  | contentBinary | The binary content of the document, base64 encoded       | String   |                                                      | READ / WRITE         |                                                             |
   | createdAt    | The time the document was created at                      | DateTime |                                                      | READ                 |                                                             |
 name: Documents
