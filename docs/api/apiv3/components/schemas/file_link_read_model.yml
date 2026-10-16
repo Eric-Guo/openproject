@@ -162,20 +162,36 @@ example:
       _type: WorkPackage
       id: 1528
       subject: Develop API
+      _links:
+        self:
+          href: /api/v3/work_packages/1528
+        schema:
+          href: /api/v3/work_packages/schemas/11-2
+        ancestors: []
+        author:
+          href: /api/v3/users/1
+        priority:
+          href: /api/v3/priorities/2
+        project:
+          href: /api/v3/projects/11
+        status:
+          href: /api/v3/statuses/1
+        type:
+          href: /api/v3/types/2
   _links:
     self:
-      href: /api/v3/work_package/17/file_links/1337
+      href: /api/v3/file_links/1337
     storage:
-      href: /api/v3/storage/42
+      href: /api/v3/storages/1337
       title: It's no moon
     container:
-      href: /api/v3/work_package/17
+      href: /api/v3/work_packages/1528
       title: Develop API
     creator:
       href: /api/v3/users/33
       title: Obi-Wan Kenobi
     delete:
-      href: /api/v3/work_package/17/file_links/1337
+      href: /api/v3/file_links/1337
     status:
       href: urn:openproject-org:api:v3:file-links:permission:ViewAllowed
       title: View allowed
