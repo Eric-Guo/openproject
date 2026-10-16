@@ -150,3 +150,98 @@ get:
     the requesting user's permissions.
   operationId: List_Documents
   summary: List Documents
+post:
+  summary: Create document
+  operationId: Create_document
+  tags:
+  - Documents
+  description: |-
+    Creates a document in the project specified by the project link.
+
+    **Required permission** `manage documents` in the project.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+          - title
+          - _links
+          properties:
+            title:
+              type: string
+              minLength: 1
+              maxLength: 255
+              description: The title of the document.
+            description:
+              allOf:
+              - $ref: '../components/schemas/formattable.yml'
+              - description: A text describing the document.
+            contentBinary:
+              type: [string, 'null']
+              description: The binary content of the document, base64 encoded.
+            _links:
+              type: object
+              required:
+              - project
+              properties:
+                project:
+                  allOf:
+                  - $ref: '../components/schemas/link.yml'
+                  - description: The project in which to create the document.
+        example:
+          title: New document
+          description:
+            format: markdown
+            raw: Document description
+          contentBinary: dGVzdCBkYXRh
+          _links:
+            project:
+              href: '/api/v3/projects/19'
+  responses:
+    '201':
+      description: Created
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/document_model.yml'
+    '400':
+      $ref: '../components/responses/invalid_request_body.yml'
+    '401':
+      description: Returned if the user is not authenticated.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+    '403':
+      description: |-
+        Returned if the project is missing, does not exist, or the user does not have permission
+        to create documents in it.
+
+        **Required permission** `manage documents` in the project.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:MissingPermission
+            message: You are not authorized to access this resource.
+    '406':
+      $ref: '../components/responses/missing_content_type.yml'
+    '415':
+      $ref: '../components/responses/unsupported_media_type.yml'
+    '422':
+      description: Returned if a document attribute violates a constraint.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/error_response.yml'
+          example:
+            _type: Error
+            errorIdentifier: urn:openproject-org:api:v3:errors:PropertyConstraintViolation
+            message: Title can't be blank.
+            _embedded:
+              details:
+                attribute: title
