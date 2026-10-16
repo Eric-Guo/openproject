@@ -38,6 +38,10 @@ module API
         helpers ::API::Utilities::UrlPropsParsingHelper
 
         resources :documents do
+          post &::API::V3::Utilities::Endpoints::Create
+            .new(model: Document)
+            .mount
+
           get do
             query = ParamsToQueryService
                     .new(Document, current_user)
