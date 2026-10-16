@@ -85,6 +85,162 @@ RSpec.describe "API v3 documents resource" do
     end
   end
 
+  describe "POST /api/v3/documents" do
+    let(:path) { api_v3_paths.documents }
+    let(:permissions) { %i(view_documents manage_documents) }
+    let(:request_body) do
+      {
+        title: "New Document",
+        description: { format: "markdown", raw: "Document description" },
+        contentBinary: "dGVzdCBkYXRh",
+        _links: { project: { href: api_v3_paths.project(project.id) } }
+      }
+    end
+
+    subject(:send_request) do
+      post path, request_body.to_json, "CONTENT_TYPE" => "application/json"
+    end
+
+    it "creates a document and returns its representation" do
+      expect { send_request }.to change(Document, :count).by(1)
+
+      expect(last_response).to have_http_status(:created)
+
+      created_document = Document.last
+      expect(created_document).to have_attributes(
+        title: "New Document",
+        description: "Document description",
+        content_binary: "dGVzdCBkYXRh",
+        project:
+      )
+      expect(last_response.body).to be_json_eql("Document".to_json).at_path("_type")
+      expect(last_response.body).to be_json_eql(created_document.id.to_json).at_path("id")
+      expect(last_response.body).to be_json_eql(created_document.title.to_json).at_path("title")
+      expect(last_response.body).to be_json_eql(created_document.description.to_json).at_path("description/raw")
+      expect(last_response.body).to be_json_eql(created_document.content_binary.to_json).at_path("contentBinary")
+      expect(last_response.body).to be_json_eql(api_v3_paths.document(created_document.id).to_json).at_path("_links/self/href")
+      expect(last_response.body).to be_json_eql(api_v3_paths.project(project.id).to_json).at_path("_links/project/href")
+    end
+
+    context "with only the required attributes" do
+      let(:request_body) do
+        {
+          title: "New Document",
+          _links: { project: { href: api_v3_paths.project(project.id) } }
+        }
+      end
+
+      it "creates a document" do
+        expect { send_request }.to change(Document, :count).by(1)
+        expect(last_response).to have_http_status(:created)
+        expect(last_response.body).to match_json_schema.from_docs("document_model")
+      end
+    end
+
+    context "when lacking manage permissions" do
+      let(:permissions) { %i(view_documents) }
+
+      it "returns 403 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "when the project belongs to another user" do
+      let(:request_body) do
+        super().deep_merge(_links: { project: { href: api_v3_paths.project(other_project.id) } })
+      end
+
+      it "returns 403 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "when the documents module is disabled" do
+      before do
+        project.enabled_module_names = []
+      end
+
+      it "returns 403 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "with a blank title" do
+      let(:request_body) { super().merge(title: "") }
+
+      it "returns the validation error and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:unprocessable_entity)
+        expect(last_response.body).to be_json_eql("urn:openproject-org:api:v3:errors:PropertyConstraintViolation".to_json)
+          .at_path("errorIdentifier")
+        expect(last_response.body).to be_json_eql("title".to_json).at_path("_embedded/details/attribute")
+      end
+    end
+
+    context "with a title longer than 255 characters" do
+      let(:request_body) { super().merge(title: "a" * 256) }
+
+      it "returns 422 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context "without a project" do
+      let(:request_body) { super().except(:_links) }
+
+      it "returns 403 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "with a nonexistent project" do
+      let(:request_body) do
+        super().deep_merge(_links: { project: { href: api_v3_paths.project(0) } })
+      end
+
+      it "returns 403 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:forbidden)
+      end
+    end
+
+    context "when not logged in" do
+      let(:current_user) { User.anonymous }
+
+      it "returns 401 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context "with an invalid project link" do
+      let(:request_body) do
+        super().deep_merge(_links: { project: { href: api_v3_paths.user(current_user.id) } })
+      end
+
+      it "returns 422 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context "with malformed JSON" do
+      subject(:send_request) do
+        post path, "{", "CONTENT_TYPE" => "application/json"
+      end
+
+      it "returns 400 and does not create a document" do
+        expect { send_request }.not_to change(Document, :count)
+        expect(last_response).to have_http_status(:bad_request)
+      end
+    end
+  end
+
   describe "GET /api/v3/documents/:id" do
     let(:path) { api_v3_paths.document(document.id) }
 
