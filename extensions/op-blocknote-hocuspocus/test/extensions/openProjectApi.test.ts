@@ -232,7 +232,8 @@ describe("OpenProjectApi", () => {
       server.use(http.get('https://test.api/api/v3/documents/121', () => {
         return HttpResponse.json(
           {
-            contentBinary: base64Update
+            contentBinary: base64Update,
+            description: { raw: "This Markdown must not replace the binary content" },
           }, {
             status: 200
           }
@@ -251,6 +252,117 @@ describe("OpenProjectApi", () => {
       // Verify the document was updated with the content
       const updatedContent = targetDoc.getText('content').toString();
       expect(updatedContent).toBe('test content');
+      expect(targetDoc.getXmlFragment('document-store').length).toBe(0);
+    });
+
+    test("should initialize and persist missing binary content from Markdown", async () => {
+      const markdown = `# 测试文档
+
+这是一个通过 API 创建的测试文档。
+
+## 主要内容
+
+- 要点一：用于验证 documents.create 接口
+- 要点二：正文为 Markdown 格式
+- 要点三：关联项目 SigmaAgents智能体项目（ID 12485）
+
+> 备注：本文档仅用于测试，可安全删除。`;
+      let contentBinary: string | null = null;
+      const save = vi.fn(async ({ request }: { request: Request }) => {
+        const body = await request.json() as { content_binary: string };
+        contentBinary = body.content_binary;
+        return HttpResponse.json({});
+      });
+      server.use(
+        http.get('https://test.api/api/v3/documents/23', () => HttpResponse.json({
+          contentBinary,
+          description: { format: "markdown", raw: markdown },
+        })),
+        http.patch('https://test.api/api/v3/documents/23', save),
+      );
+
+      const targetDoc = new Y.Doc();
+      const data = {
+        context: { token: "superValidToken", resourceUrl: "https://test.api/api/v3/documents/23" },
+        document: targetDoc,
+      } as onLoadDocumentPayload;
+      const api = new OpenProjectApi();
+      await api.onLoadDocument(data);
+
+      const editor = createEditor();
+      const blocks = editor.yXmlFragmentToBlocks(targetDoc.getXmlFragment('document-store'));
+      expect(blocks).toMatchObject([
+        { type: "heading", props: { level: 1 }, content: [{ text: "测试文档" }] },
+        { type: "paragraph", content: [{ text: "这是一个通过 API 创建的测试文档。" }] },
+        { type: "heading", props: { level: 2 }, content: [{ text: "主要内容" }] },
+        { type: "bulletListItem", content: [{ text: "要点一：用于验证 documents.create 接口" }] },
+        { type: "bulletListItem", content: [{ text: "要点二：正文为 Markdown 格式" }] },
+        { type: "bulletListItem", content: [{ text: "要点三：关联项目 SigmaAgents智能体项目（ID 12485）" }] },
+        { type: "quote", content: [{ text: "备注：本文档仅用于测试，可安全删除。" }] },
+      ]);
+      expect(save).toHaveBeenCalledOnce();
+      expect(contentBinary).toBeTruthy();
+
+      const reloadedDoc = new Y.Doc();
+      await api.onLoadDocument({ ...data, document: reloadedDoc } as onLoadDocumentPayload);
+      expect(editor.yXmlFragmentToBlocks(reloadedDoc.getXmlFragment('document-store'))).toEqual(blocks);
+      expect(save).toHaveBeenCalledOnce();
+    });
+
+    test("should initialize Markdown for a readonly user without writing to the API", async () => {
+      const save = vi.fn(() => HttpResponse.json({}));
+      server.use(
+        http.get('https://test.api/api/v3/documents/23', () => HttpResponse.json({
+          contentBinary: null,
+          description: { format: "markdown", raw: "# 只读文档\n\n- 一级\n  - 二级" },
+        })),
+        http.patch('https://test.api/api/v3/documents/23', save),
+      );
+      const targetDoc = new Y.Doc();
+      const data = {
+        context: { token: "superValidToken", resourceUrl: "https://test.api/api/v3/documents/23", readonly: true },
+        document: targetDoc,
+      } as onLoadDocumentPayload;
+
+      await new OpenProjectApi().onLoadDocument(data);
+
+      const blocks = createEditor().yXmlFragmentToBlocks(targetDoc.getXmlFragment('document-store'));
+      expect(blocks).toMatchObject([
+        { type: "heading", content: [{ text: "只读文档" }] },
+        {
+          type: "bulletListItem",
+          content: [{ text: "一级" }],
+          children: [{ type: "bulletListItem", content: [{ text: "二级" }] }],
+        },
+      ]);
+      expect(save).not.toHaveBeenCalled();
+
+      const reloadedDoc = new Y.Doc();
+      await new OpenProjectApi().onLoadDocument({ ...data, document: reloadedDoc } as onLoadDocumentPayload);
+      Y.applyUpdate(targetDoc, Y.encodeStateAsUpdate(reloadedDoc));
+      expect(targetDoc.getXmlFragment('document-store').length).toBe(1);
+      expect(createEditor().yXmlFragmentToBlocks(targetDoc.getXmlFragment('document-store'))).toEqual(blocks);
+    });
+
+    test.each([null, "", "   \n\t"])("should leave a blank description (%j) empty", async (raw) => {
+      const save = vi.fn(() => HttpResponse.json({}));
+      server.use(
+        http.get('https://test.api/api/v3/documents/23', () => HttpResponse.json({
+          contentBinary: null,
+          description: { format: "markdown", raw },
+        })),
+        http.patch('https://test.api/api/v3/documents/23', save),
+      );
+      const targetDoc = new Y.Doc();
+      const data = {
+        context: { token: "superValidToken", resourceUrl: "https://test.api/api/v3/documents/23" },
+        document: targetDoc,
+      } as onLoadDocumentPayload;
+
+      await new OpenProjectApi().onLoadDocument(data);
+
+      expect(targetDoc.getXmlFragment('document-store').length).toBe(0);
+      expect(save).not.toHaveBeenCalled();
     });
 
     test("should return early when response is not successful", async () => {
