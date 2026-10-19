@@ -49,10 +49,10 @@ export interface ApiResponseDocument {
   title: string,
   description: {
     format: string,
-    raw: string,
+    raw: string | null,
     html: string,
   },
-  contentBinary: string,
+  contentBinary: string | null,
   createdAt: string,
   updatedAt: string,
 }

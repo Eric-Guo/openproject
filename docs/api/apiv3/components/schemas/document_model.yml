@@ -17,7 +17,7 @@ properties:
       - description: A text describing the document
   contentBinary:
     type: [string, 'null']
-    description: The binary content of the document, base64 encoded
+    description: The Yjs state update for the collaborative editor, base64 encoded
   createdAt:
     type: string
     format: date-time
