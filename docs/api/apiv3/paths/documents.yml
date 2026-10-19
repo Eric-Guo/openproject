@@ -158,6 +158,10 @@ post:
   description: |-
     Creates a document in the project specified by the project link.
 
+    If `contentBinary` is omitted or null, the collaborative editor initializes its content
+    from `description.raw` when the document is first opened. When initialized by a user
+    with `manage documents` permission, the generated binary content is saved automatically.
+
     **Required permission** `manage documents` in the project.
   requestBody:
     required: true
@@ -180,7 +184,7 @@ post:
               - description: A text describing the document.
             contentBinary:
               type: [string, 'null']
-              description: The binary content of the document, base64 encoded.
+              description: The Yjs state update for the collaborative editor, base64 encoded. Optional when providing Markdown in description.raw.
             _links:
               type: object
               required:
@@ -195,7 +199,6 @@ post:
           description:
             format: markdown
             raw: Document description
-          contentBinary: dGVzdCBkYXRh
           _links:
             project:
               href: '/api/v3/projects/19'
