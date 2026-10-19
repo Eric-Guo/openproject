@@ -30,6 +30,7 @@ import { BlockNoteSchema } from "@blocknote/core";
 import { ServerBlockNoteEditor } from "@blocknote/server-util";
 import type { beforeHandleMessagePayload, onAuthenticatePayload, onLoadDocumentPayload, onStoreDocumentPayload, onTokenSyncPayload } from "@hocuspocus/server";
 import { Extension } from "@hocuspocus/server";
+import { createHash } from "node:crypto";
 import {
   openProjectWorkPackageStaticBlockSpec,
   openProjectWorkPackageStaticInlineSpec,
@@ -55,6 +56,26 @@ function printLog(message:string) {
 
 export function createEditor() {
   return ServerBlockNoteEditor.create({ schema: editorSchema });
+}
+
+async function markdownToYDoc(markdown: string) {
+  const editor = createEditor();
+  const blocks = await editor.tryParseMarkdownToBlocks(markdown);
+  const document = new Y.Doc();
+
+  // Readonly loads cannot persist the seed, so repeated loads must produce identical updates.
+  document.clientID = createHash("sha256").update(markdown).digest().readUIntBE(0, 6);
+  let nextBlockId = 0;
+  const assignBlockIds = (children: typeof blocks): void => {
+    for (const block of children) {
+      block.id = `${document.clientID}-${nextBlockId++}`;
+      assignBlockIds(block.children);
+    }
+  };
+  assignBlockIds(blocks);
+  editor.blocksToYXmlFragment(blocks, document.getXmlFragment("document-store"));
+
+  return document;
 }
 
 export class OpenProjectApi implements Extension {
@@ -122,6 +143,22 @@ export class OpenProjectApi implements Extension {
     if (jsonData.contentBinary) {
       const update = new Uint8Array(Buffer.from(jsonData.contentBinary, 'base64'));
       Y.applyUpdate(data.document, update);
+    } else if (jsonData.description?.raw?.trim()) {
+      const initialDocument = await markdownToYDoc(jsonData.description.raw);
+      Y.applyUpdate(data.document, Y.encodeStateAsUpdate(initialDocument));
+      initialDocument.destroy();
+
+      if (!data.context.readonly) {
+        const contentBinary = Buffer.from(Y.encodeStateAsUpdate(data.document)).toString("base64");
+        const saveResponse = await fetchResource(resourceUrl, data.context.token, {
+          method: "PATCH",
+          body: JSON.stringify({ content_binary: contentBinary }),
+        });
+
+        if (saveResponse.status != 200) {
+          console.warn(`Error initializing document (${saveResponse.status}: ${saveResponse.statusText})`);
+        }
+      }
     }
 
     return data.document;
