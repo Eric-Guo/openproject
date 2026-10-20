@@ -51,8 +51,11 @@ properties:
     type:
       - 'integer'
       - 'null'
-    description: The lag in days between closing of `from` and start of `to`
-    minimum: 0
+    description: |-
+      The number of working days between the predecessor's finish and the successor's start.
+      For `follows`, `from` is the successor and `to` is the predecessor; for `precedes`, the direction is reversed.
+    minimum: -2000
+    maximum: 2000
   _embedded:
     type: object
     properties:

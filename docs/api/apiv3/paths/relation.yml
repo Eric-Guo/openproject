@@ -157,6 +157,7 @@ patch:
       description: |-
         Returned if:
 
+        - the request contains the unsupported `delay` property (use `lag` instead)
         - the client tries to modify a read-only property (`PropertyIsReadOnly`)
         - a constraint for a property was violated (`PropertyConstraintViolation`)
         - the client provides a link to an invalid resource (`ResourceTypeMismatch`) or a
@@ -174,4 +175,4 @@ patch:
                     attribute: lag
                 _type: Error
                 errorIdentifier: urn:openproject-org:api:v3:errors:PropertyConstraintViolation
-                message: Lag must be a number greater than or equal to 0
+                message: Lag must be greater than or equal to -2000.

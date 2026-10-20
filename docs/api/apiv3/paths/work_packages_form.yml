@@ -10,6 +10,11 @@ post:
     created, in the body. The input is validated and a schema response is returned. If the validation errors of the
     response is empty, the same payload can be used to create a work package.
 
+    Before a bulk import, submit the intended payloads here to detect field and scheduling constraints without persisting
+    work packages. HTTP 200 alone does not indicate valid input: inspect `_embedded.validationErrors` and compare the
+    normalized dates and scheduling flags in `_embedded.payload` with the intended values. This form cannot account for
+    relations that have not been created yet; validate again after creating relations and verify the final persisted values.
+
     Only the properties of the work package write model are allowed to set on a work package on creation.
 
     When setting start date, finish date, and duration together, their correctness will be checked and a validation
