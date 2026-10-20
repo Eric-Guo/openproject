@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #-- copyright
 # OpenProject is an open source project management software.
 # Copyright (C) the OpenProject GmbH
@@ -31,6 +33,14 @@ module API
     module Relations
       class RelationPayloadRepresenter < RelationRepresenter
         include ::API::Utilities::PayloadRepresenter
+
+        def from_hash(hash, *)
+          if hash.key?("delay")
+            raise ::API::Errors::Validation.new("delay", I18n.t("api_v3.errors.unsupported_relation_delay"))
+          end
+
+          super
+        end
       end
     end
   end

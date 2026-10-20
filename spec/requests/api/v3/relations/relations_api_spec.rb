@@ -310,6 +310,38 @@ RSpec.describe "API v3 Relation resource", content_type: :json do
     end
   end
 
+  describe "rejecting the unsupported delay property" do
+    [{ delay: 5 }, { delay: 0 }, { delay: nil }, { delay: 5, lag: 2 }].each do |attributes|
+      context "with #{attributes.inspect}" do
+        it "rejects creation without saving a relation" do
+          post api_v3_paths.work_package_relations(from.id), params.except(:lag).merge(attributes).to_json
+
+          expect(last_response).to have_http_status :unprocessable_entity
+          expect(JSON.parse(last_response.body)).to include(
+            "errorIdentifier" => "urn:openproject-org:api:v3:errors:PropertyConstraintViolation",
+            "message" => "The 'delay' property is not supported. Use 'lag' instead.",
+            "_embedded" => { "details" => { "attribute" => "delay" } }
+          )
+          expect(Relation.count).to eq 0
+        end
+
+        it "rejects updates without changing the relation" do
+          original_attributes = relation.attributes
+
+          patch api_v3_paths.relation(relation.id), attributes.merge(description: "Changed").to_json
+
+          expect(last_response).to have_http_status :unprocessable_entity
+          expect(JSON.parse(last_response.body)).to include(
+            "errorIdentifier" => "urn:openproject-org:api:v3:errors:PropertyConstraintViolation",
+            "message" => "The 'delay' property is not supported. Use 'lag' instead.",
+            "_embedded" => { "details" => { "attribute" => "delay" } }
+          )
+          expect(relation.reload.attributes).to eq original_attributes
+        end
+      end
+    end
+  end
+
   describe "permissions" do
     let(:user) { create(:user) }
 
