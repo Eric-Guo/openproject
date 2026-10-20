@@ -71,9 +71,9 @@ get:
       headers: {}
   tags:
   - Categories
-  description: 'List all categories of a project
+  description: |-
+    List all categories of a project
 
     This endpoint is deprecated and replaced by [`/api/v3/workspaces/{id}/categories`](https://www.openproject.org/docs/api/endpoints/categories/#list-categories-of-a-workspace)
-  '
   operationId: List_categories_of_a_project
   summary: List categories of a project
