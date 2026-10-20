@@ -8,6 +8,15 @@ post:
   description: |-
     Create a work package relation on the given work package. A successful creation will result in a relation between
     two work packages, thus appearing on both involved work package resources.
+
+    Creating the first predecessor relation for a successor without children switches that successor to automatic
+    scheduling (`scheduleManually: false`) and can change its dates, even if it was previously scheduled manually.
+    For `follows`, the work package in the URL is the successor and `_links.to` is the predecessor;
+    `precedes` expresses the reverse direction. Read back affected work packages after creating relations.
+
+    To preserve imported dates, create all work packages, hierarchies and relations first, then update the work packages
+    with `scheduleManually: true`, the intended dates and `ignoreNonWorkingDays: true` when non-working dates must be retained.
+    Use a fresh `lockVersion` for each update and verify all dates after the import is complete.
   parameters:
     - name: id
       description: Work package id
@@ -73,6 +82,7 @@ post:
       description: |-
         Returned if:
 
+        - the request contains the unsupported `delay` property (use `lag` instead)
         - the client tries to write a read-only property (`PropertyIsReadOnly`)
         - a constraint for a property was violated (`PropertyConstraintViolation`)
         - the client provides a link to an invalid resource (`ResourceTypeMismatch`)
@@ -88,4 +98,4 @@ post:
                     attribute: lag
                 _type: Error
                 errorIdentifier: urn:openproject-org:api:v3:errors:PropertyConstraintViolation
-                message: Lag must be a number greater than or equal to 0
+                message: Lag must be greater than or equal to -2000.

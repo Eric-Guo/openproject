@@ -1,6 +1,12 @@
 # Schema: RelationWriteModel
 ---
 type: object
+description: |-
+  Use `lag` for the interval between a predecessor and successor. The unsupported `delay` property
+  is rejected with HTTP 422, including when its value is null or `lag` is also provided.
+not:
+  required:
+    - delay
 required:
   - _links
   - type
@@ -29,8 +35,12 @@ properties:
     type:
       - 'integer'
       - 'null'
-    description: The lag in days between closing of `from` and start of `to`
-    minimum: 0
+    description: |-
+      The number of working days between the predecessor's finish and the successor's start.
+      Only applies to `precedes` and `follows`. For `follows`, `from` is the successor and `to` is the predecessor;
+      for `precedes`, the direction is reversed. A lag of 0 does not mean a same-day start.
+    minimum: -2000
+    maximum: 2000
   _links:
     type: object
     properties:
