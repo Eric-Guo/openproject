@@ -153,8 +153,9 @@ get:
       headers: {}
   tags:
   - Projects
-  description: 'Provides the schema describing a project resource.
+  description: |-
+    Provides the schema describing a project resource.
 
-  This endpoint is deprecated. As projects are workspaces, an equivalent schema can be found fetching `/api/v3/workspaces/schema`.'
+    This endpoint is deprecated. As projects are workspaces, an equivalent schema can be found fetching `/api/v3/workspaces/schema`.
   operationId: View_project_schema
   summary: View project schema

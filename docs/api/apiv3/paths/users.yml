@@ -37,9 +37,10 @@ get:
         + name: Filter users in whose first or last names, or email addresses the given string occurs.
         
         + login: User's login
-      example: '[{ "status": { "operator": "=", "values": ["invited"] } }, { "group":
-      { "operator": "=", "values": ["1"] } }, { "name": { "operator": "=", "values":
-      ["h.wurst@openproject.com"] } }]'
+      example: >-
+        [{ "status": { "operator": "=", "values": ["invited"] } }, { "group":
+        { "operator": "=", "values": ["1"] } }, { "name": { "operator": "=", "values":
+        ["h.wurst@openproject.com"] } }]
       in: query
       name: filters
       required: false
