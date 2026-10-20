@@ -2178,6 +2178,7 @@ en:
         unsupported_context: "The resource given is not supported as context."
       unable_to_create_attachment: "The attachment could not be created"
       unable_to_create_attachment_permissions: "The attachment could not be saved due to lacking file system permissions"
+      unsupported_relation_delay: "The 'delay' property is not supported. Use 'lag' instead."
       user:
         name_readonly: "The name attribute is read-only. Changes can be written through the attributes firstname and lastname."
       validation:
