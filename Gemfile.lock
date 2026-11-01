@@ -417,7 +417,7 @@ GEM
       activesupport (>= 6.1)
     acts_as_tree (2.9.1)
       activerecord (>= 3.0.0)
-    addressable (2.9.1)
+    addressable (2.9.2)
       public_suffix (>= 2.0.2, < 8.0)
     aes_key_wrap (1.1.0)
     afm (1.0.1)
@@ -566,7 +566,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.8)
-    css_parser (3.3.0)
+    css_parser (3.4.0)
       addressable
       base64
       ssrf_filter (~> 1.5)
@@ -2010,7 +2010,7 @@ CHECKSUMS
   activesupport (8.1.4) sha256=891dd3fe43c4fc8391934b237b1189bb1f661c932a84a840043db9d46a4e80df
   acts_as_list (1.2.6) sha256=8345380900b7bee620c07ad00991ccee59af3d8c9e8574f426e321da2865fdc8
   acts_as_tree (2.9.1) sha256=b869eb10a8de38616b64ffcf9e882d3d99c8e06909c4057078a76c3b89a9a2f3
-  addressable (2.9.1) sha256=f1212365945455c84e8d031eea40fc6bedf0c663a78d95b3ab93591040bc5c35
+  addressable (2.9.2) sha256=9117c7e7d6ee07230e75ce41fb9401ae55354dc654fcd0e862ba41d539e9a610
   aes_key_wrap (1.1.0) sha256=b935f4756b37375895db45669e79dfcdc0f7901e12d4e08974d5540c8e0776a5
   afm (1.0.1) sha256=4fc98c6ea9cad60c25ae12bad517513b0d6fdbedc099e25be88bf47977b7d879
   airbrake (13.0.5) sha256=901f5074c25d5ef77ed87f5bde7a28400a7324f5d7013a8a12d07e0099cc31b6
@@ -2083,7 +2083,7 @@ CHECKSUMS
   counter_culture (3.14.0) sha256=386f10ba78837123443597212284f166a498abf36af4b6e85e2f280b908760f3
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.8) sha256=7a0145c7a2c59f8e7923b3a69ce819c444823a00a5127d805298fea13be24efe
-  css_parser (3.3.0) sha256=79ba7fc428b18d2a085bcb6f310193f957afc30a7df9be2701419abc1a83d7ca
+  css_parser (3.4.0) sha256=0df3355c4e53fb872dd4cb46b10969c8722a010bc0fa38deb6589cd7e0387d15
   csv (3.3.7) sha256=15a3f16f6628da8664d455eb634e7f22031bcf53044923caf56975109e71b9f8
   cuprite (0.18) sha256=32c3203a492f25dbd5a3525716ae09610bcef8936ddd32ff39f34477a98062b2
   daemons (1.4.1) sha256=8fc76d76faec669feb5e455d72f35bd4c46dc6735e28c420afb822fac1fa9a1d
