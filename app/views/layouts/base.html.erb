@@ -214,15 +214,23 @@ See COPYRIGHT and LICENSE files for more details.
 <%# Properly decides main menu expanded state and width before its drawn. Fixes flickering side menu
         where menu is first expanded, then being collapsed in angular. %>
 <%= nonced_javascript_tag type: "module" do %>
+  const readLocalStorage = (key) => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+
   // execute these lines to prevent flickering when page loads:
   const wrapper = document.getElementById('wrapper');
-  const mainMenuCollapsed = window.OpenProject.guardedLocalStorage('openProject-mainMenuCollapsed');
+  const mainMenuCollapsed = readLocalStorage('openProject-mainMenuCollapsed');
 
   let savedMainMenuWidth;
   if (mainMenuCollapsed === 'true') {
     savedMainMenuWidth = 0;
   } else {
-    savedMainMenuWidth = parseInt(window.OpenProject.guardedLocalStorage('openProject-mainMenuWidth'), 10);
+    savedMainMenuWidth = parseInt(readLocalStorage('openProject-mainMenuWidth'), 10);
   }
 
   if (window.innerWidth < 1012) {
@@ -235,7 +243,7 @@ See COPYRIGHT and LICENSE files for more details.
   }
 
   const savedAgent7777PaneWidth = parseInt(
-    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneWidth'),
+    readLocalStorage('openProject-agent7777PaneWidth'),
     10
   );
   if (savedAgent7777PaneWidth >= 0) {
@@ -243,7 +251,7 @@ See COPYRIGHT and LICENSE files for more details.
   }
 
   const agent7777PaneCollapsed =
-    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneCollapsed') === 'true';
+    readLocalStorage('openProject-agent7777PaneCollapsed') === 'true';
   document.getElementById('main')?.classList.toggle('agent7777-pane-collapsed', agent7777PaneCollapsed);
 
   wrapper.style.display = '';
