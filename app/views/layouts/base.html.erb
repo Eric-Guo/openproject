@@ -217,15 +217,24 @@ See COPYRIGHT and LICENSE files for more details.
       ) %>
 </div>
 <%= nonced_javascript_tag type: "module" do %>
+  const readLocalStorage = (key) => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+
   const savedAgent7777PaneWidth = parseInt(
-    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneWidth'), 10
+    readLocalStorage('openProject-agent7777PaneWidth'),
+    10
   );
   if (savedAgent7777PaneWidth >= 0) {
     document.documentElement.style.setProperty('--agent7777-pane-width', savedAgent7777PaneWidth + 'px');
   }
 
   const agent7777PaneCollapsed =
-    window.OpenProject.guardedLocalStorage('openProject-agent7777PaneCollapsed') === 'true';
+    readLocalStorage('openProject-agent7777PaneCollapsed') === 'true';
   document.getElementById('main')?.classList.toggle('agent7777-pane-collapsed', agent7777PaneCollapsed);
 
   // Wrapper for page-specific JS from deprecated inline functions
