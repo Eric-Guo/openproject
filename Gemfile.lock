@@ -568,8 +568,6 @@ GEM
     color_conversion (0.1.2)
     colored (1.2)
     colored2 (4.1.0)
-    commonmarker (2.10.1)
-      rb_sys (~> 0.9)
     commonmarker (2.10.1-aarch64-linux)
     commonmarker (2.10.1-aarch64-linux-musl)
     commonmarker (2.10.1-arm-linux-gnu)
@@ -734,7 +732,6 @@ GEM
       base64 (~> 0.2)
       concurrent-ruby (~> 1.1)
       websocket-driver (~> 0.7)
-    ffi (1.17.4)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-aarch64-linux-musl)
     ffi (1.17.4-arm-linux-gnu)
@@ -1030,7 +1027,6 @@ GEM
     mini_magick (5.4.0)
       logger
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (6.1.0)
       drb (~> 2.0)
       prism (>= 1.5, < 3)
@@ -1064,9 +1060,6 @@ GEM
       logger
       openssl (>= 3.2.0)
     nio4r (2.7.5)
-    nokogiri (1.19.7)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.7-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.7-aarch64-linux-musl)
@@ -1360,7 +1353,6 @@ GEM
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
     prettyprint (0.2.1)
-    prism (2.1.0)
     prism (2.1.0-aarch64-linux-gnu)
     prism (2.1.0-aarch64-linux-musl)
     prism (2.1.0-arm-linux-gnu)
@@ -1872,7 +1864,7 @@ DEPENDENCIES
   climate_control
   closure_tree (~> 9.8.0)
   colored2
-  commonmarker (~> 2.10.0)
+  commonmarker (~> 2.10.1)
   compare-xml (~> 1.0)
   connection_pool (~> 3.0.2)
   costs!
@@ -2171,7 +2163,6 @@ CHECKSUMS
   color_conversion (0.1.2) sha256=99bea5fa412e1527a11389975aa6ad445ff8528ebae202c11d08c45ea2b94c96
   colored (1.2) sha256=9d82b47ac589ce7f6cab64b1f194a2009e9fd00c326a5357321f44afab2c1d2c
   colored2 (4.1.0) sha256=ad0dadbc49ecdd8e8859f45d339d63f4101b1941f7ffa5e86cdc46d925a3bb03
-  commonmarker (2.10.1) sha256=924a972223dab8701cd01ed66bb5fda208ad17a4a566c0b7cdc4a78772e9f845
   commonmarker (2.10.1-aarch64-linux) sha256=3ab9e7027d2350364bdc541680cc28e21011b2950abf7d08ac29093fa691bdc3
   commonmarker (2.10.1-aarch64-linux-musl) sha256=98e6d1a03ba708438d804702e3c25f3423bff21a1e9975280eb265d889677dfc
   commonmarker (2.10.1-arm-linux-gnu) sha256=dc1ce6cfe5547d2814351ef306d5d1dd05f9c08ad405c76baa94748326c83b7f
@@ -2241,7 +2232,6 @@ CHECKSUMS
   faraday-net_http (3.5.0) sha256=2e7094c34e38754ee048cc3df47376f8657005d9375f8473bce1c3b526a22e36
   faraday-retry (2.4.0) sha256=7b79c48fb7e56526faf247b12d94a680071ff40c9fda7cf1ec1549439ad11ebe
   ferrum (0.19.2) sha256=76edbd1cd6045d781423687b641da4acfa4e3e6dc5443fb836cab0c4a282ec7e
-  ffi (1.17.4) sha256=bcd1642e06f0d16fc9e09ac6d49c3a7298b9789bcb58127302f934e437d60acf
   ffi (1.17.4-aarch64-linux-gnu) sha256=b208f06f91ffd8f5e1193da3cae3d2ccfc27fc36fba577baf698d26d91c080df
   ffi (1.17.4-aarch64-linux-musl) sha256=9286b7a615f2676245283aef0a0a3b475ae3aae2bb5448baace630bb77b91f39
   ffi (1.17.4-arm-linux-gnu) sha256=d6dbddf7cb77bf955411af5f187a65b8cd378cb003c15c05697f5feee1cb1564
@@ -2353,7 +2343,6 @@ CHECKSUMS
   mime-types-data (3.2026.1103) sha256=cda7af94d895f1fd33e000acea800e6ed31e4c861e3d6c1a27c8b74f9e44dc64
   mini_magick (5.4.0) sha256=f120af581d9ed4ec52c57f35a67a605d112bb1d8f582d1415b147fda42d11d78
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
-  mini_portile2 (2.8.9) sha256=0cd7c7f824e010c072e33f68bc02d85a00aeb6fce05bb4819c03dfd3c140c289
   minitest (6.1.0) sha256=ff373595aa8888631e8a5463986a76b3845346ae6d7fa46e139c1633d418076e
   msgpack (1.8.7) sha256=dfefec761b5f9047e6e8d95d2c7f8af4b3725d984a01942adc533aa819a2df33
   multi_json (1.21.2) sha256=245531eaf54bdba57aba515ff08b4503505c5e09911daa89c5a561e2f85bea8e
@@ -2372,7 +2361,6 @@ CHECKSUMS
   net-smtp (0.5.2) sha256=35103cc04d6b2d94632f9928ede07483c24b70b9c0db1f231fea43909b678f3c
   net-ssh (8.1.2) sha256=78ce245aba70b5b8dab6226b335a7f359e0ba062fef6a1bc57bad32bee22778e
   nio4r (2.7.5) sha256=6c90168e48fb5f8e768419c93abb94ba2b892a1d0602cb06eef16d8b7df1dca1
-  nokogiri (1.19.7) sha256=abe94507c54cb18f872777b16bdca4aad32b1abdc4c52fe843f1c80fbdf992b8
   nokogiri (1.19.7-aarch64-linux-gnu) sha256=8f5e15d299602456406e1f03a9f3456cceb33a0722811e818d2ee2214eb4c84a
   nokogiri (1.19.7-aarch64-linux-musl) sha256=efe0c3602e6e54521bc21c681930ce5568e2d11203de17400710b2b3ca2e4cb4
   nokogiri (1.19.7-arm-linux-gnu) sha256=7fd1907125691aa89e838cc91161761c758b4e17bb32f0dd9b5515a82cc759af
@@ -2519,7 +2507,6 @@ CHECKSUMS
   prawn (2.4.0) sha256=82062744f7126c2d77501da253a154271790254dfa8c309b8e52e79bc5de2abd
   prawn-table (0.2.2) sha256=336d46e39e003f77bf973337a958af6a68300b941c85cb22288872dc2b36addb
   prettyprint (0.2.1) sha256=d555d57ea6d7cf001d4774b693546a6bd88bec1e778ddffb5c60b68ceec4b7d4
-  prism (2.1.0) sha256=1c0a7c6dea0e93183390fb123f007564dbe663198e2f86ad87204151147601f3
   prism (2.1.0-aarch64-linux-gnu) sha256=808dddc72def68e1a0463689414c97e0ba211938eddbab05387a4844aa2b3ec2
   prism (2.1.0-aarch64-linux-musl) sha256=dd1a0732620c1e575dabb07a297a62911fabd72f8e20ce850b522a866f877930
   prism (2.1.0-arm-linux-gnu) sha256=96b2426b9dbab05448c4add735619929042be3cd7e871ff186468121b62bcfa8
