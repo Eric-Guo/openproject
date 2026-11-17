@@ -157,6 +157,8 @@ gem "ttfunk", "~> 1.7.0" # remove after https://github.com/prawnpdf/prawn/issues
 gem "matrix", "~> 0.4.3"
 
 gem "mcp", "~> 1.7.0"
+# json_schemer 2.5 uses the public syntax DSL made private in regexp_parser 2.13.2.
+gem "regexp_parser", "< 2.13.2", require: false
 
 gem "meta-tags", "~> 2.24.0"
 
