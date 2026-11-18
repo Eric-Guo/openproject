@@ -163,8 +163,6 @@ gem "ttfunk", "~> 1.7.0" # remove after https://github.com/prawnpdf/prawn/issues
 gem "matrix", "~> 0.4.3"
 
 gem "mcp", "~> 1.3.0"
-# json_schemer 2.5 uses the public syntax DSL made private in regexp_parser 2.13.2.
-gem "regexp_parser", "< 2.13.2", require: false
 
 gem "meta-tags", "~> 2.23.0"
 
@@ -240,7 +238,7 @@ gem "yabeda-rails"
 
 # opentelemetry
 gem "opentelemetry-exporter-otlp", "~> 0.37.0", require: false
-gem "opentelemetry-instrumentation-all", "~> 0.100.0", require: false
+gem "opentelemetry-instrumentation-all", "~> 0.102.0", require: false
 gem "opentelemetry-sdk", "~> 1.13", require: false
 
 gem "view_component", "~> 4.15.0"
