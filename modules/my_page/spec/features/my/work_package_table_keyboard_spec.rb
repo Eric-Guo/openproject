@@ -97,6 +97,9 @@ RSpec.describe "Work package table widgets keyboard navigation on my page", :js 
     wp_table.expect_focus_outside_table
 
     wp_table.press_keys(:tab)
+    expect(page).to have_button("导入工作集", focused: true)
+
+    wp_table.press_keys(:tab)
     expect(page).to have_field(accessible_name: "Click to edit title of this view. Press enter to save.", focused: true)
 
     wp_table.press_keys(:tab)
@@ -126,6 +129,8 @@ RSpec.describe "Work package table widgets keyboard navigation on my page", :js 
     expect(created_table.entry_control).to match_selector(:css, ":focus")
     created_table.press_keys(%i[shift tab])
     expect(page).to have_field(accessible_name: "Click to edit title of this view. Press enter to save.", focused: true)
+    created_table.press_keys(%i[shift tab])
+    expect(page).to have_button("导入工作集", focused: true)
     created_table.press_keys(%i[shift tab])
     expect(page).to have_button("Create new work package", focused: true)
     created_table.press_keys(%i[shift tab])
