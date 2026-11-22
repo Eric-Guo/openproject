@@ -225,6 +225,7 @@ describe('UrlParamsHelper', () => {
         timelineLabels: { left: 'foo', right: 'bar', farRight: 'asdf' },
         highlightingMode: 'inline',
         highlightedAttributes: [{ href: 'a' }, { href: 'b' }],
+        includeAllMembersAssignedProjects: true,
         sums: true,
         columns: [{ id: 'type' }, { id: 'status' }, { id: 'soße' }],
         groupBy: {
@@ -271,6 +272,7 @@ describe('UrlParamsHelper', () => {
         timelineVisible: false,
         showHierarchies: false,
         includeSubprojects: false,
+        includeAllMembersAssignedProjects: true,
         highlightingMode: 'inline',
         'highlightedAttributes[]': ['a', 'b'],
         offset: 10,
@@ -334,6 +336,7 @@ describe('UrlParamsHelper', () => {
         showHierarchies: false,
         highlightingMode: 'inline',
         includeSubprojects: false,
+        includeAllMembersAssignedProjects: false,
         sortBy: '[]',
         timestamps: 'PT0S',
       };
