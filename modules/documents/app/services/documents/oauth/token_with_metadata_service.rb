@@ -95,7 +95,7 @@ module Documents
         end
 
         access_token = token_result.result
-        expires_at = access_token.expires_in.seconds.from_now.iso8601
+        expires_at = access_token.expires_in.seconds.from_now.utc.iso8601
 
         payload = {
           resource_url:,
