@@ -78,7 +78,7 @@ module WorkPackageTypes
 
       subject(:service) { described_class.new(user:, model:, contract_class:) }
 
-      context "without enterprise feature enabled" do
+      context "without enterprise feature enabled", with_ee: false do
         it "returns an error" do
           result = service.call(params)
           expect(result).to be_failure
