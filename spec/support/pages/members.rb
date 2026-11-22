@@ -94,10 +94,13 @@ module Pages
       retry_block do
         open_new_member!
 
-        select_principal! user_name if user_name
+        if user_name
+          select_principal! user_name
+          expect(self).to have_selected_new_principal(user_name)
+        end
         select_role! as if as
 
-        click_on "Add"
+        click_button "add-member--submit-button"
       end
     end
 
