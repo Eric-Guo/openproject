@@ -152,7 +152,7 @@ get:
   summary: List Documents
 post:
   summary: Create document
-  operationId: Create_document
+  operationId: create_document
   tags:
   - Documents
   description: |-
