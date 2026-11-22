@@ -86,7 +86,7 @@ describe('WorkPackageSingleContextMenuDirective', () => {
     displayId: 'PROJ-42',
     $links: {},
     project: { $load: () => Promise.resolve(), identifier: 'proj' },
-    logTime: link('/log'),
+    logCosts: link('/costs'),
     delete: link('/delete'),
     pluginLink: link('/plugin'),
     allocateResource: link('/allocate'),
@@ -106,8 +106,7 @@ describe('WorkPackageSingleContextMenuDirective', () => {
         js: {
           button_copy_link_to_clipboard: 'Copy link to clipboard',
           button_copy_work_package_id: 'Copy work package ID',
-          button_log_time: 'Log time',
-          button_start_timer: 'Start timer',
+          button_log_costs: 'Log costs',
           button_delete: 'Delete',
           button_plugin_action: 'Plugin action',
           button_allocate_resource: 'Allocate resource',
@@ -117,6 +116,7 @@ describe('WorkPackageSingleContextMenuDirective', () => {
     requestStream = vi.fn();
     const hooks = new HookService();
     hooks.register('workPackageSingleContextMenu', () => ({ key: 'plugin_action', icon: 'icon-unknown-plugin', link: 'pluginLink' }));
+    hooks.register('workPackageSingleContextMenu', () => ({ key: 'log_costs', link: 'logCosts' }));
     hooks.register('workPackageSingleContextMenu', () => allocateResourceAction);
 
     await TestBed.configureTestingModule({
@@ -150,13 +150,13 @@ describe('WorkPackageSingleContextMenuDirective', () => {
     expect(within(menu).getByRole('menuitem', { name: 'Plugin action' }).querySelector('svg')).toBeNull();
   });
 
-  it('places the plugin allocation item after the time items where indexBy puts it', async () => {
+  it('places the allocation item after the available cost action', async () => {
     const menu = await openMenu();
 
     const names = within(menu).getAllByRole('menuitem').map((item) => item.textContent?.trim());
 
-    expect(names.slice(names.indexOf('Log time'), names.indexOf('Log time') + 3))
-      .toEqual(['Log time', 'Start timer', 'Allocate resource']);
+    expect(names.slice(names.indexOf('Log costs'), names.indexOf('Log costs') + 2))
+      .toEqual(['Log costs', 'Allocate resource']);
     expect(names.indexOf('Delete')).toBe(names.length - 1);
   });
 
