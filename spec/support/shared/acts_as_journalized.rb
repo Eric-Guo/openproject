@@ -93,7 +93,7 @@ RSpec.shared_examples_for "journaled values for" do |new_values_set:,
       journable.save!
 
       expect(journable.last_journal.validity_period)
-        .to eql(journable.reload.updated_at...)
+        .to have_attributes(begin: journable.reload.updated_at, end: nil)
     end
 
     # This is currently only used if there is no predecessor
@@ -138,7 +138,7 @@ RSpec.shared_examples_for "journaled values for" do |new_values_set:,
       journable.save!
 
       expect(journable.last_journal.validity_period)
-        .to eql(journable.last_journal.created_at...)
+        .to have_attributes(begin: journable.last_journal.created_at, end: nil)
     end
   end
 
