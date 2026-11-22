@@ -767,7 +767,7 @@ module API
           resources :workspace, except: %i[create_form]
 
           def self.timestamps_to_param_value(timestamps)
-            Array(timestamps).map { |timestamp| Timestamp.parse(timestamp).absolute }.join(",")
+            Array(timestamps).map { |timestamp| Timestamp.parse(timestamp).to_time.utc.iso8601 }.join(",")
           end
 
           def self.path_for(path, filters: nil, sort_by: nil, group_by: nil, page_size: nil, offset: nil,

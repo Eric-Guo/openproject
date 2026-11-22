@@ -707,7 +707,7 @@ RSpec.describe API::V3::Utilities::PathHelper do
       it "returns the value as an absolute value in ISO8601 format" do
         Timecop.freeze(Time.current) do
           expect(subject)
-            .to eql Time.current.iso8601
+            .to eql Time.current.utc.iso8601
         end
       end
     end
@@ -727,7 +727,7 @@ RSpec.describe API::V3::Utilities::PathHelper do
       it "returns the value unchanged" do
         Timecop.freeze(Time.current) do
           expect(subject)
-            .to eql Time.current.iso8601
+            .to eql Time.current.utc.iso8601
         end
       end
     end
@@ -738,7 +738,7 @@ RSpec.describe API::V3::Utilities::PathHelper do
       it "returns the value unchanged" do
         Timecop.freeze(Time.current) do
           expect(subject)
-            .to eql "2023-01-31T21:34:11Z,2022-04-30T21:34:11Z,#{Time.current.iso8601}"
+            .to eql "2023-01-31T21:34:11Z,2022-04-30T21:34:11Z,#{Time.current.utc.iso8601}"
         end
       end
     end
