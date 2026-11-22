@@ -39,7 +39,10 @@ RSpec.describe "Shared Work Package Access",
   shared_let(:int_project_custom_field) { create(:integer_project_custom_field, projects: [project]) }
   shared_let(:work_package) { create(:work_package, project:, journal_notes: "Hello!") }
   shared_let(:sharer) { create(:admin) }
-  shared_let(:shared_with_user) { create(:user, firstname: "Mean", lastname: "Turkey") }
+  shared_let(:other_project) { create(:project) }
+  shared_let(:shared_with_user) do
+    create(:user, firstname: "Mean", lastname: "Turkey", member_with_permissions: { other_project => [:view_project] })
+  end
 
   shared_let(:viewer_role) { create(:view_work_package_role) }
   shared_let(:commenter_role) { create(:comment_work_package_role) }
