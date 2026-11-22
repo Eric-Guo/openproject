@@ -120,7 +120,7 @@ RSpec.describe Day do
 
       context "when yesterday is a weekend day" do
         it "returns last Friday" do
-          expect(subject.date).to eq(current_time.prev_occurring(:friday))
+          expect(subject.date).to eq(current_time.prev_occurring(:friday).to_date)
         end
       end
     end
@@ -130,7 +130,7 @@ RSpec.describe Day do
 
       context "when yesterday is working" do
         it "returns Monday" do
-          expect(subject.date).to eq(current_time.yesterday)
+          expect(subject.date).to eq(current_time.yesterday.to_date)
         end
       end
 
@@ -140,7 +140,7 @@ RSpec.describe Day do
         end
 
         it "returns last Friday" do
-          expect(subject.date).to eq(current_time.prev_occurring(:friday))
+          expect(subject.date).to eq(current_time.prev_occurring(:friday).to_date)
         end
       end
     end
@@ -153,7 +153,7 @@ RSpec.describe Day do
 
         context "and tomorrow is a working day" do
           it "returns Tuesday (tomorrow)" do
-            expect(subject.date).to eq(time.tomorrow)
+            expect(subject.date).to eq(time.tomorrow.to_date)
           end
         end
       end
@@ -163,7 +163,7 @@ RSpec.describe Day do
 
         context "and tomorrow is a weekend day" do
           it "returns next Monday" do
-            expect(subject.date).to eq(time.next_occurring(:monday))
+            expect(subject.date).to eq(time.next_occurring(:monday).to_date)
           end
         end
       end
@@ -173,7 +173,7 @@ RSpec.describe Day do
 
         context "and tomorrow is working" do
           it "returns Friday (tomorrow)" do
-            expect(subject.date).to eq(time.tomorrow)
+            expect(subject.date).to eq(time.tomorrow.to_date)
           end
         end
 
@@ -183,7 +183,7 @@ RSpec.describe Day do
           end
 
           it "returns next Monday" do
-            expect(subject.date).to eq(time.next_occurring(:monday))
+            expect(subject.date).to eq(time.next_occurring(:monday).to_date)
           end
         end
       end
@@ -197,7 +197,7 @@ RSpec.describe Day do
           end
 
           it "returns next Monday" do
-            expect(subject.date).to eq(time.next_occurring(:monday))
+            expect(subject.date).to eq(time.next_occurring(:monday).to_date)
           end
         end
       end
