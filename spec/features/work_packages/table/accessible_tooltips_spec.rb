@@ -98,7 +98,8 @@ RSpec.describe "Accessible work package table tooltips", :js do
 
       expect(page).to have_selector(:link, accessible_name: "0h",
                                            accessible_description: "Show spent time for this work package", exact: true)
-      expect(page).to have_selector(:link, accessible_name: "Log time", accessible_description: "", exact: true)
+      description = defined?(OpenProject::LabourTracking) ? I18n.t(:open_link_in_a_new_tab) : ""
+      expect(page).to have_selector(:link, accessible_name: "Log time", accessible_description: description, exact: true)
       expect(page).to have_selector(:link, accessible_name: "Σ 5h", accessible_description: "(value derived from children)",
                                            exact: true)
       expect(page).to have_selector(:link, accessible_name: "Σ 0%", accessible_description: "(value derived from children)",
