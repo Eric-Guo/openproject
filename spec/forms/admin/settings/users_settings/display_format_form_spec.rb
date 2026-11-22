@@ -49,6 +49,7 @@ RSpec.describe Admin::Settings::UsersSettings::DisplayFormatForm, type: :forms d
       expect(options).to eq(
         "Olga Operator" => "firstname_lastname",
         "Olga" => "firstname",
+        "Operator" => "lastname",
         "Operator Olga" => "lastname_firstname",
         "OperatorOlga" => "lastname_n_firstname",
         "Operator, Olga" => "lastname_comma_firstname",
