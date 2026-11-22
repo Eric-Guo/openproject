@@ -41,10 +41,8 @@ module My
         format.html do
           @auto_load_welcome = auto_load_welcome?
           current_user.mark_welcome_text_viewed! if @auto_load_welcome
-          @query_due_date = Query.find 81614 # 我的逾期工作包
-          @query_due_date.sort_criteria = [["due_date", "desc"]]
-          @query_need_confirm = Query.find 81615 # 我的待复核工作包
-          @query_need_confirm.sort_criteria = [["due_date", "desc"]]
+          @query_due_date = dashboard_query(81614)
+          @query_need_confirm = dashboard_query(81615)
           @one_news = News.where(project_id: 1157).latest(count: 3).sample
           begin
             update_milestone_project_resp = get_update_milestone_project
@@ -111,6 +109,10 @@ module My
     end
 
     private
+
+    def dashboard_query(id)
+      Query.find_by(id:)&.tap { |query| query.sort_criteria = [%w[due_date desc]] }
+    end
 
     def auto_load_welcome?
       return false unless Setting.welcome_text.present?
