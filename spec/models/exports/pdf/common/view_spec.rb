@@ -39,8 +39,14 @@ RSpec.describe Exports::PDF::Common::View do
         allow(CustomStyle).to receive(:current).and_return(nil)
       end
 
-      it "returns the latin default font family" do
+      it "uses the Latin default when the legacy fonts are unavailable" do
+        allow(described_class).to receive(:valid_legacy_default_font?).and_return(false)
         expect(described_class.default_font).to eq "NotoSans"
+      end
+
+      it "uses the legacy Chinese font family when installed" do
+        allow(described_class).to receive(:valid_legacy_default_font?).and_return(true)
+        expect(described_class.default_font).to eq "NotoSansSC"
       end
     end
 
