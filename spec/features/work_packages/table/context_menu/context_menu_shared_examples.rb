@@ -35,6 +35,18 @@ RSpec.shared_examples_for "provides a single WP context menu" do
   let(:time_logging_modal) { Components::TimeLoggingModal.new }
   let(:wp_timeline) { Pages::WorkPackagesTimeline.new(work_package.project) }
 
+  it "opens the time entry dialog", unless: defined?(OpenProject::LabourTracking) do
+    open_context_menu.call
+    menu.choose("Log time")
+    time_logging_modal.is_visible true
+    time_logging_modal.cancel
+  end
+
+  it "omits the time entry action when using TH reporting", if: defined?(OpenProject::LabourTracking) do
+    open_context_menu.call
+    menu.expect_no_options "Log time"
+  end
+
   it "provides a context menu" do
     # Open detail pane
     open_context_menu.call
@@ -47,16 +59,6 @@ RSpec.shared_examples_for "provides a single WP context menu" do
     menu.choose("Open fullscreen view")
     expect(page).to have_css(".work-packages--show-view .inline-edit--container.subject",
                              text: work_package.subject)
-
-    # Open log time
-    open_context_menu.call
-    menu.choose("Log time")
-    time_logging_modal.is_visible true
-
-    # TODO: it seems like the modal is not properly loaded here? all methods seem to fail
-    # time_logging_modal.has_hidden_work_package_field_for(work_package)
-    # time_logging_modal.activity_input_disabled_because_work_package_missing? false
-    time_logging_modal.cancel
 
     # Open Move
     open_context_menu.call
