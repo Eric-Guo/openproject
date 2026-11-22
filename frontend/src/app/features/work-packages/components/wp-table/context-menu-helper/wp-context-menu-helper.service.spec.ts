@@ -27,6 +27,7 @@
 
 import { TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { WorkPackageResource } from 'core-app/features/hal/resources/work-package-resource';
@@ -69,6 +70,7 @@ describe('WorkPackageContextMenuHelperService', () => {
     TestBed.configureTestingModule({
       providers: [
         WorkPackageContextMenuHelperService,
+        { provide: CurrentProjectService, useValue: { identifier: 'demo' } },
         { provide: PathHelperService, useValue: pathHelper },
         { provide: HookService, useValue: hooks },
         { provide: UrlParamsHelperService, useValue: {} },
