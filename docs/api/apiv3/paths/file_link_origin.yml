@@ -1,0 +1,24 @@
+# /api/v3/file_links/{id}/origin
+---
+delete:
+  operationId: delete_file_link_origin
+  summary: Delete a linked file from EDOC DDS
+  tags:
+    - File links
+  description: Deletes the file from its EDOC DDS storage and removes its work package file link. Requires permission to manage file links.
+  parameters:
+    - name: id
+      in: path
+      description: File link ID
+      required: true
+      schema:
+        type: integer
+  responses:
+    '204':
+      description: The file and its link were deleted.
+    '403':
+      description: The user lacks permission to delete the file.
+    '404':
+      description: The file link is missing or inaccessible.
+    '422':
+      description: The storage could not process the deletion.
