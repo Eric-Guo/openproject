@@ -38,6 +38,7 @@ RSpec.describe RecurringMeetings::UpdateService, "integration", type: :model do
     create(:recurring_meeting,
            project:,
            start_time: Time.zone.tomorrow + 10.hours,
+           time_zone: Time.zone.tzinfo.name,
            frequency: "daily",
            interval: 1,
            end_after: "specific_date",
