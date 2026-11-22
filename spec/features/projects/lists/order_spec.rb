@@ -308,8 +308,8 @@ RSpec.describe "Projects lists ordering", :js, with_settings: { login_required?:
                                   project,
                                   development_project,
                                   public_project,
-                                  child_project_a,
-                                  child_project_m)
+                                  child_project_m,
+                                  child_project_a)
     end
   end
 
