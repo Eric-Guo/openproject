@@ -34,7 +34,7 @@ RSpec.describe "Listing SCIM clients", :js, :selenium, driver: :firefox_de do
 
   current_user { admin }
 
-  context "when using an insufficient enterprise token" do
+  context "when using an insufficient enterprise token", with_ee: false do
     it "renders an enterprise banner and no table" do
       visit admin_scim_clients_path
 
