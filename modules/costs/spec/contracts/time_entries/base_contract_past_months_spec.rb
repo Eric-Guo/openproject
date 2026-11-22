@@ -142,7 +142,7 @@ RSpec.describe TimeEntries::BaseContract, "prohibiting logging for past months" 
     let(:an_earlier_month) { Date.current.prev_month.prev_month.beginning_of_month }
 
     context "when still within the grace period" do
-      before { travel_to(next_month + 3) }
+      before { travel_to((next_month + 3).in_time_zone(user.time_zone)) }
 
       it "allows logging for the month that just ended" do
         expect(log_time(month_that_just_ended)).to be_success
@@ -154,7 +154,7 @@ RSpec.describe TimeEntries::BaseContract, "prohibiting logging for past months" 
     end
 
     context "on the last day of the grace period" do
-      before { travel_to(next_month + 4) }
+      before { travel_to((next_month + 4).in_time_zone(user.time_zone)) }
 
       it "allows logging for the month that just ended" do
         expect(log_time(month_that_just_ended)).to be_success
@@ -162,7 +162,7 @@ RSpec.describe TimeEntries::BaseContract, "prohibiting logging for past months" 
     end
 
     context "when the grace period has passed" do
-      before { travel_to(next_month + 5) }
+      before { travel_to((next_month + 5).in_time_zone(user.time_zone)) }
 
       it "rejects logging for the month that just ended" do
         expect_rejected(log_time(month_that_just_ended))
