@@ -709,7 +709,7 @@ RSpec.describe API::V3::WorkPackages::Schema::WorkPackageSchemaRepresenter do
         end
       end
 
-      context "without the enterprise add-on" do
+      context "without the enterprise add-on", with_ee: false do
         it "has no such property" do
           expect(subject).not_to have_json_path("readonly")
         end
