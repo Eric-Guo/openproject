@@ -69,7 +69,7 @@ RSpec.describe SharingStrategies::ProjectQueryStrategy do
       it { expect(strategy.manageable?).to be(true) }
     end
 
-    context "when the entity is editable, but feature is not available" do
+    context "when the entity is editable, but feature is not available", with_ee: false do
       it { expect(strategy.manageable?).to be(false) }
     end
 
