@@ -183,7 +183,7 @@ RSpec.describe Backlogs::SprintReports::Widgets::WorkPackageOverview, type: :com
       end
     end
 
-    context "when not entitled to baseline comparison" do
+    context "when not entitled to baseline comparison", with_ee: false do
       it "still renders the heading, count and story points for each block" do
         expect(rendered_component).to have_css(".op-wp-overview--blocks")
         expect(rendered_component).to have_text("Initially planned")
