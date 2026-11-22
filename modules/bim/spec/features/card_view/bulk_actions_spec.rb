@@ -88,8 +88,8 @@ RSpec.describe "Copy work packages through Rails view", :js, with_config: { edit
       let(:current_user) { dev }
 
       it "does not allow to copy" do
-        context_menu.open_for work_package, card_view: true, check_if_open: false
-        context_menu.expect_closed
+        context_menu.open_for work_package, card_view: true
+        context_menu.expect_no_options "Bulk duplicate"
       end
     end
   end
