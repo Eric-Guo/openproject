@@ -209,7 +209,9 @@ RSpec.describe Query,
       end
     end
 
-    context "without EE", with_ee: false do
+    context "with the fork baseline policy and no Enterprise token", with_ee: false do
+      before { allow(EnterpriseToken).to receive(:allows_to?).with(:baseline_comparison).and_call_original }
+
       context "when the 'oneDayAgo' value is provided" do
         let(:timestamps) { ["oneDayAgo@12:00+00:00"] }
 
