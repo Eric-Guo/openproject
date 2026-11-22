@@ -72,8 +72,8 @@ RSpec.describe "OIDC administration CRUD",
       # Mapping form
       fill_in "Mapping for: Username", with: "login"
       fill_in "Mapping for: Email", with: "mail"
-      fill_in "Mapping for: First name", with: "myName"
-      fill_in "Mapping for: Last name", with: "myLastName"
+      fill_in I18n.t(:label_mapping_for, attribute: User.human_attribute_name(:first_name)), with: "myName"
+      fill_in I18n.t(:label_mapping_for, attribute: User.human_attribute_name(:last_name)), with: "myLastName"
 
       click_link_or_button "Continue"
 
