@@ -183,7 +183,7 @@ RSpec.describe Authorization do
           expect(subject).to be_empty
 
           expect(Rails.logger).to have_received(:debug) do |_, &block|
-            expect(block.call).to include("Used permission \"#{action}\" that is not defined.")
+            expect(block.call).to include("permission \"#{action}\" that is not defined.")
           end
         end
       end
@@ -197,7 +197,7 @@ RSpec.describe Authorization do
           expect { subject }.to raise_error(Authorization::UnknownPermissionError)
 
           expect(Rails.logger).to have_received(:debug) do |_, &block|
-            expect(block.call).to include("Used permission \"#{action}\" that is not defined.")
+            expect(block.call).to include("permission \"#{action}\" that is not defined.")
           end
         end
       end
