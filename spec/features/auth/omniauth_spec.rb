@@ -133,7 +133,7 @@ RSpec.describe "Omniauth authentication" do
       fill_in("email", with: user.mail)
       click_link_or_button "Sign In"
 
-      expect(page).to have_current_path home_url
+      expect(page).to have_current_path my_page_url
     end
   end
 
