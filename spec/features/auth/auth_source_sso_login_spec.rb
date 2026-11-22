@@ -58,7 +58,7 @@ RSpec.describe "Login with auth source SSO" do
     login_with(user.login, user_password)
 
     # on the my page
-    expect(page).to have_current_path home_path
+    expect(page).to have_current_path my_page_path
 
     user_menu.expect_user_shown user.name
   end
