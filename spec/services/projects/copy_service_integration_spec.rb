@@ -219,7 +219,7 @@ RSpec.describe(
       end
     end
 
-    shared_examples_for "copies public attribute" do
+    shared_examples_for "creates a private project copy" do
       describe "#public" do
         before do
           source.update!(public:)
@@ -228,18 +228,18 @@ RSpec.describe(
         context "when not public" do
           let(:public) { false }
 
-          it "copies correctly" do
+          it "keeps the copy private" do
             expect(subject).to be_success
-            expect(project_copy.public).to eq public
+            expect(project_copy).not_to be_public
           end
         end
 
         context "when public" do
           let(:public) { true }
 
-          it "copies correctly" do
+          it "keeps the copy private" do
             expect(subject).to be_success
-            expect(project_copy.public).to eq public
+            expect(project_copy).not_to be_public
           end
         end
       end
@@ -539,7 +539,7 @@ RSpec.describe(
         end
       end
 
-      it_behaves_like "copies public attribute"
+      it_behaves_like "creates a private project copy"
       it_behaves_like "copies custom fields"
     end
 
@@ -1392,7 +1392,7 @@ RSpec.describe(
         end
       end
 
-      it_behaves_like "copies public attribute"
+      it_behaves_like "creates a private project copy"
       it_behaves_like "copies custom fields"
     end
   end
