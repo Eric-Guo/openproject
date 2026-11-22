@@ -523,14 +523,14 @@ RSpec.describe OpenProject::JournalFormatter::Cause do
     it do
       href = OpenProject::Static::Links.url_for(:blog_article_progress_changes)
       expect(cause).to render_html_variant(
-        "<strong>OpenProject system update:</strong> Progress calculation automatically " \
+        "<strong>PLM system update:</strong> Progress calculation automatically " \
         "<a href=\"#{href}\" target=\"_blank\">set to work-based mode and adjusted with version update</a>."
       )
     end
 
     it do
       expect(cause).to render_raw_variant(
-        "OpenProject system update: Progress calculation automatically " \
+        "PLM system update: Progress calculation automatically " \
         "set to work-based mode and adjusted with version update."
       )
     end
@@ -547,14 +547,14 @@ RSpec.describe OpenProject::JournalFormatter::Cause do
     it do
       href = OpenProject::Static::Links.url_for(:blog_article_progress_changes)
       expect(cause).to render_html_variant(
-        "<strong>OpenProject system update:</strong> Progress calculation automatically " \
+        "<strong>PLM system update:</strong> Progress calculation automatically " \
         "<a href=\"#{href}\" target=\"_blank\">adjusted with version update</a>."
       )
     end
 
     it do
       expect(cause).to render_raw_variant(
-        "OpenProject system update: Progress calculation automatically adjusted with version update."
+        "PLM system update: Progress calculation automatically adjusted with version update."
       )
     end
 
@@ -565,7 +565,7 @@ RSpec.describe OpenProject::JournalFormatter::Cause do
 
       it "is rendered like 'progress_calculation_adjusted'" do
         expect(cause).to render_raw_variant(
-          "OpenProject system update: Progress calculation automatically adjusted with version update."
+          "PLM system update: Progress calculation automatically adjusted with version update."
         )
       end
     end
@@ -582,7 +582,7 @@ RSpec.describe OpenProject::JournalFormatter::Cause do
     it do
       href = OpenProject::Static::Links.url_for(:release_notes_14_0_1)
       expect(cause).to render_html_variant(
-        "<strong>OpenProject system update:</strong> Work and progress totals " \
+        "<strong>PLM system update:</strong> Work and progress totals " \
         "automatically removed for non-parent work packages with " \
         "<a href=\"#{href}\" target=\"_blank\">version update</a>. " \
         "This is a maintenance task and can be safely ignored."
@@ -591,7 +591,7 @@ RSpec.describe OpenProject::JournalFormatter::Cause do
 
     it do
       expect(cause).to render_raw_variant(
-        "OpenProject system update: Work and progress totals " \
+        "PLM system update: Work and progress totals " \
         "automatically removed for non-parent work packages with version update. " \
         "This is a maintenance task and can be safely ignored."
       )
