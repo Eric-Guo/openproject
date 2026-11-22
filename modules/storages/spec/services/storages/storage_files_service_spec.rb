@@ -112,7 +112,7 @@ module Storages
     end
 
     context "when DDS rejects the folder creation" do
-      let(:create_folder_result) { 1 }
+      let(:create_folder_result) { 610 }
 
       it "returns the failure without fetching files" do
         result = described_class.call(storage:, user:, folder: "/", work_package_id: 450344)
