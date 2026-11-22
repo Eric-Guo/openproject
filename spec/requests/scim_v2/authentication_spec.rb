@@ -158,7 +158,7 @@ RSpec.describe "SCIM API Authentication" do
       end
     end
 
-    context "with the enterprise feature missing" do
+    context "with the enterprise feature missing", with_ee: false do
       let(:oauth_access_token) { create(:oauth_access_token, resource_owner: service_account, scopes: ["scim_v2"]) }
       let!(:token) { oauth_access_token.plaintext_token }
 
