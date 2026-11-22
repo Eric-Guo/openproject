@@ -188,10 +188,12 @@ module Pages
     def edit_user!(name, add_roles: [], remove_roles: [])
       click_row_action!(find_user(name), "Manage roles")
 
-      Array(add_roles).each { |role| check role }
-      Array(remove_roles).each { |role| uncheck role }
+      within(find_user(name).find("form[id$='-roles-form']")) do
+        Array(add_roles).each { |role| check role }
+        Array(remove_roles).each { |role| uncheck role }
 
-      click_on "Change"
+        click_on "Change"
+      end
       wait_for_reload
     end
 
