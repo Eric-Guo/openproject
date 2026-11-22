@@ -287,6 +287,8 @@ RSpec.describe CustomStylesHelper do
       let(:current_theme) { create(:custom_style_with_logo_dark, theme_logo: "icon_logo.svg") }
 
       it "prefers the custom dark logo and keeps the theme logo for light mode" do
+        allow(Rails.env).to receive(:production?).and_return(true)
+
         path = custom_style_logo_path(
           digest: current_theme.digest,
           filename: current_theme.logo_dark_identifier,
@@ -305,6 +307,8 @@ RSpec.describe CustomStylesHelper do
       let(:current_theme) { create(:custom_style, theme_logo: "logo_openproject.png") }
 
       it "substitutes the Russian variant for the theme logo" do
+        allow(Rails.env).to receive(:production?).and_return(true)
+
         I18n.with_locale(:ru) do
           expect(logo_urls.dig(:desktop, :light)).to eq(helper.asset_path("logo-black-bg-ua.png"))
           expect(logo_urls.dig(:desktop, :dark)).to eq(helper.asset_path("logo-black-bg-ua.png"))
