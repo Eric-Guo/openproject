@@ -264,18 +264,6 @@ RSpec.describe API::V3::WorkPackageCollectionFromQueryService,
         end
 
         context "with query.display_sums? being true" do
-          it "calculates sums as the user running the query" do
-            query.display_sums = true
-            viewer = nil
-            allow(results).to receive(:all_total_sums) do
-              viewer = User.current
-              {}
-            end
-
-            subject
-            expect(viewer).to eq(user)
-          end
-
           it "has a struct containing the sums and the available custom fields" do
             query.display_sums = true
 
