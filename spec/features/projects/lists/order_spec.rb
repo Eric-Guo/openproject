@@ -203,6 +203,8 @@ RSpec.describe "Projects lists ordering", :js, with_settings: { login_required?:
   end
 
   it "allows to alter the order in which projects are displayed via the column headers" do
+    visit projects_path(sortBy: [%w[lft asc]].to_json)
+
     Setting.enabled_projects_columns += [integer_custom_field.column_name]
 
     # initially, ordered by name asc on each hierarchical level
