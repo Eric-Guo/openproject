@@ -283,7 +283,7 @@ RSpec.describe "Create meeting from template", :js do
   end
 
   describe "creating meeting from template using 'Create from template' button" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       let!(:template) { create(:onetime_template, project:, title: "Planning template") }
 
       let(:template_show_page) { Pages::Meetings::Show.new(template) }
