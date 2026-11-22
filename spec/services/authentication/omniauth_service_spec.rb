@@ -190,7 +190,7 @@ RSpec.describe Authentication::OmniauthService do
 
     context "with an active user remapped",
             with_settings: { oauth_allow_remapping_of_existing_users?: true } do
-      let!(:user) { create(:user, login: auth_email.downcase) }
+      let!(:user) { create(:user, firstname: "Local", lastname: "Name", login: auth_email.downcase) }
 
       shared_examples_for "a successful remapping of foo" do
         before do
@@ -204,8 +204,8 @@ RSpec.describe Authentication::OmniauthService do
           aggregate_failures "Service call" do
             expect(call).to be_success
             expect(call.result).to eq user
-            expect(call.result.firstname).to eq "foo"
-            expect(call.result.lastname).to eq "bar"
+            expect(call.result.firstname).to eq "Local"
+            expect(call.result.lastname).to eq "Name"
             expect(call.result.login).to eq auth_email
             expect(call.result.mail).to eq auth_email
           end
@@ -213,8 +213,8 @@ RSpec.describe Authentication::OmniauthService do
           user.reload
 
           aggregate_failures "User attributes" do
-            expect(user.firstname).to eq "foo"
-            expect(user.lastname).to eq "bar"
+            expect(user.firstname).to eq "Local"
+            expect(user.lastname).to eq "Name"
             expect(user.identity_url).to eq "#{auth_provider.slug}:123545"
           end
 
