@@ -105,8 +105,7 @@ module Pages
         def reload_with_home_page_detour
           visit home_path
 
-          expect(page)
-            .to have_css(".PageHeader-title", text: "OpenProject")
+          expect(page).to have_current_path(home_path)
 
           visit!
         end
