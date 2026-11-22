@@ -42,6 +42,7 @@ RSpec.describe API::V3::Queries::QueryParamsRepresenter do
       has_default_columns?: true,
       highlighting_mode: :none,
       historic?: false,
+      include_all_members_assigned_projects: true,
       include_subprojects: true,
       ordered?: false,
       read_attribute: "none",
@@ -51,6 +52,7 @@ RSpec.describe API::V3::Queries::QueryParamsRepresenter do
 
   it "serializes the query display options used by exports" do
     expect(params).to include(
+      includeAllMembersAssignedProjects: true,
       includeSubprojects: true,
       showHierarchies: true,
       showSums: true,
