@@ -157,6 +157,7 @@ RSpec.describe "OIDC administration CRUD",
 
       url = "https://example.com/metadata"
       metadata = Rails.root.join("modules/openid_connect/spec/fixtures/keycloak_localhost.json").read
+      allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
       stub_request(:get, url).to_return(status: 200, body: metadata, headers: { "Content-Type" => "application/json" })
 
       choose "I have a discovery endpoint URL"
