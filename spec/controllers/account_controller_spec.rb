@@ -1531,7 +1531,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
     context "when not providing all required fields" do
       let(:slug) { "google" }
       let(:omniauth_strategy) { double("Google Strategy", name: slug) } # rubocop:disable RSpec/VerifiedDoubles
-      let!(:oidc_google) { create(:oidc_provider_google, slug:) }
+      let!(:oidc_google) { create(:oidc_provider_google, slug:, limit_self_registration: false) }
       let(:omniauth_hash) do
         OmniAuth::AuthHash.new(
           provider: slug,
@@ -1605,7 +1605,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
     context "when there are missing required custom fields" do
       let(:slug) { "google" }
       let(:omniauth_strategy) { double("Google Strategy", name: slug) } # rubocop:disable RSpec/VerifiedDoubles
-      let!(:oidc_google) { create(:oidc_provider_google, slug:) }
+      let!(:oidc_google) { create(:oidc_provider_google, slug:, limit_self_registration: false) }
       let(:omniauth_hash) do
         OmniAuth::AuthHash.new(
           provider: slug,
