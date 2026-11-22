@@ -71,7 +71,7 @@ RSpec.describe "Projects", "work packages settings menu", :js do
       end
     end
 
-    context "when the user has access to internal comments tab but not to enterprise" do
+    context "when the user has access to internal comments tab but not to enterprise", with_ee: false do
       let(:permissions) { %i(edit_project view_work_packages) }
 
       current_user { create(:user, member_with_permissions: { project => permissions }) }
