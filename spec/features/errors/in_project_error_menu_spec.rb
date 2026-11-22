@@ -55,7 +55,7 @@ RSpec.describe "Side menu on in-project error pages" do
 
     before do
       login_as(user)
-      visit project_settings_general_path(project)
+      visit project_settings_template_path(project)
     end
 
     it "renders the 403 page" do
