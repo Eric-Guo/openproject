@@ -69,7 +69,9 @@ RSpec.describe "OAuthClient callback endpoint" do
     before do
       login_as current_user
 
-      allow(Rack::OAuth2::Client).to receive(:new).and_return(rack_oauth2_client)
+      allow(Rack::OAuth2::Client).to receive(:new).and_call_original
+      allow(Rack::OAuth2::Client).to receive(:new).with(hash_including(identifier: oauth_client.client_id))
+                                                   .and_return(rack_oauth2_client)
       allow(rack_oauth2_client)
         .to(receive(:access_token!))
         .with(:body)
