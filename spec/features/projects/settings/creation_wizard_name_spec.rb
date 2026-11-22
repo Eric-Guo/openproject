@@ -68,7 +68,7 @@ RSpec.describe "Project creation wizard name settings", :js do
     end
   end
 
-  context "with feature not available" do
+  context "with feature not available", with_ee: false do
     let(:settings_page) { Pages::Projects::Settings::CreationWizard.new(project) }
     let(:project_creation_wizard_enabled) { false }
 
