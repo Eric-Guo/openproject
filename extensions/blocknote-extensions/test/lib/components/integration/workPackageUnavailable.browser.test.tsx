@@ -139,10 +139,10 @@ describe('Inline chip - unavailable work package', () => {
       return base ? getComputedStyle(base).boxShadow : '';
     }).toContain('inset');
 
-    await userEvent.keyboard('{Control>}c{/Control}');
-    await userEvent.keyboard('{Control>}{End}{/Control}');
+    await userEvent.copy();
+    await userEvent.keyboard('{ArrowRight}');
     await userEvent.keyboard('{Enter}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.paste();
 
     await vi.waitFor(() => {
       expect(document.querySelectorAll('.op-bn-inline-wp').length).toBe(2);
