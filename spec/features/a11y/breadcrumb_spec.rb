@@ -63,8 +63,9 @@ RSpec.describe "Breadcrumbs (#63777)", :js do
 
   context "when being on the home screen" do
     it "does not show breadcrumbs" do
-      visit "/"
-      expect(page).to have_css ".PageHeader--noBreadcrumb"
+      visit home_path
+      expect(page).to have_heading(Setting.app_title)
+      expect(page).to have_no_css(".PageHeader-breadcrumbs")
     end
   end
 end
