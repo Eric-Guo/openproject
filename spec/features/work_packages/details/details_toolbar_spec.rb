@@ -92,7 +92,7 @@ RSpec.describe "Work package details toolbar", :js do
         expect(page).to have_selector(:menuitem, "Copy link to clipboard", focused: true)
 
         press_keys(:down, :down)
-        expect(page).to have_selector(:menuitem, "Log time", focused: true)
+        expect(page).to have_selector(:menuitem, "Allocate resource", focused: true)
       end
 
       press_keys(:escape)
