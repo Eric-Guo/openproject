@@ -49,9 +49,21 @@ RSpec.describe "My work menu",
     end
   end
 
+  context "when the user can log time but cannot view all project information" do
+    before do
+      mock_permissions_for(current_user) { |mock| mock.allow_in_project :log_time, project: }
+    end
+
+    it "hides the internal time management menu" do
+      expect(subject).to have_http_status(:ok)
+      expect(page).to have_no_text "My time"
+    end
+  end
+
   context "when user has permission to log_own_time" do
     before do
       mock_permissions_for(current_user) do |mock|
+        mock.allow_globally :view_all_project_info
         mock.allow_in_project :log_own_time, project:
       end
     end
@@ -65,6 +77,7 @@ RSpec.describe "My work menu",
   context "when user has permission to log_time" do
     before do
       mock_permissions_for(current_user) do |mock|
+        mock.allow_globally :view_all_project_info
         mock.allow_in_project :log_time, project:
       end
     end
