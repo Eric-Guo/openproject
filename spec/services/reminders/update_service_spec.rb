@@ -38,9 +38,9 @@ RSpec.describe Reminders::UpdateService do
   describe "remind_at changed" do
     subject { described_class.new(user:, model: model_instance).call(call_attributes) }
 
-    let(:business_day_at_noon) { Time.zone.local(2025, 1, 8, 12, 0, 0) }
+    let(:business_day_at_noon) { user.time_zone.local(2025, 1, 8, 12, 0, 0) }
     let(:model_instance) { create(:reminder, :scheduled, :with_unread_notifications, creator: user) }
-    let(:user) { create(:admin) }
+    let(:user) { create(:admin, preferences: { time_zone: "Europe/Berlin" }) }
     let(:remind_at) { business_day_at_noon + 2.days }
     let(:call_attributes) { { remind_at_date: remind_at.to_date, remind_at_time: remind_at.strftime("%H:%M") } }
 

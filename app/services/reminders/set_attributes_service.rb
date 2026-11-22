@@ -50,7 +50,7 @@ module Reminders
 
       date = remind_at_params[:remind_at_date]
       time = remind_at_params[:remind_at_time]
-      params[:remind_at] = date.present? && time.present? ? User.current.time_zone.parse("#{date} #{time}") : nil
+      params[:remind_at] = date.present? && time.present? ? user.time_zone.parse("#{date} #{time}") : nil
     end
 
     # At the form level, we split the date and time into two form fields.
@@ -92,7 +92,7 @@ module Reminders
     end
 
     def now_in_user_time_zone
-      @now_in_user_time_zone ||= Time.current.in_time_zone(User.current.time_zone)
+      @now_in_user_time_zone ||= Time.current.in_time_zone(user.time_zone)
     end
   end
 end
