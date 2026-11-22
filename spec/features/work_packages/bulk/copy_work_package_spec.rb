@@ -363,8 +363,8 @@ RSpec.describe "Duplicate work packages through Rails view", :js do
       let(:current_user) { dev }
 
       it "does not allow to duplicate work packages" do
-        context_menu.open_for work_package, check_if_open: false
-        context_menu.expect_closed
+        context_menu.open_for work_package
+        context_menu.expect_no_options "Bulk duplicate"
       end
     end
   end
