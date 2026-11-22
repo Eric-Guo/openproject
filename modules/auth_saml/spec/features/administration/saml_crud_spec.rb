@@ -193,6 +193,7 @@ RSpec.describe "SAML administration CRUD",
         provider.update!(metadata_url: url, last_metadata_update: 1.day.ago)
         original_options = provider.options.deep_dup
         metadata = Rails.root.join("modules/auth_saml/spec/fixtures/idp_metadata.xml").read
+        allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
         stub_request(:get, url).to_return(status: 200, body: metadata)
 
         visit saml_provider_path(provider)
