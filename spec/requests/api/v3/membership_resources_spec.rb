@@ -88,7 +88,7 @@ RSpec.describe "API v3 memberships resource", content_type: :json do
         .to match_array expected_receivers.map(&:mail)
 
       if defined?(custom_message)
-        expect(ActionMailer::Base.deliveries.map { |mail| mail.body.encoded })
+        expect(ActionMailer::Base.deliveries.map { |mail| mail.html_part.decoded })
           .to all include(OpenProject::TextFormatting::Renderer.format_text(custom_message))
       end
     end
