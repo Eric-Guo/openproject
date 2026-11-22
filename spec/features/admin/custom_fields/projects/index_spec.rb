@@ -157,7 +157,7 @@ RSpec.describe "List project custom fields", :js do
 
     describe "managing project custom fields" do
       context "with calculated value type" do
-        it "offers the type for creation with enterprise icon" do
+        it "offers the type for creation with enterprise icon", with_ee: false do
           cf_index_page.expect_having_create_item(I18n.t("label_calculated_value"), enterprise_icon: true)
         end
 
