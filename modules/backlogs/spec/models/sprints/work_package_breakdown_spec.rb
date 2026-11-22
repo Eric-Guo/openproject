@@ -155,7 +155,7 @@ RSpec.describe Sprints::WorkPackageBreakdown do
   end
 
   describe "a sprint that was never started, read by a viewer for whom its planned finish has passed" do
-    let(:sprint) { create(:sprint, project:, start_date: Time.zone.today - 6.days, finish_date: Time.zone.today) }
+    let(:sprint) { create(:sprint, project:, start_date: Date.new(2024, 6, 14), finish_date: Date.new(2024, 6, 20)) }
 
     current_user do
       create(:user, member_with_roles: { project => role }, preferences: { time_zone: "Asia/Tokyo" })
@@ -163,12 +163,12 @@ RSpec.describe Sprints::WorkPackageBreakdown do
 
     before do
       # Past Tokyo midnight, which lies at 15:00 UTC, but not yet past server time midnight.
-      travel 8.hours
+      travel_to(Time.utc(2024, 6, 20, 15, 30))
 
       create(:work_package, project:, sprint:, type: type_feature, status: issue_open, story_points: 5,
                             journals: { 10.days.ago => {} })
       create(:work_package, project:, sprint:, type: type_feature, status: issue_open, story_points: 3,
-                            journals: { 1.hour.ago => {} })
+                            journals: { 15.minutes.ago => {} })
     end
 
     it "reads it over its planned dates in the viewer's zone, as the sprint's charts do" do
