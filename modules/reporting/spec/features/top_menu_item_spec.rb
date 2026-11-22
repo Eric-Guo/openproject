@@ -98,8 +98,8 @@ RSpec.describe "Top menu items", :js do
     end
 
     context "as a user with permissions", :allow_all_permissions do
-      it "displays all options" do
-        has_menu_items?(reporting_item)
+      it "hides the report from the modules menu" do
+        expect_no_menu_item reporting_item
       end
     end
   end
