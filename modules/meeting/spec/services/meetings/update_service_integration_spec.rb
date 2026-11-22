@@ -113,7 +113,7 @@ RSpec.describe Meetings::UpdateService, "integration", type: :model do
         end
 
         before do
-          meeting.update_column(:start_time, Time.zone.tomorrow + 11.hours)
+          meeting.update!(start_time: Time.zone.tomorrow + 11.hours)
         end
 
         it "is not valid because needs to be before next occurrence" do
