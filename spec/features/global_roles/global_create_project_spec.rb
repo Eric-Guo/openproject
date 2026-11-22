@@ -70,7 +70,7 @@ RSpec.describe "Global role: Global Create project", :js do
   end
 
   describe "for a user with the global permission to add projects" do
-    let!(:global_role) { create(:global_role, name: "Global", permissions: %i[add_project]) }
+    let!(:global_role) { create(:global_role, name: "Global", permissions: %i[add_project view_all_project_info]) }
     let!(:member_role) { create(:project_role, name: "Member", permissions: %i[view_project]) }
     let!(:default_project_role) { create(:project_creator_role) }
 
