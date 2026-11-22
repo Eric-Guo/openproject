@@ -46,7 +46,8 @@ RSpec.describe Queries::Projects::Filters::ProjectStatusFilter do
         ["Off track", "2"],
         ["Not started", "3"],
         ["Finished", "4"],
-        ["Discontinued", "5"]
+        ["Discontinued", "5"],
+        ["On pause", "41"]
       ]
     end
 
