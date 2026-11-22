@@ -136,7 +136,7 @@ RSpec.describe UserMailer do
 
       it_behaves_like "mail is sent" do
         it "mentions the missing attachments" do
-          expect(deliveries.first.body.encoded)
+          expect(deliveries.first.text_part.decoded)
             .to include(I18n.t(:mail_body_backup_ready_incomplete, file_count: I18n.t(:label_x_files, count: 2)).strip)
         end
       end
