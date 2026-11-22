@@ -113,7 +113,7 @@ module Queries::Projects::Filters::FilterOnProjectPhase
       .where.not(start_date: nil)
       .where.not(finish_date: nil)
       .where(
-        <<~SQL.squish, beginning_of_week, end_of_week
+        <<~SQL.squish, beginning_of_week.to_date, end_of_week.to_date
           daterange(#{Project::Phase.table_name}.start_date,
                     #{Project::Phase.table_name}.finish_date,
                     '[]')
