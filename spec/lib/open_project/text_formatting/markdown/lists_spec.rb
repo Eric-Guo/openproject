@@ -313,7 +313,7 @@ RSpec.describe OpenProject::TextFormatting,
                     </tr>
                     <tr class="op-uc-table--row">
                       <td class="op-uc-table--cell">
-                        <ul class="op-uc-list_task-list op-uc-list">
+                        <ul class="op-uc-list op-uc-list_task-list">
                           <li class="op-uc-list--item">
                             <input type="checkbox" class="op-uc-list--task-checkbox" disabled>
                             <span>asdfasdfasdf </span>
