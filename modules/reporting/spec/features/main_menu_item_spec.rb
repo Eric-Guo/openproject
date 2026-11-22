@@ -60,7 +60,11 @@ RSpec.describe "Cost and Reports Main Menu Item", :js do
     context "as a user with permissions" do
       let(:current_user) { user_with_permissions }
 
-      include_examples "visiting the global cost reports page"
+      it "hides the report from the main menu" do
+        within "#main-menu" do
+          expect(page).to have_no_link(I18n.t(:cost_reports_title))
+        end
+      end
     end
 
     context "as a user without adequate permissions" do
