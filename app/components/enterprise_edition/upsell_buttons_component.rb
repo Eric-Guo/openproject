@@ -65,9 +65,16 @@ module EnterpriseEdition
     def buttons
       [
         buy_now_button,
+        free_trial_button,
         upgrade_now_button,
         more_info_button
       ].compact
+    end
+
+    def free_trial_button
+      return if EnterpriseToken.hide_banners?
+
+      render ::EnterpriseTrials::TrialButtonComponent.new
     end
 
     def buy_now_button

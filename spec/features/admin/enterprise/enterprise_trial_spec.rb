@@ -31,7 +31,7 @@ require "spec_helper"
 
 RSpec.describe "Enterprise trial management",
                :js,
-               :webmock do
+               :webmock, with_ee: false do
   include Redmine::I18n
 
   let(:admin) { create(:admin) }
