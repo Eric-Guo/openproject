@@ -153,12 +153,12 @@ RSpec.describe Users::SetAttributesService, type: :model do
   end
 
   describe ".placeholder_name" do
-    it "given an email it uses the local part as first and the domain as the last name" do
+    it "given an email it uses the domain as the first name and the local part as the last name" do
       email = "xxxhunterxxx@openproject.com"
       first, last = instance.send(:placeholder_name, email)
 
-      expect(first).to eq "xxxhunterxxx"
-      expect(last).to eq "@openproject.com"
+      expect(first).to eq "@openproject.com"
+      expect(last).to eq "xxxhunterxxx"
     end
 
     it "trims names if they are too long (> 30 characters)" do
