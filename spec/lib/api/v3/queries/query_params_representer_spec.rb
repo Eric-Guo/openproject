@@ -44,6 +44,7 @@ RSpec.describe API::V3::Queries::QueryParamsRepresenter do
       historic?: false,
       include_all_members_assigned_projects: true,
       include_subprojects: true,
+      include_all_members_assigned_projects: true,
       ordered?: false,
       read_attribute: "none",
       show_hierarchies: true
@@ -54,6 +55,7 @@ RSpec.describe API::V3::Queries::QueryParamsRepresenter do
     expect(params).to include(
       includeAllMembersAssignedProjects: true,
       includeSubprojects: true,
+      includeAllMembersAssignedProjects: true,
       showHierarchies: true,
       showSums: true,
       groupBy: "project"
