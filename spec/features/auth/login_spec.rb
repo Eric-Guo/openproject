@@ -72,9 +72,7 @@ RSpec.describe "Login" do
         # first login
         login_with(" #{user.login} ", user_password)
 
-        # on the home path
-        expect(page)
-          .to have_current_path home_path
+        expect(page).to have_current_path my_page_path
       end
     end
 
