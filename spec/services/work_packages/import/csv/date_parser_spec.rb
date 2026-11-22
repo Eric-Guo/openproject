@@ -122,19 +122,19 @@ RSpec.describe WorkPackages::Import::CSV::DateParser do
     context "with a space in place of the T" do
       let(:raw) { "2026-09-26 08:09:52" }
 
-      it { is_expected.to eq(Time.utc(2026, 9, 26, 8, 9, 52)) }
+      it { is_expected.to eq(Time.zone.local(2026, 9, 26, 8, 9, 52)) }
     end
 
     context "without the seconds" do
       let(:raw) { "2026-09-26 08:09" }
 
-      it { is_expected.to eq(Time.utc(2026, 9, 26, 8, 9)) }
+      it { is_expected.to eq(Time.zone.local(2026, 9, 26, 8, 9)) }
     end
 
     context "without a zone" do
       let(:raw) { "2026-09-26T08:09:52" }
 
-      it { is_expected.to eq(Time.utc(2026, 9, 26, 8, 9, 52)) }
+      it { is_expected.to eq(Time.zone.local(2026, 9, 26, 8, 9, 52)) }
 
       it "reads the cell in the time zone of the user running the import" do
         Time.use_zone("Europe/Berlin") do
@@ -159,14 +159,14 @@ RSpec.describe WorkPackages::Import::CSV::DateParser do
     context "with a date on its own" do
       let(:raw) { "2026-09-26" }
 
-      it { is_expected.to eq(Time.utc(2026, 9, 26)) }
+      it { is_expected.to eq(Time.zone.local(2026, 9, 26)) }
     end
 
     context "with a meridian" do
       it "reads the clock the cell shows" do
-        expect(described_class.timestamp("2026-09-29 10:40 AM")).to eq(Time.utc(2026, 9, 29, 10, 40))
-        expect(described_class.timestamp("2026/09/29 10:40 pm")).to eq(Time.utc(2026, 9, 29, 22, 40))
-        expect(described_class.timestamp("2026-09-26 12:00 AM")).to eq(Time.utc(2026, 9, 26))
+        expect(described_class.timestamp("2026-09-29 10:40 AM")).to eq(Time.zone.local(2026, 9, 29, 10, 40))
+        expect(described_class.timestamp("2026/09/29 10:40 pm")).to eq(Time.zone.local(2026, 9, 29, 22, 40))
+        expect(described_class.timestamp("2026-09-26 12:00 AM")).to eq(Time.zone.local(2026, 9, 26))
       end
     end
 
