@@ -90,7 +90,7 @@ RSpec.describe Backlogs::SprintReports::Widgets::UnfinishedTable,
 
   context "when the sprint is complete" do
     let(:completed_at) { 1.hour.ago }
-    let(:expected_timestamps) { completed_at.iso8601 }
+    let(:expected_timestamps) { completed_at.utc.iso8601 }
 
     include_examples "renders a work packages table"
   end
