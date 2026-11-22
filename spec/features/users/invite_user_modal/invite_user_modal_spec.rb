@@ -79,7 +79,7 @@ RSpec.describe "Invite user modal", :js do
         expect(ActionMailer::Base.deliveries[index].to)
           .to contain_exactly(recipient.mail)
 
-        expect(ActionMailer::Base.deliveries[index].body.encoded)
+        expect(ActionMailer::Base.deliveries[index].text_part.decoded)
           .to include "Welcome to OpenProject"
       end
 
