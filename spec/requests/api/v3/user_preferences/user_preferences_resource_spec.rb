@@ -63,10 +63,7 @@ RSpec.describe "API v3 UserPreferences resource", content_type: :json do
       end
 
       context "when not login_required", with_settings: { login_required: false } do
-        it "responds with a UserPreferences representer", :aggregate_failures do
-          expect(subject.status).to eq(200)
-          expect(subject.body).to be_json_eql("UserPreferences".to_json).at_path("_type")
-        end
+        it_behaves_like "unauthenticated access"
       end
     end
 
