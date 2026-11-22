@@ -36,7 +36,7 @@ RSpec.describe Projects::Identifier do
     it { is_expected.to validate_uniqueness_of(:identifier).case_insensitive }
 
     context "with classic identifiers", with_settings: { work_packages_identifier: "classic" } do
-      it { is_expected.to validate_length_of(:identifier).is_at_most(100) }
+      it { is_expected.to validate_length_of(:identifier).is_at_most(191) }
     end
 
     context "with semantic identifiers", with_settings: { work_packages_identifier: "semantic" } do
