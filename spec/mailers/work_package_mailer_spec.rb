@@ -59,6 +59,7 @@ RSpec.describe WorkPackageMailer do
         expect(mail.subject)
           .to eql I18n.t(:"mail.mention.subject",
                          user_name: author.name,
+                         project_name: project.name,
                          id: "##{work_package.id}",
                          subject: work_package.subject)
       end
@@ -78,6 +79,7 @@ RSpec.describe WorkPackageMailer do
         expect(mail.subject)
           .to eql I18n.t(:"mail.mention.subject",
                          user_name: author.name,
+                         project_name: project.name,
                          id: "PROJ-42",
                          subject: work_package.subject)
       end
