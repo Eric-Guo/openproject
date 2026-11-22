@@ -148,7 +148,7 @@ RSpec.describe "Administrating memberships via the project settings", :js do
 
         members_page.in_user_hover_card(peter) do
           find_test_selector("user-hover-card-name", text: peter.name)
-          find_test_selector("user-hover-card-email", text: peter.mail)
+          expect(page).to have_no_text(peter.mail)
           find_test_selector("user-hover-card-groups", text: "Member of #{peter.groups.first.name}")
 
           button = find_test_selector("user-hover-card-profile-btn", text: "Open profile")
