@@ -68,7 +68,35 @@ RSpec.describe "Logging time within the work package view", :js, :with_cuprite d
     # wp_page.expect_and_dismiss_toaster message: I18n.t("js.notice_successful_create")
   end
 
-  context "as an admin" do
+  context "with TH time reporting", if: defined?(OpenProject::LabourTracking) do
+    let(:worktime_url) { "https://ith-workspace.thape.com.cn/ith-worktime/day" }
+    let(:login_url) do
+      "https://ith-workspace.thape.com.cn/workbenchApi/auth/sso-login?#{URI.encode_www_form(redirect_uri: worktime_url)}"
+    end
+
+    before { login_as(user) }
+
+    it "links to the TH daily reporting page from the work package" do
+      wp_page.visit!
+      wp_page.ensure_page_loaded
+      spent_time_field.expect_display_value "0h"
+      expect(spent_time_field.display_element)
+        .to have_selector(:link, accessible_name: "Log time", href: login_url, target: "_blank")
+    end
+
+    it "links to the same reporting page from the table and shows saved hours" do
+      create(:time_entry, entity: work_package, project:, user:, activity:, hours: 2)
+      query = create(:public_query, project:, column_names: ["subject", "spent_hours"])
+      table = Pages::WorkPackagesTable.new(project)
+      table.visit_query(query)
+
+      row = table.row(work_package)
+      expect(row).to have_link("2h", exact: true)
+      expect(row).to have_selector(:link, accessible_name: "Log time", href: login_url, target: "_blank")
+    end
+  end
+
+  context "as an admin", unless: defined?(OpenProject::LabourTracking) do
     before do
       login_as(user)
       wp_page.visit!
@@ -175,7 +203,7 @@ RSpec.describe "Logging time within the work package view", :js, :with_cuprite d
     end
   end
 
-  context "as a user who can only log own time" do
+  context "as a user who can only log own time", unless: defined?(OpenProject::LabourTracking) do
     let(:user) do
       create(:user,
              member_with_permissions: { project => %i[view_time_entries view_work_packages log_own_time] })
@@ -199,7 +227,7 @@ RSpec.describe "Logging time within the work package view", :js, :with_cuprite d
     end
   end
 
-  context "when in the table" do
+  context "when in the table", unless: defined?(OpenProject::LabourTracking) do
     let(:wp_table) { Pages::WorkPackagesTable.new(project) }
     let(:second_work_package) { create(:work_package, project:) }
     let(:query) { create(:public_query, project:, column_names: ["subject", "spent_hours"]) }
