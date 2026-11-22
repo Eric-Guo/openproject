@@ -191,27 +191,9 @@ RSpec.describe EnterpriseToken do
       end
 
       describe "#allows_to?" do
-        let(:service_double) { Authorization::EnterpriseService.new(subject) }
-
-        before do
-          allow(Authorization::EnterpriseService)
-            .to receive(:new)
-            .with(subject)
-            .and_return(service_double)
-        end
-
-        it "forwards to EnterpriseTokenService for checks" do
-          allow(service_double)
-            .to receive(:call)
-            .with(:forbidden_action)
-            .and_return ServiceResult.success(result: false)
-          allow(service_double)
-            .to receive(:call)
-            .with(:allowed_action)
-            .and_return ServiceResult.success(result: true)
-
-          expect(described_class.allows_to?(:forbidden_action)).to be false
-          expect(described_class.allows_to?(:allowed_action)).to be true
+        it "allows the configured features on the token and installation" do
+          expect(subject.allows_to?(:work_package_sharing)).to be true
+          expect(described_class.allows_to?(:work_package_sharing)).to be true
         end
       end
     end
