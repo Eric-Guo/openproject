@@ -27,6 +27,7 @@
 //++
 
 import { Controller } from '@hotwired/stimulus';
+import { isElectronUserAgent } from 'core-stimulus/controllers/dynamic/electron-header-spacing.controller';
 
 let mountId = 0;
 
@@ -39,7 +40,7 @@ export default class Agent7777Controller extends Controller<HTMLElement> {
   private abortController?:AbortController;
 
   connect():void {
-    if (!this.hasEntrypointValue) {
+    if (!this.hasEntrypointValue || !isElectronUserAgent(navigator.userAgent)) {
       return;
     }
 
