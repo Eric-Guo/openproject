@@ -36,6 +36,8 @@ class Meeting::ThMeetingUpstreamRoomId < ApplicationForm
       leading_visual: { icon: :link }
     ) do |select_list|
       select_list.option(label: "请选择会议室", value: "")
+      next unless @meeting.start_time && @meeting.duration&.positive?
+
       rooms = ThMeeting.available_rooms(
         start_date_time: @meeting.start_date_time,
         end_date_time: @meeting.end_date_time,

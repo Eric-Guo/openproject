@@ -80,6 +80,8 @@ RSpec.describe "Meetings global CRUD", :js do
     meetings_page.set_start_date "2013-03-28"
     meetings_page.set_start_time "13:30"
     meetings_page.set_duration "1.5"
+    click_on "获取可用会议室"
+    select "线上会议 - Online room", from: "meeting_th_meeting_upstream_room_id"
     meetings_page.click_create
 
     show_page.trigger_dropdown_menu_item "Delete meeting"
