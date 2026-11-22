@@ -28,19 +28,16 @@
 import '@openproject/primer-view-components/app/components/primer/alpha/tool_tip.js';
 import { ProviderToken } from '@angular/core';
 import { fireEvent, within, waitFor } from '@testing-library/dom';
-import { Subject } from 'rxjs';
 import { DisplayFieldRenderer } from '../display-field-renderer';
 import { DisplayFieldService } from '../display-field.service';
 import { SchemaCacheService } from 'core-app/core/schemas/schema-cache.service';
 import { HalResourceEditingService } from 'core-app/shared/components/fields/edit/services/hal-resource-editing.service';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 import { PathHelperService } from 'core-app/core/path-helper/path-helper.service';
-import { ApiV3Service } from 'core-app/core/apiv3/api-v3.service';
 import { TimezoneService } from 'core-app/core/datetime/timezone.service';
 import { DisplayFieldContext } from 'core-app/shared/components/fields/display/display-field.service';
 import { IFieldSchema } from 'core-app/shared/components/fields/field.base';
 import { HalResource } from 'core-app/features/hal/resources/hal-resource';
-import { ProjectResource } from 'core-app/features/hal/resources/project-resource';
 import { KeepTabService } from 'core-app/features/work-packages/components/wp-single-view-tabs/keep-tab/keep-tab.service';
 import { CurrentProjectService } from 'core-app/core/current-project/current-project.service';
 import { UrlParamsService } from 'core-app/core/navigation/url-params.service';
@@ -60,14 +57,10 @@ const translations:Record<string, string> = {
 
 describe('table field tooltips', () => {
   let container:HTMLElement;
-  let project:Subject<ProjectResource>;
-  let refresh:ReturnType<typeof vi.fn>;
   let context:DisplayFieldContext;
 
   beforeEach(() => {
     container = document.body.appendChild(document.createElement('div'));
-    project = new Subject<ProjectResource>();
-    refresh = vi.fn();
 
     const services = new Map<unknown, unknown>([
       [I18nService, { t: (key:string) => translations[key] ?? key }],
@@ -79,13 +72,7 @@ describe('table field tooltips', () => {
         PathHelperService,
         {
           genericWorkPackagePath: (_project:string, id:string) => `/work_packages/${id}`,
-          projectTimeEntriesPath: () => '/projects/demo/time_entries',
-          timeEntryWorkPackageDialog: () => '/work_packages/42/time_entry',
         },
-      ],
-      [
-        ApiV3Service,
-        { projects: { id: () => ({ get: () => project }) }, work_packages: { id: () => ({ refresh }) } },
       ],
       [
         HierarchyQueryLinkHelperService,
@@ -97,7 +84,7 @@ describe('table field tooltips', () => {
     context = { injector: { get: (token:unknown) => services.get(token) ?? {} }, options: {} } as unknown as DisplayFieldContext;
   });
 
-  afterEach(() => { container.remove(); project.complete(); });
+  afterEach(() => { container.remove(); });
 
   it.each([WorkDisplayField, CompoundProgressDisplayField])('describes derived values with %s', (FieldClass) => {
     const field = new FieldClass('work', context);
@@ -185,34 +172,32 @@ describe('table field tooltips', () => {
   });
 
 
-  it('preserves asynchronous spent-time href and clickable log-time dialog refresh', () => {
+  it('labels the spent-time report and external time entry links', () => {
     const field = new WorkPackageSpentTimeDisplayField('spentTime', context);
-    field.apply({ id: '42', project: {}, spentTime: 'PT4H', logTime: {} } as unknown as HalResource, {} as IFieldSchema);
+    const href = '/projects/demo/time_entries?values[WorkPackageId]=42';
+    field.apply({ spentTime: 'PT4H', showSpentTime: { href }, logTime: {} } as unknown as HalResource, {} as IFieldSchema);
     field.render(container, '4 h');
 
-    const value = container.querySelector<HTMLAnchorElement>('.time-logging--value')!;
-    expect(value).toHaveAttribute('title', '');
-    expect(value).not.toHaveAttribute('href');
+    const report = within(container).getByRole('link', { name: '4 h' });
+    expect(report).toHaveAccessibleDescription('View spent time');
+    expect(report).toHaveAttribute('title', '');
+    expect(report).toHaveAttribute('href', href);
 
-    project.next({ identifier: 'demo' } as ProjectResource);
-
-    expect(value).toHaveAccessibleName('4 h');
-    expect(value).toHaveAccessibleDescription('View spent time');
-    expect(value.href).toContain('/projects/demo/time_entries?');
-    expect(value.href).toContain('values[WorkPackageId]=42');
-
-    const log = within(container).getByRole('link', { name: 'Log time' });
+    const log = within(container).getByRole<HTMLAnchorElement>('link', { name: 'Log time' });
     expect(log).toHaveAccessibleDescription('');
-    expect(log).toHaveAttribute('data-turbo-stream', 'true');
     expect(log).toHaveClass('icon', 'icon-time');
+    expect(log.target).toBe('th_keyin');
+    const destination = new URL(log.href);
+    expect(destination.origin).toBe('https://ith-workspace.thape.com.cn');
+    expect(destination.searchParams.get('redirect_uri')).toBe('https://ith-workspace.thape.com.cn/ith-worktime/day');
+  });
 
-    log.addEventListener('click', (event) => event.preventDefault());
-    log.click();
+  it('shows the spent time as text when the resource has no report or logging link', () => {
+    const field = new WorkPackageSpentTimeDisplayField('spentTime', context);
+    field.apply({ spentTime: 'PT4H' } as unknown as HalResource, {} as IFieldSchema);
+    field.render(container, '4 h');
 
-    expect(log).toHaveAttribute('href', expect.stringMatching(/^\/work_packages\/42\/time_entry\?date=/));
-
-    fireEvent(document, new CustomEvent('dialog:close', { detail: { dialog: { id: 'time-entry-dialog' }, submitted: true } }));
-
-    expect(refresh).toHaveBeenCalledOnce();
+    expect(container).toHaveTextContent('4 h');
+    expect(within(container).queryByRole('link')).toBeNull();
   });
 });
