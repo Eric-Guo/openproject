@@ -221,7 +221,7 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
         it "signs in the user after successful external authentication" do
           post :callback, params: { provider: :google }
 
-          expect(response).to redirect_to home_path
+          expect(response).to redirect_to my_page_path
         end
 
         it "logs a successful login" do
@@ -250,7 +250,7 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
           end
 
           it "redirects to the default one" do
-            expect(response).to redirect_to home_path
+            expect(response).to redirect_to my_page_path
           end
         end
 
@@ -270,7 +270,7 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
             expect { post :callback, params: { provider: :google } }
                 .not_to change { user.reload.firstname }
 
-            expect(response).to redirect_to home_path
+            expect(response).to redirect_to my_page_path
 
             expect(user.lastname).to eq "newLastname"
           end
@@ -323,7 +323,7 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
           it "logs in the user" do
             post :callback, params: { provider: :google }
 
-            expect(response).to redirect_to home_path
+            expect(response).to redirect_to my_page_path
             expect(OpenProject::OmniAuth::Authorization)
               .to have_received(:after_login!).with(user, omniauth_hash, any_args)
           end
