@@ -49,6 +49,7 @@ RSpec.describe "Work package sharing",
 
   let(:project) do
     create(:project,
+           disable_modules: [:th_members_module],
            members: { current_user => [sharer_role],
                       # The roles of those users don't really matter, reusing the roles
                       # to save some creation work.
