@@ -130,7 +130,7 @@ RSpec.describe API::V3::Meetings::CreateFormAPI, content_type: :json do
           .at_path("_embedded/payload/title")
 
         expect(subject.body)
-          .to be_json_eql("Room 42".to_json)
+          .to be_json_eql("线上会议 - Online room".to_json)
           .at_path("_embedded/payload/location")
 
         expect(subject.body)
