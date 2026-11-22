@@ -139,7 +139,7 @@ RSpec.shared_examples_for "custom_field contract" do
       it_behaves_like "contract is valid"
     end
 
-    context "when enabling them while the enterprise plan does not include project-specific values" do
+    context "when enabling them while the enterprise plan does not include project-specific values", with_ee: false do
       let(:custom_field_project_specific_value_restriction) { nil }
 
       before do
@@ -155,7 +155,7 @@ RSpec.shared_examples_for "custom_field contract" do
       it_behaves_like "contract is valid"
     end
 
-    context "when blocking values while the enterprise plan does not include project-specific values" do
+    context "when blocking values while the enterprise plan does not include project-specific values", with_ee: false do
       let(:custom_field_project_specific_value_restriction) { nil }
 
       before do
