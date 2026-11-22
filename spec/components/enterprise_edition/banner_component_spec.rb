@@ -29,7 +29,7 @@
 
 require "rails_helper"
 
-RSpec.describe EnterpriseEdition::BannerComponent, type: :component do
+RSpec.describe EnterpriseEdition::BannerComponent, type: :component, with_ee: false do
   let(:title) { "Some title" }
   let(:expected_title) { title }
   let(:description) { "Some description" }
