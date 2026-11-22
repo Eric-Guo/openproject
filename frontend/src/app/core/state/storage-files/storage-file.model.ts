@@ -27,12 +27,7 @@
 
 import { IFileLinkOriginData } from 'core-app/core/state/file-links/file-link.model';
 
-interface IStorageFileLocation {
+export interface IStorageFile extends IFileLinkOriginData {
   location:string;
-}
-
-interface IStorageFilePermissions {
   permissions:('readable'|'writeable')[];
 }
-
-export interface IStorageFile extends IFileLinkOriginData, IStorageFileLocation, IStorageFilePermissions {}

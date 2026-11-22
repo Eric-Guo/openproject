@@ -33,6 +33,7 @@ import { ApiV3Resource } from 'core-app/core/apiv3/cache/cachable-apiv3-resource
 import { ApiV3VersionsPaths } from 'core-app/core/apiv3/endpoints/versions/apiv3-versions-paths';
 import { StateCacheService } from 'core-app/core/apiv3/cache/state-cache.service';
 import { ApiV3ProjectsPaths } from 'core-app/core/apiv3/endpoints/projects/apiv3-projects-paths';
+import { ApiV3GettableResourceCollection } from 'core-app/core/apiv3/paths/apiv3-resource';
 import { ApiV3ProjectCopyPaths } from 'core-app/core/apiv3/endpoints/projects/apiv3-project-copy-paths';
 
 export class ApiV3ProjectPaths extends ApiV3Resource<ProjectResource> {
@@ -55,7 +56,9 @@ export class ApiV3ProjectPaths extends ApiV3Resource<ProjectResource> {
   public readonly copy = new ApiV3ProjectCopyPaths(this.apiRoot, this.path);
 
   // /api/v3/projects/:project_id/all_members_assigned_projects
-  public readonly all_members_assigned_projects = this.subResource('all_members_assigned_projects');
+  public readonly all_members_assigned_projects = this.subResource(
+    'all_members_assigned_projects', ApiV3GettableResourceCollection<ProjectResource>,
+  );
 
   protected createCache():StateCacheService<ProjectResource> {
     return (this.parent as ApiV3ProjectsPaths).cache;

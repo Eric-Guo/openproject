@@ -97,5 +97,4 @@ RSpec.describe McpTools::CurrentUser do
       expect(parsed_results.dig("structuredContent", "id")).to eq(user.id)
     end
   end
-
 end

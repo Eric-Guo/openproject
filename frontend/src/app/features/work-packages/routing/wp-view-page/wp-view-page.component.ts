@@ -81,7 +81,7 @@ export class WorkPackageViewPageComponent extends PartitionedQuerySpacePageCompo
         if (project === undefined) {
           return false;
         }
-        return project.showEstimateButton;
+        return project.showEstimateButton === true;
       },
     },
     {

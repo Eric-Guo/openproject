@@ -133,7 +133,7 @@ export class WorkPackageWatchersTabMembersComponent implements OnInit, AfterView
 
   setCurrentMembers() {
     this.currentMembers = this.members.filter((member) => {
-      if (this.currentFilter.email && !member.email.includes(this.currentFilter.email)) return false;
+      if (this.currentFilter.email && !member.email?.includes(this.currentFilter.email)) return false;
       if (this.currentFilter.name && !member.name.includes(this.currentFilter.name)) return false;
       if (this.currentFilter.role_id && !member.roles.some((role) => Number(role.id) === Number(this.currentFilter.role_id))) return false;
       if (this.currentFilter.company) {

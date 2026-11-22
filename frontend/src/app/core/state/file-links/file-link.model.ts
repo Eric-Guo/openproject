@@ -48,8 +48,8 @@ export interface IFileLinkHalResourceLinks extends IHalResourceLinks {
 export interface IFileLinkOriginData {
   id:ID;
   name:string;
-  location:string;
-  locationName?:string;
+  location?:string|null;
+  locationName?:string|null;
   mimeType?:string;
   size?:number;
   createdAt?:string;

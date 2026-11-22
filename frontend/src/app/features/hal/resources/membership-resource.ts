@@ -57,5 +57,11 @@ export class MembershipResource extends HalResource implements MembershipResourc
 
   public project:ProjectResource;
 
+  declare email:string|null;
+
+  declare statusName:string|null;
+
+  declare profile?:Partial<Record<'name'|'company'|'department'|'position'|'major'|'mobile'|'remark', string|null>>|null;
+
   public notificationMessage:Formattable;
 }

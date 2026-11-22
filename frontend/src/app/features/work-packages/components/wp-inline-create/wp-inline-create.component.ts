@@ -222,7 +222,7 @@ export class WorkPackageInlineCreateComponent implements AfterViewInit {
 
   public handleImportRowClick() {
     this.wpCreate
-      .createOrContinueWorkPackage(this.projectIdentifier)
+      .createOrContinueWorkPackage(this.projectIdentifier())
       .then((change: WorkPackageChangeset) => {
         this.currentWorkPackage = change.projectedResource;
         this.opModalService.show(WpImportModalComponent, this.injector, { workPackage: this.currentWorkPackage });

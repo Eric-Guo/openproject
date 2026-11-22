@@ -45,7 +45,7 @@ import { ToastService } from 'core-app/shared/components/toaster/toast.service';
 export class WorkPackageWatchersTabMembersRowComponent {
   @Input() member:MembershipResource;
 
-  @Input() checked:string[];
+  @Input() checked:boolean;
 
   @Input() onChange:(checked:boolean, member:MembershipResource) => void;
 

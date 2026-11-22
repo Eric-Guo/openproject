@@ -256,8 +256,7 @@ export class WorkPackageViewContextMenu extends OpContextMenuHandler {
       });
     });
 
-
-    items.unshift({
+    groups.prepend('organize', {
       disabled: false,
       icon: 'icon-import',
       class: 'import-wp',
