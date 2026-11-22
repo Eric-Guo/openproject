@@ -69,11 +69,12 @@ RSpec.describe "Team planner context menu",
     menu.expect_closed
     menu.open_for(work_package, card_view: true)
     menu.expect_options "Open details view",
-                        "Log time",
                         "Move to another project",
                         "Duplicate",
                         "Delete",
                         "Create new child"
+
+    menu.expect_no_options "Log time"
 
     menu.choose "Open details view"
     Pages::SplitWorkPackage.new(work_package, project).expect_attributes Subject: work_package.subject
