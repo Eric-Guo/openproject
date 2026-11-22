@@ -70,7 +70,7 @@ RSpec.describe Sprints::WorkPackageBreakdown do
     let(:started_at) { nil }
     let(:completed_at) { nil }
     let(:sprint) { create(:sprint, project:, start_date:, finish_date:, started_at:, completed_at:) }
-    let(:timeframe) { Sprints::Timeframe.new(sprint) }
+    let(:timeframe) { Sprints::Timeframe.new(sprint, zone: User.current.time_zone) }
 
     context "when the sprint was not started" do
       it "wraps the sprint's timeframe as timestamps", :aggregate_failures do
