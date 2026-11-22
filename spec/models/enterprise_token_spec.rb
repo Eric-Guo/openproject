@@ -84,8 +84,8 @@ RSpec.describe EnterpriseToken do
 
     context "when ee_hide_banners is false",
             with_config: { ee_hide_banners: false } do
-      it "returns false" do
-        expect(described_class).not_to be_hide_banners
+      it "hides promotional banners" do
+        expect(described_class).to be_hide_banners
       end
     end
   end
@@ -458,13 +458,6 @@ RSpec.describe EnterpriseToken do
         expect(described_class.trialling?(premium_plan_feature)).to be false
         expect(described_class.trialling?(corporate_plan_feature)).to be false
       end
-    end
-  end
-
-  context "when Configuration file has `ee_hide_banners` set to false",
-          with_config: { ee_hide_banners: false } do
-    it "shows banners promoting Enterprise plans" do
-      expect(described_class).not_to be_hide_banners
     end
   end
 
