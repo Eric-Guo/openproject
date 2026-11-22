@@ -59,7 +59,7 @@ RSpec.describe "Notification center date alerts", :js, with_settings: { journal_
     attributes = attributes.reverse_merge(assigned_to: user, project:)
     work_package = create(:work_package, **attributes)
 
-    # TimeCop sets the current time to 1:04h below. To be compatible to historic searches,
+    # TimeCop sets the current time to 9:04h below. To be compatible to historic searches,
     # we need to pretend that the journal records have been created before that time.
     # https://github.com/opf/openproject/pull/11678#issuecomment-1328011996
     #
@@ -199,13 +199,13 @@ RSpec.describe "Notification center date alerts", :js, with_settings: { journal_
     timezone.now.change(time_hash(time))
   end
 
-  # early in the morning, a bit after 1:00 AM local time, the notifications get
+  # early in the morning, a bit after 9:00 AM local time, the notifications get
   # created by the job
-  let(:notifications_creation_time) { timezone_time("1:04", time_zone) }
+  let(:notifications_creation_time) { timezone_time("9:04", time_zone) }
 
   def run_create_date_alerts_notifications_job
     create_date_alerts_service = Notifications::ScheduleDateAlertsNotificationsJob::Service
-                                   .new([timezone_time("1:00", time_zone)])
+                                   .new([timezone_time("9:00", time_zone)])
     travel_to(notifications_creation_time)
     create_date_alerts_service.call
     travel_back
