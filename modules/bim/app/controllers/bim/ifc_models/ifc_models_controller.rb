@@ -71,6 +71,7 @@ module Bim
         end
 
         session[:pending_ifc_model_title] = params[:title]
+        session[:pending_ifc_model_is_default] = params[:isDefault] if params.key?(:isDefault)
       end
 
       def set_direct_upload_default_value

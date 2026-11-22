@@ -27,55 +27,66 @@
 
 import { Controller } from '@hotwired/stimulus';
 import { post } from '@rails/request.js';
+import { showErrorToast } from 'core-stimulus/helpers/toast-helpers';
 
-import { isHTMLInputElement } from 'core-app/shared/helpers/dom-helpers';
+export default class IfcModelDirectUploadController extends Controller<HTMLFormElement> {
+  static targets = ['fileInput', 'defaultModel', 'submitButton'];
 
-export default class IfcModelDirectUploadController extends Controller {
   static values = {
-    setDefaultModelUrl: String,
     setModelTitleUrl: String,
+    maxSize: Number,
+    tooLargeMessage: String,
   };
 
-  declare setDefaultModelUrlValue:string;
-  declare setModelTitleUrlValue:string;
-
+  declare readonly setModelTitleUrlValue:string;
+  declare readonly maxSizeValue:number;
+  declare readonly tooLargeMessageValue:string;
   declare readonly fileInputTarget:HTMLInputElement;
+  declare readonly defaultModelTarget:HTMLInputElement;
+  declare readonly submitButtonTarget:HTMLButtonElement;
 
-  setSessionModelTitle(event:Event):void {
-    const target = event.target;
-    if (!isHTMLInputElement(target)) {
-      return;
-    }
+  connect():void {
+    this.validateFile();
+    this.submitButtonTarget.disabled = false;
+  }
 
-    const fileList = target.files;
-    if (fileList === null || fileList.length === 0) {
-      return;
-    }
+  validateFile():void {
+    const file = this.fileInputTarget.files?.[0];
+    const tooLarge = file !== undefined && file.size > this.maxSizeValue;
+    this.fileInputTarget.setCustomValidity(tooLarge ? this.tooLargeMessageValue : '');
+    if (tooLarge) this.fileInputTarget.reportValidity();
+  }
 
-    target.setCustomValidity('');
-    const title = this.trimFileExtension(fileList[0].name);
-    const fileSize = String(fileList[0].size);
+  async upload(event:SubmitEvent):Promise<void> {
+    event.preventDefault();
+    const file = this.fileInputTarget.files?.[0];
+    if (!file || this.element.inert) return;
 
-    void post(this.setModelTitleUrlValue, { body: { title, fileSize }, responseKind: 'json' })
-      .then(async (response) => {
-        if (!response.unprocessableEntity) { return; }
-
-        const { error } = await response.json as { error:string };
-
-        target.setCustomValidity(error);
-        target.reportValidity();
+    this.element.inert = true;
+    try {
+      const response = await post(this.setModelTitleUrlValue, {
+        body: {
+          title: file.name.split('.').slice(0, -1).join('.'),
+          fileSize: String(file.size),
+          isDefault: String(this.defaultModelTarget.checked),
+        },
+        responseKind: 'json',
       });
-  }
 
-  setSessionDefaultValue(event:Event):void {
-    const target = event.target;
-    if (isHTMLInputElement(target)) {
-      void post(this.setDefaultModelUrlValue, { body: { isDefault: String(target.checked) } });
+      if (response.ok) {
+        this.element.submit();
+      } else if (response.unprocessableEntity) {
+        const { error } = await response.json as { error:string };
+        this.fileInputTarget.setCustomValidity(error);
+        this.element.inert = false;
+        this.fileInputTarget.reportValidity();
+      } else {
+        showErrorToast();
+      }
+    } catch {
+      showErrorToast();
+    } finally {
+      this.element.inert = false;
     }
-  }
-
-  private trimFileExtension(fileName:string):string {
-    const fileNameParts = fileName.split('.');
-    return fileNameParts.slice(0, -1).join('.');
   }
 }

@@ -52,6 +52,17 @@ RSpec.describe Bim::IfcModels::IfcModelsController do
     login_as(user)
   end
 
+  describe "#set_direct_upload_file_name" do
+    it "stores the title and default selection together before the upload" do
+      post :set_direct_upload_file_name,
+           params: { project_id: project.identifier, title: "My model", fileSize: 100, isDefault: "true" }
+
+      expect(response).to have_http_status(:no_content)
+      expect(session[:pending_ifc_model_title]).to eq("My model")
+      expect(session[:pending_ifc_model_is_default]).to eq("true")
+    end
+  end
+
   describe "#direct_upload_finished" do
     let(:pending_attachment) { create(:pending_direct_upload, author: user, container: nil, filename: "model.ifc") }
     let(:callback_nonce) { SecureRandom.hex(32) }
