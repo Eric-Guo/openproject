@@ -7883,6 +7883,7 @@ en:
     reset_failed_logins: "Reset failed logins"
     status_change: "Status change"
     status_user_and_brute_force: "%{user} and %{brute_force}"
+    text_change_disabled_for_ldap_login: "Your email address is managed by LDAP."
     text_change_disabled_for_provider_login: "The name and email is set by your login provider and can thus not be changed."
     text_change_mail_disabled_by_administrator: "Changing your email address has been disabled by the administrator."
     unlock: "Unlock"

@@ -63,7 +63,9 @@ class My::AttributesForm < Users::Form::AttributesForm
   def readonly_caption(key)
     return unless %w[firstname lastname mail].include?(key)
 
-    if authenticates_externally?
+    if key == "mail" && @user.ldap_auth_source_id.present?
+      I18n.t("user.text_change_disabled_for_ldap_login")
+    elsif authenticates_externally?
       I18n.t("user.text_change_disabled_for_provider_login")
     elsif key == "mail"
       I18n.t("user.text_change_mail_disabled_by_administrator")

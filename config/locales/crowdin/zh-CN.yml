@@ -7438,6 +7438,7 @@ zh-CN:
     reset_failed_logins: 重置失败的帐户
     status_change: 状态更改
     status_user_and_brute_force: "%{user} 和 %{brute_force}"
+    text_change_disabled_for_ldap_login: 您的电子邮件地址由 LDAP 管理。
     text_change_disabled_for_provider_login: 名称和电子邮件地址由您的登录提供商设置，因此无法更改。
     text_change_mail_disabled_by_administrator: 更改电子邮件地址的功能已被管理员禁用。
     unlock: 解锁​​​​
