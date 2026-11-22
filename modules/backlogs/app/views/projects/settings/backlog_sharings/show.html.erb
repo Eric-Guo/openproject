@@ -48,7 +48,7 @@ See COPYRIGHT and LICENSE files for more details.
     <%= render(
           Projects::Settings::Backlogs::SharingFormComponent.new(
             project: @project,
-            only_fallback_allowed: false
+            only_fallback_allowed: !EnterpriseToken.allows_to?(:sprint_sharing)
           )
         ) %>
   <% end %>

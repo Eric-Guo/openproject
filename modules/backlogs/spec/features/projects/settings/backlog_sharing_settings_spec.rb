@@ -140,7 +140,7 @@ RSpec.describe "Backlogs project settings sprint sharing", :js do
     end
   end
 
-  context "with share_sprint permission but no enterprise token" do
+  context "with share_sprint permission but no enterprise token", with_ee: false do
     context "without existing sharing setting in the project" do
       it "shows an enterprise token teaser" do
         visit project_settings_backlog_sharing_path(project)
