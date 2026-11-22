@@ -30,7 +30,8 @@
 module Redmine::MenuManager::TopMenu::ModuleMenu
   def render_module_top_menu_node(item_groups = module_top_menu_item_groups)
     unless item_groups.empty?
-      render Primer::Alpha::Dialog.new(classes: "op-app-menu--item",
+      render Primer::Alpha::Dialog.new(id: "op-app-header--modules-menu-list",
+                                       classes: "op-app-menu--item",
                                        title: I18n.t("label_global_modules"),
                                        visually_hide_title: true,
                                        size: :small,
@@ -67,10 +68,7 @@ module Redmine::MenuManager::TopMenu::ModuleMenu
   private
 
   def render_dialog_item_group(item_group)
-    render Primer::Alpha::ActionList.new(
-      classes: "op-app-menu--items",
-      id: "op-app-header--modules-menu-list"
-    ) do |list|
+    render Primer::Alpha::ActionList.new(classes: "op-app-menu--items") do |list|
       list.with_heading(title: item_group[:title], align_items: :flex_start) if item_group[:title]
 
       my_items, remaining_items = item_group[:items].partition { |item| item.context == :my }
