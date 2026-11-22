@@ -220,7 +220,7 @@ RSpec.describe "SAML administration CRUD",
     end
   end
 
-  context "without EE" do
+  context "without EE", with_ee: false do
     it "renders the upsell page" do
       visit "/admin/saml/providers"
       expect(page).to have_enterprise_banner(:professional)
