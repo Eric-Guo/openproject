@@ -79,6 +79,8 @@ RSpec.describe "Projects lists ordering", :js, with_settings: { login_required?:
     end
 
     it "allows to sort via multiple columns" do
+      visit projects_path(sortBy: [%w[lft asc]].to_json)
+
       projects_page.open_configure_view
       projects_page.switch_configure_view_tab(I18n.t("label_sort"))
 
