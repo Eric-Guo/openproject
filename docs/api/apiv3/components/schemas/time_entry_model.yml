@@ -21,16 +21,16 @@ allOf:
         format: duration
         description: The time quantifying the expenditure
       approvedHours:
-        type: string
+        type: [string, 'null']
         format: duration
         description: The approved time quantifying the expenditure
       szApprovedHours:
-        type: string
+        type: [string, 'null']
         format: duration
         description: Hours approved by the department head in the TH labour tracking workflow.
       rejectReason:
-        type: string
-        description: Reason for rejecting the time entry. Omitted when unset.
+        type: [string, 'null']
+        description: Reason for rejecting the time entry, or null if it has not been rejected.
       rejectedAt:
         type: [string, 'null']
         format: date-time
