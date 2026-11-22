@@ -335,25 +335,30 @@ RSpec.describe EnterpriseToken do
   end
 
   describe ".available_features" do
+    let(:installation_features) do
+      %i[baseline_comparison calculated_values placeholder_users portfolio_management date_alerts
+         edit_attribute_groups capture_external_links project_creation_wizard mcp_server work_package_sharing]
+    end
+
     context "with no tokens" do
-      it "returns an empty array" do
-        expect(described_class.available_features).to be_empty
+      it "returns the installation features" do
+        expect(described_class.available_features).to match_array(installation_features)
       end
     end
 
     context "with an active token" do
       let!(:active_token) { create_enterprise_token("an_active_token", plan: :basic, expires_at: 1.year.from_now) }
 
-      it "returns the features for the plan of the token" do
-        expect(described_class.available_features).to match_array(OpenProject::Token::FEATURES_PER_PLAN[:basic])
+      it "returns the installation features" do
+        expect(described_class.available_features).to match_array(installation_features)
       end
     end
 
     context "with a trial token" do
       let!(:trial_token) { create_enterprise_token("a_trial_token", plan: :basic, trial: true, expires_at: 1.year.from_now) }
 
-      it "returns the features for the plan of the token" do
-        expect(described_class.available_features).to match_array(OpenProject::Token::FEATURES_PER_PLAN[:basic])
+      it "returns the installation features" do
+        expect(described_class.available_features).to match_array(installation_features)
       end
     end
 
@@ -364,8 +369,8 @@ RSpec.describe EnterpriseToken do
       end
       let!(:invalid_token) { create_enterprise_token("an_invalid_token_with_wrong_domain", plan: :basic, domain: "wrong.domain") }
 
-      it "returns an empty array" do
-        expect(described_class.available_features).to be_empty
+      it "returns the installation features" do
+        expect(described_class.available_features).to match_array(installation_features)
       end
     end
   end
