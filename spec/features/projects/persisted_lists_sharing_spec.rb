@@ -77,7 +77,7 @@ RSpec.describe "Project list sharing",
   let(:projects_index_page) { Pages::Projects::Index.new }
   let(:share_dialog) { Components::Sharing::ProjectQueries::ShareModal.new(shared_projects_list) }
 
-  describe "without the enterprise edition" do
+  describe "without the enterprise edition", with_ee: false do
     it "renders an upsell modal" do
       login_as(sharer)
 
