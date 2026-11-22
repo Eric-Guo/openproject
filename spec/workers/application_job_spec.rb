@@ -67,7 +67,7 @@ RSpec.describe ApplicationJob do
       end
     end
 
-    it "is reloaded for each job" do
+    it "is reloaded for each job", without_env: %w[SMTP_PORT] do
       # the email delivery method has to be smtp for the settings to be reloaded
       Setting.email_delivery_method = :smtp
 
