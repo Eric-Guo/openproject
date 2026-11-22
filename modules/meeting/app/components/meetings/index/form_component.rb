@@ -132,7 +132,7 @@ module Meetings
     end
 
     def use_refresh_on_form_changes?
-      creating_onetime_meeting? && no_preselection? && @project.nil?
+      @project.nil? && show_template_selector?
     end
 
     def fetch_templates_url

@@ -107,6 +107,8 @@ RSpec.describe "Meetings global CRUD", :js do
     end
 
     meetings_page.set_title "Some title"
+    click_on "获取可用会议室"
+    select "线上会议 - Online room", from: "meeting_th_meeting_upstream_room_id"
     meetings_page.click_create
 
     expect(page).to have_heading "Some title"
