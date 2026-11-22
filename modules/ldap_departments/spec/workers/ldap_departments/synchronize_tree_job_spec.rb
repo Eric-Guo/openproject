@@ -42,7 +42,7 @@ RSpec.describe LdapDepartments::SynchronizeTreeJob, type: :job do
     end
   end
 
-  context "without the enterprise feature" do
+  context "without the enterprise feature", with_ee: false do
     it "does nothing" do
       described_class.perform_now(tree)
 
