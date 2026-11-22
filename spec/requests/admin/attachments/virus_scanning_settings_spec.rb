@@ -142,7 +142,7 @@ RSpec.describe "Attachments virus scanning",
     end
   end
 
-  describe "without ee" do
+  describe "without ee", with_ee: false do
     it "renders upsell" do
       get "/admin/settings/virus_scanning"
       expect(response.body).to have_text "Virus scanning"
