@@ -143,6 +143,15 @@ RSpec.describe "Meeting templates requests",
       end
     end
 
+    context "when the template feature is unavailable", with_ee: false do
+      before { login_as user_with_permissions }
+
+      it "refuses to create a project template" do
+        expect { post create_template_project_meetings_path(project) }.not_to change(Meeting, :count)
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
     context "with invalid project parameter in the global context" do
       before { login_as user_with_permissions }
 
