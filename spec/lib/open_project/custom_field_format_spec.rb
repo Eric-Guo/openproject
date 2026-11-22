@@ -47,7 +47,7 @@ RSpec.describe OpenProject::CustomFieldFormat do
                         %w[string text link int float list date bool user version hierarchy weighted_item_list calculated_value]
       end
 
-      context "without enterprise addons" do
+      context "without enterprise addons", with_ee: false do
         it_behaves_like "custom field formats",
                         "Project",
                         %w[string text link int float list date bool user version]
@@ -61,7 +61,7 @@ RSpec.describe OpenProject::CustomFieldFormat do
                         %w[string text link int float list date datetime bool user version hierarchy weighted_item_list]
       end
 
-      context "without enterprise addons" do
+      context "without enterprise addons", with_ee: false do
         it_behaves_like "custom field formats",
                         "WorkPackage",
                         %w[string text link int float list date datetime bool user version]
@@ -83,7 +83,7 @@ RSpec.describe OpenProject::CustomFieldFormat do
     context "for a 'User' class" do
       it_behaves_like "custom field formats",
                       "User",
-                      %w[string text int float list date bool]
+                      %w[string text int float list date bool hierarchy]
     end
 
     context "for a 'Group' class" do
@@ -154,7 +154,7 @@ RSpec.describe OpenProject::CustomFieldFormat do
       end
     end
 
-    context "without any ee" do
+    context "without any ee", with_ee: false do
       it_behaves_like "available custom field formats",
                       "not requiring an ee",
                       %w[string text link int float list date datetime bool user version empty]
