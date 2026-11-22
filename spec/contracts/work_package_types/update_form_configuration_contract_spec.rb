@@ -36,7 +36,7 @@ module WorkPackageTypes
 
     subject(:contract) { described_class.new(model, user, options: {}) }
 
-    context "without enterprise features enabled" do
+    context "without enterprise features enabled", with_ee: false do
       context "when reordering fields between existing default groups" do
         it "is valid" do
           model.attribute_groups = [
