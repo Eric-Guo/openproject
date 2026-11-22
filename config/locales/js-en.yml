@@ -730,6 +730,7 @@ en:
         responsible: "Accountable"
         scheduled: "Scheduled"
         shared: "Shared"
+        subscribed: "Subscribed"
         watched: "Watcher"
       reminders:
         note: "Note: “%{note}”"

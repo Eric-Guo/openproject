@@ -692,6 +692,7 @@ zh-CN:
         responsible: 已设为负责人
         scheduled: 日期变更
         shared: 已共享
+        subscribed: 已订阅
         watched: 已关注
       reminders:
         note: 注："%{note}"
