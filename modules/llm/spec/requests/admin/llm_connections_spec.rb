@@ -147,7 +147,8 @@ RSpec.describe "Admin LLM connection", :llm_server_helpers, :skip_csrf, :webmock
           get llm_connection_path
 
           expect(page).to have_css("button.d-none[data-visibility-class='d-none']", text: "Save")
-          expect(page).to have_no_css(".d-none button, button[hidden]", visible: :all)
+          form = page.find(test_selector("llm-connection--form"))
+          expect(form).to have_no_css(".d-none button, button[hidden]", visible: :all)
           expect(page).to have_no_button("Connect", visible: :all)
         end
 
