@@ -174,7 +174,7 @@ module Storages
 
                 before { storage.storage_audience = "valid_audience" }
 
-                it { is_expected.not_to be_valid }
+                it("requires the SSO feature", with_ee: false) { is_expected.not_to be_valid }
 
                 context "and there is a valid enterprise token", with_ee: [:nextcloud_sso] do
                   it { is_expected.to be_valid }
