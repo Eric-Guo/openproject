@@ -117,7 +117,7 @@ RSpec.describe "Split screen in the notification center", :js do
       # The split view should be opened and html title should change
       first_title = "#{work_package.type.name}: #{work_package.subject} (##{work_package.id})"
       center.click_item notification
-      global_html_title.expect_first_segment first_title
+      global_html_title.expect_first_segment "#{first_title} | Notifications"
 
       # The split view should be closed and html title should change to the previous title
       split_screen.close
@@ -127,7 +127,7 @@ RSpec.describe "Split screen in the notification center", :js do
       # Reopen the split screen and mark it as read
       center.click_item notification
       # Ensure the split screen is open before marking the notification as read
-      global_html_title.expect_first_segment first_title
+      global_html_title.expect_first_segment "#{first_title} | Notifications"
       center.mark_notification_as_read notification
 
       # Having marked the other notification as read, the next notification should open up automatically
