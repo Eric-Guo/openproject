@@ -240,7 +240,7 @@ export class SelectEditFieldComponent extends EditFieldComponent implements OnIn
   }
 
   public onOpen() {
-    document.querySelector(this.hiddenOverflowContainer)!.addEventListener('scroll', () => {
+    document.querySelector(this.hiddenOverflowContainer)?.addEventListener('scroll', () => {
       this._autocompleterComponent?.closeSelect();
     }, { once: true });
   }
