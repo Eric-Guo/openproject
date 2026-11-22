@@ -74,7 +74,7 @@ RSpec.describe SharingStrategies::WorkPackageStrategy do
         it { expect(strategy.manageable?).to be(true) }
       end
 
-      context "when feature is not available" do
+      context "when feature is not available", with_ee: false do
         it { expect(strategy.manageable?).to be(false) }
       end
     end
