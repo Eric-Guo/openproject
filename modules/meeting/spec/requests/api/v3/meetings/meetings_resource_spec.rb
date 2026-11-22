@@ -175,7 +175,7 @@ RSpec.describe "API v3 Meeting resource", content_type: :json do
         .at_path("title")
 
       expect(response.body)
-        .to be_json_eql("Conference Room A".to_json)
+        .to be_json_eql("线上会议 - Online room".to_json)
         .at_path("location")
     end
 
