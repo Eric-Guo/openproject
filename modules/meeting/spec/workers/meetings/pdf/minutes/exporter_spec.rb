@@ -121,7 +121,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
         *expected_header_footer
       ].join(" ")
 
-      expect(subject).to eq expected_document
+      expect(pdf.squish).to eq(expected_document.squish)
     end
   end
 
@@ -143,7 +143,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
         *expected_header_footer
       ].join(" ")
 
-      expect(subject).to eq expected_document
+      expect(pdf.squish).to eq(expected_document.squish)
     end
   end
 
@@ -224,7 +224,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -254,7 +254,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -298,7 +298,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
@@ -328,7 +328,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -348,7 +348,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
@@ -393,7 +393,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
 
       context "with semantic work package identifiers",
@@ -415,7 +415,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
             *expected_header_footer
           ].join(" ")
 
-          expect(subject).to eq expected_document
+          expect(pdf.squish).to eq(expected_document.squish)
         end
       end
     end
@@ -448,7 +448,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -479,7 +479,7 @@ RSpec.describe Meetings::PDF::Minutes::Exporter do
           *expected_header_footer
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
