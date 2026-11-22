@@ -171,8 +171,8 @@ RSpec.describe "Enterprise trial management",
 
   def fill_out_modal(mail: "foo@foocorp.example")
     fill_in "Company", with: "Foo Corp."
-    fill_in "First name", with: "Foo"
-    fill_in "Last name", with: "Bar"
+    fill_in User.human_attribute_name(:first_name), with: "Foo"
+    fill_in User.human_attribute_name(:last_name), with: "Bar"
     fill_in "Email", with: mail
 
     check "general_consent", allow_label_click: true
