@@ -57,7 +57,9 @@ RSpec.describe Backlogs::SprintReports::Widgets::BurndownChart, type: :component
   before { week_with_saturday_and_sunday_as_weekend }
 
   around do |example|
-    travel_to(now) { example.run }
+    Time.use_zone("Etc/UTC") do
+      travel_to(now) { example.run }
+    end
   end
 
   context "when the sprint has a date range set" do
