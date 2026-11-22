@@ -152,7 +152,7 @@ RSpec.describe "Editor Assistant result pane",
       description.ckeditor.expect_value("Login page does not work.")
 
       description.ckeditor.editor_element.click
-      description.ckeditor.editor_element.send_keys([:control, "z"])
+      description.ckeditor.editor_element.send_keys([BrowserPlatform.multi_select_modifier, "z"])
 
       description.ckeditor.expect_value("Login page dont work.")
       expect(description.field_container).to have_css(".ck-content strong", text: "dont")
