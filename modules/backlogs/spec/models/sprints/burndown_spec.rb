@@ -62,7 +62,7 @@ RSpec.describe Sprints::Burndown do
     create(:sprint, project:, start_date: first_monday, finish_date:, started_at:, completed_at:)
   end
 
-  current_user { create(:user, member_with_roles: { project => role }) }
+  current_user { create(:user, member_with_roles: { project => role }, preferences: { time_zone: Time.zone.tzinfo.name }) }
 
   def at_hour(date, hour)
     date.in_time_zone + hour.hours
