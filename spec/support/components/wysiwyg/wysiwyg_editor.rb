@@ -54,7 +54,7 @@ module Components
     end
 
     def input_selector
-      "div.ck-content"
+      ".ck-editor__editable[contenteditable=true]"
     end
 
     def set_markdown(text)
