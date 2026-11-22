@@ -163,7 +163,7 @@ describe('Inline work package attribute', () => {
     window.addEventListener('copy', onCopy);
 
     await userEvent.click(page.getByText('Mira Hofmann'));
-    await userEvent.keyboard('{Control>}c{/Control}');
+    await userEvent.copy();
     window.removeEventListener('copy', onCopy);
 
     expect(copied?.trim()).toBe('workPackageValue:PROJ-321:"assignee"');
