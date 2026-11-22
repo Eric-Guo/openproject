@@ -49,7 +49,7 @@ RSpec.describe "create placeholder users" do
       end
     end
 
-    context "without enterprise" do
+    context "without enterprise", with_ee: false do
       it "creates the placeholder user" do
         visit new_placeholder_user_path
 
