@@ -43,7 +43,7 @@ RSpec.describe Bim::Queries::WorkPackages::Selects::BcfThumbnailSelect do
       end
     end
 
-    context "vanilla edition" do
+    context "in the standard edition", with_config: { edition: "standard" } do
       it "the bcf_thumbnail column does not exist" do
         expect(described_class.instances.map(&:name))
           .not_to include :bcf_thumbnail
