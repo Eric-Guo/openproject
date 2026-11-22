@@ -97,7 +97,7 @@ RSpec.describe OmniAuthStartController do
       it "redirects after login" do
         get :show, params: { provider: "developer" }
 
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
     end
   end
