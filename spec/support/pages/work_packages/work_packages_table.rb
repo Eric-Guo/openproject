@@ -171,8 +171,8 @@ module Pages
     def expect_work_package_order(*ids)
       expected = ids.map { |el| el.is_a?(WorkPackage) ? el.id.to_s : el.to_s }
 
-      page.document.synchronize do
-        rows = page.all(".work-package-table .wp--row", minimum: expected.size)
+      page.document.synchronize(20) do
+        rows = page.all(".work-package-table .wp--row", wait: 0)
         found = rows.map { |el| el["data-work-package-id"] }
 
         unless found == expected
