@@ -763,9 +763,8 @@ RSpec.describe User do
   describe "#wants_comments_in_reverse_order?" do
     let(:user) { create(:user) }
 
-    it "is false by default" do
-      expect(user)
-        .not_to be_wants_comments_in_reverse_order
+    it "uses the configured default order" do
+      expect(user.wants_comments_in_reverse_order?).to eq(OpenProject::Configuration.default_comment_sort_order == "desc")
     end
 
     it "is false if set to asc" do
@@ -775,7 +774,7 @@ RSpec.describe User do
         .not_to be_wants_comments_in_reverse_order
     end
 
-    it "is true if set to asc" do
+    it "is true if set to desc" do
       user.pref.comments_sorting = "desc"
 
       expect(user)
