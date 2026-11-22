@@ -41,7 +41,7 @@ RSpec.describe "SAML metadata refresh", :skip_csrf, :webmock,
 
   before do
     login_as admin
-    allow(OpenProject::SsrfProtection).to receive(:safe_ip?).with("example.com").and_return(IPAddr.new("93.184.216.34"))
+    allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
     stub_request(:get, metadata_url).to_return(status: 200, body: metadata)
   end
 
