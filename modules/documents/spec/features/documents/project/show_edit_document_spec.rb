@@ -56,7 +56,8 @@ RSpec.describe "Show/Edit Document View",
     edit_title = page.document.synchronize(10) do
       button = find(:button, accessible_name: "Document actions")
       menu = button.ancestor('action-menu[data-ready="true"]')
-      button.click unless menu.has_css?(":popover-open", visible: :all, wait: 0)
+      overlay = "##{button['popovertarget']}:popover-open"
+      button.click unless menu.has_css?(overlay, visible: :all, wait: 0)
       menu.find(:menuitem, "Edit title", wait: 1)
     end
 
