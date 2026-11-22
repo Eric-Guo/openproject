@@ -77,13 +77,13 @@ RSpec.describe "invite user via email", :js do
 
       click_on "Add"
 
-      expect(members_page).to have_added_user("finkelstein @openproject.com")
+      expect(members_page).to have_added_user("@openproject.com finkelstein")
 
-      expect(members_page).to have_user "finkelstein @openproject.com"
+      expect(members_page).to have_user "@openproject.com finkelstein"
 
       # Should show the invited user on the default filter as well
       members_page.visit!
-      expect(members_page).to have_user "finkelstein @openproject.com"
+      expect(members_page).to have_user "@openproject.com finkelstein"
     end
 
     context "with an instance with a user limit (regression)" do
