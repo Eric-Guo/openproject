@@ -38,7 +38,7 @@ RSpec.describe "Team planner index",
     login_as current_user
   end
 
-  it "shows an upsell banner" do
+  it "shows an upsell banner", with_ee: false do
     visit team_planners_path
 
     expect(page).to have_enterprise_banner(:basic)
