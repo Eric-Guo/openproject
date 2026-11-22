@@ -41,9 +41,9 @@ import {
   hostDirectives: [WorkPackageIsolatedQuerySpaceDirective],
   standalone: false,
   template: `
-    <wp-view-page>
+    <op-wp-view-page>
       <wp-list-view />
-    </wp-view-page>
+    </op-wp-view-page>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
