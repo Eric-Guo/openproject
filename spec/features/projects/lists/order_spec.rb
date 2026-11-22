@@ -164,7 +164,7 @@ RSpec.describe "Projects lists ordering", :js, with_settings: { login_required?:
       projects_page.open_configure_view
       projects_page.switch_configure_view_tab(I18n.t("label_sort"))
       projects_page.within_sort_row(0) do
-        projects_page.change_sort_order(column_identifier: :name, direction: :desc)
+        projects_page.change_sort_order(column_identifier: :name, direction: :asc)
       end
 
       # Save and close the dialog
