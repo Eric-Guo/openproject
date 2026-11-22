@@ -85,7 +85,7 @@ RSpec.describe Projects::Exports::PDF do
       expected_document = [
         *expected_cover_page,
         project.name,
-        "Status description", "some explanation",
+        Project.human_attribute_name(:status_explanation), "some explanation",
         "1/1", export_time_formatted, query.name
       ].join(" ")
 
