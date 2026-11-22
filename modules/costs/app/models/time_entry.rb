@@ -219,6 +219,8 @@ class TimeEntry < ApplicationRecord
     end
 
     def max_hours_per_entry
+      return nil unless EnterpriseToken.allows_to?(:time_entry_time_restrictions)
+
       limit = Setting.time_entries_max_hours_per_entry
       limit if limit.positive?
     end
