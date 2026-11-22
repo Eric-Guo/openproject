@@ -71,8 +71,8 @@ RSpec.describe "SAML administration CRUD",
       # Mapping form
       fill_in "Mapping for: Username", with: "login\nmail"
       fill_in "Mapping for: Email", with: "mail"
-      fill_in "Mapping for: First name", with: "myName"
-      fill_in "Mapping for: Last name", with: "myLastName"
+      fill_in I18n.t(:label_mapping_for, attribute: User.human_attribute_name(:first_name)), with: "myName"
+      fill_in I18n.t(:label_mapping_for, attribute: User.human_attribute_name(:last_name)), with: "myLastName"
       fill_in "Mapping for: Internal user id", with: "uid"
 
       click_link_or_button "Continue"
