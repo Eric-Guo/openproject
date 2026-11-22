@@ -38,7 +38,7 @@ RSpec.describe Wikis::Admin::WikiProvidersController do
   describe "GET #index" do
     let!(:wiki_provider) { create(:xwiki_provider) }
 
-    context "when the enterprise token doesn't allow xwiki_integration" do
+    context "when the enterprise token doesn't allow xwiki_integration", with_ee: false do
       it "redirects to the index page" do
         get :index
         expect(assigns(:ee_token_allows_wiki_integration)).to be_falsey
@@ -75,7 +75,7 @@ RSpec.describe Wikis::Admin::WikiProvidersController do
       end
     end
 
-    context "when the enterprise token doesn't allow xwiki_integration" do
+    context "when the enterprise token doesn't allow xwiki_integration", with_ee: false do
       it "redirects to the index page" do
         get :new
         expect(response).to be_redirect
@@ -123,7 +123,7 @@ RSpec.describe Wikis::Admin::WikiProvidersController do
       end
     end
 
-    context "when the enterprise token doesn't allow xwiki_integration" do
+    context "when the enterprise token doesn't allow xwiki_integration", with_ee: false do
       it "redirects to the index page and does not create the provider" do
         expect { post :create, params: valid_params }.not_to change(Wikis::XWikiProvider, :count)
         expect(response).to be_redirect

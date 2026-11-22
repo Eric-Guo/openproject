@@ -129,7 +129,7 @@ module Wikis
       private
 
       def ee_token_allows_wiki_integration
-        @ee_token_allows_wiki_integration = true
+        @ee_token_allows_wiki_integration = EnterpriseToken.allows_to?(:xwiki_integration)
       end
 
       def update_success
