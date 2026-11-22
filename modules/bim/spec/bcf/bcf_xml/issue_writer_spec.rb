@@ -124,8 +124,8 @@ RSpec.describe OpenProject::Bim::BcfXml::IssueWriter do
       expect(subject.at("Topic/@TopicType").content).to eql "Issue"
 
       expect(subject.at("Topic/Title").content).to eql work_package.subject
-      expect(subject.at("Topic/CreationDate").content).to eql work_package.created_at.iso8601
-      expect(subject.at("Topic/ModifiedDate").content).to eql work_package.updated_at.iso8601
+      expect(subject.at("Topic/CreationDate").content).to eql work_package.created_at.utc.iso8601
+      expect(subject.at("Topic/ModifiedDate").content).to eql work_package.updated_at.utc.iso8601
       expect(subject.at("Topic/Description").content).to eql work_package.description
       expect(subject.at("Topic/CreationAuthor").content).to eql work_package.author.mail
       expect(subject.at("Topic/ReferenceLink").content).to eql url_helpers.work_package_url(work_package)
