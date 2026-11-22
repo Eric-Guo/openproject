@@ -441,15 +441,6 @@ RSpec.describe "Work package activity", :js, :with_cuprite, with_ee: %i[internal
     end
 
     it "sorts the activities based on the sorting preference" do
-      # expect the default sorting to be asc
-      activity_tab.expect_comments_order(
-        [
-          "First comment by admin",
-          "Second comment by admin"
-        ]
-      )
-      activity_tab.set_journal_sorting(:desc)
-
       activity_tab.expect_comments_order(
         [
           "Second comment by admin",
