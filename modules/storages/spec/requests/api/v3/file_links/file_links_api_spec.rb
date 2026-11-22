@@ -498,7 +498,10 @@ RSpec.describe "API v3 file links resource" do
   describe "GET /api/v3/file_links/:file_link_id" do
     let(:path) { api_v3_paths.file_link(file_link.id) }
 
-    before { get path }
+    before do
+      Storages::Adapters::Registry.stub("nextcloud.queries.user", ->(_) { Dry::Monads::Success(id: "greedo") })
+      get path
+    end
 
     it "is successful" do
       expect(subject.status).to be 200
