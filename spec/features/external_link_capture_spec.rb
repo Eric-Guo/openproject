@@ -128,7 +128,7 @@ RSpec.describe "External link capture", :js do
     end
   end
 
-  context "when no enterprise token is present" do
+  context "when no enterprise token is present", with_ee: false do
     it "does not allow enabling external link capture in administration" do
       visit admin_settings_external_links_path
 
