@@ -48,7 +48,7 @@ RSpec.describe "Authentication Stages" do
     )
   end
 
-  def expect_logged_in(path = home_path)
+  def expect_logged_in(path = my_page_path)
     expect(page).to have_current_path(path)
     visit my_account_path
     wait_for_network_idle
