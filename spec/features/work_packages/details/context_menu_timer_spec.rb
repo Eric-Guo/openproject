@@ -45,7 +45,16 @@ RSpec.describe "Work package single context menu timer", :js do
     context "when mobile" do
       include_context "with mobile screen size"
 
-      it "shows the timer entries" do
+      it "keeps time logging on the TH time entry page", if: defined?(OpenProject::LabourTracking) do
+        wp_view.visit!
+        wp_view.open_more_menu
+
+        expect(page).to have_no_selector(:menuitem, "Log time", exact: true)
+        expect(page).to have_no_selector(:menuitem, "Start timer", exact: true)
+        expect(page).to have_no_selector(:menuitem, "Stop timer", exact: true)
+      end
+
+      it "shows the timer entries", unless: defined?(OpenProject::LabourTracking) do
         wp_view.visit!
         wp_view.open_more_menu
 
