@@ -36,7 +36,7 @@ RSpec.describe Projects::Settings::StatusForm, type: :forms do
   let(:model) { build_stubbed(:project, status_explanation: "example status info") }
 
   it "renders status description field" do
-    expect(page).to have_field "Status description", with: "example status info", visible: :hidden
+    expect(page).to have_field Project.human_attribute_name(:status_explanation), with: "example status info", visible: :hidden
     expect(page).to have_element "opce-ckeditor-augmented-textarea",
                                  "data-test-selector": "augmented-text-area-status_explanation"
   end
