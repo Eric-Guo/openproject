@@ -52,6 +52,17 @@ RSpec.describe "Show/Edit Document View",
     expect(page).to have_text("Active editors")
   end
 
+  def open_title_editor
+    edit_title = page.document.synchronize(10) do
+      button = find(:button, accessible_name: "Document actions")
+      menu = button.ancestor('action-menu[data-ready="true"]')
+      button.click unless menu.has_css?(":popover-open", visible: :all, wait: 0)
+      menu.find(:menuitem, "Edit title", wait: 1)
+    end
+
+    wait_for_turbo_stream { edit_title.click }
+  end
+
   def rect_of(element)
     page.evaluate_script("arguments[0].getBoundingClientRect().toJSON()", element)
   end
@@ -87,11 +98,7 @@ RSpec.describe "Show/Edit Document View",
 
     aggregate_failures "can edit document title" do
       within_test_selector("document-page-header") do
-        page.find(:button, accessible_name: "Document actions").ancestor('action-menu[data-ready="true"]')
-        click_button accessible_name: "Document actions"
-        expect(page).to have_selector :menuitem, "Edit title"
-
-        wait_for_turbo_stream { page.find(:menuitem, "Edit title").click }
+        open_title_editor
 
         fill_in "document_title", with: ""
         wait_for_turbo_stream { click_on "Save" }
@@ -104,10 +111,7 @@ RSpec.describe "Show/Edit Document View",
       end
 
       within_test_selector("document-page-header") do
-        page.find(:button, accessible_name: "Document actions").ancestor('action-menu[data-ready="true"]')
-        click_button accessible_name: "Document actions"
-        expect(page).to have_selector :menuitem, "Edit title"
-        wait_for_turbo_stream { page.find(:menuitem, "Edit title").click }
+        open_title_editor
         wait_for_turbo_stream { click_on "Cancel" }
         expect(page).to have_text("Updated collaborative document")
       end
