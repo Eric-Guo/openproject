@@ -153,7 +153,7 @@ RSpec.describe "Login" do
       login_with(user.login, user_password)
 
       expect(page)
-        .to have_current_path home_path
+        .to have_current_path my_page_path
     end
 
     context "autologin",
