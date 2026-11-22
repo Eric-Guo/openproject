@@ -336,7 +336,7 @@ RSpec.describe EnterpriseToken do
 
   describe ".available_features" do
     let(:installation_features) do
-      %i[baseline_comparison calculated_values placeholder_users portfolio_management date_alerts
+      %i[baseline_comparison calculated_values custom_actions placeholder_users portfolio_management date_alerts
          edit_attribute_groups capture_external_links project_creation_wizard mcp_server work_package_sharing]
     end
 

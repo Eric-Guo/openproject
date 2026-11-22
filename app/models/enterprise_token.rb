@@ -68,6 +68,7 @@ class EnterpriseToken < ApplicationRecord
     def available_features
       Set[:baseline_comparison,
           :calculated_values,
+          :custom_actions,
           :placeholder_users,
           :portfolio_management,
           :date_alerts,
@@ -79,16 +80,7 @@ class EnterpriseToken < ApplicationRecord
     end
 
     def non_trialling_features
-      Set[:baseline_comparison,
-          :calculated_values,
-          :placeholder_users,
-          :portfolio_management,
-          :date_alerts,
-          :edit_attribute_groups,
-          :capture_external_links,
-          :project_creation_wizard,
-          :mcp_server,
-          :work_package_sharing]
+      available_features
     end
 
     def trialling_features

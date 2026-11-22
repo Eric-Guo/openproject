@@ -51,11 +51,11 @@ export class BannersService {
   }
 
   public allowsTo(feature:string):boolean {
-    return true;
+    return this.configuration.availableFeatures.includes(feature);
   }
 
   public trialling(feature:string):boolean {
-    return false;
+    return this.configuration.triallingFeatures.includes(feature);
   }
 
   public getEnterPriseEditionUrl({ referrer, hash }:{ referrer?:string, hash?:string } = {}) {
