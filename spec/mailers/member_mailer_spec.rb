@@ -119,7 +119,7 @@ RSpec.describe MemberMailer do
 
       expect(body)
         .to be_html_eql(expected)
-        .at_path("body/table/tr/td/ul")
+        .at_path("body/div/div[@class='content']/ul")
     end
 
     context "when current user and principal have different locales" do
