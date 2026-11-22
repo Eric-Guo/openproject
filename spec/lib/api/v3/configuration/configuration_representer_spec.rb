@@ -269,7 +269,7 @@ RSpec.describe API::V3::Configuration::ConfigurationRepresenter do
     end
 
     describe "availableFeatures" do
-      context "without any features" do
+      context "without any features", with_ee: false do
         it "is an empty array" do
           expect(subject)
             .to be_json_eql([].to_json)
