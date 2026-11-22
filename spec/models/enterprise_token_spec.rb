@@ -401,8 +401,8 @@ RSpec.describe EnterpriseToken do
     context "with only a trial token" do
       let!(:trial_token) { create_enterprise_token(plan: :basic, trial: true) }
 
-      it "returns true for features included in the token plan" do
-        expect(described_class.trialling?(basic_plan_feature)).to be true
+      it "keeps installation features available outside the trial" do
+        expect(described_class.trialling?(basic_plan_feature)).to be false
         expect(described_class.trialling?(premium_plan_feature)).to be false
       end
     end
@@ -411,10 +411,10 @@ RSpec.describe EnterpriseToken do
       let!(:token) { create_enterprise_token("a_token_for_basic_plan", plan: :basic) }
       let!(:trial_token) { create_enterprise_token("a_trial_token_for_premium_plan", plan: :premium, trial: true) }
 
-      it "returns false for features included in non-trial plan and true for features only included in trial plan" do
+      it "keeps features from both plans outside the trial" do
         expect(described_class.trialling?(basic_plan_feature)).to be false
-        expect(described_class.trialling?(professional_plan_feature)).to be true
-        expect(described_class.trialling?(premium_plan_feature)).to be true
+        expect(described_class.trialling?(professional_plan_feature)).to be false
+        expect(described_class.trialling?(premium_plan_feature)).to be false
         expect(described_class.trialling?(corporate_plan_feature)).to be false
       end
     end
@@ -439,7 +439,7 @@ RSpec.describe EnterpriseToken do
         create_enterprise_token("an_invalid_trial_token_with_wrong_domain", plan: :basic, trial: true, domain: "wrong.domain")
       end
 
-      it "returns an empty array" do
+      it "returns false" do
         expect(described_class.trialling?(basic_plan_feature)).to be false
         expect(described_class.trialling?(professional_plan_feature)).to be false
         expect(described_class.trialling?(premium_plan_feature)).to be false
