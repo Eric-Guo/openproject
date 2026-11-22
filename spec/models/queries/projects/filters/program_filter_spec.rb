@@ -96,7 +96,7 @@ RSpec.describe Queries::Projects::Filters::ProgramFilter do
       end
     end
 
-    context "without EE" do
+    context "without EE", with_ee: false do
       it "is false" do
         instance = described_class.create!(name: :program, operator: "=", values: [])
 
