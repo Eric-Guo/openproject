@@ -51,7 +51,7 @@ describe('Create work package from a text selection', () => {
     await userEvent.click(page.getByTestId('create-wp-submit'));
     await expect.element(page.getByTestId('block-card')).toBeVisible();
 
-    await userEvent.keyboard('{Control>}z{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}z{/ControlOrMeta}');
 
     await expect.element(page.getByText('Redesign the landing page')).toBeVisible();
     await expect.element(page.getByTestId('block-card')).not.toBeInTheDocument();
@@ -93,7 +93,7 @@ describe('Create work package from a text selection', () => {
     let editor!:EditorUnderTest;
     renderEditor({ onEditor: (created) => { editor = created as EditorUnderTest; } });
     await openEditorAndType('# Redesign the landing page');
-    await userEvent.keyboard('{Control>}a{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
 
     await openCreateModalFromToolbar();
     await fillRequiredFieldsBesidesSubject();
@@ -107,7 +107,7 @@ describe('Create work package from a text selection', () => {
   it('takes a selection that spans lines as a single line of subject', async () => {
     renderEditor();
     await openEditorAndType('Redesign the landing page{Enter}and the footer');
-    await userEvent.keyboard('{Control>}a{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
 
     await openCreateModalFromToolbar();
     await expect.element(page.getByLabelText('Subject *'))
@@ -124,7 +124,7 @@ describe('Create work package from a text selection', () => {
       initialContent: [{ type: 'paragraph', content: tooLong }],
     });
     await userEvent.click(page.getByText(tooLong));
-    await userEvent.keyboard('{Control>}a{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
 
     await openCreateModalFromToolbar();
     await expect.element(page.getByTestId('op-bn-create-wp-subject-hint')).toBeVisible();
