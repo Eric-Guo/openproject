@@ -39,7 +39,7 @@ module Storages
     let(:create_folder_result) { 0 }
     let(:create_folder_request) do
       stub_request(:post, "#{storage.uri}api/services/Folder/CreateFolder")
-        .with(body: hash_including("ParentFolderId" => "11571310", "Name" => "工作包#450344"))
+        .with(body: hash_including("parentFolderId" => "11571310", "name" => "工作包#450344"))
         .to_return_json(
           status: 200,
           body: { result: create_folder_result, data: { FolderId: "987654", Name: "工作包#450344" } }
