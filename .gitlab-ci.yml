@@ -1,52 +1,400 @@
 ---
-default:
-  image: ruby:3.3
-  before_script:
-    - bundle config set path 'vendor'  # Install dependencies into ./vendor/ruby
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "ai_dev" || $CI_COMMIT_BRANCH == "ai_prod"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH || $CI_COMMIT_TAG'
+
+stages: [prepare, test, deploy]
 
 variables:
-  CACHE_FALLBACK_KEY: "$CI_COMMIT_REF_SLUG"
+  PLAYWRIGHT_VERSION: "1.65.1"
+  RUBY_VERSION: "4.0.10"
+  NODE_VERSION: "24.22.1"
+  PNPM_VERSION: "11.25.0"
+  NG_BUILD_MAX_WORKERS: "2"
 
-stages:
-  - deploy
+default:
+  interruptible: true
+  image:
+    name: "cimg/ruby:${RUBY_VERSION}-browsers"
+    entrypoint: [""]
+
+.check:
+  stage: test
+  rules:
+    - when: on_success
+
+.node:
+  extends: .check
+  image: "node:${NODE_VERSION}-bookworm"
+  needs: []
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - setup_node
+
+.ruby:
+  extends: .check
+  variables:
+    BUNDLE_FROZEN: "true"
+    BUNDLE_PATH: "$CI_PROJECT_DIR/vendor/bundle"
+    BUNDLE_WITHOUT: "development:production:docker"
+    BUNDLE_JOBS: "4"
+  cache: &bundle_cache
+    key:
+      prefix: "gems-${RUBY_VERSION}"
+      files: [Gemfile.lock]
+    paths: [vendor/bundle/]
+    policy: pull
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - setup_git
+    - install_bundle
+
+.rails:
+  extends: .ruby
+  cache:
+    <<: *bundle_cache
+    policy: pull-push
+  services:
+    - name: pgvector/pgvector:pg17
+      alias: postgres
+  variables:
+    POSTGRES_DB: openproject_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    DATABASE_URL: "postgresql://postgres:postgres@postgres/openproject_test"
+    RAILS_ENV: test
+    TZ: UTC
+    OPENPROJECT_DISABLE_DEV_ASSET_PROXY: "true"
+    OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET: gitlab-test
+    EDOC_HOST: "http://127.0.0.1:1"
+    EDOC_USER: rspec
+    EDOC_TOKEN: rspec
+    GRUF_OP_SERVER: "127.0.0.1:1"
+    TH_MEETING_BOOKING_HOST: "http://127.0.0.1:1"
+    TH_MEETING_BOOKING_APP_ID: rspec
+    TH_MEETING_BOOKING_APP_SECRET: rspec
+    TH_MEETING_BOOKING_PATH_PREFIX: "/openapi/v1"
+    TH_MEETING_BOOKING_PREFIX_KEY: rspec
+    SMTP_ADDRESS: "127.0.0.1"
+    SMTP_USER_NAME: rspec
+    SMTP_PASSWORD: rspec
+    RSPEC_RETRY_RETRY_COUNT: "3"
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - setup_git
+    - setup_rails
+
+rails:prepare:
+  extends: .rails
+  stage: prepare
+  script:
+    - bundle exec rails db:migrate db:schema:dump zeitwerk:check openproject:plugins:register_frontend
+    - tar -chzf tmp/frontend-plugins.tar.gz -C frontend/src/app/features/plugins linked linked-plugins.module.ts linked-plugins.styles.sass
+  artifacts:
+    expire_in: 2 days
+    paths: [db/structure.sql, tmp/frontend-plugins.tar.gz]
+
+.rails_with_schema:
+  extends: .rails
+  needs: [rails:prepare]
+  before_script:
+    - !reference [.rails, before_script]
+    - psql "$DATABASE_URL" -X -v ON_ERROR_STOP=1 -f db/structure.sql > /dev/null
+
+rails:assets:
+  extends: .rails_with_schema
+  stage: prepare
+  variables:
+    NODE_VERSION: "26.13.1"
+  script:
+    - setup_node
+    - pnpm install --frozen-lockfile
+    - bundle exec rails assets:precompile
+  artifacts:
+    expire_in: 2 days
+    paths:
+      - config/frontend_assets.manifest.json
+      - public/assets/frontend/
+    exclude:
+      - public/assets/frontend/**/*.map
+      - public/assets/frontend/**/*.gz
+      - public/assets/frontend/**/*.br
+
+.rails_specs:
+  extends: .rails_with_schema
+  needs: [rails:prepare, rails:assets]
+  timeout: 3 hours
+  artifacts:
+    when: on_failure
+    expire_in: 7 days
+    paths: [tmp/capybara/, tmp/screenshots/, tmp/parallel_summary.log, tmp/hocuspocus.log]
+
+rails:units:
+  extends: .rails_specs
+  parallel: 6
+  script:
+    - bundle exec parallel_rspec -n "$CI_NODE_TOTAL" --only-group "$CI_NODE_INDEX" --exclude-pattern '/features/' spec modules/*/spec
+
+rails:features:
+  extends: .rails_specs
+  parallel: 6
+  script:
+    - setup_node
+    - start_hocuspocus
+    - bundle exec parallel_rspec -n "$CI_NODE_TOTAL" --only-group "$CI_NODE_INDEX" --pattern '/features/' spec modules/*/spec
+
+rails:th-plugins:
+  extends: .rails_specs
+  script:
+    - |
+      bundle exec ruby -rbundler/setup -e '
+        plugins = Bundler.load.dependencies.select do |dependency|
+          dependency.groups.include?(:opf_plugins) && dependency.source.is_a?(Bundler::Source::Git)
+        end
+        tests = plugins.flat_map { |plugin| Dir[File.join(Gem.loaded_specs.fetch(plugin.name).full_gem_path, "spec/**/*_spec.rb")] }
+        abort "No TH plugin specs found" if tests.empty?
+        exec "rspec", *tests.sort
+      '
+    - bundle exec ruby "$(bundle show openproject-th_work_packages)/test/edoc/run.rb"
+
+rails:migrate-without-pgvector:
+  extends: .rails
+  needs: []
+  services:
+    - name: postgres:17
+      alias: postgres
+  variables:
+    RAILS_ENV: development
+    BUNDLE_WITHOUT: "production:docker"
+  script:
+    - test "$(psql "$DATABASE_URL" -XAtc "SELECT count(*) FROM pg_available_extensions WHERE name = 'vector'")" = 0
+    - bundle exec rails db:migrate
+
+rails:seed-locales:
+  extends: .rails
+  needs: []
+  timeout: 3 hours
+  parallel:
+    matrix:
+      - OPENPROJECT_EDITION: [standard, bim]
+  variables:
+    RAILS_ENV: development
+    BUNDLE_WITHOUT: "production:docker"
+    PGHOST: postgres
+    PGUSER: postgres
+    PGPASSWORD: postgres
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+  script:
+    - bundle exec ruby script/i18n/test_seed_all_locales
+
+rails:upstream-controls:
+  extends: .rails
+  needs: []
+  timeout: 90 minutes
+  cache:
+    key: "upstream-gems-${CORE_REVISION}-${RUBY_VERSION}"
+    paths: [vendor/bundle/]
+  variables:
+    GIT_DEPTH: "0"
+    CORE_REVISION: "021306533761e04e4c75b05aa4539e54f2d525d7"
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - git clone --shared --no-checkout . /tmp/openproject-core
+    - cd /tmp/openproject-core
+    - git checkout --detach "$CORE_REVISION"
+    - setup_rails
+    - setup_node
+  script:
+    - npm ci --ignore-scripts
+    - npm --prefix frontend ci
+    - bundle exec rails db:migrate db:schema:dump
+    - bundle exec rails db:drop db:create db:schema:load assets:precompile
+    - >-
+      bundle exec rspec spec/services/authorization/enterprise_service_spec.rb
+      spec/models/enterprise_token_spec.rb modules/meeting/spec/features/structured_meetings/history_spec.rb
+      modules/costs/spec/features/time_entry_dialog_spec.rb modules/costs/spec/features/timer_spec.rb
+      spec/features/work_packages/details/context_menu_timer_spec.rb
+
+.frontend:
+  extends: .node
+  needs: [rails:prepare]
+  before_script:
+    - !reference [.node, before_script]
+    - setup_git
+    - cd frontend
+    - pnpm install --frozen-lockfile
+    - tar -xzf ../tmp/frontend-plugins.tar.gz -C src/app/features/plugins
+
+frontend:typecheck:
+  extends: .frontend
+  script:
+    - pnpm run typecheck
+
+frontend:units:
+  extends: .frontend
+  image: &playwright_image "mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble"
+  parallel:
+    matrix:
+      - BROWSER: [chromium, firefox, webkit]
+        SHARD: ["1/3", "2/3", "3/3"]
+  script:
+    - test "$(node -p 'require("playwright/package.json").version')" = "$PLAYWRIGHT_VERSION"
+    - echo '{}' > src/locales/en.json
+    - VITEST_SHARD="$SHARD" pnpm test --browsers "$BROWSER" --reporters dot
+
+blocknote:
+  extends: .node
+  image: *playwright_image
+  variables:
+    PLAYWRIGHT_VERSION: "1.64.1"
+  script:
+    - cd extensions/blocknote-extensions
+    - npm ci
+    - test "$(node -p 'require("playwright/package.json").version')" = "$PLAYWRIGHT_VERSION"
+    - npm run build
+    - |
+      node --input-type=module <<'JS'
+      import { readFileSync } from 'node:fs';
+      const { buildExternals } = JSON.parse(readFileSync('package.json'));
+      const bundle = readFileSync('dist/blocknote-extensions.es.js', 'utf8');
+      for (const [, name] of bundle.matchAll(/\("([^"]+)"\)/g)) {
+        if (buildExternals.some(pkg => name === pkg || name.startsWith(pkg + '/'))) {
+          throw new Error(`ESM bundle contains a raw import of ${name}`);
+        }
+      }
+      JS
+    - npm run test:unit
+    - npm run test:browser -- --maxWorkers=2
+    - npm run lint
+
+hocuspocus:
+  extends: .node
+  script:
+    - cd extensions/op-blocknote-hocuspocus
+    - pnpm install --frozen-lockfile
+    - pnpm test --run
+
+openapi:
+  extends: .check
+  needs: []
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - setup_node
+  script:
+    - pnpm install --frozen-lockfile --ignore-scripts
+    - mkdir -p tmp
+    - script/api/validate_spec
+
+review:lint:
+  extends: .ruby
+  needs: [rails:prepare]
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+    - setup_node
+    - pnpm install --frozen-lockfile
+    - tar -xzf tmp/frontend-plugins.tar.gz -C frontend/src/app/features/plugins
+    - |
+      base="$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+      changed() { git diff -z --name-only --diff-filter=ACMR "$base" HEAD -- "$@"; }
+      bundle exec bin/dirty-rubocop --against "$base" --force-exclusion
+      changed '*.erb' | xargs -0r bundle exec erb_lint
+      changed '*.erb' | xargs -0r pnpm exec herb-lint
+      changed '*.json' ':!extensions/**' | xargs -0r pnpm exec eslint --no-warn-ignored
+      (cd frontend && git diff -z --relative --name-only --diff-filter=ACMR "$base" HEAD -- '*.ts' '*.tsx' '*.js' '*.mjs' '*.html' |
+        xargs -0r pnpm exec eslint --no-warn-ignored)
+      if ! git diff --quiet "$base" HEAD -- Gemfile.lock frontend/package.json; then
+        script/check_same_primer_view_components_version_everywhere
+      fi
+      if ! git diff --quiet "$base" HEAD -- frontend/package.json extensions/op-blocknote-hocuspocus/package.json; then
+        script/ci/hocuspocus_version_skew.sh
+      fi
+    - sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends yamllint
+    - changed '.yamllint.yml' ':(glob)**/config/locales/*en.yml' 'config/locales/*en.yml' 'docs/api/apiv3/*.yml' | xargs -0r yamllint
+    - |
+      archive=typos-v1.51.1-x86_64-unknown-linux-musl.tar.gz
+      curl -fsSL --retry 3 -o "/tmp/$archive" "https://github.com/crate-ci/typos/releases/download/v1.51.1/$archive"
+      echo "93c301fd4120ff076e2cc2a6d6a61cab4a4bdb81899287c0938b452e56d1f454  /tmp/$archive" | sha256sum --check -
+      tar -xzf "/tmp/$archive" -C /tmp ./typos
+      changed | xargs -0r /tmp/typos --force-exclude --
+
+review:translations:
+  extends: .ruby
+  needs: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes: ["config/locales/**/*", "modules/*/config/locales/**/*", "config/i18n-tasks*.yml"]
+  variables:
+    BUNDLE_ONLY: i18n_tasks
+  script:
+    - bundle exec i18n-tasks check-consistent-interpolations --config config/i18n-tasks-all-files.yml
+
+review:brakeman:
+  extends: .ruby
+  needs: []
+  variables:
+    BUNDLE_ONLY: brakeman
+  script:
+    - bundle exec brakeman --ignore-config config/brakeman.ignore --no-exit-on-warn --format sarif --output brakeman.sarif
+  artifacts:
+    paths: [brakeman.sarif]
+    expire_in: 7 days
+
+review:docs:
+  extends: .ruby
+  needs: []
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes: ["docs/**/*", config/static_links.yml, "script/docs/**/*"]
+  script:
+    - bundle exec ./script/docs/check_links
+    - script/docs/check_readme_case
+    - script/docs/check_readme_yaml_header_syntax
+
+.deploy:
+  stage: deploy
+  interruptible: false
+  dependencies: []
+  variables:
+    BUNDLE_GEMFILE: Gemfile.deploy
+    BUNDLE_PATH: vendor/deploy
+  cache:
+    key:
+      prefix: "deploy-${RUBY_VERSION}"
+      files: [Gemfile.deploy.lock]
+    paths: [vendor/deploy/]
+  before_script:
+    - source script/ci/gitlab_setup.sh
+    - install_bundle
+    - install -d -m 700 ~/.ssh
+    - install -m 600 "$SSH_ID_RSA" ~/.ssh/id_rsa
+    - install -m 600 "$SSH_CONFIG_FILE" ~/.ssh/config
+  script:
+    - bundle exec cap "$CI_ENVIRONMENT_NAME" deploy
 
 deploy_staging:
-  cache:
-    - key:
-        files:
-          - Gemfile.deploy.lock
-      paths:
-        - vendor/ruby
-  stage: deploy
-  script:
-    - bundle install -j $(nproc) --gemfile=Gemfile.deploy
-    - mkdir ~/.ssh
-    - mv "$SSH_ID_RSA" ~/.ssh/id_rsa
-    - mv "$SSH_CONFIG_FILE" ~/.ssh/config
-    - bundle exec --gemfile=Gemfile.deploy cap staging deploy
+  extends: .deploy
+  resource_group: staging
   environment:
     name: staging
     url: https://plm-ppp.thape.com.cn
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "ai_dev"'
+    - if: '$CI_COMMIT_BRANCH == "ai_dev"'
 
 deploy_production:
-  cache:
-    - key:
-        files:
-          - Gemfile.deploy.lock
-      paths:
-        - vendor/ruby
-  stage: deploy
-  script:
-    - bundle install -j $(nproc) --gemfile=Gemfile.deploy
-    - mkdir ~/.ssh
-    - mv "$SSH_ID_RSA" ~/.ssh/id_rsa
-    - mv "$SSH_CONFIG_FILE" ~/.ssh/config
-    - bundle exec --gemfile=Gemfile.deploy cap production deploy
+  extends: .deploy
+  resource_group: production
   environment:
     name: production
     url: https://plm.thape.com.cn
-  when: manual
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "ai_prod"'
+    - if: '$CI_COMMIT_BRANCH == "ai_prod"'
+      when: manual
+      allow_failure: true
