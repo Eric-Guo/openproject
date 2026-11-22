@@ -188,7 +188,7 @@ RSpec.describe Backlogs::WorkPackageCardListItemComponent, type: :component do
 
     # Status#is_readonly always returns false without the token, so the same
     # work package is movable in Community and the bug cannot occur there.
-    context "when the work package is in a read-only status without an Enterprise token" do
+    context "when the work package is in a read-only status without an Enterprise token", with_ee: false do
       let(:work_package) { readonly_work_package }
 
       it "does not confine the row" do
