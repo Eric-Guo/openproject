@@ -214,7 +214,7 @@ RSpec.describe "Projects", "editing settings", :js do
 
     it "updates the project status description" do
       within_section "Status" do
-        fill_in_rich_text "Status description", with: "Light-years behind 🥺"
+        fill_in_rich_text Project.human_attribute_name(:status_explanation), with: "Light-years behind 🥺"
 
         click_on "Update status description"
       end
@@ -222,7 +222,7 @@ RSpec.describe "Projects", "editing settings", :js do
       expect_and_dismiss_flash type: :success, message: "Successful update."
 
       within_section "Status" do
-        expect(page).to have_selector :rich_text, "Status description", text: "Light-years behind 🥺"
+        expect(page).to have_selector :rich_text, Project.human_attribute_name(:status_explanation), text: "Light-years behind 🥺"
       end
     end
   end
