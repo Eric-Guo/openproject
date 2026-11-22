@@ -158,19 +158,13 @@ RSpec.describe "Assigned to me embedded query on my page", :js do
     # exists as default
     assigned_area.expect_to_exist
 
-    within assigned_area.area do
-      expect(page)
-        .to have_css(".subject", text: assigned_work_package.subject)
-      expect(page)
-        .to have_no_css(".subject", text: assigned_work_package_2.subject)
+    embedded_table.expect_work_package_listed assigned_work_package
+    embedded_table.ensure_work_package_not_listed! assigned_work_package_2
 
-      page.find(".op-pagination--pages").click_button("2")
+    scroll_to_and_click(block: :center) { assigned_area.area.find(".op-pagination--pages").find_button("2") }
 
-      expect(page)
-        .to have_no_css(".subject", text: assigned_work_package.subject)
-      expect(page)
-        .to have_css(".subject", text: assigned_work_package_2.subject)
-    end
+    embedded_table.expect_work_package_listed assigned_work_package_2
+    embedded_table.ensure_work_package_not_listed! assigned_work_package
 
     assigned_area.resize_to(1, 2)
 
