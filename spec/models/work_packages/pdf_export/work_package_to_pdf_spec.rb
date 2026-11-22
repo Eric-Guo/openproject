@@ -78,7 +78,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageToPdf do
     create(:project,
            name: "Forbidden project",
            types: [type],
-           identifier: "forbidden-project",
+           identifier: "private",
            public: false,
            status_code: "on_track",
            active: true,
@@ -624,7 +624,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageToPdf do
           "Access denied:  ",
           "[#{I18n.t('export.macro.error', message:
             I18n.t('export.macro.resource_not_found', resource: "Project #{forbidden_project.id}"))}]  ",
-          "Access denied by identifier:", " ", "[Macro error, resource not found: Project", "forbidden-project]"
+          "Access denied by identifier:", " ", "[Macro error, resource not found: Project #{forbidden_project.identifier}]"
         ].flatten.join(" ")
       end
 
