@@ -33,9 +33,18 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-    available_features = Array(example.metadata[:with_ee])
     trial = !!example.metadata[:with_ee_trial]
-    next if available_features.empty? && !trial
+    next unless example.metadata.key?(:with_ee) || trial
+
+    available_features = Array(example.metadata[:with_ee] || []).to_set
+    allow(EnterpriseToken).to receive(:allows_to?) { |feature| available_features.include?(feature.to_sym) }
+    allow(EnterpriseToken).to receive_messages(available_features:,
+                                               non_trialling_features: trial ? Set.new : available_features,
+                                               hide_banners?: OpenProject::Configuration.ee_hide_banners?)
+    if available_features.empty? && !trial
+      allow(EnterpriseToken).to receive(:active_tokens).and_return([])
+      next
+    end
 
     # partial double of OpenProject::Token with available features
     token_object = OpenProject::Token.new
