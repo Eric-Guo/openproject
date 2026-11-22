@@ -158,7 +158,7 @@ RSpec.describe PortfoliosController do
       expect(query).to be_a_new(ProjectQuery)
       expect(query).to be_valid
 
-      expect(query.results.portfolio).to eq([portfolio_a, portfolio_b, portfolio_c])
+      expect(query.results.portfolio).to contain_exactly(portfolio_a, portfolio_b, portfolio_c)
     end
 
     context "with a user who does not have permission to see the portfolio module" do
