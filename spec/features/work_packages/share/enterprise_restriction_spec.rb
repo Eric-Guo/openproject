@@ -57,7 +57,7 @@ RSpec.describe "Work Package Sharing Enterprise Restriction", :js do
     share_modal.expect_open
   end
 
-  context "without an enterprise token" do
+  context "without an enterprise token", with_ee: false do
     it "renders an upsell banner" do
       share_modal.expect_upsell_banner
     end
