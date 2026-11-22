@@ -100,7 +100,7 @@ RSpec.describe Calendar::CreateICalService, type: :model do
       SUMMARY:#{work_package_with_due_date.name}
       END:VEVENT
       BEGIN:VEVENT
-      DTSTAMP:#{work_package_with_start_date.updated_at.strftime('%Y%m%dT%H%M%SZ')}
+      DTSTAMP:#{work_package_with_start_date.updated_at.utc.strftime('%Y%m%dT%H%M%SZ')}
       UID:#{work_package_with_start_date.id}@localhost:3000
       DTSTART;VALUE=DATE:#{work_package_with_start_date.start_date.strftime('%Y%m%d')}
       DTEND;VALUE=DATE:#{(work_package_with_start_date.start_date + 1.day).strftime('%Y%m%d')}
@@ -109,7 +109,7 @@ RSpec.describe Calendar::CreateICalService, type: :model do
       SUMMARY:#{work_package_with_start_date.name}
       END:VEVENT
       BEGIN:VEVENT
-      DTSTAMP:#{work_package_with_start_and_due_date.updated_at.strftime('%Y%m%dT%H%M%SZ')}
+      DTSTAMP:#{work_package_with_start_and_due_date.updated_at.utc.strftime('%Y%m%dT%H%M%SZ')}
       UID:#{work_package_with_start_and_due_date.id}@localhost:3000
       DTSTART;VALUE=DATE:#{work_package_with_start_and_due_date.start_date.strftime('%Y%m%d')}
       DTEND;VALUE=DATE:#{(work_package_with_start_and_due_date.due_date + 1.day).strftime('%Y%m%d')}
@@ -118,7 +118,7 @@ RSpec.describe Calendar::CreateICalService, type: :model do
       SUMMARY:#{work_package_with_start_and_due_date.name}
       END:VEVENT
       BEGIN:VEVENT
-      DTSTAMP:#{work_package_with_due_date_and_assignee.updated_at.strftime('%Y%m%dT%H%M%SZ')}
+      DTSTAMP:#{work_package_with_due_date_and_assignee.updated_at.utc.strftime('%Y%m%dT%H%M%SZ')}
       UID:#{work_package_with_due_date_and_assignee.id}@localhost:3000
       DTSTART;VALUE=DATE:#{work_package_with_due_date_and_assignee.due_date.strftime('%Y%m%d')}
       DTEND;VALUE=DATE:#{(work_package_with_due_date_and_assignee.due_date + 1.day).strftime('%Y%m%d')}

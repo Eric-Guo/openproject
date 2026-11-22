@@ -85,7 +85,7 @@ module Calendar
 
     def dtstamp_value(work_package)
       # https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.7.2
-      Icalendar::Values::DateTime.new(work_package.updated_at, "tzid" => "UTC")
+      Icalendar::Values::DateTime.new(work_package.updated_at.utc, "tzid" => "UTC")
     end
 
     def dtstart_value(work_package)
