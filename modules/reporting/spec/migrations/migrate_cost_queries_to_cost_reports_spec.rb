@@ -80,4 +80,22 @@ RSpec.describe MigrateCostQueriesToCostReports, type: :model do
       expect(described_class::PersistedView.where(type: "CostReport").pluck(:name)).to contain_exactly("Valid")
     end
   end
+
+  it "migrates project and global reports while retaining orphaned legacy queries" do
+    project = create(:project)
+    user = create(:user)
+    legacy_queries = described_class::MigrationCostQuery
+    attributes = { name: "Saved report", user_id: user.id, serialized: {}.to_yaml }
+    orphaned_project = legacy_queries.create!(**attributes, project_id: -1)
+    orphaned_owner = legacy_queries.create!(**attributes, project_id: project.id, user_id: -1)
+    project_report = legacy_queries.create!(**attributes, project_id: project.id)
+    global_report = legacy_queries.create!(**attributes)
+
+    expect { ActiveRecord::Migration.suppress_messages { described_class.migrate(:up) } }
+      .to change(CostReport, :count).by(2).and change(CostReportQuery, :count).by(2)
+
+    expect(CostReport.for_legacy_cost_query_id(project_report.id)).to have_attributes(project:, principal: user)
+    expect(CostReport.for_legacy_cost_query_id(global_report.id)).to have_attributes(project: nil, principal: user)
+    expect(legacy_queries.where(id: [orphaned_project.id, orphaned_owner.id]).count).to eq(2)
+  end
 end
