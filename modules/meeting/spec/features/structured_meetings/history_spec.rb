@@ -100,10 +100,15 @@ RSpec.describe "history",
 
     # Update meeting
     login_as(user)
+    original_location = meeting.location
+    new_room = ThMeetingBooking::Records::Resource::MeetingRoom.new(id: "room-wakanda", office_area_id: "onsite",
+                                                                    office_area: "Onsite", name: "Wakanda", disabled: false)
+    rooms = ThMeetingBooking::Apis::Resource.meeting_rooms.data + [new_room]
+    allow(ThMeetingBooking::Apis::Resource).to receive(:meeting_rooms).and_return(Struct.new(:data).new(rooms))
     meeting.update!(start_time: DateTime.parse("2024-03-29T14:00:00Z"),
                     duration: 1,
                     title: "Updated",
-                    location: "Wakanda",
+                    th_meeting_upstream_room_id: new_room.id,
                     state: 5)
     login_as(view_only_user)
 
@@ -118,7 +123,7 @@ RSpec.describe "history",
     item = history_page.find_item("Title changed from Some title to Updated")
     within(item) do
       expect(page).to have_css(".op-activity-list--item-title", text: "Meeting details")
-      expect(page).to have_css("li", text: "Location changed from https://some-url.com to Wakanda")
+      expect(page).to have_css("li", text: "Location changed from #{original_location} to Onsite - Wakanda")
       expect(page).to have_css("li", text: "Start time changed from 03/28/2024 01:30 PM to 03/29/2024 02:00 PM")
       expect(page).to have_css("li", text: "Duration changed from 1 hr, 30 mins to 1 hr")
       expect(page).to have_css("li", text: "Meeting status set to Closed")
