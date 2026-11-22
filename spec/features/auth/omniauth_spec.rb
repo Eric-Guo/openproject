@@ -217,7 +217,7 @@ RSpec.describe "Omniauth authentication" do
 
         click_link_or_button "Sign In"
 
-        expect(page).to have_current_path home_path
+        expect(page).to have_current_path my_page_path
       end
     end
 
