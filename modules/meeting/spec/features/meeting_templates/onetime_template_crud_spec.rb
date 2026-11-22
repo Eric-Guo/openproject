@@ -255,7 +255,7 @@ RSpec.describe "Onetime templates CRUD", :js do
       end
     end
 
-    context "as user with delete_meetings permission" do
+    context "as user with delete_meetings permission", with_ee: false do
       let(:user_with_delete) do
         create(:user, member_with_permissions: { project => %i[view_meetings create_meetings delete_meetings] })
       end
