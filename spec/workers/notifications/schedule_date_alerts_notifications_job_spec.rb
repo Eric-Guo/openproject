@@ -153,99 +153,99 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
   end
 
   describe "#perform" do
-    context "for users whose local time is 1:00 am (UTC+1) when the job is executed" do
+    context "for users whose local time is 9:00 am (UTC+1) when the job is executed" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:04" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:04" }
         let(:user) { user_paris }
       end
     end
 
-    context "for users whose local time is 1:00 am (UTC+05:45) when the job is executed" do
+    context "for users whose local time is 9:00 am (UTC+05:45) when the job is executed" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_kathmandu }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:04" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:04" }
         let(:user) { user_kathmandu }
       end
     end
 
-    context "when cron-ed, scheduled and executed at 01:00 am local time" do
+    context "when cron-ed, scheduled and executed at 09:00 am local time" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
         let(:user) { user_paris }
       end
     end
 
-    context "when cron-ed at 1:00 am but scheduled and executed at 01:14 am local time" do
+    context "when cron-ed at 9:00 am but scheduled and executed at 09:14 am local time" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:scheduled_at) { "1:14" }
-        let(:local_time) { "1:14" }
+        let(:cron_at) { "9:00" }
+        let(:scheduled_at) { "9:14" }
+        let(:local_time) { "9:14" }
         let(:user) { user_paris }
       end
     end
 
-    context "when cron-ed, scheduled and executed at 01:15 am local time" do
+    context "when cron-ed, scheduled and executed at 09:15 am local time" do
       it_behaves_like "job execution creates no date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:15" }
-        let(:scheduled_at) { "1:15" }
-        let(:local_time) { "1:15" }
+        let(:cron_at) { "9:15" }
+        let(:scheduled_at) { "9:15" }
+        let(:local_time) { "9:15" }
       end
     end
 
-    context "when cron-ed and scheduled at 01:00 am local time and executed at 01:37 am local time" do
+    context "when cron-ed and scheduled at 09:00 am local time and executed at 09:37 am local time" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:scheduled_at) { "1:00" }
-        let(:local_time) { "1:37" }
+        let(:cron_at) { "9:00" }
+        let(:scheduled_at) { "9:00" }
+        let(:local_time) { "9:37" }
         let(:user) { user_paris }
       end
     end
 
-    context "when cron-ed at 01:00 am but rescheduled to 1:15 and executed at 01:37 am local time" do
+    context "when cron-ed at 09:00 am but rescheduled to 9:15 and executed at 09:37 am local time" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:scheduled_at) { "1:15" }
-        let(:local_time) { "1:37" }
+        let(:cron_at) { "9:00" }
+        let(:scheduled_at) { "9:15" }
+        let(:local_time) { "9:37" }
         let(:user) { user_paris }
       end
     end
 
-    context "when cron-ed at 00:45 am but rescheduled to 1:15 and executed at 01:37 am local time" do
+    context "when cron-ed at 08:45 am but rescheduled to 9:15 and executed at 09:37 am local time" do
       it_behaves_like "job execution creates no date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "0:45" }
-        let(:scheduled_at) { "1:15" }
-        let(:local_time) { "1:37" }
+        let(:cron_at) { "8:45" }
+        let(:scheduled_at) { "9:15" }
+        let(:local_time) { "9:37" }
       end
     end
 
-    context "when cron-ed, scheduled and executed at 01:15 am and the predecessor being cron-ed to 0:30 am" do
+    context "when cron-ed, scheduled and executed at 09:15 am and the predecessor being cron-ed to 8:30 am" do
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:15" }
-        let(:predecessor_cron_at) { "0:30" }
-        let(:scheduled_at) { "1:15" }
-        let(:local_time) { "1:15" }
+        let(:cron_at) { "9:15" }
+        let(:predecessor_cron_at) { "8:30" }
+        let(:scheduled_at) { "9:15" }
+        let(:local_time) { "9:15" }
         let(:user) { user_paris }
       end
     end
 
-    context "when cron-ed, scheduled and executed at 01:15 am and the predecessor being cron-ed to 1:00 am" do
+    context "when cron-ed, scheduled and executed at 09:15 am and the predecessor being cron-ed to 9:00 am" do
       it_behaves_like "job execution creates no date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:15" }
-        let(:predecessor_cron_at) { "1:00" }
-        let(:scheduled_at) { "1:15" }
-        let(:local_time) { "1:15" }
+        let(:cron_at) { "9:15" }
+        let(:predecessor_cron_at) { "9:00" }
+        let(:scheduled_at) { "9:15" }
+        let(:local_time) { "9:15" }
       end
     end
 
@@ -260,8 +260,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
         let(:user) { user_paris }
       end
     end
@@ -277,8 +277,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
         let(:user) { user_paris }
       end
     end
@@ -294,8 +294,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
         let(:user) { user_paris }
       end
     end
@@ -311,8 +311,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates no date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
       end
     end
 
@@ -334,8 +334,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
         let(:user) { user_paris }
       end
     end
@@ -347,8 +347,8 @@ RSpec.describe Notifications::ScheduleDateAlertsNotificationsJob,
 
       it_behaves_like "job execution creates no date alerts creation job" do
         let(:timezone) { timezone_paris }
-        let(:cron_at) { "1:00" }
-        let(:local_time) { "1:00" }
+        let(:cron_at) { "9:00" }
+        let(:local_time) { "9:00" }
       end
     end
   end
