@@ -122,6 +122,8 @@ RSpec.describe "BlockNote editor rendering", :js, :selenium, with_settings: { re
   end
 
   context "when a heading is the very first block of a document (COMMS-909)" do
+    let(:document) { create(:document, :collaborative, description: "") }
+
     # A BlockNote/Yjs collaboration-bootstrap race leaves the first block rendered
     # at the wrong font-size until the next transaction (e.g. a click) recomputes it.
     # It only reproduces on a genuine fresh editor mount of an already-persisted
@@ -133,7 +135,7 @@ RSpec.describe "BlockNote editor rendering", :js, :selenium, with_settings: { re
       editor.fill_in("# Test heading")
       editor.element.send_keys(:enter)
       editor.fill_in("Some text here")
-      wait_for { document.reload.content_binary }.to be_present
+      wait_for { document.reload.description }.to include("Some text here")
 
       visit home_path
       visit document_path(document)
