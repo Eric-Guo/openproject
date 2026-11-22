@@ -184,6 +184,7 @@ RSpec.describe TimeEntries::BaseContract, "limiting hours to the user's working 
   end
 
   context "without an Enterprise token",
+          with_ee: false,
           with_settings: { time_entries_limit_to_user_working_hours: true } do
     before { create(:user_working_hours, user:, valid_from: monday - 30, monday: 480) }
 
