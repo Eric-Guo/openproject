@@ -35,7 +35,7 @@ FactoryBot.define do
     recurring_meeting { nil }
     recurrence_start_time { nil }
     duration { 1.0 }
-    location { "https://some-url.com" }
+    th_meeting_upstream_room_id { MeetingBookingSpecServer::ROOM.fetch(:id) unless recurring_meeting }
     m.sequence(:title) { |n| "Meeting #{n}" }
 
     trait :author_participates do

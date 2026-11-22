@@ -34,8 +34,9 @@ RSpec.describe "Meeting room selection", :skip_csrf, type: :rails_request do
   shared_let(:project) { create(:project, enabled_module_names: %i[meetings]) }
   shared_let(:user) { create(:user, member_with_permissions: { project => %i[view_meetings edit_meetings] }) }
   let(:meeting) do
-    build(:meeting, project:, author: user, state: :draft, start_time: 1.day.ago).tap do |meeting|
-      meeting.save!(validate: false)
+    build(:meeting, project:, author: user, state: :draft, start_time: 1.day.ago,
+                    th_meeting_upstream_room_id: nil).tap do |record|
+      record.save!(validate: false)
     end
   end
 
