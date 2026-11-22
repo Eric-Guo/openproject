@@ -30,7 +30,7 @@
 require "spec_helper"
 
 RSpec.describe "Projects global menu item", :js do
-  shared_let(:user) { create(:user) }
+  shared_let(:user) { create(:user, global_permissions: [:view_all_project_info]) }
   shared_let(:admin) { create(:admin) }
 
   current_user { user }
