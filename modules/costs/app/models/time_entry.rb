@@ -238,7 +238,8 @@ class TimeEntry < ApplicationRecord
     end
 
     def limit_to_user_working_hours?
-      Setting.time_entries_limit_to_user_working_hours?
+      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
+        Setting.time_entries_limit_to_user_working_hours?
     end
 
     def prohibit_logging_for_past_months?
