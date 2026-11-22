@@ -129,11 +129,11 @@ RSpec.describe Projects::IdentifierValidator do
         expect(validate!).to include(I18n.t("activerecord.errors.messages.invalid"))
       end
 
-      it "rejects identifiers exceeding 100 characters" do
-        project.identifier = "a" * 101
+      it "rejects identifiers exceeding 191 characters" do
+        project.identifier = "a" * 192
         validate!
         expect(project.errors[:identifier]).to include(I18n.t("activerecord.errors.messages.too_long",
-                                                              count: 100))
+                                                              count: 191))
       end
     end
   end
