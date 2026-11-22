@@ -36,7 +36,7 @@ RSpec.describe "Links to headings in BlockNote editor",
   include_context "with hocuspocus"
 
   let(:admin) { create(:admin) }
-  let(:document) { create(:document, :collaborative) }
+  let(:document) { create(:document, :collaborative, description: "") }
   let(:editor) { FormFields::Primerized::BlockNoteEditorInput.new }
 
   # Headless browsers may refuse the clipboard, so the spec records what would be written.
