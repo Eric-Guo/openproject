@@ -31,7 +31,8 @@ require "spec_helper"
 
 # Concern is included into AccountController and depends on methods available there
 RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
-  let!(:auth_provider) { create(:oidc_provider_google, slug: "google") }
+  let!(:auth_provider) { create(:oidc_provider_google, slug: "google", limit_self_registration:) }
+  let(:limit_self_registration) { true }
   let(:omniauth_strategy) { double("Google Strategy", name: "google") } # rubocop:disable RSpec/VerifiedDoubles
   let(:omniauth_hash) do
     OmniAuth::AuthHash.new(
@@ -173,6 +174,8 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
 
       context "with self-registration disabled",
               with_settings: { self_registration: Setting::SelfRegistration.disabled } do
+        let(:limit_self_registration) { false }
+
         let(:omniauth_hash) do
           OmniAuth::AuthHash.new(
             provider: "google",
@@ -411,6 +414,8 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
 
       context "with a registered and not activated account",
               with_settings: { self_registration: Setting::SelfRegistration.by_email } do
+        let(:limit_self_registration) { false }
+
         before do
           user.registered!
 
