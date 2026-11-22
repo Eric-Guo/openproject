@@ -445,7 +445,7 @@ module Pages
     # @param rowcount [Integer] The expected `aria-rowcount` of the table.
     # @param rows [Array<Integer>] The expected `aria-rowindex` of each exposed row.
     def expect_row_positions(rowcount:, rows:)
-      wait_for { treegrid.all(:row).pluck("aria-rowindex") }.to eq(rows.map(&:to_s))
+      wait_for { treegrid.all(:row, count: rows.size, wait: 20).pluck("aria-rowindex") }.to eq(rows.map(&:to_s))
       expect(treegrid).to match_selector(:table, aria: { rowcount: })
     end
 
