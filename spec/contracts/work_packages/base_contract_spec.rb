@@ -1804,37 +1804,33 @@ RSpec.describe WorkPackages::BaseContract do
   end
 
   describe "#assignable_types" do
-    let(:scope) do
-      instance_double(ActiveRecord::Querying).tap do |s|
-        allow(s)
-          .to receive(:includes)
-          .and_return(s)
+    let!(:public_type) { create(:type) }
+    let!(:restricted_type) { create(:type, is_admin_only: true) }
+    let!(:disabled_type) { create(:type) }
+    let(:project) { create(:project, types: [public_type, restricted_type]) }
+
+    before { login_as(current_user) }
+
+    context "without a project" do
+      before { work_package.project = nil }
+
+      it "offers unrestricted types from all projects" do
+        expect(contract.assignable_types).to include(public_type, disabled_type)
+        expect(contract.assignable_types).not_to include(restricted_type)
       end
     end
 
-    context "when project nil" do
-      before do
-        work_package.project = nil
+    context "with a project" do
+      it "only offers unrestricted types enabled in the project" do
+        expect(contract.assignable_types).to contain_exactly(public_type)
       end
 
-      it "is all types" do
-        allow(Type)
-          .to receive(:includes)
-          .and_return(scope)
+      context "for an administrator" do
+        let(:current_user) { build_stubbed(:admin) }
 
-        expect(contract.assignable_types)
-          .to eql(scope)
-      end
-    end
-
-    context "when project defined" do
-      it "is all types of the project" do
-        allow(work_package.project)
-          .to receive(:enabled_types)
-          .and_return(scope)
-
-        expect(contract.assignable_types)
-          .to eql(scope)
+        it "also offers the project's restricted types" do
+          expect(contract.assignable_types).to contain_exactly(public_type, restricted_type)
+        end
       end
     end
   end
