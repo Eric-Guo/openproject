@@ -109,8 +109,8 @@ RSpec.describe "Project attributes activity", :js, with_settings: { journal_aggr
         # own fields
         activity_page.expect_activity("Name changed from #{project_was.name} to #{project.name}")
         activity_page.expect_activity("Description set (Details)")
-        activity_page.expect_activity("Status set to On track")
-        activity_page.expect_activity("Status description set (Details)")
+        activity_page.expect_activity("#{Project.human_attribute_name(:status_code)} set to On track")
+        activity_page.expect_activity("#{Project.human_attribute_name(:status_explanation)} set (Details)")
         activity_page.expect_activity("Visibility set to public")
         activity_page.expect_activity("No longer subproject of a non-visible project")
         activity_page.expect_activity("Project unarchived")
