@@ -42,7 +42,7 @@ FactoryBot.define do
         .where(journable_id: journal.journable_id,
                journable_type: journal.journable_type,
                version: journal.version - 1)
-        .where("upper(validity_period) IS NULL")
+        .where("upper_inf(validity_period) OR upper(validity_period) = 'infinity'")
         .update_all(["validity_period = tstzrange(journals.created_at, ?)", journal.created_at])
     end
 
