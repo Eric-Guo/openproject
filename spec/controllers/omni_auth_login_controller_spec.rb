@@ -266,13 +266,15 @@ RSpec.describe OmniAuthLoginController, :skip_2fa_stage do
             )
           end
 
-          it "signs in the user after successful external authentication" do
+          it "signs in the user while preserving their existing names" do
+            previous_lastname = user.lastname
+
             expect { post :callback, params: { provider: :google } }
                 .not_to change { user.reload.firstname }
 
             expect(response).to redirect_to my_page_path
 
-            expect(user.lastname).to eq "newLastname"
+            expect(user.lastname).to eq previous_lastname
           end
         end
 
