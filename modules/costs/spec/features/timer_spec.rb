@@ -136,7 +136,7 @@ RSpec.describe "Work Package timer", :js do
     end
   end
 
-  context "when user has permission to log time" do
+  context "when user has permission to log time", unless: defined?(OpenProject::LabourTracking) do
     let(:permissions) { %i[log_own_time edit_own_time_entries view_own_time_entries view_work_packages view_project] }
 
     it_behaves_like "allows time tracking"
@@ -221,6 +221,27 @@ RSpec.describe "Work Package timer", :js do
     end
   end
 
+  context "with TH time reporting", if: defined?(OpenProject::LabourTracking) do
+    let(:permissions) { %i[log_own_time edit_own_time_entries view_own_time_entries view_work_packages view_project] }
+
+    it "keeps the work package timer hidden even for someone who can log time" do
+      wp_view_a.visit!
+      wp_view_a.ensure_page_loaded
+      timer_button.expect_visible visible: false
+    end
+
+    context "with an existing timer" do
+      let!(:active_timer) { create(:time_entry, project:, entity: work_package_a, user:, ongoing: true) }
+
+      it "keeps the toolbar timer hidden and leaves the active entry alone" do
+        wp_view_a.visit!
+        wp_view_a.ensure_page_loaded
+        timer_button.expect_visible visible: false
+        expect(active_timer.reload).to be_ongoing
+      end
+    end
+  end
+
   context "when user has no permission to log time" do
     let(:permissions) { %i[view_work_packages view_project] }
 
@@ -233,13 +254,13 @@ RSpec.describe "Work Package timer", :js do
     end
   end
 
-  context "when user has permission to add, but not edit or view" do
+  context "when user has permission to add, but not edit or view", unless: defined?(OpenProject::LabourTracking) do
     let(:permissions) { %i[view_work_packages log_own_time view_project] }
 
     it_behaves_like "allows time tracking"
   end
 
-  context "when user has permission to add and view but not edit" do
+  context "when user has permission to add and view but not edit", unless: defined?(OpenProject::LabourTracking) do
     let(:permissions) { %i[view_work_packages log_own_time view_own_logged_time view_project] }
 
     it_behaves_like "allows time tracking"
