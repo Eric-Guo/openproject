@@ -79,20 +79,20 @@ RSpec.describe Backlogs::SprintReports::Widgets::RemovedTable,
   end
 
   context "when the sprint is running" do
-    let(:expected_timestamps) { "#{started_at.iso8601},PT0S" }
+    let(:expected_timestamps) { "#{started_at.utc.iso8601},PT0S" }
 
     include_examples "renders a work packages table"
   end
 
   context "when the sprint is complete" do
     let(:completed_at) { 1.hour.ago }
-    let(:expected_timestamps) { "#{started_at.iso8601},#{completed_at.iso8601}" }
+    let(:expected_timestamps) { "#{started_at.utc.iso8601},#{completed_at.utc.iso8601}" }
 
     include_examples "renders a work packages table"
   end
 
   context "with work packages that moved from the project" do
-    let(:expected_timestamps) { "#{started_at.iso8601},PT0S" }
+    let(:expected_timestamps) { "#{started_at.utc.iso8601},PT0S" }
 
     context "to a subproject that user may see" do
       shared_let(:in_visible_subproject) do
