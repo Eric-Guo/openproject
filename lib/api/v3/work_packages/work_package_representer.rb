@@ -89,9 +89,7 @@ module API
           }
         end
 
-        link :delete,
-             cache_if: -> { (current_user.allowed_in_project?(:delete_work_packages, represented.project) && (!having_any_time_entries? || current_user.admin?) && (!represented.type.is_admin_only? || current_user.admin?)) \
-              || (current_user.allowed_in_project?(:delete_my_create_work_packages, represented.project) && (current_user.id == represented.author_id) && (!having_any_time_entries? || current_user.admin?) && (!represented.type.is_admin_only? || current_user.admin?)) } do
+        link :delete, cache_if: -> { delete_link_available? } do
           {
             href: api_v3_paths.work_package(represented.id),
             method: :delete
@@ -782,9 +780,19 @@ module API
                                                                                         work_package: represented)
         end
 
-        def having_any_time_entries?
-          # spent_hours need A user at least can see the work package, search visible_time_entries
-          represented.spent_hours(current_user) > 0
+        def delete_link_available?
+          return false unless delete_permission_in_project?
+          return true if current_user.admin?
+
+          type = represented.type
+          type.present? && !type.is_admin_only? && !represented.spent_hours(current_user).positive?
+        end
+
+        def delete_permission_in_project?
+          project = represented.project
+          current_user.allowed_in_project?(:delete_work_packages, project) ||
+            (represented.author_id == current_user.id &&
+             current_user.allowed_in_project?(:delete_my_create_work_packages, project))
         end
 
         def view_project_phase_allowed?
