@@ -45,7 +45,7 @@ RSpec.describe Bim::Queries::WorkPackages::Filter::BcfIssueAssociatedFilter do
         end
       end
 
-      context "if bim is disabled" do
+      context "if bim is disabled", with_config: { edition: "standard" } do
         it "is not available" do
           expect(instance)
             .not_to be_available
