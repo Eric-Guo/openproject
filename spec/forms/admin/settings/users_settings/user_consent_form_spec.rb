@@ -81,7 +81,7 @@ RSpec.describe Admin::Settings::UsersSettings::UserConsentForm, type: :forms do
       end
     end
 
-    context "when consent has been updated before", with_settings: { consent_time: Time.zone.local(2026, 3, 14, 15, 9) } do
+    context "when consent has been updated before", with_settings: { consent_time: Time.utc(2026, 3, 14, 15, 9) } do
       it "is unchecked and shows the time of the last update" do
         expect(page).to have_unchecked_field "Consent time"
         expect(page).to have_element :strong, text: "Last update of consent: 03/14/2026 03:09 PM"
