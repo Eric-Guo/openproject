@@ -45,6 +45,8 @@ RSpec.describe "Real-time collaboration with Hocuspocus for documents",
     include_context "with hocuspocus"
 
     context "with write permission" do
+      let(:document) { create(:document, :collaborative, project:, description: "") }
+
       before do
         login_as(admin)
       end
@@ -63,8 +65,8 @@ RSpec.describe "Real-time collaboration with Hocuspocus for documents",
         expect(page).to have_test_selector("blocknote-document-description")
 
         editor.fill_in("Hello Hocuspocus")
-        wait_for { document.reload.content_binary }.to be_present
-        expect(document.description).to eq("Hello Hocuspocus\n")
+        wait_for { document.reload.description }.to eq("Hello Hocuspocus\n")
+        expect(document.content_binary).to be_present
       end
     end
 
