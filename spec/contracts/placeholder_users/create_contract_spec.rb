@@ -33,7 +33,7 @@ require_relative "shared_contract_examples"
 RSpec.describe PlaceholderUsers::CreateContract do
   include_context "ModelContract shared context"
 
-  context "without enterprise" do
+  context "without enterprise", with_ee: false do
     let(:placeholder_user) { PlaceholderUser.new(name: "foo") }
     let(:contract) { described_class.new(placeholder_user, current_user) }
 
