@@ -111,8 +111,8 @@ RSpec.describe Backlogs::SprintReports::Widgets::WorkPackageOverview, type: :com
 
         it "adds only historic reference dates to the links" do
           freeze_time do
-            sprint_start = Timestamp.new(sprint.started_at).to_s
-            now = Timestamp.new(Time.current).to_s
+            sprint_start = sprint.started_at.utc.iso8601
+            now = Time.current.utc.iso8601
 
             expect(query_props.pluck("ts")).to eq [sprint_start, "#{sprint_start},#{now}", nil, nil]
           end
