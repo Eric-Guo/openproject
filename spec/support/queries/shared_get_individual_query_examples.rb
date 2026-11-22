@@ -150,8 +150,9 @@ RSpec.shared_examples_for "GET individual query" do
         end
       end
 
-      context "without EE", with_ee: false do
+      context "with the fork baseline policy and no Enterprise token" do
         it "succeeds" do
+          expect(EnterpriseToken.active_tokens).to be_empty
           expect(last_response).to have_http_status(:ok)
         end
       end
