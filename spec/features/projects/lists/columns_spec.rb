@@ -474,7 +474,7 @@ RSpec.describe "Projects lists columns", :js, with_settings: { login_required?: 
     end
 
     context "for non admin user without permissions" do
-      let(:user) { create(:user) }
+      let(:user) { create(:user, member_with_permissions: { project => [:view_project] }) }
 
       it "doesn't allow custom comment column for fields that do not allow comments or that are admin only" do
         projects_page.expect_no_config_columns(
