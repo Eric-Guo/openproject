@@ -239,7 +239,9 @@ RSpec.shared_examples_for "time entry contract" do
       allow(Setting).to receive(:time_entries_max_hours_per_entry).and_return(max_hours_per_entry)
     end
 
-    it_behaves_like "is valid" # without an Enterprise token, the restriction is not enforced
+    context "without time entry restrictions", with_ee: false do
+      it_behaves_like "is valid"
+    end
 
     context "with an Enterprise token", with_ee: %i[time_entry_time_restrictions] do
       context "when hours exceed the maximum" do
@@ -271,7 +273,9 @@ RSpec.shared_examples_for "time entry contract" do
       allow(Setting).to receive(:time_entries_max_hours_per_day).and_return(max_hours_per_day)
     end
 
-    it_behaves_like "is valid" # without an Enterprise token, the restriction is not enforced
+    context "without time entry restrictions", with_ee: false do
+      it_behaves_like "is valid"
+    end
 
     context "with an Enterprise token", with_ee: %i[time_entry_time_restrictions] do
       context "when the hours already logged plus the entry's hours exceed the maximum" do
