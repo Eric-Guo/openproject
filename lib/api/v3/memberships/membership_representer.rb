@@ -140,7 +140,7 @@ module API
         property :profile,
                  writable: true,
                  getter: ->(*) {
-                   next unless project.module_enabled?("th_members_module") && profile.present?
+                   next unless project&.module_enabled?("th_members_module") && profile.present?
 
                    ::API::Decorators::MembershipProfile.new(profile)
                  },
