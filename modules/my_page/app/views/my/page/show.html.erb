@@ -1,5 +1,7 @@
 <% html_title(t("my_page.label")) -%>
 
+<%= render(Primer::Beta::Heading.new(tag: :h1, classes: "sr-only")) { t("my_page.label") } %>
+
 <%=
   render(Primer::OpenProject::SubHeader.new) do |component|
 
