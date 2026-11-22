@@ -66,18 +66,28 @@ RSpec.describe Users::HoverCardComponent, type: :component do
     end
   end
 
-  context "when displaying email addresses" do
-    it "hides the email address of a user" do
-      expect(page).not_to have_test_selector("user-hover-card-email")
+  it "omits staff details for an external user" do
+    expect(page).not_to have_test_selector("user-hover-card-staff")
+    expect(page).to have_no_text(user.mail)
+  end
+
+  context "when displaying a staff member" do
+    let(:user) do
+      super().tap { it.update_column(:mail, "member@thape.com.cn") }
     end
 
-    context "with the rights to view email addresses" do
-      # Admin is allowed to see emails
-      let(:current_user) { build(:admin) }
+    subject do
+      visible_users = User.visible
+      allow(User).to receive(:visible).and_return(visible_users)
+      allow(visible_users).to receive(:find_by).with(id: user.id).and_return(user)
+      allow(user).to receive(:staff).and_return(Struct.new(:major_name, :position_title).new("Engineering", "Designer"))
 
-      it "shows the email address of a user" do
-        find_test_selector("user-hover-card-email", text: user.mail)
-      end
+      super()
+    end
+
+    it "shows their major and position" do
+      find_test_selector("user-hover-card-staff", text: "Engineering Designer")
+      expect(page).to have_no_text(user.mail)
     end
   end
 

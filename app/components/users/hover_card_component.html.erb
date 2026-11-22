@@ -40,17 +40,13 @@ See COPYRIGHT and LICENSE files for more details.
           end
         end
 
-          f.with_column(classes: "op-user-hover-card--email") do
-            render(
-              Primer::Beta::Text.new(
-                font_size: :small,
-                color: :muted,
-                data: { test_selector: "user-hover-card-email" }
-              )
-            ) do
-              "#{@user.staff&.major_name} #{@user.staff&.position_title}"
+        if @user.mail.to_s.end_with?("@thape.com.cn") && (staff = @user.staff)
+          f.with_column do
+            render(Primer::Beta::Text.new(font_size: :small, color: :muted, data: { test_selector: "user-hover-card-staff" })) do
+              [staff.major_name, staff.position_title].compact_blank.join(" ")
             end
           end
+        end
       end
     end
 
