@@ -204,7 +204,7 @@ RSpec.describe Timestamp do
           expect(subject).to be_a described_class
           expect(subject).to be_valid
           expect(subject.to_s).to eq "2022-01-01"
-          expect(subject.to_time).to eq Time.zone.parse("2022-01-01T00:00:00Z")
+          expect(subject.to_time).to eq Time.zone.local(2022, 1, 1)
           expect(subject).not_to be_relative
         end
       end
