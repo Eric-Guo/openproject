@@ -41,13 +41,10 @@ RSpec.describe "Cost report in subproject", :js do
 
   before do
     login_as(user)
-    visit project_path(subproject)
   end
 
   it "provides filtering" do
-    within "#main-menu" do
-      click_on "Time and costs"
-    end
+    visit project_reporting_cost_reports_path(subproject)
 
     within "#content" do
       expect(page).to have_text "New cost report"
