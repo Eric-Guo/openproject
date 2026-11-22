@@ -424,7 +424,7 @@ RSpec.describe "Invite user modal", :js do
           end
         end
 
-        context "non-enterprise system" do
+        context "without the placeholder feature", with_ee: false do
           it "shows the modal with placeholder option disabled" do
             modal.within_modal do
               expect(page).to have_field "Placeholder user", disabled: true

@@ -71,6 +71,7 @@ module Users::Invitation::ProjectStep
 
         radio_group.radio_button(
           value: "PlaceholderUser",
+          disabled: !EnterpriseToken.allows_to?(:placeholder_users),
           checked: model.principal_type == "PlaceholderUser",
           label: PlaceholderUser.model_name.human,
           caption: I18n.t("users.invite_user_modal.type.placeholder_user.description")
