@@ -43,7 +43,7 @@ RSpec.describe "Statuses administration" do
       end
     end
 
-    describe "without EE token" do
+    describe "without EE token", with_ee: false do
       it "does not allow to set readonly status" do
         expect(page).to have_field "status[is_readonly]", disabled: true
       end
