@@ -188,10 +188,10 @@ RSpec.describe "Work package activity", :js, :with_cuprite, with_ee: %i[internal
 
         activity_tab.expect_comments_order(
           [
-            "First comment by member",
-            "Second comment by member",
+            "First comment by admin",
             "Third comment by member",
-            "First comment by admin"
+            "Second comment by member",
+            "First comment by member"
           ]
         )
 
