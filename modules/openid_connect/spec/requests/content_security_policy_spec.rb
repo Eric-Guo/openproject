@@ -68,6 +68,9 @@ RSpec.describe "OpenID Connect content security policy", type: :rails_request do
     it "allows the automatically submitted login form to redirect to the provider" do
       get signin_path
 
+      expect(response).to redirect_to(omniauth_login_path(provider.slug))
+      follow_redirect!
+
       expect(response.parsed_body.at_css("#omniauth-direct-login-form")).to be_present
       expect(csp.fetch("form-action")).to include("https://sso.thape.com.cn")
     end
