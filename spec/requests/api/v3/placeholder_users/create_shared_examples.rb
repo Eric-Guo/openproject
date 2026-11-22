@@ -90,7 +90,7 @@ RSpec.shared_examples "create placeholder user request flow" do
     end
   end
 
-  describe "without ee" do
+  describe "without ee", with_ee: false do
     it "adds an error that its only available in EE" do
       send_request
 
