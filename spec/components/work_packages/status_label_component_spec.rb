@@ -71,7 +71,7 @@ RSpec.describe WorkPackages::StatusLabelComponent, type: :component do
     end
   end
 
-  context "with a read-only status and no Enterprise token" do
+  context "when read-only work packages are unavailable", with_ee: false do
     let(:status) { build_stubbed(:status, :readonly, name: "Rejected") }
 
     it "does not lock the badge, matching what the contract allows" do
