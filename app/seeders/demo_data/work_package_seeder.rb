@@ -63,8 +63,15 @@ module DemoData
       end
     end
 
+    def self.required_references(work_packages_data)
+      Array.wrap(work_packages_data).each_with_object(Set.new) do |attributes, references|
+        references.merge(attributes.values_at(*attribute_names_for_required_references).flatten.compact)
+        references.merge(required_references(attributes["children"])) if attributes["children"]
+      end
+    end
+
     def all_required_references
-      collect_required_references(project_data.lookup("work_packages"))
+      self.class.required_references(project_data.lookup("work_packages"))
     end
 
     RelationData = Data.define(:from, :to_reference, :type)
@@ -164,15 +171,6 @@ module DemoData
 
     def find_type(attributes)
       seed_data.find_reference(attributes["type"].to_sym)
-    end
-
-    def collect_required_references(work_packages_data)
-      Array.wrap(work_packages_data).each_with_object(Set.new) do |work_package_data, acc|
-        acc.merge(get_required_references(work_package_data))
-        if work_package_data["children"]
-          acc.merge(collect_required_references(work_package_data["children"]))
-        end
-      end
     end
 
     def set_target_versions!(wp_attr, attributes)

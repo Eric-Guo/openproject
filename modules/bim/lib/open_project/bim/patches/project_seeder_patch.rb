@@ -33,6 +33,12 @@ module OpenProject::Bim::Patches::ProjectSeederPatch
   end
 
   module InstanceMethods
+    def all_required_references
+      return super unless OpenProject::Configuration.bim?
+
+      super | ::DemoData::WorkPackageSeeder.required_references(project_data.lookup("work_packages")).to_a
+    end
+
     def project_content_seeder_classes
       classes = []
       classes += bim_project_content_seeder_classes if OpenProject::Configuration.bim?
