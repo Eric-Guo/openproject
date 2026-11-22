@@ -83,8 +83,8 @@ RSpec.describe UserMailer do
       end
 
       it "includes the url to the instance" do
-        expect(deliveries.first.body.encoded)
-          .to match Regexp.new("OpenProject URL: #{Setting.protocol}://#{Setting.host_name}")
+        expect(deliveries.first.text_part.decoded)
+          .to include("PLM URL: #{Setting.protocol}://#{Setting.host_name}")
       end
     end
 
