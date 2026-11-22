@@ -64,9 +64,7 @@ RSpec.describe WorkPackage, "acts_as_searchable" do
              "with being member with the appropriate permission " \
              "with searching for matching string " \
              "with searching with an offset" do
-      # this offset recreates the way the time is transformed in the controller
-      # This will have to be cleaned up
-      let(:offset) { (work_package.created_at - 1.minute).strftime("%Y%m%d%H%M%S").to_time }
+      let(:offset) { work_package.created_at - 1.minute }
 
       before do
         work_package
