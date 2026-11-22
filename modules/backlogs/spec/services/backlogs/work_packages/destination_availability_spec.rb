@@ -113,7 +113,7 @@ RSpec.describe Backlogs::WorkPackages::DestinationAvailability, type: :model do
       expect(status_queries.size).to eq 1
     end
 
-    it "ignores persisted read-only flags when the feature is unavailable" do
+    it "ignores persisted read-only flags when the feature is unavailable", with_ee: false do
       persisted_readonly_status = create(:status)
       persisted_readonly_status.update_column(:is_readonly, true)
       work_package = create(:work_package, project:, type:, status: persisted_readonly_status)
