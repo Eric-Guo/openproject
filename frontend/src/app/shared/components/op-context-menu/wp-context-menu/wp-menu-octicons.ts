@@ -38,6 +38,7 @@ const WP_MENU_OCTICONS = {
   'icon-delete': 'trash',
   'icon-duplicate': 'duplicate',
   'icon-edit': 'pencil',
+  'icon-download': 'download',
   'icon-export': 'download',
   'icon-export-atom': 'op-file-atom',
   'icon-export-pdf-with-descriptions': 'op-pdf-description',

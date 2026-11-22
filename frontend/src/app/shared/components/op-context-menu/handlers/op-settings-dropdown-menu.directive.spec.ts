@@ -164,6 +164,8 @@ describe('OpSettingsMenuDirective', () => {
       'Save',
       'Save as',
       'Export',
+      '导出甘特图',
+      'Excel批量导入',
       '---',
       'Delete',
     ]);
@@ -204,7 +206,7 @@ describe('OpSettingsMenuDirective', () => {
     await createHost({ hideTableOptions: true });
     const menu = await openMenu();
 
-    expect(outline(menu)).toEqual(['Rename view', 'Visibility settings', '---', 'Save', 'Save as', '---', 'Delete']);
+    expect(outline(menu)).toEqual(['Rename view', 'Visibility settings', '---', 'Save', 'Save as', '导出甘特图', 'Excel批量导入', '---', 'Delete']);
   });
 
   it('leaves out the column and grouping actions on a mobile screen, keeping the arrow keys moving', async () => {
@@ -216,7 +218,7 @@ describe('OpSettingsMenuDirective', () => {
     await settle();
     const menu = await screen.findByRole('menu', { name: 'More actions' });
 
-    expect(names(menu)).toEqual(['Configure view', 'Rename view', 'Visibility settings', 'Sort by', 'Save', 'Save as', 'Export', 'Delete']);
+    expect(names(menu)).toEqual(['Configure view', 'Rename view', 'Visibility settings', 'Sort by', 'Save', 'Save as', 'Export', '导出甘特图', 'Excel批量导入', 'Delete']);
     await waitFor(() => expect(within(menu).getByRole('menuitem', { name: 'Configure view' })).toHaveFocus());
     await userEvent.keyboard('{ArrowDown}');
     expect(within(menu).getByRole('menuitem', { name: 'Rename view' })).toHaveFocus();
@@ -226,7 +228,7 @@ describe('OpSettingsMenuDirective', () => {
     await createHost({ showCalendarSharingOption: true });
     const menu = await openMenu();
 
-    expect(outline(menu).slice(-6)).toEqual(['Save', 'Save as', 'Subscribe to calendar', 'Export', '---', 'Delete']);
+    expect(outline(menu).slice(-8)).toEqual(['Save', 'Save as', 'Subscribe to calendar', 'Export', '导出甘特图', 'Excel批量导入', '---', 'Delete']);
     expect(within(menu).getByRole('menuitem', { name: 'Subscribe to calendar' }).querySelector('svg')).not.toBeNull();
   });
 
