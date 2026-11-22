@@ -211,7 +211,7 @@ RSpec.describe "Project creation wizard from a template",
     expect(Attachment.count)
       .to be 1
     artefact = artefact_wp.attachments.first
-    pdf_timestamp = artefact_wp.updated_at.strftime("%Y-%m-%d_%H-%M")
+    pdf_timestamp = artefact_wp.updated_at.in_time_zone(current_user.time_zone).strftime("%Y-%m-%d_%H-%M")
     expect(artefact.filename)
       .to eq("#{project.identifier}_Project_creation_wizard_#{status_new.name}_#{pdf_timestamp}.pdf")
   end
