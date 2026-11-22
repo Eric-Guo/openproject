@@ -340,13 +340,13 @@ RSpec.describe WorkPackages::Import::CSV::RowMapper do
 
     it "reads a timestamp whichever of its shapes the file writes" do
       expect(map(created_at: "2026-01-04 09:00").result.columns)
-        .to eq(created_at: Time.utc(2026, 1, 4, 9))
+        .to eq(created_at: Time.zone.local(2026, 1, 4, 9))
       expect(map(created_at: "2026-01-04T09:00:30").result.columns)
-        .to eq(created_at: Time.utc(2026, 1, 4, 9, 0, 30))
+        .to eq(created_at: Time.zone.local(2026, 1, 4, 9, 0, 30))
       expect(map(created_at: "2026-01-04").result.columns)
-        .to eq(created_at: Time.utc(2026, 1, 4))
+        .to eq(created_at: Time.zone.local(2026, 1, 4))
       expect(map(created_at: "2026/01/25 09:00 AM").result.columns)
-        .to eq(created_at: Time.utc(2026, 1, 25, 9))
+        .to eq(created_at: Time.zone.local(2026, 1, 25, 9))
       expect(map(created_at: "2026-01-25 09:00 UTC").result.columns)
         .to eq(created_at: Time.utc(2026, 1, 25, 9))
     end
