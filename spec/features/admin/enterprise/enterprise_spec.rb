@@ -43,7 +43,7 @@ RSpec.describe "Enterprise token", :js do
     end
 
     it "shows a teaser page and has a button to add a token with a dialog" do
-      expect(page).to have_link("Start free trial")
+      expect(page).to have_no_link("Start free trial")
 
       expect(page).to have_button("Add Enterprise token")
       click_button "Add Enterprise token"
