@@ -92,8 +92,8 @@ RSpec.describe "Turbo frame-missing fallback", :js do
   it "follows a redirect out of the frame and restores the page on Back" do
     inject_frame(id: "op-20215-frame", src: signin_path)
 
-    expect(page).to have_current_path(home_path)
-    expect(page).to have_heading "OpenProject"
+    expect(page).to have_current_path(my_page_path)
+    expect(page).to have_heading I18n.t("my_page.label")
 
     page.go_back
 
