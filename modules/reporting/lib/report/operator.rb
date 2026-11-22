@@ -378,9 +378,15 @@ class Report::Operator
   module DateRange
     def modify(query, field, from, to)
       today = Time.zone.today
-      query.where ["#{field} >= '%s'", quoted_date((today + from).beginning_of_day)] if from
-      query.where ["#{field} < '%s'", quoted_date((today + to + 1).beginning_of_day)] if to
+      query.where ["#{field} >= '%s'", quoted_day_boundary(field, today + from)] if from
+      query.where ["#{field} < '%s'", quoted_day_boundary(field, today + to + 1)] if to
       query
+    end
+
+    private
+
+    def quoted_day_boundary(field, date)
+      quoted_date(field.to_s.end_with?("_at") ? date.beginning_of_day : date)
     end
   end
 

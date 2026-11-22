@@ -166,6 +166,19 @@ RSpec.describe CostQuery::Operator, :reporting_query_helper do
     expect(cost_query("projects", "created_at", "t").size).to eq(s + 1)
   end
 
+  it "filters spent dates by the local calendar day" do
+    Time.use_zone("Asia/Shanghai") do
+      travel_to(Time.zone.local(2026, 5, 12, 1)) do
+        today = create(:time_entry, spent_on: Date.current)
+        create(:time_entry, spent_on: Date.yesterday)
+        create(:time_entry, spent_on: Date.tomorrow)
+
+        matches = cost_query("time_entries", "spent_on", "t")
+        expect(matches.pluck("id")).to contain_exactly(today.id)
+      end
+    end
+  end
+
   it "does <t+ (before the day which is n days in the future)" do
     n = cost_query("projects", "created_at", "<t+", 2).size
     create(:project, created_at: Date.tomorrow + 1)
