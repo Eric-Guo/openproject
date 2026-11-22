@@ -110,8 +110,9 @@ RSpec.describe WorkPackageMailer do
 
     it "has a message id header" do
       Timecop.freeze(Time.current) do
+        timestamp = Time.current.in_time_zone(recipient.time_zone).strftime("%Y%m%d%H%M%S")
         expect(mail.message_id)
-          .to eql "op.journal-#{journal.id}.#{Time.current.strftime('%Y%m%d%H%M%S')}.#{recipient.id}@example.net"
+          .to eql "op.journal-#{journal.id}.#{timestamp}.#{recipient.id}@example.net"
       end
     end
 
