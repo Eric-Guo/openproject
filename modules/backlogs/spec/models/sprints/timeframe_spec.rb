@@ -127,7 +127,7 @@ RSpec.describe Sprints::Timeframe do
     it "hands an actual start back in that zone, so its date reads as the viewer's" do
       expect(timeframe.effective_start).to eq sprint.started_at
       expect(timeframe.effective_start.to_date).to eq Date.new(2026, 10, 13)
-      expect(sprint.started_at.to_date).to eq Date.new(2026, 10, 12)
+      expect(sprint.started_at.utc.to_date).to eq Date.new(2026, 10, 12)
     end
   end
 
