@@ -127,8 +127,13 @@ describe('TimezoneService', () => {
     it('differs from formattedDate, which does not apply the zone', () => {
       const instant = '2026-10-16T19:00:00Z';
 
-      expect(timezoneService.formattedDatetimeAsDate(instant))
-        .not.toEqual(timezoneService.formattedDate(instant));
+      moment.tz.setDefault('UTC');
+      try {
+        expect(timezoneService.formattedDatetimeAsDate(instant)).toEqual('17.10.2026');
+        expect(timezoneService.formattedDate(instant)).toEqual('16.10.2026');
+      } finally {
+        moment.tz.setDefault();
+      }
     });
   });
 
