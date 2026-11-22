@@ -140,15 +140,13 @@ RSpec.describe "BCF 2.1 projects resource", content_type: :json do
       get path
     end
 
-    it_behaves_like "bcf api successful response" do
-      let(:expected_body) do
-        [
-          {
-            project_id: project.id,
-            name: project.name
-          }
-        ]
-      end
+    it "lists exactly the projects visible to the user", :aggregate_failures do
+      expect(response).to have_http_status(:ok)
+      expect(response.media_type).to eq("application/json")
+      expect(JSON.parse(last_response.body)).to contain_exactly(
+        { "project_id" => project.id, "name" => project.name },
+        { "project_id" => non_bcf_project.id, "name" => non_bcf_project.name }
+      )
     end
   end
 end
