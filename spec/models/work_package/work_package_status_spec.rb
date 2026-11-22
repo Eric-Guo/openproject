@@ -45,7 +45,7 @@ RSpec.describe WorkPackage, "status" do
       end
     end
 
-    context "without EE" do
+    context "without EE", with_ee: false do
       it "is not marked as read only" do
         expect(work_package).not_to be_readonly_status
       end

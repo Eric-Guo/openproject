@@ -100,7 +100,7 @@ class Status < ApplicationRecord
   end
 
   def self.can_readonly?
-    true
+    EnterpriseToken.allows_to?(:readonly_work_packages)
   end
   delegate :can_readonly?, to: :class
 
