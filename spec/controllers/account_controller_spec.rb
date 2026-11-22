@@ -77,9 +77,9 @@ RSpec.describe AccountController, :skip_2fa_stage do
         get :login, params:
       end
 
-      it "redirects to home" do
+      it "redirects to the dashboard" do
         expect(response)
-          .to redirect_to home_path
+          .to redirect_to my_page_path
       end
 
       context "and a valid back url is present" do
@@ -94,8 +94,8 @@ RSpec.describe AccountController, :skip_2fa_stage do
       context "and an invalid back url present" do
         let(:params) { { back_url: "http://test.foo/work_packages/show/1" } }
 
-        it "redirects to home" do
-          expect(response).to redirect_to home_path
+        it "redirects to the dashboard" do
+          expect(response).to redirect_to my_page_path
         end
       end
     end
@@ -113,7 +113,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
 
       it "allows to post to login" do
         post :login, params: { username: admin.login, password: "adminADMIN!" }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
     end
 
@@ -140,7 +140,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
 
       it "allows to post to login" do
         post :login, params: { username: admin.login, password: "adminADMIN!" }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
     end
   end
@@ -239,13 +239,13 @@ RSpec.describe AccountController, :skip_2fa_stage do
         post :login, params: { username: admin.login, password: "adminADMIN!" }
       end
 
-      it "redirect to the home page" do
-        expect(response).to redirect_to home_path
+      it "redirects to the dashboard" do
+        expect(response).to redirect_to my_page_path
       end
 
-      context "with login redirect set", with_settings: { after_login_default_redirect_url: "/my/page" } do
-        it "redirect to the my page" do
-          expect(response).to redirect_to my_page_path
+      context "with login redirect set", with_settings: { after_login_default_redirect_url: "/projects" } do
+        it "redirects to the configured projects page" do
+          expect(response).to redirect_to projects_path
         end
       end
 
@@ -279,7 +279,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                password: "adminADMIN!",
                back_url: "http://test.foo/work_packages/show/1"
              }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
 
       it "does not redirect to another host with a protocol relative url" do
@@ -289,7 +289,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                password: "adminADMIN!",
                back_url: "//test.foo/fake"
              }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
 
       it "does not redirect to logout" do
@@ -299,7 +299,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                password: "adminADMIN!",
                back_url: "/logout"
              }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
 
       context "with a relative url root" do
@@ -338,7 +338,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                  password: "adminADMIN!",
                  back_url: "http://test.host/foo/work_packages/show/1"
                }
-          expect(response).to redirect_to home_path
+          expect(response).to redirect_to my_page_path
         end
 
         it "does not redirect to another subdirectory with a relative path" do
@@ -348,7 +348,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                  password: "adminADMIN!",
                  back_url: "/foo/work_packages/show/1"
                }
-          expect(response).to redirect_to home_path
+          expect(response).to redirect_to my_page_path
         end
 
         it "does not redirect to another subdirectory by going up the path hierarchy" do
@@ -358,7 +358,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                  password: "adminADMIN!",
                  back_url: "http://test.host/openproject/../foo/work_packages/show/1"
                }
-          expect(response).to redirect_to home_path
+          expect(response).to redirect_to my_page_path
         end
 
         it "does not redirect to another subdirectory with a protocol relative path" do
@@ -368,7 +368,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
                  password: "adminADMIN!",
                  back_url: "//test.host/foo/work_packages/show/1"
                }
-          expect(response).to redirect_to home_path
+          expect(response).to redirect_to my_page_path
         end
       end
     end
@@ -561,7 +561,7 @@ RSpec.describe AccountController, :skip_2fa_stage do
 
       it "allows to login internally still" do
         post :login, params: { username: admin.login, password: "adminADMIN!" }
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to my_page_path
       end
     end
   end
