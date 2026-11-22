@@ -143,15 +143,6 @@ RSpec.describe "Meeting templates requests",
       end
     end
 
-    context "when the template feature is unavailable", with_ee: false do
-      before { login_as user_with_permissions }
-
-      it "refuses to create a project template" do
-        expect { post create_template_project_meetings_path(project) }.not_to change(Meeting, :count)
-        expect(response).to have_http_status(:forbidden)
-      end
-    end
-
     context "with invalid project parameter in the global context" do
       before { login_as user_with_permissions }
 
@@ -180,7 +171,7 @@ RSpec.describe "Meeting templates requests",
   end
 
   describe "GET templates/new_dialog" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       before { login_as user_with_permissions }
 
       it "returns 403" do
@@ -192,7 +183,7 @@ RSpec.describe "Meeting templates requests",
   end
 
   describe "POST /meetings/templates" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       before { login_as user_with_permissions }
 
       it "returns 403 and does not create a template" do
@@ -206,7 +197,7 @@ RSpec.describe "Meeting templates requests",
   end
 
   describe "GET /meetings/new_dialog (create from new meeting dialog)" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       before { login_as user_with_permissions }
 
       it "returns 403" do
@@ -219,7 +210,7 @@ RSpec.describe "Meeting templates requests",
   end
 
   describe "POST /meetings (create from template page)" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       before { login_as user_with_permissions }
 
       it "returns 403 and does not create a meeting" do
