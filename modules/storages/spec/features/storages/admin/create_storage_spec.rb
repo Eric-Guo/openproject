@@ -45,7 +45,7 @@ RSpec.describe "Admin Create a new file storage",
       allow(Doorkeeper::OAuth::Helpers::UniqueToken).to receive(:generate).and_return(secret)
     end
 
-    it "renders a Nextcloud specific multi-step form for Two-Way OAuth 2.0 by default", :webmock do
+    it "renders a Nextcloud specific multi-step form for Two-Way OAuth 2.0 by default", :webmock, with_ee: false do
       visit admin_settings_storages_path
 
       expect(page).to be_axe_clean.within "#content"
@@ -98,6 +98,7 @@ RSpec.describe "Admin Create a new file storage",
 
           expect(page).to have_text("Host is not a valid URL.")
 
+          allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
           mock_server_capabilities_response("https://example.com")
           mock_server_config_check_response("https://example.com")
           fill_in "Host", with: "https://example.com"
