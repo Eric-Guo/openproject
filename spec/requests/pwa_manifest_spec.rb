@@ -134,7 +134,7 @@ RSpec.describe "PWA manifest", type: :rails_request, with_flag: { progressive_we
       expect(manifest).to include("theme_color" => "#123456")
     end
 
-    it "keeps the default without an enterprise token" do
+    it "keeps the default without an enterprise token", with_config: { edition: "standard" }, with_ee: false do
       expect(manifest).to include("theme_color" => "#0F41B5")
     end
   end
