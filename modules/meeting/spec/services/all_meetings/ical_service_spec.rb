@@ -283,7 +283,7 @@ RSpec.describe AllMeetings::ICalService, type: :model do
         STR
 
         expect(entry.description.to_s).to eq description
-        expect(entry.location).to eq(recurring_meeting.template.location.presence)
+        expect(entry.location).to eq(meeting.location.presence)
         expect(entry.sequence).to eq(meeting.lock_version)
         expect(entry.status).to eq "CONFIRMED"
 
