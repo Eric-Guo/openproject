@@ -4,18 +4,18 @@ import { renderEditor } from '../../../helpers/renderEditor';
 import { insertInlineWorkPackageViaSlashMenu, insertInlineWorkPackageViaHash } from '../../../helpers/editorHelpers';
 
 describe('Inline chip - single block copy/paste', () => {
-  it('copies a chip when the chip is clicked and Ctrl+C is pressed without surrounding text', async () => {
+  it('copies a chip when the chip is clicked and the copy shortcut is pressed without surrounding text', async () => {
     renderEditor();
     await insertInlineWorkPackageViaHash('#');
 
     await userEvent.click(page.getByText('#123').first());
     await expect.element(page.getByTestId('popover-content')).toBeVisible();
 
-    await userEvent.keyboard('{Control>}c{/Control}');
+    await userEvent.copy();
 
-    await userEvent.keyboard('{Control>}{End}{/Control}');
+    await userEvent.keyboard('{ArrowRight}');
     await userEvent.keyboard('{Enter}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.paste();
 
     await vi.waitFor(() => {
       expect(document.querySelectorAll('.op-bn-inline-wp').length).toBe(2);
@@ -28,10 +28,10 @@ describe('Inline chip - copy/paste independence', () => {
     renderEditor();
     await insertInlineWorkPackageViaSlashMenu();
 
-    await userEvent.keyboard('{Control>}a{/Control}');
-    await userEvent.keyboard('{Control>}c{/Control}');
-    await userEvent.keyboard('{Control>}{End}{/Control}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
+    await userEvent.copy();
+    await userEvent.keyboard('{ArrowRight}');
+    await userEvent.paste();
 
     expect((await page.getByText('#123').all()).length).toBe(2);
 
@@ -48,10 +48,10 @@ describe('Inline chip - copy/paste independence', () => {
     renderEditor();
     await insertInlineWorkPackageViaSlashMenu();
 
-    await userEvent.keyboard('{Control>}a{/Control}');
-    await userEvent.keyboard('{Control>}c{/Control}');
-    await userEvent.keyboard('{Control>}{End}{/Control}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
+    await userEvent.copy();
+    await userEvent.keyboard('{ArrowRight}');
+    await userEvent.paste();
 
     expect((await page.getByText('#123').all()).length).toBe(2);
 
@@ -69,10 +69,10 @@ describe('Inline chip - copy/paste independence', () => {
     renderEditor();
     await insertInlineWorkPackageViaSlashMenu();
 
-    await userEvent.keyboard('{Control>}a{/Control}');
-    await userEvent.keyboard('{Control>}c{/Control}');
-    await userEvent.keyboard('{Control>}{End}{/Control}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
+    await userEvent.copy();
+    await userEvent.keyboard('{ArrowRight}');
+    await userEvent.paste();
 
     expect((await page.getByText('#123').all()).length).toBe(2);
 
@@ -88,10 +88,10 @@ describe('Inline chip - copy/paste independence', () => {
     renderEditor();
     await insertInlineWorkPackageViaSlashMenu();
 
-    await userEvent.keyboard('{Control>}a{/Control}');
-    await userEvent.keyboard('{Control>}c{/Control}');
-    await userEvent.keyboard('{Control>}{End}{/Control}');
-    await userEvent.keyboard('{Control>}v{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}a{/ControlOrMeta}');
+    await userEvent.copy();
+    await userEvent.keyboard('{ArrowRight}');
+    await userEvent.paste();
 
     expect((await page.getByText('#123').all()).length).toBe(2);
 
