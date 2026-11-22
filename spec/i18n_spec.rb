@@ -27,6 +27,8 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
+require "i18n"
+
 RSpec.describe I18n do
   before(:all) do # rubocop:disable RSpec/BeforeAfterAll
     # lazy-load i18n-tasks to save 150ms spec boot time
