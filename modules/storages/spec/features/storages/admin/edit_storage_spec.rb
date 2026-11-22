@@ -70,7 +70,7 @@ RSpec.describe "Admin Edit File storage",
       oauth_client
     end
 
-    it "renders an edit view", :webmock do
+    it "renders an edit view", :webmock, with_ee: false do
       visit edit_admin_settings_storage_path(storage)
 
       expect(page).to be_axe_clean
