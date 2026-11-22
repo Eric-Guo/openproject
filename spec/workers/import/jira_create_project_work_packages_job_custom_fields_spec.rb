@@ -852,7 +852,7 @@ RSpec.describe Import::JiraCreateProjectWorkPackagesJob,
     end
   end
 
-  describe "cascading select without enterprise - fallback to multi-value list" do
+  describe "cascading select without enterprise - fallback to multi-value list", with_ee: false do
     # Without EE the cascading select becomes a flat multi-value list containing
     # every node (root + children) as an option. The selected value is imported
     # as all nodes on the selected path (parent + child).
