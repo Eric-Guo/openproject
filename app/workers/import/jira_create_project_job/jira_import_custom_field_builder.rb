@@ -360,7 +360,7 @@ module Import
         if type == "array"
           JIRA_ARRAY_ITEMS_TO_OP_FORMAT.fetch(schema["items"], "string")
         elsif custom_suffix == "cascadingselect"
-          "hierarchy"
+          EnterpriseToken.allows_to?(:custom_field_hierarchies) ? "hierarchy" : "list"
         else
           JIRA_CUSTOM_SUFFIX_TO_OP_FORMAT[custom_suffix] || JIRA_TYPE_TO_OP_FORMAT.fetch(type, "string")
         end
