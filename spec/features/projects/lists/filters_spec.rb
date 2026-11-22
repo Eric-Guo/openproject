@@ -769,7 +769,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
                                  [Time.zone.today])
 
         projects_page.expect_projects_not_listed(development_project)
-        projects_page.expect_projects_in_order(project, public_project)
+        projects_page.expect_projects_in_order(public_project, project)
       end
     end
 
