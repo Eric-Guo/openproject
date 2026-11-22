@@ -1732,7 +1732,7 @@ RSpec.describe WorkPackage do
       end
     end
 
-    context "when enterprise token does not allow internal_comments" do
+    context "when enterprise token does not allow internal_comments", with_ee: false do
       before do
         work_package.project.enabled_internal_comments = true
         work_package.project.save!
