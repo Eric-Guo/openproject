@@ -208,7 +208,7 @@ RSpec.describe RecurringMeeting,
       it "schedules working days", :aggregate_failures do
         # Monday, 9AM
         Timecop.freeze(DateTime.parse("2024-12-02T09:00Z")) do
-          expect(subject.first_occurrence).to eq Time.zone.today + 10.hours
+          expect(subject.first_occurrence).to eq Time.utc(2024, 12, 2, 10)
           # Last thursday of the year
           expect(subject.last_occurrence).to eq DateTime.parse("2024-12-26T10:00Z")
 
