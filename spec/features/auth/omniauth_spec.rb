@@ -64,7 +64,7 @@ RSpec.describe "Omniauth authentication" do
   # rubocop:enable RSpec/InstanceVariable
 
   describe "existing user sign in" do
-    it "redirects to back url" do
+    it "opens the dashboard after signing in from password recovery" do
       visit account_lost_password_path
       start_omniauth_developer
 
@@ -74,7 +74,7 @@ RSpec.describe "Omniauth authentication" do
       fill_in("email", with: user.mail)
       click_link_or_button "Sign In"
 
-      expect(current_url).to eql home_url
+      expect(page).to have_current_path(my_page_path)
     end
 
     it "signs in user" do
