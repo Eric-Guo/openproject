@@ -637,7 +637,7 @@ RSpec.describe "Projects list filters", :js, with_settings: { login_required?: f
       end
     end
 
-    context "without EE" do
+    context "without EE", with_ee: false do
       shared_let(:program) { create(:program, name: "Growth Program") }
 
       it "does not offer the filter" do
