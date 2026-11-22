@@ -39,7 +39,7 @@ RSpec.describe "Time settings",
   end
 
   describe "GET /admin/time" do
-    context "without an Enterprise token" do
+    context "without an Enterprise token", with_ee: false do
       it "disables the restriction fields" do
         get "/admin/time"
 
