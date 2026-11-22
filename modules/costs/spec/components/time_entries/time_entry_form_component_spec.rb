@@ -81,8 +81,8 @@ RSpec.describe TimeEntries::TimeEntryFormComponent, type: :component do
     end
 
     context "when start and end times cannot be tracked", with_settings: { allow_tracking_start_and_end_times: false } do
-      it "shows the date and hours in one row" do
-        expect(time_fields_row).to have_css("opce-basic-single-date-picker")
+      it "shows hours without allowing date changes" do
+        expect(rendered_component).to have_no_field("time_entry[spent_on]", visible: :all)
         expect(time_fields_row).to have_field("time_entry[hours_display]")
 
         expect(rendered_component).to have_no_field("time_entry[start_time]")
