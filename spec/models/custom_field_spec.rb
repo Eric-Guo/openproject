@@ -822,7 +822,7 @@ RSpec.describe CustomField do
     end
 
     context "with a project weighted_item_list cf" do
-      subject { build_stubbed(:weighted_item_list_project_custom_field) }
+      subject { build_stubbed(:project_custom_field, field_format: "weighted_item_list") }
 
       it { is_expected.to be_multi_value_possible }
     end
