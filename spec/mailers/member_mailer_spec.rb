@@ -86,8 +86,10 @@ RSpec.describe MemberMailer do
 
   shared_examples_for "sets the expected message_id header" do
     it "sets the expected message_id header" do
+      timestamp = Time.current.in_time_zone(principal.time_zone).strftime("%Y%m%d%H%M%S")
+
       expect(subject["Message-ID"].value)
-        .to eql "<op.member-#{member.id}.#{Time.current.strftime('%Y%m%d%H%M%S')}.#{current_user.id}@example.net>"
+        .to eql "<op.member-#{member.id}.#{timestamp}.#{current_user.id}@example.net>"
     end
   end
 
