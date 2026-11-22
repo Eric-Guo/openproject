@@ -233,7 +233,8 @@ class TimeEntry < ApplicationRecord
     end
 
     def prohibit_logging_on_non_working_days?
-      Setting.time_entries_prohibit_logging_on_non_working_days?
+      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
+        Setting.time_entries_prohibit_logging_on_non_working_days?
     end
 
     def limit_to_user_working_hours?
