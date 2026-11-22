@@ -49,7 +49,7 @@ RSpec.describe "Projects phase definition settings", :js do
     end
   end
 
-  context "as admin without activated enterprise token" do
+  context "as admin without activated enterprise token", with_ee: false do
     current_user { create(:admin) }
 
     it "allows viewing definitions" do
