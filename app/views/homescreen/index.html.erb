@@ -26,6 +26,8 @@ See COPYRIGHT and LICENSE files for more details.
 
 ++#%>
 
+<h2 class="sr-only"><%= organization_name %></h2>
+
 <%= render Homescreen::AnnouncementComponent.new(announcement: @announcement) %>
 
 <%= render Homescreen::BlocksGridComponent.new(homescreen: @homescreen) %>
