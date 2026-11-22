@@ -610,6 +610,7 @@ describe('SortHeaderDirective column menu', () => {
   it('opens the menu flush with the header cell\'s bottom and right edges', async () => {
     const cell = header(2);
     cell.style.width = '600px';
+    overlay('status').style.width = '160px';
 
     await open('status');
 
