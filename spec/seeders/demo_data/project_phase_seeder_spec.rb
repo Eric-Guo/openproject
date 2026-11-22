@@ -34,7 +34,7 @@ RSpec.describe DemoData::ProjectPhaseSeeder do
 
   let!(:admin) { create(:admin) }
   let!(:project) { create(:project) }
-  let(:full_seed_data) { Source::SeedDataLoader.get_data(only: %w[project_phases project_phase_colors]) }
+  let(:full_seed_data) { Source::SeedDataLoader.get_data(edition: "standard", only: %w[project_phases project_phase_colors]) }
 
   subject(:seeder) { described_class.new(project, project_seed_data) }
 
