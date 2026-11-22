@@ -36,11 +36,12 @@ RSpec.describe "Homescreen", "index" do
   let(:general_settings_page) { Pages::Admin::SystemSettings::General.new }
   let(:global_html_title) { Components::HtmlTitle.new }
 
-  it "is reachable by the global menu" do
+  it "is reachable by the global modules menu", :js do
     login_as user
-    visit root_url
+    visit my_page_path
 
-    within "#main-menu" do
+    page.find_test_selector("op-app-header--modules-menu-button").click
+    within("#op-app-header--modules-menu-list") do
       click_on "Home"
     end
 
