@@ -172,7 +172,7 @@ module CustomStylesHelper
 
   # The default favicon and touch icons are both the same for normal OP and BIM.
   def apply_custom_favicon?
-    apply_custom_styles?(skip_ee_check: true) && CustomStyle.current.favicon.present?
+    apply_custom_styles?(skip_ee_check: false) && CustomStyle.current.favicon.present?
   end
 
   # The default favicon and touch icons are both the same for normal OP and BIM.
