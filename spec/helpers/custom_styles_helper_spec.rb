@@ -213,9 +213,9 @@ RSpec.describe CustomStylesHelper do
         )
 
         expect(logo_urls[:desktop]).to eq(
-          light: helper.asset_path("logo_openproject_white_big.png"),
+          light: helper.asset_path("logo_plm_white.png"),
           light_high_contrast: path,
-          dark: helper.asset_path("logo_openproject_white_big.png")
+          dark: helper.asset_path("logo_plm_white.png")
         )
       end
     end
@@ -261,8 +261,8 @@ RSpec.describe CustomStylesHelper do
         )
 
         expect(logo_urls[:desktop]).to eq(
-          light: helper.asset_path("logo_openproject_white_big.png"),
-          light_high_contrast: helper.asset_path("logo_openproject.png"),
+          light: helper.asset_path("logo_plm_white.png"),
+          light_high_contrast: helper.asset_path("logo_plm.png"),
           dark: path
         )
       end
@@ -279,7 +279,7 @@ RSpec.describe CustomStylesHelper do
         )
 
         expect(logo_urls.dig(:desktop, :dark)).to eq(path)
-        expect(logo_urls.dig(:desktop, :light)).to eq(helper.asset_path("logo_openproject_white_big.png"))
+        expect(logo_urls.dig(:desktop, :light)).to eq(helper.asset_path("logo_plm_white.png"))
       end
     end
 
@@ -295,7 +295,7 @@ RSpec.describe CustomStylesHelper do
 
         expect(logo_urls[:desktop]).to eq(
           light: helper.asset_path(current_theme.theme_logo),
-          light_high_contrast: helper.asset_path("logo_openproject.png"),
+          light_high_contrast: helper.asset_path("logo_plm.png"),
           dark: path
         )
       end
