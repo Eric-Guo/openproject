@@ -10,9 +10,9 @@ import {
   openBlockCardSizeMenu,
 } from '../../../helpers/editorHelpers';
 
-const ctrl_z = () => userEvent.keyboard('{Control>}z{/Control}');
+const undo = () => userEvent.keyboard('{ControlOrMeta>}z{/ControlOrMeta}');
 
-describe('Undo (Ctrl+Z)', () => {
+describe('Undo', () => {
   it('undoes typed text', async () => {
     renderEditor();
     const editor = page.getByRole('textbox');
@@ -20,7 +20,7 @@ describe('Undo (Ctrl+Z)', () => {
     await userEvent.type(editor, 'hello');
     await expect.element(editor).toMatchTextContent('hello');
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(editor).not.toMatchTextContent('hello');
   });
@@ -33,11 +33,11 @@ describe('Undo (Ctrl+Z)', () => {
     await userEvent.keyboard('{Enter}');
     await userEvent.type(editor, 'second');
 
-    await ctrl_z(); 
+    await undo();
     await expect.element(editor).not.toMatchTextContent('second');
 
-    await ctrl_z(); 
-    await ctrl_z(); 
+    await undo();
+    await undo();
     await expect.element(editor).not.toMatchTextContent('first');
   });
 
@@ -47,7 +47,7 @@ describe('Undo (Ctrl+Z)', () => {
     await expect.element(page.getByText('#123')).toBeVisible();
     await expect.element(page.getByTestId('op-bn-work-package--type')).toBeVisible();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByText('#123')).not.toBeInTheDocument();
     await expect.element(page.getByTestId('op-bn-work-package--type')).not.toBeInTheDocument();
@@ -59,7 +59,7 @@ describe('Undo (Ctrl+Z)', () => {
     await expect.element(page.getByText('#123')).toBeVisible();
     await expect.element(page.getByTestId('op-bn-work-package--type')).toBeVisible();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByText('#123')).not.toBeInTheDocument();
     await expect.element(page.getByTestId('op-bn-work-package--type')).not.toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('Undo (Ctrl+Z)', () => {
     renderEditor();
     await insertBlockWorkPackageViaHash();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByTestId('block-card')).not.toBeInTheDocument();
     await expect.element(page.getByText('#123')).not.toBeInTheDocument();
@@ -83,7 +83,7 @@ describe('Undo (Ctrl+Z)', () => {
     await convertToCompactCard();
     await expect.element(page.getByTestId('block-card')).toBeVisible();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByTestId('block-card')).not.toBeInTheDocument();
     await expect.element(page.getByText('#123')).toBeVisible();
@@ -100,7 +100,7 @@ describe('Undo (Ctrl+Z)', () => {
     await userEvent.click(page.getByRole('menuitemradio', { name: 'Regular', exact: true }));
     await expect.element(page.getByTestId('block-card')).not.toBeInTheDocument();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByTestId('block-card')).toBeVisible();
     await expect.element(page.getByText('Fix login bug', { exact: true })).toBeVisible();
@@ -115,7 +115,7 @@ describe('Undo (Ctrl+Z)', () => {
     await userEvent.click(page.getByRole('menuitemradio', { name: 'Compact', exact: true }));
     await expect.element(page.getByText('In Progress')).not.toBeInTheDocument();
 
-    await ctrl_z();
+    await undo();
 
     await expect.element(page.getByText('In Progress')).toBeVisible();
     await expect.element(page.getByText('#123')).toBeVisible();
@@ -127,10 +127,10 @@ describe('Undo (Ctrl+Z)', () => {
     await userEvent.click(editor);
     await userEvent.type(editor, 'hello');
 
-    await ctrl_z();
+    await undo();
     await expect.element(editor).not.toMatchTextContent('hello');
 
-    await userEvent.keyboard('{Control>}y{/Control}');
+    await userEvent.keyboard('{ControlOrMeta>}y{/ControlOrMeta}');
     await expect.element(editor).toMatchTextContent('hello');
   });
 });
