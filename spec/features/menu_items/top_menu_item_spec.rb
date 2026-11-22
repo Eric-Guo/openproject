@@ -81,7 +81,6 @@ RSpec.describe "Top menu items", :js do
     shared_let(:news_item) { menu_link_item.new(I18n.t(:label_news_plural), news_index_path) }
     shared_let(:reporting_item) { menu_link_item.new(I18n.t(:cost_reports_title), "/reporting/cost_reports") }
     shared_let(:meetings_item) { menu_link_item.new(I18n.t(:label_meeting_plural), "/meetings") }
-    shared_let(:my_page_item) { menu_link_item.new(I18n.t("my_page.label"), my_page_path) }
     shared_let(:home_item) { menu_link_item.new(I18n.t(:label_home), home_path) }
     shared_let(:my_time_item) { menu_link_item.new(I18n.t(:label_my_time), "/my/time") }
 
@@ -96,7 +95,6 @@ RSpec.describe "Top menu items", :js do
         news_item,
         reporting_item,
         meetings_item,
-        my_page_item,
         home_item,
         my_time_item
       ]
@@ -127,8 +125,8 @@ RSpec.describe "Top menu items", :js do
     end
 
     context "as a regular user" do
-      it "only displays projects, activity, news, my page and home" do
-        has_menu_items? project_item, activity_item, news_item, home_item, my_page_item
+      it "only displays projects, activity, news and home" do
+        has_menu_items? project_item, activity_item, news_item, home_item
       end
     end
 
@@ -137,8 +135,8 @@ RSpec.describe "Top menu items", :js do
         -> { mock_permissions_for(user, &:allow_everything) }
       end
 
-      it "displays all options" do
-        has_menu_items?(*all_items)
+      it "displays the permitted modules" do
+        has_menu_items?(*(all_items - [reporting_item]))
       end
     end
 
