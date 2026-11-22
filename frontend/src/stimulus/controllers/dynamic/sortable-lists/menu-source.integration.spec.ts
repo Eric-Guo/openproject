@@ -178,9 +178,10 @@ describe('Menu source with Primer deferred loading', () => {
     expect(new URL(request.url).searchParams.getAll('ids[]')).toEqual(['1', '2']);
   });
 
-  it('closes an open menu before Turbo caches the page and leaves focus to Primer', async () => {
+  it('returns keyboard focus to the invoker when Turbo caches the page', async () => {
     const { menu, button } = await renderRoot();
-    await userEvent.click(button);
+    button.focus();
+    await userEvent.keyboard('{Enter}');
     await expectLoaded(menu);
     const popover = menu.querySelector<HTMLElement>('anchored-position')!;
     expect(popover.matches(':popover-open')).toBe(true);
