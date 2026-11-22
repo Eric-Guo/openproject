@@ -472,7 +472,7 @@ module OpenProject
       date_format: "%d %m %Y"
     } do
       let(:user_time_zone) { "" }
-      let(:now) { Time.zone.parse("2011-02-20 15:45:22") }
+      let(:now) { Time.utc(2011, 2, 20, 15, 45, 22) }
 
       current_user { build_stubbed(:user, preferences: { time_zone: user_time_zone }) }
 
