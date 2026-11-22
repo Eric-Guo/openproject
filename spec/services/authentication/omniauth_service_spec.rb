@@ -96,7 +96,9 @@ RSpec.describe Authentication::OmniauthService do
     let(:call) { instance.call }
 
     context "with an active found user" do
-      shared_let(:user) { create(:user, login: "foo@bar.com", identity_url: "#{auth_provider.slug}:123545") }
+      shared_let(:user) do
+        create(:user, firstname: "Local", lastname: "Name", login: "foo@bar.com", identity_url: "#{auth_provider.slug}:123545")
+      end
 
       it "does not call register user service and logs in the user" do
         allow(Users::RegisterUserService).to receive(:new)
@@ -107,8 +109,8 @@ RSpec.describe Authentication::OmniauthService do
 
         expect(call).to be_success
         expect(call.result).to eq user
-        expect(call.result.firstname).to eq "foo"
-        expect(call.result.lastname).to eq "bar"
+        expect(call.result.firstname).to eq "Local"
+        expect(call.result.lastname).to eq "Name"
         expect(call.result.mail).to eq "foo@bar.com"
 
         expect(Users::RegisterUserService).not_to have_received(:new)
