@@ -114,6 +114,7 @@ describe('Context menu entry', () => {
       '---',
       'Log time',
       '---',
+      '导入工作集',
       'Move to another project',
       '---',
       'Generate PDF',
