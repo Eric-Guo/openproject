@@ -32,7 +32,7 @@ require "spec_helper"
 require_module_spec_helper
 
 RSpec.describe Storages::Admin::SidePanel::HealthNotificationsComponent, type: :component do
-  frozen_date_time = Time.zone.local(2023, 11, 28, 1, 2, 3)
+  let(:frozen_date_time) { Time.utc(2023, 11, 28, 1, 2, 3) }
 
   describe "storage without automatically managed project folders" do
     let(:storage) { build_stubbed(:nextcloud_storage, :as_not_automatically_managed) }
