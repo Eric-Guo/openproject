@@ -44,6 +44,8 @@ RSpec.describe EmojiReaction do
           grinning_face_with_smiling_eyes: "grinning_face_with_smiling_eyes",
           confused_face: "confused_face",
           heart: "heart",
+          broken_heart: "broken_heart",
+          handshake: "handshake",
           party_popper: "party_popper",
           rocket: "rocket",
           eyes: "eyes"
@@ -88,9 +90,11 @@ RSpec.describe EmojiReaction do
          ["👀", :eyes],
          ["👍", :thumbs_up],
          ["👎", :thumbs_down],
+         ["💔", :broken_heart],
          ["😄", :grinning_face_with_smiling_eyes],
          ["😕", :confused_face],
-         ["🚀", :rocket]]
+         ["🚀", :rocket],
+         ["🤝", :handshake]]
       )
     end
   end
