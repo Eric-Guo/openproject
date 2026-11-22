@@ -41,7 +41,7 @@ RSpec.describe API::V3::Reminders::ReminderRepresenter do
   end
 
   it "renders the remindAt" do
-    expect(parsed["remindAt"]).to eq reminder.remind_at.iso8601(3)
+    expect(parsed["remindAt"]).to eq reminder.remind_at.utc.iso8601(3)
   end
 
   it "renders the note" do
