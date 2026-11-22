@@ -137,7 +137,7 @@ RSpec.describe "Projects lists table display and actions", :js, with_settings: {
       shared_let(:work_package) { create(:work_package, project: development_project) }
       shared_let(:user) do
         create(:user,
-               member_with_permissions: { work_package => [:view_work_packages] },
+               member_with_permissions: { public_project => [:view_project], work_package => [:view_work_packages] },
                login: "nerd",
                firstname: "Alan",
                lastname: "Turing")
