@@ -35,7 +35,7 @@ class TextEditorField < EditField
   end
 
   def input_selector
-    ".ck-content"
+    ".ck-editor__editable[contenteditable='true']"
   end
 
   def expect_save_button(enabled: true)
