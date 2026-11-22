@@ -143,7 +143,7 @@ RSpec.describe "Sprint report page", :js, with_flag: :sprint_reports do
       end
     end
 
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       let(:expected_widgets) { core_widgets }
 
       it_behaves_like "sprint report widgets"
