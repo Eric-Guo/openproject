@@ -42,6 +42,7 @@ RSpec.describe "Admin Create a new file storage",
     let(:secret) { "awesome_secret" }
 
     before do
+      allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
       allow(Doorkeeper::OAuth::Helpers::UniqueToken).to receive(:generate).and_return(secret)
     end
 
@@ -98,7 +99,6 @@ RSpec.describe "Admin Create a new file storage",
 
           expect(page).to have_text("Host is not a valid URL.")
 
-          allow(Resolv).to receive(:getaddresses).with("example.com").and_return(["93.184.216.34"])
           mock_server_capabilities_response("https://example.com")
           mock_server_config_check_response("https://example.com")
           fill_in "Host", with: "https://example.com"
