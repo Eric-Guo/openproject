@@ -584,7 +584,7 @@ RSpec.describe "API v3 Work package resource",
           end
         end
 
-        context "without EE" do
+        context "without EE", with_ee: false do
           shared_examples "success" do
             it "responds with 200" do
               expect(subject && last_response).to have_http_status(:ok)

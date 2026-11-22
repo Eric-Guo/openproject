@@ -105,7 +105,10 @@ class Timestamp
     end
 
     def allowed(timestamps)
-      timestamps
+      return timestamps if EnterpriseToken.allows_to?(:baseline_comparison)
+
+      yesterday = Time.zone.yesterday.beginning_of_day
+      timestamps.select { |timestamp| timestamp.one_day_ago? || timestamp.to_time >= yesterday }
     end
   end
 
