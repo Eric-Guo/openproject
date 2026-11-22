@@ -171,7 +171,7 @@ RSpec.describe Bim::Bcf::API::V2_1::Topics::SingleRepresenter, "rendering" do
 
     context "creation_date" do
       it_behaves_like "attribute" do
-        let(:value) { work_package.created_at.iso8601(3) }
+        let(:value) { work_package.created_at.utc.iso8601(3) }
         let(:path) { "creation_date" }
       end
     end
