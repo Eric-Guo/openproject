@@ -124,7 +124,8 @@ RSpec.describe Backlogs::SprintReports::Widgets::WorkPackageOverview, type: :com
           before { allow(breakdown).to receive(:reference_finish).and_return(reference_finish) }
 
           it "adds the reference finish to the completed and unfinished links" do
-            expect(query_props.pluck("ts").last(2)).to eq [reference_finish.to_s, reference_finish.to_s]
+            finish = reference_finish.to_time.utc.iso8601
+            expect(query_props.pluck("ts").last(2)).to eq [finish, finish]
           end
         end
 
