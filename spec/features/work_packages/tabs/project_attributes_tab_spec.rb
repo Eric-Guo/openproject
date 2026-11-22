@@ -58,15 +58,15 @@ RSpec.describe "Work package project attributes tab", :js do
   let(:inplace_field) { Components::Common::InplaceEditField.new(project, string_field.attribute_name.to_sym) }
   let(:input_field) { FormFields::Primerized::InputField.new(string_field) }
 
+  before do
+    login_as user
+    wp_page.visit_tab! "activity"
+    wp_page.switch_to_tab(tab: I18n.t("js.work_packages.tabs.project_attributes"))
+    find_test_selector("wp-project-attribute-#{string_field.id}", wait: 20)
+  end
+
   context "as a user with view and edit permissions" do
     let(:user) { create(:user, member_with_roles: { project => edit_role }) }
-
-    before do
-      login_as user
-      wp_page.visit_tab! "activity"
-      expect_angular_frontend_initialized
-      wait_for_turbo_frame { click_on I18n.t("js.work_packages.tabs.project_attributes") }
-    end
 
     it "displays the section and field" do
       expect(page).to have_test_selector("wp-project-attribute-section-#{section.id}")
@@ -89,13 +89,6 @@ RSpec.describe "Work package project attributes tab", :js do
   context "as a user with edit_project_attributes but without edit_project" do
     let(:user) { create(:user, member_with_roles: { project => edit_project_attributes_only_role }) }
 
-    before do
-      login_as user
-      wp_page.visit_tab! "activity"
-      expect_angular_frontend_initialized
-      wait_for_turbo_frame { click_on I18n.t("js.work_packages.tabs.project_attributes") }
-    end
-
     it "allows editing a string field" do
       wait_for_turbo_stream { inplace_field.open_field }
 
@@ -111,13 +104,6 @@ RSpec.describe "Work package project attributes tab", :js do
 
   context "as a user with view permission only" do
     let(:user) { create(:user, member_with_roles: { project => view_role }) }
-
-    before do
-      login_as user
-      wp_page.visit_tab! "activity"
-      expect_angular_frontend_initialized
-      wait_for_turbo_frame { click_on I18n.t("js.work_packages.tabs.project_attributes") }
-    end
 
     it "displays the field but does not allow editing" do
       expect(page).to have_test_selector("wp-project-attribute-#{string_field.id}")
