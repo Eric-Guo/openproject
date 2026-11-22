@@ -418,7 +418,7 @@ RSpec.describe Import::JiraCreateProjectJob::JiraImportCustomFieldBuilder do
       end
     end
 
-    context "with a cascading select field without enterprise (list fallback)" do
+    context "with a cascading select field without enterprise (list fallback)", with_ee: false do
       let(:context_group) do
         {
           "projects" => [],

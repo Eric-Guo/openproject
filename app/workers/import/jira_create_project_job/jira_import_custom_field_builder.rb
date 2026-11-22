@@ -266,7 +266,8 @@ module Import
 
       def cascading_select_as_list?
         schema = jira_field.payload["schema"] || {}
-        schema["custom"].to_s.end_with?(":cascadingselect")
+        schema["custom"].to_s.end_with?(":cascadingselect") &&
+          !EnterpriseToken.allows_to?(:custom_field_hierarchies)
       end
 
       # Recursively collects every node as a full path label at every level of the cascading tree.
