@@ -45,7 +45,17 @@ RSpec.describe "time entry dialog", :js do
     login_as user
   end
 
-  context "when user has permission to log own time" do
+  context "with TH time reporting", if: defined?(OpenProject::LabourTracking) do
+    let(:permissions) { %i[log_own_time view_own_time_entries view_work_packages] }
+
+    it "keeps time entry out of the work package menu" do
+      work_package_page = Pages::FullWorkPackage.new(work_package_a, project)
+      work_package_page.visit!
+      expect(work_package_page.open_more_menu).to have_no_selector(:menuitem, "Log time", exact: true)
+    end
+  end
+
+  context "when user has permission to log own time", unless: defined?(OpenProject::LabourTracking) do
     let(:permissions) { %i[log_own_time view_own_time_entries view_work_packages] }
 
     before do
@@ -93,7 +103,7 @@ RSpec.describe "time entry dialog", :js do
     end
   end
 
-  context "when user has permission to log time for others" do
+  context "when user has permission to log time for others", unless: defined?(OpenProject::LabourTracking) do
     let!(:other_user) do
       create(
         :user,
@@ -125,7 +135,9 @@ RSpec.describe "time entry dialog", :js do
     end
   end
 
-  describe "calculating logic", with_settings: { allow_tracking_start_and_end_times: true } do
+  describe "calculating logic",
+           unless: defined?(OpenProject::LabourTracking),
+           with_settings: { allow_tracking_start_and_end_times: true } do
     let(:permissions) { %i[log_own_time view_own_time_entries view_work_packages] }
 
     before do
@@ -223,7 +235,7 @@ RSpec.describe "time entry dialog", :js do
     end
   end
 
-  describe "custom field validation" do
+  describe "custom field validation", unless: defined?(OpenProject::LabourTracking) do
     let(:permissions) { %i[log_own_time view_own_time_entries view_work_packages] }
     let!(:required_custom_field) do
       create(:time_entry_custom_field, :string,
@@ -263,7 +275,7 @@ RSpec.describe "time entry dialog", :js do
     end
   end
 
-  describe "hours limit validation", with_ee: %i[time_entry_time_restrictions] do
+  describe "hours limit validation", unless: defined?(OpenProject::LabourTracking), with_ee: %i[time_entry_time_restrictions] do
     let(:permissions) { %i[log_own_time view_own_time_entries view_work_packages] }
 
     before do
