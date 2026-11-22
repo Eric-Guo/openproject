@@ -232,7 +232,7 @@ RSpec.describe "Onetime templates CRUD", :js do
       end
     end
 
-    context "as user with edit_meetings permission" do
+    context "as user with edit_meetings permission", with_ee: false do
       let(:user_with_edit) do
         create(:user, member_with_permissions: { project => %i[view_meetings create_meetings edit_meetings] })
       end
