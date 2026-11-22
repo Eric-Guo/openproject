@@ -70,9 +70,9 @@ RSpec.describe "menu permissions", :js do
       visit project_settings_versions_path(project)
     end
 
-    it "I can only see the version settings page" do
+    it "I can see information and version settings" do
       expect(page).to have_css("#menu-sidebar .op-menu--item-title", text: "Versions")
-      expect(page).to have_no_css("#menu-sidebar .op-menu--item-title", text: "Information")
+      expect(page).to have_css("#menu-sidebar .op-menu--item-title", text: "Information")
       expect(page).to have_no_css("#menu-sidebar .op-menu--item-title", text: "Modules")
     end
 
