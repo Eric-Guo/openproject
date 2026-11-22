@@ -116,11 +116,11 @@ RSpec.describe API::V3::Users::CreateFormAPI, content_type: :json do
                 .at_path("_embedded/payload/email")
 
         expect(body)
-          .to be_json_eql("cfuser".to_json)
+          .to be_json_eql("@example.com".to_json)
                 .at_path("_embedded/payload/firstName")
 
         expect(body)
-          .to be_json_eql("@example.com".to_json)
+          .to be_json_eql("cfuser".to_json)
                 .at_path("_embedded/payload/lastName")
 
         expect(body)
