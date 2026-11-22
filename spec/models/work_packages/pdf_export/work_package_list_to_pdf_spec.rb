@@ -193,8 +193,10 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
     expect(pdf.strings.join(" ")).to eq(strings.join(" "))
   end
 
-  def pdf_strings_without_footers(nr_of_pages)
+  def pdf_strings_without_footers
     result = pdf_strings
+    nr_of_pages = PDF::Reader.new(export_pdf.content.path).page_count
+    nr_of_pages -= 1 if options[:pdf_export_type] == "report"
     nr_of_pages.times do |page|
       result = result.gsub([" #{page + 1}/#{nr_of_pages}", export_date_formatted, query.name].join(" "), "")
     end
@@ -206,7 +208,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
 
     describe "with default settings" do
       it "contains correct data" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           *column_titles,
@@ -228,7 +230,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       before { work_package_parent.update!(parent: invisible_parent) }
 
       it "leaves the cell blank" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           *column_titles,
@@ -244,7 +246,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       before { hide_attribute_on(:story_points, work_package_child) }
 
       it "blanks the cell and the sum it would disclose" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to include([I18n.t("js.label_sum"), "38%"].join(" "))
       end
     end
@@ -253,7 +255,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:query_attributes) { { group_by: "type" } }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           work_package_parent.type.name,
@@ -295,7 +297,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
             work_package_child.display_id.to_s,
             work_package_child.subject
           ]
-          strings = pdf_strings_without_footers(1)
+          strings = pdf_strings_without_footers
           expect(strings).to eq(expected_pdf_strings.join(" "))
         end
       end
@@ -312,7 +314,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
         end
 
         it "groups each work package under its lowest-id target version" do
-          strings = pdf_strings_without_footers(1)
+          strings = pdf_strings_without_footers
           expect(strings).to eq [
             query.name,
             version_one.name,
@@ -338,7 +340,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
         end
 
         it "writes work packages sharing the same target versions into a single group" do
-          strings = pdf_strings_without_footers(1)
+          strings = pdf_strings_without_footers
           expect(strings).to eq [
             query.name,
             "2.0, 1.0",
@@ -352,7 +354,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
           let(:query_attributes) { { group_by: "target_versions", display_sums: true } }
 
           it "writes the group sums although the versions are ordered by name in the sums" do
-            strings = pdf_strings_without_footers(1)
+            strings = pdf_strings_without_footers
             expect(strings).to eq [
               query.name,
               "2.0, 1.0",
@@ -370,7 +372,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:query_attributes) { { group_by: "type", display_sums: true } }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           work_package_parent.type.name,
@@ -389,7 +391,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:query_attributes) { { group_by: list_custom_field.column_name, display_sums: true } }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           "Foo",
@@ -426,7 +428,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
         let(:query_attributes) { { group_by: hierarchy_custom_field.column_name, display_sums: true } }
 
         it "contains correct data" do
-          strings = pdf_strings_without_footers(1)
+          strings = pdf_strings_without_footers
           expect(strings).to eq [
             query.name,
             "Berlin",
@@ -445,7 +447,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
         let(:query_attributes) { { group_by: hierarchy_custom_field.column_name, display_sums: false } }
 
         it "contains correct data" do
-          strings = pdf_strings_without_footers(1)
+          strings = pdf_strings_without_footers
           expect(strings).to eq [
             query.name,
             "Berlin",
@@ -484,7 +486,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       end
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(1)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           query.name,
           "Berlin",
@@ -508,7 +510,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
 
     describe "with default settings" do
       it "contains correct data" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -551,7 +553,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:long_text_fields) { [] }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -568,7 +570,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:long_text_fields) { [text_custom_field_a.id, "description"] }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -584,7 +586,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:query_attributes) { { show_hierarchies: true } }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -600,7 +602,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:query_attributes) { { display_sums: true } }
 
       it "contains correct data" do
-        strings = pdf_strings_without_footers(3)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -622,7 +624,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       before { hide_attribute_on(:story_points, work_package_child) }
 
       it "blanks the entry in the overview table" do
-        strings = pdf_strings_without_footers(3)
+        strings = pdf_strings_without_footers
         expect(strings).to include([
           I18n.t("js.work_packages.tabs.overview"),
           column_title(:story_points),
@@ -640,7 +642,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
         let(:query_attributes) { { display_sums: true, group_by: "type" } }
 
         it "contains correct data" do
-          strings = pdf_strings_without_footers(2)
+          strings = pdf_strings_without_footers
           expect(strings).to eq [
             *cover_page_content,
             query.name,
@@ -710,7 +712,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       let(:column_names) { %w[id subject status relation_child] }
 
       it "contains children table for parent work package" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -745,7 +747,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       end
 
       it "contains related work packages table" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
@@ -785,7 +787,7 @@ RSpec.describe WorkPackage::PDFExport::WorkPackageListToPdf do
       end
 
       it "contains related work packages of the specified type" do
-        strings = pdf_strings_without_footers(2)
+        strings = pdf_strings_without_footers
         expect(strings).to eq [
           *cover_page_content,
           query.name,
