@@ -183,6 +183,7 @@ rails:seed-locales:
       - OPENPROJECT_EDITION: [standard, bim]
   variables:
     RAILS_ENV: development
+    SILENCE_SQL_LOGS: "true"
     BUNDLE_WITHOUT: "production:docker"
     PGHOST: postgres
     PGUSER: postgres
