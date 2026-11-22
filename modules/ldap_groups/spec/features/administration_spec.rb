@@ -37,7 +37,7 @@ RSpec.describe "LDAP group sync administration spec", :js do
     visit ldap_groups_synchronized_groups_path
   end
 
-  context "without EE" do
+  context "without EE", with_ee: false do
     it "shows upsell" do
       expect(page).to have_enterprise_banner(:premium)
     end
