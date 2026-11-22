@@ -243,7 +243,8 @@ class TimeEntry < ApplicationRecord
     end
 
     def prohibit_logging_for_past_months?
-      Setting.time_entries_prohibit_logging_for_past_months?
+      EnterpriseToken.allows_to?(:time_entry_time_restrictions) &&
+        Setting.time_entries_prohibit_logging_for_past_months?
     end
 
     # Only meaningful while prohibit_logging_for_past_months? applies
