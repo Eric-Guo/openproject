@@ -83,7 +83,7 @@ RSpec.describe Redmine::MenuManager do
     context "for the global_menu" do
       it "includes the expected items" do
         expect(described_class.items(:global_menu).map(&:name))
-          .to include(:home,
+          .to include(:my_page,
                       :projects,
                       :activity,
                       :work_packages,
