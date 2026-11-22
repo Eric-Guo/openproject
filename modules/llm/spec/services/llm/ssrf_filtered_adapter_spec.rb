@@ -111,6 +111,7 @@ RSpec.describe Llm::SsrfFilteredAdapter do
 
   it "reports a host that does not resolve as a transient connection failure" do
     connection.update_column(:base_url, "http://llm.does-not-exist.invalid/v1")
+    allow(HTTPX::Resolver::Native).to receive(:new).and_raise(HTTPX::ResolveError, "Host not found")
 
     expect { session.chat("qwen3.6-27b").ask("ping") }.to raise_error do |error|
       expect(error).to be_a(Llm::Errors::ConnectionError)
