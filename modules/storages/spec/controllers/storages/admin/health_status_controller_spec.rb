@@ -69,10 +69,8 @@ RSpec.describe Storages::Admin::HealthStatusController do
     end
 
     it "sends the text version of the report when requested" do
-      # Creating an actual report result and caching it so we can test the rendering of the response
-      validator = Storages::Adapters::Registry["nextcloud.validators.connection"].new(storage)
-      report = validator.call
-      report.save!
+      group = HealthReport::ResultGroup.new(key: :configuration, results: [HealthReport::Result.success(:host_url_accessible)])
+      storage.health_reports.create!(results: [group])
 
       get :show, params: params.merge(format: :txt)
 
