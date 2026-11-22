@@ -466,11 +466,11 @@ RSpec.describe "Projects lists ordering", :js, with_settings: { login_required?:
         wait_for_reload
 
         projects_page
-          .expect_projects_in_order(child_project_a,
+          .expect_projects_in_order(child_project_z,
                                     # child project M has project phases, but user has no permission
                                     # to see them. That is why they are ignored for sorting.
                                     child_project_m,
-                                    child_project_z,
+                                    child_project_a,
                                     # Regular project phase sorting for the remaining projects:
                                     development_project,
                                     public_project,
