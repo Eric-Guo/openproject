@@ -180,7 +180,7 @@ RSpec.describe "LLM connection health status", :llm_server_helpers, :skip_csrf, 
     end
 
     it "is plain YAML, without serialized Ruby objects" do
-      connection.update_columns(last_synced_at: Time.zone.parse("2026-10-07 14:42:41"))
+      connection.update_columns(last_synced_at: Time.utc(2026, 10, 7, 14, 42, 41))
 
       get llm_connection_health_status_report_path(format: :txt)
 
