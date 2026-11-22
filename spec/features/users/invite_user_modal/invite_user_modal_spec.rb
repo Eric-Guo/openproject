@@ -89,10 +89,10 @@ RSpec.describe "Invite user modal", :js do
         expect(ActionMailer::Base.deliveries[overall_index].to)
           .to contain_exactly(recipient.mail)
 
-        expect(ActionMailer::Base.deliveries[overall_index].body.encoded)
+        expect(ActionMailer::Base.deliveries[overall_index].html_part.decoded)
           .to include OpenProject::TextFormatting::Renderer.format_text(invite_message)
 
-        expect(ActionMailer::Base.deliveries[overall_index].body.encoded)
+        expect(ActionMailer::Base.deliveries[overall_index].html_part.decoded)
           .to include role.name
       end
     end
