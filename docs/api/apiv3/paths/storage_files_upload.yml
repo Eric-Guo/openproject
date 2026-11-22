@@ -1,0 +1,49 @@
+# /api/v3/storages/{id}/files/upload
+---
+post:
+  operationId: create_storage_file
+  summary: Upload a file to EDOC DDS
+  tags:
+    - File links
+  description: Uploads one file using the current user's storage credentials. Requires permission to manage file links in the specified project.
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Storage ID
+      schema:
+        type: integer
+    - name: project_id
+      in: query
+      required: true
+      description: Project where the file is being uploaded
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          required: [file]
+          properties:
+            file:
+              type: string
+              format: binary
+            parent:
+              type: string
+              description: Destination directory on the storage
+              default: '/'
+  responses:
+    '201':
+      description: The uploaded file.
+      content:
+        application/hal+json:
+          schema:
+            $ref: '../components/schemas/storage_file_model.yml'
+    '400':
+      description: The upload is malformed or the project ID is missing.
+    '403':
+      description: The user lacks permission to manage files in the project.
+    '404':
+      description: The project or EDOC DDS storage could not be found.

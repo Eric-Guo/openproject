@@ -569,6 +569,8 @@ paths:
     $ref: "./paths/storage_file.yml"
   "/api/v3/storages/{id}/files/prepare_upload":
     $ref: "./paths/storage_files_prepare_upload.yml"
+  "/api/v3/storages/{id}/files/upload":
+    $ref: "./paths/storage_files_upload.yml"
   "/api/v3/storages/{id}/folders":
     $ref: "./paths/storage_folders.yml"
   "/api/v3/storages/{id}/oauth_client_credentials":
