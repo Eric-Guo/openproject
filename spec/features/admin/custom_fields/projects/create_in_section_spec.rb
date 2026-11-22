@@ -131,7 +131,7 @@ RSpec.describe "Create project custom fields in sections", :js do
         cf_index_page.click_to_create_new_custom_field "Calculated value"
       end
 
-      context "without calculated_values enterprise feature" do
+      context "without calculated_values enterprise feature", with_ee: false do
         it do
           expect(page)
             .to have_enterprise_banner(:premium)
