@@ -78,7 +78,7 @@ RSpec.describe Settings::ProjectPhaseDefinitions::IndexComponent, type: :compone
                     heading: I18n.t("settings.project_phase_definitions.non_defined")
   end
 
-  context "without enterprise token" do
+  context "without enterprise token", with_ee: false do
     let!(:sortable_records) { create_list(:project_phase_definition, 2) }
 
     it "renders no sortable-lists wiring" do
