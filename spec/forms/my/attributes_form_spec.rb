@@ -65,15 +65,16 @@ RSpec.describe My::AttributesForm, type: :forms do
     end
   end
 
-  context "for a provider-managed login (name and email not writable)" do
+  context "for an LDAP-managed login (name and email not writable)" do
     let(:model) { build_stubbed(:user, ldap_auth_source: build_stubbed(:ldap_auth_source)) }
     let(:writable_attributes) { %i[language] }
 
-    it "renders name and mail read-only with the provider caption" do
+    it "renders name and mail read-only with the provider and LDAP captions" do
       expect(page).to have_field("user[firstname]", readonly: true)
       expect(page).to have_field("user[lastname]", readonly: true)
       expect(page).to have_field("user[mail]", readonly: true)
-      expect(page).to have_text(I18n.t("user.text_change_disabled_for_provider_login"), count: 3)
+      expect(page).to have_text(I18n.t("user.text_change_disabled_for_provider_login"), count: 2)
+      expect(page).to have_text(I18n.t("user.text_change_disabled_for_ldap_login"), count: 1)
     end
   end
 
