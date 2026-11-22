@@ -199,7 +199,7 @@ module Components
           clear_input_field_contents(field)
           field.send_keys values.join(" - ")
         else
-          find_field(filter_name).click
+          find_field(filter_name, class: %w[op-basic-range-datepicker--input flatpickr-input]).click
           datepicker = ::Components::RangeDatepicker.new
           datepicker.set_date values.first
           datepicker.set_date values.last
