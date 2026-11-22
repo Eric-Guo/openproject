@@ -38,10 +38,11 @@ export default defineConfig({
       // builder only appends `browser` to it. A package whose `exports` lists `node` before
       // `browser` then resolves to its Node build in the browser, e.g. lib0 1.x (pulled in by
       // BlockNote) loads `node:crypto` and fails on import.
-      name: 'op-drop-node-condition-in-browser-specs',
+      name: 'op-browser-spec-resolution',
       configEnvironment(name, config) {
         if (name === 'client' && config.resolve?.conditions) {
           config.resolve.conditions = config.resolve.conditions.filter((condition) => condition !== 'node');
+          config.resolve.mainFields = ['es2020', 'browser', 'module', 'main'];
         }
       },
     },
