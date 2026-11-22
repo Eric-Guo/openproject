@@ -51,6 +51,7 @@ RSpec.describe "Names of API operations" do # rubocop:disable RSpec/DescribeClas
       read
       remove
       star
+      submit
       toggle
       unfavorite
       unlock
