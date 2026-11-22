@@ -675,7 +675,7 @@ RSpec.describe Backlogs::WorkPackageCardMenuComponent, type: :component do
 
     # Status#is_readonly always returns false without the token, so the same
     # work package is movable in Community and the bug cannot occur there.
-    context "without an Enterprise token" do
+    context "without an Enterprise token", with_ee: false do
       it "still offers the move actions" do
         render_component
 
