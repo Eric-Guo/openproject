@@ -179,6 +179,7 @@ RSpec.describe TimeEntries::BaseContract, "prohibiting logging for past months" 
   end
 
   context "without an Enterprise token",
+          with_ee: false,
           with_settings: { time_entries_prohibit_logging_for_past_months: true } do
     it "allows logging for a past month" do
       expect(log_time(last_day_of_last_month)).to be_success
