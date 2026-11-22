@@ -43,8 +43,7 @@ module FormFields
       end
 
       def open_add_image_dialog
-        send_keys_to_editor("/image")
-        send_keys(:enter)
+        choose_slash_menu_item("image", "Image")
       end
 
       def open_add_work_package_dialog
@@ -125,8 +124,9 @@ module FormFields
 
       def attach_file(path)
         # find_field queries by XPath, which WebDriver does not support inside shadow roots
-        input = shadow_root.find("input[type='file']", visible: :all) # rubocop:disable Capybara/SpecificFinders
-        input.attach_file(path, make_visible: true)
+        panel = shadow_root.find(".bn-tab-panel")
+        input = panel.find("input[type='file']", visible: :all) # rubocop:disable Capybara/SpecificFinders
+        input.attach_file(path, visible: :all)
       end
 
       def search_work_package(text)
