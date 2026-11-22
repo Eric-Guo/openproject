@@ -47,7 +47,11 @@ module Users::Invitation
     validates :role_id, presence: true, on: :principal_step
 
     def self.available_principal_types
-      %w[User PlaceholderUser Group]
+      if EnterpriseToken.allows_to?(:placeholder_users)
+        %w[User PlaceholderUser Group]
+      else
+        %w[User Group]
+      end
     end
 
     def project_name

@@ -84,7 +84,7 @@ RSpec.describe Users::Invitation::FormModel do
         end
       end
 
-      context "without enterprise token allowing placeholder users" do
+      context "without enterprise token allowing placeholder users", with_ee: false do
         before do
           allow(EnterpriseToken)
             .to receive(:allows_to?)
@@ -203,7 +203,7 @@ RSpec.describe Users::Invitation::FormModel do
       end
     end
 
-    context "without enterprise token allowing placeholder users" do
+    context "without enterprise token allowing placeholder users", with_ee: false do
       before do
         allow(EnterpriseToken)
           .to receive(:allows_to?)
