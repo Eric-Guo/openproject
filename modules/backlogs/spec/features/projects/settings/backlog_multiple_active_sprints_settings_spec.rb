@@ -56,7 +56,7 @@ RSpec.describe "Backlogs project settings multiple active sprints", :js do
     end
   end
 
-  context "without an enterprise token for multiple_active_sprints" do
+  context "without an enterprise token for multiple_active_sprints", with_ee: false do
     it "renders an enterprise banner instead of the toggle" do
       visit project_settings_backlog_multiple_active_sprints_path(project)
 
