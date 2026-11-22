@@ -135,8 +135,8 @@ RSpec.describe "Projects", "subitems settings", :js do
     context "when user does not have edit_project permission" do
       let(:permissions) { %i[view_work_packages] }
 
-      it "does not show the subitems menu entry" do
-        visit project_settings_general_path(project)
+      it "denies access to the subitems settings" do
+        visit project_settings_subitems_path(project)
 
         expect(page).to have_text "You are not authorized to access this page."
       end
