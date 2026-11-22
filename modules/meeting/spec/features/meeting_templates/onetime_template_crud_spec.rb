@@ -89,7 +89,7 @@ RSpec.describe "Onetime templates CRUD", :js do
   end
 
   describe "creating onetime templates" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       before { visit templates_meetings_path }
 
       it "does not show the create template button" do
