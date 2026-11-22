@@ -764,7 +764,7 @@ RSpec.describe Import::JiraCreateProjectJob::JiraImportCustomFieldBuilder do
       end
     end
 
-    context "with a cascading select falling back to list (no enterprise)" do
+    context "with a cascading select falling back to list (no enterprise)", with_ee: false do
       let(:jira_field) do
         jira_field_for(name: "CF Cascading",
                        schema: { "type" => "option-with-child",
