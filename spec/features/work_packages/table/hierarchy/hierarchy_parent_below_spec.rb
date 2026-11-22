@@ -102,6 +102,8 @@ RSpec.describe "Work Package table hierarchy parent below", :js do
       hierarchy.expect_hierarchy_at(grandparent, parent)
       hierarchy.expect_leaf_at(child)
 
+      wait_for_network_idle
+
       # Test collapsing of rows
       hierarchy.toggle_row(parent)
       wp_table.expect_work_package_listed(grandparent, parent)
