@@ -185,7 +185,7 @@ RSpec.describe Bim::Bcf::API::V2_1::Topics::SingleRepresenter, "rendering" do
 
     context "modified_date" do
       it_behaves_like "attribute" do
-        let(:value) { work_package.updated_at.iso8601(3) }
+        let(:value) { work_package.updated_at.utc.iso8601(3) }
         let(:path) { "modified_date" }
       end
     end
