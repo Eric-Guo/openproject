@@ -483,11 +483,13 @@ RSpec.describe "Recurring meetings show",
   end
 
   describe "opening all occurrences of an ending series" do
+    let(:first_start) { Time.current.in_time_zone(user.time_zone).tomorrow.beginning_of_day }
+
     let(:recurring_meeting) do
       create :recurring_meeting,
              project:,
              author: user,
-             start_time: Time.zone.today + 1.day,
+             start_time: first_start,
              frequency: "daily",
              end_after: "iterations",
              iterations: 12
@@ -497,8 +499,8 @@ RSpec.describe "Recurring meetings show",
       (1..7).each do |i|
         create(:meeting,
                recurring_meeting:,
-               start_time: Time.zone.today + i.days,
-               recurrence_start_time: Time.zone.today + i.days,
+               start_time: first_start + (i - 1).days,
+               recurrence_start_time: first_start + (i - 1).days,
                state: :open)
       end
     end
@@ -508,12 +510,12 @@ RSpec.describe "Recurring meetings show",
 
       opened = page.find("[data-test-selector='agenda-opened-table']")
       (1..7).each do |i|
-        expect(opened).to have_text format_time(Time.zone.today + i.days)
+        expect(opened).to have_text format_time(first_start + (i - 1).days)
       end
 
       planned = page.find("[data-test-selector='planned-table']")
       (8..12).each do |i|
-        expect(planned).to have_text format_time(Time.zone.today + i.days)
+        expect(planned).to have_text format_time(first_start + (i - 1).days)
       end
     end
   end
