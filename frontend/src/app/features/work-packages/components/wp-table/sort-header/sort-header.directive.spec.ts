@@ -711,13 +711,10 @@ describe('SortHeaderDirective column menu', () => {
   it('Escape returns focus to the header cell', async () => {
     focusHeader(1);
     fireEvent.keyDown(header(1), { key: 'Enter' });
-    await settle();
-    expect(menu('subject')).toContainElement(document.activeElement as HTMLElement);
+    await waitFor(() => expect(menu('subject')).toContainElement(document.activeElement as HTMLElement));
 
     fireEvent.keyDown(document.activeElement!, { key: 'Escape' });
-    await settle();
-
-    expect(header(1)).toHaveFocus();
+    await waitFor(() => expect(header(1)).toHaveFocus());
   });
 
   it('an action (move column) returns focus to the header cell, not the body', async () => {
