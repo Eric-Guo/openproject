@@ -45,7 +45,7 @@ RSpec.describe "Create meeting from template", :js do
   before { login_as(admin) }
 
   describe "creating meeting from template using template selector" do
-    context "without enterprise token" do
+    context "without enterprise token", with_ee: false do
       let!(:template) { create(:onetime_template, project:, title: "Standup Template") }
 
       before { meetings_page.visit! }
