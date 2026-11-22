@@ -72,7 +72,11 @@ RSpec.describe "Work package single context menu timer", :js do
         wp_view.visit!
         wp_view.open_more_menu
 
-        expect(page).to have_selector(:menuitem, "Log time", exact: true)
+        if defined?(OpenProject::LabourTracking)
+          expect(page).to have_no_selector(:menuitem, "Log time", exact: true)
+        else
+          expect(page).to have_selector(:menuitem, "Log time", exact: true)
+        end
         expect(page).to have_no_selector(:menuitem, "Start timer", exact: true)
         expect(page).to have_no_selector(:menuitem, "Stop timer", exact: true)
       end
