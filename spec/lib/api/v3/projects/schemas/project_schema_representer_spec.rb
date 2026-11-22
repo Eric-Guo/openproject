@@ -241,7 +241,15 @@ RSpec.describe API::V3::Projects::Schemas::ProjectSchemaRepresenter do
         let(:type) { "Boolean" }
         let(:name) { I18n.t("attributes.public") }
         let(:required) { false }
-        let(:writable) { true }
+        let(:writable) { false }
+      end
+
+      context "when rendered for an administrator" do
+        let(:current_user) { build_stubbed(:admin) }
+
+        it "allows editing project visibility" do
+          expect(generated).to be_json_eql(true.to_json).at_path("public/writable")
+        end
       end
     end
 

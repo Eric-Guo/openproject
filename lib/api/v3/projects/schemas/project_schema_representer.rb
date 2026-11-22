@@ -57,7 +57,7 @@ module API
 
           schema :public,
                  type: "Boolean",
-                 writable: ->(*) { User.current.admin? },
+                 writable: ->(*) { current_user.admin? },
                  required: false
 
           schema :active,
