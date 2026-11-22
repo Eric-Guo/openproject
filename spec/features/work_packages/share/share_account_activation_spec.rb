@@ -56,7 +56,7 @@ RSpec.describe "Work package sharing invited users",
 
   it "allows to invite and activate the account" do
     login_with(editor.login, "adminADMIN!")
-    expect(page).to have_current_path home_path
+    expect(page).to have_current_path my_page_path
 
     work_package_page.visit!
     work_package_page.click_share_button
