@@ -311,7 +311,7 @@ RSpec.describe "Projects", "editing settings", :js do
       it "shows field labels without help text link" do
         general_page.expect_field_label_without_help_text "Name"
         general_page.expect_field_label_without_help_text "Description"
-        general_page.expect_field_label_without_help_text "Status description"
+        general_page.expect_field_label_without_help_text Project.human_attribute_name(:status_explanation)
         general_page.expect_field_label_without_help_text "Subproject of"
       end
 
