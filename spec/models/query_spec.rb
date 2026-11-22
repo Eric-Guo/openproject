@@ -812,21 +812,24 @@ RSpec.describe Query,
         [3.weeks.ago.iso8601, "oneWeekAgo@12:00+00:00", "oneDayAgo@12:00+00:00", "PT0S"]
       end
 
-      before do
+      subject(:normalized_timestamps) do
         query.timestamps = timestamps
         query.valid_subset!
+        query.timestamps
       end
 
-      context "without EE", with_ee: false do
+      context "with the fork baseline policy and no Enterprise token", with_ee: false do
+        before { allow(EnterpriseToken).to receive(:allows_to?).with(:baseline_comparison).and_call_original }
+
         it "allows all valid values" do
-          expect(query.timestamps)
+          expect(normalized_timestamps)
             .to match_array timestamps
         end
       end
 
       context "with EE", with_ee: %i[baseline_comparison] do
         it "allows all valid values" do
-          expect(query.timestamps)
+          expect(normalized_timestamps)
             .to match_array timestamps
         end
       end
