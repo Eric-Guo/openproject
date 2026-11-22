@@ -198,7 +198,7 @@ RSpec.describe "Tabs navigation and content switching on the admin/design page" 
       expect(custom_style.reload.logo).not_to be_present
       expect(desktop_logo_background).not_to include(custom_logo_path)
       expect(desktop_logo_background)
-        .to include(ActionController::Base.helpers.asset_path("logo_openproject_white_big.png"))
+        .to include(ActionController::Base.helpers.asset_path("logo_plm_white.png"))
     end
 
     context "with a desktop logo and only a dark mobile logo", :js do
