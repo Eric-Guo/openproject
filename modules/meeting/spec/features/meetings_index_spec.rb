@@ -340,7 +340,7 @@ RSpec.describe "Meetings", "Index", :js do
       meetings_page.expect_meetings_not_listed(yesterdays_meeting)
     end
 
-    it "renders a link to each meeting's location if present and a valid URL" do
+    it "shows the booked room for each one-time meeting" do
       invite_to_meeting(meeting)
       invite_to_meeting(meeting_with_no_location)
       invite_to_meeting(meeting_with_malicious_location)
@@ -349,11 +349,12 @@ RSpec.describe "Meetings", "Index", :js do
 
       meetings_page.visit!
 
-      meetings_page.expect_link_to_meeting_location(meeting)
-      meetings_page.expect_plaintext_meeting_location(tomorrows_meeting)
-      meetings_page.expect_plaintext_meeting_location(other_project_meeting)
-      meetings_page.expect_plaintext_meeting_location(meeting_with_malicious_location)
-      meetings_page.expect_no_meeting_location(meeting_with_no_location)
+      booked_meetings = [meeting, tomorrows_meeting, other_project_meeting,
+                         meeting_with_malicious_location, meeting_with_no_location]
+      booked_meetings.each do |booked|
+        expect(booked.location).to eq("线上会议 - Online room")
+        meetings_page.expect_plaintext_meeting_location(booked)
+      end
     end
 
     context "and the user is only allowed to view meetings" do
