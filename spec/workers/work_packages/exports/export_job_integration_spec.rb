@@ -55,7 +55,7 @@ RSpec.describe WorkPackages::ExportJob, "Integration" do
   let(:options) { {} }
   let(:mime_type) { :pdf }
   let(:test_time) { Time.zone.now }
-  let(:test_time_s) { test_time.strftime("%Y-%m-%d_%H-%M") }
+  let(:test_time_s) { test_time.in_time_zone(user.time_zone).strftime("%Y-%m-%d_%H-%M") }
 
   let(:performed_job) do
     job.tap(&:perform_now)
