@@ -66,7 +66,8 @@ RSpec.describe "Lost password" do
     token = Token::Recovery.first
     mail_body = mail.body.parts.find { |p| p.mime_type == "text/html" }.body.to_s
     mail_document = Capybara::Node::Simple.new(mail_body)
-    visit mail_document.find("a")["href"]
+    reset_url = account_password_recovery_url(host: Setting.host_name, token: token.value)
+    visit mail_document.find_link(href: reset_url)[:href]
 
     fill_in "New password", with: new_password
     fill_in "Password confirmation", with: new_password
@@ -78,7 +79,7 @@ RSpec.describe "Lost password" do
     login_with user.login, new_password
 
     expect(page)
-      .to have_current_path(home_path)
+      .to have_current_path(my_page_path)
   end
 
   context "when user has an auth source" do
