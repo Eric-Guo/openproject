@@ -40,6 +40,10 @@ RSpec.describe "OpenID Connect content security policy", type: :rails_request do
   it "allows the SSO button's POST redirect to the configured authorization origin" do
     get signin_path
 
+    link = response.parsed_body.at_css("a.auth-provider-openid_connect")
+    expect(link["href"]).to eq(omniauth_login_path(provider.slug))
+    get link["href"]
+
     form = response.parsed_body.at_css('form[action="/auth/openid_connect"]')
     expect(form["method"]).to eq("post")
     allowed_origins = csp.fetch("form-action")
