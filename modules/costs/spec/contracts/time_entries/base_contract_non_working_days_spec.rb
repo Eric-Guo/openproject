@@ -100,6 +100,7 @@ RSpec.describe TimeEntries::BaseContract, "logging on non-working days" do
   end
 
   context "without an Enterprise token",
+          with_ee: false,
           with_settings: { time_entries_prohibit_logging_on_non_working_days: true,
                            working_days: [1, 2, 3, 4, 5] } do
     it "allows logging on a globally non-working week day" do
