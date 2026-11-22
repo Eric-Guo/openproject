@@ -72,7 +72,7 @@ RSpec.describe Admin::CustomFields::Projects::ValuesComponent, type: :component 
     end
   end
 
-  context "when the enterprise plan does not include project-specific values" do
+  context "when the enterprise plan does not include project-specific values", with_ee: false do
     let(:custom_field) { create(:list_wp_custom_field, :project_specific_allowlist, possible_values: %w[A]) }
     let(:option) { custom_field.custom_options.first }
 
