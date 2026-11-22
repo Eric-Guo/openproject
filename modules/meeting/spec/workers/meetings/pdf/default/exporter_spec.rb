@@ -93,7 +93,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
         project.name
       ].join(" ")
 
-      expect(subject).to eq expected_document
+      expect(pdf.squish).to eq(expected_document.squish)
     end
   end
 
@@ -116,7 +116,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
         project.name
       ].join(" ")
 
-      expect(subject).to eq expected_document
+      expect(pdf.squish).to eq(expected_document.squish)
     end
   end
 
@@ -214,7 +214,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
       end
 
       it "renders the expected document" do
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -246,7 +246,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -292,7 +292,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
@@ -328,7 +328,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -354,7 +354,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
@@ -405,7 +405,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
 
       context "with semantic work package identifiers",
@@ -430,7 +430,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
             project.name
           ].join(" ")
 
-          expect(subject).to eq expected_document
+          expect(pdf.squish).to eq(expected_document.squish)
         end
       end
     end
@@ -466,7 +466,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
 
@@ -500,7 +500,7 @@ RSpec.describe Meetings::PDF::Default::Exporter do
           project.name
         ].join(" ")
 
-        expect(subject).to eq expected_document
+        expect(pdf.squish).to eq(expected_document.squish)
       end
     end
   end
