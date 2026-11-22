@@ -66,7 +66,7 @@ RSpec.describe "Roles report", :js do
 
     expect(page).to have_region "Project"
 
-    within_region "Project" do
+    within("#project-section-content") do
       expect(page).to have_selector :table, "Permissions matrix for Project module"
 
       expect(page).to have_unchecked_field "Assign Create projects permission to Global IT MGMT role"
