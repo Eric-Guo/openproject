@@ -57,8 +57,13 @@ RSpec.describe OpenProject do
       end
 
       it "does not filter requests to public IP addresses" do
-        result = httpx.get(public_endpoint)
-        expect(result.error).to be_nil
+        request = httpx.build_request(:get, public_endpoint)
+        connection = request.options.connection_class.new(request.uri, request.options)
+        address = HTTPX::Resolver::Entry.new("93.184.216.34")
+
+        connection.addresses = [address]
+
+        expect(connection.addresses).to contain_exactly(address)
       end
 
       context "when local IP addresses are allowed" do
