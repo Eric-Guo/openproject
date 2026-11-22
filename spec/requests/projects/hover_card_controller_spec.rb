@@ -76,7 +76,7 @@ RSpec.describe Projects::HoverCardController, type: :rails_request do
       context "when the project is archived" do
         let(:requested_id) { archived_project.id }
 
-        it "renders the hover card with the archived label", pending: "https://community.openproject.org/wp/DREAM-1005" do
+        it "renders the hover card with the archived label" do
           perform
 
           expect(response).to have_http_status(:ok)
