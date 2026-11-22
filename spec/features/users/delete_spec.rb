@@ -49,6 +49,7 @@ RSpec.describe "user deletion:", :js, :selenium do
     it "can delete their own account", :signout_via_visit, with_settings: { users_deletable_by_self: true } do
       visit my_account_path
       page.find_test_selector("delete-my-account-button").click
+      expect(page).to have_css("danger-dialog-form-helper:defined", wait: 20)
 
       check "I understand that this deletion cannot be reversed."
       click_on "Delete permanently"
