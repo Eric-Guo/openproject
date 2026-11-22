@@ -98,6 +98,23 @@ describe('Filters form focus', () => {
     expect(document.activeElement).toBe(ctx.container.querySelector('#operator'));
   });
 
+  it('preserves focus when the user enters a field before the scheduled operator focus', async () => {
+    const { controller } = await mount(`<input id="range" ${target}>`, { noValue: true, rowHidden: true });
+
+    controller.addFilterByName('test');
+    const operator = ctx.container.querySelector<HTMLSelectElement>('#operator')!;
+    operator.add(new Option('between', '<>d'));
+    operator.value = '<>d';
+    controller.setValueVisibility({ target: operator, params: { filterName: 'test' } });
+
+    const range = ctx.container.querySelector<HTMLInputElement>('#range')!;
+    range.focus();
+    expect(document.activeElement).toBe(range);
+    await vi.advanceTimersByTimeAsync(300);
+
+    expect(document.activeElement).toBe(range);
+  });
+
   it('focuses the value control of a filter added through the add-filter select', async () => {
     const { controller, row } = await mount(`<input id="expected" ${target}>`, { rowHidden: true });
     const addFilter = ctx.container.querySelector<HTMLSelectElement>('#add-filter')!;

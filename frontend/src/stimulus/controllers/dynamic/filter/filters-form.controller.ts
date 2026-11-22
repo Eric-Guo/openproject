@@ -467,8 +467,9 @@ export default class FiltersFormController extends Controller {
 
     if (target) {
       const destination = target;
+      const previousFocus = document.activeElement;
       window.setTimeout(() => {
-        if (canFocus(destination)) destination.focus();
+        if (document.activeElement === previousFocus && canFocus(destination)) destination.focus();
       }, 250);
     }
   }
