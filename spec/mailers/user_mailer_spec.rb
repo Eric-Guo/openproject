@@ -431,6 +431,16 @@ RSpec.describe UserMailer do
       end
     end
 
+    context "with a Simplified Chinese recipient", with_settings: { available_languages: %w[en zh-CN] } do
+      let(:token) { build_stubbed(:invitation_token, user: build_stubbed(:invited_user, language: "zh-CN")) }
+
+      it "uses the TH activation instructions in both parts" do
+        [deliveries.first.text_part, deliveries.first.html_part].each do |part|
+          expect(part.decoded).to include("请点击此链接激活您的帐户：", "如果您有任何其他问题，请联系您的管理员。")
+        end
+      end
+    end
+
     context "with a translation containing quotes",
             with_settings: { available_languages: %w[en fr] } do
       let(:token) { build_stubbed(:invitation_token, user: build_stubbed(:invited_user, language: "fr")) }

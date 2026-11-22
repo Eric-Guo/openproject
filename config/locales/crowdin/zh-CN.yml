@@ -4813,14 +4813,11 @@ zh-CN:
   mail_body_incoming_email_error_in_reply_to: "%{from_email} 在 %{received_at} 撰写"
   mail_body_incoming_email_error_logs: 日志
   mail_body_lost_password: 若要更改你的密码，请单击下面的链接：
-  mail_body_register: 欢迎使用 %{app_title}。请点击此链接激活您的帐户：
+  mail_body_register: 请点击此链接激活您的帐户：
   mail_body_register_closing: 您的 OpenProject 团队
   mail_body_register_ending: 保持联系！谨致问候，
   mail_body_register_header_title: 项目成员邀请电子邮件
-  mail_body_register_links_html: |
-    请随时浏览我们的 youtube 频道 (%{youtube_link})，在这里我们提供了网络研讨会 (%{webinar_link}) 和“入门”视频 (%{get_started_link})，让您在 OpenProject 中尽可能轻松地迈出第一步。
-    <br />
-    如果您有任何其他疑问，请参阅我们的文档 (%{documentation_link}) 或与您的管理员联系。
+  mail_body_register_links_html: 如果您有任何其他问题，请联系您的管理员。
   mail_body_register_user: "%{name}，您好："
   mail_body_reminder: "%{count} 个分配给您的工作包将在 %{days} 天后到期："
   mail_body_wiki_page_added: "'%{id}' 维基页面已经由%{author} 添加。"

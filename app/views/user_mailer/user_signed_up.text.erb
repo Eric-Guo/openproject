@@ -29,6 +29,16 @@ See COPYRIGHT and LICENSE files for more details.
   <%= t(:mail_body_register_header_title) %>
 <% end %>
 
-请点击此链接激活您的帐户：
+<%= t(:mail_body_register, app_title: Setting.app_title) %>
 <%= @activation_url %>
-如果您有任何其他问题，请联系您的管理员。
+<%= CGI.unescapeHTML(
+      strip_tags(
+        t(
+          :mail_body_register_links_html,
+          webinar_link: OpenProject::Static::Links.url_for(:webinar_videos),
+          youtube_link: OpenProject::Configuration.youtube_channel,
+          get_started_link: OpenProject::Static::Links.url_for(:get_started_videos),
+          documentation_link: OpenProject::Static::Links.url_for(:openproject_docs)
+        )
+      )
+    ) %>
