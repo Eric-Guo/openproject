@@ -110,7 +110,7 @@ module OpenProject
     end
 
     describe "#format_date_range with times" do
-      let(:time) { Time.utc(2025, 1, 16, 9, 30) }
+      let(:time) { Time.iso8601("2025-01-16T17:30:00+08:00") }
       let(:date) { Date.new(2025, 1, 29) }
 
       current_user { build_stubbed(:user) }

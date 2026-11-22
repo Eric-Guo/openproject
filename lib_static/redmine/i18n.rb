@@ -110,7 +110,7 @@ module Redmine
       return nil unless date_or_time
 
       helpers = ApplicationController.helpers
-      datetime = date_or_time.iso8601
+      datetime = date_or_time.acts_like?(:time) ? date_or_time.getutc.iso8601 : date_or_time.iso8601
 
       if !date_or_time.acts_like?(:time)
         helpers.tag.time(datetime:) { format_date(date_or_time) }
