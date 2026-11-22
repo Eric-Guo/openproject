@@ -118,6 +118,7 @@ RSpec.describe API::V3::Queries::QueryRepresenter do
           offset: 1,
           showSums: false,
           showHierarchies: false,
+          includeAllMembersAssignedProjects: false,
           includeSubprojects: true,
           pageSize: Setting.per_page_options_array.first,
           filters: []
@@ -151,6 +152,7 @@ RSpec.describe API::V3::Queries::QueryRepresenter do
             pageSize: Setting.per_page_options_array.first,
             showSums: false,
             showHierarchies: false,
+            includeAllMembersAssignedProjects: false,
             includeSubprojects: true,
             filters: []
           }
@@ -340,6 +342,7 @@ RSpec.describe API::V3::Queries::QueryRepresenter do
           filters: JSON::dump([{ subject: { operator: "~", values: ["bogus"] } }]),
           showSums: false,
           showHierarchies: false,
+          includeAllMembersAssignedProjects: false,
           includeSubprojects: true,
           groupBy: "author",
           sortBy: JSON::dump([%w[assignee asc], %w[type desc]])
@@ -367,6 +370,7 @@ RSpec.describe API::V3::Queries::QueryRepresenter do
           pageSize: 25,
           showSums: false,
           showHierarchies: false,
+          includeAllMembersAssignedProjects: false,
           includeSubprojects: true,
           filters: []
         }
