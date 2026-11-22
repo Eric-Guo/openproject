@@ -7,6 +7,9 @@ en:
         client_secret: Client secret
       project:
         project_folder_type: Project folder type
+      storages/edoc_dds_storage:
+        root_folder_id: Root folder ID
+        token: API token
       storages/file_link:
         origin: Origin
         storage: Storage
@@ -27,9 +30,6 @@ en:
         library: Library ID
         name: Name
         site: Site ID
-      storages/edoc_dds_storage:
-        root_folder_id: Root folder ID
-        token: API token
       storages/storage:
         authentication_method: Authentication Method
         creator: Creator
@@ -235,29 +235,6 @@ en:
         upload_link_service:
           not_found: The destination folder %{folder} could not be found on %{storage_name}.
   storages:
-    external_shares:
-      title: "Create external share link · 1/2"
-      result_title: "External share link · 2/2"
-      snapshot_hint: "Select the files to share. DDS will copy them into a separate share folder; later edits to the originals will not change this snapshot. Customers can view and download the copies."
-      select_files: "Files to share"
-      no_files: "There are no files available to share."
-      expiration: "Link expires after"
-      expirations:
-        day: "1 day"
-        week: "7 days"
-        month: "1 month"
-      next: "Next: create link"
-      creating: "Creating link…"
-      ready: "The share link is ready. Copy it and send it to your customer."
-      link: "Share link"
-      expires_at: "Expires at %{time}"
-      share_name: "Work package #%{id} — shared files"
-      errors:
-        not_allowed: "You do not have permission to share these files."
-        invalid_expiration: "Choose an expiry of 1 day, 7 days, or 1 month."
-        invalid_selection: "Select at least one file from this work package and DDS storage. Folders cannot be shared here."
-        configuration_error: "The DDS publishing connection does not match this storage. Contact your administrator."
-        creation_failed: "DDS could not create the share link. Your file selection has been kept. Please try again."
     admin:
       side_panel:
         health_notifications_component:
@@ -296,6 +273,29 @@ en:
       setup_incomplete_description: This storage has an incomplete setup. Please, complete the setup before enabling it in multiple projects.
       setup_incomplete_header: Storage setup incomplete
     error_invalid_provider_type: Please select a valid storage provider.
+    external_shares:
+      creating: Creating link…
+      errors:
+        configuration_error: The DDS publishing connection does not match this storage. Contact your administrator.
+        creation_failed: DDS could not create the share link. Your file selection has been kept. Please try again.
+        invalid_expiration: Choose an expiry of 1 day, 7 days, or 1 month.
+        invalid_selection: Select at least one file from this work package and DDS storage. Folders cannot be shared here.
+        not_allowed: You do not have permission to share these files.
+      expiration: Link expires after
+      expirations:
+        day: 1 day
+        month: 1 month
+        week: 7 days
+      expires_at: Expires at %{time}
+      link: Share link
+      next: 'Next: create link'
+      no_files: There are no files available to share.
+      ready: The share link is ready. Copy it and send it to your customer.
+      result_title: External share link · 2/2
+      select_files: Files to share
+      share_name: 'Work package #%{id} — shared files'
+      snapshot_hint: Select the files to share. DDS will copy them into a separate share folder; later edits to the originals will not change this snapshot. Customers can view and download the copies.
+      title: Create external share link · 1/2
     file_storage_view:
       access_management:
         automatic_management: Enable automatically-managed access and folders
@@ -435,6 +435,11 @@ en:
       all_available_storages_already_added: All available storages are already added to the project.
       authentication_method: The way that requests between OpenProject and the Storage are authenticated.
       automatic_folder: This will automatically create a root folder for this project and manage the access permissions for each project member.
+      edoc_dds:
+        provider_configuration: Configure the Edoc DDS host, API token, and root folder that OpenProject should expose as a file storage.
+        root_folder_id: The DDS folder ID used as the storage root.
+        token: The DDS API token used by OpenProject for server-side requests.
+        token_placeholder: Stored token
       empty_project_folder_validation: Selecting a folder is mandatory to proceed.
       existing_manual_folder: You can designate an existing folder as the root folder for this project. The permissions are however not automatically managed, the administrator needs to manually ensure relevant users have access. The selected folder can be used by multiple projects.
       host: Please add the host address of your storage including the https://. It should not be longer than 255 characters.
@@ -471,11 +476,6 @@ en:
         integration: SharePoint Administration / OpenProject
         oauth_configuration_html: Copy these values from the desired application in the [SharePoint site](application_link).
         provider_configuration_html: Please make sure you have administration privileges in the [SharePoint site](application_link) or contact your Microsoft administrator before doing the setup. In the portal, you also need to register an Azure application or use an existing one for authentication.
-      edoc_dds:
-        provider_configuration: Configure the Edoc DDS host, API token, and root folder that OpenProject should expose as a file storage.
-        root_folder_id: The DDS folder ID used as the storage root.
-        token: The DDS API token used by OpenProject for server-side requests.
-        token_placeholder: Stored token
       type: 'Please make sure you have administration privileges in your Nextcloud instance and have the following application installed before doing the setup:'
       type_link_text: "“Integration OpenProject”"
     label_active: Active
@@ -567,6 +567,9 @@ en:
         delete: Remove file storage from project?
     permission_header_explanation: File permissions on external storages are applied only to folders and files within automatically managed project folders. Note that not all file permissions are supported by all storage providers. Please check the documentation on <a target='_blank' href='https://www.openproject.org/docs/system-admin-guide/users-permissions/roles-permissions/#file-storages-permissions'>file storage permissions</a> for more information.
     provider_types:
+      edoc_dds:
+        name: Edoc DDS
+        name_placeholder: e.g. Edoc DDS
       label: Provider type
       nextcloud:
         label_oauth_client_id: Nextcloud OAuth Client ID
@@ -584,9 +587,6 @@ en:
         label_oauth_client_secret: Azure OAuth Client Secret Value
         name: SharePoint
         name_placeholder: e.g. SharePoint
-      edoc_dds:
-        name: Edoc DDS
-        name_placeholder: e.g. Edoc DDS
     show_attachments_toggle:
       description: Deactivating this option will hide the attachments list on the work packages files tab. The files attached in the description of a work package will still be uploaded in the internal attachments storage.
       label: Show attachments in the work packages files tab
