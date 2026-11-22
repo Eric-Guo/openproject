@@ -68,6 +68,8 @@ RSpec.describe API::V3::Projects::Schemas::ProjectSchemaRepresenter do
     allow(model)
       .to receive_messages(new_record?: new_record, id: model_id, workspace_type:)
 
+    allow(model).to receive(:module_enabled?).with("th_projects").and_return(false)
+
     contract
   end
   let(:global_permissions) { %i[add_project] }
@@ -161,6 +163,19 @@ RSpec.describe API::V3::Projects::Schemas::ProjectSchemaRepresenter do
               .at_path("_attributeGroups")
           end
         end
+      end
+    end
+
+    describe "profile" do
+      it "omits the profile when the TH projects module is disabled" do
+        expect(JSON.parse(generated)).not_to have_key("profile")
+      end
+
+      it "includes the profile when the TH projects module is enabled" do
+        allow(contract.model).to receive(:module_enabled?).with("th_projects").and_return(true)
+
+        expect(JSON.parse(generated).fetch("profile"))
+          .to include("type" => "ProjectProfile", "name" => I18n.t(:project_module_th_projects))
       end
     end
 
