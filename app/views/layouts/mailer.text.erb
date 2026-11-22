@@ -31,7 +31,7 @@ See COPYRIGHT and LICENSE files for more details.
 ---------------------------------------------------------------
 
 <%= call_hook(:view_layouts_mailer_plain_before_content, assigns) %>
-<% yield %>
+<%= yield %>
 <%= call_hook(:view_layouts_mailer_plain_after_content, assigns) %>
 
 ---------------------------------------------------------------
