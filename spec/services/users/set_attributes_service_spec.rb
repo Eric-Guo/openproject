@@ -165,8 +165,8 @@ RSpec.describe Users::SetAttributesService, type: :model do
       email = "hallowurstsalatgetraenkebuechse@veryopensuchproject.openproject.com"
       first, last = instance.send(:placeholder_name, email)
 
-      expect(first).to eq "hallowurstsalatgetraenkebue..."
-      expect(last).to eq "@veryopensuchproject.openpro..."
+      expect(first).to eq "@veryopensuchproject.openpro..."
+      expect(last).to eq "hallowurstsalatgetraenkebue..."
     end
   end
 end
