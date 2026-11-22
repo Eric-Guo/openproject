@@ -39,9 +39,13 @@ See COPYRIGHT and LICENSE files for more details.
     <%= render(Projects::Settings::WorkPackages::Activities::Form.new(f)) %>
   <% end %>
 <% else %>
-  <%= render(EnterpriseEdition::BannerComponent.new(
-    :internal_comments,
-    variant: :large,
-    video: "enterprise/internal_comments.mp4"
-  )) %>
+  <%=
+    render(
+      EnterpriseEdition::BannerComponent.new(
+        :internal_comments,
+        variant: :large,
+        video: "enterprise/internal_comments.mp4"
+      )
+    )
+  %>
 <% end %>
