@@ -353,7 +353,7 @@ group :development do
   gem "ruby-lsp", require: false
   gem "ruby-lsp-rails", require: false
 
-  gem "tidewave"
+  gem "tidewave", "~> 0.9.1"
 end
 
 group :development, :test do
