@@ -187,7 +187,7 @@ class ApplicationMailer < ActionMailer::Base
            "." \
            "#{object_reference}" \
            "." \
-           "#{Time.current.strftime('%Y%m%d%H%M%S')}" \
+           "#{Time.current.in_time_zone(recipient.time_zone).strftime('%Y%m%d%H%M%S')}" \
            "." \
            "#{recipient.id}"
 
