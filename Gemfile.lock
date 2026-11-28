@@ -936,7 +936,7 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     jmespath (1.6.2)
-    job-iteration (1.18.1)
+    job-iteration (1.19.0)
       activejob (>= 7.1)
     json (2.21.2)
     json-jwt (1.17.2)
@@ -957,7 +957,7 @@ GEM
     json_spec (1.1.5)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
-    jwt (3.3.1)
+    jwt (3.3.2)
       base64
     kramdown (2.6.1)
       rexml (>= 3.4.4)
@@ -1320,7 +1320,7 @@ GEM
     ostruct (0.6.3)
     ox (2.14.30)
       bigdecimal (>= 3.0)
-    pagy (43.8.7)
+    pagy (43.8.8)
       json
       uri
       yaml
@@ -1604,10 +1604,9 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.89.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
-    rubocop-rspec (3.10.2)
+    rubocop-rspec (3.11.0)
       lint_roller (~> 1.1)
-      regexp_parser (>= 2.0)
-      rubocop (~> 1.86, >= 1.86.2)
+      rubocop (~> 1.92)
     rubocop-rspec_rails (2.33.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.89)
@@ -2317,13 +2316,13 @@ CHECKSUMS
   iso8601 (0.13.0) sha256=298c2b15b7be5fa95a1372813d36a2257656cd8e906dfbc1f5cb409851425aa2
   jbuilder (2.15.1) sha256=2430bec28fb0cebacb5875b1009cf9d8bc3c303ccb810c4c8b062a4b51457637
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
-  job-iteration (1.18.1) sha256=59094c6043cf145df4894a4f81065f5bbdc004a9edc102e9953d43bd03ef006c
+  job-iteration (1.19.0) sha256=c6d958a9d4e0f2385f5f351597d27d274109e63a747f0e15489a4f37565394e0
   json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
   json-jwt (1.17.2) sha256=97e37c1c3e22e9e1d74a1c0d77319c5cdc8a636226e5dbb1664b0b34eddcf1c9
   json-schema (6.2.1) sha256=c0bf6113d772348bfd159fb096950beeb1e1e25aaeea50b676bd45191d8dbdf3
   json_schemer (2.5.0) sha256=2f01fb4cce721a4e08dd068fc2030cffd0702a7f333f1ea2be6e8991f00ae396
   json_spec (1.1.5) sha256=7a77b97a92c787e2aa3fbc4a1239afc3342c781151dc98cfb81461b3b7cad10f
-  jwt (3.3.1) sha256=d3f8f74f2a4ba373e0ebf6b756858567a6ce4d2fd150c126f91b82bd1f924d03
+  jwt (3.3.2) sha256=8240002e6f9a68fd5b9a05ed5cc1493ac90bfdcfd8ff10faa3831f67f7fb60ad
   kramdown (2.6.1) sha256=fbef3479b69c875aacb118dde77a40d6cc3a91e2c1d505a4c3f3f9e92d142641
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   ladle (1.0.1) sha256=e8586964108c798d48bf57d2a65bd5602e8e5223a176b6602a0fb36c0bda90dc
@@ -2499,7 +2498,7 @@ CHECKSUMS
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   overviews (1.0.0)
   ox (2.14.30) sha256=c6f621ced5212111a84439c8c2ab3926d908d4789d8bfa74bbec2f1beac745c5
-  pagy (43.8.7) sha256=ddc1bade3dfe18c45e7e801b3e04e3bd410750d447e7216941a825e2f7acbf08
+  pagy (43.8.8) sha256=a7d4f90549ac0c58ed31cb50d9e7e1736e58949d8b5b0ff451e30b3b78d63933
   paper_trail (17.0.0) sha256=1c2842061d3874ca7015908e821e2aa14f9b982af2acb2a7974713bf79021c85
   parallel (2.3.0) sha256=f75a3e904101ce6a1ccb6b8dc800cbafd42166d83330192438dcf29395167a6f
   parallel_tests (4.10.1) sha256=df05458c691462b210f7a41fc2651d4e4e8a881e8190e6d1e122c92c07735d70
@@ -2605,7 +2604,7 @@ CHECKSUMS
   rubocop-openproject (0.8.0) sha256=7177cd78c4a0ac7fa5c38eb7960707f815fa6de41ad356c9279b7c6ac72048c1
   rubocop-performance (1.27.0) sha256=eeeb1374d062a368ee1c787b70eb0b0cc4b184cb1f8565f424760946146d61ce
   rubocop-rails (2.38.0) sha256=6e2b7c532efa95e3050371bec20b8f5b025662acead8bc70ee31f0e3e6fa2f06
-  rubocop-rspec (3.10.2) sha256=0b3e2ecc592cd10ecbf0095bb58d1e357905276e069643523cc19eb7495f65e2
+  rubocop-rspec (3.11.0) sha256=3be37ecf0330634f4e53e0491ed71424daf004e33120bb6c7c5e17d67267c091
   rubocop-rspec_rails (2.33.0) sha256=669e0a7a9a5fca6d6ccaf853ac65b5b8bdfde3519f604616f2c5278cbf565689
   ruby-duration (3.2.3) sha256=eb3d13b1df85067a015a8fb2ed8f1eec842a3b721e47c9b6fd74d2f356069784
   ruby-lsp (0.11.2) sha256=f39a50e20752c01436a79ed10b6a5e52612f742b59cb8cad1f88cb59d5e5479f
